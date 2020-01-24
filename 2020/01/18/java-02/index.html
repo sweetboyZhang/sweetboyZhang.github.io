@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://sweetboyzhang.github.io/2020/01/18/java-02/oop_2.png">
 <meta property="og:image" content="https://sweetboyzhang.github.io/2020/01/18/java-02/oop_3.png">
 <meta property="article:published_time" content="2020-01-18T04:47:33.000Z">
-<meta property="article:modified_time" content="2020-01-22T08:36:56.901Z">
+<meta property="article:modified_time" content="2020-01-23T08:49:48.288Z">
 <meta property="article:author" content="sweetboyZhang">
 <meta property="article:tag" content="面向对象">
 <meta name="twitter:card" content="summary">
@@ -189,6 +189,10 @@
 
 <h2 id="封装与隐藏"><a href="#封装与隐藏" class="headerlink" title="封装与隐藏"></a>封装与隐藏</h2><p><strong>封装性的体现：</strong><br>        1.将类的属性私有化(private)，提供公共的(public)方法来获取(get)和设置(set)属性值<br>        2.不对外暴露的私有方法<br>        3.单例模式<br>封装性的体现，需要权限修饰符的配合<br>        Java中的4种权限修饰符（从小到大）：private , 缺省 ，protected , public<br><img src="/2020/01/18/java-02/oop_3.png" alt="权限修饰符的访问权限"></p>
 <p>4种权限均可以用来修饰类的内部结构：属性，方法，构造器，内部类<br>        修饰类：缺省，public        </p>
+<h2 id="构造器（构造方法）"><a href="#构造器（构造方法）" class="headerlink" title="构造器（构造方法）"></a>构造器（构造方法）</h2><p>作用：创建对象 new + 构造器<br>        1.若没有显示的定义类的构造器，则系统默认提供一个空参的构造器。<br>        2.定义构造器的格式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">权限修饰符 类名(形参列表)&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3.一个类中可以定义多个构造器，彼此构成重载</p>
+<h2 id="this"><a href="#this" class="headerlink" title="this"></a>this</h2><p>1.this可修饰或调用：属性，方法，构造器。<br>        2.this修饰属性和方法：this表示当前对象。<br>            在类的方法中，使用“ this.属性 ” 或 “ this.方法 ”  ，调用当前对象的属性或方法，通常可以省略。<br>            方法的形参与类的属性重名时必须使用” this.变量 “显式调用。</p>
 
       
 
