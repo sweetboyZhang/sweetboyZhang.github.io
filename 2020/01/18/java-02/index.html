@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://sweetboyzhang.github.io/2020/01/18/java-02/oop_5.png">
 <meta property="og:image" content="https://sweetboyzhang.github.io/2020/01/18/java-02/oop_7.png">
 <meta property="article:published_time" content="2020-01-18T04:47:33.000Z">
-<meta property="article:modified_time" content="2020-02-11T03:32:49.038Z">
+<meta property="article:modified_time" content="2020-02-12T01:20:25.718Z">
 <meta property="article:author" content="sweetboyZhang">
 <meta property="article:tag" content="面向对象">
 <meta name="twitter:card" content="summary">
@@ -225,7 +225,7 @@
 
 <p>3.使用前提：类的继承关系，方法的重写。<br>        4.对象的多态性只使用于方法，不使用于属性。<br><strong>重载与重写的区别：</strong><br>        重载，是指允许存在多个同名方法，而这些方法的参数不同。编译器根据方法不同的参数表，对同名方法的名称做修饰。对于编译器而言，这些同名方法就成了不同的方法。它们的调用地址在编译期就绑定了。Java的重载是可以包括父类和子类的，即子类可以重载父类的同名不同参数的方法。所以：对于重载而言，在方法调用之前，编译器就已经确定了所要调用的方法，这称为<font color="red">“早绑定”或“静态绑定”</font>；<br>        重写，体现了多态性，只有等到方法调用的那一刻，解释运行器才会确定所要调用的具体方法，这称为<font color="red">“晚绑定”或“动态绑定”</font>。</p>
 <h2 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h2><p>a instanceof A :判断对象a是否是类A的实例或子类。若是则返回true，否则返回false.<br>使用：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Person p1 = <span class="keyword">new</span> Man();<span class="comment">// 声明一个父类Person对象，并指向子类Man对象</span></span><br><span class="line"><span class="comment">// 向下转型：使用强转符()</span></span><br><span class="line"><span class="comment">// 向下转型目的：</span></span><br><span class="line"><span class="comment">//有了对象的多态性以后，内存中实际加载了子类特有的属性和方法，但是变量声明为父类类型，在编译时只能调用父类中声明是属性和方法,</span></span><br><span class="line"><span class="comment">//为了调用子类对象中特有的属性和方法,使用向下转型</span></span><br><span class="line"><span class="comment">//Women w1 = (Women)p1;// 抛出异常</span></span><br><span class="line"><span class="keyword">if</span>(p1 <span class="keyword">instanceof</span> Man)&#123;</span><br><span class="line">    Man m1 = (Man)p1;</span><br><span class="line">    m1.earnMoney();<span class="comment">// 调用子类Man中特有的方法(父类Person没有的方法)时，编译前不会报错</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Person p1 = <span class="keyword">new</span> Man();<span class="comment">// 声明一个父类Person对象，并指向子类Man对象</span></span><br><span class="line"><span class="comment">// 向下转型：使用强转符()</span></span><br><span class="line"><span class="comment">// 向下转型目的：</span></span><br><span class="line"><span class="comment">//有了对象的多态性以后，内存中实际加载了子类特有的属性和方法，但是变量声明为父类类型，在编译时只能调用父类中声明的属性和方法,</span></span><br><span class="line"><span class="comment">//为了调用子类对象中特有的属性和方法,使用向下转型</span></span><br><span class="line"><span class="comment">//Women w1 = (Women)p1;// 抛出异常</span></span><br><span class="line"><span class="keyword">if</span>(p1 <span class="keyword">instanceof</span> Man)&#123;</span><br><span class="line">    Man m1 = (Man)p1;</span><br><span class="line">    m1.earnMoney();<span class="comment">// 调用子类Man中特有的方法(父类Person没有的方法)时，编译前不会报错</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><img src="/2020/01/18/java-02/oop_6.png" alt></p>
 <h2 id="包装类"><a href="#包装类" class="headerlink" title="包装类"></a>包装类</h2><p>Java提供了8种基本数据类型的包装类，使得基本数据类型的变量具有类的特征<br><img src="/2020/01/18/java-02/oop_4.png" alt="8种包装类"></p>
@@ -362,6 +362,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/02/11/java-03/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          java_03
+        
+      </div>
+    </a>
   
   
     <a href="/2020/01/09/java_01/" id="article-nav-older" class="article-nav-link-wrap">
@@ -508,6 +517,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">变量，数据类型，运算符，流程控制，数组</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">异常处理</a>
               </li>
             
             <div class="clearfix"></div>
