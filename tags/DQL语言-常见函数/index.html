@@ -6,19 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://sweetboyZhang.github.io">
-  <title>Java基础语法 | sweetboyZhang&#39;s Blog</title>
+  <title>Tag: DQL语言,常见函数 | sweetboyZhang&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="异常概述与异常体系结构Error：Java虚拟机无法解决的严重问题。如：JVM系统内部错误、资源耗尽等严重情况。        比如 ：StackOverflowError和OutOfMemory。一般不编写针对性的代码进行处理。        Exception: 其它因编程错误或偶然的外在因素导致的一般性问题，可以使用针对性的代码进行处理。        例如：空指针访问，试图读取不存在的文件">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Java基础语法">
-<meta property="og:url" content="https://sweetboyzhang.github.io/2020/02/11/java-03/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="sweetboyZhang&#39;s Blog">
+<meta property="og:url" content="https://sweetboyzhang.github.io/tags/DQL%E8%AF%AD%E8%A8%80-%E5%B8%B8%E8%A7%81%E5%87%BD%E6%95%B0/index.html">
 <meta property="og:site_name" content="sweetboyZhang&#39;s Blog">
-<meta property="og:description" content="异常概述与异常体系结构Error：Java虚拟机无法解决的严重问题。如：JVM系统内部错误、资源耗尽等严重情况。        比如 ：StackOverflowError和OutOfMemory。一般不编写针对性的代码进行处理。        Exception: 其它因编程错误或偶然的外在因素导致的一般性问题，可以使用针对性的代码进行处理。        例如：空指针访问，试图读取不存在的文件">
 <meta property="og:locale" content="cn">
-<meta property="article:published_time" content="2020-02-11T03:50:47.000Z">
-<meta property="article:modified_time" content="2020-02-15T12:15:46.819Z">
 <meta property="article:author" content="sweetboyZhang">
-<meta property="article:tag" content="异常处理">
 <meta name="twitter:card" content="summary">
   
   
@@ -143,209 +138,61 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-java-03" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      Java基础语法
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2020/02/22/mysql-02/" class="archive-article-date">
+  	<time datetime="2020-02-22T01:19:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-22</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/02/22/mysql-02/">MySQL核心技术</a>
     </h1>
   
 
-        
-        <a href="/2020/02/11/java-03/" class="archive-article-date">
-  	<time datetime="2020-02-11T03:50:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-11</time>
-</a>
-        
-      </header>
-    
-  
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="异常概述与异常体系结构"><a href="#异常概述与异常体系结构" class="headerlink" title="异常概述与异常体系结构"></a>异常概述与异常体系结构</h2><p><strong>Error：</strong>Java虚拟机无法解决的严重问题。如：JVM系统内部错误、资源耗尽等严重情况。<br>        比如 ：StackOverflowError和OutOfMemory。一般不编写针对性的代码进行处理。<br>        <strong>Exception:</strong> 其它因编程错误或偶然的外在因素导致的一般性问题，可以使用针对性的代码进行处理。<br>        例如：空指针访问，试图读取不存在的文件，网络连接中断，数组角标越界。</p>
-<a id="more"></a>
-<p>异常分类：编译时异常；运行时异常(java.lang.RuntimeException类及它的子类都是运行时异常)。</p>
-<h2 id="异常处理机制一"><a href="#异常处理机制一" class="headerlink" title="异常处理机制一"></a>异常处理机制一</h2><p>异常的处理：抓抛模型<br>        <strong>抛出异常：</strong>程序在正常执行的过程中，如果出现异常，就会生成一个异常类的对象，并将此对象提交给java运        行时系统。<br>        <strong>捕获异常：</strong>如果一个方法抛出异常，该异常就会抛出给调用者方法中处理。如果异常没有在调用者方法中处理，继续抛给上层方法，直到<font color="red">异常被处理</font>。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">try&#123;</span><br><span class="line">    &#x2F;&#x2F; 可能出现异常的代码    </span><br><span class="line">&#125;catch(异常类型1 变量名1)&#123;</span><br><span class="line">    &#x2F;&#x2F; 处理异常的方式1</span><br><span class="line">&#125;catch(异常类型2 变量名2)&#123;</span><br><span class="line">    &#x2F;&#x2F; 处理异常的方式2</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line">finally&#123;</span><br><span class="line">    &#x2F;&#x2F; 不论在try代码块中是否发生了异常事件，catch语句是否执行，是否有异常，是否有return，</span><br><span class="line">    &#x2F;&#x2F; finally块中的语句都会被执行。</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="异常处理机制二"><a href="#异常处理机制二" class="headerlink" title="异常处理机制二"></a>异常处理机制二</h2><p>throws + 异常类型<br>        1.写在方法的声明处，指明可能抛出的异常类型。一旦方法体执行出现异常时，就会将生成的异常类对象抛给        调用者。异常代码后续的代码不再执行。<br>        2.只是将异常抛给了调用者，并<font color="red">没有将异常处理掉</font>。</p>
-<h2 id="手动抛出异常"><a href="#手动抛出异常" class="headerlink" title="手动抛出异常"></a>手动抛出异常</h2><p>throw + new Exception(“提示信息”)，必须在方法声明时用throws出指明可能抛出的异常。<br>        throw : 生成一个异常对象。声明在方法体内。<br>        throws : 处理异常。声明在方法的声明处。</p>
-<h2 id="用户自定义异常类"><a href="#用户自定义异常类" class="headerlink" title="用户自定义异常类"></a>用户自定义异常类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> 用户自定义异常类MyException，用于描述数据取值范围错误信息。</span></span><br><span class="line"><span class="comment"> *              用户自己的异常类必须继承现有的异常类。 </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> sweetboyZhang</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020年2月13日下午3:15:59</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyException</span> <span class="keyword">extends</span> <span class="title">Exception</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = -<span class="number">703489719074899L</span>;<span class="comment">// 序列号</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> id;<span class="comment">// 异常种类</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyException</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyException</span><span class="params">(String msg,<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>(msg);</span><br><span class="line">		<span class="keyword">this</span>.id = id;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.id;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyExceptionTest</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">regist</span><span class="params">(<span class="keyword">int</span> num)</span><span class="keyword">throws</span> MyException</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(num &lt; <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> MyException(<span class="string">"人为负数，不合理"</span>,<span class="number">1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			System.out.println(<span class="string">"登记人数："</span>+num);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">manager</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			regist(-<span class="number">100</span>);</span><br><span class="line">		&#125;<span class="keyword">catch</span>(MyException e) &#123;</span><br><span class="line">			System.out.println(<span class="string">"登记错误，出错种类："</span>+e.getId());</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">"本次登记操作结束"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		MyExceptionTest my1 = <span class="keyword">new</span> MyExceptionTest();</span><br><span class="line">		my1.manager();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>请我恰糖<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/img/wxpay.png">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">异常处理</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">DQL语言,常见函数</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://sweetboyzhang.github.io/2020/02/11/java-03/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-
-  
-<nav id="article-nav">
-  
-    <a href="/2020/02/17/java-04/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Java高级语法
-        
-      </div>
-    </a>
   
   
-    <a href="/2020/01/18/java-02/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Java基础语法</div>
-      <i class="icon-circle-right"></i>
-    </a>
+    </div></section>
   
 
-</nav>
- 
- <span id="busuanzi_container_page_pv">
-    本文阅读量: <span id="busuanzi_value_page_pv"></span>次
-</span>
+    
 
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#异常概述与异常体系结构"><span class="toc-number">1.</span> <span class="toc-text">异常概述与异常体系结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#异常处理机制一"><span class="toc-number">2.</span> <span class="toc-text">异常处理机制一</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#异常处理机制二"><span class="toc-number">3.</span> <span class="toc-text">异常处理机制二</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#手动抛出异常"><span class="toc-number">4.</span> <span class="toc-text">手动抛出异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户自定义异常类"><span class="toc-number">5.</span> <span class="toc-text">用户自定义异常类</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
-  
-
-  
-
-  
-
-  
 
           </div>
         </div>
@@ -370,9 +217,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

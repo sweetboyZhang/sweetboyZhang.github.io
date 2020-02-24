@@ -6,15 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://sweetboyZhang.github.io">
-  <title>Tag: DQL语言 | sweetboyZhang&#39;s Blog</title>
+  <title>Linux | sweetboyZhang&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="sweetboyZhang&#39;s Blog">
-<meta property="og:url" content="https://sweetboyzhang.github.io/tags/DQL%E8%AF%AD%E8%A8%80/index.html">
+  <meta name="description" content="Linux目录结构linux的文件系统采用级层式的树状目录结构，最上层是根目录  &#x2F;  ，然后在此基础上创建其他目录。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux">
+<meta property="og:url" content="https://sweetboyzhang.github.io/2020/02/24/linux-01/index.html">
 <meta property="og:site_name" content="sweetboyZhang&#39;s Blog">
+<meta property="og:description" content="Linux目录结构linux的文件系统采用级层式的树状目录结构，最上层是根目录  &#x2F;  ，然后在此基础上创建其他目录。">
 <meta property="og:locale" content="cn">
+<meta property="og:image" content="https://sweetboyzhang.github.io/2020/02/24/linux-01/root.png">
+<meta property="og:image" content="https://sweetboyzhang.github.io/2020/02/24/linux-01/vim.png">
+<meta property="article:published_time" content="2020-02-24T07:08:58.000Z">
+<meta property="article:modified_time" content="2020-02-24T14:10:13.671Z">
 <meta property="article:author" content="sweetboyZhang">
+<meta property="article:tag" content="目录结构">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sweetboyzhang.github.io/2020/02/24/linux-01/root.png">
   
   
     <link rel="icon" href="/img/icon.png">
@@ -138,61 +146,213 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-linux-01" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/02/22/mysql-02/" class="archive-article-date">
-  	<time datetime="2020-02-22T01:19:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-22</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/22/mysql-02/">MySQL核心技术</a>
+    <h1 class="article-title" itemprop="name">
+      Linux
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/02/24/linux-01/" class="archive-article-date">
+  	<time datetime="2020-02-24T07:08:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-24</time>
+</a>
+        
+      </header>
+    
+  
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Linux目录结构"><a href="#Linux目录结构" class="headerlink" title="Linux目录结构"></a>Linux目录结构</h2><p>linux的文件系统采用级层式的树状目录结构，最上层是根目录  /  ，然后在此基础上创建其他目录。<br>                  <img src="/2020/02/24/linux-01/root.png" alt="层次结构图"></p>
+<a id="more"></a>
+<pre><code>__/bin : __Binary的缩写，用于存放最经常使用的命令。
+__/sbin : __s 就是Super User 的意思，用于存放系统管理员使用的系统管理程序。
+__/home : __存放普通用户的主目录，每一个用户都用自己的一个目录。
+__/root : __系统管理员的主目录，也称为超级权限者的用户主目录。
+__/lib : __系统开机时需要最基本的动态连接共享库，类似于Windows的DLL文件。几乎所有的程序都要用到这                些共享库。
+__/etc : __所有的系统管理所需要的配置文件和子目录。my.conf
+__/usr : __用户的很多程序和文件都存放在此目录下。类似于WIndows的Program Files目录。
+__/boot : __启动Linux时使用的一些核心文件，包括一些连接文件以及镜像文件。
+__/proc : __是一个虚拟的目录，它是系统内存的映射，访问这个目录用来获取系统信息。
+__/srv : __service 的缩写，用于存放一些服务启动之后需要提取的数据。
+__/sys : __安装来了新出现的文件系统sysfs。
+__/tmp : __存放一些临时文件。
+__/dev : __类似于Windows的设备管理器，把所有硬件用文件的形式存储。
+__/media  : __linux系统会自动识别一些设备，识别后把设别的设备挂载到这个目录下。
+__/mnt : __让用户临时挂载别的文件系统。
+__/opt : __存放额外的安装程序。
+__/usr/local : __给主机额外安装软件所安装的目录。
+__/var : __将经常倍修改的目录放在这个目录下。包括各种日志文件。</code></pre><h2 id="远程登录Linux-Xshell"><a href="#远程登录Linux-Xshell" class="headerlink" title="远程登录Linux-Xshell"></a>远程登录Linux-Xshell</h2><p>1.Linux需要打开sshd服务(<em>openssh的服务端：sshd</em> ; <em>openssh的客户端：ssh</em> )；<br>        sudo service ssh start<br>        若出现Unit ssh.service not found，则需要安装openssh服务：<br>        sudo apt-get install openssh-server<br>        2.打开Xshell，并新建会话，填入需要远程登录的主机的ip地址，保存会话；<br>        3.双击建立的会话，输入用户名以及密码，建立连接。</p>
+<h2 id="远程上传-下载-Xftp"><a href="#远程上传-下载-Xftp" class="headerlink" title="远程上传/下载-Xftp"></a>远程上传/下载-Xftp</h2><p>1.打开Xftp,新建会话，填入需要远程登录的主机的ip地址以及密码，保存会话；<br>        2.双击会话，建立连接。</p>
+<h2 id="vi和vim编辑器"><a href="#vi和vim编辑器" class="headerlink" title="vi和vim编辑器"></a>vi和vim编辑器</h2><p>__vi : __所有的linux系统都会内建 vi文本编辑器；<br>        __vim : __具有程序编辑功能的文本编辑器。</p>
+<h3 id="vi和vim的三种常见模式"><a href="#vi和vim的三种常见模式" class="headerlink" title="vi和vim的三种常见模式"></a>vi和vim的三种常见模式</h3><p><strong>1.正常模式：</strong><br>        以vim 打开一个档案就直接进入一般模式了(这是默认的模式)。在这个模式中，可以使用『上下左右』按键        来移动光标，你可以使用『删除字符』或『删除整行』来处理档案内容，也可以使用『复制、贴上』来处理        你的文件数据。<br>        <strong>2.插入模式:</strong><br>        按下i, I, o, O, a, A, r, R等任何一个字母之后才会进入编辑模式, 一般来说按i即可。<br>        <strong>3.命令行模式:</strong><br>        在这个模式当中，可以提供你相关指令，完成读取、存盘、替换、离开vim 、显示行号等的动作。<br><img src="/2020/02/24/linux-01/vim.png" alt="vim模式切换"></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>请我恰糖<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wxpay.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">DQL语言</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">目录结构</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://sweetboyzhang.github.io/2020/02/24/linux-01/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2020/02/22/mysql-02/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">MySQL核心技术</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 
-    
+</nav>
+ 
+ <span id="busuanzi_container_page_pv">
+    本文阅读量: <span id="busuanzi_value_page_pv"></span>次
+</span>
 
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux目录结构"><span class="toc-number">1.</span> <span class="toc-text">Linux目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#远程登录Linux-Xshell"><span class="toc-number">2.</span> <span class="toc-text">远程登录Linux-Xshell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#远程上传-下载-Xftp"><span class="toc-number">3.</span> <span class="toc-text">远程上传&#x2F;下载-Xftp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vi和vim编辑器"><span class="toc-number">4.</span> <span class="toc-text">vi和vim编辑器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#vi和vim的三种常见模式"><span class="toc-number">4.1.</span> <span class="toc-text">vi和vim的三种常见模式</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+
+  
+
+  
+
+  
 
           </div>
         </div>
@@ -217,9 +377,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
@@ -300,7 +460,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">DQL语言</a>
+                <a href="javascript:void(0)" class="js-tag color1">DQL语言,常见函数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">目录结构</a>
               </li>
             
             <div class="clearfix"></div>
