@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="https://sweetboyZhang.github.io">
   <title>linux | sweetboyZhang&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="关机&amp;重启命令shutdown(默认1分钟后关机)        shutdown -h now : 立即关机        shutdown -h 1 : 1分钟后关机        shutdown -r now : 立即重启        halt:： 禁用cpu，相当于直接关机        reboot： 立即重启        sync: 把内存上的数据同步到磁盘上(关机或重启">
+  <meta name="description" content="关机&amp;重启命令shutdown(默认1分钟后关机)        shutdown -h now : 立即关机        shutdown -h 1 : 1分钟后关机        shutdown -r now : 立即重启">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux">
 <meta property="og:url" content="https://sweetboyzhang.github.io/2020/02/25/linux-02/index.html">
 <meta property="og:site_name" content="sweetboyZhang&#39;s Blog">
-<meta property="og:description" content="关机&amp;重启命令shutdown(默认1分钟后关机)        shutdown -h now : 立即关机        shutdown -h 1 : 1分钟后关机        shutdown -r now : 立即重启        halt:： 禁用cpu，相当于直接关机        reboot： 立即重启        sync: 把内存上的数据同步到磁盘上(关机或重启">
+<meta property="og:description" content="关机&amp;重启命令shutdown(默认1分钟后关机)        shutdown -h now : 立即关机        shutdown -h 1 : 1分钟后关机        shutdown -r now : 立即重启">
 <meta property="og:locale" content="cn">
 <meta property="article:published_time" content="2020-02-25T01:56:19.000Z">
-<meta property="article:modified_time" content="2020-02-25T11:49:22.694Z">
+<meta property="article:modified_time" content="2020-02-25T11:55:08.701Z">
 <meta property="article:author" content="sweetboyZhang">
 <meta property="article:tag" content="常用命令">
 <meta name="twitter:card" content="summary">
@@ -164,8 +164,11 @@
   
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="关机-amp-重启命令"><a href="#关机-amp-重启命令" class="headerlink" title="关机&amp;重启命令"></a>关机&amp;重启命令</h2><p><strong>shutdown</strong>(默认1分钟后关机)<br>        shutdown -h now : 立即关机<br>        shutdown -h 1 : 1分钟后关机<br>        shutdown -r now : 立即重启<br>        <strong>halt:：</strong> 禁用cpu，相当于直接关机<br>        <strong>reboot：</strong> 立即重启<br>        <strong>sync:</strong> 把内存上的数据同步到磁盘上(关机或重启前应该先执行此指令，防止数据丢失)</p>
-<h2 id="用户登录和注销"><a href="#用户登录和注销" class="headerlink" title="用户登录和注销"></a>用户登录和注销</h2><p><strong>su 用户名:</strong> 切换用户<br>        <strong>logout:</strong> 注销用户，在图形运行级别无效</p>
+        <h2 id="关机-amp-重启命令"><a href="#关机-amp-重启命令" class="headerlink" title="关机&amp;重启命令"></a>关机&amp;重启命令</h2><p><strong>shutdown</strong>(默认1分钟后关机)<br>        shutdown -h now : 立即关机<br>        shutdown -h 1 : 1分钟后关机<br>        shutdown -r now : 立即重启</p>
+<a id="more"></a>
+<pre><code>__halt:__禁用cpu，相当于直接关机
+__reboot:__立即重启
+__sync:__把内存上的数据同步到磁盘上(关机或重启前应该先执行此指令，防止数据丢失)</code></pre><h2 id="用户登录和注销"><a href="#用户登录和注销" class="headerlink" title="用户登录和注销"></a>用户登录和注销</h2><p><strong>su 用户名：</strong>切换用户<br>        <strong>logout：</strong>注销用户，在图形运行级别无效</p>
 <h2 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h2><p>Linux是一个多用户多任务的操作系统，任何一个要使用系统资源的用户，都必须  想系统管理员申请一个账号，然后以这个账号的身份进入系统。<br>每个用户至少属于一个组。<br>        <strong>添加用户：</strong> useradd -r -m -s /bin/bash 用户名<br>        -r：建立系统账号<br>        -m：自动建立用户的登入目录<br>        -s：指定用户登入后所使用的shell<br>        <strong>指定密码:</strong> passwd 用户名<br>        <strong>删除用户:</strong><br>        userdel 用户名(删除用户保留家目录)<br>        userdel -r 用户名 (删除用户及用户主目录)<br>        <strong>查询用户：</strong>id 用户名<br>        <strong>查看当前用户：</strong>whoami  /who am I</p>
 
       
