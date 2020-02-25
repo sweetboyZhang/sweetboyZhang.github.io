@@ -161,7 +161,7 @@
   
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="关机-amp-重启命令"><a href="#关机-amp-重启命令" class="headerlink" title="关机&amp;重启命令"></a>关机&amp;重启命令</h2><p><strong>shutdown</strong>(默认1分钟后关机)<br>        shutdown -h now : 立即关机<br>        shutdown -h 1 : 1分钟后关机<br>        shutdown -r now : 立即重启<br>        <strong>halt: __ 禁用cpu，相当于直接关机<br>        __reboot:</strong> 立即重启<br>        <strong>sync:</strong> 把内存上的数据同步到磁盘上(关机或重启前应该先执行此指令，防止数据丢失)</p>
+        <h2 id="关机-amp-重启命令"><a href="#关机-amp-重启命令" class="headerlink" title="关机&amp;重启命令"></a>关机&amp;重启命令</h2><p><strong>shutdown</strong>(默认1分钟后关机)<br>        shutdown -h now : 立即关机<br>        shutdown -h 1 : 1分钟后关机<br>        shutdown -r now : 立即重启<br>        <strong>halt:：</strong> 禁用cpu，相当于直接关机<br>        <strong>reboot：</strong> 立即重启<br>        <strong>sync:</strong> 把内存上的数据同步到磁盘上(关机或重启前应该先执行此指令，防止数据丢失)</p>
 <h2 id="用户登录和注销"><a href="#用户登录和注销" class="headerlink" title="用户登录和注销"></a>用户登录和注销</h2><p><strong>su 用户名:</strong> 切换用户<br>        <strong>logout:</strong> 注销用户，在图形运行级别无效</p>
 <h2 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h2><p>Linux是一个多用户多任务的操作系统，任何一个要使用系统资源的用户，都必须  想系统管理员申请一个账号，然后以这个账号的身份进入系统。<br>每个用户至少属于一个组。<br>        <strong>添加用户：</strong> useradd -r -m -s /bin/bash 用户名<br>        -r：建立系统账号<br>        -m：自动建立用户的登入目录<br>        -s：指定用户登入后所使用的shell<br>        <strong>指定密码:</strong> passwd 用户名<br>        <strong>删除用户:</strong><br>        userdel 用户名(删除用户保留家目录)<br>        userdel -r 用户名 (删除用户及用户主目录)<br>        <strong>查询用户：</strong>id 用户名<br>        <strong>查看当前用户：</strong>whoami  /who am I</p>
 
@@ -849,11 +849,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">变量，数据类型，运算符，流程控制，数组</a>
+                <a href="javascript:void(0)" class="js-tag color5">常用命令</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">异常处理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">目录结构,Xshell,Xftp，vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -869,11 +873,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">常用命令</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">目录结构,Xshell,Xftp，vim</a>
+                <a href="javascript:void(0)" class="js-tag color5">变量，数据类型，运算符，流程控制，数组</a>
               </li>
             
             <div class="clearfix"></div>
