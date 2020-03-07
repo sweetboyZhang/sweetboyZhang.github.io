@@ -16,7 +16,7 @@
 <meta property="og:description" content="关机&amp;重启命令shutdown(默认1分钟后关机)        shutdown -h now : 立即关机        shutdown -h 1 : 1分钟后关机        shutdown -r now : 立即重启">
 <meta property="og:locale" content="cn">
 <meta property="article:published_time" content="2020-02-25T01:56:19.000Z">
-<meta property="article:modified_time" content="2020-02-28T08:57:30.059Z">
+<meta property="article:modified_time" content="2020-03-07T02:49:34.103Z">
 <meta property="article:author" content="sweetboyZhang">
 <meta property="article:tag" content="常用命令">
 <meta name="twitter:card" content="summary">
@@ -168,11 +168,27 @@
 <a id="more"></a>
 <p><strong>halt:</strong>禁用cpu，相当于直接关机<br><strong>reboot:</strong>立即重启<br><strong>sync:</strong>把内存上的数据同步到磁盘上(关机或重启前应该先执行此指令，防止数据丢失)</p>
 <h2 id="用户登录和注销"><a href="#用户登录和注销" class="headerlink" title="用户登录和注销"></a>用户登录和注销</h2><p><strong>su 用户名：</strong>切换用户<br>        <strong>logout：</strong>注销用户，在图形运行级别无效</p>
-<h2 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h2><p>Linux是一个多用户多任务的操作系统，任何一个要使用系统资源的用户，都必须向系统管理员申请一个账号，然后以这个账号的身份进入系统。<br>每个用户至少属于一个组。<br><strong>添加用户：</strong> useradd -r -m -s /bin/bash 用户名<br>-r：建立系统账号<br>-m：自动建立用户的登入目录<br>-s：指定用户登入后所使用的shell<br><strong>指定密码：</strong>passwd 用户名<br><strong>删除用户：</strong><br>userdel 用户名(删除用户保留家目录)<br>userdel -r 用户名 (删除用户及用户主目录)<br><strong>查询用户：</strong>id 用户名<br><strong>查看当前用户：</strong>whoami  /who am I<br><strong>用户组：</strong>系统对有共性的多个用户进行统一的管理<br>添加组：groupadd  组名<br>删除组：groupdel 组名<br>增加用户时直接加上组：useradd -g 用户组 用户<br>修改用户组：usermod -g 用户组 用户<br>相关文件：<br>/etc/passwd：用户的配置文件，记录用户的各种信息<br>用户名：口令：用户标识号：组标识号：注释性描述：登录shell<br>/etc/shadow：口令配置文件<br>登录名：加密口令：最后一次修改时间：最小时间间隔：最大时间间隔：不活动时间：失效时间：标志<br>/etc/group：组配置文件<br>组名：口令：组标识符</p>
+<h2 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h2><p>Linux是一个多用户多任务的操作系统，任何一个要使用系统资源的用户，都必须向系统管理员申请一个账号，然后以这个账号的身份进入系统。<br>每个用户至少属于一个组。<br><strong>添加用户：</strong> useradd -r -m -s /bin/bash 用户名<br>-r：建立系统账号<br>-m：自动建立用户的登入目录<br>-s：指定用户登入后所使用的shell<br><strong>指定密码：</strong>passwd 用户名<br><strong>删除用户：</strong><br>userdel 用户名(删除用户保留家目录)<br>userdel -r 用户名 (删除用户及用户主目录)<br><strong>查询用户：</strong>id 用户名<br><strong>查看当前用户：</strong>whoami  /who am I<br><strong>用户组：</strong>系统对有共性的多个用户进行统一的管理<br>添加组：groupadd  组名<br>查看组id：grep 组名 /etc/group<br>修改组账户：groupmod -g[新id] -n[新组名] 组名<br>删除组：groupdel 组名<br>增加用户时直接加上组：useradd -g 用户组 用户<br>修改用户组：usermod -g 用户组 用户<br>相关文件：<br>/etc/passwd：用户的配置文件，记录用户的各种信息<br>用户名：口令：用户标识号：组标识号：注释性描述：登录shell<br>/etc/shadow：口令配置文件<br>登录名：加密口令：最后一次修改时间：最小时间间隔：最大时间间隔：不活动时间：失效时间：标志<br>/etc/group：组配置文件<br>组名：口令：组标识符</p>
 <h2 id="运行级别"><a href="#运行级别" class="headerlink" title="运行级别"></a>运行级别</h2><p>0：关机<br>        1：单用户（找回丢失密码）<br>        2：多用户状态没有网络服务<br>        3：多用户状态有网络<br>        4：系统未使用保留给用户<br>        5：图形界面<br>        6：系统重启<br>                /etc/inittab文件查看运行级别（ubuntu没有此文件）<br>                修改默认运行级别：init [012356] (然后按ctrl+alt+F1，Ubuntu进入命令界面 )</p>
 <h2 id="帮助指令"><a href="#帮助指令" class="headerlink" title="帮助指令"></a>帮助指令</h2><p>man 指令<br>        help 指令</p>
-<h2 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h2><p>​    <strong>pwd：</strong>显示当前目录的绝对路径<br>​            <strong>ls [选项] [目录或是文件]：</strong>显示指定目录霞的文件信息<br>​            常用选项：<br>​            -a：显示当前目录的所有文件或目录，包括隐藏文件；<br>​            -l：以列表的方式显示信息。<br>​            <em>ls -a -l 等价于 ll</em><br>​            <strong>cd [目录]：</strong>进入指定目录<br>​            绝对路径：从根目录出发定位  /home<br>​            相对路径：从当前路径出发定位 ../home<br>​            cd ~  进入当前用户的家目录<br>​            cd ..  进入当前目录的上一级目录<br>​            <strong>mkdir [选项] 目录：</strong>创建目录<br>​            -p：创建多级目录<br>​            rmdir [] 目录：删除目录<br>​            redir 目录：删除的是空目录；rm -rf 目录：删除非空目录<br>​            <strong>touch 文件名：</strong>创建一个空文件（可以一次创建多个文件）<br>​            <strong>cp [选项] 原文件 指定目录：</strong>拷贝文件到指定目录<br>​            -r：递归复制整个文件夹                        </p>
-
+<h2 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h2><p>​    <strong>pwd：</strong>显示当前目录的绝对路径</p>
+<p>​    <strong>ls [选项] [目录或是文件]：</strong>显示指定目录霞的文件信息<br>​            常用选项：<br>​            -a：显示当前目录的所有文件或目录，包括隐藏文件；<br>​            -l：以列表的方式显示信息。<br>​            <em>ls -a -l 等价于 ll</em></p>
+<p>​    <strong>cd [目录]：</strong>进入指定目录<br>​            绝对路径：从根目录出发定位  /home<br>​            相对路径：从当前路径出发定位 ../home<br>​            cd ~  进入当前用户的家目录<br>​            cd ..  进入当前目录的上一级目录</p>
+<p>​    <strong>mkdir [选项] 目录：</strong>创建目录<br>​            -p：创建多级目录<br>​            rmdir [] 目录：删除目录<br>​            redir 目录：删除的是空目录；rm -rf 目录：删除非空目录</p>
+<p>​    <strong>touch 文件名：</strong>创建一个空文件（可以一次创建多个文件）</p>
+<p>​    <strong>cp [选项] 原文件 指定目录：</strong>拷贝文件到指定目录<br>​            -r：递归复制整个文件夹    </p>
+<p>​    <strong>rm [选项] 要删除的文件夹或目录：</strong>删除指定文件夹<br>​            -r：递归删除整个文件夹<br>​            -f：强制删除不提示    </p>
+<p>​    <strong>mv 原文件名 新文件名：</strong>文件重命名<br>​            <strong>mv 原文件路径 新文件路径：</strong>移动文件    </p>
+<p>​    <strong>cat [选项] 文件路径：</strong>查看文件内容<br>​            -n：显示行号<br>​            |more：分页显示<br>​            |less：效率比more高</p>
+<p>​    <strong>&gt;输出重定向：</strong><br>​            <strong>&gt;&gt;追加：</strong><br>​            ls -l &gt;文件：将列表的内容写入文件中<br>​            ls -l &gt;&gt;文件：将列表的内容追加到文件的末尾</p>
+<p>​    <strong>echo [选项] [输出内容]：</strong>输出内容到控制台</p>
+<p>​    <strong>head 文件名：</strong>查看文件前10行<br>​            head -n 行数：查看文件的前任意行</p>
+<p>​    <strong>tail 文件名：</strong>查看文件尾10行<br>​            tail -n 行数：查看文件尾任意行<br>​            tail -f 文件名：实时监控文件的更新</p>
+<p>​    <strong>ln -s 原文件或目录 软链接：</strong>给文件创建一个软链接，相当于windows中的快捷方式</p>
+<p>​    <strong>history ：</strong>查看或执行(! 编号)已经执行过的指令</p>
+<h2 id="时间日期类"><a href="#时间日期类" class="headerlink" title="时间日期类"></a>时间日期类</h2><p><strong>date：</strong>显示当前时间日期<br>        date “+%Y-&amp;m-%d %H:%m:%S”：按指定格式显示时间日期<br>        date -s 字符串时间日期：设置时间日期</p>
+<p><strong>cal：</strong>显示当前日历        </p>
+<h2 id="搜索查找类"><a href="#搜索查找类" class="headerlink" title="搜索查找类"></a>搜索查找类</h2>
       
 
       
@@ -324,7 +340,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#关机-amp-重启命令"><span class="toc-number">1.</span> <span class="toc-text">关机&amp;重启命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户登录和注销"><span class="toc-number">2.</span> <span class="toc-text">用户登录和注销</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户管理"><span class="toc-number">3.</span> <span class="toc-text">用户管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运行级别"><span class="toc-number">4.</span> <span class="toc-text">运行级别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#帮助指令"><span class="toc-number">5.</span> <span class="toc-text">帮助指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件管理"><span class="toc-number">6.</span> <span class="toc-text">文件管理</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#关机-amp-重启命令"><span class="toc-number">1.</span> <span class="toc-text">关机&amp;重启命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户登录和注销"><span class="toc-number">2.</span> <span class="toc-text">用户登录和注销</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户管理"><span class="toc-number">3.</span> <span class="toc-text">用户管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运行级别"><span class="toc-number">4.</span> <span class="toc-text">运行级别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#帮助指令"><span class="toc-number">5.</span> <span class="toc-text">帮助指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件管理"><span class="toc-number">6.</span> <span class="toc-text">文件管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#时间日期类"><span class="toc-number">7.</span> <span class="toc-text">时间日期类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搜索查找类"><span class="toc-number">8.</span> <span class="toc-text">搜索查找类</span></a></li></ol>
                     </div>
                 </span>
             </div>
