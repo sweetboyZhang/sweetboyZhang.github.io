@@ -6,15 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://sweetboyZhang.github.io">
-  <title>Archives: 2020/3 | sweetboyZhang&#39;s Blog</title>
+  <title>操作系统 | sweetboyZhang&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="sweetboyZhang&#39;s Blog">
-<meta property="og:url" content="https://sweetboyzhang.github.io/archives/2020/03/index.html">
+  <meta name="description" content="第一章   操作系统引论1.1 操作系统的目标和作用操作系统的目标与应用环境有关；目标：有效性，方便性，可扩充性，开放性；作用：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统">
+<meta property="og:url" content="https://sweetboyzhang.github.io/2020/03/09/os-note/index.html">
 <meta property="og:site_name" content="sweetboyZhang&#39;s Blog">
+<meta property="og:description" content="第一章   操作系统引论1.1 操作系统的目标和作用操作系统的目标与应用环境有关；目标：有效性，方便性，可扩充性，开放性；作用：">
 <meta property="og:locale" content="cn">
+<meta property="og:image" content="https://sweetboyzhang.github.io/2020/03/09/os-note/%E6%A8%A1%E5%9D%97%E5%8C%96%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="https://sweetboyzhang.github.io/2020/03/09/os-note/%E6%A8%A1%E5%9D%97%E5%8C%96%E4%BC%98%E7%BC%BA%E7%82%B9.png">
+<meta property="og:image" content="https://sweetboyzhang.github.io/2020/03/09/os-note/%E5%88%86%E5%B1%82%E7%BB%93%E6%9E%84%E4%BC%98%E7%BC%BA%E7%82%B9.png">
+<meta property="og:image" content="https://sweetboyzhang.github.io/2020/03/09/os-note/process.png">
+<meta property="og:image" content="https://sweetboyzhang.github.io/2020/03/09/os-note/process1.png">
+<meta property="og:image" content="https://sweetboyzhang.github.io/2020/03/09/os-note/process3.png">
+<meta property="article:published_time" content="2020-03-09T05:02:07.000Z">
+<meta property="article:modified_time" content="2020-03-09T08:29:45.754Z">
 <meta property="article:author" content="sweetboyZhang">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sweetboyzhang.github.io/2020/03/09/os-note/%E6%A8%A1%E5%9D%97%E5%8C%96%E7%BB%93%E6%9E%84.png">
   
   
     <link rel="icon" href="/img/icon.png">
@@ -138,88 +149,217 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-os-note" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      操作系统
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/09/os-note/" class="archive-article-date">
+
+        
+        <a href="/2020/03/09/os-note/" class="archive-article-date">
   	<time datetime="2020-03-09T05:02:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-09</time>
 </a>
-        </div>
-    	 
+        
+      </header>
+    
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/09/os-note/">操作系统</a>
-    </h1>
-  
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="第一章-操作系统引论"><a href="#第一章-操作系统引论" class="headerlink" title="第一章   操作系统引论"></a>第一章   操作系统引论</h1><h2 id="1-1-操作系统的目标和作用"><a href="#1-1-操作系统的目标和作用" class="headerlink" title="1.1 操作系统的目标和作用"></a>1.1 操作系统的目标和作用</h2><p>操作系统的目标与应用环境有关；<br><strong>目标：</strong>有效性，方便性，可扩充性，开放性；<br><strong>作用：</strong><a id="more"></a><br>1.作为用户与计算机硬件系统之间的接口；<br>命令方式，系统调用方式，图形、窗口方式<br>2.作为计算机系统资源的管理者；<br>  -处理机管理，分配和控制处理机；<br>  -存储器管理，内存的分配和回收；<br>  -I/O设备管理，负责I/O设备的分配与操纵；<br>  -文件管理，负责文件的存取，共享和保护。<br>3.实现了对计算机资源的抽象；<br>在裸机(一台完全无软件的计算机系统)上覆盖I/O设备管理软件，实现I/O操作的细节<br><strong>推动操作系统发展的主要动力：</strong><br>-不断提高计算机资源利用率<br>-方便用户<br>-器件的不断更新迭代<br>-计算机体系结构的不断发展<br>-不断提出新的应用需求</p>
+<h2 id="1-2-操作系统的发展过程"><a href="#1-2-操作系统的发展过程" class="headerlink" title="1.2 操作系统的发展过程"></a>1.2 操作系统的发展过程</h2><p><strong>未配置操作系统的计算机系统：</strong><br>        1.人工操作方式<br>        用户独占全机；<br>        CPU等待人工操作。<br>        2.脱机输入输出方式<br>        <strong>单道批处理系统：</strong>一次只能运行一道程序<br>        系统中的资源得不到充分的利用；<br>        <strong>多道批处理系统：</strong><br>        同时在内存中存放多道程序，并使它们交替运行。<br>        <em>优缺点：</em><br>        1.资源利用率高；<br>        2.系统吞吐量大；<br>        3.平均周转时间长；<br>        4.无交互能力。<br>        <strong>分时操作系统：</strong><br>        <em>特征：<em>多路性；独立性；及时性；交互性<br>        __实时系统：</em></em><br>        系统能及时响应外部事件的请求，在规定时间内完成对该事件的处理，并控制所用实时任务协调一致地进行。<br>        <strong>微机操作系统的发展：</strong><br>        1.单用户单任务操作系统<br>        2.单用户多任务操作系统<br>        3.多用户多任务操作系统</p>
+<h2 id="1-3-操作系统的基本特征"><a href="#1-3-操作系统的基本特征" class="headerlink" title="1.3 操作系统的基本特征"></a>1.3 操作系统的基本特征</h2><p><strong>并发：</strong><br>        1.并发与并行的区别：<br>        并行性：两个或多个事件在同一时刻发生；<br>        并发性：两个或多个事件在同一时间间隔内发生。<br>        2.引入进程：并发执行多个进程<br>        <strong>共享：</strong><br>        1.互斥共享方式：系统中的某些资源，虽然可以提供给多个进程使用，但规定在一段时间内  ，只允许一个进            程访问该资源。<br>        2.同时访问方式：宏观：同时；微观：交替<br>        <strong>虚拟：</strong><br>        1.时分复用技术：(1)虚拟处理机技术(2)虚拟设备技术<br>        2.空分复用技术<br>        <strong>异步：</strong>进程是以人们不可预知的速度向前推进，即进程的异步性。</p>
+<h2 id="1-4-操作系统的主要功能"><a href="#1-4-操作系统的主要功能" class="headerlink" title="1.4 操作系统的主要功能"></a>1.4 操作系统的主要功能</h2><h3 id="1-4-1-处理机管理"><a href="#1-4-1-处理机管理" class="headerlink" title="1.4.1 处理机管理"></a>1.4.1 处理机管理</h3><p><strong>1.进程控制：</strong>创建进程，撤销已结束的进程，控制进程在运行过程中的状态转换，为一个进程创建或撤销已结束的若干个线程。<br>        <strong>2.进程同步：</strong> 两种协调方式：(1) 进程互斥方式(2) 进程同步方式<br>        <strong>3.进程通信：</strong>实现在相互合作的进程之间的信息交换。<br>        <strong>4.调度：</strong>(1) 作业调度   (2) 进程调度</p>
+<h3 id="1-4-2-存储器管理"><a href="#1-4-2-存储器管理" class="headerlink" title="1.4.2 存储器管理"></a>1.4.2 存储器管理</h3><p><strong>1.内存分配：</strong><br>            主要任务：<br>            (1) 为每道程序分配内存空间；<br>            (2) 提高存储器的利用率，尽量减少不可用的内存空间(碎片)；<br>            (3) 允许正在运行的程序申请附加的内存空间，以适应程序和数据动态增长的需要。<br>            两种方式：(1)静态分配 (2) 动态分配<br>        <strong>2.内存保护：</strong><br>            主要任务：<br>            (1)确保每道用户程序都仅在自己的内存空间内运行,彼此互不干扰；<br>            (2)绝不允许用户程序访问操作系统的程序和数据<br>       <strong>3.地址映射：</strong>将逻辑地址转换为相应的物理地址<br>       <strong>4.内存扩充：</strong>借助虚拟技术 ，从逻辑上扩充内存容量。<br>        (系统必须设置内存扩充机制，用于实现：（1)请求调度功能 (2) 置换功能）</p>
+<h3 id="1-4-3-设备管理"><a href="#1-4-3-设备管理" class="headerlink" title="1.4.3 设备管理"></a>1.4.3 设备管理</h3><p>主要任务：<br>(1) 完成用户进程提出的I/O请求，为用户进程分配所需的I/O设备，并完成指定的I/O操作。<br>(2)提高CPU和I/O设备的利用率，提高I/O速度，方便用户使用I/O设备<br><strong>1.缓冲管理：</strong>缓和CPU和I/O设备速度不匹配的矛盾，提高CPU的利用率，进而提高系统的吞吐量。<br>(缓冲机制：单缓冲，双缓冲，公用缓冲)<br><strong>2.设备分配：</strong>根据用户进程的I/O请求、系统的享有资源情况以及按照某种设备分配策略。为之分配所需的设备。<br>(系统中设置设备控制表、控制器控制表等数据结构，用于记录设备及控制器的标识符和状态)<br><strong>3.设备处理：</strong>设备驱动，用于实现CPU和设备控制器之间的通信。即CPU向设备控制器发出 I/O命令，要求它完成指定的I/O操作；反之有CPU接受从控制器发来的中断请求，并给予迅速的响应和相应的处理。</p>
+<h3 id="1-4-4-文件管理"><a href="#1-4-4-文件管理" class="headerlink" title="1.4.4 文件管理"></a>1.4.4 文件管理</h3><p><strong>1.文件存储空间的管理</strong><br>        <strong>2.目录管理：</strong><br>            为每个文件建立器目录项，并对众多的目录项加以有效的组织 ，以实现按名存取；实现文件共享；提供快速的目录查询<br>        <strong>3.文件的读/写管理和保护</strong></p>
+<h3 id="1-4-5-操作系统与用户之间的接口"><a href="#1-4-5-操作系统与用户之间的接口" class="headerlink" title="1.4.5 操作系统与用户之间的接口"></a>1.4.5 操作系统与用户之间的接口</h3><p><strong>1.用户接口：</strong><br>        (1) 联机用户接口 (2) 脱机用户接口 (3) 图形用户接口<br>        <strong>2.程序接口：</strong>是用户程序取得系统服务的唯一途径</p>
+<h3 id="1-4-6-现代操作系统的新功能"><a href="#1-4-6-现代操作系统的新功能" class="headerlink" title="1.4.6  现代操作系统的新功能"></a>1.4.6  现代操作系统的新功能</h3><p><strong>1.系统安全:</strong><br>        (1) 认证技术 (2) 密码技术 (3) 访问控制技术 (4) 反病毒技术<br>        <strong>2.网络功能和服务 ：</strong><br>        (1) 网络通信  (2) 资源管理 (3) 应用互操作</p>
+<h2 id="1-5-OS结构设计"><a href="#1-5-OS结构设计" class="headerlink" title="1.5 OS结构设计"></a>1.5 OS结构设计</h2><h3 id="1-5-1-传统操作系统结构"><a href="#1-5-1-传统操作系统结构" class="headerlink" title="1.5.1 传统操作系统结构"></a>1.5.1 传统操作系统结构</h3><p>1.无结构OS<br>        2.模块化结构OS(模块独立性)</p>
+<p><img src="/2020/03/09/os-note/%E6%A8%A1%E5%9D%97%E5%8C%96%E7%BB%93%E6%9E%84.png" alt="模块化结构"><br>       模块接口发的优缺点：<br><img src="/2020/03/09/os-note/%E6%A8%A1%E5%9D%97%E5%8C%96%E4%BC%98%E7%BC%BA%E7%82%B9.png" alt=" 模块接口发的优缺点"></p>
+<p>  3.分层式结构OS<br>        优缺点：<br><img src="/2020/03/09/os-note/%E5%88%86%E5%B1%82%E7%BB%93%E6%9E%84%E4%BC%98%E7%BC%BA%E7%82%B9.png" alt="分层结构的优缺点"></p>
+<h3 id="1-5-2-客户-服务器模式"><a href="#1-5-2-客户-服务器模式" class="headerlink" title="1.5.2 客户/服务器模式"></a>1.5.2 客户/服务器模式</h3><p><strong>1.组成：</strong>(1)客户机(2)服务器(3)网络系统<br>        <strong>2.客户/服务器之间的交互：</strong><br>            (1)客户发送请求消息<br>            (2)服务器接受消息<br>            (3)服务器回送消息<br>            (4)客户机接受消息<br>        <strong>3.客户/服务器模式的优点：</strong><br>            (1)数据的分布处理和存储(2)便于集中管理(3)灵活性和扩充性(4)易于改编应用软件</p>
+<h3 id="1-5-3-面向对象的程序设计"><a href="#1-5-3-面向对象的程序设计" class="headerlink" title="1.5.3 面向对象的程序设计"></a>1.5.3 面向对象的程序设计</h3><h3 id="1-5-4-微内核OS结构"><a href="#1-5-4-微内核OS结构" class="headerlink" title="1.5.4 微内核OS结构"></a>1.5.4 微内核OS结构</h3><p><strong>1.功能：</strong>(1)进程管理(2)低级存储器管理(3)中断和陷入管理<br>        <strong>2.优点：</strong><br>        (1)提高了系统的可扩展性<br>        (2)增强了系统的可靠性<br>        (3)可移植性强<br>        (4)提供了对分布式系统的支持<br>        (5)融入了面向对象技术</p>
+<h1 id="第二章-进程的描述与控制"><a href="#第二章-进程的描述与控制" class="headerlink" title="第二章 进程的描述与控制"></a>第二章 进程的描述与控制</h1><h2 id="2-1-程序的顺序执行及特征"><a href="#2-1-程序的顺序执行及特征" class="headerlink" title="2.1 程序的顺序执行及特征"></a>2.1 程序的顺序执行及特征</h2><p>1.顺序性；2.封闭性；3.可再现性</p>
+<h2 id="2-2-前趋图"><a href="#2-2-前趋图" class="headerlink" title="2.2 前趋图"></a>2.2 前趋图</h2><p>用于描述进程之间执行的前后关系</p>
+<h2 id="2-3-程序的并发执行及特征"><a href="#2-3-程序的并发执行及特征" class="headerlink" title="2.3 程序的并发执行及特征"></a>2.3 程序的并发执行及特征</h2><p>并行的程序共享系统资源，为完成同一项工作而相互合作，致使并发执行的程序之间必须存在相互制约的关系。<br>        1.间断性<br>        2.失去封闭性<br>        3.不可再现性</p>
+<h2 id="2-4-进程的描述"><a href="#2-4-进程的描述" class="headerlink" title="2.4 进程的描述"></a>2.4 进程的描述</h2><p>定义：<br>1.进程是程序的一次执行；<br>2.是一个程序及其数据在处理及上执行时所发生的活动<br>3.具有独立功能的程序在一个数据集合上运行的过程，是系统进行系统资源和调度的一个独立单位。<br>结构特征：由程序段、相关的数据段和PCB三部分构成进程实体；创建进程实际上是创建进程实体中的PCB；销毁进程实际上是移除进程实体中的PCB<br>特征：动态性，并发性，独立性，异步性<br><strong>运行中的进程的三种基本状态：</strong>就绪，执行，阻塞。<br><img src="/2020/03/09/os-note/process.png" alt></p>
+<p>引入挂起操作：<br>    1.终端用户的需要<br>    2.父进程请求<br>    3.负荷调节的需要<br>    4.操作系统的需要<br><img src="/2020/03/09/os-note/process1.png" alt></p>
+<p><strong>进程管理中的数据结构：</strong><br><img src="/2020/03/09/os-note/process3.png" alt></p>
+<p>进程控制块PCB 的作用：<br> (1) 作为进程独立运行基本单位的标志。<br> (2) 能实现间断性运行方式。<br> (3) 提供进程管理所需要的信息。<br> (4) 提供进程调度所需要的信息。<br> (5) 实现与其它进程的同步与通信。<br>进程控制块中的信息：<br>1.进程标识符：用于唯一标识一个进程。<br>2.处理机状态信息，由各种寄存器中的内容构成<br>3.进程调度信息，包含进程状态，进程优先级，进程调度算法，事件即阻塞原因。<br>4.进程控制信息，包含程序和数据地址，进程同步和通信机制，资源清单(进程在运行期间所需的全部资源)，链接指针(给出了本进程所在队列中的下一个进程的PCB首地址)<br><strong>PCB的组织方式：</strong><br>1.线性方式;2.链接方式；3.索引方式</p>
+<h2 id="2-5-进程控制"><a href="#2-5-进程控制" class="headerlink" title="2.5 进程控制"></a>2.5 进程控制</h2><p><strong>操作系统内核：</strong><br>1.支撑功能：中断处理，时钟管理，原语操作<br>2.资源管理：进程管理，存储器管理，设备管理<br><strong>引起创建进程的事件：</strong><br>用户登录，作业调度，提供服务，应用请求<br><strong>进程的创建过程：</strong><br>(1) 申请空白PCB，为新进程申请获得唯一的数字标识符，并从PCB集合中索取一个空白PCB。<br> (2) 为新进程分配其运行所需的资源，包括各种物理和逻辑资源，如内存、文件、I/O设备和CPU时间等。<br> (3) 初始化进程控制块(PCB)。<br> (4) 如果进程就绪队列能够接纳新进程，便将新进程插入就绪队列。<br><strong>引起进程终止的事件：</strong><br>正常结束，异常结束，外界干预<br><strong>进程的终止过程：</strong><br>(1) 根据被终止进程的标识符，从PCB集合中检索出该进程的PCB，从中读出该进程的状态；<br> (2) 若被终止进程正处于执行状态，应立即终止该进程的执行，并置调度标志为真，用于指示该进程被终止后应重新进行调度；<br>(3) 若该进程还有子孙进程，还应将其所有子孙进程也都予以终止，以防它们成为不可控的进程；<br> (4) 将被终止进程所拥有的全部资源或者归还给其父进程，或者归还给系统；<br> (5) 将被终止进程(PCB)从所在队列(或链表)中移出，等待其它程序来搜集信息。</p>
+<h2 id="2-6-进程的阻塞与唤醒"><a href="#2-6-进程的阻塞与唤醒" class="headerlink" title="2.6 进程的阻塞与唤醒"></a>2.6 进程的阻塞与唤醒</h2><p>引起进程阻塞和唤醒的事件<br>1、请求系统服务<br>2、启动某种操作<br>3、新数据尚未到达<br>4、无新工作可做</p>
+<h2 id="2-7-进程同步"><a href="#2-7-进程同步" class="headerlink" title="2.7 进程同步"></a>2.7 进程同步</h2><p>两种制约关系：间接相互制约；直接相互制约<br>        同步机制的四条准则：<br>        1、空闲让进；<br>        2、忙则等待；<br>        3、有限等待，对要求访问临界区资源的进程，应保证在有限的时间内能进入自己的临界区<br>        4、让权等待，当进程不能进入自己的临界区时应该立即释放处理机。</p>
+<pre><code>### 2.7.1 信号量机制</code></pre><p><strong>1.整型信号量S</strong><br>        除初始化外，仅能通过两个标准的原子操作wait(S)和signal(S)访问</p>
+<p><strong>2.记录型信号量</strong><br>        整型变量value代表资源数目；进程链表指针用于链接所有等待进程</p>
+<p><strong>3.AND型信号量</strong><br>        对多个共享数据设置互斥的信号量mutex</p>
+<p><strong>4.信号量集</strong><br>        对多个临界资源同时进行操作Swait()</p>
+<h3 id="2-7-2-信号量的应用"><a href="#2-7-2-信号量的应用" class="headerlink" title="2.7.2 信号量的应用"></a>2.7.2 信号量的应用</h3><p><strong>1、利用信号量实现互斥</strong><br>        为共享资源设置一互斥信号量mutex，并对七初始值设为1，然后将各进程访问该资源的临界区CS置于wait(mutex)和signal(mutex)操作之间即可。</p>
+<p><strong>2、利用信号量实现前趋关系</strong></p>
+<h3 id="2-7-3-管程机制"><a href="#2-7-3-管程机制" class="headerlink" title="2.7.3 管程机制"></a>2.7.3 管程机制</h3><p><strong>管程：</strong>代表共享资源的数据结构，以及由对该共享数据结构实施操作的一组过程所组成的资源管理程序。<br>        <strong>管程的组成：</strong>1、管程的名称；2、局部于管程内部共享数据结构说明；3、对该数据结构进行操作的一组过程；4、对局部于管程内部数据设置初始值的语句<br>        <strong>特征：</strong><br>模块化，管程是一个基本的程序单位，可以单独编译。<br>抽象数据类型，管程中不仅有数据，而且还有对数据的操作。<br>信息掩蔽，管程中的数据结构以及过程（函数）的具体实现外部不可见。<br><em>管程与进程的不同：</em><br>1、进程中定义的是私有数据结构PCB，管程中定义的是公共的数据结构，如消息队列；<br>2、都存在对各自数据结构的操作，但进程是由顺序程序执行有关的操作，而管程主要是进行同步操作和初始化操作；<br>3、进程实现系统的并发性，管程解决共享资源的互斥使用问题；<br>4、进程通过调用管程中的过程对共享数据进行操作；因此，管程为被动工作方式，进程为主动工作方式；<br>5、进程之间能并发执行，而管程则不能与其调用者并发；<br>6、进程具有动态性，由创建而产生，由撤销而消亡，管程则是操作系统中的一个资源管理模块供线程调用。</p>
+<h2 id="2-8-进程通信"><a href="#2-8-进程通信" class="headerlink" title="2.8 进程通信"></a>2.8 进程通信</h2><h3 id="2-8-1-进程通信的类型"><a href="#2-8-1-进程通信的类型" class="headerlink" title="2.8.1 进程通信的类型"></a>2.8.1 进程通信的类型</h3><p><strong>1.共享存储器系统：</strong><br>        1、基于共享数据结构的通信方式；<br>        2、基于共享存储区的通信方式</p>
+<p><strong>2.消息传递系统</strong><br>        进程间的数据交换以格式化的消息为单位；<br>        分为直接通信方式和间接通信方式</p>
+<p><strong>3.管道通信</strong><br>        管道：用于连接一个读进程和一个写进程以实现他们之阿通信的一个共享文件，pipe文件<br>        向管道提供输入的发送进程(写进程)，以字符流的形式写入大量数据到管道；而接受管道输出是接受进程(读进程)，则从管道中接收数据。<br>        要求：互斥，同步，确定双方存在</p>
+<h2 id="2-9-线程"><a href="#2-9-线程" class="headerlink" title="2.9 线程"></a>2.9 线程</h2><p>引入线程：为了减少程序在并发执行所付出的时空开销，使OS具有更好的并发性<br>        <strong>线程与进程的比较：</strong><br>1、调度的基本单位：引入线程后，进程作为资源的基本单位，线程作为调度和分派的基本单位。同一进程中，线程切换不会引起进程切换，不同进程的线程切换必引起进程的切换。<br>2、并发性：引入线程后， 不仅同一进程的多个线程可并发执行，不同进程的线程也可并发执行。<br>3、拥有资源 ：线程本身不拥有系统资源，只是拥有一点必不可少的、能保证独立运行的资源，如线程控制块（TCB）、程序计数器、少数状态参数、寄存器、堆栈等<br>4、独立性：线程的独立性比进程的独立性要低得多，每个进程都拥有独立的地址空间和其他资源，同属于同一进程的线程共享进程的内存地址空间和资源。<br> 5、系统开销：进程创建、撤销时，系统须为之分配回收资源，调度须上下文切换。线程创建撤销及切换的代价远小于进程。此外同一进程的多个线程具有相同的地址空间，线程之间的同步和通信比进程也简单。<br> 6、支持多处理机系统：多处理机系统中，一个进程的多个线程可分配到多个处理机上并发执行，会大大加快进程的执行速度。</p>
+<p><strong>线程的属性：</strong><br>        1、轻型实体，基本上不拥有系统资源，必要资源：TCB(记录所有控制和管理线程的消息)，程序计数器，保留局部变量，少量状态参数和返回地址等；<br>        2、独立调度和分配的基本单位；<br>        3、可并发执行；<br>        4、共享进程资源</p>
+<p><strong>线程运行的三个基本状态：</strong><br>1、执行状态；2、就绪状态；3、阻塞状态</p>
+<p><strong>多线程OS中的进程：</strong><br>     (1) 进程是一个可拥有资源的基本单位。<br> 　(2) 多个线程可并发执行。<br> 　(3) 进程已不是可执行的实体</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>请我恰糖<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wxpay.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://sweetboyzhang.github.io/2020/03/09/os-note/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/02/java-06/" class="archive-article-date">
-  	<time datetime="2020-03-02T07:48:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-02</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/02/java-06/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java高级语法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+
+</nav>
+ 
+ <span id="busuanzi_container_page_pv">
+    本文阅读量: <span id="busuanzi_value_page_pv"></span>次
+</span>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/02/java-06/">Java高级语法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Java集合</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第一章-操作系统引论"><span class="toc-number">1.</span> <span class="toc-text">第一章   操作系统引论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-操作系统的目标和作用"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 操作系统的目标和作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-操作系统的发展过程"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 操作系统的发展过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-操作系统的基本特征"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 操作系统的基本特征</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-操作系统的主要功能"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 操作系统的主要功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-1-处理机管理"><span class="toc-number">1.4.1.</span> <span class="toc-text">1.4.1 处理机管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-2-存储器管理"><span class="toc-number">1.4.2.</span> <span class="toc-text">1.4.2 存储器管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-3-设备管理"><span class="toc-number">1.4.3.</span> <span class="toc-text">1.4.3 设备管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-4-文件管理"><span class="toc-number">1.4.4.</span> <span class="toc-text">1.4.4 文件管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-5-操作系统与用户之间的接口"><span class="toc-number">1.4.5.</span> <span class="toc-text">1.4.5 操作系统与用户之间的接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-6-现代操作系统的新功能"><span class="toc-number">1.4.6.</span> <span class="toc-text">1.4.6  现代操作系统的新功能</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-OS结构设计"><span class="toc-number">1.5.</span> <span class="toc-text">1.5 OS结构设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-1-传统操作系统结构"><span class="toc-number">1.5.1.</span> <span class="toc-text">1.5.1 传统操作系统结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-2-客户-服务器模式"><span class="toc-number">1.5.2.</span> <span class="toc-text">1.5.2 客户&#x2F;服务器模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-3-面向对象的程序设计"><span class="toc-number">1.5.3.</span> <span class="toc-text">1.5.3 面向对象的程序设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-4-微内核OS结构"><span class="toc-number">1.5.4.</span> <span class="toc-text">1.5.4 微内核OS结构</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第二章-进程的描述与控制"><span class="toc-number">2.</span> <span class="toc-text">第二章 进程的描述与控制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-程序的顺序执行及特征"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 程序的顺序执行及特征</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-前趋图"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 前趋图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-程序的并发执行及特征"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 程序的并发执行及特征</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-进程的描述"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 进程的描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-进程控制"><span class="toc-number">2.5.</span> <span class="toc-text">2.5 进程控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-6-进程的阻塞与唤醒"><span class="toc-number">2.6.</span> <span class="toc-text">2.6 进程的阻塞与唤醒</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-7-进程同步"><span class="toc-number">2.7.</span> <span class="toc-text">2.7 进程同步</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-2-信号量的应用"><span class="toc-number">2.7.1.</span> <span class="toc-text">2.7.2 信号量的应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-3-管程机制"><span class="toc-number">2.7.2.</span> <span class="toc-text">2.7.3 管程机制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-8-进程通信"><span class="toc-number">2.8.</span> <span class="toc-text">2.8 进程通信</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-8-1-进程通信的类型"><span class="toc-number">2.8.1.</span> <span class="toc-text">2.8.1 进程通信的类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-9-线程"><span class="toc-number">2.9.</span> <span class="toc-text">2.9 线程</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
   
-    </div></section>
   
 
-    
+  
 
+  
+
+  
 
           </div>
         </div>
@@ -244,8 +384,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
