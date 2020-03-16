@@ -15,11 +15,13 @@
 <meta property="og:site_name" content="sweetboyZhang&#39;s Blog">
 <meta property="og:description" content="关机&amp;重启命令shutdown(默认1分钟后关机)        shutdown -h now : 立即关机        shutdown -h 1 : 1分钟后关机        shutdown -r now : 立即重启">
 <meta property="og:locale" content="cn">
+<meta property="og:image" content="https://sweetboyzhang.github.io/2020/02/25/linux-02/1.png">
 <meta property="article:published_time" content="2020-02-25T01:56:19.000Z">
-<meta property="article:modified_time" content="2020-03-15T09:37:25.562Z">
+<meta property="article:modified_time" content="2020-03-16T08:36:21.336Z">
 <meta property="article:author" content="sweetboyZhang">
 <meta property="article:tag" content="常用命令">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sweetboyzhang.github.io/2020/02/25/linux-02/1.png">
   
   
     <link rel="icon" href="/img/icon.png">
@@ -198,6 +200,9 @@
 <p><strong>tar [选项] 文件名.tar.gz 打包的内容</strong><br>        选项：<br>        -c：产生.tar打包文件<br>        -v：显示详细信息<br>        -f：指定压缩后的文件<br>        -z：打包同时压缩<br>        -x：解包.tar文件<br>        tar -zcvf xxx.tar.gz 要压缩的文件或目录：压缩文件<br>        tar -zxvf xxx.tar.gz -C 路径：解压到指定路径</p>
 <h2 id="用户组管理"><a href="#用户组管理" class="headerlink" title="用户组管理"></a>用户组管理</h2><p>在linux中的每一个用户都必须属于一个组们不能独立于组外。<br>        在linux中每个文件有所有者，所在组，其他组。<br>        <strong>文件/目录的所有者：</strong><br>        一般为文件的创建者<br>        查看文件的所有者：ls -ahl<br>        chown 文件名 用户 ：更改文件所有者<br>        chgrp 组名 文件名：修改文件所在组</p>
 <p><strong>创建组：groupadd 组名</strong><br>        在组内添加用户：useradd -g 组名 用户名<br>        改变用户所在组：usermod -g 组名 用户名<br>        改变用户登录的初始目录：usermod -d 目录名 用户 </p>
+<p><strong>文件/目录权限：</strong><br><img src="/2020/02/25/linux-02/1.png" alt>        r：对于文件代表可以读取，查看<br>        w：对于文件代表可以修改，但是不代表可以删除该文件，删除一个文件的前提条件是对该文件的目录有写权限。<br>        x：对于文件代表可以执行</p>
+<p>r：对于目录，可以读取，ls查看目录内容<br>        w：对于目录，可以修改，目录内创建，删除，重命名<br>        x：对于目录，可以进入该目录</p>
+<h2 id="文件-目录权限管理"><a href="#文件-目录权限管理" class="headerlink" title="文件/目录权限管理"></a>文件/目录权限管理</h2><p>chmod：修改文件/目录权限<br>        第一种方式：+、-、= 变更权限<br>        u：所有者  g：所有组   o：其他人  a：所有人<br>        chmod u=rwc,g=rx,o=x 文件目录名<br>        chmod o+w 文件目录名<br>        chmod a-x 文件目录名</p>
 
       
 
@@ -350,7 +355,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#关机-amp-重启命令"><span class="toc-number">1.</span> <span class="toc-text">关机&amp;重启命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户登录和注销"><span class="toc-number">2.</span> <span class="toc-text">用户登录和注销</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户管理"><span class="toc-number">3.</span> <span class="toc-text">用户管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运行级别"><span class="toc-number">4.</span> <span class="toc-text">运行级别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#帮助指令"><span class="toc-number">5.</span> <span class="toc-text">帮助指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件管理"><span class="toc-number">6.</span> <span class="toc-text">文件管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#时间日期类"><span class="toc-number">7.</span> <span class="toc-text">时间日期类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搜索查找类"><span class="toc-number">8.</span> <span class="toc-text">搜索查找类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#压缩和解压类"><span class="toc-number">9.</span> <span class="toc-text">压缩和解压类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户组管理"><span class="toc-number">10.</span> <span class="toc-text">用户组管理</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#关机-amp-重启命令"><span class="toc-number">1.</span> <span class="toc-text">关机&amp;重启命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户登录和注销"><span class="toc-number">2.</span> <span class="toc-text">用户登录和注销</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户管理"><span class="toc-number">3.</span> <span class="toc-text">用户管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运行级别"><span class="toc-number">4.</span> <span class="toc-text">运行级别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#帮助指令"><span class="toc-number">5.</span> <span class="toc-text">帮助指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件管理"><span class="toc-number">6.</span> <span class="toc-text">文件管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#时间日期类"><span class="toc-number">7.</span> <span class="toc-text">时间日期类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搜索查找类"><span class="toc-number">8.</span> <span class="toc-text">搜索查找类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#压缩和解压类"><span class="toc-number">9.</span> <span class="toc-text">压缩和解压类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户组管理"><span class="toc-number">10.</span> <span class="toc-text">用户组管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件-目录权限管理"><span class="toc-number">11.</span> <span class="toc-text">文件&#x2F;目录权限管理</span></a></li></ol>
                     </div>
                 </span>
             </div>
