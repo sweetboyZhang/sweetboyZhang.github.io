@@ -16,8 +16,10 @@
 <meta property="og:description" content="关机&amp;重启命令shutdown(默认1分钟后关机)        shutdown -h now : 立即关机        shutdown -h 1 : 1分钟后关机        shutdown -r now : 立即重启">
 <meta property="og:locale" content="cn">
 <meta property="og:image" content="https://sweetboyzhang.github.io/2020/02/25/linux-02/1.png">
+<meta property="og:image" content="https://sweetboyzhang.github.io/2020/02/25/linux-02/2.png">
+<meta property="og:image" content="https://sweetboyzhang.github.io/2020/02/25/linux-02/3.png">
 <meta property="article:published_time" content="2020-02-25T01:56:19.000Z">
-<meta property="article:modified_time" content="2020-03-16T08:36:21.336Z">
+<meta property="article:modified_time" content="2020-03-18T06:59:06.797Z">
 <meta property="article:author" content="sweetboyZhang">
 <meta property="article:tag" content="常用命令">
 <meta name="twitter:card" content="summary">
@@ -181,7 +183,7 @@
 <p>​    <strong>cp [选项] 原文件 指定目录：</strong>拷贝文件到指定目录<br>​            -r：递归复制整个文件夹    </p>
 <p>​    <strong>rm [选项] 要删除的文件夹或目录：</strong>删除指定文件夹<br>​            -r：递归删除整个文件夹<br>​            -f：强制删除不提示    </p>
 <p>​    <strong>mv 原文件名 新文件名：</strong>文件重命名<br>​            <strong>mv 原文件路径 新文件路径：</strong>移动文件    </p>
-<p>​    <strong>cat [选项] 文件路径：</strong>查看文件内容<br>​            -n：显示行号<br>​            |more：分页显示<br>​            |less：效率比more高</p>
+<p>​    <strong>cat [选项] 文件路径：</strong>查看文件内容<br>​            -n：显示行号<br>​            管道命令：|，前面每一个进程的输出（stdout）直接作为下一个进程的输入（stdin）<br>​            |more：分页显示<br>​            |less：效率比more高</p>
 <p>​    <strong>&gt;输出重定向：</strong><br>​            <strong>&gt;&gt;追加：</strong><br>​            ls -l &gt;文件：将列表的内容写入文件中<br>​            ls -l &gt;&gt;文件：将列表的内容追加到文件的末尾</p>
 <p>​    <strong>echo [选项] [输出内容]：</strong>输出内容到控制台</p>
 <p>​    <strong>head 文件名：</strong>查看文件前10行<br>​            head -n 行数：查看文件的前任意行</p>
@@ -198,11 +200,12 @@
 <p><strong>zip [选项] 文件名.zip 将要压缩的内容：</strong>压缩文件<br>        选项：-r：递归压缩，即压缩目录</p>
 <p><strong>unzip [选项] 文件名.zip：</strong>解压缩文件<br>        选项：-d：指定解压后文件的存放目录</p>
 <p><strong>tar [选项] 文件名.tar.gz 打包的内容</strong><br>        选项：<br>        -c：产生.tar打包文件<br>        -v：显示详细信息<br>        -f：指定压缩后的文件<br>        -z：打包同时压缩<br>        -x：解包.tar文件<br>        tar -zcvf xxx.tar.gz 要压缩的文件或目录：压缩文件<br>        tar -zxvf xxx.tar.gz -C 路径：解压到指定路径</p>
-<h2 id="用户组管理"><a href="#用户组管理" class="headerlink" title="用户组管理"></a>用户组管理</h2><p>在linux中的每一个用户都必须属于一个组们不能独立于组外。<br>        在linux中每个文件有所有者，所在组，其他组。<br>        <strong>文件/目录的所有者：</strong><br>        一般为文件的创建者<br>        查看文件的所有者：ls -ahl<br>        chown 文件名 用户 ：更改文件所有者<br>        chgrp 组名 文件名：修改文件所在组</p>
+<h2 id="用户组管理"><a href="#用户组管理" class="headerlink" title="用户组管理"></a>用户组管理</h2><p>在linux中的每一个用户都必须属于一个组们不能独立于组外。<br>        在linux中每个文件有所有者，所在组，其他组。<br>        <strong>文件/目录的所有者：</strong>一般为文件的创建者<br>        查看文件的所有者：ls -ahl<br>        chown 文件名 用户：更改文件所有者<br>        chgrp 组名 文件名：修改文件所在组<br>        chown 新的所有者:新的所在组 文件名：同时改变文件所有者和所在组<br>        -R：如果是目录则使其下所有子文件或目录递归生效</p>
 <p><strong>创建组：groupadd 组名</strong><br>        在组内添加用户：useradd -g 组名 用户名<br>        改变用户所在组：usermod -g 组名 用户名<br>        改变用户登录的初始目录：usermod -d 目录名 用户 </p>
 <p><strong>文件/目录权限：</strong><br><img src="/2020/02/25/linux-02/1.png" alt>        r：对于文件代表可以读取，查看<br>        w：对于文件代表可以修改，但是不代表可以删除该文件，删除一个文件的前提条件是对该文件的目录有写权限。<br>        x：对于文件代表可以执行</p>
 <p>r：对于目录，可以读取，ls查看目录内容<br>        w：对于目录，可以修改，目录内创建，删除，重命名<br>        x：对于目录，可以进入该目录</p>
-<h2 id="文件-目录权限管理"><a href="#文件-目录权限管理" class="headerlink" title="文件/目录权限管理"></a>文件/目录权限管理</h2><p>chmod：修改文件/目录权限<br>        第一种方式：+、-、= 变更权限<br>        u：所有者  g：所有组   o：其他人  a：所有人<br>        chmod u=rwc,g=rx,o=x 文件目录名<br>        chmod o+w 文件目录名<br>        chmod a-x 文件目录名</p>
+<h2 id="文件-目录权限管理"><a href="#文件-目录权限管理" class="headerlink" title="文件/目录权限管理"></a>文件/目录权限管理</h2><p>chmod：修改文件/目录权限<br>        第一种方式：+、-、= 变更权限<br>        u：所有者  g：所有组   o：其他人  a：所有人<br>        chmod u=rwc,g=rx,o=x 文件目录名<br>        chmod o+w 文件目录名<br>        chmod a-x 文件目录名<br>        规定：r=4  w=2  x=1</p>
+<h2 id="任务调度"><a href="#任务调度" class="headerlink" title="任务调度"></a>任务调度</h2><p>crontab [选项]<br>        -e   编辑crontab定时任务<br>        -l     查看crontab任务<br>        -r     删除当前用户所有的crontab任务<br>        <img src="/2020/02/25/linux-02/2.png" alt>)<img src="/2020/02/25/linux-02/3.png" alt></p>
 
       
 
@@ -355,7 +358,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#关机-amp-重启命令"><span class="toc-number">1.</span> <span class="toc-text">关机&amp;重启命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户登录和注销"><span class="toc-number">2.</span> <span class="toc-text">用户登录和注销</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户管理"><span class="toc-number">3.</span> <span class="toc-text">用户管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运行级别"><span class="toc-number">4.</span> <span class="toc-text">运行级别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#帮助指令"><span class="toc-number">5.</span> <span class="toc-text">帮助指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件管理"><span class="toc-number">6.</span> <span class="toc-text">文件管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#时间日期类"><span class="toc-number">7.</span> <span class="toc-text">时间日期类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搜索查找类"><span class="toc-number">8.</span> <span class="toc-text">搜索查找类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#压缩和解压类"><span class="toc-number">9.</span> <span class="toc-text">压缩和解压类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户组管理"><span class="toc-number">10.</span> <span class="toc-text">用户组管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件-目录权限管理"><span class="toc-number">11.</span> <span class="toc-text">文件&#x2F;目录权限管理</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#关机-amp-重启命令"><span class="toc-number">1.</span> <span class="toc-text">关机&amp;重启命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户登录和注销"><span class="toc-number">2.</span> <span class="toc-text">用户登录和注销</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户管理"><span class="toc-number">3.</span> <span class="toc-text">用户管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运行级别"><span class="toc-number">4.</span> <span class="toc-text">运行级别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#帮助指令"><span class="toc-number">5.</span> <span class="toc-text">帮助指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件管理"><span class="toc-number">6.</span> <span class="toc-text">文件管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#时间日期类"><span class="toc-number">7.</span> <span class="toc-text">时间日期类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搜索查找类"><span class="toc-number">8.</span> <span class="toc-text">搜索查找类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#压缩和解压类"><span class="toc-number">9.</span> <span class="toc-text">压缩和解压类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户组管理"><span class="toc-number">10.</span> <span class="toc-text">用户组管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件-目录权限管理"><span class="toc-number">11.</span> <span class="toc-text">文件&#x2F;目录权限管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#任务调度"><span class="toc-number">12.</span> <span class="toc-text">任务调度</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -486,10 +489,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">DQL语言,常见函数</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">变量，数据类型，运算符，流程控制，数组</a>
               </li>
              
@@ -515,6 +514,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">反射</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">DQL,常见函数</a>
               </li>
             
             <div class="clearfix"></div>
