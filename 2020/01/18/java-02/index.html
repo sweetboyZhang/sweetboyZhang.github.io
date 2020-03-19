@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://sweetboyzhang.github.io/2020/01/18/java-02/oop_5.png">
 <meta property="og:image" content="https://sweetboyzhang.github.io/2020/01/18/java-02/oop_7.png">
 <meta property="article:published_time" content="2020-01-18T04:47:33.000Z">
-<meta property="article:modified_time" content="2020-02-29T11:30:11.889Z">
+<meta property="article:modified_time" content="2020-03-19T00:26:21.806Z">
 <meta property="article:author" content="sweetboyZhang">
 <meta property="article:tag" content="面向对象">
 <meta name="twitter:card" content="summary">
@@ -238,7 +238,7 @@
 <p>4.如何确定一个属性是否要声明为static<br>        &lt;1&gt;.属性可以被多个对象所共享，不会随着对象的不同而不同。<br>        &lt;2&gt;.类中的常量常常声明为static</p>
 <p>5.如何确定一个方法是否要声明为static<br>        &lt;1&gt;.操作静态属性的方法通常设置为static;<br>        &lt;2&gt;.工具类中的方法，习惯上声明为static,例如Math,Arrays,Collections</p>
 <h2 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h2><p>作用：初始化类或对象<br>        <strong>静态代码块</strong>：static{}<br>        &lt;1&gt; 内部可以有输出语句<br>        &lt;2&gt; 随着类的加载而执行，而且只执行一次<br>        &lt;3&gt; 作用：初始化类的信息<br>        &lt;4&gt; 如果一个类中定义了多个静态代码块，则按照声明的先后顺序执行<br>        &lt;5&gt; 静态代码块的执行优先于非静态代码块的执行<br>        &lt;6&gt; 静态代码块内只能调用静态的属性和方法，不可以调用非静态的属性和方法<br>        <strong>非静态代码块</strong>：{}<br>        &lt;1&gt;  内部可以有输出语句<br>        &lt;2&gt; 随着类的创建而执行<br>        &lt;3&gt; 每创建一个对象，就执行一次非静态代码块<br>        &lt;4&gt; 作用：可以在创建对象时，对对象的属性进行初始化<br>        &lt;5&gt;非静态代码块内既能调用静态的属性和方法，又能调用非静态的属性和方法</p>
-<h2 id="final"><a href="#final" class="headerlink" title="final"></a>final</h2><p>1.修饰类：<br>        表明该类不能被继承。例如：String类，System类，StringBuffer类<br>        2.修饰方法：<br>        表明该方法不能被重写。例如：Object类中的getClass()方法<br>        3.修饰变量：此时的“变量”就称为一个常量<br>        &lt;1&gt; final修饰属性：显式初始化，代码块中初始化，构造器中初始化<br>        &lt;2&gt; 修饰局部变量：修饰形参时，表明此形参是一个常量。调用此方法时，给常量形参赋一         个实参，以后只能在方法体内使用次形参，但不能重新赋值。</p>
+<h2 id="final"><a href="#final" class="headerlink" title="final"></a>final</h2><p>1.修饰类：<br>        表明该类不能被继承。例如：String类，System类，StringBuffer类<br>        2.修饰方法：<br>        表明该方法不能被重写。例如：Object类中的getClass()方法<br>        3.修饰变量：此时的“变量”就称为一个常量<br>        &lt;1&gt; final修饰属性：显式初始化，代码块中初始化，构造器中初始化<br>        &lt;2&gt; 修饰局部变量：修饰形参时，表明此形参是一个常量。调用此方法时，给常量形参赋一个实参，以后只能在方法体内使用次形参，但不能重新赋值。</p>
 <p>static final 修饰属性：全局常量</p>
 <h2 id="abstract"><a href="#abstract" class="headerlink" title="abstract"></a>abstract</h2><p>1.abstract修饰类：抽象类<br>        &lt;1&gt; 此类不能实例化<br>        &lt;2&gt; 抽象类中一定有构造器，便于子类实例化调用<br>        &lt;3&gt; 通过提供抽象类的子类，通过实例化子类完成相应的操作<br>        2.abstract修饰方法：抽象方法<br>        &lt;1&gt; 只有方法的声明，没有方法体<br>        &lt;2&gt; 包含抽象方法的类一定是抽象类；抽象类中可以没有抽象方法<br>        &lt;3&gt; 若子类重写了父类的所有抽象方法，此子类可以实例化；否则，此子类必须声明为抽象类</p>
 <h2 id="interface"><a href="#interface" class="headerlink" title="interface"></a>interface</h2><p>1.在java中，接口与类是并列的两个结构。<br>        2.接口中的成员：</p>
@@ -565,6 +565,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">DQL,常见函数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">DML</a>
               </li>
             
             <div class="clearfix"></div>
