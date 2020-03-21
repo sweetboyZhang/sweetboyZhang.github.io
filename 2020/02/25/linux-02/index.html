@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://sweetboyzhang.github.io/2020/02/25/linux-02/2.png">
 <meta property="og:image" content="https://sweetboyzhang.github.io/2020/02/25/linux-02/3.png">
 <meta property="article:published_time" content="2020-02-25T01:56:19.000Z">
-<meta property="article:modified_time" content="2020-03-18T06:59:06.797Z">
+<meta property="article:modified_time" content="2020-03-21T03:08:59.209Z">
 <meta property="article:author" content="sweetboyZhang">
 <meta property="article:tag" content="常用命令">
 <meta name="twitter:card" content="summary">
@@ -206,6 +206,11 @@
 <p>r：对于目录，可以读取，ls查看目录内容<br>        w：对于目录，可以修改，目录内创建，删除，重命名<br>        x：对于目录，可以进入该目录</p>
 <h2 id="文件-目录权限管理"><a href="#文件-目录权限管理" class="headerlink" title="文件/目录权限管理"></a>文件/目录权限管理</h2><p>chmod：修改文件/目录权限<br>        第一种方式：+、-、= 变更权限<br>        u：所有者  g：所有组   o：其他人  a：所有人<br>        chmod u=rwc,g=rx,o=x 文件目录名<br>        chmod o+w 文件目录名<br>        chmod a-x 文件目录名<br>        规定：r=4  w=2  x=1</p>
 <h2 id="任务调度"><a href="#任务调度" class="headerlink" title="任务调度"></a>任务调度</h2><p>crontab [选项]<br>        -e   编辑crontab定时任务<br>        -l     查看crontab任务<br>        -r     删除当前用户所有的crontab任务<br>        <img src="/2020/02/25/linux-02/2.png" alt>)<img src="/2020/02/25/linux-02/3.png" alt></p>
+<h2 id="磁盘分区、挂载"><a href="#磁盘分区、挂载" class="headerlink" title="磁盘分区、挂载"></a>磁盘分区、挂载</h2><p>分区的方式：</p>
+<p>1) mbr分区:<br>1.最多支持四个主分区<br>2.系统只能安装在主分区<br>3.扩展分区要占一个主分区<br>4.MBR最大只支持2TB，但拥有最好的兼容性<br>2) gtp分区:<br>1.支持无限多个主分区（但操作系统可能限制，比如windows下最多128个分区）<br>2.最大支持18EB的大容量（1EB=1024 PB，1PB=1024 TB ）<br>3.windows7 64位以后支持gtp</p>
+<p>linux的磁盘分区作为文件被挂载(mount)到根目录下的文件夹中，同时也可以将其卸载(umount)。<br>硬盘说明：<br>1.linux硬盘分IDE硬盘和SCSI硬盘，目前使用的基本上是SCSI硬盘。<br>2.对于IDE硬盘，驱动器标识符为 hdx<del>。<br>x为盘号(a为基本盘，b为基本从属盘，c为辅助主盘，d为辅助从属盘)；<br>~代表分区，前四个分区用数字1到4表示，它们是主分区或拓展分区，从5开始就是逻辑分区。<br>3.对于SCSI硬盘则标识符为sdx</del>。</p>
+<p>查看所有设备的挂载情况：lsblk 或lsblk -f</p>
+<p>分区命令：fdisk /dev/sdb<br>        n 新增分区    w  写入退出<br>        格式化磁盘：mkfs -t ext4 /dev/sdb1<br>        挂载磁盘：mount  设备名称  挂载目录<br>        卸载磁盘：umount   设备名称或挂载目录<br>        永久挂载：通过修改  /etc/fstab   —–&gt;   执行mount -a</p>
 
       
 
@@ -358,7 +363,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#关机-amp-重启命令"><span class="toc-number">1.</span> <span class="toc-text">关机&amp;重启命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户登录和注销"><span class="toc-number">2.</span> <span class="toc-text">用户登录和注销</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户管理"><span class="toc-number">3.</span> <span class="toc-text">用户管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运行级别"><span class="toc-number">4.</span> <span class="toc-text">运行级别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#帮助指令"><span class="toc-number">5.</span> <span class="toc-text">帮助指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件管理"><span class="toc-number">6.</span> <span class="toc-text">文件管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#时间日期类"><span class="toc-number">7.</span> <span class="toc-text">时间日期类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搜索查找类"><span class="toc-number">8.</span> <span class="toc-text">搜索查找类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#压缩和解压类"><span class="toc-number">9.</span> <span class="toc-text">压缩和解压类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户组管理"><span class="toc-number">10.</span> <span class="toc-text">用户组管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件-目录权限管理"><span class="toc-number">11.</span> <span class="toc-text">文件&#x2F;目录权限管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#任务调度"><span class="toc-number">12.</span> <span class="toc-text">任务调度</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#关机-amp-重启命令"><span class="toc-number">1.</span> <span class="toc-text">关机&amp;重启命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户登录和注销"><span class="toc-number">2.</span> <span class="toc-text">用户登录和注销</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户管理"><span class="toc-number">3.</span> <span class="toc-text">用户管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运行级别"><span class="toc-number">4.</span> <span class="toc-text">运行级别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#帮助指令"><span class="toc-number">5.</span> <span class="toc-text">帮助指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件管理"><span class="toc-number">6.</span> <span class="toc-text">文件管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#时间日期类"><span class="toc-number">7.</span> <span class="toc-text">时间日期类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搜索查找类"><span class="toc-number">8.</span> <span class="toc-text">搜索查找类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#压缩和解压类"><span class="toc-number">9.</span> <span class="toc-text">压缩和解压类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户组管理"><span class="toc-number">10.</span> <span class="toc-text">用户组管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件-目录权限管理"><span class="toc-number">11.</span> <span class="toc-text">文件&#x2F;目录权限管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#任务调度"><span class="toc-number">12.</span> <span class="toc-text">任务调度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#磁盘分区、挂载"><span class="toc-number">13.</span> <span class="toc-text">磁盘分区、挂载</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -521,7 +526,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DML</a>
+                <a href="javascript:void(0)" class="js-tag color2">数据类型，约束，标识列</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">TCL,事务</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">DML，DDL</a>
               </li>
             
             <div class="clearfix"></div>
