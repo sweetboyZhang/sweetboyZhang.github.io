@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://sweetboyzhang.github.io/2020/02/25/linux-02/2.png">
 <meta property="og:image" content="https://sweetboyzhang.github.io/2020/02/25/linux-02/3.png">
 <meta property="article:published_time" content="2020-02-25T01:56:19.000Z">
-<meta property="article:modified_time" content="2020-03-21T03:08:59.209Z">
+<meta property="article:modified_time" content="2020-03-22T09:10:54.877Z">
 <meta property="article:author" content="sweetboyZhang">
 <meta property="article:tag" content="常用命令">
 <meta name="twitter:card" content="summary">
@@ -210,7 +210,7 @@
 <p>1) mbr分区:<br>1.最多支持四个主分区<br>2.系统只能安装在主分区<br>3.扩展分区要占一个主分区<br>4.MBR最大只支持2TB，但拥有最好的兼容性<br>2) gtp分区:<br>1.支持无限多个主分区（但操作系统可能限制，比如windows下最多128个分区）<br>2.最大支持18EB的大容量（1EB=1024 PB，1PB=1024 TB ）<br>3.windows7 64位以后支持gtp</p>
 <p>linux的磁盘分区作为文件被挂载(mount)到根目录下的文件夹中，同时也可以将其卸载(umount)。<br>硬盘说明：<br>1.linux硬盘分IDE硬盘和SCSI硬盘，目前使用的基本上是SCSI硬盘。<br>2.对于IDE硬盘，驱动器标识符为 hdx<del>。<br>x为盘号(a为基本盘，b为基本从属盘，c为辅助主盘，d为辅助从属盘)；<br>~代表分区，前四个分区用数字1到4表示，它们是主分区或拓展分区，从5开始就是逻辑分区。<br>3.对于SCSI硬盘则标识符为sdx</del>。</p>
 <p>查看所有设备的挂载情况：lsblk 或lsblk -f</p>
-<p>分区命令：fdisk /dev/sdb<br>        n 新增分区    w  写入退出<br>        格式化磁盘：mkfs -t ext4 /dev/sdb1<br>        挂载磁盘：mount  设备名称  挂载目录<br>        卸载磁盘：umount   设备名称或挂载目录<br>        永久挂载：通过修改  /etc/fstab   —–&gt;   执行mount -a</p>
+<p>分区命令：fdisk /dev/sdb<br>        n 新增分区    w  写入退出<br>        格式化磁盘：mkfs -t ext4 /dev/sdb1<br>        挂载磁盘：mount  设备名称  挂载目录<br>        卸载磁盘：umount   设备名称或挂载目录<br>        永久挂载：通过修改  /etc/fstab   —–&gt;   执行mount -a<br>4.查询磁盘使用情况：<br>查询磁盘整体使用情况：df -lh<br>查询指定目录的磁盘使用情况：du -h 目录<br><strong>工作常用指令：</strong><br>1、统计/home文件夹下文件的个数<br>ls -l /home |grep “^-“|wc -l<br>2、统计/home文件夹下的目录个数<br>ls -l /home | grep “^d” | wc -l<br>3、统计/hom文件夹下文件的个数，包括子文件夹里面的<br>ls -lR /home |grep “^-“|wc -l<br>4、统计/home文件夹下目录的个数，包括子文件夹下的<br>ls -lR /home | grep “^d” | wc -l<br>5、以树状显示文件结构<br>tree 目录</p>
 
       
 
@@ -530,11 +530,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">TCL,事务</a>
+                <a href="javascript:void(0)" class="js-tag color3">DML，DDL</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">DML，DDL</a>
+                <a href="javascript:void(0)" class="js-tag color3">变量,存储过程,流程结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">TCL,事务,视图</a>
               </li>
             
             <div class="clearfix"></div>
