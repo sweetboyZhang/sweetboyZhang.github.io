@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="https://sweetboyZhang.github.io">
   <title>Java高级语法 | sweetboyZhang&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="反射机制允许程序在执行期借助于Reflection API取得任何类的内部信息，并能直接操作任意对象的内部属性及方法。">
+  <meta name="description" content="反射反射机制允许程序在执行期借助于Reflection API取得任何类的内部信息，并能直接操作任意对象的内部属性及方法。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java高级语法">
 <meta property="og:url" content="https://sweetboyzhang.github.io/2020/03/15/java-10/index.html">
 <meta property="og:site_name" content="sweetboyZhang&#39;s Blog">
-<meta property="og:description" content="反射机制允许程序在执行期借助于Reflection API取得任何类的内部信息，并能直接操作任意对象的内部属性及方法。">
+<meta property="og:description" content="反射反射机制允许程序在执行期借助于Reflection API取得任何类的内部信息，并能直接操作任意对象的内部属性及方法。">
 <meta property="og:locale" content="cn">
 <meta property="article:published_time" content="2020-03-15T00:50:51.000Z">
-<meta property="article:modified_time" content="2020-03-18T07:56:20.526Z">
+<meta property="article:modified_time" content="2020-03-25T05:24:18.809Z">
 <meta property="article:author" content="sweetboyZhang">
 <meta property="article:tag" content="反射">
 <meta name="twitter:card" content="summary">
@@ -164,7 +164,7 @@
   
     <div class="article-entry" itemprop="articleBody">
       
-        <p>反射机制允许程序在执行期借助于Reflection API取得任何类的内部信息，并能直接操作任意对象的内部属性及方法。<a id="more"></a><br><strong>类的加载过程：</strong><br>程序经过javac.exe命令后，会生成一个或多个字节码文件(.class)，接着使用java.exe命令对某个字节码文件进行解释运行。相当于将某个字节码文件加载到内存中，即类的加载。加载到内存中的类，我们就成为运行时类，此运行时类就作为Class的一个实例。<br>加载到内存中的运行时类，会缓存一段时间。在此时间内，我们可以通过不同的方式来获取此运行时类。</p>
+        <h2 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h2><p>反射机制允许程序在执行期借助于Reflection API取得任何类的内部信息，并能直接操作任意对象的内部属性及方法。<a id="more"></a><br><strong>类的加载过程：</strong><br>程序经过javac.exe命令后，会生成一个或多个字节码文件(.class)，接着使用java.exe命令对某个字节码文件进行解释运行。相当于将某个字节码文件加载到内存中，即类的加载。加载到内存中的类，我们就成为运行时类，此运行时类就作为Class的一个实例。<br>加载到内存中的运行时类，会缓存一段时间。在此时间内，我们可以通过不同的方式来获取此运行时类。</p>
 <h2 id="获取Class实例"><a href="#获取Class实例" class="headerlink" title="获取Class实例"></a>获取Class实例</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span> <span class="comment">// 获取Class实例</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span> <span class="keyword">throws</span> ClassNotFoundException </span>&#123;</span><br><span class="line">    <span class="comment">// 方式一:调用运行类属性：.class</span></span><br><span class="line">    Class class0 = Person<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">    System.out.println(class0);</span><br><span class="line">    <span class="comment">// 方式二：调用运行时类的对象，调用getClass()</span></span><br><span class="line">    Person p1 = <span class="keyword">new</span> Person();</span><br><span class="line">    Class class1 = p1.getClass();</span><br><span class="line">    System.out.println(class1);</span><br><span class="line">    <span class="comment">// 方式三：调用Class的静态方法：forName(String classPath)</span></span><br><span class="line">    Class class2 = Class.forName(<span class="string">"reflection.Person"</span>);</span><br><span class="line">    System.out.println(class2);</span><br><span class="line">    <span class="comment">// 方式四：使用类加载器：Classloader</span></span><br><span class="line">    ClassLoader classLoader = ClassTest<span class="class">.<span class="keyword">class</span>.<span class="title">getClassLoader</span>()</span>;</span><br><span class="line">    Class class3 = classLoader.loadClass(<span class="string">"reflection.Person"</span>);</span><br><span class="line">    System.out.println(class3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="调用运行时类指定结构"><a href="#调用运行时类指定结构" class="headerlink" title="调用运行时类指定结构"></a>调用运行时类指定结构</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="comment">// 通过反射创建对应的运行时类</span></span><br><span class="line">    Class&lt;Person&gt; class1 = Person<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">    <span class="comment">// 创建运行时类的对象</span></span><br><span class="line">    Person p1 = class1.newInstance();</span><br><span class="line">    System.out.println(p1);</span><br><span class="line">    <span class="comment">// 获取运行时类的属性getField(String fieldName),只能获取权限为public的属性</span></span><br><span class="line">    Field id = class1.getField(<span class="string">"id"</span>);</span><br><span class="line">    <span class="comment">// 通常使用getDeclaredField(String FieldName)获取运行时类的属性</span></span><br><span class="line">    Field name = class1.getDeclaredField(<span class="string">"name"</span>);</span><br><span class="line">    name.setAccessible(<span class="keyword">true</span>);<span class="comment">// 表示当前属性时可访问的</span></span><br><span class="line">    <span class="comment">// 设置属性值 set(实例对象,属性值)</span></span><br><span class="line">    id.set(p1,<span class="number">10001</span>);</span><br><span class="line">    name.set(p1,<span class="string">"Tony"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取属性值</span></span><br><span class="line">    <span class="keyword">int</span> p1_id = (<span class="keyword">int</span>) id.get(p1);</span><br><span class="line">    System.out.println(p1_id);<span class="comment">// 10001</span></span><br><span class="line">    System.out.println(name.get(p1));<span class="comment">// Tony</span></span><br><span class="line">    System.out.println(p1);<span class="comment">// Person&#123;id=10001, name='Tony', age=0&#125;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取运行时类方法 getDeclaredMethod(方法名,指定方法的形参列表)</span></span><br><span class="line">    Method setAge = class1.getDeclaredMethod(<span class="string">"setAge"</span>, <span class="keyword">int</span><span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">    setAge.setAccessible(<span class="keyword">true</span>);<span class="comment">// 指明该方法可访问</span></span><br><span class="line">    <span class="comment">// 执行运行时类方法 invoke(对象实例,实参列表)</span></span><br><span class="line">    <span class="comment">// invoke()的返回值即为对应类中调用方法的返回值</span></span><br><span class="line">    setAge.invoke(p1,<span class="number">24</span>);</span><br><span class="line">    System.out.println(p1);<span class="comment">// Person&#123;id=10001, name='Tony', age=24&#125;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取指定构造器</span></span><br><span class="line">    Constructor con = class1.getDeclaredConstructor(<span class="keyword">int</span><span class="class">.<span class="keyword">class</span>,<span class="title">String</span>.<span class="title">class</span>,<span class="title">int</span>.<span class="title">class</span>)</span>;</span><br><span class="line">    con.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">    Person p2 = (Person) con.newInstance(<span class="number">1002</span>,<span class="string">"Taylor"</span>,<span class="number">18</span>);</span><br><span class="line">    System.out.println(p2);<span class="comment">// Person&#123;id=1002, name='Taylor', age=18&#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -321,7 +321,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#获取Class实例"><span class="toc-number">1.</span> <span class="toc-text">获取Class实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调用运行时类指定结构"><span class="toc-number">2.</span> <span class="toc-text">调用运行时类指定结构</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#反射"><span class="toc-number">1.</span> <span class="toc-text">反射</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取Class实例"><span class="toc-number">2.</span> <span class="toc-text">获取Class实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调用运行时类指定结构"><span class="toc-number">3.</span> <span class="toc-text">调用运行时类指定结构</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -456,10 +456,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java集合</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Java常用类</a>
               </li>
              
@@ -497,6 +493,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">TCL,事务,视图</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">java8新特性</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">集合</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">jdbc</a>
               </li>
             
             <div class="clearfix"></div>
