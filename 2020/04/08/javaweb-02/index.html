@@ -6,25 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://sweetboyZhang.github.io">
-  <title>Linux | sweetboyZhang&#39;s Blog</title>
+  <title>JavaWeb | sweetboyZhang&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="关机&amp;重启命令shutdown(默认1分钟后关机)        shutdown -h now : 立即关机        shutdown -h 1 : 1分钟后关机        shutdown -r now : 立即重启">
+  <meta name="description" content="一、创建项目所需要的包各个层所对应的包名：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux">
-<meta property="og:url" content="https://sweetboyzhang.github.io/2020/02/25/linux-02/index.html">
+<meta property="og:title" content="JavaWeb">
+<meta property="og:url" content="https://sweetboyzhang.github.io/2020/04/08/javaweb-02/index.html">
 <meta property="og:site_name" content="sweetboyZhang&#39;s Blog">
-<meta property="og:description" content="关机&amp;重启命令shutdown(默认1分钟后关机)        shutdown -h now : 立即关机        shutdown -h 1 : 1分钟后关机        shutdown -r now : 立即重启">
+<meta property="og:description" content="一、创建项目所需要的包各个层所对应的包名：">
 <meta property="og:locale" content="cn">
-<meta property="og:image" content="https://sweetboyzhang.github.io/2020/02/25/linux-02/4.png">
-<meta property="og:image" content="https://sweetboyzhang.github.io/2020/02/25/linux-02/1.png">
-<meta property="og:image" content="https://sweetboyzhang.github.io/2020/02/25/linux-02/2.png">
-<meta property="og:image" content="https://sweetboyzhang.github.io/2020/02/25/linux-02/3.png">
-<meta property="article:published_time" content="2020-02-25T01:56:19.000Z">
-<meta property="article:modified_time" content="2020-04-08T05:37:30.041Z">
+<meta property="og:image" content="https://sweetboyzhang.github.io/2020/04/08/javaweb-02/1.png">
+<meta property="og:image" content="https://sweetboyzhang.github.io/2020/04/08/javaweb-02/2.png">
+<meta property="og:image" content="https://sweetboyzhang.github.io/2020/04/08/javaweb-02/4.png">
+<meta property="article:published_time" content="2020-04-08T09:51:56.000Z">
+<meta property="article:modified_time" content="2020-04-08T12:28:37.726Z">
 <meta property="article:author" content="sweetboyZhang">
-<meta property="article:tag" content="常用命令">
+<meta property="article:tag" content="书城项目">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://sweetboyzhang.github.io/2020/02/25/linux-02/4.png">
+<meta name="twitter:image" content="https://sweetboyzhang.github.io/2020/04/08/javaweb-02/1.png">
   
   
     <link rel="icon" href="/img/icon.png">
@@ -148,20 +147,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-linux-02" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-javaweb-02" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Linux
+      JavaWeb
     </h1>
   
 
         
-        <a href="/2020/02/25/linux-02/" class="archive-article-date">
-  	<time datetime="2020-02-25T01:56:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-25</time>
+        <a href="/2020/04/08/javaweb-02/" class="archive-article-date">
+  	<time datetime="2020-04-08T09:51:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-08</time>
 </a>
         
       </header>
@@ -169,63 +168,22 @@
   
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="关机-amp-重启命令"><a href="#关机-amp-重启命令" class="headerlink" title="关机&amp;重启命令"></a>关机&amp;重启命令</h2><p><strong>shutdown</strong>(默认1分钟后关机)<br>        shutdown -h now : 立即关机<br>        shutdown -h 1 : 1分钟后关机<br>        shutdown -r now : 立即重启</p>
-<a id="more"></a>
-<p><strong>halt:</strong>禁用cpu，相当于直接关机<br><strong>reboot:</strong>立即重启<br><strong>sync:</strong>把内存上的数据同步到磁盘上(关机或重启前应该先执行此指令，防止数据丢失)</p>
-<h2 id="用户登录和注销"><a href="#用户登录和注销" class="headerlink" title="用户登录和注销"></a>用户登录和注销</h2><p><strong>su 用户名：</strong>切换用户<br>        <strong>logout：</strong>注销用户，在图形运行级别无效</p>
-<h2 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h2><p>Linux是一个多用户多任务的操作系统，任何一个要使用系统资源的用户，都必须向系统管理员申请一个账号，然后以这个账号的身份进入系统。<br>每个用户至少属于一个组。<br><strong>添加用户：</strong> useradd -r -m -s /bin/bash 用户名<br>-r：建立系统账号<br>-m：自动建立用户的登入目录<br>-s：指定用户登入后所使用的shell<br><strong>指定密码：</strong>passwd 用户名<br><strong>删除用户：</strong><br>userdel 用户名(删除用户保留家目录)<br>userdel -r 用户名 (删除用户及用户主目录)<br><strong>查询用户：</strong>id 用户名<br><strong>查看当前用户：</strong>whoami  /who am I<br><strong>用户组：</strong>系统对有共性的多个用户进行统一的管理<br>添加组：groupadd  组名<br>查看组id：grep 组名 /etc/group<br>修改组账户：groupmod -g[新id] -n[新组名] 组名<br>删除组：groupdel 组名<br>增加用户时直接加上组：useradd -g 用户组 用户<br>修改用户组：usermod -g 用户组 用户<br>相关文件：<br>/etc/passwd：用户的配置文件，记录用户的各种信息<br>用户名：口令：用户标识号：组标识号：注释性描述：登录shell<br>/etc/shadow：口令配置文件<br>登录名：加密口令：最后一次修改时间：最小时间间隔：最大时间间隔：不活动时间：失效时间：标志<br>/etc/group：组配置文件<br>组名：口令：组标识符</p>
-<h2 id="运行级别"><a href="#运行级别" class="headerlink" title="运行级别"></a>运行级别</h2><p>0：关机<br>        1：单用户（找回丢失密码）<br>        2：多用户状态没有网络服务<br>        3：多用户状态有网络<br>        4：系统未使用保留给用户<br>        5：图形界面<br>        6：系统重启<br>                /etc/inittab文件查看运行级别（ubuntu没有此文件）<br>                修改默认运行级别：init [012356] (然后按ctrl+alt+F1，Ubuntu进入命令界面 )<br><img src="/2020/02/25/linux-02/4.png" alt></p>
-<h2 id="帮助指令"><a href="#帮助指令" class="headerlink" title="帮助指令"></a>帮助指令</h2><p>man 指令<br>        help 指令</p>
-<h2 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h2><p>​    <strong>pwd：</strong>显示当前目录的绝对路径</p>
-<p>​    <strong>ls [选项] [目录或是文件]：</strong>显示指定目录霞的文件信息<br>​            常用选项：<br>​            -a：显示当前目录的所有文件或目录，包括隐藏文件；<br>​            -l：以列表的方式显示信息。<br>​            <em>ls -a -l 等价于 ll</em></p>
-<p>​    <strong>cd [目录]：</strong>进入指定目录<br>​            绝对路径：从根目录出发定位  /home<br>​            相对路径：从当前路径出发定位 ../home<br>​            cd ~  进入当前用户的家目录<br>​            cd ..  进入当前目录的上一级目录</p>
-<p>​    <strong>mkdir [选项] 目录：</strong>创建目录<br>​            -p：创建多级目录<br>​            rmdir [] 目录：删除目录<br>​            redir 目录：删除的是空目录；rm -rf 目录：删除非空目录</p>
-<p>​    <strong>touch 文件名：</strong>创建一个空文件（可以一次创建多个文件）</p>
-<p>​    <strong>cp [选项] 原文件 指定目录：</strong>拷贝文件到指定目录<br>​            -r：递归复制整个文件夹    </p>
-<p>​    <strong>rm [选项] 要删除的文件夹或目录：</strong>删除指定文件夹<br>​            -r：递归删除整个文件夹<br>​            -f：强制删除不提示    </p>
-<p>​    <strong>mv 原文件名 新文件名：</strong>文件重命名<br>​            <strong>mv 原文件路径 新文件路径：</strong>移动文件    </p>
-<p>​    <strong>cat [选项] 文件路径：</strong>查看文件内容<br>​            -n：显示行号<br>​            管道命令：|，前面每一个进程的输出（stdout）直接作为下一个进程的输入（stdin）<br>​            |more：分页显示<br>​            |less：效率比more高</p>
-<p>​    <strong>&gt;输出重定向：</strong><br>​            <strong>&gt;&gt;追加：</strong><br>​            ls -l &gt;文件：将列表的内容写入文件中<br>​            ls -l &gt;&gt;文件：将列表的内容追加到文件的末尾</p>
-<p>​    <strong>echo [选项] [输出内容]：</strong>输出内容到控制台</p>
-<p>​    <strong>head 文件名：</strong>查看文件前10行<br>​            head -n 行数：查看文件的前任意行</p>
-<p>​    <strong>tail 文件名：</strong>查看文件尾10行<br>​            tail -n 行数：查看文件尾任意行<br>​            tail -f 文件名：实时监控文件的更新</p>
-<p>​    <strong>ln -s 原文件或目录 软链接：</strong>给文件创建一个软链接，相当于windows中的快捷方式</p>
-<p>​    <strong>history ：</strong>查看或执行(! 编号)已经执行过的指令</p>
-<h2 id="时间日期类"><a href="#时间日期类" class="headerlink" title="时间日期类"></a>时间日期类</h2><p><strong>date：</strong>显示当前时间日期<br>        date “+%Y-%M-%d %H:%m:%S”：按指定格式显示时间日期<br>        date -s 字符串时间日期：设置时间日期</p>
-<p><strong>cal：</strong>显示当前日历        </p>
-<h2 id="搜索查找类"><a href="#搜索查找类" class="headerlink" title="搜索查找类"></a>搜索查找类</h2><p><strong>find [搜索范围] [选项] ：</strong>从指定目录向下递归地遍历其各个子目录，将满足条件的文件或者目录显示在终端。<br>选项：-name 文件名：按文件名查找<br>            -user 用户名：按用户名查找<br>            -size +/-文件大小：按文件大小查找（+表示大于  -表示小于  默认为等于）</p>
-<p><strong>locate 文件名：</strong>定位文件路径</p>
-<p><strong>grep [选项] 查找内容 源文件：</strong><br>    选项：-n：匹配行号<br>                -i：忽略大小写</p>
-<h2 id="压缩和解压类"><a href="#压缩和解压类" class="headerlink" title="压缩和解压类"></a>压缩和解压类</h2><p><strong>gzip 文件名：</strong>压缩文件</p>
-<p><strong>gunzip 文件名：</strong>解压文件</p>
-<p><strong>zip [选项] 文件名.zip 将要压缩的内容：</strong>压缩文件<br>        选项：-r：递归压缩，即压缩目录</p>
-<p><strong>unzip [选项] 文件名.zip：</strong>解压缩文件<br>        选项：-d：指定解压后文件的存放目录</p>
-<p><strong>tar [选项] 文件名.tar.gz 打包的内容</strong><br>        选项：<br>        -c：产生.tar打包文件<br>        -v：显示详细信息<br>        -f：指定压缩后的文件<br>        -z：打包同时压缩<br>        -x：解包.tar文件<br>        tar -zcvf xxx.tar.gz 要压缩的文件或目录：压缩文件<br>        tar -zxvf xxx.tar.gz -C 路径：解压到指定路径</p>
-<h2 id="用户组管理"><a href="#用户组管理" class="headerlink" title="用户组管理"></a>用户组管理</h2><p>在linux中的每一个用户都必须属于一个组们不能独立于组外。<br>        在linux中每个文件有所有者，所在组，其他组。<br>        <strong>文件/目录的所有者：</strong>一般为文件的创建者<br>        查看文件的所有者：ls -ahl<br>        chown 文件名 用户：更改文件所有者<br>        chgrp 组名 文件名：修改文件所在组<br>        chown 新的所有者:新的所在组 文件名：同时改变文件所有者和所在组<br>        -R：如果是目录则使其下所有子文件或目录递归生效</p>
-<p><strong>创建组：groupadd 组名</strong><br>        在组内添加用户：useradd -g 组名 用户名<br>        改变用户所在组：usermod -g 组名 用户名<br>        改变用户登录的初始目录：usermod -d 目录名 用户 </p>
-<p><strong>文件/目录权限：</strong><br><img src="/2020/02/25/linux-02/1.png" alt>        r：对于文件代表可以读取，查看<br>        w：对于文件代表可以修改，但是不代表可以删除该文件，删除一个文件的前提条件是对该文件的目录有写权限。<br>        x：对于文件代表可以执行</p>
-<p>r：对于目录，可以读取，ls查看目录内容<br>        w：对于目录，可以修改，目录内创建，删除，重命名<br>        x：对于目录，可以进入该目录</p>
-<h2 id="文件-目录权限管理"><a href="#文件-目录权限管理" class="headerlink" title="文件/目录权限管理"></a>文件/目录权限管理</h2><p>chmod：修改文件/目录权限<br>        第一种方式：+、-、= 变更权限<br>        u：所有者  g：所有组   o：其他人  a：所有人<br>        chmod u=rwc,g=rx,o=x 文件目录名<br>        chmod o+w 文件目录名<br>        chmod a-x 文件目录名<br>        规定：r=4  w=2  x=1</p>
-<h2 id="任务调度"><a href="#任务调度" class="headerlink" title="任务调度"></a>任务调度</h2><p>crontab [选项]<br>        -e   编辑crontab定时任务<br>        -l     查看crontab任务<br>        -r     删除当前用户所有的crontab任务<br>        <img src="/2020/02/25/linux-02/2.png" alt>)<img src="/2020/02/25/linux-02/3.png" alt></p>
-<h2 id="磁盘分区、挂载"><a href="#磁盘分区、挂载" class="headerlink" title="磁盘分区、挂载"></a>磁盘分区、挂载</h2><p>分区的方式：</p>
-<p>1) mbr分区:<br>1.最多支持四个主分区<br>2.系统只能安装在主分区<br>3.扩展分区要占一个主分区<br>4.MBR最大只支持2TB，但拥有最好的兼容性<br>2) gtp分区:<br>1.支持无限多个主分区（但操作系统可能限制，比如windows下最多128个分区）<br>2.最大支持18EB的大容量（1EB=1024 PB，1PB=1024 TB ）<br>3.windows7 64位以后支持gtp</p>
-<p>linux的磁盘分区作为文件被挂载(mount)到根目录下的文件夹中，同时也可以将其卸载(umount)。<br>硬盘说明：<br>1.linux硬盘分IDE硬盘和SCSI硬盘，目前使用的基本上是SCSI硬盘。<br>2.对于IDE硬盘，驱动器标识符为 hdx<del>。<br>x为盘号(a为基本盘，b为基本从属盘，c为辅助主盘，d为辅助从属盘)；<br>~代表分区，前四个分区用数字1到4表示，它们是主分区或拓展分区，从5开始就是逻辑分区。<br>3.对于SCSI硬盘则标识符为sdx</del>。</p>
-<p>查看所有设备的挂载情况：lsblk 或lsblk -f</p>
-<p>分区命令：fdisk /dev/sdb<br>        n 新增分区    w  写入退出<br>        格式化磁盘：mkfs -t ext4 /dev/sdb1<br>        挂载磁盘：mount  设备名称  挂载目录<br>        卸载磁盘：umount   设备名称或挂载目录<br>        永久挂载：通过修改  /etc/fstab   —–&gt;   执行mount -a<br>4.查询磁盘使用情况：<br>查询磁盘整体使用情况：df -lh<br>查询指定目录的磁盘使用情况：du -h 目录<br><strong>工作常用指令：</strong><br>1、统计/home文件夹下文件的个数<br>ls -l /home |grep “^-“|wc -l<br>2、统计/home文件夹下的目录个数<br>ls -l /home | grep “^d” | wc -l<br>3、统计/hom文件夹下文件的个数，包括子文件夹里面的<br>ls -lR /home |grep “^-“|wc -l<br>4、统计/home文件夹下目录的个数，包括子文件夹下的<br>ls -lR /home | grep “^d” | wc -l<br>5、以树状显示文件结构<br>tree 目录</p>
-<h2 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h2><p><strong>查看进程：</strong></p>
-<p>ps -aux [| grep 进程名]：显示当前终端所有的进程信息</p>
-<p>ps  -ef：查看父进程</p>
-<p><strong>终止进程：</strong></p>
-<p>kill [选项] 进程号</p>
-<p>killall 进程名<br>        选项：9  强制终止</p>
-<p><strong>service服务管理：</strong></p>
-<p>service   服务名 [start | stop | restart | reload | status]</p>
-<p>ls -l /etc/init.d/     列出系统服务</p>
-<p><strong>动态监控进程：</strong></p>
-<p>top -d 秒数  ：每隔几秒就刷新</p>
-<p><strong>监控网络情况：</strong></p>
-<p>netstat [选项]</p>
-<p>an 按一定顺序排列输出<br>        -p 显示哪个进程在调用</p>
+        <h2 id="一、创建项目所需要的包"><a href="#一、创建项目所需要的包" class="headerlink" title="一、创建项目所需要的包"></a>一、创建项目所需要的包</h2><p>各个层所对应的包名：<a id="more"></a><br>web层：<br>com.book.web/servlet/controller<br>service层：<br>com.book.service&nbsp;&nbsp;&nbsp;Service接口包<br>com.book.service.impl&nbsp;&nbsp;&nbsp;Service接口实现类<br>dao层：<br>com.book.dao&nbsp;&nbsp;&nbsp;Dao接口包<br>com.book.dao.impl&nbsp;&nbsp;&nbsp;Dao接口实现类<br>实体bean对象：<br>com.book.pojo/entity/domain/bean&nbsp;&nbsp;&nbsp;JavaBean类<br>测试包：<br>com.book.test/junit<br>工具包：<br>com.book.utils<br><img src="/2020/04/08/javaweb-02/1.png" alt></p>
+<h2 id="二、创建需要的数据库和表"><a href="#二、创建需要的数据库和表" class="headerlink" title="二、创建需要的数据库和表"></a>二、创建需要的数据库和表</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> bookmall;</span><br><span class="line"></span><br><span class="line"><span class="keyword">USE</span> bookmall;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> userinfo(</span><br><span class="line">	 <span class="string">`id`</span> <span class="built_in">INT</span> PRIMARY <span class="keyword">KEY</span> AUTO_INCREMENT,</span><br><span class="line">	 <span class="string">`username`</span> <span class="built_in">VARCHAR</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">	 <span class="string">`password`</span> <span class="built_in">VARCHAR</span>(<span class="number">32</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">	<span class="string">`email`</span> <span class="built_in">VARCHAR</span>(<span class="number">40</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span>  <span class="keyword">INTO</span> userinfo(<span class="string">`username`</span>,<span class="string">`password`</span>,<span class="string">`email`</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">VALUES</span>(<span class="string">'admin'</span>,<span class="string">'123456'</span>,<span class="string">'admin@qq.com'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> userinfo;</span><br></pre></td></tr></table></figure>
+
+<h2 id="编写数据库表对应的-JavaBean-对象"><a href="#编写数据库表对应的-JavaBean-对象" class="headerlink" title="编写数据库表对应的 JavaBean 对象"></a>编写数据库表对应的 JavaBean 对象</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.book.bean;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(Integer id, String username, String password, String email)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">        <span class="keyword">this</span>.username = username;</span><br><span class="line">        <span class="keyword">this</span>.password = password;</span><br><span class="line">        <span class="keyword">this</span>.email = email;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUsername</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUsername</span><span class="params">(String username)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.username = username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPassword</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> password;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPassword</span><span class="params">(String password)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.password = password;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getEmail</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> email;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setEmail</span><span class="params">(String email)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.email = email;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、编写工具类JdbcUtils"><a href="#三、编写工具类JdbcUtils" class="headerlink" title="三、编写工具类JdbcUtils"></a>三、编写工具类JdbcUtils</h2><p>1.首先导入所需要的jar包：<br><img src="/2020/04/08/javaweb-02/2.png" alt></p>
+<p>在src目录下创建jdbc.properties 配置文件：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">username</span>=<span class="string">root</span></span><br><span class="line"><span class="attr">password</span>=<span class="string">2824199842</span></span><br><span class="line"><span class="attr">url</span>=<span class="string">jdbc:mysql://localhost:3306/bookmall?serverTimezone=Asia/Shanghai</span></span><br><span class="line"><span class="attr">driverClassName</span>=<span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line"><span class="attr">initialSize</span>=<span class="string">10</span></span><br><span class="line"><span class="attr">maxActive</span>=<span class="string">10</span></span><br></pre></td></tr></table></figure>
+
+<p>在com.book.utils下创建 JdbcUtils 类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.book.utils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JdbcUtils</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> DruidDataSource dataSource;</span><br><span class="line">    <span class="keyword">static</span>&#123;</span><br><span class="line">        Properties properties = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            properties = <span class="keyword">new</span> Properties();</span><br><span class="line">            <span class="comment">// 创建输入流 读取jdbc.properties属性配置文件</span></span><br><span class="line">            InputStream inputStream = JdbcUtils.class.getClassLoader().getResourceAsStream("jdbc.properties");</span><br><span class="line">            <span class="comment">// 从流中加载数据</span></span><br><span class="line">            properties.load(inputStream);</span><br><span class="line">            <span class="comment">// 创建数据库连接池</span></span><br><span class="line">            dataSource = (DruidDataSource) DruidDataSourceFactory.createDataSource(properties);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取数据库连接池中的连接</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 返回连接  否则返回null</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Connection <span class="title">getConnection</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Connection conn = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            conn = dataSource.getConnection();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> conn;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 关闭连接，放回数据库连接池</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> conn</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">close</span><span class="params">(Connection conn)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(conn!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                conn.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在com.book.test包下创建JdbcUtilsTest类，测试是否连接成功：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.book.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JdbcUtilsTest</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testJdbcUtils</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Connection conn = JdbcUtils.getConnection();</span><br><span class="line">        System.out.println(conn);</span><br><span class="line">        JdbcUtils.close(conn);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、编写BaseDao"><a href="#四、编写BaseDao" class="headerlink" title="四、编写BaseDao"></a>四、编写BaseDao</h2><p>1.导入DBUtils 的jar包：<br><img src="/2020/04/08/javaweb-02/4.png" alt></p>
 
       
 
@@ -265,7 +223,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">常用命令</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">书城项目</a>
         		</li>
       		
 		</ul>
@@ -321,7 +279,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://sweetboyzhang.github.io/2020/02/25/linux-02/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://sweetboyzhang.github.io/2020/04/08/javaweb-02/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -336,18 +294,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/02/26/java-05/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Java高级语法
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/02/24/linux-01/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Linux</div>
+    <a href="/2020/04/05/javaweb-01/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JavaWeb</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -378,7 +327,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#关机-amp-重启命令"><span class="toc-number">1.</span> <span class="toc-text">关机&amp;重启命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户登录和注销"><span class="toc-number">2.</span> <span class="toc-text">用户登录和注销</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户管理"><span class="toc-number">3.</span> <span class="toc-text">用户管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运行级别"><span class="toc-number">4.</span> <span class="toc-text">运行级别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#帮助指令"><span class="toc-number">5.</span> <span class="toc-text">帮助指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件管理"><span class="toc-number">6.</span> <span class="toc-text">文件管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#时间日期类"><span class="toc-number">7.</span> <span class="toc-text">时间日期类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搜索查找类"><span class="toc-number">8.</span> <span class="toc-text">搜索查找类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#压缩和解压类"><span class="toc-number">9.</span> <span class="toc-text">压缩和解压类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户组管理"><span class="toc-number">10.</span> <span class="toc-text">用户组管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件-目录权限管理"><span class="toc-number">11.</span> <span class="toc-text">文件&#x2F;目录权限管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#任务调度"><span class="toc-number">12.</span> <span class="toc-text">任务调度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#磁盘分区、挂载"><span class="toc-number">13.</span> <span class="toc-text">磁盘分区、挂载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#进程管理"><span class="toc-number">14.</span> <span class="toc-text">进程管理</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、创建项目所需要的包"><span class="toc-number">1.</span> <span class="toc-text">一、创建项目所需要的包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、创建需要的数据库和表"><span class="toc-number">2.</span> <span class="toc-text">二、创建需要的数据库和表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编写数据库表对应的-JavaBean-对象"><span class="toc-number">3.</span> <span class="toc-text">编写数据库表对应的 JavaBean 对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、编写工具类JdbcUtils"><span class="toc-number">4.</span> <span class="toc-text">三、编写工具类JdbcUtils</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、编写BaseDao"><span class="toc-number">5.</span> <span class="toc-text">四、编写BaseDao</span></a></li></ol>
                     </div>
                 </span>
             </div>
