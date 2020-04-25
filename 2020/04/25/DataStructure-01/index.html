@@ -6,15 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://sweetboyZhang.github.io">
-  <title>Tag: 变量,存储过程,流程结构 | sweetboyZhang&#39;s Blog</title>
+  <title>数据结构 | sweetboyZhang&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="sweetboyZhang&#39;s Blog">
-<meta property="og:url" content="https://sweetboyzhang.github.io/tags/%E5%8F%98%E9%87%8F-%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B-%E6%B5%81%E7%A8%8B%E7%BB%93%E6%9E%84/index.html">
+  <meta name="description" content="程序&#x3D;数据结构+算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构">
+<meta property="og:url" content="https://sweetboyzhang.github.io/2020/04/25/DataStructure-01/index.html">
 <meta property="og:site_name" content="sweetboyZhang&#39;s Blog">
+<meta property="og:description" content="程序&#x3D;数据结构+算法">
 <meta property="og:locale" content="cn">
+<meta property="og:image" content="https://sweetboyzhang.github.io/2020/04/25/DataStructure-01/1.png">
+<meta property="og:image" content="https://sweetboyzhang.github.io/2020/04/25/DataStructure-01/2.png">
+<meta property="article:published_time" content="2020-04-25T00:27:53.000Z">
+<meta property="article:modified_time" content="2020-04-25T06:33:22.809Z">
 <meta property="article:author" content="sweetboyZhang">
+<meta property="article:tag" content="概述，稀疏数组">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sweetboyzhang.github.io/2020/04/25/DataStructure-01/1.png">
   
   
     <link rel="icon" href="/img/icon.png">
@@ -138,61 +146,197 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-DataStructure-01" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/22/mysql-06/" class="archive-article-date">
-  	<time datetime="2020-03-21T23:17:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-22</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/22/mysql-06/">MYSQL基础</a>
+    <h1 class="article-title" itemprop="name">
+      数据结构
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/04/25/DataStructure-01/" class="archive-article-date">
+  	<time datetime="2020-04-25T00:27:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-25</time>
+</a>
+        
+      </header>
+    
+  
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>程序=数据结构+算法<a id="more"></a></p>
+<h2 id="1-数据结构概述"><a href="#1-数据结构概述" class="headerlink" title="1.数据结构概述"></a>1.数据结构概述</h2><p>数据结构包括：线性结构和非线性结构<br><strong>线性结构：</strong><br>1.数据元素之间存在<strong>一对一</strong>的线性关系。<br>2.线性结构有两种不同的存储结构，即<strong>顺序存储结构(数组)</strong>和<strong>链式存储结构(链表)</strong>。<br>3.顺序存储的线性表称为顺序表，存储的元素是<strong>连续的</strong>；<br>&nbsp;&nbsp;&nbsp;链式存储的线性表称为链表，存储的元素<strong>不一定是连续的</strong>，元素节点中存放着数据元素和相邻元素的地址信息。<br>4.线性结构常见的有：数组，队列，链表和栈。<br><strong>非线性结构：</strong><br>非线性结构包括：二维数组，多维数组，广义表，树，图。</p>
+<h2 id="2-稀疏数组"><a href="#2-稀疏数组" class="headerlink" title="2.稀疏数组"></a>2.稀疏数组</h2><p>当一个数组中大部分元素为０，或者为同一个值的数组时，可以使用稀疏数组来保存该数组。<br>稀疏数组的处理方法是:<br>1)记录数组一共有几行几列，有多少个不同的非零值。<br>2)把具有不同值的元素的行列及值记录在一个小规模的数组中，从而缩小程序的规模。</p>
+<h3 id="1、基本介绍："><a href="#1、基本介绍：" class="headerlink" title="1、基本介绍："></a>1、基本介绍：</h3><p><img src="/2020/04/25/DataStructure-01/1.png" alt></p>
+<h3 id="2、应用实例："><a href="#2、应用实例：" class="headerlink" title="2、应用实例："></a>2、应用实例：</h3><p><img src="/2020/04/25/DataStructure-01/2.png" alt></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> sparsearray;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SparseArray</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 创建原始的二维数组11*11</span></span><br><span class="line">		<span class="comment">// 0：表示没有棋子 1:表示黑色棋子 2：表示蓝色棋子</span></span><br><span class="line">		<span class="keyword">int</span> chessArr1[][] = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">11</span>][<span class="number">11</span>];</span><br><span class="line">		chessArr1[<span class="number">1</span>][<span class="number">2</span>] = <span class="number">1</span>;</span><br><span class="line">		chessArr1[<span class="number">2</span>][<span class="number">3</span>] = <span class="number">2</span>;</span><br><span class="line">		System.out.println(<span class="string">"原始的二维数组："</span>);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span>[] row : chessArr1) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> data : row) &#123;</span><br><span class="line">				System.out.print(data + <span class="string">"  "</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 将二维数组转换为稀疏数组</span></span><br><span class="line">		<span class="comment">// 1.先遍历二维数组 得到非零数据的个数</span></span><br><span class="line">		<span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; chessArr1.length; i++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; chessArr1[<span class="number">0</span>].length; j++) &#123;</span><br><span class="line">				<span class="keyword">if</span> (chessArr1[i][j] != <span class="number">0</span>) &#123;</span><br><span class="line">					sum++;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// System.out.println(sum);</span></span><br><span class="line">		<span class="comment">// 2.创建对应的稀疏数组</span></span><br><span class="line">		<span class="keyword">int</span> sparseArr[][] = <span class="keyword">new</span> <span class="keyword">int</span>[sum + <span class="number">1</span>][<span class="number">3</span>];</span><br><span class="line">		<span class="comment">// 3.给稀疏数组赋值</span></span><br><span class="line">		sparseArr[<span class="number">0</span>][<span class="number">0</span>] = chessArr1.length;</span><br><span class="line">		sparseArr[<span class="number">0</span>][<span class="number">1</span>] = chessArr1[<span class="number">0</span>].length;</span><br><span class="line">		sparseArr[<span class="number">0</span>][<span class="number">2</span>] = sum;</span><br><span class="line">		<span class="comment">// 遍历二维数组将非零值存放到稀疏数组中</span></span><br><span class="line">		<span class="keyword">int</span> count = <span class="number">0</span>; <span class="comment">// 用于记录是第几个非零数据</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; chessArr1.length; i++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; chessArr1[<span class="number">0</span>].length; j++) &#123;</span><br><span class="line">				<span class="keyword">if</span> (chessArr1[i][j] != <span class="number">0</span>) &#123;</span><br><span class="line">					count++;</span><br><span class="line">					sparseArr[count][<span class="number">0</span>] = i;</span><br><span class="line">					sparseArr[count][<span class="number">1</span>] = j;</span><br><span class="line">					sparseArr[count][<span class="number">2</span>] = chessArr1[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">"稀疏数组："</span>);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span>[] row : sparseArr) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> data : row) &#123;</span><br><span class="line">				System.out.printf(<span class="string">"%d\t"</span>, data);</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 稀疏数组转换为二维数组</span></span><br><span class="line">		<span class="comment">// 1.读取稀疏数组的第一行，根据第一行的数据创建原始的二维数组</span></span><br><span class="line">		<span class="keyword">int</span> chessArr2[][] = <span class="keyword">new</span> <span class="keyword">int</span>[sparseArr[<span class="number">0</span>][<span class="number">0</span>]][sparseArr[<span class="number">0</span>][<span class="number">1</span>]];</span><br><span class="line">		<span class="comment">// 2.读取其余的几行数据，并赋值给原始的 二维数组</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; sparseArr.length; i++) &#123;</span><br><span class="line">			<span class="keyword">int</span> row = sparseArr[i][<span class="number">0</span>];</span><br><span class="line">			<span class="keyword">int</span> col = sparseArr[i][<span class="number">1</span>];</span><br><span class="line">			<span class="keyword">int</span> value = sparseArr[i][<span class="number">2</span>];</span><br><span class="line">			chessArr2[row][col] = value;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">"恢复后的二维数组："</span>);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span>[] row : chessArr2) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> data : row) &#123;</span><br><span class="line">				System.out.print(data + <span class="string">"  "</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>请我恰糖<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wxpay.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">变量,存储过程,流程结构</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">概述，稀疏数组</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://sweetboyzhang.github.io/2020/04/25/DataStructure-01/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2020/04/23/javaweb-06/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JavaWeb</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 
-    
+</nav>
+ 
+ <span id="busuanzi_container_page_pv">
+    本文阅读量: <span id="busuanzi_value_page_pv"></span>次
+</span>
 
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-数据结构概述"><span class="toc-number">1.</span> <span class="toc-text">1.数据结构概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-稀疏数组"><span class="toc-number">2.</span> <span class="toc-text">2.稀疏数组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、基本介绍："><span class="toc-number">2.1.</span> <span class="toc-text">1、基本介绍：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、应用实例："><span class="toc-number">2.2.</span> <span class="toc-text">2、应用实例：</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+
+  
+
+  
+
+  
 
           </div>
         </div>
@@ -217,9 +361,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

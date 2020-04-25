@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://sweetboyZhang.github.io">
   <title>JavaWeb | sweetboyZhang&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Cookiecookie是服务器通知客户端保存键值对的一种技术。">
+  <meta name="description" content="CookieCookie是服务器通知客户端保存键值对的一种技术。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaWeb">
 <meta property="og:url" content="https://sweetboyzhang.github.io/2020/04/23/javaweb-06/index.html">
 <meta property="og:site_name" content="sweetboyZhang&#39;s Blog">
-<meta property="og:description" content="Cookiecookie是服务器通知客户端保存键值对的一种技术。">
+<meta property="og:description" content="CookieCookie是服务器通知客户端保存键值对的一种技术。">
 <meta property="og:locale" content="cn">
 <meta property="og:image" content="https://sweetboyzhang.github.io/2020/04/23/javaweb-06/1.png">
 <meta property="og:image" content="https://sweetboyzhang.github.io/2020/04/23/javaweb-06/2.png">
 <meta property="og:image" content="https://sweetboyzhang.github.io/2020/04/23/javaweb-06/3.png">
 <meta property="article:published_time" content="2020-04-23T03:13:01.000Z">
-<meta property="article:modified_time" content="2020-04-24T13:33:07.656Z">
+<meta property="article:modified_time" content="2020-04-25T08:09:41.318Z">
 <meta property="article:author" content="sweetboyZhang">
 <meta property="article:tag" content="cookie,session">
 <meta name="twitter:card" content="summary">
@@ -168,7 +168,7 @@
   
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h2><p>cookie是服务器通知客户端保存键值对的一种技术。<a id="more"></a><br>客户端有了cookie后，每次请求都会发送给服务器。</p>
+        <h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h2><p>Cookie是服务器通知客户端保存键值对的一种技术。<a id="more"></a><br>客户端有了Cookie后，每次请求都会发送给服务器。<br>Cookie 的值可以唯一地标识客户端，因此 Cookie 常用于会话管理。<br>每个Cookie的 大小不能超过4kb。</p>
 <h3 id="1-创建Cookie"><a href="#1-创建Cookie" class="headerlink" title="1.创建Cookie"></a>1.创建Cookie</h3><p><img src="/2020/04/23/javaweb-06/1.png" alt></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CookieServlet</span> <span class="keyword">extends</span> <span class="title">BaseServlet</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">createCookie</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 1.创建Cookie对象</span></span><br><span class="line">        Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">"key1"</span>, <span class="string">"value"</span>);</span><br><span class="line">        <span class="comment">// 2.通知客户端保存Cookie</span></span><br><span class="line">        resp.addCookie(cookie);</span><br><span class="line">        resp.getWriter().write(<span class="string">"Cookie创建成功"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -187,7 +187,7 @@
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">deleteCookie</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">    Cookie cookie = CookieUtils.findCookie(<span class="string">"defaultLife"</span>,req.getCookies());</span><br><span class="line">    <span class="keyword">if</span>(cookie!=<span class="keyword">null</span>)&#123;</span><br><span class="line">    cookie.setMaxAge(<span class="number">0</span>);<span class="comment">// 马上删除cookie</span></span><br><span class="line">    resp.addCookie(cookie);</span><br><span class="line">    resp.getWriter().write(<span class="string">"cookie[defaultLife=defaultValue]已删除"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="5-Cookie有效路径Path的设置"><a href="#5-Cookie有效路径Path的设置" class="headerlink" title="5.Cookie有效路径Path的设置"></a>5.Cookie有效路径Path的设置</h3><p>cookie的path属性可以有效的过滤哪些cookie可以发送 个服务器。<br>path属性是通过请求的地址来进行有效的过滤。</p>
+<h3 id="5-Cookie有效路径Path的设置"><a href="#5-Cookie有效路径Path的设置" class="headerlink" title="5.Cookie有效路径Path的设置"></a>5.Cookie有效路径Path的设置</h3><p>Cookie的path属性可以有效的过滤哪些Cookie可以发送 个服务器。<br>path属性是通过请求的地址来进行有效的过滤。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">testPath</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">    Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">"key2"</span>,<span class="string">"value2"</span>);</span><br><span class="line">    cookie.setPath(req.getContextPath()+<span class="string">"/a"</span>);  <span class="comment">// 设置Path值为  /工程路径/a</span></span><br><span class="line">    resp.addCookie(cookie);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="6-免输入用户名登录"><a href="#6-免输入用户名登录" class="headerlink" title="6.免输入用户名登录"></a>6.免输入用户名登录</h3><p><img src="/2020/04/23/javaweb-06/3.png" alt></p>
@@ -195,7 +195,9 @@
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        req.setCharacterEncoding(<span class="string">"UTF-8"</span>);</span><br><span class="line">        resp.setContentType(<span class="string">"text/html;charset=UTF-8"</span>);</span><br><span class="line">        String username = req.getParameter(<span class="string">"username"</span>);</span><br><span class="line">        String password = req.getParameter(<span class="string">"password"</span>);</span><br><span class="line">        <span class="keyword">if</span>(<span class="string">"zyz"</span>.equals(username)&amp;&amp;<span class="string">"123456"</span>.equals(password))&#123;</span><br><span class="line">            Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">"username"</span>,username);</span><br><span class="line">            cookie.setMaxAge(<span class="number">60</span>*<span class="number">60</span>*<span class="number">24</span>*<span class="number">7</span>);<span class="comment">// cookie一周内有效</span></span><br><span class="line">            resp.addCookie(cookie);</span><br><span class="line">            System.out.println(<span class="string">"登录成功！"</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            System.out.println(<span class="string">"登录失败！"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h2>
+<h2 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h2><p>1、Session 就一个接口（HttpSession）。<br>2、Session 就是会话。它是用来维护一个客户端和服务器之间关联的一种技术。<br>3、每个客户端都有自己的一个Session 会话。<br>4、Session 会话中，我们经常用来保存用户登录之后的信息。</p>
+<h3 id="1-创建和获取session"><a href="#1-创建和获取session" class="headerlink" title="1.创建和获取session"></a>1.创建和获取session</h3><p>request.getSeesion()：<br>第一次调用：创建Session会话。<br>之后的调用：获取前面创建好的Session会话对象。<br>isNew()：判断Session是否是刚创建的<br>&nbsp;&nbsp;&nbsp;&nbsp;true：表示刚创建<br>&nbsp;&nbsp;&nbsp;&nbsp;false：表示获取之前创建<br>getId()：得到Session的会话id值</p>
+
       
 
       
@@ -305,6 +307,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2020/04/25/DataStructure-01/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          数据结构
+        
+      </div>
+    </a>
+  
   
     <a href="/2020/04/13/javaweb-05/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">JavaWeb</div>
@@ -338,7 +349,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Cookie"><span class="toc-number">1.</span> <span class="toc-text">Cookie</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-创建Cookie"><span class="toc-number">1.1.</span> <span class="toc-text">1.创建Cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-服务器获取Cookie"><span class="toc-number">1.2.</span> <span class="toc-text">2.服务器获取Cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Cookie值的修改"><span class="toc-number">1.3.</span> <span class="toc-text">3.Cookie值的修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Cookie的生命控制"><span class="toc-number">1.4.</span> <span class="toc-text">4.Cookie的生命控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Cookie有效路径Path的设置"><span class="toc-number">1.5.</span> <span class="toc-text">5.Cookie有效路径Path的设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-免输入用户名登录"><span class="toc-number">1.6.</span> <span class="toc-text">6.免输入用户名登录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Session"><span class="toc-number">2.</span> <span class="toc-text">Session</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Cookie"><span class="toc-number">1.</span> <span class="toc-text">Cookie</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-创建Cookie"><span class="toc-number">1.1.</span> <span class="toc-text">1.创建Cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-服务器获取Cookie"><span class="toc-number">1.2.</span> <span class="toc-text">2.服务器获取Cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Cookie值的修改"><span class="toc-number">1.3.</span> <span class="toc-text">3.Cookie值的修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Cookie的生命控制"><span class="toc-number">1.4.</span> <span class="toc-text">4.Cookie的生命控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Cookie有效路径Path的设置"><span class="toc-number">1.5.</span> <span class="toc-text">5.Cookie有效路径Path的设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-免输入用户名登录"><span class="toc-number">1.6.</span> <span class="toc-text">6.免输入用户名登录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Session"><span class="toc-number">2.</span> <span class="toc-text">Session</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-创建和获取session"><span class="toc-number">2.1.</span> <span class="toc-text">1.创建和获取session</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -546,6 +557,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">cookie,session</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">概述，稀疏数组</a>
               </li>
             
             <div class="clearfix"></div>
