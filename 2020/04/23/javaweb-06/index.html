@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://sweetboyzhang.github.io/2020/04/23/javaweb-06/2.png">
 <meta property="og:image" content="https://sweetboyzhang.github.io/2020/04/23/javaweb-06/3.png">
 <meta property="article:published_time" content="2020-04-23T03:13:01.000Z">
-<meta property="article:modified_time" content="2020-05-02T07:14:42.496Z">
+<meta property="article:modified_time" content="2020-05-03T08:39:10.317Z">
 <meta property="article:author" content="sweetboyZhang">
 <meta property="article:tag" content="cookie,session">
 <meta name="twitter:card" content="summary">
@@ -210,6 +210,11 @@
 
 <p>设置个别Session的超时时长：                                                                                                                                                                                                                                                                                                                                                                                                                                            </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">setLife</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">    req.getSession().setMaxInactiveInterval(<span class="number">3</span>);</span><br><span class="line">    resp.getWriter().write(<span class="string">"设置Session 3秒后失效~"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使Session马上失效：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">deleteNow</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">       req.getSession().invalidate();</span><br><span class="line">       resp.getWriter().write(<span class="string">"设置Session 马上失效~"</span>);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
       
 
       
