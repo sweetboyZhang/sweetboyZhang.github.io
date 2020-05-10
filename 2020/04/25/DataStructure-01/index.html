@@ -6,11 +6,11 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://sweetboyZhang.github.io">
-  <title>数据结构 | sweetboyZhang&#39;s Blog</title>
+  <title>数据结构与算法 | sweetboyZhang&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="程序&#x3D;数据结构+算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据结构">
+<meta property="og:title" content="数据结构与算法">
 <meta property="og:url" content="https://sweetboyzhang.github.io/2020/04/25/dataStructure-01/index.html">
 <meta property="og:site_name" content="sweetboyZhang&#39;s Blog">
 <meta property="og:description" content="程序&#x3D;数据结构+算法">
@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://sweetboyzhang.github.io/2020/04/25/dataStructure-01/3.png">
 <meta property="og:image" content="https://sweetboyzhang.github.io/2020/04/25/dataStructure-01/4.png">
 <meta property="article:published_time" content="2020-04-25T00:27:53.000Z">
-<meta property="article:modified_time" content="2020-05-04T00:53:00.174Z">
+<meta property="article:modified_time" content="2020-05-05T01:21:00.910Z">
 <meta property="article:author" content="sweetboyZhang">
 <meta property="article:tag" content="概述，稀疏数组，队列">
 <meta name="twitter:card" content="summary">
@@ -155,7 +155,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      数据结构
+      数据结构与算法
     </h1>
   
 
@@ -184,7 +184,6 @@
 <p>循环队列中，由于入队时尾指针向前追赶头指针；出队时头指针向前追赶尾指针，造成队空和队满时头尾指针均相等。因此，无法通过条件front==rear来判别队列是”空”还是”满”。<br>解决这个问题的方法至少有三种：<br>① 另设一布尔变量以区别队列的空和满；<br>② 少用一个元素的空间。约定入队前，测试尾指针在循环意义下加1后是否等于头指针，若相等则认为队满</p>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CircleQueue</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> maxSize;<span class="comment">// 表示数组的最大容量</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> front;<span class="comment">// 队列头</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> rear;<span class="comment">// 队列尾</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span>[] arr;<span class="comment">// 用于存放数据，模拟队列</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">CircleQueue</span><span class="params">(<span class="keyword">int</span> maxSize)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.maxSize = maxSize;</span><br><span class="line">		<span class="keyword">this</span>.arr = <span class="keyword">new</span> <span class="keyword">int</span>[maxSize];</span><br><span class="line">		<span class="comment">// this.front = 0;// 指向队列头部</span></span><br><span class="line">		<span class="comment">// this.rear = 0;// 指向队列尾部的后一个位置</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isFull</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> (rear + <span class="number">1</span>) % maxSize == front;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> rear == front;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 添加数据到队列，入队列</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addQueue</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 判断队列是否已满</span></span><br><span class="line">		<span class="keyword">if</span> (isFull()) &#123;</span><br><span class="line">			System.out.println(<span class="string">"队列已满！"</span>);</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			arr[rear] = num;</span><br><span class="line">			rear = (rear + <span class="number">1</span>) % maxSize; <span class="comment">// 让rear后移</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 获取队列数据，出队列</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getQueue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 判断队列是否为空</span></span><br><span class="line">		<span class="keyword">if</span> (isEmpty()) &#123;</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"队列为空！"</span>);<span class="comment">// 抛出异常</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 1.将front对应的值保存</span></span><br><span class="line">		<span class="keyword">int</span> value = arr[front];</span><br><span class="line">		<span class="comment">// 2.front后移</span></span><br><span class="line">		front = (front + <span class="number">1</span>) % maxSize;</span><br><span class="line">		<span class="comment">// 3.返回保存的front对应的值</span></span><br><span class="line">		<span class="keyword">return</span> value;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 当前队列的有效数据个数</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> (rear - front + maxSize) % maxSize;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 显示队列所有数据</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showQueue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 遍历</span></span><br><span class="line">		<span class="keyword">if</span> (isEmpty()) &#123;</span><br><span class="line">			System.out.println(<span class="string">"队列为空"</span>);</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;<span class="comment">// 从front开始遍历</span></span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = front; i &lt; front + size(); i++) &#123;</span><br><span class="line">				System.out.print(arr[i % maxSize] + <span class="string">" "</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 显示队列的头数据</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">headQueue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (isEmpty()) &#123;</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"队列为空！"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> arr[front];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 
       
 
@@ -299,7 +298,7 @@
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          数据结构
+          数据结构与算法
         
       </div>
     </a>
@@ -444,15 +443,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">变量，数据类型，运算符，流程控制，数组</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">概述，稀疏数组，队列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">链表</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -553,6 +544,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">书城项目</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">数据类型，运算符，数组</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">单链表</a>
               </li>
             
             <div class="clearfix"></div>
