@@ -6,11 +6,11 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://sweetboyZhang.github.io">
-  <title>JavaWeb | sweetboyZhang&#39;s Blog</title>
+  <title>书城项目 | sweetboyZhang&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="一、创建项目所需要的包各个层所对应的包名：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaWeb">
+<meta property="og:title" content="书城项目">
 <meta property="og:url" content="https://sweetboyzhang.github.io/2020/04/08/javaweb-02/index.html">
 <meta property="og:site_name" content="sweetboyZhang&#39;s Blog">
 <meta property="og:description" content="一、创建项目所需要的包各个层所对应的包名：">
@@ -63,9 +63,9 @@
 <meta property="og:image" content="https://sweetboyzhang.github.io/2020/04/08/javaweb-02/47.png">
 <meta property="og:image" content="https://sweetboyzhang.github.io/2020/04/08/javaweb-02/48.png">
 <meta property="article:published_time" content="2020-04-08T09:51:56.000Z">
-<meta property="article:modified_time" content="2020-05-15T07:09:49.502Z">
+<meta property="article:modified_time" content="2020-05-15T07:26:00.204Z">
 <meta property="article:author" content="sweetboyZhang">
-<meta property="article:tag" content="书城项目">
+<meta property="article:tag" content="JavaWeb">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://sweetboyzhang.github.io/2020/04/08/javaweb-02/1.png">
   
@@ -198,7 +198,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      JavaWeb
+      书城项目
     </h1>
   
 
@@ -506,7 +506,7 @@
 
 <p>5.修改首页的后台管理中订单管理的跳转地址<br><img src="/2020/04/08/javaweb-02/46.png" alt></p>
 <p>6.在订单管理中显示所有的订单信息</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;table&gt;</span><br><span class="line">    &lt;tr&gt;</span><br><span class="line">        &lt;td&gt;日期&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;金额&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;详情&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;状态&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;发货&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">    &lt;c:<span class="keyword">if</span> test=<span class="string">"$&#123;not empty requestScope.allOrders&#125;"</span>&gt;</span><br><span class="line">        &lt;c:forEach items=<span class="string">"$&#123;requestScope.allOrders&#125;"</span> <span class="keyword">var</span>=<span class="string">"order"</span>&gt;</span><br><span class="line">            &lt;tr&gt;</span><br><span class="line">                &lt;td&gt;$&#123;order.createTime&#125;&lt;/td&gt;</span><br><span class="line">                &lt;td&gt;$&#123;order.price&#125;&lt;/td&gt;</span><br><span class="line">                &lt;td&gt;&lt;a href="orderServlet?action=showOrderDetail&amp;orderId=$&#123;order.orderId&#125;"&gt;查看详情&lt;/a&gt;&lt;/td&gt;</span><br><span class="line">                &lt;td&gt;</span><br><span class="line">                    &lt;c:choose&gt;</span><br><span class="line">                        &lt;c:when test="$&#123;order.status==0&#125;"&gt;未发货&lt;/c:when&gt;</span><br><span class="line">                        &lt;c:when test="$&#123;order.status==1&#125;"&gt;已发货&lt;/c:when&gt;</span><br><span class="line">                        &lt;c:otherwise&gt;已签收&lt;/c:otherwise&gt;</span><br><span class="line">                    &lt;/c:choose&gt;</span><br><span class="line">                &lt;/td&gt;</span><br><span class="line">                &lt;td&gt;</span><br><span class="line">                    &lt;c:choose&gt;</span><br><span class="line">                        &lt;c:when test=<span class="string">"$&#123;order.status==0&#125;"</span>&gt;</span><br><span class="line">                            &lt;a href="orderServlet?action=sendOrder&amp;orderId=$&#123;order.orderId&#125;"&gt;发货&lt;/a&gt;</span><br><span class="line">                        &lt;/c:when&gt;</span><br><span class="line">                        &lt;c:when test="$&#123;order.status==1&#125;"&gt;&lt;span style="color: red"&gt;已经发货了~&lt;/span&gt;&lt;/c:when&gt;</span><br><span class="line">                        &lt;c:otherwise&gt;&lt;span style="color: red"&gt;已经签收了~&lt;/span&gt;&lt;/c:otherwise&gt;</span><br><span class="line">                    &lt;/c:choose&gt;</span><br><span class="line">                &lt;/td&gt;</span><br><span class="line">            &lt;/tr&gt;</span><br><span class="line">        &lt;/c:forEach&gt;</span><br><span class="line">    &lt;/c:if&gt;</span><br><span class="line">    &lt;c:<span class="keyword">if</span> test=<span class="string">"$&#123;empty requestScope.allOrders&#125;"</span>&gt;</span><br><span class="line">        &lt;td colspan="5"&gt;暂时没有订单&lt;/td&gt;</span><br><span class="line">    &lt;/c:if&gt;</span><br><span class="line">&lt;/table&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>日期<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>金额<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>详情<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>状态<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>发货<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">c:if</span> <span class="attr">test</span>=<span class="string">"$&#123;not empty requestScope.allOrders&#125;"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">c:forEach</span> <span class="attr">items</span>=<span class="string">"$&#123;requestScope.allOrders&#125;"</span> <span class="attr">var</span>=<span class="string">"order"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">td</span>&gt;</span>$&#123;order.createTime&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">td</span>&gt;</span>$&#123;order.price&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"orderServlet?action=showOrderDetail&amp;orderId=$&#123;order.orderId&#125;"</span>&gt;</span>查看详情<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">td</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">c:choose</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">c:when</span> <span class="attr">test</span>=<span class="string">"$&#123;order.status==0&#125;"</span>&gt;</span>未发货<span class="tag">&lt;/<span class="name">c:when</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">c:when</span> <span class="attr">test</span>=<span class="string">"$&#123;order.status==1&#125;"</span>&gt;</span>已发货<span class="tag">&lt;/<span class="name">c:when</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">c:otherwise</span>&gt;</span>已签收<span class="tag">&lt;/<span class="name">c:otherwise</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">c:choose</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">td</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">c:choose</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">c:when</span> <span class="attr">test</span>=<span class="string">"$&#123;order.status==0&#125;"</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"orderServlet?action=sendOrder&amp;orderId=$&#123;order.orderId&#125;"</span>&gt;</span>发货<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">c:when</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">c:when</span> <span class="attr">test</span>=<span class="string">"$&#123;order.status==1&#125;"</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">"color: red"</span>&gt;</span>已经发货了~<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">c:when</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">c:otherwise</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">"color: red"</span>&gt;</span>已经签收了~<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">c:otherwise</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">c:choose</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">c:forEach</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">c:if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">c:if</span> <span class="attr">test</span>=<span class="string">"$&#123;empty requestScope.allOrders&#125;"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">colspan</span>=<span class="string">"5"</span>&gt;</span>暂时没有订单<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">c:if</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="十六、使用Filter实现权限检查"><a href="#十六、使用Filter实现权限检查" class="headerlink" title="十六、使用Filter实现权限检查"></a>十六、使用Filter实现权限检查</h2><h2 id="十七、使用Filter和TheadLocal组合管理事务"><a href="#十七、使用Filter和TheadLocal组合管理事务" class="headerlink" title="十七、使用Filter和TheadLocal组合管理事务"></a>十七、使用Filter和TheadLocal组合管理事务</h2><p><img src="/2020/04/08/javaweb-02/49.png" alt></p>
 <p><strong>修改JdbcUtils：</strong><br>创建一个ThreadLocal对象，用于将获取的连接与当前线程关联：<br><img src="/2020/04/08/javaweb-02/47.png" alt><br>修改getConnection()：</p>
@@ -560,7 +560,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">书城项目</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JavaWeb</a>
         		</li>
       		
 		</ul>
@@ -635,14 +635,14 @@
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          JavaWeb
+          jsp,Listener监听器
         
       </div>
     </a>
   
   
     <a href="/2020/04/05/javaweb-01/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">JavaWeb</div>
+      <div class="article-nav-title">Servlet</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -780,123 +780,39 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">概述，稀疏数组，队列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Java常用类</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">异常处理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">面向对象</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">集合</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">servlet</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">java8新特性</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">I/O流</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">反射</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">jdbc</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">常用命令</a>
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">cookie,session</a>
+                <a href="javascript:void(0)" class="js-tag color4">Java基础语法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DQL,常见函数</a>
+                <a href="javascript:void(0)" class="js-tag color4">java高级语法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">文件的上传和下载</a>
+                <a href="javascript:void(0)" class="js-tag color3">JavaWeb</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">目录结构,Xshell,Xftp，vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">TCL,事务,视图</a>
+                <a href="javascript:void(0)" class="js-tag color3">MySQL基础</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MySQL概述</a>
+                <a href="javascript:void(0)" class="js-tag color3">MYSQL基础</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">变量,存储过程,流程结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">DML，DDL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">数据类型，约束，标识列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">EL表达式，JSTL标签库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">书城项目</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">数据类型，运算符，数组</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">单链表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">双向链表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Filter,ThreadLocal</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jsp,Listener监听器</a>
+                <a href="javascript:void(0)" class="js-tag color4">Java高级语法</a>
               </li>
             
             <div class="clearfix"></div>
