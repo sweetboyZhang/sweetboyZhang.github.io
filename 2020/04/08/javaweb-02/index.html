@@ -64,7 +64,7 @@
 <meta property="og:image" content="https://sweetboyzhang.github.io/2020/04/08/javaweb-02/48.png">
 <meta property="og:image" content="https://sweetboyzhang.github.io/2020/04/08/javaweb-02/50.jpg">
 <meta property="article:published_time" content="2020-04-08T09:51:56.000Z">
-<meta property="article:modified_time" content="2020-05-18T13:37:09.903Z">
+<meta property="article:modified_time" content="2020-05-19T01:40:06.962Z">
 <meta property="article:author" content="sweetboyZhang">
 <meta property="article:tag" content="JavaWeb">
 <meta name="twitter:card" content="summary">
@@ -353,7 +353,7 @@
 
 <h4 id="2、实现添加图书"><a href="#2、实现添加图书" class="headerlink" title="2、实现添加图书"></a>2、实现添加图书</h4><p><img src="/2020/04/08/javaweb-02/17.png" alt></p>
 <p><strong>在BookServlet中添加add()方法用于添加图书：</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">//  1、获取请求的参数==封装成为Book对象</span></span><br><span class="line">        Book book = WebUtils.copyParamToBean(req.getParameterMap(), <span class="keyword">new</span> Book());</span><br><span class="line">        <span class="comment">//  2、调用BookService.addBook()保存图书</span></span><br><span class="line">        bookService.addBook(book);</span><br><span class="line">        <span class="comment">// 3、跳到图书列表页面 /manager/bookServlet?action=list</span></span><br><span class="line">        <span class="comment">// 请求转发会造成表单的多次提交</span></span><br><span class="line">        <span class="comment">// req.getRequestDispatcher("/manager/bookServlet?action=list").forward(req, resp);</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 请求重定向</span></span><br><span class="line">        resp.sendRedirect(req.getScheme()+<span class="string">"://"</span>+ req.getServerName()+<span class="string">":"</span>+</span><br><span class="line">        		req.getServerPort()+req.getContextPath()+ <span class="string">"/manager/bookServlet?action=list"</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">//  1、获取请求的参数==封装成为Book对象</span></span><br><span class="line">        Book book = WebUtils.copyParamToBean(req.getParameterMap(), <span class="keyword">new</span> Book());</span><br><span class="line">        <span class="comment">//  2、调用BookService.addBook()保存图书</span></span><br><span class="line">        bookService.addBook(book);</span><br><span class="line">        <span class="comment">// 3、跳到图书列表页面 /manager/bookServlet?action=list</span></span><br><span class="line">        <span class="comment">// 请求转发会造成表单的多次提交</span></span><br><span class="line">        <span class="comment">// req.getRequestDispatcher("/manager/bookServlet?action=list").forward(req, resp);</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 请求重定向</span></span><br><span class="line">        resp.sendRedirect(req.getContextPath()+ <span class="string">"/manager/bookServlet?action=list"</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>修改book_edit.jsp：</strong><br><img src="/2020/04/08/javaweb-02/13.png" alt></p>
 <p><img src="/2020/04/08/javaweb-02/14.png" alt></p>
@@ -830,6 +830,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MYSQL基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
               </li>
             
             <div class="clearfix"></div>
