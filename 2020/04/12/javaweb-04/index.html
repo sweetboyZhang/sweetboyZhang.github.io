@@ -5,24 +5,24 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://yoursite.com">
+  <link rel="dns-prefetch" href="https://gitee.com/sweetboyZhang.gitee.io/blog">
   <title>EL表达式，JSTL标签库 | sweetboyZhang&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="EL表达式Express Language：表达式语言。作用：代替jsp页面中的表达式脚本在jsp页面中进行数据的输出。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="EL表达式，JSTL标签库">
-<meta property="og:url" content="http://yoursite.com/2020/04/12/javaweb-04/index.html">
+<meta property="og:url" content="https://gitee.com/sweetboyZhang.gitee.io/blog/2020/04/12/javaweb-04/index.html">
 <meta property="og:site_name" content="sweetboyZhang&#39;s Blog">
 <meta property="og:description" content="EL表达式Express Language：表达式语言。作用：代替jsp页面中的表达式脚本在jsp页面中进行数据的输出。">
 <meta property="og:locale" content="cn">
-<meta property="og:image" content="http://yoursite.com/2020/04/12/javaweb-04/1.png">
-<meta property="og:image" content="http://yoursite.com/2020/04/12/javaweb-04/2.png">
+<meta property="og:image" content="https://gitee.com/sweetboyZhang.gitee.io/blog/2020/04/12/javaweb-04/1.png">
+<meta property="og:image" content="https://gitee.com/sweetboyZhang.gitee.io/blog/2020/04/12/javaweb-04/2.png">
 <meta property="article:published_time" content="2020-04-12T03:08:09.000Z">
 <meta property="article:modified_time" content="2020-05-15T07:26:35.778Z">
 <meta property="article:author" content="sweetboyZhang">
 <meta property="article:tag" content="JavaWeb">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2020/04/12/javaweb-04/1.png">
+<meta name="twitter:image" content="https://gitee.com/sweetboyZhang.gitee.io/blog/2020/04/12/javaweb-04/1.png">
   
   
     <link rel="icon" href="/blog/img/icon.png">
@@ -174,11 +174,11 @@
 <h2 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h2><p>关系运算</p>
 <p>逻辑运算</p>
 <p>算数运算<br>empty运算：判断一个数据是否为空，为空输出truem，否则输出false<br>三元运算<br>“.”点运算和[] 中括号运算符</p>
-<h2 id="EL表达式中的11个隐含对象"><a href="#EL表达式中的11个隐含对象" class="headerlink" title="EL表达式中的11个隐含对象"></a>EL表达式中的11个隐含对象</h2><p><img src="/2020/04/12/javaweb-04/1.png" alt></p>
+<h2 id="EL表达式中的11个隐含对象"><a href="#EL表达式中的11个隐含对象" class="headerlink" title="EL表达式中的11个隐含对象"></a>EL表达式中的11个隐含对象</h2><p><img src="/sweetboyZhang.gitee.io/blog/2020/04/12/javaweb-04/1.png" alt></p>
 <p>pageContext对象的使用：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;%-- jsp表达式</span><br><span class="line">request.getScheme() 它可以获取请求的协议</span><br><span class="line">request.getServerName() 获取请求的服务器ip 或域名</span><br><span class="line">request.getServerPort() 获取请求的服务器端口号</span><br><span class="line">request.getContextPath() 获取当前工程路径</span><br><span class="line">request.getMethod() 获取请求的方式（GET 或POST）</span><br><span class="line">request.getRemoteHost() 获取客户端的ip 地址</span><br><span class="line">session.getId() 获取会话的唯一标识</span><br><span class="line">--%&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;%-- EL表达式--%&gt;</span><br><span class="line">&lt;%</span><br><span class="line">    pageContext.setAttribute(<span class="string">"req"</span>, request);</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>. 协议：$&#123;req.scheme&#125;&lt;br/&gt;</span><br><span class="line"><span class="number">2</span>. 服务器ip：$&#123;pageContext.request.serverName&#125;&lt;br/&gt;</span><br><span class="line"><span class="number">3</span>. 服务器端口：$&#123;pageContext.request.serverPort&#125;&lt;br/&gt;</span><br><span class="line"><span class="number">4</span>. 获取工程路径：$&#123;pageContext.request.contextPath&#125;&lt;br/&gt;</span><br><span class="line"><span class="number">5</span>. 获取请求方法：$&#123;pageContext.request.method&#125;&lt;br/&gt;</span><br><span class="line"><span class="number">6</span>. 获取客户端ip 地址：$&#123;pageContext.request.remoteHost&#125;&lt;br/&gt;</span><br><span class="line"><span class="number">7</span>. 获取会话的id 编号：$&#123;pageContext.session.id&#125;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
 
-<h2 id="JSTL标签库"><a href="#JSTL标签库" class="headerlink" title="JSTL标签库"></a>JSTL标签库</h2><p>EL表达式是为了替换jsp中的表达式，而标签库是为了替换jsp中的代码脚本。<br><img src="/2020/04/12/javaweb-04/2.png" alt></p>
+<h2 id="JSTL标签库"><a href="#JSTL标签库" class="headerlink" title="JSTL标签库"></a>JSTL标签库</h2><p>EL表达式是为了替换jsp中的表达式，而标签库是为了替换jsp中的代码脚本。<br><img src="/sweetboyZhang.gitee.io/blog/2020/04/12/javaweb-04/2.png" alt></p>
 <p>在jsp 标签库中使用taglib 指令引入标签库</p>
 <figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CORE 标签库</span><br><span class="line">&lt;%@ taglib prefix=<span class="string">"c"</span> uri=<span class="string">"http://java.sun.com/jsp/jstl/core"</span> %&gt;</span><br><span class="line">FMT 标签库</span><br><span class="line">&lt;%@ taglib prefix=<span class="string">"fmt"</span> uri=<span class="string">"http://java.sun.com/jsp/jstl/fmt"</span> %&gt;</span><br><span class="line">FUNCTIONS 标签库</span><br><span class="line">&lt;%@ taglib prefix=<span class="string">"fn"</span> uri=<span class="string">"http://java.sun.com/jsp/jstl/functions"</span> %&gt;</span><br></pre></td></tr></table></figure>
 
@@ -285,7 +285,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/04/12/javaweb-04/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://gitee.com/sweetboyZhang.gitee.io/blog/2020/04/12/javaweb-04/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -449,11 +449,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
+                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
+                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -461,11 +461,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
               <li class="article-tag-list-item">
