@@ -15,15 +15,15 @@
 <meta property="og:site_name" content="sweetboyZhang&#39;s Blog">
 <meta property="og:description" content="MyBatis系统中默认定义了两级缓存。一级缓存和二级缓存：1、默认情况下，只有一级缓存开启。(SqlSession级别的缓存，也称本地缓存)2、二级缓存需要手动开启和配置。(namespace级别全局缓存)3、MyBatis定义了缓存接口Cache，可以通过实现Cache接口自定义二级缓存">
 <meta property="og:locale" content="cn">
-<meta property="og:image" content="https://gitee.com/blog/sweetboyZhang.gitee.io/blog/2020/05/31/MyBatis-05/1.jpg">
-<meta property="og:image" content="https://gitee.com/blog/sweetboyZhang.gitee.io/blog/2020/05/31/MyBatis-05/2.jpg">
-<meta property="og:image" content="https://gitee.com/blog/sweetboyZhang.gitee.io/blog/2020/05/31/MyBatis-05/3.jpg">
+<meta property="og:image" content="https://gitee.com/sweetboyZhang.gitee.io/blog/2020/05/31/MyBatis-05/MyBatis-05/1.jpg">
+<meta property="og:image" content="https://gitee.com/sweetboyZhang.gitee.io/blog/2020/05/31/MyBatis-05/MyBatis-05/2.jpg">
+<meta property="og:image" content="https://gitee.com/sweetboyZhang.gitee.io/blog/2020/05/31/MyBatis-05/MyBatis-05/3.jpg">
 <meta property="article:published_time" content="2020-05-31T09:15:28.000Z">
 <meta property="article:modified_time" content="2020-06-01T00:36:26.044Z">
 <meta property="article:author" content="sweetboyZhang">
 <meta property="article:tag" content="MyBatis">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gitee.com/blog/sweetboyZhang.gitee.io/blog/2020/05/31/MyBatis-05/1.jpg">
+<meta name="twitter:image" content="https://gitee.com/sweetboyZhang.gitee.io/blog/2020/05/31/MyBatis-05/MyBatis-05/1.jpg">
   
   
     <link rel="icon" href="/blog/img/icon.png">
@@ -172,7 +172,7 @@
 <h2 id="一级缓存"><a href="#一级缓存" class="headerlink" title="一级缓存"></a>一级缓存</h2><p>与数据库<font color="red">同一次会话期间</font>查询到的数据会存放在本地缓存中；<br>以后如果需要获取相同的数据，会从缓存中查找，不会访问数据库。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testFirstLevelCache</span><span class="params">()</span><span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">    SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();</span><br><span class="line">    SqlSession sqlSession = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        sqlSession = sqlSessionFactory.openSession();</span><br><span class="line">        EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        Employee empById1 = mapper.getEmpById(<span class="number">1</span>);</span><br><span class="line">        System.out.println(empById1);</span><br><span class="line">        <span class="comment">// 再次查询相同的数据</span></span><br><span class="line">        Employee empById2 = mapper.getEmpById(<span class="number">1</span>);</span><br><span class="line">        System.out.println(empById2);</span><br><span class="line">        System.out.println(empById1==empById2);<span class="comment">// true</span></span><br><span class="line">    &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(sqlSession!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            sqlSession.close();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/blog/sweetboyZhang.gitee.io/blog/2020/05/31/MyBatis-05/1.jpg" alt></p>
+<p><img src="MyBatis-05/1.jpg" alt=""></p>
 <p>可以看见在两次查询中，sql语句只向数据库发送了一次，并且第二次查询得到的对象与第一次完全相同，说明第二次查询访问的是内存中的缓存。</p>
 <p><strong>一级缓存失效的情况：</strong><br>1、不同的SqlSession对应不同的一级缓存；<br>2、同一个SqlSession但是查询条件不同；<br>3、同一个SqlSession两次查询期间执行了任何一次增删改操作；<br>4、同一个SqlSession两次查询期间手动清空了缓存。sqlSession.clearCache()</p>
 <h2 id="二级缓存"><a href="#二级缓存" class="headerlink" title="二级缓存"></a>二级缓存</h2><p>工作机制：<br>1、一个会话，查询一条数据，这个数据就会被保存在当前会话的一级缓存中；<br>2、<strong>如果会话关闭</strong>，一级缓存中的数据就会保存到二级缓存中。新的会话就会参照二级缓存。<br>3、不同的namespace查出的数据会放在自己对应的缓存中(map)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sqlSession——–EmployeeMapper——-Employee<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;——–DepartmentMapper——-Department<br>使用：<br>1、开启全局二级缓存</p>
@@ -184,9 +184,9 @@
 <p>3、JavaBean对象需要实现序列化Serializable接口</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSecondLevelCache</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();</span><br><span class="line">    SqlSession sqlSession1 = <span class="keyword">null</span>;</span><br><span class="line">    SqlSession sqlSession2 = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        sqlSession1 = sqlSessionFactory.openSession();</span><br><span class="line">        sqlSession2 = sqlSessionFactory.openSession();</span><br><span class="line">        EmployeeMapper mapper1 = sqlSession1.getMapper(EmployeeMapper<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        EmployeeMapper mapper2 = sqlSession2.getMapper(EmployeeMapper<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        <span class="comment">// 使用不同的sqlSession 查询相同的数据</span></span><br><span class="line">        Employee empById1 = mapper1.getEmpById(<span class="number">1</span>);</span><br><span class="line">        System.out.println(empById1);</span><br><span class="line">        <span class="comment">// 关闭会话，数据才会存入二级缓存  从一级缓存转移到二级缓存</span></span><br><span class="line">        <span class="keyword">if</span> (sqlSession1 != <span class="keyword">null</span>) &#123;</span><br><span class="line">            sqlSession1.close();</span><br><span class="line">        &#125;</span><br><span class="line">        Employee empById2 = mapper2.getEmpById(<span class="number">1</span>);</span><br><span class="line">        System.out.println(empById2);</span><br><span class="line">        System.out.println(empById1 == empById2);<span class="comment">// false empById1是一级缓存里面的 empById2是从二级缓存中获取的 故地址值不相同</span></span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (sqlSession2 != <span class="keyword">null</span>) &#123;</span><br><span class="line">            sqlSession2.close();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/blog/sweetboyZhang.gitee.io/blog/2020/05/31/MyBatis-05/2.jpg" alt></p>
+<p><img src="MyBatis-05/2.jpg" alt=""></p>
 <h2 id="关闭缓存"><a href="#关闭缓存" class="headerlink" title="关闭缓存"></a>关闭缓存</h2><p>1、cacheEnabled=false：关闭二级缓存，一级缓存还可以使用<br>2、每一个select标签都有useCache = “true”（默认）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;useCache = “false”：关闭二级缓存，一级缓存还可以使用<br>3、每一个增删改标签默认flushCache=”true”，查询标签默认flushCache=”false”<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;增删改操作执行完后就会清空缓存<br>4、sqlSession.clearCache()：只是清空当前sqlSession的一级缓存</p>
-<h2 id="缓存原理图"><a href="#缓存原理图" class="headerlink" title="缓存原理图"></a>缓存原理图</h2><p><img src="/blog/sweetboyZhang.gitee.io/blog/2020/05/31/MyBatis-05/3.jpg" alt></p>
+<h2 id="缓存原理图"><a href="#缓存原理图" class="headerlink" title="缓存原理图"></a>缓存原理图</h2><p><img src="MyBatis-05/3.jpg" alt=""></p>
 
       
 
@@ -446,11 +446,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
+                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
+                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -458,11 +458,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -482,11 +482,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">jdbc</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">jdbc</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -15,13 +15,13 @@
 <meta property="og:site_name" content="sweetboyZhang&#39;s Blog">
 <meta property="og:description" content="jsp定义jsp全称为 java server page，用来代替servlet程序回传html页面的数据。 jsp页面的本质就是一个Servlet程序，在第一次访问jsp页面时，Tomcat服务器就会把jsp页面翻译成一个java源程序，并对它进行编译成.class字节码文件。">
 <meta property="og:locale" content="cn">
-<meta property="og:image" content="https://gitee.com/blog/sweetboyZhang.gitee.io/blog/2020/04/11/javaweb-03/1.png">
+<meta property="og:image" content="https://gitee.com/sweetboyZhang.gitee.io/blog/2020/04/11/javaweb-03/javaweb-03/1.png">
 <meta property="article:published_time" content="2020-04-11T07:10:46.000Z">
 <meta property="article:modified_time" content="2020-05-15T07:26:23.597Z">
 <meta property="article:author" content="sweetboyZhang">
 <meta property="article:tag" content="JavaWeb">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gitee.com/blog/sweetboyZhang.gitee.io/blog/2020/04/11/javaweb-03/1.png">
+<meta name="twitter:image" content="https://gitee.com/sweetboyZhang.gitee.io/blog/2020/04/11/javaweb-03/javaweb-03/1.png">
   
   
     <link rel="icon" href="/blog/img/icon.png">
@@ -177,7 +177,7 @@
 <p>3、代码脚本<br>作用：可以在jsp页面中，编写我们需要的功能(java代码)<br>格式：<code>&lt;% java代码 %&gt;</code></p>
 <h2 id="jsp九大内置对象"><a href="#jsp九大内置对象" class="headerlink" title="jsp九大内置对象"></a>jsp九大内置对象</h2><p>jsp在翻译成servlet代码后内部提供的九个对象。<br>request&nbsp;&nbsp;&nbsp;请求对象<br>response&nbsp;&nbsp;&nbsp;响应对象<br>pageContext&nbsp;&nbsp;&nbsp;jsp上下文对象<br>session&nbsp;&nbsp;&nbsp;会话对象<br>application&nbsp;&nbsp;&nbsp;ServletContext对象<br>config&nbsp;&nbsp;&nbsp;ServletConfig对象<br>page&nbsp;&nbsp;&nbsp;当前的jsp对象<br>exception&nbsp;&nbsp;&nbsp;异常对象</p>
 <p><strong>四个域对象：</strong><br>pageContext&nbsp;&nbsp;&nbsp;&nbsp;(PageContextImpl类)&nbsp;&nbsp;&nbsp;&nbsp;当前的jsp页面有效<br>request&nbsp;&nbsp;&nbsp;&nbsp;(HttpServletRequest类)&nbsp;&nbsp;&nbsp;&nbsp;一次请求有效<br>session&nbsp;&nbsp;&nbsp;&nbsp;(HttpSession类)&nbsp;&nbsp;&nbsp;&nbsp;一次会话范围内有效(打开浏览器访问服务器，直到关闭浏览器)<br>application&nbsp;&nbsp;&nbsp;&nbsp;(ServletContext类)&nbsp;&nbsp;&nbsp;&nbsp;整个web工程范围内都有效(只要web工程不停止，数据一直都在)<br>域对象是可以像Map一样存取数据的对象。四个域对象的功能一样，不同的是它们对数据的存取范围。</p>
-<p><strong>jsp中的out输出与response.getWriter()输出的区别：</strong><br><img src="/blog/sweetboyZhang.gitee.io/blog/2020/04/11/javaweb-03/1.png" alt></p>
+<p><strong>jsp中的out输出与response.getWriter()输出的区别：</strong><br><img src="javaweb-03/1.png" alt=""></p>
 <p><font color="red">统一使用out.print()输出</font></p>
 <h2 id="jsp常用标签"><a href="#jsp常用标签" class="headerlink" title="jsp常用标签"></a>jsp常用标签</h2><h3 id="静态包含"><a href="#静态包含" class="headerlink" title="静态包含"></a>静态包含</h3><p>格式：<code>&lt;%@ include file=&quot;/&quot;%&gt;</code><br>file属性指定要包含的页面路径<br>静态包含的特点：<br>1、静态包含不会翻译被包含的jsp 页面。<br>2、静态包含其实是把被包含的jsp 页面的代码拷贝到包含的位置执行输出。</p>
 <h3 id="动态包含"><a href="#动态包含" class="headerlink" title="动态包含"></a>动态包含</h3><p>格式：<code>&lt;jsp:include page=&quot;/&quot;&gt;&lt;/jsp:include&gt;</code><br>动态包含特点：<br>1、动态包含会把包含的jsp页面也翻译成java代码。<br>2、通过调用被包含的jsp页面进行输出。<br>3、动态包含可以传递参数。</p>
@@ -447,11 +447,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
+                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
+                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -459,11 +459,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -483,11 +483,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">jdbc</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">jdbc</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
