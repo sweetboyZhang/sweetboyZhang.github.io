@@ -15,15 +15,15 @@
 <meta property="og:site_name" content="sweetboyZhang&#39;s Blog">
 <meta property="og:description" content="实现增删改查功能映射文件指导着MyBatis如何进行数据库增删改查在EmployeeMapper接口中添加增删改查的方法:">
 <meta property="og:locale" content="cn">
-<meta property="og:image" content="https://gitee.com/blog/sweetboyZhang.gitee/1.jpg">
-<meta property="og:image" content="https://gitee.com/blog/sweetboyZhang.gitee/2.jpg">
-<meta property="og:image" content="https://gitee.com/blog/sweetboyZhang.gitee/3.jpg">
+<meta property="og:image" content="https://gitee.com/blog/sweetboyZhang.gitee.io/blog/2020/05/25/MyBatis-03/1.jpg">
+<meta property="og:image" content="https://gitee.com/blog/sweetboyZhang.gitee.io/blog/2020/05/25/MyBatis-03/2.jpg">
+<meta property="og:image" content="https://gitee.com/blog/sweetboyZhang.gitee.io/blog/2020/05/25/MyBatis-03/3.jpg">
 <meta property="article:published_time" content="2020-05-25T07:03:19.000Z">
 <meta property="article:modified_time" content="2020-06-19T01:14:40.493Z">
 <meta property="article:author" content="sweetboyZhang">
 <meta property="article:tag" content="MyBatis">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gitee.com/blog/sweetboyZhang.gitee/1.jpg">
+<meta name="twitter:image" content="https://gitee.com/blog/sweetboyZhang.gitee.io/blog/2020/05/25/MyBatis-03/1.jpg">
   
   
     <link rel="icon" href="/blog/img/icon.png">
@@ -225,10 +225,10 @@
 <p>使用时才进行加载：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Employee empByIdStep = mapper.getEmpByIdStep(<span class="number">1</span>);</span><br><span class="line">System.out.println(empByIdStep.getName());</span><br></pre></td></tr></table></figure>
 
-<p><img src="/blog/sweetboyZhang.gitee/1.jpg" alt></p>
+<p><img src="/blog/sweetboyZhang.gitee.io/blog/2020/05/25/MyBatis-03/1.jpg" alt></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Employee empByIdStep = mapper.getEmpByIdStep(<span class="number">1</span>);</span><br><span class="line">System.out.println(empByIdStep);</span><br></pre></td></tr></table></figure>
 
-<p><img src="/blog/sweetboyZhang.gitee/2.jpg" alt></p>
+<p><img src="/blog/sweetboyZhang.gitee.io/blog/2020/05/25/MyBatis-03/2.jpg" alt></p>
 <p><strong>Collection集合类型&amp;嵌套结果集：</strong><br>通过部门编号查找所有在该部门的员工，返回一个List员工集合</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Integer id;</span><br><span class="line"><span class="keyword">private</span> String departmentName;</span><br><span class="line"><span class="keyword">private</span> List&lt;Employee&gt; emps;</span><br></pre></td></tr></table></figure>
 
@@ -238,7 +238,7 @@
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Department deptByIdPlus = mapper.getDeptByIdPlus(<span class="number">1</span>);</span><br><span class="line">System.out.println(deptByIdPlus);</span><br><span class="line">System.out.println(deptByIdPlus.getEmps());</span><br></pre></td></tr></table></figure>
 
-<p><img src="/blog/sweetboyZhang.gitee/3.jpg" alt></p>
+<p><img src="/blog/sweetboyZhang.gitee.io/blog/2020/05/25/MyBatis-03/3.jpg" alt></p>
 
       
 
@@ -498,15 +498,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -519,10 +523,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Java高级语法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
               <li class="article-tag-list-item">
