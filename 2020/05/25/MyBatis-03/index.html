@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="sweetboyZhang">
+  <meta name="keywords" content="">
+  <title>MyBatis映射文件 - sweetboyZhang&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/gml.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>sweetboyZhang's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-05-25 15:03">
+      May 25, 2020 pm
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.8k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      29
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：an hour ago
+                
+              </p>
+            
+            <article class="markdown-body">
+              <h2 id="实现增删改查功能"><a href="#实现增删改查功能" class="headerlink" title="实现增删改查功能"></a>实现增删改查功能</h2><p>映射文件指导着MyBatis如何进行数据库增删改查<br>在EmployeeMapper接口中添加增删改查的方法:<a id="more"></a></p>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> dao;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">EmployeeMapper</span> </span>&#123;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Employee <span class="hljs-title">getEmpById</span><span class="hljs-params">(Integer id)</span></span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addEmp</span><span class="hljs-params">(Employee employee)</span></span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">updateEmp</span><span class="hljs-params">(Employee employee)</span></span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">deleteEmpById</span><span class="hljs-params">(Integer id)</span></span>;
+&#125;</code></pre></div>
+
+<p>在映射文件Employee.xml添加相应的sql映射：</p>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span>
+<span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">mapper</span></span>
+<span class="hljs-meta">        <span class="hljs-meta-keyword">PUBLIC</span> <span class="hljs-meta-string">"-//mybatis.org//DTD Mapper 3.0//EN"</span></span>
+<span class="hljs-meta">        <span class="hljs-meta-string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- namespace  名称空间  1.通过 namespace.id 来确定要执行的sql语句</span>
+<span class="hljs-comment">                         2.指定为接口的全类名，用于绑定接口</span>
+<span class="hljs-comment">     id  唯一标识   用于唯一标识一条sql语句</span>
+<span class="hljs-comment">     result  返回值类型</span>
+<span class="hljs-comment">     #&#123;id&#125;  从传递过来的参数中取出id值</span>
+<span class="hljs-comment">--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">namespace</span>=<span class="hljs-string">"dao.EmployeeMapper"</span>&gt;</span>
+<span class="hljs-comment">&lt;!--public Employee getEmpById(Integer id);--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"getEmpById"</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">"bean.Employee"</span>&gt;</span>
+        select * from employee where id = #&#123;id&#125;
+    <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+<span class="hljs-comment">&lt;!--public void addEmp(Employee employee);--&gt;</span>
+ <span class="hljs-comment">&lt;!-- parameterType： 参数类型  可以省略</span>
+<span class="hljs-comment">         mysql支持自增主键，自增主键的获取，mybatis也是利用statement.getGenerateKeys()</span>
+<span class="hljs-comment">         useGenerateKey="true":使用自增主键获取主键值策略</span>
+<span class="hljs-comment">         keyProperty:指定对应的主键值类型，也就是mybatis获取到主键后封装给javaBean的哪个属性--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">insert</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"addEmp"</span> <span class="hljs-attr">useGeneratedKeys</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">keyProperty</span>=<span class="hljs-string">"id"</span>&gt;</span>
+        insert into employee(name,gender,email) values(#&#123;name&#125;,#&#123;gender&#125;,#&#123;email&#125;)
+    <span class="hljs-tag">&lt;/<span class="hljs-name">insert</span>&gt;</span>
+
+
+<span class="hljs-comment">&lt;!--public void updateEmp(Employee employee);--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">update</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"updateEmp"</span>&gt;</span>
+        update employee set name=#&#123;name&#125;,gender=#&#123;gender&#125;,email=#&#123;email&#125; where id=#&#123;id&#125;
+    <span class="hljs-tag">&lt;/<span class="hljs-name">update</span>&gt;</span>
+<span class="hljs-comment">&lt;!--public void deleteEmpById(Integer id);--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">delete</span>  <span class="hljs-attr">id</span>=<span class="hljs-string">"deleteEmpById"</span>&gt;</span>
+        delete from employee where id=#&#123;id&#125;
+    <span class="hljs-tag">&lt;/<span class="hljs-name">delete</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span></code></pre></div>
+
+<p>测试增删改方法：</p>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test3</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;
+        SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+        SqlSession sqlSession = <span class="hljs-keyword">null</span>;
+        <span class="hljs-keyword">try</span> &#123;
+            sqlSession = sqlSessionFactory.openSession();<span class="hljs-comment">// 不会自动提交</span>
+            EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
+            <span class="hljs-comment">// 添加</span>
+            Employee employee = <span class="hljs-keyword">new</span> Employee(<span class="hljs-keyword">null</span>, <span class="hljs-string">"Tom"</span>, <span class="hljs-string">"1"</span>, <span class="hljs-string">"tom@126.com"</span>);
+            mapper.addEmp(employee);
+            <span class="hljs-comment">// 获取自增主键的值</span>
+            System.out.println(employee.getId());<span class="hljs-comment">// 5</span>
+            <span class="hljs-comment">// 修改</span>
+            <span class="hljs-comment">//mapper.updateEmp(new Employee(2,"zyz001","1","zyz001@qq.com"));</span>
+            <span class="hljs-comment">// 删除</span>
+            <span class="hljs-comment">//mapper.deleteEmpById(2);</span>
+            <span class="hljs-comment">// 手动提交</span>
+            sqlSession.commit();
+        &#125; <span class="hljs-keyword">finally</span> &#123;
+            <span class="hljs-keyword">if</span> (sqlSession != <span class="hljs-keyword">null</span>) &#123;
+                sqlSession.close();
+            &#125;
+        &#125;
+    &#125;</code></pre></div>
+
+<h2 id="MyBatis参数处理"><a href="#MyBatis参数处理" class="headerlink" title="MyBatis参数处理"></a>MyBatis参数处理</h2><p>单个参数：mybatis不会做特殊处理。&nbsp;&nbsp;&nbsp;&nbsp;#{参数名}：取出参数<br>多个参数：mybatis会做特殊处理，多个参数封装成一个map<br>key：参数param1,param2…<br>value：传入的参数值<br>#{param1}或#{0}：取出参数值1<br><strong>通过注解明确指定封装类型的key：</strong></p>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> Employee <span class="hljs-title">getEmpByIdAndName</span><span class="hljs-params">(@Param(<span class="hljs-string">"id"</span>)</span>Integer id,@<span class="hljs-title">Param</span><span class="hljs-params">(<span class="hljs-string">"name"</span>)</span>String name)</span>;</code></pre></div>
+
+<p>#{指定的key}：取出对应的参数值<br><strong>#{}与${}的区别：</strong><br>#{}：是以预编译的形式，将参数设置到sql；防止sql注入<br>${}：直接拼装到sql中；有安全问题</p>
+<h2 id="select元素"><a href="#select元素" class="headerlink" title="select元素"></a>select元素</h2><p>1、返回list对象</p>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Employee&gt; <span class="hljs-title">getEmpsByNameLike</span><span class="hljs-params">(String name)</span></span>;</code></pre></div>
+
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"getEmpsByNameLike"</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">"bean.Employee"</span>&gt;</span>
+    select * from employee where name like #&#123;name&#125;
+<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre></div>
+
+<div class="hljs"><pre><code class="hljs java">List&lt;Employee&gt; employeeList = mapper.getEmpsByNameLike(<span class="hljs-string">"%o%"</span>);<span class="hljs-comment">// 查询name含有o的所有记录</span></code></pre></div>
+
+<p>2、返回map对象(单条记录)</p>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 返回一条记录的map key:列名   value:对应的值</span>
+   <span class="hljs-function"><span class="hljs-keyword">public</span> Map&lt;String,Object&gt; <span class="hljs-title">getEmpByIdReturnMap</span><span class="hljs-params">(Integer id)</span></span>;</code></pre></div>
+
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"getEmpByIdReturnMap"</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">"map"</span>&gt;</span>
+     select * from employee where id=#&#123;id&#125;
+ <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre></div>
+
+<div class="hljs"><pre><code class="hljs java">Map&lt;String,Object&gt; map = mapper.getEmpByIdReturnMap(<span class="hljs-number">1</span>);
+System.out.println(map);<span class="hljs-comment">// &#123;gender=1, name=zyz001, id=1, email=zyz001@qq.com&#125;</span></code></pre></div>
+
+<p>2、返回map对象(多条记录)</p>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 返回多条记录发map key:主键  value:封装后的bean对象</span>
+  <span class="hljs-comment">// 告诉mybatis封装这个map的时候使用哪个属性作为map的主键</span>
+  <span class="hljs-meta">@MapKey</span>(<span class="hljs-string">"id"</span>)
+  <span class="hljs-function"><span class="hljs-keyword">public</span> Map&lt;Integer,Employee&gt; <span class="hljs-title">getEmpsByNameLikeReturnMap</span><span class="hljs-params">(String name)</span></span>;</code></pre></div>
+
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"getEmpsByNameLikeReturnMap"</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">"bean.Employee"</span>&gt;</span>
+       select * from employee where name like #&#123;name&#125;;
+<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre></div>
+
+<div class="hljs"><pre><code class="hljs java">Map&lt;Integer,Employee&gt; employeeMap = mapper.getEmpsByNameLikeReturnMap(<span class="hljs-string">"%o%"</span>);</code></pre></div>
+
+<h2 id="resultMap-自定义结果集封装规则"><a href="#resultMap-自定义结果集封装规则" class="headerlink" title="resultMap 自定义结果集封装规则"></a>resultMap 自定义结果集封装规则</h2><div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- resultMap  自定义结果集规则</span>
+<span class="hljs-comment">            id  方便引用</span>
+<span class="hljs-comment">            type 自定义规则的java类型</span>
+<span class="hljs-comment">            --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">resultMap</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"MyEmp"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"bean.Employee"</span>&gt;</span>
+    <span class="hljs-comment">&lt;!--  id 指定主键封装规则</span>
+<span class="hljs-comment">             column  指定哪一列</span>
+<span class="hljs-comment">             property  指定对应Javabean的哪一个属性--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">id</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"id"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"id"</span>/&gt;</span>
+    <span class="hljs-comment">&lt;!-- 定义普通列封装规则 不指定则自动封装       --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"name"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"name"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"gender"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"gender"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"email"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"email"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">resultMap</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"getEmpById"</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">"MyEmp"</span>&gt;</span>
+    select * from employee where id=#&#123;id&#125;
+<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre></div>
+
+<p>联合查询：级联属性封装结果集 </p>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">resultMap</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"MyEmpAndDept"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"bean.Employee"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">id</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"id"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"id"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"name"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"name"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"gender"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"gender"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"email"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"email"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"dept_id"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"deptId"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"d_id"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"dept.id"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"dept_name"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"dept.departmentName"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">resultMap</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"getEmpAndDept"</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">"MyEmpAndDept"</span>&gt;</span>
+        SELECT e.id id,e.name name,e.gender gender,e.email email,
+        e.dept_id dept_id,d.id d_id,d.dept_name dept_name
+        from employee e,dept d WHERE e.dept_id=d.id AND e.id=#&#123;id&#125;;
+<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre></div>
+
+<p> 联合查询：通过association标签封装结果集   </p>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">resultMap</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"MyEmpAndDept2"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"bean.Employee"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">id</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"id"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"id"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"name"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"name"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"gender"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"gender"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"email"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"email"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"dept_id"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"deptId"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- association 可以指定联合的javabean对象</span>
+<span class="hljs-comment">                    property="dept"  指定javabean中的哪个属性是联合的对象</span>
+<span class="hljs-comment">                    javaType  指定联合对象的类型--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">association</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"dept"</span> <span class="hljs-attr">javaType</span>=<span class="hljs-string">"bean.Department"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">id</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"d_id"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"id"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"dept_name"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"departmentName"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">association</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">resultMap</span>&gt;</span></code></pre></div>
+
+<p>分部查询：先查询员工，得到员工信息后再根据员工的部门编号，查询部门信息</p>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">DepartmentMapper</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Department <span class="hljs-title">getDeptById</span><span class="hljs-params">(Integer id)</span></span>;
+&#125;</code></pre></div>
+
+<p>DepartmentMapper.xml</p>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">namespace</span>=<span class="hljs-string">"dao.DepartmentMapper"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"getDeptById"</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">"bean.Department"</span>&gt;</span>
+        select id,dept_name departmentName from dept where id=#&#123;id&#125;
+    <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span></code></pre></div>
+
+<p>EmployeeMapper.xml</p>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--  分部查询  可以启动延迟加载--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">resultMap</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"MyEmpByStep"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"bean.Employee"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">id</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"id"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"id"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"name"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"name"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"gender"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"gender"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"email"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"email"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"dept_id"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"deptId"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
+        <span class="hljs-comment">&lt;!-- 定义关联对象封装规则</span>
+<span class="hljs-comment">        select 表明当前属性是调用指定的方法后查询出来的结果</span>
+<span class="hljs-comment">        column  指定哪一列的值传给这个方法--&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">association</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"dept"</span></span>
+<span class="hljs-tag">                     <span class="hljs-attr">select</span>=<span class="hljs-string">"dao.DepartmentMapper.getDeptById"</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"dept_id"</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">association</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">resultMap</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"getEmpByIdStep"</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">"MyEmpByStep"</span>&gt;</span>
+        select * from employee where id=#&#123;id&#125;
+    <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre></div>
+
+<p>mybatis-config.xml</p>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">setting</span>&gt;</span>
+	<span class="hljs-comment">&lt;!--  开启延迟加载 --&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">setting</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"lazyLoadingEnabled"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"true"</span>/&gt;</span>
+	<span class="hljs-comment">&lt;!-- 按需加载--&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">setting</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"aggressiveLazyLoading"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"false"</span>/&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">setting</span>&gt;</span></code></pre></div>
+
+<p>使用时才进行加载：</p>
+<div class="hljs"><pre><code class="hljs java">Employee empByIdStep = mapper.getEmpByIdStep(<span class="hljs-number">1</span>);
+System.out.println(empByIdStep.getName());</code></pre></div>
+
+<p><img src="/2020/05/25/MyBatis-03/1.jpg" srcset="/img/loading.gif" alt></p>
+<div class="hljs"><pre><code class="hljs java">Employee empByIdStep = mapper.getEmpByIdStep(<span class="hljs-number">1</span>);
+System.out.println(empByIdStep);</code></pre></div>
+
+<p><img src="/2020/05/25/MyBatis-03/2.jpg" srcset="/img/loading.gif" alt></p>
+<p><strong>Collection集合类型&amp;嵌套结果集：</strong><br>通过部门编号查找所有在该部门的员工，返回一个List员工集合</p>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">private</span> Integer id;
+<span class="hljs-keyword">private</span> String departmentName;
+<span class="hljs-keyword">private</span> List&lt;Employee&gt; emps;</code></pre></div>
+
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">DepartmentMapper</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Department <span class="hljs-title">getDeptByIdPlus</span><span class="hljs-params">(Integer id)</span></span>;
+&#125;</code></pre></div>
+
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">resultMap</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"MyDept"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"bean.Department"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">id</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"did"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"id"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"dept_name"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"departmentName"</span>/&gt;</span>
+    <span class="hljs-comment">&lt;!-- collection标签用来定义关联集合类型的属性的封装规则</span>
+<span class="hljs-comment">                    ofType  指定集合里面元素的类型 --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">collection</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"emps"</span> <span class="hljs-attr">ofType</span>=<span class="hljs-string">"bean.Employee"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">id</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"eid"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"id"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"name"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"name"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"gender"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"gender"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"email"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"email"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"dept_id"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"deptId"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">collection</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">resultMap</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"getDeptByIdPlus"</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">"MyDept"</span>&gt;</span>
+    SELECT d.id did ,dept_name,e.id eid,e.`name`,e.gender,e.email,e.dept_id
+    FROM dept d LEFT JOIN employee e ON d.id=e.dept_id WHERE d.id=#&#123;id&#125;
+<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre></div>
+
+<div class="hljs"><pre><code class="hljs java">Department deptByIdPlus = mapper.getDeptByIdPlus(<span class="hljs-number">1</span>);
+System.out.println(deptByIdPlus);
+System.out.println(deptByIdPlus.getEmps());</code></pre></div>
+
+<p><img src="/2020/05/25/MyBatis-03/3.jpg" srcset="/img/loading.gif" alt></p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/MyBatis/">MyBatis</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/05/30/MyBatis-04/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">MyBatis动态SQL</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/05/25/MyBatis-02/">
+                        <span class="hidden-mobile">MyBatis全局配置文件</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-md">
+    <div class="container custom post-content mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "MyBatis映射文件&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="sweetboyZhang">
+  <meta name="keywords" content="">
+  <title>Linux 常用命令 - sweetboyZhang&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/gml.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>sweetboyZhang's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-02-25 09:56">
+      February 25, 2020 am
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      28
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：an hour ago
+                
+              </p>
+            
+            <article class="markdown-body">
+              <h2 id="关机-amp-重启命令"><a href="#关机-amp-重启命令" class="headerlink" title="关机&amp;重启命令"></a>关机&amp;重启命令</h2><p><strong>shutdown</strong>(默认1分钟后关机)<br>        shutdown -h now : 立即关机<br>        shutdown -h 1 : 1分钟后关机<br>        shutdown -r now : 立即重启</p>
+<a id="more"></a>
+<p><strong>halt:</strong>禁用cpu，相当于直接关机<br><strong>reboot:</strong>立即重启<br><strong>sync:</strong>把内存上的数据同步到磁盘上(关机或重启前应该先执行此指令，防止数据丢失)</p>
+<h2 id="用户登录和注销"><a href="#用户登录和注销" class="headerlink" title="用户登录和注销"></a>用户登录和注销</h2><p><strong>su 用户名：</strong>切换用户<br>        <strong>logout：</strong>注销用户，在图形运行级别无效</p>
+<h2 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h2><p>Linux是一个多用户多任务的操作系统，任何一个要使用系统资源的用户，都必须向系统管理员申请一个账号，然后以这个账号的身份进入系统。<br>每个用户至少属于一个组。<br><strong>添加用户：</strong> useradd -r -m -s /bin/bash 用户名<br>-r：建立系统账号<br>-m：自动建立用户的登入目录<br>-s：指定用户登入后所使用的shell<br><strong>指定密码：</strong>passwd 用户名<br><strong>删除用户：</strong><br>userdel 用户名(删除用户保留家目录)<br>userdel -r 用户名 (删除用户及用户主目录)<br><strong>查询用户：</strong>id 用户名<br><strong>查看当前用户：</strong>whoami  /who am I<br><strong>用户组：</strong>系统对有共性的多个用户进行统一的管理<br>添加组：groupadd  组名<br>查看组id：grep 组名 /etc/group<br>修改组账户：groupmod -g[新id] -n[新组名] 组名<br>删除组：groupdel 组名<br>增加用户时直接加上组：useradd -g 用户组 用户<br>修改用户组：usermod -g 用户组 用户<br>相关文件：<br>/etc/passwd：用户的配置文件，记录用户的各种信息<br>用户名：口令：用户标识号：组标识号：注释性描述：登录shell<br>/etc/shadow：口令配置文件<br>登录名：加密口令：最后一次修改时间：最小时间间隔：最大时间间隔：不活动时间：失效时间：标志<br>/etc/group：组配置文件<br>组名：口令：组标识符</p>
+<h2 id="运行级别"><a href="#运行级别" class="headerlink" title="运行级别"></a>运行级别</h2><p>0：关机<br>        1：单用户（找回丢失密码）<br>        2：多用户状态没有网络服务<br>        3：多用户状态有网络<br>        4：系统未使用保留给用户<br>        5：图形界面<br>        6：系统重启<br>                /etc/inittab文件查看运行级别（ubuntu没有此文件）<br>                修改默认运行级别：init [012356] (然后按ctrl+alt+F1，Ubuntu进入命令界面 )<br><img src="/2020/02/25/linux-02/4.png" srcset="/img/loading.gif" alt></p>
+<h2 id="帮助指令"><a href="#帮助指令" class="headerlink" title="帮助指令"></a>帮助指令</h2><p>man 指令<br>        help 指令</p>
+<h2 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h2><p>​    <strong>pwd：</strong>显示当前目录的绝对路径</p>
+<p>​    <strong>ls [选项] [目录或是文件]：</strong>显示指定目录霞的文件信息<br>​            常用选项：<br>​            -a：显示当前目录的所有文件或目录，包括隐藏文件；<br>​            -l：以列表的方式显示信息。<br>​            <em>ls -a -l 等价于 ll</em></p>
+<p>​    <strong>cd [目录]：</strong>进入指定目录<br>​            绝对路径：从根目录出发定位  /home<br>​            相对路径：从当前路径出发定位 ../home<br>​            cd ~  进入当前用户的家目录<br>​            cd ..  进入当前目录的上一级目录</p>
+<p>​    <strong>mkdir [选项] 目录：</strong>创建目录<br>​            -p：创建多级目录<br>​            rmdir [] 目录：删除目录<br>​            redir 目录：删除的是空目录；rm -rf 目录：删除非空目录</p>
+<p>​    <strong>touch 文件名：</strong>创建一个空文件（可以一次创建多个文件）</p>
+<p>​    <strong>cp [选项] 原文件 指定目录：</strong>拷贝文件到指定目录<br>​            -r：递归复制整个文件夹    </p>
+<p>​    <strong>rm [选项] 要删除的文件夹或目录：</strong>删除指定文件夹<br>​            -r：递归删除整个文件夹<br>​            -f：强制删除不提示    </p>
+<p>​    <strong>mv 原文件名 新文件名：</strong>文件重命名<br>​            <strong>mv 原文件路径 新文件路径：</strong>移动文件    </p>
+<p>​    <strong>cat [选项] 文件路径：</strong>查看文件内容<br>​            -n：显示行号<br>​            管道命令：|，前面每一个进程的输出（stdout）直接作为下一个进程的输入（stdin）<br>​            |more：分页显示<br>​            |less：效率比more高</p>
+<p>​    <strong>&gt;输出重定向：</strong><br>​            <strong>&gt;&gt;追加：</strong><br>​            ls -l &gt;文件：将列表的内容写入文件中<br>​            ls -l &gt;&gt;文件：将列表的内容追加到文件的末尾</p>
+<p>​    <strong>echo [选项] [输出内容]：</strong>输出内容到控制台</p>
+<p>​    <strong>head 文件名：</strong>查看文件前10行<br>​            head -n 行数：查看文件的前任意行</p>
+<p>​    <strong>tail 文件名：</strong>查看文件尾10行<br>​            tail -n 行数：查看文件尾任意行<br>​            tail -f 文件名：实时监控文件的更新</p>
+<p>​    <strong>ln -s 原文件或目录 软链接：</strong>给文件创建一个软链接，相当于windows中的快捷方式</p>
+<p>​    <strong>history ：</strong>查看或执行(! 编号)已经执行过的指令</p>
+<h2 id="时间日期类"><a href="#时间日期类" class="headerlink" title="时间日期类"></a>时间日期类</h2><p><strong>date：</strong>显示当前时间日期<br>        date “+%Y-%M-%d %H:%m:%S”：按指定格式显示时间日期<br>        date -s 字符串时间日期：设置时间日期</p>
+<p><strong>cal：</strong>显示当前日历        </p>
+<h2 id="搜索查找类"><a href="#搜索查找类" class="headerlink" title="搜索查找类"></a>搜索查找类</h2><p><strong>find [搜索范围] [选项] ：</strong>从指定目录向下递归地遍历其各个子目录，将满足条件的文件或者目录显示在终端。<br>选项：-name 文件名：按文件名查找<br>            -user 用户名：按用户名查找<br>            -size +/-文件大小：按文件大小查找（+表示大于  -表示小于  默认为等于）</p>
+<p><strong>locate 文件名：</strong>定位文件路径</p>
+<p><strong>grep [选项] 查找内容 源文件：</strong><br>    选项：-n：匹配行号<br>                -i：忽略大小写</p>
+<h2 id="压缩和解压类"><a href="#压缩和解压类" class="headerlink" title="压缩和解压类"></a>压缩和解压类</h2><p><strong>gzip 文件名：</strong>压缩文件</p>
+<p><strong>gunzip 文件名：</strong>解压文件</p>
+<p><strong>zip [选项] 文件名.zip 将要压缩的内容：</strong>压缩文件<br>        选项：-r：递归压缩，即压缩目录</p>
+<p><strong>unzip [选项] 文件名.zip：</strong>解压缩文件<br>        选项：-d：指定解压后文件的存放目录</p>
+<p><strong>tar [选项] 文件名.tar.gz 打包的内容</strong><br>        选项：<br>        -c：产生.tar打包文件<br>        -v：显示详细信息<br>        -f：指定压缩后的文件<br>        -z：打包同时压缩<br>        -x：解包.tar文件<br>        tar -zcvf xxx.tar.gz 要压缩的文件或目录：压缩文件<br>        tar -zxvf xxx.tar.gz -C 路径：解压到指定路径</p>
+<h2 id="用户组管理"><a href="#用户组管理" class="headerlink" title="用户组管理"></a>用户组管理</h2><p>在linux中的每一个用户都必须属于一个组们不能独立于组外。<br>        在linux中每个文件有所有者，所在组，其他组。<br>        <strong>文件/目录的所有者：</strong>一般为文件的创建者<br>        查看文件的所有者：ls -ahl<br>        chown 文件名 用户：更改文件所有者<br>        chgrp 组名 文件名：修改文件所在组<br>        chown 新的所有者:新的所在组 文件名：同时改变文件所有者和所在组<br>        -R：如果是目录则使其下所有子文件或目录递归生效</p>
+<p><strong>创建组：groupadd 组名</strong><br>        在组内添加用户：useradd -g 组名 用户名<br>        改变用户所在组：usermod -g 组名 用户名<br>        改变用户登录的初始目录：usermod -d 目录名 用户 </p>
+<p><strong>文件/目录权限：</strong><br><img src="/2020/02/25/linux-02/1.png" srcset="/img/loading.gif" alt>        r：对于文件代表可以读取，查看<br>        w：对于文件代表可以修改，但是不代表可以删除该文件，删除一个文件的前提条件是对该文件的目录有写权限。<br>        x：对于文件代表可以执行</p>
+<p>r：对于目录，可以读取，ls查看目录内容<br>        w：对于目录，可以修改，目录内创建，删除，重命名<br>        x：对于目录，可以进入该目录</p>
+<h2 id="文件-目录权限管理"><a href="#文件-目录权限管理" class="headerlink" title="文件/目录权限管理"></a>文件/目录权限管理</h2><p>chmod：修改文件/目录权限<br>        第一种方式：+、-、= 变更权限<br>        u：所有者  g：所有组   o：其他人  a：所有人<br>        chmod u=rwc,g=rx,o=x 文件目录名<br>        chmod o+w 文件目录名<br>        chmod a-x 文件目录名<br>        规定：r=4  w=2  x=1</p>
+<h2 id="任务调度"><a href="#任务调度" class="headerlink" title="任务调度"></a>任务调度</h2><p>crontab [选项]<br>        -e   编辑crontab定时任务<br>        -l     查看crontab任务<br>        -r     删除当前用户所有的crontab任务<br>        <img src="/2020/02/25/linux-02/2.png" srcset="/img/loading.gif" alt>)<img src="/2020/02/25/linux-02/3.png" srcset="/img/loading.gif" alt></p>
+<h2 id="磁盘分区、挂载"><a href="#磁盘分区、挂载" class="headerlink" title="磁盘分区、挂载"></a>磁盘分区、挂载</h2><p>分区的方式：</p>
+<p>1) mbr分区:<br>1.最多支持四个主分区<br>2.系统只能安装在主分区<br>3.扩展分区要占一个主分区<br>4.MBR最大只支持2TB，但拥有最好的兼容性<br>2) gtp分区:<br>1.支持无限多个主分区（但操作系统可能限制，比如windows下最多128个分区）<br>2.最大支持18EB的大容量（1EB=1024 PB，1PB=1024 TB ）<br>3.windows7 64位以后支持gtp</p>
+<p>linux的磁盘分区作为文件被挂载(mount)到根目录下的文件夹中，同时也可以将其卸载(umount)。<br>硬盘说明：<br>1.linux硬盘分IDE硬盘和SCSI硬盘，目前使用的基本上是SCSI硬盘。<br>2.对于IDE硬盘，驱动器标识符为 hdx<del>。<br>x为盘号(a为基本盘，b为基本从属盘，c为辅助主盘，d为辅助从属盘)；<br>~代表分区，前四个分区用数字1到4表示，它们是主分区或拓展分区，从5开始就是逻辑分区。<br>3.对于SCSI硬盘则标识符为sdx</del>。</p>
+<p>查看所有设备的挂载情况：lsblk 或lsblk -f</p>
+<p>分区命令：fdisk /dev/sdb<br>        n 新增分区    w  写入退出<br>        格式化磁盘：mkfs -t ext4 /dev/sdb1<br>        挂载磁盘：mount  设备名称  挂载目录<br>        卸载磁盘：umount   设备名称或挂载目录<br>        永久挂载：通过修改  /etc/fstab   —–&gt;   执行mount -a<br>4.查询磁盘使用情况：<br>查询磁盘整体使用情况：df -lh<br>查询指定目录的磁盘使用情况：du -h 目录<br><strong>工作常用指令：</strong><br>1、统计/home文件夹下文件的个数<br>ls -l /home |grep “^-“|wc -l<br>2、统计/home文件夹下的目录个数<br>ls -l /home | grep “^d” | wc -l<br>3、统计/hom文件夹下文件的个数，包括子文件夹里面的<br>ls -lR /home |grep “^-“|wc -l<br>4、统计/home文件夹下目录的个数，包括子文件夹下的<br>ls -lR /home | grep “^d” | wc -l<br>5、以树状显示文件结构<br>tree 目录</p>
+<h2 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h2><p><strong>查看进程：</strong></p>
+<p>ps -aux [| grep 进程名]：显示当前终端所有的进程信息</p>
+<p>ps  -ef：查看父进程</p>
+<p><strong>终止进程：</strong></p>
+<p>kill [选项] 进程号</p>
+<p>killall 进程名<br>        选项：9  强制终止</p>
+<p><strong>service服务管理：</strong></p>
+<p>service   服务名 [start | stop | restart | reload | status]</p>
+<p>ls -l /etc/init.d/     列出系统服务</p>
+<p><strong>动态监控进程：</strong></p>
+<p>top -d 秒数  ：每隔几秒就刷新</p>
+<p><strong>监控网络情况：</strong></p>
+<p>netstat [选项]</p>
+<p>-n 按一定顺序排列输出<br>        -p 显示哪个进程在调用</p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Linux/">Linux</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/02/26/java-05/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Java常用类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/02/24/linux-01/">
+                        <span class="hidden-mobile">Linux目录结构,Xshell,Xftp，vim</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-md">
+    <div class="container custom post-content mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Linux 常用命令&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>
