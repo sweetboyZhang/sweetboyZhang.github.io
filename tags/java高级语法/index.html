@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="sweetboyZhang">
   <meta name="keywords" content="">
-  <title>Tags - Java高级语法 - sweetboyZhang&#39;s Blog</title>
+  <title>Tags - java高级语法 - sweetboyZhang&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -160,16 +160,52 @@
                 
 
 <div class="list-group">
-  <p class="h4">1 posts in total.</p>
+  <p class="h4">7 posts in total.</p>
   <hr>
   
     
       
       <p class="h5">2020</p>
     
-    <a href="/2020/02/17/java-04/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">多线程</span>
-      <span style="float: right;">02-17</span>
+    <a href="/2020/03/24/java-11/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">Java8新特性</span>
+      <span style="float: right;">03-24</span>
+    </a>
+  
+    
+    <a href="/2020/03/15/java-10/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">反射</span>
+      <span style="float: right;">03-15</span>
+    </a>
+  
+    
+    <a href="/2020/03/13/java-09/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">网络编程</span>
+      <span style="float: right;">03-13</span>
+    </a>
+  
+    
+    <a href="/2020/03/11/java-08/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">I/O流</span>
+      <span style="float: right;">03-11</span>
+    </a>
+  
+    
+    <a href="/2020/03/11/java-07/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">泛型</span>
+      <span style="float: right;">03-11</span>
+    </a>
+  
+    
+    <a href="/2020/03/02/java-06/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">集合</span>
+      <span style="float: right;">03-02</span>
+    </a>
+  
+    
+    <a href="/2020/02/26/java-05/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">Java常用类</span>
+      <span style="float: right;">02-26</span>
     </a>
   
 </div>
@@ -291,9 +327,9 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Tag - Java高级语法&nbsp;",
+        "Tag - java高级语法&nbsp;",
       ],
-      cursorChar: "(*＾o＾*)",
+      cursorChar: "(*＾_＾*)",
       typeSpeed: 70,
       loop: false,
     });
@@ -343,55 +379,6 @@
           //获取鼠标指针的位置，分别相对于文档的左和右边缘。
           //获取x和y的指针坐标
           var x = e.pageX, y = e.pageY;
-          //在鼠标的指针的位置给$i定义的span标签添加css样式
-          $i.css({
-            "z-index": 999,
-            "top": y - 20,
-            "left": x,
-            "position": "absolute",
-            "font-weight": "bold",
-            "color": rand_color()
-          });
-          // 随机颜色
-          function rand_color() {
-            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
-          }
-          //在body添加这个标签
-          $("body").append($i);
-          //animate() 方法执行 CSS 属性集的自定义动画。
-          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
-          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
-          $i.animate({
-            //将原来的位置向上移动180
-            "top": y - 180,
-            "opacity": 0
-            //1500动画的速度
-          }, 1500, function () {
-            //时间到了自动删除
-            $i.remove();
-          });
-        });
-      })
-      ;
-    </script>
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</body>
-</html>
- e.pageY;
           //在鼠标的指针的位置给$i定义的span标签添加css样式
           $i.css({
             "z-index": 999,
