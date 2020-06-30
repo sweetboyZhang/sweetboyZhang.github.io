@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      583 字
+      710 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      15
+      18
        分钟
     </span>
   
@@ -213,7 +213,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：June 28, 2020 am
+                  本文最后更新于：June 30, 2020 pm
                 
               </p>
             
@@ -262,10 +262,13 @@
     <span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/some.do"</span>)<span class="hljs-comment">// 请求映射，将请求地址与请求方法绑定</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> ModelAndView <span class="hljs-title">doSome</span><span class="hljs-params">()</span></span>&#123;
         ModelAndView modelAndView = <span class="hljs-keyword">new</span> ModelAndView();
+        
         <span class="hljs-comment">// 添加数据 框架请求的最后将数据放入Request域中</span>
         modelAndView.addObject(<span class="hljs-string">"msg"</span>,<span class="hljs-string">"hello,SpringMVC"</span>);
+        
         <span class="hljs-comment">// 指定视图 框架对视图执行forward操作</span>
         modelAndView.setViewName(<span class="hljs-string">"/show.jsp"</span>);
+        
         <span class="hljs-comment">// 返回modelAndView</span>
         <span class="hljs-keyword">return</span> modelAndView;
     &#125;
@@ -295,6 +298,18 @@
 &lt;/html&gt;</code></pre></div>
 
 <h2 id="SpringMVC请求的处理过程"><a href="#SpringMVC请求的处理过程" class="headerlink" title="SpringMVC请求的处理过程"></a>SpringMVC请求的处理过程</h2><p><img src="/2020/06/20/SpringMVC-01/1.png" srcset="/img/loading.gif" alt></p>
+<h2 id="使用视图解析器"><a href="#使用视图解析器" class="headerlink" title="使用视图解析器"></a>使用视图解析器</h2><p>在配置文件中声明视图解析器：</p>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--  声明springmvc框架中的视图解析器  帮助开发人员设置视图文件的路径  --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span>
+    <span class="hljs-comment">&lt;!--前缀  视图文件的路径--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"prefix"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"/WEB-INF/view/"</span> /&gt;</span>
+    <span class="hljs-comment">&lt;!--后缀  视图文件的拓展名--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"suffix"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">".jsp"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></code></pre></div>
+
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 配置视图解析器后,可直接使用文件名指定视图</span>
+modelAndView.setViewName(<span class="hljs-string">"show"</span>);</code></pre></div>
+
 
             </article>
             <hr>
@@ -318,13 +333,19 @@
                   <div class="post-prev col-6">
                     
                     
+                      <a href="/2020/06/30/SpringMVC-02/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">SpringMVC注解式开发</span>
+                        <span class="visible-mobile">前の記事</span>
+                      </a>
+                    
                   </div>
                   <div class="post-next col-6">
                     
                     
                       <a href="/2020/06/20/Spring-05/">
                         <span class="hidden-mobile">Web项目环境搭建</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">次の記事</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -341,7 +362,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;ディレクトリ</p>
   <div id="tocbot"></div>
 </div>
 
@@ -374,7 +395,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -383,7 +404,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
