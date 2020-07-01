@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      518 字
+      1.4k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      12
+      34
        分钟
     </span>
   
@@ -221,7 +221,9 @@
               <h2 id="RequestMapping定义请求规则"><a href="#RequestMapping定义请求规则" class="headerlink" title="@RequestMapping定义请求规则"></a>@RequestMapping定义请求规则</h2><h2 id="1、对请求提交方式的定义"><a href="#1、对请求提交方式的定义" class="headerlink" title="1、对请求提交方式的定义"></a>1、对请求提交方式的定义</h2><a id="more"></a>
 
 <div class="hljs"><pre><code class="hljs java"> * <span class="hljs-meta">@RequestMapping</span> 请求映射
- *      属性: method,表示请求的方式
+ *      属性:
+ *      value,表示所匹配请求的URI
+ *		method,表示请求的方式
  *      get请求: RequestMethod.GET
  *      post请求: RequestMethod.POST
  */
@@ -270,7 +272,140 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/*<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">filter-mapping</span>&gt;</span></code></pre></div>
 
-<h2 id="RequestParam校正请求参数"><a href="#RequestParam校正请求参数" class="headerlink" title="@RequestParam校正请求参数"></a>@RequestParam校正请求参数</h2>
+<h3 id="3、-RequestParam校正请求参数"><a href="#3、-RequestParam校正请求参数" class="headerlink" title="3、@RequestParam校正请求参数"></a>3、@RequestParam校正请求参数</h3><p>若请求URL 所携带的参数名称与处理方法中指定的参数名不相同时，则需在处理方法参数前，添加一个注解@RequestParam(“请求参数名”)，指定请求URL 所携带参数的名称。<br><img src="/2020/06/30/SpringMVC-02/1.png" srcset="/img/loading.gif" alt>)<img src="/2020/06/30/SpringMVC-02/2.png" srcset="/img/loading.gif" alt></p>
+<h3 id="4、对象参数接收"><a href="#4、对象参数接收" class="headerlink" title="4、对象参数接收"></a>4、对象参数接收</h3><p>将处理器方法的参数定义为一个对象，只要保证<strong>请求参数名与这个对象的属性同名</strong>即可。</p>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span> </span>&#123;
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-keyword">private</span> Integer age;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Student</span><span class="hljs-params">()</span> </span>&#123;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Student</span><span class="hljs-params">(String name, Integer age)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.name = name;
+        <span class="hljs-keyword">this</span>.age = age;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> name;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setName</span><span class="hljs-params">(String name)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.name = name;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Integer <span class="hljs-title">getAge</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> age;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setAge</span><span class="hljs-params">(Integer age)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.age = age;
+    &#125;
+&#125;</code></pre></div>
+
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping</span>(value = <span class="hljs-string">"/other.do"</span>,method = RequestMethod.POST)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> ModelAndView <span class="hljs-title">doOther</span><span class="hljs-params">(Student student)</span></span>&#123;
+        ModelAndView modelAndView = <span class="hljs-keyword">new</span> ModelAndView();
+        modelAndView.addObject(<span class="hljs-string">"student"</span>,student);
+        <span class="hljs-comment">// 指定视图 框架对视图执行forward操作</span>
+        modelAndView.setViewName(<span class="hljs-string">"show"</span>);
+        <span class="hljs-comment">// 返回modelAndView</span>
+        <span class="hljs-keyword">return</span> modelAndView;
+    &#125;</code></pre></div>
+
+<div class="hljs"><pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;show.jsp&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p&gt;name：$&#123;student.name&#125;&lt;/p&gt;
+    &lt;p&gt;age：$&#123;student.age&#125;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div>
+
+<h2 id="3、处理器方法的返回值"><a href="#3、处理器方法的返回值" class="headerlink" title="3、处理器方法的返回值"></a>3、处理器方法的返回值</h2><h3 id="1、返回ModelAndView"><a href="#1、返回ModelAndView" class="headerlink" title="1、返回ModelAndView"></a>1、返回ModelAndView</h3><p>处理器方法处理完后，需要跳转到其他资源，并且要在跳转的资源之间传递数据。</p>
+<h3 id="2、返回String"><a href="#2、返回String" class="headerlink" title="2、返回String"></a>2、返回String</h3><p>视图跳转，不传递数据。</p>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Controller</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyController</span> </span>&#123;
+    <span class="hljs-meta">@RequestMapping</span>(value = <span class="hljs-string">"/returnView.do"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">doRetyrnView</span><span class="hljs-params">(String name,Integer age)</span> </span>&#123;
+        <span class="hljs-comment">// show  逻辑视图名称。项目中配置了视图解析器</span>
+        <span class="hljs-comment">// 框架对视图进行forward转发操作</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"show"</span>;
+    &#125;
+&#125;</code></pre></div>
+
+<h3 id="3、返回void"><a href="#3、返回void" class="headerlink" title="3、返回void"></a>3、返回void</h3><p>不能表示数据，也不能表示视图。<br>在处理ajax的时候，可以使用void返回值。通过HttpServletResponse输出数据，响应ajax请求。<br>ajax请求服务端返回的就是数据，与视图无关。</p>
+<p>step1：服务端向浏览器传回的是JSON 数据，需要使用一个工具类将字符串包装为JSON 格式，所以需要导入JSON 的依赖。</p>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jackson-core<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.9.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jackson-databind<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.9.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre></div>
+
+<p> step2：引入jquery<br><img src="/2020/06/30/SpringMVC-02/3.png" srcset="/img/loading.gif" alt></p>
+<p>step3：发起ajax请求</p>
+<div class="hljs"><pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;index.jsp&lt;/title&gt;
+    &lt;script type="text/javascript" src="js/jquery-3.4.1.js"&gt;&lt;/script&gt;
+    &lt;script type=<span class="hljs-string">"text/javascript"</span>&gt;
+        $(function()&#123;
+            $(<span class="hljs-string">"#btn"</span>).click(function()&#123;
+                <span class="hljs-comment">// alert("button click")</span>
+                $.ajax(&#123;
+                    url:<span class="hljs-string">"returnVoid-ajax.do"</span>,
+                    data:&#123;
+                        name:<span class="hljs-string">"zyz"</span>,
+                        age:<span class="hljs-number">21</span>
+                    &#125;,
+                    type:<span class="hljs-string">"post"</span>,
+                    dataType:<span class="hljs-string">"json"</span>,
+                    <span class="hljs-comment">// resp是服务器端返回的json格式的字符串</span>
+                    <span class="hljs-comment">// jquery会把json字符串转化为json对象，赋值给形参</span>
+                    success:function(resp)&#123;
+                        alert(<span class="hljs-string">"name:"</span>+resp.name+<span class="hljs-string">" age:"</span>+resp.age);
+                    &#125;
+                &#125;)
+            &#125;)
+        &#125;)
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;button id="btn"&gt;发起ajax请求&lt;/button&gt;
+&lt;/body&gt;</code></pre></div>
+
+<p>step4：响应ajax请求</p>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping</span>(value = <span class="hljs-string">"/returnVoid-ajax.do"</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doReturnVoidAjax</span><span class="hljs-params">(HttpServletResponse resp, String name, Integer age)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
+    System.out.println(<span class="hljs-string">"name:"</span> + name);
+    System.out.println(<span class="hljs-string">"age:"</span> + age);
+    <span class="hljs-comment">// 处理ajax请求  使用json数据格式</span>
+    Student student = <span class="hljs-keyword">new</span> Student(name, age);
+    <span class="hljs-comment">// 将数据转换为json格式</span>
+    String studentJson=<span class="hljs-string">""</span>;
+    <span class="hljs-keyword">if</span> (student != <span class="hljs-keyword">null</span>) &#123;
+        ObjectMapper objectMapper = <span class="hljs-keyword">new</span> ObjectMapper();
+         studentJson= objectMapper.writeValueAsString(student);
+        System.out.println(<span class="hljs-string">"student的json格式："</span>+studentJson);
+    &#125;
+    <span class="hljs-comment">// resp输出数据到页面，响应ajax请求</span>
+    resp.setContentType(<span class="hljs-string">"application/json;charset=utf-8"</span>);
+    PrintWriter writer = resp.getWriter();
+    writer.print(studentJson);
+    writer.flush();
+    writer.close();
+&#125;</code></pre></div>
+
+<h3 id="4、返回Object"><a href="#4、返回Object" class="headerlink" title="4、返回Object"></a>4、返回Object</h3><p>处理器返回的对象不是作为逻辑视图出现的，而是作为直接在页面显示的数据出现。</p>
+
             </article>
             <hr>
             <div>
