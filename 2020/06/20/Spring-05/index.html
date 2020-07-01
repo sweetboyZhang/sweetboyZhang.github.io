@@ -74,7 +74,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                home
+                首页
               </a>
             </li>
           
@@ -86,7 +86,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                archive
+                归档
               </a>
             </li>
           
@@ -98,7 +98,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                tag
+                标签
               </a>
             </li>
           
@@ -110,7 +110,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                about
+                关于
               </a>
             </li>
           
@@ -122,7 +122,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                links
+                友链
               </a>
             </li>
           
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      921 字
+      1.2k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      27
+      36
        分钟
     </span>
   
@@ -213,7 +213,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：June 28, 2020 am
+                  本文最后更新于：July 1, 2020 pm
                 
               </p>
             
@@ -310,8 +310,57 @@
     <span class="hljs-tag">&lt;/<span class="hljs-name">plugins</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">build</span>&gt;</span></code></pre></div>
 
-<p>将spring-nybatis整合的代码复制到src下</p>
-<h2 id="3、编写页面"><a href="#3、编写页面" class="headerlink" title="3、编写页面"></a>3、编写页面</h2><h2 id="4、编写servlet"><a href="#4、编写servlet" class="headerlink" title="4、编写servlet"></a>4、编写servlet</h2><h3 id="1-在web-xml中注册servlet和listener"><a href="#1-在web-xml中注册servlet和listener" class="headerlink" title="1.在web.xml中注册servlet和listener"></a>1.在web.xml中注册servlet和listener</h3><div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--注册servlet--&gt;</span>
+<p>将spring-mybatis整合的代码复制到src下</p>
+<h2 id="3、编写页面"><a href="#3、编写页面" class="headerlink" title="3、编写页面"></a>3、编写页面</h2><p>index.jsp</p>
+<div class="hljs"><pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;注册页面&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;员工注册&lt;/h1&gt;
+    &lt;form action=<span class="hljs-string">"registerServlet"</span> method=<span class="hljs-string">"post"</span>&gt;
+        &lt;table&gt;
+            &lt;tr&gt;
+                &lt;td&gt;姓名&lt;/td&gt;
+                &lt;td&gt;&lt;input type="text" name="name"&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;性别&lt;/td&gt;
+                &lt;td&gt;&lt;input type=<span class="hljs-string">"radio"</span> name=<span class="hljs-string">"gender"</span> value=<span class="hljs-string">"1"</span>&gt;男
+                &lt;input type="radio" name="gender" value="0"&gt;女&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;电子邮件&lt;/td&gt;
+                &lt;td&gt;&lt;input type="text" name="email"&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;部门编号&lt;/td&gt;
+                &lt;td&gt;&lt;input type=<span class="hljs-string">"radio"</span> name=<span class="hljs-string">"deptId"</span> value=<span class="hljs-string">"1"</span>&gt;<span class="hljs-number">1</span>
+                &lt;input type="radio" name="deptId" value="2"&gt;2&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td colspan=<span class="hljs-string">"2"</span>&gt;
+                    &lt;input type=<span class="hljs-string">"submit"</span> value=<span class="hljs-string">"注册提交"</span>&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div>
+
+<p>registerSuccess.jsp</p>
+<div class="hljs"><pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;注册成功页面&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p&gt;注册成功&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div>
+
+<h2 id="4、编写servlet"><a href="#4、编写servlet" class="headerlink" title="4、编写servlet"></a>4、编写servlet</h2><h3 id="1-在web-xml中注册servlet和listener"><a href="#1-在web-xml中注册servlet和listener" class="headerlink" title="1.在web.xml中注册servlet和listener"></a>1.在web.xml中注册servlet和listener</h3><div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--注册servlet--&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">servlet</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>RegisterServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">servlet-class</span>&gt;</span>com.zyz.controller.RegisterServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-class</span>&gt;</span>
@@ -392,7 +441,7 @@
                       <a href="/2020/06/20/SpringMVC-01/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">SpringMVC简介</span>
-                        <span class="visible-mobile">前の記事</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </div>
@@ -401,7 +450,7 @@
                     
                       <a href="/2020/06/19/Spring-04/">
                         <span class="hidden-mobile">Spring事务</span>
-                        <span class="visible-mobile">次の記事</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -418,7 +467,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;ディレクトリ</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -451,7 +500,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -460,7 +509,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">キーワード</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

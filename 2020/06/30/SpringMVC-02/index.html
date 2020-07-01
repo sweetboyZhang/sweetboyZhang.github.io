@@ -74,7 +74,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                home
+                首页
               </a>
             </li>
           
@@ -86,7 +86,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                archive
+                归档
               </a>
             </li>
           
@@ -98,7 +98,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                tag
+                标签
               </a>
             </li>
           
@@ -110,7 +110,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                about
+                关于
               </a>
             </li>
           
@@ -122,7 +122,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                links
+                友链
               </a>
             </li>
           
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      123 字
+      518 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      12
        分钟
     </span>
   
@@ -213,12 +213,14 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：June 30, 2020 pm
+                  本文最后更新于：July 1, 2020 pm
                 
               </p>
             
             <article class="markdown-body">
-              <h2 id="RequestMapping定义请求规则"><a href="#RequestMapping定义请求规则" class="headerlink" title="@RequestMapping定义请求规则"></a>@RequestMapping定义请求规则</h2><h2 id="1、对请求提交方式的定义"><a href="#1、对请求提交方式的定义" class="headerlink" title="1、对请求提交方式的定义"></a>1、对请求提交方式的定义</h2><div class="hljs"><pre><code class="hljs java"> * <span class="hljs-meta">@RequestMapping</span> 请求映射
+              <h2 id="RequestMapping定义请求规则"><a href="#RequestMapping定义请求规则" class="headerlink" title="@RequestMapping定义请求规则"></a>@RequestMapping定义请求规则</h2><h2 id="1、对请求提交方式的定义"><a href="#1、对请求提交方式的定义" class="headerlink" title="1、对请求提交方式的定义"></a>1、对请求提交方式的定义</h2><a id="more"></a>
+
+<div class="hljs"><pre><code class="hljs java"> * <span class="hljs-meta">@RequestMapping</span> 请求映射
  *      属性: method,表示请求的方式
  *      get请求: RequestMethod.GET
  *      post请求: RequestMethod.POST
@@ -227,7 +229,48 @@
 <span class="hljs-function"><span class="hljs-keyword">public</span> ModelAndView <span class="hljs-title">doSome</span><span class="hljs-params">()</span></span>&#123;&#125;</code></pre></div>
 
 <h2 id="2、处理器的请求参数"><a href="#2、处理器的请求参数" class="headerlink" title="2、处理器的请求参数"></a>2、处理器的请求参数</h2><p>处理器方法可以包含以下四类参数，这些参数会在系统调用时由系统自动赋值，即程序员可在方法内直接使用。<br>➢ HttpServletRequest<br>➢ HttpServletResponse<br>➢ HttpSession<br>➢ 请求中所携带的请求参数</p>
+<h3 id="1、逐个参数接收"><a href="#1、逐个参数接收" class="headerlink" title="1、逐个参数接收"></a>1、逐个参数接收</h3><p>保证请求参数名与该请求处理方法的参数名相同。</p>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 保证请求参数名与该请求处理方法的参数名相同。</span>
+<span class="hljs-comment">     * 框架接收请求参数</span>
+<span class="hljs-comment">     * 1、使用request对象接收请求参数</span>
+<span class="hljs-comment">     * 2、springmvc框架通过DispatcherServlet 调用myController中的doSome()</span>
+<span class="hljs-comment">     * 并按名称对应，把接收到的参数赋值给形参，框架会提供类型自动转换功能</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> name</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> age</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span>
+<span class="hljs-comment">     */</span>
+<span class="hljs-meta">@RequestMapping</span>(value = <span class="hljs-string">"/other.do"</span>,method = RequestMethod.POST)
+<span class="hljs-function"><span class="hljs-keyword">public</span> ModelAndView <span class="hljs-title">doOther</span><span class="hljs-params">(String name,Integer age)</span></span>&#123;&#125;</code></pre></div>
 
+<p>400错误码：客户端错误，表示提交请求时出现了错误</p>
+<h3 id="2、解决中文乱码"><a href="#2、解决中文乱码" class="headerlink" title="2、解决中文乱码"></a>2、解决中文乱码</h3><p>提交请求参数时，get方式没有乱码，post方式出现中文乱码。<br>使用框架提供的过滤器解决乱码：</p>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 注册过滤器，解决post请求的乱码问题--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">filter</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">filter-name</span>&gt;</span>characterEncodingFilter<span class="hljs-tag">&lt;/<span class="hljs-name">filter-name</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">filter-class</span>&gt;</span>org.springframework.web.filter.CharacterEncodingFilter<span class="hljs-tag">&lt;/<span class="hljs-name">filter-class</span>&gt;</span>
+    <span class="hljs-comment">&lt;!--设置项目中的字符编码--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">init-param</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">param-name</span>&gt;</span>encoding<span class="hljs-tag">&lt;/<span class="hljs-name">param-name</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>utf-8<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">init-param</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- 强制请求对象(HttpServletRequest)使用encoding编码值--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">init-param</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">param-name</span>&gt;</span>forceRequestEncoding<span class="hljs-tag">&lt;/<span class="hljs-name">param-name</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">init-param</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- 强制响应对象(HttpServletResponse)使用encoding编码值--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">init-param</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">param-name</span>&gt;</span>forceResponseEncoding<span class="hljs-tag">&lt;/<span class="hljs-name">param-name</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">init-param</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">filter</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">filter-mapping</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">filter-name</span>&gt;</span>characterEncodingFilter<span class="hljs-tag">&lt;/<span class="hljs-name">filter-name</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/*<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">filter-mapping</span>&gt;</span></code></pre></div>
+
+<h2 id="RequestParam校正请求参数"><a href="#RequestParam校正请求参数" class="headerlink" title="@RequestParam校正请求参数"></a>@RequestParam校正请求参数</h2>
             </article>
             <hr>
             <div>
@@ -250,13 +293,19 @@
                   <div class="post-prev col-6">
                     
                     
+                      <a href="/2020/07/01/interview-01/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Java基础篇</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </div>
                   <div class="post-next col-6">
                     
                     
                       <a href="/2020/06/20/SpringMVC-01/">
                         <span class="hidden-mobile">SpringMVC简介</span>
-                        <span class="visible-mobile">次の記事</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -273,7 +322,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;ディレクトリ</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -306,7 +355,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -315,7 +364,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">キーワード</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

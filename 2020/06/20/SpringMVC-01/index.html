@@ -74,7 +74,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                home
+                首页
               </a>
             </li>
           
@@ -86,7 +86,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                archive
+                归档
               </a>
             </li>
           
@@ -98,7 +98,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                tag
+                标签
               </a>
             </li>
           
@@ -110,7 +110,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                about
+                关于
               </a>
             </li>
           
@@ -122,7 +122,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                links
+                友链
               </a>
             </li>
           
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      710 字
+      711 字
     </span>
   
 
@@ -213,7 +213,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：June 30, 2020 pm
+                  本文最后更新于：July 1, 2020 am
                 
               </p>
             
@@ -254,7 +254,6 @@
 
 <h3 id="4、编写MyController处理请求"><a href="#4、编写MyController处理请求" class="headerlink" title="4、编写MyController处理请求"></a>4、编写MyController处理请求</h3><div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Controller</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyController</span> </span>&#123;
-
     <span class="hljs-comment">/**</span>
 <span class="hljs-comment">     * 处理some.do请求</span>
 <span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 请求处理完成后，返回用户的数据</span>
@@ -298,7 +297,7 @@
 &lt;/html&gt;</code></pre></div>
 
 <h2 id="SpringMVC请求的处理过程"><a href="#SpringMVC请求的处理过程" class="headerlink" title="SpringMVC请求的处理过程"></a>SpringMVC请求的处理过程</h2><p><img src="/2020/06/20/SpringMVC-01/1.png" srcset="/img/loading.gif" alt></p>
-<h2 id="使用视图解析器"><a href="#使用视图解析器" class="headerlink" title="使用视图解析器"></a>使用视图解析器</h2><p>在配置文件中声明视图解析器：</p>
+<h2 id="使用视图解析器"><a href="#使用视图解析器" class="headerlink" title="使用视图解析器"></a>使用视图解析器</h2><p>在springmvc配置文件中声明视图解析器：</p>
 <div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--  声明springmvc框架中的视图解析器  帮助开发人员设置视图文件的路径  --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span>
     <span class="hljs-comment">&lt;!--前缀  视图文件的路径--&gt;</span>
@@ -336,7 +335,7 @@ modelAndView.setViewName(<span class="hljs-string">"show"</span>);</code></pre><
                       <a href="/2020/06/30/SpringMVC-02/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">SpringMVC注解式开发</span>
-                        <span class="visible-mobile">前の記事</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </div>
@@ -345,7 +344,7 @@ modelAndView.setViewName(<span class="hljs-string">"show"</span>);</code></pre><
                     
                       <a href="/2020/06/20/Spring-05/">
                         <span class="hidden-mobile">Web项目环境搭建</span>
-                        <span class="visible-mobile">次の記事</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -362,7 +361,7 @@ modelAndView.setViewName(<span class="hljs-string">"show"</span>);</code></pre><
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;ディレクトリ</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -395,7 +394,7 @@ modelAndView.setViewName(<span class="hljs-string">"show"</span>);</code></pre><
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -404,7 +403,7 @@ modelAndView.setViewName(<span class="hljs-string">"show"</span>);</code></pre><
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">キーワード</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

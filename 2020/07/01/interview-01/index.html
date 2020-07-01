@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="sweetboyZhang">
   <meta name="keywords" content="">
-  <title>异常处理 - sweetboyZhang&#39;s Blog</title>
+  <title>Java基础篇 - sweetboyZhang&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -152,8 +152,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-02-11 11:50">
-      February 11, 2020 am
+    <time datetime="2020-07-01 09:06">
+      July 1, 2020 am
     </time>
   </div>
 
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      740 字
+      631 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      14
+      11
        分钟
     </span>
   
@@ -213,80 +213,24 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：June 28, 2020 am
+                  本文最后更新于：July 1, 2020 am
                 
               </p>
             
             <article class="markdown-body">
-              <h2 id="异常概述与异常体系结构"><a href="#异常概述与异常体系结构" class="headerlink" title="异常概述与异常体系结构"></a>异常概述与异常体系结构</h2><p><strong>Error：</strong>Java虚拟机无法解决的严重问题。如：JVM系统内部错误、资源耗尽等严重情况。<br>        比如 ：StackOverflowError和OutOfMemory。一般不编写针对性的代码进行处理。<br>        <strong>Exception:</strong> 其它因编程错误或偶然的外在因素导致的一般性问题，可以使用针对性的代码进行处理。<br>        例如：空指针访问，试图读取不存在的文件，网络连接中断，数组角标越界。</p>
-<a id="more"></a>
-<p>异常分类：编译时异常；运行时异常(java.lang.RuntimeException类及它的子类都是运行时异常)。</p>
-<h2 id="异常处理机制一"><a href="#异常处理机制一" class="headerlink" title="异常处理机制一"></a>异常处理机制一</h2><p>异常的处理：抓抛模型<br>        <strong>抛出异常：</strong>程序在正常执行的过程中，如果出现异常，就会生成一个异常类的对象，并将此对象提交给java运        行时系统。<br>        <strong>捕获异常：</strong>如果一个方法抛出异常，该异常就会抛出给调用者方法中处理。如果异常没有在调用者方法中处理，继续抛给上层方法，直到<font color="red">异常被处理</font>。</p>
-<div class="hljs"><pre><code class="hljs angelscript"><span class="hljs-keyword">try</span>&#123;
-    <span class="hljs-comment">// 可能出现异常的代码    </span>
-&#125;<span class="hljs-keyword">catch</span>(异常类型<span class="hljs-number">1</span> 变量名<span class="hljs-number">1</span>)&#123;
-    <span class="hljs-comment">// 处理异常的方式1</span>
-&#125;<span class="hljs-keyword">catch</span>(异常类型<span class="hljs-number">2</span> 变量名<span class="hljs-number">2</span>)&#123;
-    <span class="hljs-comment">// 处理异常的方式2</span>
-&#125;
-...
-finally&#123;
-    <span class="hljs-comment">// 不论在try代码块中是否发生了异常事件，catch语句是否执行，是否有异常，是否有return，</span>
-    <span class="hljs-comment">// finally块中的语句都会被执行。</span>
-&#125;</code></pre></div>
-
-<h2 id="异常处理机制二"><a href="#异常处理机制二" class="headerlink" title="异常处理机制二"></a>异常处理机制二</h2><p>throws + 异常类型<br>        1.写在方法的声明处，指明可能抛出的异常类型。一旦方法体执行出现异常时，就会将生成的异常类对象抛给        调用者。异常代码后续的代码不再执行。<br>        2.只是将异常抛给了调用者，并<font color="red">没有将异常处理掉</font>。</p>
-<h2 id="手动抛出异常"><a href="#手动抛出异常" class="headerlink" title="手动抛出异常"></a>手动抛出异常</h2><p>throw + new Exception(“提示信息”)，必须在方法声明时用throws出指明可能抛出的异常。<br>        throw : 生成一个异常对象。声明在方法体内。<br>        throws : 处理异常。声明在方法的声明处。</p>
-<h2 id="用户自定义异常类"><a href="#用户自定义异常类" class="headerlink" title="用户自定义异常类"></a>用户自定义异常类</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
-<span class="hljs-comment"> * <span class="hljs-doctag">@Description</span> 用户自定义异常类MyException，用于描述数据取值范围错误信息。</span>
-<span class="hljs-comment"> *              用户自己的异常类必须继承现有的异常类。 </span>
-<span class="hljs-comment"> * <span class="hljs-doctag">@author</span> sweetboyZhang</span>
-<span class="hljs-comment"> * <span class="hljs-doctag">@date</span> 2020年2月13日下午3:15:59</span>
-<span class="hljs-comment"> */</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Exception</span> </span>&#123;
-	
-	<span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = -<span class="hljs-number">703489719074899L</span>;<span class="hljs-comment">// 序列号</span>
-	<span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> id;<span class="hljs-comment">// 异常种类</span>
-	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyException</span><span class="hljs-params">()</span> </span>&#123;
-		
-	&#125;
-	
-	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyException</span><span class="hljs-params">(String msg,<span class="hljs-keyword">int</span> id)</span> </span>&#123;
-		<span class="hljs-keyword">super</span>(msg);
-		<span class="hljs-keyword">this</span>.id = id;
-	&#125;
-	
-	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getId</span><span class="hljs-params">()</span> </span>&#123;
-		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.id;
-	&#125;
-&#125;
-
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyExceptionTest</span> </span>&#123;
-	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">regist</span><span class="hljs-params">(<span class="hljs-keyword">int</span> num)</span><span class="hljs-keyword">throws</span> MyException</span>&#123;
-		<span class="hljs-keyword">if</span>(num &lt; <span class="hljs-number">0</span>) &#123;
-			<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> MyException(<span class="hljs-string">"人为负数，不合理"</span>,<span class="hljs-number">1</span>);
-		&#125;
-		<span class="hljs-keyword">else</span> &#123;
-			System.out.println(<span class="hljs-string">"登记人数："</span>+num);
-		&#125;
-	&#125;
-	
-	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">manager</span><span class="hljs-params">()</span> </span>&#123;
-		<span class="hljs-keyword">try</span> &#123;
-			regist(-<span class="hljs-number">100</span>);
-		&#125;<span class="hljs-keyword">catch</span>(MyException e) &#123;
-			System.out.println(<span class="hljs-string">"登记错误，出错种类："</span>+e.getId());
-		&#125;
-		System.out.println(<span class="hljs-string">"本次登记操作结束"</span>);
-	&#125;
-	
-	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
-		MyExceptionTest my1 = <span class="hljs-keyword">new</span> MyExceptionTest();
-		my1.manager();
-	&#125;
-&#125;</code></pre></div>
-
-
+              <h2 id="1、Java语言特点"><a href="#1、Java语言特点" class="headerlink" title="1、Java语言特点"></a>1、Java语言特点</h2><p>1、简单易学，有丰富的类库</p>
+<p>2、面向对象（java最重要的特性，让程序高类聚，低耦合）</p>
+<p>3、与平台无关性（jvm是java跨平台使用的根本）</p>
+<p>4、安全可靠</p>
+<p>5、支持多线程<a id="more"></a></p>
+<h2 id="2、面向对象与面向过程的区别"><a href="#2、面向对象与面向过程的区别" class="headerlink" title="2、面向对象与面向过程的区别"></a>2、面向对象与面向过程的区别</h2><p><strong>面向过程：</strong>是分析解决问题的步骤，通过函数将这些步骤一步一步实现，然后调用则可。性能较高，单片机，嵌入式开发等一般采用面向过程开发。</p>
+<p><strong>面向对象：</strong>是把构成问题的事物分解成各个对象，建立对象的目的也不是为了完成各个步骤，而是为了描述某个事物在解决问题的整个过程中所发生的行为。面向对象有  <strong>继承、封装、多态</strong>的特性，因此设计出的系统易维护、易复用、易拓展。但性能上与面向过程相比较低。</p>
+<h2 id="3、八种基本数据类型"><a href="#3、八种基本数据类型" class="headerlink" title="3、八种基本数据类型"></a>3、八种基本数据类型</h2><p><img src="/2020/07/01/interview-01/1.jpg" srcset="/img/loading.gif" alt></p>
+<p><strong>基本数据类型(primitive type)</strong><br>整型  byte(1字节)  , short (2字节), int(4字节) , long(8字节) l或L结尾<br>浮点型  float(4字节) 定义时要以f或F结尾 , double(8字节)<br>字符型  char(2字节)<br>布尔型  boolean 只能取两个值之一 ：true , false<br><em>7种基本数据类型之间的计算（不包括布尔类型）:</em><br>1.自动类型提升：<br> 容量小的数据类型变量与容量大的数据类型做运算时，运算结果自动装换为容量大的。<br> byte , char , short –&gt; int –&gt; long –&gt; float –&gt; double<br>2.强制类型转换：<br>使用强转符 () ，可能造成精度损失        </p>
+<p><strong>引用数据类型(reference type)</strong></p>
+<p>默认值：null<br>类 class<br>String类型：  声明时使用一对””，可以与8种基本数据类型做运算，+ 只能表示连接<br>接口 interfere<br>数组 [ ]</p>
+<p>基本数据类型在声明时系统会自动给它分配空间，而引用数据类型声明时只分配了引用空间，必须通过实例化开辟数据空间才可以赋值使用。<br>数组对象也是一个引用对象，将一个数组<strong>赋值（“=”）</strong>给另一个数组时只是复制了一个引用，所以通过某一个数组所做的修改在另一个数组中也看的见；而数组的<strong>复制</strong>必须通过循环逐个元素赋值，对复制后的数组进行修改与与另一个数组无关。</p>
+<h2 id="4、标识符的命名规则"><a href="#4、标识符的命名规则" class="headerlink" title="4、标识符的命名规则"></a>4、标识符的命名规则</h2>
             </article>
             <hr>
             <div>
@@ -296,7 +240,7 @@ finally&#123;
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/">Java基础语法</a>
+                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
                     
                   </div>
                 
@@ -309,18 +253,12 @@ finally&#123;
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/02/17/java-04/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">多线程</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/01/18/java-02/">
-                        <span class="hidden-mobile">面向对象</span>
+                      <a href="/2020/06/30/SpringMVC-02/">
+                        <span class="hidden-mobile">SpringMVC注解式开发</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -491,7 +429,7 @@ finally&#123;
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "异常处理&nbsp;",
+        "Java基础篇&nbsp;",
       ],
       cursorChar: "(*＾_＾*)",
       typeSpeed: 70,

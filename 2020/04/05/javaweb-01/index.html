@@ -74,7 +74,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                home
+                首页
               </a>
             </li>
           
@@ -86,7 +86,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                archive
+                归档
               </a>
             </li>
           
@@ -98,7 +98,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                tag
+                标签
               </a>
             </li>
           
@@ -110,7 +110,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                about
+                关于
               </a>
             </li>
           
@@ -122,7 +122,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                links
+                友链
               </a>
             </li>
           
@@ -213,7 +213,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：June 28, 2020 am
+                  本文最后更新于：July 1, 2020 am
                 
               </p>
             
@@ -389,7 +389,7 @@
 
 <h2 id="JavaEE项目的三层架构"><a href="#JavaEE项目的三层架构" class="headerlink" title="JavaEE项目的三层架构"></a>JavaEE项目的三层架构</h2><p><img src="/2020/04/05/javaweb-01/7.png" srcset="/img/loading.gif" alt></p>
 <p>分层的目的是为了解耦。解耦是为了降低代码的耦合度，方便项目后期的维护和升级。</p>
-<h3 id="1、MVC-概念"><a href="#1、MVC-概念" class="headerlink" title="1、MVC 概念"></a>1、MVC 概念</h3><p>MVC 全称：Model 模型、View 视图、Controller 控制器。<br>MVC 最早出现在JavaEE 三层中的Web 层，它可以有效的指导Web 层的代码如何有效分离，单独工作。<br>Model 模型：将与业务逻辑相关的数据封装为具体的JavaBean 类，其中不掺杂任何与数据处理相关的代码——<br>JavaBean/domain/entity/pojo。<br>View 视图：只负责数据和界面的显示，不接受任何与显示数据无关的代码，便于程序员和美工的分工合作——<br>JSP/HTML。<br>Controller 控制器：只负责接收请求，调用业务层的代码处理请求，然后派发页面，是一个“调度者”的角色——Servlet。转到某个页面。或者是重定向到某个页面。<br>MVC 是一种思想，MVC 的理念是将软件代码拆分成为组件，单独开发，组合使用（目的还是为了降低耦合度）。<br><img src="/2020/04/05/javaweb-01/8.png" srcset="/img/loading.gif"></p>
+<h3 id="1、MVC-概念"><a href="#1、MVC-概念" class="headerlink" title="1、MVC 概念"></a>1、MVC 概念</h3><p>MVC 全称：Model 模型、View 视图、Controller 控制器。<br>MVC 最早出现在JavaEE 三层中的Web 层，它可以有效的指导Web 层的代码如何有效分离，单独工作。<br>Model 模型：将与业务逻辑相关的数据封装为具体的JavaBean 类，其中不掺杂任何与数据处理相关的代码——JavaBean/domain/entity/pojo。<br>View 视图：只负责数据和界面的显示，不接受任何与显示数据无关的代码，便于程序员和美工的分工合作——JSP/HTML。<br>Controller 控制器：只负责接收请求，调用业务层的代码处理请求，然后派发页面，是一个“调度者”的角色——Servlet。转到某个页面。或者是重定向到某个页面。<br>MVC 是一种思想，MVC 的理念是将软件代码拆分成为组件，单独开发，组合使用（目的还是为了降低耦合度）。<br><img src="/2020/04/05/javaweb-01/8.png" srcset="/img/loading.gif"></p>
 
             </article>
             <hr>
@@ -416,7 +416,7 @@
                       <a href="/2020/04/08/javaweb-02/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">书城项目</span>
-                        <span class="visible-mobile">前の記事</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </div>
@@ -425,7 +425,7 @@
                     
                       <a href="/2020/03/24/java-11/">
                         <span class="hidden-mobile">Java8新特性</span>
-                        <span class="visible-mobile">次の記事</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -442,7 +442,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;ディレクトリ</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -475,7 +475,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -484,7 +484,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">キーワード</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
