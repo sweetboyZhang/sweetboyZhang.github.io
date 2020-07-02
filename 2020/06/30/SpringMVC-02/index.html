@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="sweetboyZhang">
   <meta name="keywords" content="">
-  <title>SpringMVC注解式开发 - sweetboyZhang&#39;s Blog</title>
+  <title>SpringMVC-02 - sweetboyZhang&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.4k 字
+      2.1k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      34
+      50
        分钟
     </span>
   
@@ -213,21 +213,15 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 1, 2020 pm
+                  本文最后更新于：July 2, 2020 pm
                 
               </p>
             
             <article class="markdown-body">
-              <h2 id="RequestMapping定义请求规则"><a href="#RequestMapping定义请求规则" class="headerlink" title="@RequestMapping定义请求规则"></a>@RequestMapping定义请求规则</h2><h2 id="1、对请求提交方式的定义"><a href="#1、对请求提交方式的定义" class="headerlink" title="1、对请求提交方式的定义"></a>1、对请求提交方式的定义</h2><a id="more"></a>
-
-<div class="hljs"><pre><code class="hljs java"> * <span class="hljs-meta">@RequestMapping</span> 请求映射
- *      属性:
- *      value,表示所匹配请求的URI
- *		method,表示请求的方式
- *      get请求: RequestMethod.GET
- *      post请求: RequestMethod.POST
- */
-<span class="hljs-meta">@RequestMapping</span>(value=<span class="hljs-string">"/some.do"</span>,method= RequestMethod.GET)
+              <p>title: SpringMVC注解式开发<br>date: 2020-06-30 14:23:21<br>tags: SpringMVC<br>index_img: /img/springmvc.jpg</p>
+<h2 id="RequestMapping定义请求规则"><a href="#RequestMapping定义请求规则" class="headerlink" title="@RequestMapping定义请求规则"></a>@RequestMapping定义请求规则</h2><h2 id="1、对请求提交方式的定义"><a href="#1、对请求提交方式的定义" class="headerlink" title="1、对请求提交方式的定义"></a>1、对请求提交方式的定义</h2><p>@RequestMapping 请求映射</p>
+<p>属性:<br>value,表示所匹配请求的URI<br>method,表示请求的方式：get请求: RequestMethod.GET ；post请求: RequestMethod.POST<a id="more"></a></p>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping</span>(value=<span class="hljs-string">"/some.do"</span>,method= RequestMethod.GET)
 <span class="hljs-function"><span class="hljs-keyword">public</span> ModelAndView <span class="hljs-title">doSome</span><span class="hljs-params">()</span></span>&#123;&#125;</code></pre></div>
 
 <h2 id="2、处理器的请求参数"><a href="#2、处理器的请求参数" class="headerlink" title="2、处理器的请求参数"></a>2、处理器的请求参数</h2><p>处理器方法可以包含以下四类参数，这些参数会在系统调用时由系统自动赋值，即程序员可在方法内直接使用。<br>➢ HttpServletRequest<br>➢ HttpServletResponse<br>➢ HttpSession<br>➢ 请求中所携带的请求参数</p>
@@ -404,20 +398,103 @@
     writer.close();
 &#125;</code></pre></div>
 
-<h3 id="4、返回Object"><a href="#4、返回Object" class="headerlink" title="4、返回Object"></a>4、返回Object</h3><p>处理器返回的对象不是作为逻辑视图出现的，而是作为直接在页面显示的数据出现。</p>
+<h3 id="4、返回Object"><a href="#4、返回Object" class="headerlink" title="4、返回Object"></a>4、返回Object</h3><p>处理器返回的对象不是作为逻辑视图出现的，而是作为直接在页面显示的数据出现。<br>可以使用对象表示数据，响应ajax请求。<br>将对象类型转换为json类型 以及 将结果数据输出到页面，springmvc框架都可以自动帮你完成：</p>
+<p><strong>step1:</strong><br>在pom.xml中引入Jackson相关依赖，Jackson工具库用于将Object转换为Json。</p>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jackson-core<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.9.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jackson-databind<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.9.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre></div>
+
+<p><strong>step2:</strong></p>
+<p>在springmvc.xml配置文件中添加注解驱动。<br>将Object 数据转化为JSON 数据，需要由消息转换器HttpMessageConverter 完成。而转换器的开启，需要由<code>&lt;mvc:annotation-driven/&gt;</code>来完成。<br>SpringMVC 使用消息转换器实现请求数据和对象，处理器方法返回对象和响应输出之间的<strong>自动转换</strong>。</p>
+<p>当Spring 容器进行初始化过程中，在<code>&lt;mvc:annotation-driven/&gt;</code>处创建注解驱动时，默认创建了八个HttpMessageConverter 对象。也就是说，我们注册<code>&lt;mvc:annotation-driven/&gt;</code>，就是为了让容器为我们创建HttpMessageConverter 对象。</p>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--注解驱动--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">mvc:annotation-driven</span>/&gt;</span></code></pre></div>
+
+<p><strong>step3:</strong></p>
+<p>修改处理器方法：</p>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 使用框架来处理ajax请求</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@return</span> Student</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-meta">@RequestMapping</span>(value = <span class="hljs-string">"/returnStudent.do"</span>)
+<span class="hljs-meta">@ResponseBody</span>  <span class="hljs-comment">// 处理器返回对象转换为json后，通过HttpServletResponse输出给浏览器</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> Student <span class="hljs-title">doReturnStudentAjax</span><span class="hljs-params">()</span></span>&#123;
+    Student student = <span class="hljs-keyword">new</span> Student(<span class="hljs-string">"zyz"</span>, <span class="hljs-number">19</span>);
+    <span class="hljs-keyword">return</span> student;<span class="hljs-comment">// 框架会将obj转为json格式</span>
+&#125;</code></pre></div>
+
+<p>从页面发起ajax请求：</p>
+<div class="hljs"><pre><code class="hljs js">$(<span class="hljs-string">"#btn02"</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+    $.ajax(&#123;
+        url:<span class="hljs-string">"returnStudent.do"</span>,
+        type:<span class="hljs-string">"post"</span>,
+        dataType:<span class="hljs-string">"json"</span>,
+        <span class="hljs-comment">// resp是服务器端返回的json格式的字符串</span>
+        <span class="hljs-comment">// jquery会把json字符串转化为json对象，赋值给形参</span>
+        success:<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resp</span>)</span>&#123;
+            alert(<span class="hljs-string">"name:"</span>+resp.name+<span class="hljs-string">" age:"</span>+resp.age);
+        &#125;
+    &#125;)
+&#125;)</code></pre></div>
+
+<p><strong>处理流程：</strong></p>
+<p>1、框架会把处理器返回的Student类型的数据，调用框架中的<code>ArrayList&lt;HttpMessageConverter&gt;</code>中每个类的canWrite()方法，检查哪个HttpMessageConverter接口的类能处理Student类型的数据—-MappingJackson2HttpMessageConverter<br>2、调用实现类中的Write()方法，将student对象转换为json字符串<br>3、调用@ResponseBody把转换好的json数据输出到浏览器，ajax处理完成</p>
+<h4 id="返回List集合："><a href="#返回List集合：" class="headerlink" title="返回List集合："></a>返回List集合：</h4><div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping</span>(value = <span class="hljs-string">"/returnStudents.do"</span>)
+<span class="hljs-meta">@ResponseBody</span> 
+<span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Student&gt; <span class="hljs-title">doReturnStudentAjax</span><span class="hljs-params">()</span> </span>&#123;
+    List&lt;Student&gt; students = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+    Student student1 = <span class="hljs-keyword">new</span> Student(<span class="hljs-string">"张伟1"</span>, <span class="hljs-number">19</span>);
+    Student student2 = <span class="hljs-keyword">new</span> Student(<span class="hljs-string">"张伟2"</span>, <span class="hljs-number">20</span>);
+    Student student3 = <span class="hljs-keyword">new</span> Student(<span class="hljs-string">"张伟3"</span>, <span class="hljs-number">21</span>);
+    students.add(student1);
+    students.add(student2);
+    students.add(student3);
+    <span class="hljs-keyword">return</span> students;
+&#125;</code></pre></div>
+
+<div class="hljs"><pre><code class="hljs js">$(<span class="hljs-string">"#btn03"</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+    $.ajax(&#123;
+        url:<span class="hljs-string">"returnStudents.do"</span>,
+        type:<span class="hljs-string">"post"</span>,
+        dataType:<span class="hljs-string">"json"</span>,
+        success:<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resp</span>)</span>&#123;
+            $.each(resp,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">i,stu</span>) </span>&#123;
+                alert(stu.name+<span class="hljs-string">" "</span>+stu.age);
+            &#125;)
+        &#125;
+    &#125;)
+&#125;);</code></pre></div>
+
+<h4 id="返回String"><a href="#返回String" class="headerlink" title="返回String"></a>返回String</h4><p>String表示数据，不是视图。</p>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping</span>(value=<span class="hljs-string">"/returnString.do"</span>, produces=<span class="hljs-string">"text/plain;charset=utf-8"</span>)
+<span class="hljs-meta">@ResponseBody</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">doReturnStringAjax</span><span class="hljs-params">()</span></span>&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"返回的字符串~"</span>;
+&#125;</code></pre></div>
+
+<div class="hljs"><pre><code class="hljs js">$(<span class="hljs-string">"#btn04"</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+    $.ajax(&#123;
+        url:<span class="hljs-string">"returnString.do"</span>,
+        type:<span class="hljs-string">"post"</span>,
+        success:<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">resp</span>) </span>&#123;
+            alert(resp);
+        &#125;
+    &#125;)
+&#125;);</code></pre></div>
+
 
             </article>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/SpringMVC/">SpringMVC</a>
-                    
-                  </div>
                 
               </div>
               
@@ -610,7 +687,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "SpringMVC注解式开发&nbsp;",
+        "SpringMVC-02&nbsp;",
       ],
       cursorChar: "(*＾_＾*)",
       typeSpeed: 70,
