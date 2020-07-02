@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="sweetboyZhang">
   <meta name="keywords" content="">
-  <title>SpringMVC-02 - sweetboyZhang&#39;s Blog</title>
+  <title>SpringMVC注解式开发 - sweetboyZhang&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -218,9 +218,7 @@
               </p>
             
             <article class="markdown-body">
-              <p>title: SpringMVC注解式开发<br>date: 2020-06-30 14:23:21<br>tags: SpringMVC<br>index_img: /img/springmvc.jpg</p>
-<h2 id="RequestMapping定义请求规则"><a href="#RequestMapping定义请求规则" class="headerlink" title="@RequestMapping定义请求规则"></a>@RequestMapping定义请求规则</h2><h2 id="1、对请求提交方式的定义"><a href="#1、对请求提交方式的定义" class="headerlink" title="1、对请求提交方式的定义"></a>1、对请求提交方式的定义</h2><p>@RequestMapping 请求映射</p>
-<p>属性:<br>value,表示所匹配请求的URI<br>method,表示请求的方式：get请求: RequestMethod.GET ；post请求: RequestMethod.POST<a id="more"></a></p>
+              <h2 id="RequestMapping定义请求规则"><a href="#RequestMapping定义请求规则" class="headerlink" title="@RequestMapping定义请求规则"></a>@RequestMapping定义请求规则</h2><h2 id="1、对请求提交方式的定义"><a href="#1、对请求提交方式的定义" class="headerlink" title="1、对请求提交方式的定义"></a>1、对请求提交方式的定义</h2><p>@RequestMapping 请求映射<br>属性:<br>value,表示所匹配请求的URI<br>method,表示请求的方式：get请求: RequestMethod.GET ；post请求: RequestMethod.POST<a id="more"></a></p>
 <div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping</span>(value=<span class="hljs-string">"/some.do"</span>,method= RequestMethod.GET)
 <span class="hljs-function"><span class="hljs-keyword">public</span> ModelAndView <span class="hljs-title">doSome</span><span class="hljs-params">()</span></span>&#123;&#125;</code></pre></div>
 
@@ -496,6 +494,13 @@
               <div class="post-metas mb-3">
                 
                 
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/SpringMVC/">SpringMVC</a>
+                    
+                  </div>
+                
               </div>
               
                 <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
@@ -687,7 +692,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "SpringMVC-02&nbsp;",
+        "SpringMVC注解式开发&nbsp;",
       ],
       cursorChar: "(*＾_＾*)",
       typeSpeed: 70,
