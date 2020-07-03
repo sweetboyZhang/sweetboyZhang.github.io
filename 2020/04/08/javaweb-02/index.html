@@ -213,7 +213,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：June 28, 2020 am
+                  本文最后更新于：July 3, 2020 pm
                 
               </p>
             
@@ -694,13 +694,7 @@
 
 <p>header.jsp</p>
 <div class="hljs"><pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;
-&lt;%
-    String basePath = request.getScheme()+<span class="hljs-string">"://"</span>+
-            request.getServerName()+<span class="hljs-string">":"</span>+
-            request.getServerPort()+<span class="hljs-string">"/"</span>+
-            request.getContextPath()+<span class="hljs-string">"/"</span>;
-%&gt;
-
+&lt;% String basePath = request.getContextPath()+<span class="hljs-string">"/"</span>;%&gt;
 &lt;!-- base标签永远固定相对路径跳转  --&gt;
 &lt;base href=<span class="hljs-string">"&lt;%=basePath%&gt;"</span>&gt;
 &lt;link type=<span class="hljs-string">"text/css"</span> rel=<span class="hljs-string">"stylesheet"</span> href=<span class="hljs-string">"static/css/style.css"</span>&gt;

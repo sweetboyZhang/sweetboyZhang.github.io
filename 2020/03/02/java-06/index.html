@@ -213,7 +213,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：June 28, 2020 am
+                  本文最后更新于：July 3, 2020 am
                 
               </p>
             
@@ -372,8 +372,8 @@
 &#125;</code></pre></div>
 
 <h3 id="Set常用方法"><a href="#Set常用方法" class="headerlink" title="Set常用方法"></a>Set常用方法</h3><p>HashSet并没有添加新的方法，沿用Collection的方法</p>
-<h3 id="HashSet的添加"><a href="#HashSet的添加" class="headerlink" title="HashSet的添加"></a>HashSet的添加</h3><p>向Set中添加数据一定要重写hashCode()和equals()方法，相等的对象必须具有相同发散列码</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">// HashSet的无序性  使用迭代器遍历</span>
+<h3 id="HashSet的添加"><a href="#HashSet的添加" class="headerlink" title="HashSet的添加"></a>HashSet的添加</h3><p>向Set中添加数据一定要重写hashCode()和equals()方法，相等的对象必须具有相同的散列码</p>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">// HashSet 无序性  使用迭代器遍历</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span></span>&#123;
         <span class="hljs-comment">// 无序性：不等于随机性，存储的数据在底层数组中并非按照数组索引的顺序添加，而是根据数据的哈希值</span>
         <span class="hljs-comment">// 不可重复性：保证添加的元素按equals()进行判断时，不能返回true</span>

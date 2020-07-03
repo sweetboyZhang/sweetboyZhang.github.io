@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.2k 字
+      3.6k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      42
+      69
        分钟
     </span>
   
@@ -213,16 +213,12 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 2, 2020 pm
+                  本文最后更新于：July 3, 2020 am
                 
               </p>
             
             <article class="markdown-body">
-              <h2 id="1、Java语言特点"><a href="#1、Java语言特点" class="headerlink" title="1、Java语言特点"></a>1、Java语言特点</h2><p>1、简单易学，有丰富的类库</p>
-<p>2、面向对象（java最重要的特性，让程序高类聚，低耦合）</p>
-<p>3、与平台无关性（jvm是java跨平台使用的根本）</p>
-<p>4、安全可靠</p>
-<p>5、支持多线程<a id="more"></a></p>
+              <h2 id="1、Java语言特点"><a href="#1、Java语言特点" class="headerlink" title="1、Java语言特点"></a>1、Java语言特点</h2><p>1、简单易学，有丰富的类库<br>2、面向对象（java最重要的特性，让程序高类聚，低耦合）<br>3、与平台无关性（jvm是java跨平台使用的根本）<br>4、安全可靠<br>5、支持多线程<a id="more"></a></p>
 <h2 id="2、面向对象与面向过程的区别"><a href="#2、面向对象与面向过程的区别" class="headerlink" title="2、面向对象与面向过程的区别"></a>2、面向对象与面向过程的区别</h2><p><strong>面向过程：</strong>是分析解决问题的步骤，通过函数将这些步骤一步一步实现，然后调用则可。性能较高，单片机，嵌入式开发等一般采用面向过程开发。</p>
 <p><strong>面向对象：</strong>是把构成问题的事物分解成各个对象，建立对象的目的也不是为了完成各个步骤，而是为了描述某个事物在解决问题的整个过程中所发生的行为。面向对象有  <strong>继承、封装、多态</strong>的特性，因此设计出的系统易维护、易复用、易拓展。但性能上与面向过程相比较低。</p>
 <h2 id="3、八种基本数据类型"><a href="#3、八种基本数据类型" class="headerlink" title="3、八种基本数据类型"></a>3、八种基本数据类型</h2><p><img src="/2020/07/01/interview-01/1.jpg" srcset="/img/loading.gif" alt></p>
@@ -336,7 +332,67 @@ System.out.println(<span class="hljs-keyword">null</span> <span class="hljs-keyw
 &#125;</code></pre></div>
 
 <p><strong>重载 总结：</strong><br>1、重载Overload是一个类中多态性的一种表现<br>2、重载要求同名方法的参数列表不同（参数类型，参数个数，参数顺序）<br>3、重载的时候，返回类型可以相同也可以不同。无法以返回类型判断是否重载</p>
-<h2 id="8、equals与-的区别"><a href="#8、equals与-的区别" class="headerlink" title="8、equals与==的区别"></a>8、equals与==的区别</h2>
+<h2 id="8、equals与-的区别"><a href="#8、equals与-的区别" class="headerlink" title="8、equals与==的区别"></a>8、equals与==的区别</h2><p><strong>==：运算符</strong></p>
+<p>1.可以使用在基本数据类型变量和引用数据类型之间(除了boolean类型);<br>2.如果比较的是基本数据类型的变量，比较两个变量保存的值是否相等(不一定要类型相等)；<br>例如：2 == 2.0；’2’ == 2；’A’ ==65<br>3.如果比较的是引用数据类型的变量，比较两个变量存储的<strong>地址值</strong>是否相等，即是否指向同一个对象。</p>
+<p><strong>equals()：方法</strong></p>
+<p>由于所有的类都是继承自java.lang.Object类的，所以适用于所有对象，如果没有对该方法进行重写的话，调用的仍然是Object类中的方法，而Object中的equals方法返回的却是==的判断。<br>1.通过对象来调用，只能适用于引用数据类型的变量；<br>2.Object类中定义的equals()与 == 相同:    </p>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">equals</span><span class="hljs-params">(Object obj)</span></span>&#123;
+     rerturn (<span class="hljs-keyword">this</span> == obj);
+&#125;</code></pre></div>
+
+<p>3.String , Date , File , 包装类等都<strong>重写了Object类中的equal()方法</strong>。比较的不是两个引用的地址，而是比较两个对象的<strong>“实体内容”</strong>是否相等；<br><font color="red">toString():</font><br>1.输出一个对象的引用时，自动调用；<br>2.在Object类中的定义：</p>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> getClass().getName() + <span class="hljs-string">"@"</span> + Integer.toHexString(hashCode());
+    &#125;<span class="hljs-comment">// 返回类名和内存地址</span></code></pre></div>
+
+<p>3.String， Date , File , 包装类等都重写了Object类中的toString()方法。调用对象时返回的时对象的实体内容。</p>
+<p><strong>总结：</strong><br>所有比较是否相等时，都是用equals，并且在对常量相比较时，把常量写在前面，因为使用object.equals()   object可能为null，则空指针。</p>
+<h2 id="9、Hashcode的作用"><a href="#9、Hashcode的作用" class="headerlink" title="9、Hashcode的作用"></a>9、Hashcode的作用</h2><p>java集合的Collection接口有两个继承接口，一个是List，一个是Set.。List有序可重复，Set无序不可重复。<br>当我们向set中添加元素时，就需要对元素进行判断，如果元素太多，就会频繁调用equals()方法，效率不高。</p>
+<p>于是有人发明了Hash算法来提高集合中查找元素的效率。向Set中添加数据一定要重写hashCode()和equals()方法。这种方式将集合分成若干个存储区域，每个对象可以计算出一个哈希值，可以将哈希值分组，每组分别对应某个存储区域，根据一个对象的哈希值就可以确定该对象应该存储的那个区域。</p>
+<p>hashCode方法可以这样理解：它返回的就是根据对象的内存地址换算出的一个值。这样一来，当集合要添加新的元素时，先调用这个元素的hashCode方法，就一下子能定位到它应该放置的物理位置上。如果这个位置上没有元素，它就可以直接存储在这个位置上，不用再进行任何比较了；如果这个位置上已经有元素了，就调用它equals方法与新元素进行比较，相同的话就不存了，不相同就散列其它的地址。这样一来实际调用equals方法的次数就大大降低了，几乎只需要一两次。</p>
+<h2 id="10、String、StringBuffer与StringBuilder的区别"><a href="#10、String、StringBuffer与StringBuilder的区别" class="headerlink" title="10、String、StringBuffer与StringBuilder的区别"></a>10、String、StringBuffer与StringBuilder的区别</h2><p><strong>String</strong></p>
+<p>是只读字符串，它并不是基本数据类型，而是一个对象。从底层源码上看，它就是一个final类型的字符数组。意味着，String所引用的字符串不能被改变，一经定义，无法在增删改，每次对String操作都会生成一个新的String对象。</p>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">private</span> fianl <span class="hljs-keyword">char</span> value[];</code></pre></div>
+
+<p>每次 “+” 操作：隐式地在堆上new了一个跟原字符串相同的StringBuilder对象，在调用append()对 ”+“ 后面的字符串进行拼接。<br><strong>注意：</strong></p>
+<p>通过字面量对String类型的变量进行赋值的时候，字面量的值会存放在字符串常量池中的某个区域，并且字符串常量池中不允许存在相同的字符串。<br><img src="/2020/07/01/interview-01/2.png" srcset="/img/loading.gif" alt></p>
+<p><strong><em>面试题：判断输出结果</em></strong></p>
+<p><img src="/2020/07/01/interview-01/3.png" srcset="/img/loading.gif" alt></p>
+<p><strong>StringBuffer与StringBuilder</strong></p>
+<p>都继承了AbstractStringBuilder抽象类，从AbstractStringBuilder源码可以看到</p>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">char</span>[] value;</code></pre></div>
+
+<p>他们的底层都是可变的字符数组，所以在进行频繁发字符串操作时，使用StringBuffer和StringBuilder效率较高。<br>另外，StringBuffer是线程安全的，StringBuilder是线程不安全的，因此其效率比StringBuffer更高。</p>
+<h2 id="11、ArrayList与LinkedList的区别"><a href="#11、ArrayList与LinkedList的区别" class="headerlink" title="11、ArrayList与LinkedList的区别"></a>11、ArrayList与LinkedList的区别</h2><p>先谈一下数组<br><strong>Array是基于索引的数据结构，因此它使用索引来搜索和读取数据的效率较高。</strong><br>Array获取数据的时间复杂度是O(1)，但是要删除数据的开销却很大，因为需要重排数组，删除数据后需要把后面的所有数据前移。<br>另外，数组初始化必须指定其初始化长度，否则报错。</p>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArrayTest</span> </span>&#123;
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+	<span class="hljs-keyword">int</span> [] nums;<span class="hljs-comment">// 声明</span>
+	<span class="hljs-comment">// 静态初始化:数组的初始化和数组元素的初始化同时进行</span>
+	nums = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[] &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>&#125;;
+        
+	<span class="hljs-comment">// 动态初始化:数组的初始化和数组元素的初始化分开进行</span>
+	String [] names = <span class="hljs-keyword">new</span> String [<span class="hljs-number">6</span>];
+	
+	<span class="hljs-comment">// 通过角标的方式调用指定位置的元素</span>
+	names[<span class="hljs-number">0</span>] = <span class="hljs-string">"Tom"</span>;
+	names[<span class="hljs-number">1</span>] = <span class="hljs-string">"Justin"</span>;
+	
+	<span class="hljs-comment">// 获取数组长度： length</span>
+	System.out.println(names.length);
+	
+	<span class="hljs-comment">// 遍历数组</span>
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; nums.length;i++) &#123;
+		System.out.println(nums[i]);
+		&#125;
+	&#125;
+&#125;</code></pre></div>
+
+<p>List接口继承于Collection接口，表示有序集合，可以包含重复元素，提供了按索引访问的方式。<br><strong>ArrayList</strong></p>
+<p>可以看作是能够自动增长容量的数组，作为List接口的主要实现类；<br>线程不安全，效率高；<br>底层使用Object[] elementData存储<br>ArrayList的toArray方法返回一个数组<br>ArrayList的asList方法返回一个列表</p>
+<p><strong>LinkedList</strong></p>
+<p>对于频繁插入，删除效率较高，但在get与set方面弱于ArrayList；<br>底层使用双向链表储存</p>
+<p>Vector，作为List接口的古老实现类；线程安全，效率低；底层使用Object[] elementData存储</p>
+
             </article>
             <hr>
             <div>

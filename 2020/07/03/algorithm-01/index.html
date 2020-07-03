@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="sweetboyZhang">
   <meta name="keywords" content="">
-  <title>jsp,Listener监听器 - sweetboyZhang&#39;s Blog</title>
+  <title>排序算法的分类以及时间复杂度的介绍 - sweetboyZhang&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -152,8 +152,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-04-11 15:10">
-      April 11, 2020 pm
+    <time datetime="2020-07-03 16:49">
+      July 3, 2020 pm
     </time>
   </div>
 
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.1k 字
+      835 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      23
+      16
        分钟
     </span>
   
@@ -213,53 +213,73 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 3, 2020 am
+                  本文最后更新于：July 3, 2020 pm
                 
               </p>
             
             <article class="markdown-body">
-              <h2 id="jsp定义"><a href="#jsp定义" class="headerlink" title="jsp定义"></a>jsp定义</h2><p>jsp全称为 java server page，用来代替servlet程序回传html页面的数据。</p>
-<p><strong>jsp页面的本质就是一个Servlet程序</strong>，在第一次访问jsp页面时，Tomcat服务器就会把jsp页面翻译成一个java源程序，并对它进行编译成.class字节码文件。<a id="more"></a></p>
-<h2 id="jsp语法"><a href="#jsp语法" class="headerlink" title="jsp语法"></a>jsp语法</h2><h3 id="jsp头部的page指令"><a href="#jsp头部的page指令" class="headerlink" title="jsp头部的page指令"></a>jsp头部的page指令</h3><p>jsp 的page 指令可以修改jsp 页面中一些重要的属性，或者行为。</p>
-<div class="hljs"><pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;</code></pre></div>
+              <h2 id="排序算法的分类"><a href="#排序算法的分类" class="headerlink" title="排序算法的分类"></a>排序算法的分类</h2><p>内部排序：指将需要排序的所有数据都加载到内存中进行排序。</p>
+<p>外部排序：数据量过大，无法全部加载到内存中，需要借助外部存储进行排序。<a id="more"></a><br><img src="/2020/07/03/algorithm-01/1.png" srcset="/img/loading.gif" alt></p>
+<h2 id="度量算法执行时间的两种方法"><a href="#度量算法执行时间的两种方法" class="headerlink" title="度量算法执行时间的两种方法"></a>度量算法执行时间的两种方法</h2><p>1、事后统计的方法<br>这种方法可行, 但是有两个问题：一是要想对设计的算法的运行性能进行评测，需要实际运行该程序；二是所得时间的统计量依赖于计算机的硬件、软件等环境因素。这种方式，<strong>要在同一台计算机的相同状态下运行，才能比较那个算法速度更快。</strong></p>
+<p>2、事前估计的方法<br>通过分析某个算法的<strong>时间复杂度</strong>来衡量哪个算法更优。</p>
+<h2 id="算法的时间复杂度"><a href="#算法的时间复杂度" class="headerlink" title="算法的时间复杂度"></a>算法的时间复杂度</h2><p><strong>时间频度</strong></p>
+<p>一个算法中的语句执行的次数，记为T(n)</p>
+<p>例如：</p>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">int</span> total = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">int</span> end = <span class="hljs-number">100</span>;
+<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=end;<span class="hljs-number">1</span>++)&#123;
+    total++;
+&#125;</code></pre></div>
 
-<p>i. language 属性表示jsp 翻译后是什么语言文件。暂时只支持java。<br>ii. contentType 属性表示jsp 返回的数据类型是什么。也是源码中response.setContentType()参数值<br>iii. pageEncoding 属性表示当前jsp 页面文件本身的字符集。<br>iv. import 属性跟java 源代码中一样。用于导包，导类。<br>v. autoFlush 属性设置当out 输出流缓冲区满了之后，是否自动刷新冲级区。默认值是true。<br>vi. buffer 属性设置out 缓冲区的大小。默认是8kb<br>vii. errorPage 属性设置当jsp 页面运行时出错，自动跳转去的错误页面路径。</p>
-<h3 id="jsp中的常用脚本"><a href="#jsp中的常用脚本" class="headerlink" title="jsp中的常用脚本"></a>jsp中的常用脚本</h3><p>1、声明脚本<br>作用：可以给jsp 翻译出来的java 类定义属性和方法甚至是静态代码块，内部类等。<br>格式：<code>&lt;%!  java代码%&gt;</code></p>
-<p>2、表达式脚本<br>作用：在jsp页面上输出数据<br>格式：<code>&lt;%= 表达式 %&gt;</code></p>
-<p>3、代码脚本<br>作用：可以在jsp页面中，编写我们需要的功能(java代码)<br>格式：<code>&lt;% java代码 %&gt;</code></p>
-<h2 id="jsp九大内置对象"><a href="#jsp九大内置对象" class="headerlink" title="jsp九大内置对象"></a>jsp九大内置对象</h2><p>jsp在翻译成servlet代码后内部提供的九个对象。<br>request&nbsp;&nbsp;&nbsp;请求对象<br>response&nbsp;&nbsp;&nbsp;响应对象<br>pageContext&nbsp;&nbsp;&nbsp;jsp上下文对象<br>session&nbsp;&nbsp;&nbsp;会话对象<br>application&nbsp;&nbsp;&nbsp;ServletContext对象<br>config&nbsp;&nbsp;&nbsp;ServletConfig对象<br>page&nbsp;&nbsp;&nbsp;当前的jsp对象<br>exception&nbsp;&nbsp;&nbsp;异常对象</p>
-<p><strong>四个域对象：</strong><br>pageContext&nbsp;&nbsp;&nbsp;&nbsp;(PageContextImpl类)&nbsp;&nbsp;&nbsp;&nbsp;当前的jsp页面有效<br>request&nbsp;&nbsp;&nbsp;&nbsp;(HttpServletRequest类)&nbsp;&nbsp;&nbsp;&nbsp;一次请求有效<br>session&nbsp;&nbsp;&nbsp;&nbsp;(HttpSession类)&nbsp;&nbsp;&nbsp;&nbsp;一次会话范围内有效(打开浏览器访问服务器，直到关闭浏览器)<br>application&nbsp;&nbsp;&nbsp;&nbsp;(ServletContext类)&nbsp;&nbsp;&nbsp;&nbsp;整个web工程范围内都有效(只要web工程不停止，数据一直都在)<br>域对象是可以像Map一样存取数据的对象。四个域对象的功能一样，不同的是它们对数据的存取范围。</p>
-<p><strong>jsp中的out输出与response.getWriter()输出的区别：</strong><br><img src="/2020/04/11/javaweb-03/1.png" srcset="/img/loading.gif" alt></p>
-<p><font color="red">统一使用out.print()输出</font></p>
-<h2 id="jsp常用标签"><a href="#jsp常用标签" class="headerlink" title="jsp常用标签"></a>jsp常用标签</h2><h3 id="静态包含"><a href="#静态包含" class="headerlink" title="静态包含"></a>静态包含</h3><p>格式：<code>&lt;%@ include file=&quot;/&quot;%&gt;</code><br>file属性指定要包含的页面路径<br>静态包含的特点：<br>1、静态包含不会翻译被包含的jsp 页面。<br>2、静态包含其实是把被包含的jsp 页面的代码拷贝到包含的位置执行输出。</p>
-<h3 id="动态包含"><a href="#动态包含" class="headerlink" title="动态包含"></a>动态包含</h3><p>格式：<code>&lt;jsp:include page=&quot;/&quot;&gt;&lt;/jsp:include&gt;</code><br>动态包含特点：<br>1、动态包含会把包含的jsp页面也翻译成java代码。<br>2、通过调用被包含的jsp页面进行输出。<br>3、动态包含可以传递参数。</p>
-<h3 id="转发"><a href="#转发" class="headerlink" title="转发"></a>转发</h3><p>格式：<code>&lt;jsp:forward page=&quot;/&quot;&gt;&lt;/jsp:forward&gt;</code></p>
-<h2 id="Listener监听器"><a href="#Listener监听器" class="headerlink" title="Listener监听器"></a>Listener监听器</h2><p>1、Listener 监听器是javaweb三大组件之一(Servlet程序，Filter过滤器，Listener监听器)。<br>2、Listener是javaEE接口规范，就是接口。<br>3、监听器的作用是，监听某种事物的变化。然后通过回调函数，反馈给客户（程序）去做一些相应的处理。ServletContextListener 它可以监听ServletContext 对象的创建和销毁。<br>ServletContext 对象在web 工程启动的时候创建，在web 工程停止的时候销毁。<br>监听到创建和销毁之后都会分别调用ServletContextListener 监听器的方法反馈。</p>
-<p>使用ServletContextListener 监听器监听ServletContext 对象步骤如下：<br>1、编写一个类去实现ServletContextListener<br>2、实现其两个回调方法<br>3、到web.xml 中去配置监听器</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> listener;
+<p>循环执行n次，最后再进行一次i&lt;=n的判断，故 T(n) = n+1   </p>
+<p>直接计算：<code>total = (1+end)*end/2</code>  ， T(n) = 1</p>
+<p><strong>时间复杂度</strong></p>
+<p>例如：T(n)=3n²+7n+6<br>用常数1代替运行时间中所有加法常数；T(n)=3n²+7n+1<br>修改后的运行次数函数中，只保留最高次项；  T(n)=3n²<br>去除最高阶项的系数； T(n)=n²  =&gt; O(n²)</p>
+<p><strong>常见的时间复杂度</strong><br><img src="/2020/07/03/algorithm-01/2.png" srcset="/img/loading.gif" alt></p>
+<p>随着问题规模n的不断增大，上述时间复杂度不断增大，算法的执行效率越低</p>
+<p><strong>常数阶O(1)</strong></p>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>;
+<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>;
+i++;
+j++;</code></pre></div>
 
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ServletContextListenerImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ServletContextListener</span> </span>&#123;
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">contextInitialized</span><span class="hljs-params">(ServletContextEvent sce)</span> </span>&#123;
-        System.out.println(<span class="hljs-string">"创建ServletContext"</span>);
-    &#125;
+<p>无论代码执行了多少行，只要是没有循环等复杂结构，那这个代码的时间复杂度就都是O(1)。<br>上述代码在执行的时候，它消耗的时间并不随着某个变量的增长而增长，那么无论这类代码有多长，即使有几万几十万行，都可以用O(1)来表示它的时间复杂度。</p>
+<p><strong>对数阶<img src="/2020/07/03/algorithm-01/3.png" srcset="/img/loading.gif" alt></strong></p>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>;
+<span class="hljs-keyword">while</span>(i&lt;n)&#123;
+    i=i*<span class="hljs-number">2</span>;
+&#125;</code></pre></div>
 
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">contextDestroyed</span><span class="hljs-params">(ServletContextEvent sce)</span> </span>&#123;
-        System.out.println(<span class="hljs-string">"销毁ServletContext"</span>);
+<p>在while循环中，每次都将i乘以2，假设循环了x次后就退出循环了，则2的x次方等于n，即x=<img src="/2020/07/03/algorithm-01/4.png" srcset="/img/loading.gif" alt></p>
+<p>i=i*3则是<img src="/2020/07/03/algorithm-01/5.png" srcset="/img/loading.gif" alt></p>
+<p><strong>线性阶O(n)</strong></p>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>
+<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i&lt;n;i++)&#123;
+    <span class="hljs-keyword">int</span> j=i;
+    sum+=j;
+&#125;</code></pre></div>
+
+<p>for循环里面的代码会执行n次，它消耗的时间是随n的变化而变化的，因此时间复杂度为O(n)</p>
+<p><strong>线性对数阶<img src="/2020/07/03/algorithm-01/6.png" srcset="/img/loading.gif" alt></strong></p>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;n;j++)&#123;
+    <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>;
+	<span class="hljs-keyword">while</span>(i&lt;n)&#123;
+    	i=i*<span class="hljs-number">2</span>;
+	&#125;
+&#125;</code></pre></div>
+
+<p>将时间复杂度为<img src="/2020/07/03/algorithm-01/4.png" srcset="/img/loading.gif" alt>的代码循环n次</p>
+<p><strong>平方阶<img src="/2020/07/03/algorithm-01/7.png" srcset="/img/loading.gif" alt></strong></p>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;n;j++)&#123;
+        <span class="hljs-keyword">int</span> m=<span class="hljs-number">0</span>;
+        m++;
     &#125;
 &#125;</code></pre></div>
 
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">web-app</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee"</span></span>
-<span class="hljs-tag">         <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span></span>
-<span class="hljs-tag">         <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"</span></span>
-<span class="hljs-tag">         <span class="hljs-attr">version</span>=<span class="hljs-string">"4.0"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">listener</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">listener-class</span>&gt;</span>listener.ServletContextListenerImpl<span class="hljs-tag">&lt;/<span class="hljs-name">listener-class</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">listener</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre></div>
-
+<p>将时间复杂度为O(n)的代码循环n次</p>
+<h2 id="算法的空间复杂度"><a href="#算法的空间复杂度" class="headerlink" title="算法的空间复杂度"></a>算法的空间复杂度</h2><p>1、一个算法的空间复杂度(Space Complexity)定义为该算法所耗费的存储空间，它也是问题规模n的函数。</p>
+<p>2、在做算法分析时，<strong>主要讨论的是时间复杂度</strong>。从用户使用体验上看，更看重的程序执行的速度。一些缓存产品(redis, memcache)和算法(基数排序)本质就是用空间换时间.</p>
 
             </article>
             <hr>
@@ -270,7 +290,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/JavaWeb/">JavaWeb</a>
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
                     
                   </div>
                 
@@ -283,18 +303,12 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/04/12/javaweb-04/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">EL表达式，JSTL标签库</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/04/08/javaweb-02/">
-                        <span class="hidden-mobile">书城项目</span>
+                      <a href="/2020/07/03/dataStructure-05/">
+                        <span class="hidden-mobile">递归</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -465,7 +479,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "jsp,Listener监听器&nbsp;",
+        "排序算法的分类以及时间复杂度的介绍&nbsp;",
       ],
       cursorChar: "(*＾_＾*)",
       typeSpeed: 70,

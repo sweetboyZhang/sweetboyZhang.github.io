@@ -213,12 +213,12 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：June 28, 2020 am
+                  本文最后更新于：July 3, 2020 am
                 
               </p>
             
             <article class="markdown-body">
-              <h2 id="字符串相关类：String"><a href="#字符串相关类：String" class="headerlink" title="字符串相关类：String"></a>字符串相关类：String</h2><p>1.String声明为final，不可被继承。<br>        2.实现了Serializable接口：表示字符串是支持序列化的;<br>          实现了Comparable接口：表示String是可以比较大小的；<a id="more"></a><br>        3.String内部定义了final char[]    value[]用于存储字符串数据；<br>        4.String代表不可变的字符序列。<br>        &lt;1&gt;当对字符串重新赋值；<br>        &lt;2&gt;对现有字符串进行连接操作；<br>        &lt;3&gt;当调用replace()修改指定字符或字符串；<br>        <em>需要重新指定内存区域进行赋值。<br>        5.通过字面量的方式给一个字符串赋值，此时字符串的值声明在_字符串常量池</em> 中。<br><img src="/2020/02/26/java-05/String_1.png" srcset="/img/loading.gif" alt="字面量赋值方式"><br>6.字符串常量池是不会从存储相同内容的字符串的。</p>
+              <h2 id="字符串相关类：String"><a href="#字符串相关类：String" class="headerlink" title="字符串相关类：String"></a>字符串相关类：String</h2><p>1.String声明为final，不可被继承。<br>2.实现了Serializable接口：表示字符串是支持序列化的;<br>   实现了Comparable接口：表示String是可以比较大小的；<a id="more"></a><br>3.String内部定义了final char[]    value[]用于存储字符串数据；<br>4.String代表不可变的字符序列。<br>        &lt;1&gt;当对字符串重新赋值；<br>        &lt;2&gt;对现有字符串进行连接操作；<br>        &lt;3&gt;当调用replace()修改指定字符或字符串；<br>        _会重新指定内存区域进行赋值。<br>5.通过字面量的方式给一个字符串赋值，此时字符串的值声明在字符串常量池 中。<br><img src="/2020/02/26/java-05/String_1.png" srcset="/img/loading.gif" alt="字面量赋值方式"><br>6.字符串常量池是不会存储相同内容的字符串的。</p>
 <h3 id="String实例化的两种方式："><a href="#String实例化的两种方式：" class="headerlink" title="String实例化的两种方式："></a>String实例化的两种方式：</h3><div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// String实例化方式一：字面量赋值  字符串常量存储在堆空间中</span>
 String st1 = <span class="hljs-string">"abc"</span>;
 <span class="hljs-comment">// String实例化方式二：new + 构造器  字符串存储在字符串常量池中</span>
@@ -332,7 +332,7 @@ String st2 = <span class="hljs-keyword">new</span> String(<span class="hljs-stri
     &#125;
 &#125;</code></pre></div>
 
-<h2 id="StringBuffer-与-StringBuilder"><a href="#StringBuffer-与-StringBuilder" class="headerlink" title="StringBuffer 与 StringBuilder"></a>StringBuffer 与 StringBuilder</h2><p>String：不可变的字符序列<br>        StringBuffer：可变的字符序列；线程安全，效率低<br>        StringBuilder：可变的字符系列；线程不安全，效率高<br>        底层都是使用char[]存储<br>StringBuffer(StringBuilder)常用方法：</p>
+<h2 id="StringBuffer-与-StringBuilder"><a href="#StringBuffer-与-StringBuilder" class="headerlink" title="StringBuffer 与 StringBuilder"></a>StringBuffer 与 StringBuilder</h2><p>String：不可变的字符序列<br>StringBuffer：可变的字符序列；线程安全，效率低<br>StringBuilder：可变的字符系列；线程不安全，效率高<br>底层都是使用char[]存储<br>StringBuffer(StringBuilder)常用方法：</p>
 <div class="hljs"><pre><code class="hljs java"> <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span></span>&#123;
         <span class="hljs-comment">// StringBuffer append(xxx)：提供了很多的append()方法，用于进行字符串拼接</span>
         StringBuffer st1 = <span class="hljs-keyword">new</span> StringBuffer(<span class="hljs-string">"abc"</span>);
