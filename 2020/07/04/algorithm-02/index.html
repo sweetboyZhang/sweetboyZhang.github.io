@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      676 字
+      686 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      15
+      16
        分钟
     </span>
   
@@ -252,9 +252,9 @@
 <p><strong>运行结果：</strong><br><img src="/2020/07/04/algorithm-02/2.png" srcset="/img/loading.gif" alt></p>
 <p>时间复杂度为：O(n²)</p>
 <h2 id="选择排序（SelectSort）"><a href="#选择排序（SelectSort）" class="headerlink" title="选择排序（SelectSort）"></a>选择排序（SelectSort）</h2><p><strong>基本思想：</strong></p>
-<p>第一次从arr[0]<del>arr[n-1]中选取最小值，与arr[0]交换，第二次从arr[1]</del>arr[n-1]中选最小值，与arr[1]交换，……<br>第i次从arr[i-1]<del>arr[n-1]中选取最小值，与arr[i-1]交换，……，第n-1次从arr[n-2]</del>arr[n-1]中选取最小值与arr[n-2]交换，总共通过n-1次，得到一个从小到大排列的有序序列。<br><img src="/2020/07/04/algorithm-02/3.png" srcset="/img/loading.gif" alt></p>
+<p>第一次从arr[0]到arr[n-1]中选取最小值，与arr[0]交换，第二次从arr[1]到arr[n-1]中选最小值，与arr[1]交换，……，第i次从arr[i-1]到arr[n-1]中选取最小值，与arr[i-1]交换，……，第n-1次从arr[n-2]到arr[n-1]中选取最小值与arr[n-2]交换，总共通过n-1次，得到一个从小到大排列的有序序列。<br><img src="/2020/07/04/algorithm-02/3.png" srcset="/img/loading.gif" alt></p>
 <p><strong>小结</strong></p>
-<p>1、总共要进行数组长度 - 1轮排序<br>2、每一轮排序，又是一个小循环，<br>      循环的规则：1、假定当前的数是最小数；<br>                             2、然后和后面的每一个数比较，如果发现有比当前数更小的数，就重新确定最小数，并得到下                                   标；<br>                            3、当遍历到数组的最后时，就得到本轮的最小数，然后交换</p>
+<p>1、总共要进行数组长度 - 1轮排序<br>2、每一轮排序，又是一个小循环，<br>      循环的规则：&lt;1&gt; 假定当前的数是最小数；<br>                             &lt;2&gt; 然后和后面的每一个数比较，如果发现有比当前数更小的数，就重新确定最小数，并得到下                                   标；<br>                            &lt;3&gt; 当遍历到数组的最后时，就得到本轮的最小数，然后交换</p>
 <div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">selectSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] arr)</span></span>&#123;
         <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i =<span class="hljs-number">0</span>;i&lt;arr.length-<span class="hljs-number">1</span>;i++)&#123;
             <span class="hljs-keyword">int</span> minIndex = i;
