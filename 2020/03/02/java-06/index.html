@@ -213,7 +213,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 3, 2020 am
+                  本文最后更新于：July 4, 2020 am
                 
               </p>
             
@@ -470,7 +470,7 @@
     &#125;
 &#125;</code></pre></div>
 
-<h2 id="Map接口"><a href="#Map接口" class="headerlink" title="Map接口"></a>Map接口</h2><p><strong>Map的结构：</strong><br>        Map中的key：无序，不可重复，使用Set储存所有的key，key所在的类要重写equals()和 hashCode()<br>        Map中的value：无序，可重复，使用Collection存储所有的value，value所在类要重写equals()<br>        一个键值对构成一个entry对象<br>        Map中的entry：无序，不可重复，使用Set储存所有的entry<br><strong>HashMap的底层实现原理：</strong><br>        HashMap map = new HashMap();<br>        实例化后，底层创建了一个长度为16的一维数组Entry[] table<br>        map.put(key1,value1);<br>        在jdk7中，首先调用key1所在类的hashCode()计算key的哈希值，此哈希值通过某种算法后，得到在Entry数组中的存放位置；<br>        如果此位置为空，则添加成功，<br>        否则将key1的哈希值与此位置上的一个或多个元素(key2,value2)的哈希值比较，<br>        如果哈希值不同，则添加成功,<br>        否则调用key1所在类的equals()，如果返回false，则添加成功，否则使用value1替换value2。<br>        涉及到扩容时，容量扩大为原来的2倍，原有的数据全部被复制过来。</p>
+<h2 id="Map接口"><a href="#Map接口" class="headerlink" title="Map接口"></a>Map接口</h2><p><strong>Map的结构：</strong><br>Map中的key：无序，不可重复，使用Set储存所有的key，key所在的类要重写equals()和 hashCode()<br>Map中的value：无序，可重复，使用List存储所有的value，value所在类要重写equals()<br>一个键值对构成一个entry对象<br>Map中的entry：无序，不可重复，使用Set储存所有的entry<br><strong>HashMap的底层实现原理：</strong><br>HashMap map = new HashMap();<br>实例化后，底层创建了一个长度为16的一维数组Entry[] table<br>map.put(key1,value1);<br>在jdk7中，首先调用key1所在类的hashCode()计算key的哈希值，此哈希值通过某种算法后，得到在Entry数组中的存放位置；<br>如果此位置为空，则添加成功，<br>否则将key1的哈希值与此位置上的一个或多个元素(key2,value2)的哈希值比较，<br>如果哈希值不同，则添加成功,<br>否则调用key1所在类的equals()，如果返回false，则添加成功，否则使用value1替换value2。<br>涉及到扩容时，容量扩大为原来的2倍，原有的数据全部被复制过来。</p>
 <p>在jdk8中，没有马上就创建数组，而是在put()时创建Node[]数组</p>
 <h3 id="Map接口中的方法"><a href="#Map接口中的方法" class="headerlink" title="Map接口中的方法"></a>Map接口中的方法</h3><div class="hljs"><pre><code class="hljs java">  <span class="hljs-meta">@Test</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span> </span>&#123;
