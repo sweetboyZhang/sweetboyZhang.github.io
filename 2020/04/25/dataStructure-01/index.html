@@ -74,7 +74,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                Home
+                首页
               </a>
             </li>
           
@@ -86,7 +86,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                Archives
+                归档
               </a>
             </li>
           
@@ -98,7 +98,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                Tags
+                标签
               </a>
             </li>
           
@@ -110,7 +110,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                About
+                关于
               </a>
             </li>
           
@@ -122,7 +122,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                Links
+                友链
               </a>
             </li>
           
@@ -213,7 +213,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：June 28, 2020 am
+                  本文最后更新于：July 5, 2020 pm
                 
               </p>
             
@@ -222,9 +222,7 @@
 <h2 id="稀疏数组"><a href="#稀疏数组" class="headerlink" title="稀疏数组"></a>稀疏数组</h2><p>当一个数组中大部分元素为０，或者为同一个值的数组时，可以使用稀疏数组来保存该数组。<br>稀疏数组的处理方法是:<br>1)记录数组一共有几行几列，有多少个不同的非零值。<br>2)把具有不同值的元素的行列及值记录在一个小规模的数组中，从而缩小程序的规模。</p>
 <h3 id="1、基本介绍："><a href="#1、基本介绍：" class="headerlink" title="1、基本介绍："></a>1、基本介绍：</h3><p><img src="/2020/04/25/dataStructure-01/1.png" srcset="/img/loading.gif" alt></p>
 <h3 id="2、应用实例："><a href="#2、应用实例：" class="headerlink" title="2、应用实例："></a>2、应用实例：</h3><p><img src="/2020/04/25/dataStructure-01/2.png" srcset="/img/loading.gif" alt></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> sparsearray;
-
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SparseArray</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SparseArray</span> </span>&#123;
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
 		<span class="hljs-comment">// 创建原始的二维数组11*11</span>
 		<span class="hljs-comment">// 0：表示没有棋子 1:表示黑色棋子 2：表示蓝色棋子</span>
@@ -297,11 +295,7 @@
 &#125;</code></pre></div>
 
 <h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><p>队列是一个有序列表，可以用数组和链表来实现。<br>遵循<strong>先进先出</strong>原则。<br><img src="/2020/04/25/dataStructure-01/3.png" srcset="/img/loading.gif" alt></p>
-<h3 id="1、数组模拟队列"><a href="#1、数组模拟队列" class="headerlink" title="1、数组模拟队列"></a>1、数组模拟队列</h3><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> queue;
-
-<span class="hljs-keyword">import</span> java.util.Scanner;
-
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArrayQueueDemo</span> </span>&#123;
+<h3 id="1、数组模拟队列"><a href="#1、数组模拟队列" class="headerlink" title="1、数组模拟队列"></a>1、数组模拟队列</h3><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArrayQueueDemo</span> </span>&#123;
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
 		ArrayQueue queue = <span class="hljs-keyword">new</span> ArrayQueue(<span class="hljs-number">3</span>);
 		<span class="hljs-keyword">char</span> key = <span class="hljs-string">' '</span>;
@@ -521,7 +515,7 @@
                       <a href="/2020/04/30/dataStructure-02/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">单链表</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </div>
@@ -530,7 +524,7 @@
                     
                       <a href="/2020/04/23/javaweb-06/">
                         <span class="hidden-mobile">Cookie,session</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -547,7 +541,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -580,7 +574,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -589,7 +583,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

@@ -74,7 +74,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                Home
+                首页
               </a>
             </li>
           
@@ -86,7 +86,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                Archives
+                归档
               </a>
             </li>
           
@@ -98,7 +98,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                Tags
+                标签
               </a>
             </li>
           
@@ -110,7 +110,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                About
+                关于
               </a>
             </li>
           
@@ -122,7 +122,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                Links
+                友链
               </a>
             </li>
           
@@ -213,18 +213,18 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 1, 2020 am
+                  本文最后更新于：July 5, 2020 pm
                 
               </p>
             
             <article class="markdown-body">
-              <h2 id="JavaWeb概念"><a href="#JavaWeb概念" class="headerlink" title="JavaWeb概念"></a>JavaWeb概念</h2><p><strong>javaweb：</strong>所有由java编写的可以通过浏览器访问的程序的总称。<br>        javaweb是基于请求和响应来开发的。<a id="more"></a></p>
-<p><strong>请求：</strong>Request，是指客户端(浏览器)给服务器(Tomcat)发送数据。<br>        <strong>响应：</strong>Response，服务器给客户端回传数据。</p>
+              <h2 id="JavaWeb概念"><a href="#JavaWeb概念" class="headerlink" title="JavaWeb概念"></a>JavaWeb概念</h2><p><strong>javaweb：</strong>所有由java编写的可以通过浏览器访问的程序的总称。<br>javaweb是基于请求和响应来开发的。<a id="more"></a></p>
+<p><strong>请求：</strong>Request，是指客户端(浏览器)给服务器(Tomcat)发送数据。<br><strong>响应：</strong>Response，服务器给客户端回传数据。</p>
 <p><strong>请求与响应的关系：</strong>请求和响应是成对出现的，有请求就有响应。</p>
 <h2 id="Web资源的分类"><a href="#Web资源的分类" class="headerlink" title="Web资源的分类"></a>Web资源的分类</h2><p>web资源按实现的技术和呈现的效果的不同，分为静态资源和动态资源。<br>静态资源：html、css、js、txt文本、mp4视频、jpg图片等等<br>动态资源：jsp页面、Servlet程序</p>
-<h2 id="Tomcat端口号"><a href="#Tomcat端口号" class="headerlink" title="Tomcat端口号"></a>Tomcat端口号</h2><p>tomcat默认端口号：8080<br>        apache-tomcat-8.0.50\conf\server.xml文件可修改默认端口号</p>
-<p>http默认端口号：80<br>        https默认端口号：443(浏览器会自动补全)</p>
-<h2 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h2><p>1、Servlet是JavaEE规范之一，规范就是接口。<br>        2、Servlet是JavaWeb三大组件之一，三大组件为：Servlet程序、Filter过滤器、Listener监听器。<br>        3、Servlet是运行在服务器上的一个java小程序，可以接受客户端发送过来的请求并发送响应数据给客户端。<strong>手动实现Servlet程序:</strong><br>1、编写一个类去实现Servlet 接口<br>2、实现service 方法，处理请求，并响应数据<br>3、到web.xml 中去配置servlet 程序的访问地址</p>
+<h2 id="Tomcat端口号"><a href="#Tomcat端口号" class="headerlink" title="Tomcat端口号"></a>Tomcat端口号</h2><p>tomcat默认端口号：8080<br>apache-tomcat-8.0.50\conf\server.xml文件可修改默认端口号</p>
+<p>http默认端口号：80<br> https默认端口号：443(浏览器会自动补全)</p>
+<h2 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h2><p>1、Servlet是JavaEE规范之一，规范就是接口。<br>2、Servlet是JavaWeb三大组件之一，三大组件为：Servlet程序、Filter过滤器、Listener监听器。<br>3、Servlet是运行在服务器上的一个java小程序，可以接受客户端发送过来的请求并发送响应数据给客户端。<br><strong>手动实现Servlet程序:</strong><br>1、编写一个类去实现Servlet 接口<br>2、实现service 方法，处理请求，并响应数据<br>3、到web.xml 中去配置servlet 程序的访问地址</p>
 <div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">web-app</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee"</span></span>
 <span class="hljs-tag">         <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span></span>
@@ -416,7 +416,7 @@
                       <a href="/2020/04/08/javaweb-02/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">书城项目</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </div>
@@ -425,7 +425,7 @@
                     
                       <a href="/2020/03/24/java-11/">
                         <span class="hidden-mobile">Java8新特性</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -442,7 +442,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -475,7 +475,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -484,7 +484,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

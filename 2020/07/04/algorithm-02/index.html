@@ -74,7 +74,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                Home
+                首页
               </a>
             </li>
           
@@ -86,7 +86,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                Archives
+                归档
               </a>
             </li>
           
@@ -98,7 +98,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                Tags
+                标签
               </a>
             </li>
           
@@ -110,7 +110,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                About
+                关于
               </a>
             </li>
           
@@ -122,7 +122,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                Links
+                友链
               </a>
             </li>
           
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      686 字
+      1.1k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      16
+      24
        分钟
     </span>
   
@@ -213,7 +213,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 4, 2020 pm
+                  本文最后更新于：July 5, 2020 pm
                 
               </p>
             
@@ -286,6 +286,42 @@
 &#125;</code></pre></div>
 
 <p><strong>运行结果：</strong><br><img src="/2020/07/04/algorithm-02/4.png" srcset="/img/loading.gif" alt></p>
+<h2 id="插入排序（Insertion-Sorting）"><a href="#插入排序（Insertion-Sorting）" class="headerlink" title="插入排序（Insertion Sorting）"></a>插入排序（Insertion Sorting）</h2><p><strong>基本思想：</strong></p>
+<p>把n个待排序的元素看成一个有序表和一个无序表，<strong>开始时有序表只包含1个元素无序表包含n-1个元素</strong>，在排序过程中每次从无序表中取出一个元素，把它的排列码依次与有序表元素的排列码比较，将它插入到有序表的适当位置，使之成为新的有序表。</p>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">InsertSort</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+        <span class="hljs-keyword">int</span>[] arr = &#123;<span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>&#125;;
+        insertSort(arr);
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">insertSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] arr)</span> </span>&#123;
+        <span class="hljs-keyword">int</span> insertVal = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">int</span> insertIndex = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;arr.length;i++)&#123;
+            <span class="hljs-comment">// 定义待插入数</span>
+            insertVal = arr[i];
+            <span class="hljs-comment">// 与待插入数比较的元素的索引  也就是待插入数的前一个元素</span>
+            insertIndex = i - <span class="hljs-number">1</span>;
+            <span class="hljs-keyword">while</span> (insertIndex &gt;= <span class="hljs-number">0</span> &amp;&amp; insertVal &lt; arr[insertIndex]) &#123;
+                arr[insertIndex+<span class="hljs-number">1</span>] = arr[insertIndex];
+                insertIndex--;<span class="hljs-comment">// 前移</span>
+            &#125;
+            <span class="hljs-keyword">if</span>(insertIndex != i - <span class="hljs-number">1</span>)&#123;
+                arr[insertIndex+<span class="hljs-number">1</span>] = insertVal;
+            &#125;
+            System.out.println(<span class="hljs-string">"第"</span>+i +<span class="hljs-string">"轮："</span>+Arrays.toString(arr));
+        &#125;
+    &#125;
+&#125;</code></pre></div>
+
+<p><strong>运行结果 ：</strong><br><img src="/2020/07/04/algorithm-02/5.png" srcset="/img/loading.gif" alt></p>
+<h2 id="希尔排序（Shell-Sorting）"><a href="#希尔排序（Shell-Sorting）" class="headerlink" title="希尔排序（Shell Sorting）"></a>希尔排序（Shell Sorting）</h2><p>是简单插入排序经过改进之后的一个<strong>更高效的版本</strong></p>
+<p><strong>实现思路：</strong></p>
+<p>原始数据：<br><img src="/2020/07/04/algorithm-02/6.png" srcset="/img/loading.gif" alt></p>
+<p>初始增量 gap=length/2=5，意味着整个数组分为5组：[8,3]，[9,5]，[1,4]，[7,6]，[2,0]<br><img src="/2020/07/04/algorithm-02/7.png" srcset="/img/loading.gif" alt></p>
+<p>对这5组分别进行直接插入排序，然后缩小增量gap=5/2=2，分成两组，[3,1,0,9,7]，[5,6,8,4,2]<br><img src="/2020/07/04/algorithm-02/8.png" srcset="/img/loading.gif" alt></p>
+<p>分别对以上两组进行直接插入排序<br><img src="/2020/07/04/algorithm-02/10.png" srcset="/img/loading.gif" alt></p>
+<p>此时，仅仅需要 对以上数列简单微调，无需大量移动操作就可以完成排序要求。<br><img src="/2020/07/04/algorithm-02/9.png" srcset="/img/loading.gif" alt></p>
 
             </article>
             <hr>
@@ -309,13 +345,19 @@
                   <div class="post-prev col-6">
                     
                     
+                      <a href="/2020/07/05/SpringMVC-04/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">SpringMVC核心技术</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </div>
                   <div class="post-next col-6">
                     
                     
                       <a href="/2020/07/04/SpringMVC-03/">
                         <span class="hidden-mobile">SSM整合开发</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -332,7 +374,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -365,7 +407,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -374,7 +416,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
