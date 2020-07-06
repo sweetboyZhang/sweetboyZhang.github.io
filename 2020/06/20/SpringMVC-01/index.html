@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/gml.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs.min.css" />
   
 
   
@@ -74,7 +74,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                Home
+                home
               </a>
             </li>
           
@@ -86,7 +86,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                Archives
+                archive
               </a>
             </li>
           
@@ -98,7 +98,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                Tags
+                tag
               </a>
             </li>
           
@@ -110,7 +110,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                About
+                about
               </a>
             </li>
           
@@ -122,7 +122,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                Links
+                links
               </a>
             </li>
           
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      711 字
+      718 字
     </span>
   
 
@@ -213,13 +213,13 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 1, 2020 am
+                  本文最后更新于：July 6, 2020 pm
                 
               </p>
             
             <article class="markdown-body">
               <p>SpringMVC是Spring框架的一部分。相当于servlet的一个升级。SpringMVC创建控制器对象，放入SpringMVC容器中。<a id="more"></a></p>
-<h2 id="SpringMVC使用"><a href="#SpringMVC使用" class="headerlink" title="SpringMVC使用"></a>SpringMVC使用</h2><h3 id="1、在web工程中添加依赖"><a href="#1、在web工程中添加依赖" class="headerlink" title="1、在web工程中添加依赖"></a>1、在web工程中添加依赖</h3><div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+<h2 id="SpringMVC使用"><a href="#SpringMVC使用" class="headerlink" title="SpringMVC使用"></a>SpringMVC使用</h2><h3 id="1、在web工程中添加依赖"><a href="#1、在web工程中添加依赖" class="headerlink" title="1、在web工程中添加依赖"></a>1、在web工程中添加依赖</h3><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>javax.servlet<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>javax.servlet-api<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.1.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
@@ -229,9 +229,9 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-webmvc<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.2.5.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
 
-<h3 id="2、在web-xml文件中注册中央处理对象DispacherServlet"><a href="#2、在web-xml文件中注册中央处理对象DispacherServlet" class="headerlink" title="2、在web.xml文件中注册中央处理对象DispacherServlet"></a>2、在web.xml文件中注册中央处理对象DispacherServlet</h3><div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--注册springMVC核心依赖DispatcherServlet</span>
+<h3 id="2、在web-xml文件中注册中央处理对象DispacherServlet"><a href="#2、在web-xml文件中注册中央处理对象DispacherServlet" class="headerlink" title="2、在web.xml文件中注册中央处理对象DispacherServlet"></a>2、在web.xml文件中注册中央处理对象DispacherServlet</h3><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--注册springMVC核心依赖DispatcherServlet</span>
 <span class="hljs-comment">   tomcat服务器启动后创建DispatcherServlet实例对象，同时读取配置文件创建容器对象--&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">servlet</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>springMVC<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span>
@@ -247,12 +247,12 @@
 <span class="hljs-tag">&lt;<span class="hljs-name">servlet-mapping</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>springMVC<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>*.do<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-mapping</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-mapping</span>&gt;</span></code></pre>
 
-<h3 id="3、在springmvc配置文件中注册组件扫描器"><a href="#3、在springmvc配置文件中注册组件扫描器" class="headerlink" title="3、在springmvc配置文件中注册组件扫描器"></a>3、在springmvc配置文件中注册组件扫描器</h3><div class="hljs"><pre><code class="hljs xml">   <span class="hljs-comment">&lt;!-- 声明组件扫描器 创建Controller对象  --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">context:component-scan</span> <span class="hljs-attr">base-package</span>=<span class="hljs-string">"com.zyz.controller"</span>/&gt;</span></code></pre></div>
+<h3 id="3、在springmvc配置文件中注册组件扫描器"><a href="#3、在springmvc配置文件中注册组件扫描器" class="headerlink" title="3、在springmvc配置文件中注册组件扫描器"></a>3、在springmvc配置文件中注册组件扫描器</h3><pre><code class="hljs xml">   <span class="hljs-comment">&lt;!-- 声明组件扫描器 创建Controller对象  --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">context:component-scan</span> <span class="hljs-attr">base-package</span>=<span class="hljs-string">"com.zyz.controller"</span>/&gt;</span></code></pre>
 
-<h3 id="4、编写MyController处理请求"><a href="#4、编写MyController处理请求" class="headerlink" title="4、编写MyController处理请求"></a>4、编写MyController处理请求</h3><div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Controller</span>
+<h3 id="4、编写MyController处理请求"><a href="#4、编写MyController处理请求" class="headerlink" title="4、编写MyController处理请求"></a>4、编写MyController处理请求</h3><pre><code class="hljs java"><span class="hljs-meta">@Controller</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyController</span> </span>&#123;
     <span class="hljs-comment">/**</span>
 <span class="hljs-comment">     * 处理some.do请求</span>
@@ -271,10 +271,10 @@
         <span class="hljs-comment">// 返回modelAndView</span>
         <span class="hljs-keyword">return</span> modelAndView;
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <h3 id="5、页面"><a href="#5、页面" class="headerlink" title="5、页面"></a>5、页面</h3><p>请求页面：index.jsp</p>
-<div class="hljs"><pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;
+<pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;
 &lt;html&gt;
 &lt;head&gt;
     &lt;title&gt;index.jsp&lt;/title&gt;
@@ -283,10 +283,10 @@
     &lt;p&gt;第一个springMVC程序&lt;/p&gt;
     &lt;p&gt;&lt;a href="some.do"&gt;发起some.do请求&lt;/a&gt;&lt;/p&gt;
 &lt;/body&gt;
-&lt;/html&gt;</code></pre></div>
+&lt;/html&gt;</code></pre>
 
 <p>跳转页面：show.jsp</p>
-<div class="hljs"><pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;
+<pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;
 &lt;html&gt;
 &lt;head&gt;
     &lt;title&gt;show.jsp&lt;/title&gt;
@@ -294,20 +294,21 @@
 &lt;body&gt;
     &lt;p&gt;msg数据：$&#123;msg&#125;&lt;/p&gt;
 &lt;/body&gt;
-&lt;/html&gt;</code></pre></div>
+&lt;/html&gt;</code></pre>
 
 <h2 id="SpringMVC请求的处理过程"><a href="#SpringMVC请求的处理过程" class="headerlink" title="SpringMVC请求的处理过程"></a>SpringMVC请求的处理过程</h2><p><img src="/2020/06/20/SpringMVC-01/1.png" srcset="/img/loading.gif" alt></p>
+<p>SpringMVC内部执行流程：<br><img src="/2020/06/20/SpringMVC-01/4.png" srcset="/img/loading.gif" alt></p>
 <h2 id="使用视图解析器"><a href="#使用视图解析器" class="headerlink" title="使用视图解析器"></a>使用视图解析器</h2><p>在springmvc配置文件中声明视图解析器：</p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--  声明springmvc框架中的视图解析器  帮助开发人员设置视图文件的路径  --&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--  声明springmvc框架中的视图解析器  帮助开发人员设置视图文件的路径  --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span>
     <span class="hljs-comment">&lt;!--前缀  视图文件的路径--&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"prefix"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"/WEB-INF/view/"</span> /&gt;</span>
     <span class="hljs-comment">&lt;!--后缀  视图文件的拓展名--&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"suffix"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">".jsp"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></code></pre>
 
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 配置视图解析器后,可直接使用文件名指定视图</span>
-modelAndView.setViewName(<span class="hljs-string">"show"</span>);</code></pre></div>
+<pre><code class="hljs java"><span class="hljs-comment">// 配置视图解析器后,可直接使用文件名指定视图</span>
+modelAndView.setViewName(<span class="hljs-string">"show"</span>);</code></pre>
 
 
             </article>
@@ -335,7 +336,7 @@ modelAndView.setViewName(<span class="hljs-string">"show"</span>);</code></pre><
                       <a href="/2020/06/30/SpringMVC-02/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">SpringMVC注解式开发</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </div>
@@ -344,7 +345,7 @@ modelAndView.setViewName(<span class="hljs-string">"show"</span>);</code></pre><
                     
                       <a href="/2020/06/20/Spring-05/">
                         <span class="hidden-mobile">Web项目环境搭建</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -361,7 +362,7 @@ modelAndView.setViewName(<span class="hljs-string">"show"</span>);</code></pre><
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -394,7 +395,7 @@ modelAndView.setViewName(<span class="hljs-string">"show"</span>);</code></pre><
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -403,7 +404,7 @@ modelAndView.setViewName(<span class="hljs-string">"show"</span>);</code></pre><
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

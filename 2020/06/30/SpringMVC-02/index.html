@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/gml.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs.min.css" />
   
 
   
@@ -74,7 +74,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                Home
+                home
               </a>
             </li>
           
@@ -86,7 +86,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                Archives
+                archive
               </a>
             </li>
           
@@ -98,7 +98,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                Tags
+                tag
               </a>
             </li>
           
@@ -110,7 +110,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                About
+                about
               </a>
             </li>
           
@@ -122,7 +122,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                Links
+                links
               </a>
             </li>
           
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.5k 字
+      3.4k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      59
+      83
        分钟
     </span>
   
@@ -213,18 +213,18 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 3, 2020 pm
+                  本文最后更新于：July 6, 2020 pm
                 
               </p>
             
             <article class="markdown-body">
               <h2 id="1、对请求提交方式的定义"><a href="#1、对请求提交方式的定义" class="headerlink" title="1、对请求提交方式的定义"></a>1、对请求提交方式的定义</h2><p>@RequestMapping 请求映射<br>属性:<br>value,表示所匹配请求的URI<br>method,表示请求的方式：<br>get请求: RequestMethod.GET<br>post请求: RequestMethod.POST<a id="more"></a></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping</span>(value=<span class="hljs-string">"/some.do"</span>,method= RequestMethod.GET)
-<span class="hljs-function"><span class="hljs-keyword">public</span> ModelAndView <span class="hljs-title">doSome</span><span class="hljs-params">()</span></span>&#123;&#125;</code></pre></div>
+<pre><code class="hljs java"><span class="hljs-meta">@RequestMapping</span>(value=<span class="hljs-string">"/some.do"</span>,method= RequestMethod.GET)
+<span class="hljs-function"><span class="hljs-keyword">public</span> ModelAndView <span class="hljs-title">doSome</span><span class="hljs-params">()</span></span>&#123;&#125;</code></pre>
 
 <h2 id="2、处理器的请求参数"><a href="#2、处理器的请求参数" class="headerlink" title="2、处理器的请求参数"></a>2、处理器的请求参数</h2><p>处理器方法可以包含以下四类参数，这些参数会在系统调用时由系统自动赋值，即程序员可在方法内直接使用。<br>➢ HttpServletRequest<br>➢ HttpServletResponse<br>➢ HttpSession<br>➢ 请求中所携带的请求参数</p>
 <h3 id="1、逐个参数接收"><a href="#1、逐个参数接收" class="headerlink" title="1、逐个参数接收"></a>1、逐个参数接收</h3><p>保证请求参数名与该请求处理方法的参数名相同。</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<pre><code class="hljs java"><span class="hljs-comment">/**</span>
 <span class="hljs-comment">     * 保证请求参数名与该请求处理方法的参数名相同。</span>
 <span class="hljs-comment">     * 框架接收请求参数</span>
 <span class="hljs-comment">     * 1、使用request对象接收请求参数</span>
@@ -235,11 +235,11 @@
 <span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span>
 <span class="hljs-comment">     */</span>
 <span class="hljs-meta">@RequestMapping</span>(value = <span class="hljs-string">"/other.do"</span>,method = RequestMethod.POST)
-<span class="hljs-function"><span class="hljs-keyword">public</span> ModelAndView <span class="hljs-title">doOther</span><span class="hljs-params">(String name,Integer age)</span></span>&#123;&#125;</code></pre></div>
+<span class="hljs-function"><span class="hljs-keyword">public</span> ModelAndView <span class="hljs-title">doOther</span><span class="hljs-params">(String name,Integer age)</span></span>&#123;&#125;</code></pre>
 
 <p>400错误码：客户端错误，表示提交请求时出现了错误</p>
 <h3 id="2、解决中文乱码"><a href="#2、解决中文乱码" class="headerlink" title="2、解决中文乱码"></a>2、解决中文乱码</h3><p>提交请求参数时，get方式没有乱码，post方式出现中文乱码。<br>使用框架提供的过滤器解决乱码：</p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 注册过滤器，解决post请求的乱码问题--&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 注册过滤器，解决post请求的乱码问题--&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">filter</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">filter-name</span>&gt;</span>characterEncodingFilter<span class="hljs-tag">&lt;/<span class="hljs-name">filter-name</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">filter-class</span>&gt;</span>org.springframework.web.filter.CharacterEncodingFilter<span class="hljs-tag">&lt;/<span class="hljs-name">filter-class</span>&gt;</span>
@@ -262,11 +262,11 @@
 <span class="hljs-tag">&lt;<span class="hljs-name">filter-mapping</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">filter-name</span>&gt;</span>characterEncodingFilter<span class="hljs-tag">&lt;/<span class="hljs-name">filter-name</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/*<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">filter-mapping</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">filter-mapping</span>&gt;</span></code></pre>
 
 <h3 id="3、-RequestParam校正请求参数"><a href="#3、-RequestParam校正请求参数" class="headerlink" title="3、@RequestParam校正请求参数"></a>3、@RequestParam校正请求参数</h3><p>若请求URL 所携带的参数名称与处理方法中指定的参数名不相同时，则需在处理方法参数前，添加一个注解@RequestParam(“请求参数名”)，指定请求URL 所携带参数的名称。<br><img src="/2020/06/30/SpringMVC-02/1.png" srcset="/img/loading.gif" alt>)<img src="/2020/06/30/SpringMVC-02/2.png" srcset="/img/loading.gif" alt></p>
 <h3 id="4、对象参数接收"><a href="#4、对象参数接收" class="headerlink" title="4、对象参数接收"></a>4、对象参数接收</h3><p>将处理器方法的参数定义为一个对象，只要保证<strong>请求参数名与这个对象的属性同名</strong>即可。</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span> </span>&#123;
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span> </span>&#123;
     <span class="hljs-keyword">private</span> String name;
     <span class="hljs-keyword">private</span> Integer age;
 
@@ -293,9 +293,9 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setAge</span><span class="hljs-params">(Integer age)</span> </span>&#123;
         <span class="hljs-keyword">this</span>.age = age;
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping</span>(value = <span class="hljs-string">"/other.do"</span>,method = RequestMethod.POST)
+<pre><code class="hljs java"><span class="hljs-meta">@RequestMapping</span>(value = <span class="hljs-string">"/other.do"</span>,method = RequestMethod.POST)
     <span class="hljs-function"><span class="hljs-keyword">public</span> ModelAndView <span class="hljs-title">doOther</span><span class="hljs-params">(Student student)</span></span>&#123;
         ModelAndView modelAndView = <span class="hljs-keyword">new</span> ModelAndView();
         modelAndView.addObject(<span class="hljs-string">"student"</span>,student);
@@ -303,9 +303,9 @@
         modelAndView.setViewName(<span class="hljs-string">"show"</span>);
         <span class="hljs-comment">// 返回modelAndView</span>
         <span class="hljs-keyword">return</span> modelAndView;
-    &#125;</code></pre></div>
+    &#125;</code></pre>
 
-<div class="hljs"><pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;
+<pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;
 &lt;html&gt;
 &lt;head&gt;
     &lt;title&gt;show.jsp&lt;/title&gt;
@@ -314,11 +314,11 @@
     &lt;p&gt;name：$&#123;student.name&#125;&lt;/p&gt;
     &lt;p&gt;age：$&#123;student.age&#125;&lt;/p&gt;
 &lt;/body&gt;
-&lt;/html&gt;</code></pre></div>
+&lt;/html&gt;</code></pre>
 
 <h2 id="3、处理器方法的返回值"><a href="#3、处理器方法的返回值" class="headerlink" title="3、处理器方法的返回值"></a>3、处理器方法的返回值</h2><h3 id="1、返回ModelAndView"><a href="#1、返回ModelAndView" class="headerlink" title="1、返回ModelAndView"></a>1、返回ModelAndView</h3><p>处理器方法处理完后，需要跳转到其他资源，并且要在跳转的资源之间传递数据。</p>
 <h3 id="2、返回String"><a href="#2、返回String" class="headerlink" title="2、返回String"></a>2、返回String</h3><p>视图跳转，不传递数据。</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Controller</span>
+<pre><code class="hljs java"><span class="hljs-meta">@Controller</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyController</span> </span>&#123;
     <span class="hljs-meta">@RequestMapping</span>(value = <span class="hljs-string">"/returnView.do"</span>)
     <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">doRetyrnView</span><span class="hljs-params">(String name,Integer age)</span> </span>&#123;
@@ -326,11 +326,11 @@
         <span class="hljs-comment">// 框架对视图进行forward转发操作</span>
         <span class="hljs-keyword">return</span> <span class="hljs-string">"show"</span>;
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <h3 id="3、返回void"><a href="#3、返回void" class="headerlink" title="3、返回void"></a>3、返回void</h3><p>不能表示数据，也不能表示视图。<br>在处理ajax的时候，可以使用void返回值。通过HttpServletResponse输出数据，响应ajax请求。<br>ajax请求服务端返回的就是数据，与视图无关。</p>
 <p>step1：服务端向浏览器传回的是JSON 数据，需要使用一个工具类将字符串包装为JSON 格式，所以需要导入JSON 的依赖。</p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jackson-core<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.9.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
@@ -339,11 +339,11 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jackson-databind<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.9.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
 
 <p> step2：引入jquery<br><img src="/2020/06/30/SpringMVC-02/3.png" srcset="/img/loading.gif" alt></p>
 <p>step3：发起ajax请求</p>
-<div class="hljs"><pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;
+<pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;
 &lt;html&gt;
 &lt;head&gt;
     &lt;title&gt;index.jsp&lt;/title&gt;
@@ -372,10 +372,10 @@
 &lt;/head&gt;
 &lt;body&gt;
     &lt;button id="btn"&gt;发起ajax请求&lt;/button&gt;
-&lt;/body&gt;</code></pre></div>
+&lt;/body&gt;</code></pre>
 
 <p>step4：响应ajax请求</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping</span>(value = <span class="hljs-string">"/returnVoid-ajax.do"</span>)
+<pre><code class="hljs java"><span class="hljs-meta">@RequestMapping</span>(value = <span class="hljs-string">"/returnVoid-ajax.do"</span>)
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doReturnVoidAjax</span><span class="hljs-params">(HttpServletResponse resp, String name, Integer age)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
     System.out.println(<span class="hljs-string">"name:"</span> + name);
     System.out.println(<span class="hljs-string">"age:"</span> + age);
@@ -394,11 +394,11 @@
     writer.print(studentJson);
     writer.flush();
     writer.close();
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <h3 id="4、返回Object"><a href="#4、返回Object" class="headerlink" title="4、返回Object"></a>4、返回Object</h3><p>处理器返回的对象不是作为逻辑视图出现的，而是作为直接在页面显示的数据出现。<br>可以使用对象表示数据，响应ajax请求。<br>将对象类型转换为json类型 以及 将结果数据输出到页面，springmvc框架都可以自动帮你完成：</p>
 <p><strong>step1:</strong><br>在pom.xml中引入Jackson相关依赖，Jackson工具库用于将Object转换为Json。</p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jackson-core<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.9.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
@@ -407,17 +407,17 @@
 	<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jackson-databind<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.9.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
 
 <p><strong>step2:</strong></p>
 <p>在springmvc.xml配置文件中添加注解驱动。<br>将Object 数据转化为JSON 数据，需要由消息转换器HttpMessageConverter 完成。而转换器的开启，需要由<code>&lt;mvc:annotation-driven/&gt;</code>来完成。<br>SpringMVC 使用消息转换器实现请求数据和对象，处理器方法返回对象和响应输出之间的<strong>自动转换</strong>。</p>
 <p>当Spring 容器进行初始化过程中，在<code>&lt;mvc:annotation-driven/&gt;</code>处创建注解驱动时，默认创建了八个HttpMessageConverter 对象。也就是说，我们注册<code>&lt;mvc:annotation-driven/&gt;</code>，就是为了让容器为我们创建HttpMessageConverter 对象。</p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--注解驱动--&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">mvc:annotation-driven</span>/&gt;</span></code></pre></div>
+<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--注解驱动--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">mvc:annotation-driven</span>/&gt;</span></code></pre>
 
 <p><strong>step3:</strong></p>
 <p>修改处理器方法：</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<pre><code class="hljs java"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * 使用框架来处理ajax请求</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@return</span> Student</span>
 <span class="hljs-comment"> */</span>
@@ -426,10 +426,10 @@
 <span class="hljs-function"><span class="hljs-keyword">public</span> Student <span class="hljs-title">doReturnStudentAjax</span><span class="hljs-params">()</span></span>&#123;
     Student student = <span class="hljs-keyword">new</span> Student(<span class="hljs-string">"zyz"</span>, <span class="hljs-number">19</span>);
     <span class="hljs-keyword">return</span> student;<span class="hljs-comment">// 框架会将obj转为json格式</span>
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p>从页面发起ajax请求：</p>
-<div class="hljs"><pre><code class="hljs js">$(<span class="hljs-string">"#btn02"</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+<pre><code class="hljs js">$(<span class="hljs-string">"#btn02"</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
     $.ajax(&#123;
         url:<span class="hljs-string">"returnStudent.do"</span>,
         type:<span class="hljs-string">"post"</span>,
@@ -440,11 +440,11 @@
             alert(<span class="hljs-string">"name:"</span>+resp.name+<span class="hljs-string">" age:"</span>+resp.age);
         &#125;
     &#125;)
-&#125;)</code></pre></div>
+&#125;)</code></pre>
 
 <p><strong>处理流程：</strong></p>
 <p>1、框架会把处理器返回的Student类型的数据，调用框架中的<code>ArrayList&lt;HttpMessageConverter&gt;</code>中每个类的canWrite()方法，检查哪个HttpMessageConverter接口的类能处理Student类型的数据—-MappingJackson2HttpMessageConverter<br>2、调用实现类中的Write()方法，将student对象转换为json字符串<br>3、调用@ResponseBody把转换好的json数据输出到浏览器，ajax处理完成</p>
-<h4 id="返回List集合："><a href="#返回List集合：" class="headerlink" title="返回List集合："></a>返回List集合：</h4><div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping</span>(value = <span class="hljs-string">"/returnStudents.do"</span>)
+<h4 id="返回List集合："><a href="#返回List集合：" class="headerlink" title="返回List集合："></a>返回List集合：</h4><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping</span>(value = <span class="hljs-string">"/returnStudents.do"</span>)
 <span class="hljs-meta">@ResponseBody</span> 
 <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Student&gt; <span class="hljs-title">doReturnStudentAjax</span><span class="hljs-params">()</span> </span>&#123;
     List&lt;Student&gt; students = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
@@ -455,9 +455,9 @@
     students.add(student2);
     students.add(student3);
     <span class="hljs-keyword">return</span> students;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
-<div class="hljs"><pre><code class="hljs js">$(<span class="hljs-string">"#btn03"</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+<pre><code class="hljs js">$(<span class="hljs-string">"#btn03"</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
     $.ajax(&#123;
         url:<span class="hljs-string">"returnStudents.do"</span>,
         type:<span class="hljs-string">"post"</span>,
@@ -468,16 +468,16 @@
             &#125;)
         &#125;
     &#125;)
-&#125;);</code></pre></div>
+&#125;);</code></pre>
 
 <h4 id="返回String"><a href="#返回String" class="headerlink" title="返回String"></a>返回String</h4><p>String表示数据，不是视图。</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping</span>(value=<span class="hljs-string">"/returnString.do"</span>, produces=<span class="hljs-string">"text/plain;charset=utf-8"</span>)
+<pre><code class="hljs java"><span class="hljs-meta">@RequestMapping</span>(value=<span class="hljs-string">"/returnString.do"</span>, produces=<span class="hljs-string">"text/plain;charset=utf-8"</span>)
 <span class="hljs-meta">@ResponseBody</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">doReturnStringAjax</span><span class="hljs-params">()</span></span>&#123;
     <span class="hljs-keyword">return</span> <span class="hljs-string">"返回的字符串~"</span>;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
-<div class="hljs"><pre><code class="hljs js">$(<span class="hljs-string">"#btn04"</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+<pre><code class="hljs js">$(<span class="hljs-string">"#btn04"</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
     $.ajax(&#123;
         url:<span class="hljs-string">"returnString.do"</span>,
         type:<span class="hljs-string">"post"</span>,
@@ -485,37 +485,196 @@
             alert(resp);
         &#125;
     &#125;)
-&#125;);</code></pre></div>
+&#125;);</code></pre>
 
-<h2 id="4、解读url-pattern标签"><a href="#4、解读url-pattern标签" class="headerlink" title="4、解读url-pattern标签"></a>4、解读url-pattern标签</h2><div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">servlet-mapping</span>&gt;</span>
+<h2 id="4、解读url-pattern标签"><a href="#4、解读url-pattern标签" class="headerlink" title="4、解读url-pattern标签"></a>4、解读url-pattern标签</h2><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">servlet-mapping</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>springMVC<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>*.do<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-mapping</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-mapping</span>&gt;</span></code></pre>
 
 <p>意思是将所有以.do结尾的请求交给中央调度器（框架）处理。<br>但是，当提交一些静态资源，例如图片，html页面，js文件的请求时，服务器也会响应。<br>因为tomcat本身就能处理一些未映射的静态资源的访问。</p>
 <p><strong>将所有请求都交给框架处理：</strong></p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">servlet-mapping</span>&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">servlet-mapping</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>springMVC<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-mapping</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-mapping</span>&gt;</span></code></pre>
 
 <p>处理方式一：转发给服务器处理</p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 处理静态资源</span>
+<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 处理静态资源</span>
 <span class="hljs-comment">框架会创建控制器对象DefaultServletHttpRequestHandler把接收到的请求转发给tomcat来处理静态资源--&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">mvc:default-servlet-handler</span> /&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;<span class="hljs-name">mvc:default-servlet-handler</span> /&gt;</span></code></pre>
 
 <p>处理方式二：框架自己处理</p>
 <p>将静态资源集中存放到一个文件夹中<br><img src="/2020/06/30/SpringMVC-02/4.png" srcset="/img/loading.gif" alt></p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--  处理静态资源方式二</span>
+<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--  处理静态资源方式二</span>
 <span class="hljs-comment"> 创建 ResourceHttpServletHandler处理器对象 让这个对象去处理静态资源的请求  不依赖于tomcat</span>
 <span class="hljs-comment"> mapping:访问静态资源的uri  使用通配符 **</span>
 <span class="hljs-comment"> location:静态资源在项目中的位置--&gt;</span>
- <span class="hljs-tag">&lt;<span class="hljs-name">mvc:resources</span> <span class="hljs-attr">mapping</span>=<span class="hljs-string">"/static/**"</span> <span class="hljs-attr">location</span>=<span class="hljs-string">"/static/"</span>/&gt;</span></code></pre></div>
+ <span class="hljs-tag">&lt;<span class="hljs-name">mvc:resources</span> <span class="hljs-attr">mapping</span>=<span class="hljs-string">"/static/**"</span> <span class="hljs-attr">location</span>=<span class="hljs-string">"/static/"</span>/&gt;</span></code></pre>
 
 <h2 id="5、绝对地址和相对地址"><a href="#5、绝对地址和相对地址" class="headerlink" title="5、绝对地址和相对地址"></a>5、绝对地址和相对地址</h2><p><strong>绝对地址</strong><br>带有协议的地址，在互联网上唯一的</p>
 <p><strong>相对地址</strong><br>没有协议开头的，不能独立使用，需要一个参考地址。通过参考地址+相对地址本身才能指定资源。</p>
 <p>在jsp，html 中使用的地址，都是前端页面中的地址，都是相对地址。</p>
 <p>在页面中访问地址不加 ” / “ ，访问的是当前页面地址加上链接地址。使用base标签固定参考地址<br><img src="/2020/06/30/SpringMVC-02/5.png" srcset="/img/loading.gif" alt></p>
+<h2 id="6、文件上传和下载"><a href="#6、文件上传和下载" class="headerlink" title="6、文件上传和下载"></a>6、文件上传和下载</h2><h3 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h3><p>1、导入依赖</p>
+<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- springmvc--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-webmvc<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.2.5.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+<span class="hljs-comment">&lt;!--文件上传--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>commons-fileupload<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>commons-fileupload<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.3.3<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+<span class="hljs-comment">&lt;!--servlet-api导入高版本的--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>javax.servlet<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>javax.servlet-api<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>4.0.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+
+<p>​      2、如果想使用Spring的文件上传功能，则需要在上下文中配置MultipartResolver</p>
+<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--文件上传配置--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"multipartResolver"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.springframework.web.multipart.commons.CommonsMultipartResolver"</span>&gt;</span>
+   <span class="hljs-comment">&lt;!-- 请求的编码格式，必须和jSP的pageEncoding属性一致，以便正确读取表单的内容，默认为ISO-8859-1 --&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"defaultEncoding"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"utf-8"</span>/&gt;</span>
+   <span class="hljs-comment">&lt;!-- 上传文件大小上限，单位为字节（10485760=10M） --&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"maxUploadSize"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"10485760"</span>/&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"maxInMemorySize"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"40960"</span>/&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></code></pre>
+
+<p>3、编写上传文件的表单</p>
+<pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;form action=<span class="hljs-string">"upload2"</span> enctype=<span class="hljs-string">"multipart/form-data"</span> method=<span class="hljs-string">"post"</span>&gt;
+    &lt;input type=<span class="hljs-string">"file"</span> name=<span class="hljs-string">"file"</span>/&gt;
+    &lt;input type=<span class="hljs-string">"submit"</span> value=<span class="hljs-string">"upload"</span>&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+<p>4、编写处理文件上传的Controller方法</p>
+<pre><code class="hljs java"><span class="hljs-meta">@Controller</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FileController</span> </span>&#123;
+    <span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/upload"</span>)
+    <span class="hljs-comment">//@RequestParam("file") 将name=file控件得到的文件封装成CommonsMultipartFile 对象</span>
+    <span class="hljs-comment">//批量上传CommonsMultipartFile则为数组即可</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">fileUpload</span><span class="hljs-params">(@RequestParam(<span class="hljs-string">"file"</span>)</span> CommonsMultipartFile file, HttpServletRequest request) <span class="hljs-keyword">throws</span> IOException </span>&#123;
+
+        <span class="hljs-comment">//获取文件名 : file.getOriginalFilename();</span>
+        String uploadFileName = file.getOriginalFilename();
+
+        <span class="hljs-comment">//如果文件名为空，直接回到首页！</span>
+        <span class="hljs-keyword">if</span> (<span class="hljs-string">""</span>.equals(uploadFileName)) &#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"redirect:/index.jsp"</span>;
+        &#125;
+        System.out.println(<span class="hljs-string">"上传文件名 : "</span> + uploadFileName);
+
+        <span class="hljs-comment">//上传路径保存设置</span>
+        String path = request.getServletContext().getRealPath(<span class="hljs-string">"/upload"</span>);
+        <span class="hljs-comment">//如果路径不存在，创建一个</span>
+        File realPath = <span class="hljs-keyword">new</span> File(path);
+        <span class="hljs-keyword">if</span> (!realPath.exists()) &#123;
+            realPath.mkdir();
+        &#125;
+        System.out.println(<span class="hljs-string">"上传文件保存地址："</span> + realPath);
+
+        InputStream is = file.getInputStream(); <span class="hljs-comment">//文件输入流</span>
+        OutputStream os = <span class="hljs-keyword">new</span> FileOutputStream(<span class="hljs-keyword">new</span> File(realPath, uploadFileName)); <span class="hljs-comment">//文件输出流</span>
+
+        <span class="hljs-comment">//读取写出</span>
+        <span class="hljs-keyword">int</span> len = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">byte</span>[] buffer = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-number">1024</span>];
+        <span class="hljs-keyword">while</span> ((len = is.read(buffer)) != -<span class="hljs-number">1</span>) &#123;
+            os.write(buffer, <span class="hljs-number">0</span>, len);
+            os.flush();
+        &#125;
+        os.close();
+        is.close();
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"redirect:/index.jsp"</span>;
+    &#125;
+
+    <span class="hljs-comment">/*</span>
+<span class="hljs-comment">     * 采用file.TransferTo 来保存上传的文件</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/upload2"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">fileUpload2</span><span class="hljs-params">(@RequestParam(<span class="hljs-string">"file"</span>)</span> CommonsMultipartFile file, HttpServletRequest request) <span class="hljs-keyword">throws</span> IOException </span>&#123;
+
+        <span class="hljs-comment">//获取文件名 : file.getOriginalFilename();</span>
+        String uploadFileName = file.getOriginalFilename();
+
+        <span class="hljs-comment">//如果文件名为空，直接回到首页！</span>
+        <span class="hljs-keyword">if</span> (<span class="hljs-string">""</span>.equals(uploadFileName)) &#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"redirect:/index.jsp"</span>;
+        &#125;
+        <span class="hljs-comment">//上传路径保存设置</span>
+        String path = request.getServletContext().getRealPath(<span class="hljs-string">"/upload"</span>);
+        File realPath = <span class="hljs-keyword">new</span> File(path);
+        <span class="hljs-keyword">if</span> (!realPath.exists()) &#123;
+            realPath.mkdir();
+        &#125;
+        <span class="hljs-comment">//上传文件地址</span>
+        System.out.println(<span class="hljs-string">"上传文件保存地址："</span> + realPath);
+
+        <span class="hljs-comment">//通过CommonsMultipartFile的方法直接写文件（注意这个时候）</span>
+        file.transferTo(<span class="hljs-keyword">new</span> File(realPath + <span class="hljs-string">"/"</span> + file.getOriginalFilename()));
+
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"redirect:/index.jsp"</span>;
+    &#125;
+&#125;</code></pre>
+
+<h3 id="文件下载"><a href="#文件下载" class="headerlink" title="文件下载"></a>文件下载</h3><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping</span>(value=<span class="hljs-string">"/download"</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">downloads</span><span class="hljs-params">(HttpServletResponse response , HttpServletRequest request)</span> <span class="hljs-keyword">throws</span> Exception</span>&#123;
+    <span class="hljs-comment">//要下载的图片地址</span>
+    String  path = request.getServletContext().getRealPath(<span class="hljs-string">"/upload"</span>);
+    String  fileName = <span class="hljs-string">"基础语法.png"</span>;
+    <span class="hljs-comment">//1、设置response 响应头</span>
+    response.reset(); <span class="hljs-comment">//设置页面不缓存,清空buffer</span>
+    response.setCharacterEncoding(<span class="hljs-string">"UTF-8"</span>); <span class="hljs-comment">//字符编码</span>
+    response.setContentType(<span class="hljs-string">"multipart/form-data"</span>); <span class="hljs-comment">//二进制传输数据</span>
+
+    <span class="hljs-comment">// 判断浏览器类型</span>
+    String ua = request.getHeader(<span class="hljs-string">"User-Agent"</span>);
+    String str=<span class="hljs-string">""</span>;
+    <span class="hljs-comment">// 判断是否是火狐浏览器</span>
+    <span class="hljs-keyword">if</span> (ua.contains(<span class="hljs-string">"Firefox"</span>)) &#123;
+        <span class="hljs-comment">// 使用下面的格式进行BASE64 编码后</span>
+        str = <span class="hljs-string">"=?utf-8?B?"</span> + <span class="hljs-keyword">new</span> BASE64Encoder().encode(fileName.getBytes(<span class="hljs-string">"utf-8"</span>)) + <span class="hljs-string">"?="</span>;
+    &#125; <span class="hljs-keyword">else</span> &#123;
+        <span class="hljs-comment">// 把中文名进行UTF-8 编码操作</span>
+        str = URLEncoder.encode(fileName, <span class="hljs-string">"UTF-8"</span>);
+    &#125;
+    <span class="hljs-comment">//设置响应头</span>
+    response.setHeader(<span class="hljs-string">"Content-Disposition"</span>,
+            <span class="hljs-string">"attachment;fileName="</span>+ str);
+
+    File file = <span class="hljs-keyword">new</span> File(path,fileName);
+    <span class="hljs-comment">//2、 读取文件--输入流</span>
+    InputStream input=<span class="hljs-keyword">new</span> FileInputStream(file);
+    <span class="hljs-comment">//3、 写出文件--输出流</span>
+    OutputStream out = response.getOutputStream();
+
+    <span class="hljs-keyword">byte</span>[] buff =<span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-number">1024</span>];
+    <span class="hljs-keyword">int</span> index=<span class="hljs-number">0</span>;
+    <span class="hljs-comment">//4、执行 写出操作</span>
+    <span class="hljs-keyword">while</span>((index= input.read(buff))!= -<span class="hljs-number">1</span>)&#123;
+        out.write(buff, <span class="hljs-number">0</span>, index);
+        out.flush();
+    &#125;
+    out.close();
+    input.close();
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"redirect:/index.jsp"</span>;
+&#125;</code></pre>
+
+<pre><code class="hljs jsp">&lt;a href="download"&gt;下载&lt;/a&gt;</code></pre>
+
 
             </article>
             <hr>
@@ -542,7 +701,7 @@
                       <a href="/2020/07/01/interview-01/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Java基础篇</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </div>
@@ -551,7 +710,7 @@
                     
                       <a href="/2020/06/20/SpringMVC-01/">
                         <span class="hidden-mobile">SpringMVC简介</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -568,7 +727,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -601,7 +760,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -610,7 +769,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
