@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      35
+      34
        分钟
     </span>
   
@@ -213,7 +213,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：June 28, 2020 am
+                  本文最后更新于：July 6, 2020 pm
                 
               </p>
             
@@ -222,14 +222,14 @@
 <h2 id="Spring体系结构"><a href="#Spring体系结构" class="headerlink" title="Spring体系结构"></a>Spring体系结构</h2><p><img src="/2020/06/01/Spring-01/1.jpg" srcset="/img/loading.gif" alt></p>
 <h2 id="IOC控制反转"><a href="#IOC控制反转" class="headerlink" title="IOC控制反转"></a>IOC控制反转</h2><p>Inversion of control：控制反转，是一个概念，一种思想。<br>是指把对象的创建、赋值、管理工作都交给代码以外的容器实现，控制反转就是对对象控制权的转移，由程序代码本身反转到了程序外部容器。<br><strong>控制：</strong>创建对象，对象属性的赋值，对象之间关系的管理。<br><strong>反转：</strong>把原来开发人员管理，创建对象的权力交给代码之外的容器。由容器代替开发人员管理对象。<br>正转：由开发人员在代码中，使用new 构造方法 创建对象，开发人员主动管理对象。<br>容器：一个服务器软件，一个框架(Spring)。<br>IOC的好处：减少对代码的改动，也能实现不同的功能。实现解耦合。<br>IOC的体现：Servlet ,Tomcat作为容器创建Servlet对象。<br>IOC的技术实现：<br>DI(Dependency Injection) 依赖注入，只需要在程序中提供对象的名称，至于对象是如何在容器中创建，赋值，查找都是由容器内部实现的。<br>Spring使用DI实现了IOC的功能，Spring底层创建对象使用的是反射机制。<br>Spring是一个容器。</p>
 <h2 id="使用Spring"><a href="#使用Spring" class="headerlink" title="使用Spring"></a>使用Spring</h2><h3 id="1、使用Maven创建一个普通的java项目"><a href="#1、使用Maven创建一个普通的java项目" class="headerlink" title="1、使用Maven创建一个普通的java项目"></a>1、使用Maven创建一个普通的java项目</h3><p><img src="/2020/06/01/Spring-01/2.jpg" srcset="/img/loading.gif" alt></p>
-<h3 id="2、引入Spring依赖"><a href="#2、引入Spring依赖" class="headerlink" title="2、引入Spring依赖"></a>2、引入Spring依赖</h3><div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+<h3 id="2、引入Spring依赖"><a href="#2、引入Spring依赖" class="headerlink" title="2、引入Spring依赖"></a>2、引入Spring依赖</h3><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-context<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.2.5.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
 
 <p>插件可加可不加，指明jdk版本(前面已经指定)</p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">build</span>&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">build</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">plugins</span>&gt;</span>
 		<span class="hljs-tag">&lt;<span class="hljs-name">plugin</span>&gt;</span>
 			<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
@@ -240,10 +240,10 @@
 				<span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span>ss
 		<span class="hljs-tag">&lt;/<span class="hljs-name">plugin</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">plugins</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">build</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">build</span>&gt;</span></code></pre>
 
 <h3 id="3、创建Spring配置文件"><a href="#3、创建Spring配置文件" class="headerlink" title="3、创建Spring配置文件"></a>3、创建Spring配置文件</h3><p>bean.xml</p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span></span>
 <span class="hljs-tag">       <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span></span>
 <span class="hljs-tag">       <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans</span></span>
@@ -252,9 +252,9 @@
 <span class="hljs-comment">&lt;!-- 声明bean 一个bean标签声明一个对象</span>
 <span class="hljs-comment">--&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"someService"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.zyz.service.impl.SomeServiceImpl"</span>/&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre>
 
-<h3 id="4、使用spring创建对象，调用对象方法"><a href="#4、使用spring创建对象，调用对象方法" class="headerlink" title="4、使用spring创建对象，调用对象方法"></a>4、使用spring创建对象，调用对象方法</h3><div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 使用Spring 容器创建对象</span>
+<h3 id="4、使用spring创建对象，调用对象方法"><a href="#4、使用spring创建对象，调用对象方法" class="headerlink" title="4、使用spring创建对象，调用对象方法"></a>4、使用spring创建对象，调用对象方法</h3><pre><code class="hljs java"><span class="hljs-comment">// 使用Spring 容器创建对象</span>
     <span class="hljs-meta">@Test</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test2</span><span class="hljs-params">()</span></span>&#123;
         <span class="hljs-comment">// 1、指明spring配置文件名称</span>
@@ -265,10 +265,10 @@
         <span class="hljs-comment">// 3、从容器中获取对象</span>
         SomeService someService = (SomeService) applicationContext.getBean(<span class="hljs-string">"someService"</span>);<span class="hljs-comment">// 通过id</span>
         someService.doSome();
-    &#125;</code></pre></div>
+    &#125;</code></pre>
 
 <h2 id="di依赖注入"><a href="#di依赖注入" class="headerlink" title="di依赖注入"></a>di依赖注入</h2><p>语法分类：set注入；构造注入</p>
-<h3 id="基于xml文件"><a href="#基于xml文件" class="headerlink" title="基于xml文件"></a>基于xml文件</h3><div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--普通类型  set注入--&gt;</span>
+<h3 id="基于xml文件"><a href="#基于xml文件" class="headerlink" title="基于xml文件"></a>基于xml文件</h3><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--普通类型  set注入--&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"myPerson"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.zyz.bean.Person"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"id"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"10001"</span>/&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"name"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"Tony"</span>/&gt;</span>
@@ -278,9 +278,9 @@
 <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"mySchool"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.zyz.bean.School"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"id"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"1001"</span>/&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"schoolName"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"长江大学"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></code></pre>
 
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--  构造注入</span>
+<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--  构造注入</span>
 <span class="hljs-comment"> constructor-arg  形参属性</span>
 <span class="hljs-comment">        name   构造方法形参名</span>
 <span class="hljs-comment">		index  表示构造方法的参数位置  从左到右0,1,2 ...</span>
@@ -295,9 +295,9 @@
 <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"mySchool"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.zyz.bean.School"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"id"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"1001"</span>/&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"schoolName"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"长江大学"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></code></pre>
 
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"myPersonConstructor2"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.zyz.bean.Person"</span>&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"myPersonConstructor2"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.zyz.bean.Person"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">constructor-arg</span> <span class="hljs-attr">index</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"10003"</span>/&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">constructor-arg</span> <span class="hljs-attr">index</span>=<span class="hljs-string">"1"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"wd"</span>/&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">constructor-arg</span> <span class="hljs-attr">index</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"mySchool2"</span>/&gt;</span>
@@ -305,43 +305,45 @@
 <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"mySchool2"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.zyz.bean.School"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"id"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"1002"</span>/&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"schoolName"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"清华大学"</span>/&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></code></pre>
 
 <p><img src="/2020/06/01/Spring-01/3.jpg" srcset="/img/loading.gif" alt></p>
 <p>引用类型自动注入：</p>
 <ul>
 <li><p>byName：java类中引用类型属性名 与spring配置文件中的bean标签中的id值相同</p>
 <p>  <img src="/2020/06/01/Spring-01/4.jpg" srcset="/img/loading.gif" alt></p>
-  <div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"myPersonConstructor2"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.zyz.bean.Person"</span> <span class="hljs-attr">autowire</span>=<span class="hljs-string">"byName"</span>&gt;</span>
+  <pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"myPersonConstructor2"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.zyz.bean.Person"</span> <span class="hljs-attr">autowire</span>=<span class="hljs-string">"byName"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">constructor-arg</span> <span class="hljs-attr">index</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"10003"</span>/&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">constructor-arg</span> <span class="hljs-attr">index</span>=<span class="hljs-string">"1"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"wd"</span>/&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"school"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.zyz.bean.School"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"id"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"1002"</span>/&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"schoolName"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"清华大学"</span>/&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></code></pre>
 </li>
 <li><p>byType：使用byType 方式自动注入，要求：配置文件中被调用者bean 的class 属性指定的类，<br>要与代码中调用者bean 类的某引用类型属性类型同源。即要么相同，要么有is-a 关系（子<br>  类，或是实现类）。<strong>但这样的同源的被调用bean 只能有一个。</strong></p>
-  <div class="hljs"><pre><code class="hljs java">&lt;bean id=<span class="hljs-string">"person"</span> <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"com.zyz.bean.Person"</span> autowire=<span class="hljs-string">"byType"</span>&gt;
+  <pre><code class="hljs java">&lt;bean id=<span class="hljs-string">"person"</span> <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"com.zyz.bean.Person"</span> autowire=<span class="hljs-string">"byType"</span>&gt;
         &lt;property name=<span class="hljs-string">"id"</span> value=<span class="hljs-string">"10004"</span>/&gt;
         &lt;property name=<span class="hljs-string">"name"</span> value=<span class="hljs-string">"wd788"</span>/&gt;
 &lt;/bean&gt;
 &lt;bean id=<span class="hljs-string">"school"</span> <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"com.zyz.bean.School"</span>&gt;
         &lt;property name=<span class="hljs-string">"id"</span> value=<span class="hljs-string">"1001"</span>/&gt;
         &lt;property name=<span class="hljs-string">"schoolName"</span> value=<span class="hljs-string">"北京大学"</span>/&gt;
- &lt;/bean&gt;</code></pre></div>
+ &lt;/bean&gt;</code></pre>
 
 </li>
 </ul>
 <h3 id="基于注解"><a href="#基于注解" class="headerlink" title="基于注解"></a>基于注解</h3><p><img src="/2020/06/01/Spring-01/5.jpg" srcset="/img/loading.gif" alt></p>
 <p>​    value可省略</p>
 <p>在配置文件中声明组件扫描器</p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--   声明组件扫描器  组件就是java对象--&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">context:component-scan</span> <span class="hljs-attr">base-package</span>=<span class="hljs-string">"com.zyz.component"</span>/&gt;</span></code></pre></div>
+<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--   声明组件扫描器  组件就是java对象--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">context:component-scan</span> <span class="hljs-attr">base-package</span>=<span class="hljs-string">"com.zyz.component"</span>/&gt;</span></code></pre>
 
 <p>另外，Spring 还提供了3 个创建对象的注解：<br> @Repository 用于对DAO 实现类进行注解<br> @Service 用于对Service 实现类进行注解<br>@Controller 用于对Controller 实现类进行注解<br>这三个注解与@Component 都可以创建对象，但这三个注解还有其他的含义，@Service创建业务层对象，业务层对象可以加入事务功能，@Controller 注解创建的对象可以作为处理器接收用户的请求。<br>@Repository，@Service，@Controller 是对@Component 注解的细化，标注不同层的对象。即持久层对象，业务层对象，控制层对象。<br>普通类型赋值：<br><img src="/2020/06/01/Spring-01/6.jpg" srcset="/img/loading.gif" alt></p>
-<p>byType自动注入（默认）<br><img src="/2020/06/01/Spring-01/7.jpg" srcset="/img/loading.gif" alt>)&nbsp;&nbsp;&nbsp;&nbsp;<img src="/2020/06/01/Spring-01/8.jpg" srcset="/img/loading.gif" alt></p>
-<p>byName自动注入<br><img src="/2020/06/01/Spring-01/9.jpg" srcset="/img/loading.gif" alt>)&nbsp;&nbsp;&nbsp;&nbsp;<img src="/2020/06/01/Spring-01/8.jpg" srcset="/img/loading.gif" alt></p>
+<p>byType自动注入（默认）<br><img src="/2020/06/01/Spring-01/7.jpg" srcset="/img/loading.gif" alt></p>
+<p><img src="/2020/06/01/Spring-01/8.jpg" srcset="/img/loading.gif" alt></p>
+<p>byName自动注入<br><img src="/2020/06/01/Spring-01/9.jpg" srcset="/img/loading.gif" alt></p>
+<p><img src="/2020/06/01/Spring-01/8.jpg" srcset="/img/loading.gif" alt></p>
 <p><strong>JDK注解@Resource自动注入</strong><br>byName（默认），按Name不能注入成功则按Type<br><img src="/2020/06/01/Spring-01/10.jpg" srcset="/img/loading.gif" alt></p>
 
             </article>
@@ -369,7 +371,7 @@
                       <a href="/2020/06/01/Maven/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Maven</span>
-                        <span class="visible-mobile">上一篇</span>
+                        <span class="visible-mobile">Previous</span>
                       </a>
                     
                   </div>
@@ -378,7 +380,7 @@
                     
                       <a href="/2020/05/31/MyBatis-05/">
                         <span class="hidden-mobile">MyBatis缓存机制</span>
-                        <span class="visible-mobile">下一篇</span>
+                        <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -395,7 +397,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
   <div id="tocbot"></div>
 </div>
 
@@ -428,7 +430,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -437,7 +439,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

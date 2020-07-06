@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="sweetboyZhang">
   <meta name="keywords" content="">
-  <title>EL表达式，JSTL标签库 - sweetboyZhang&#39;s Blog</title>
+  <title>Vue - sweetboyZhang&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -152,8 +152,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-04-12 11:08">
-      April 12, 2020 am
+    <time datetime="2020-07-06 16:19">
+      July 6, 2020 pm
     </time>
   </div>
 
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      998 字
+      695 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      27
+      17
        分钟
     </span>
   
@@ -213,161 +213,107 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：June 28, 2020 am
+                  本文最后更新于：July 6, 2020 pm
                 
               </p>
             
             <article class="markdown-body">
-              <h2 id="EL表达式"><a href="#EL表达式" class="headerlink" title="EL表达式"></a>EL表达式</h2><p>Express Language：表达式语言。<br>作用：代替jsp页面中的表达式脚本在jsp页面中进行数据的输出。<a id="more"></a></p>
-<div class="hljs"><pre><code class="hljs jsp">&lt;body&gt;
-    &lt;%
-        request.setAttribute(<span class="hljs-string">"key"</span>,<span class="hljs-string">"value"</span>);
-    %&gt;
-    jsp表达式输出key的值：&lt;%=
-    request.getAttribute(<span class="hljs-string">"key"</span>)==<span class="hljs-keyword">null</span>?<span class="hljs-string">""</span>:request.getAttribute(<span class="hljs-string">"key"</span>)
-    %&gt;&lt;br/&gt;
-    EL表达式输出key的值：$&#123;key&#125;
-&lt;/body&gt;</code></pre></div>
+              <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>Vue 是一套用于构建用户界面的<strong>渐进式框架</strong>。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注<strong>视图层</strong>，不仅易于上手，还便于与第三方库或既有项目整合。(如vue_router：跳转，vue_resource：通信，vuex：管理)<a id="more"></a></p>
+<h2 id="MVVM模式的实现者"><a href="#MVVM模式的实现者" class="headerlink" title="MVVM模式的实现者"></a>MVVM模式的实现者</h2><p><strong>Model：</strong>模型层，在这里表示javascript<br><strong>View：</strong>视图层，在这里表示DOM（html操作的元素）<br><strong>VIewModel：</strong>连接视图和数据的中间件，Vue.js就是MVVM中的ViewModel层的实现者</p>
+<p>在MVVM架构中，是不允许数据和视图进行直接通信的，只能通过ModelView来通信，而ModelView就是定义了一个Observer观察者。</p>
+<p>ViewModel能够观察到数据发生变化，并对视图对应的内容进行更新，同时，也能够监听到视图的变化，通知数据进行改变。</p>
+<p>所以，Vue.js就是MVVM的实现者，它的核心就是实现了<strong>DOM监听</strong>和<strong>数据绑定</strong>。</p>
+<p><img src="/2020/07/06/vue-01/1.png" srcset="/img/loading.gif" alt></p>
+<h2 id="第一个vue程序"><a href="#第一个vue程序" class="headerlink" title="第一个vue程序"></a>第一个vue程序</h2><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Title<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"../js/vue.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>
+    &#123;&#123;message&#125;&#125;
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
+<span class="actionscript">    <span class="hljs-keyword">var</span> v1 = <span class="hljs-keyword">new</span> Vue(&#123;</span>
+<span class="actionscript">        el:<span class="hljs-string">"#app"</span>,</span>
+        data:&#123;
+<span class="actionscript">            message:<span class="hljs-string">"Hello,vue!"</span></span>
+        &#125;
+    &#125;);
+<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
 
-<p>格式：<code>${表达式}</code><br>EL表达式在输出空值的时候，输出的是空串，而jsp表达式输出的是null字符串。</p>
-<h2 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h2><p>关系运算</p>
-<p>逻辑运算</p>
-<p>算数运算<br>empty运算：判断一个数据是否为空，为空输出truem，否则输出false<br>三元运算<br>“.”点运算和[] 中括号运算符</p>
-<h2 id="EL表达式中的11个隐含对象"><a href="#EL表达式中的11个隐含对象" class="headerlink" title="EL表达式中的11个隐含对象"></a>EL表达式中的11个隐含对象</h2><p><img src="/2020/04/12/javaweb-04/1.png" srcset="/img/loading.gif" alt></p>
-<p>pageContext对象的使用：</p>
-<div class="hljs"><pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;Title&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;%-- jsp表达式
-request.getScheme() 它可以获取请求的协议
-request.getServerName() 获取请求的服务器ip 或域名
-request.getServerPort() 获取请求的服务器端口号
-request.getContextPath() 获取当前工程路径
-request.getMethod() 获取请求的方式（GET 或POST）
-request.getRemoteHost() 获取客户端的ip 地址
-session.getId() 获取会话的唯一标识
---%&gt;
+<h2 id="使用v-bind绑定元素特性"><a href="#使用v-bind绑定元素特性" class="headerlink" title="使用v-bind绑定元素特性"></a>使用v-bind绑定元素特性</h2><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Title<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"../js/vue.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">v-bind:title</span>=<span class="hljs-string">"message"</span>&gt;</span>鼠标悬停查看信息<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+    
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
+<span class="actionscript">    <span class="hljs-keyword">var</span> v1 = <span class="hljs-keyword">new</span> Vue(&#123;</span>
+<span class="actionscript">        el:<span class="hljs-string">"#app"</span>,</span>
+        data:&#123;
+<span class="actionscript">            message:<span class="hljs-string">"Hello,vue!"</span></span>
+        &#125;
+    &#125;);
+<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
 
+<p>指令带有前缀v-，表示它们是vue提供的特殊特性，它们会在渲染的DOM上应用特殊的响应式行为。</p>
+<h2 id="条件渲染——判断"><a href="#条件渲染——判断" class="headerlink" title="条件渲染——判断"></a>条件渲染——判断</h2><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">"flag"</span>&gt;</span>flag为true<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">v-else</span>&gt;</span>flag为false<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
 
-&lt;%-- EL表达式--%&gt;
-&lt;%
-    pageContext.setAttribute(<span class="hljs-string">"req"</span>, request);
-%&gt;
+    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">"type==='A'"</span>&gt;</span>A<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">v-else-if</span>=<span class="hljs-string">"type==='B'"</span>&gt;</span>B<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">v-else</span>&gt;</span>不是A也不是B<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 
-<span class="hljs-number">1</span>. 协议：$&#123;req.scheme&#125;&lt;br/&gt;
-<span class="hljs-number">2</span>. 服务器ip：$&#123;pageContext.request.serverName&#125;&lt;br/&gt;
-<span class="hljs-number">3</span>. 服务器端口：$&#123;pageContext.request.serverPort&#125;&lt;br/&gt;
-<span class="hljs-number">4</span>. 获取工程路径：$&#123;pageContext.request.contextPath&#125;&lt;br/&gt;
-<span class="hljs-number">5</span>. 获取请求方法：$&#123;pageContext.request.method&#125;&lt;br/&gt;
-<span class="hljs-number">6</span>. 获取客户端ip 地址：$&#123;pageContext.request.remoteHost&#125;&lt;br/&gt;
-<span class="hljs-number">7</span>. 获取会话的id 编号：$&#123;pageContext.session.id&#125;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre></div>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
+<span class="actionscript">    <span class="hljs-keyword">var</span> v1 = <span class="hljs-keyword">new</span> Vue(&#123;</span>
+<span class="actionscript">        el:<span class="hljs-string">"#app"</span>,</span>
+        data:&#123;
+<span class="actionscript">            flag: <span class="hljs-literal">true</span>,</span>
+<span class="actionscript">            type: <span class="hljs-string">'C'</span></span>
+        &#125;
+    &#125;);
+<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
 
-<h2 id="JSTL标签库"><a href="#JSTL标签库" class="headerlink" title="JSTL标签库"></a>JSTL标签库</h2><p>EL表达式是为了替换jsp中的表达式，而标签库是为了替换jsp中的代码脚本。<br><img src="/2020/04/12/javaweb-04/2.png" srcset="/img/loading.gif" alt></p>
-<p>在jsp 标签库中使用taglib 指令引入标签库</p>
-<div class="hljs"><pre><code class="hljs jsp">CORE 标签库
-&lt;%@ taglib prefix=<span class="hljs-string">"c"</span> uri=<span class="hljs-string">"http://java.sun.com/jsp/jstl/core"</span> %&gt;
-FMT 标签库
-&lt;%@ taglib prefix=<span class="hljs-string">"fmt"</span> uri=<span class="hljs-string">"http://java.sun.com/jsp/jstl/fmt"</span> %&gt;
-FUNCTIONS 标签库
-&lt;%@ taglib prefix=<span class="hljs-string">"fn"</span> uri=<span class="hljs-string">"http://java.sun.com/jsp/jstl/functions"</span> %&gt;</code></pre></div>
+<h2 id="列表渲染——循环"><a href="#列表渲染——循环" class="headerlink" title="列表渲染——循环"></a>列表渲染——循环</h2><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">"item in items"</span>&gt;</span>&#123;&#123;item.message&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
-<h3 id="core核心库使用"><a href="#core核心库使用" class="headerlink" title="core核心库使用"></a>core核心库使用</h3><div class="hljs"><pre><code class="hljs jsp">&lt;%@ page <span class="hljs-keyword">import</span>=<span class="hljs-string">"java.util.HashMap"</span> %&gt;
-&lt;%@ page <span class="hljs-keyword">import</span>=<span class="hljs-string">"java.util.Map"</span> %&gt;
-&lt;%@ page <span class="hljs-keyword">import</span>=<span class="hljs-string">"bean.Student"</span> %&gt;
-&lt;%@ page <span class="hljs-keyword">import</span>=<span class="hljs-string">"java.util.List"</span> %&gt;
-&lt;%@ page <span class="hljs-keyword">import</span>=<span class="hljs-string">"java.lang.reflect.Array"</span> %&gt;
-&lt;%@ page <span class="hljs-keyword">import</span>=<span class="hljs-string">"java.util.ArrayList"</span> %&gt;
-&lt;%@ taglib prefix=<span class="hljs-string">"c"</span> uri=<span class="hljs-string">"http://java.sun.com/jsp/jstl/core"</span> %&gt;
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
+<span class="actionscript">    <span class="hljs-keyword">var</span> v1 = <span class="hljs-keyword">new</span> Vue(&#123;</span>
+<span class="actionscript">        el:<span class="hljs-string">"#app"</span>,</span>
+        data:&#123;
+            items:[
+<span class="actionscript">                &#123;message: <span class="hljs-string">'javaSE'</span>&#125;,&#123;message: <span class="hljs-string">'javaWEB'</span>&#125;,&#123;message: <span class="hljs-string">'javaEE'</span>&#125;</span>
+            ]
+        &#125;
+    &#125;);
+<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
 
-&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;Title&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;%-- <span class="hljs-keyword">if</span>判断 --%&gt;
-&lt;c:<span class="hljs-keyword">if</span> test=<span class="hljs-string">"$&#123;1==1&#125;"</span>&gt;
-    &lt;h1&gt;1==1&lt;/h1&gt;
-&lt;/c:if&gt;
+<p>打印索引：</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">"(item,index) in items"</span>&gt;</span>&#123;&#123;item.message&#125;&#125;---&#123;&#123;index&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
 
-&lt;%-- 多路判断--%&gt;
-&lt;c:choose&gt;
-    &lt;c:when test=""&gt;&lt;/c:when&gt;
-    &lt;c:when test=""&gt;&lt;/c:when&gt;
-    &lt;c:otherwise&gt;&lt;/c:otherwise&gt;
-&lt;/c:choose&gt;
-
-&lt;%-- foreach遍历输出--%&gt;
-&lt;c:forEach begin=<span class="hljs-string">"1"</span> end=<span class="hljs-string">"10"</span> <span class="hljs-keyword">var</span>=<span class="hljs-string">"i"</span>&gt;
-    $&#123;i&#125;&lt;br/&gt;
-&lt;/c:forEach&gt;
-
-&lt;%--遍历数组--%&gt;
-&lt;%
-    request.setAttribute(<span class="hljs-string">"arr"</span>,<span class="hljs-keyword">new</span> String[]&#123;<span class="hljs-string">"Tom"</span>,<span class="hljs-string">"Taylor"</span>,<span class="hljs-string">"Troye"</span>&#125;);
-%&gt;
-&lt;c:forEach items=<span class="hljs-string">"$&#123;requestScope.arr&#125;"</span> <span class="hljs-keyword">var</span>=<span class="hljs-string">"item"</span>&gt;
-    $&#123;item&#125;&lt;br/&gt;
-&lt;/c:forEach&gt;
-
-&lt;%-- 遍历Map--%&gt;
-&lt;%
-    Map&lt;String,String&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;String,String&gt;();
-    map.put(<span class="hljs-string">"key1"</span>,<span class="hljs-string">"value1"</span>);
-    map.put(<span class="hljs-string">"key2"</span>,<span class="hljs-string">"value2"</span>);
-    map.put(<span class="hljs-string">"key3"</span>,<span class="hljs-string">"value3"</span>);
-<span class="hljs-comment">//    for(Map.Entry&lt;String,String&gt; entry:map.entrySet())&#123;</span>
-<span class="hljs-comment">//</span>
-<span class="hljs-comment">//    &#125;</span>
-    request.setAttribute(<span class="hljs-string">"map"</span>,map);
-%&gt;
-&lt;c:forEach items=<span class="hljs-string">"$&#123;requestScope.map&#125;"</span> <span class="hljs-keyword">var</span>=<span class="hljs-string">"entry"</span>&gt;
-    键：$&#123;entry.key&#125;
-    值：$&#123;entry.value&#125;
-    &lt;br/&gt;
-&lt;/c:forEach&gt;
-
-&lt;%-- 遍历List--%&gt;
-&lt;%
-    List&lt;Student&gt; stuList = <span class="hljs-keyword">new</span> ArrayList&lt;Student&gt;();
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) &#123;
-        stuList.add(<span class="hljs-keyword">new</span> Student(i,<span class="hljs-string">"username"</span>+i,<span class="hljs-string">"password"</span>+i, <span class="hljs-number">18</span>+i));
-    &#125;
-    request.setAttribute(<span class="hljs-string">"students"</span>,stuList);
-%&gt;
-&lt;table width=<span class="hljs-string">"500px"</span> border=<span class="hljs-string">"1px solid black"</span> cellspacing=<span class="hljs-string">"0"</span>&gt;
-    &lt;tr&gt;
-        &lt;th&gt;编号&lt;/th&gt;
-        &lt;th&gt;用户名&lt;/th&gt;
-        &lt;th&gt;密码&lt;/th&gt;
-        &lt;th&gt;年龄&lt;/th&gt;
-        &lt;th&gt;状态信息&lt;/th&gt;
-    &lt;/tr&gt;
-&lt;c:forEach items=<span class="hljs-string">"$&#123;requestScope.students&#125;"</span> <span class="hljs-keyword">var</span>=<span class="hljs-string">"stu"</span> varStatus=<span class="hljs-string">"status"</span>&gt;
-    &lt;tr&gt;
-        &lt;td&gt;$&#123;stu.id&#125;&lt;/td&gt;
-        &lt;td&gt;$&#123;stu.username&#125;&lt;/td&gt;
-        &lt;td&gt;$&#123;stu.password&#125;&lt;/td&gt;
-        &lt;td&gt;$&#123;stu.age&#125;&lt;/td&gt;
-        &lt;td&gt;$&#123;status.count&#125;&lt;/td&gt;
-    &lt;/tr&gt;
-&lt;/c:forEach&gt;
-&lt;/table&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre></div>
-
-
-
-
-
-
-
-
+<h2 id="事件处理"><a href="#事件处理" class="headerlink" title="事件处理"></a>事件处理</h2>
             </article>
             <hr>
             <div>
@@ -377,7 +323,7 @@ FUNCTIONS 标签库
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/JavaWeb/">JavaWeb</a>
+                      <a class="hover-with-bg" href="/tags/vue/">vue</a>
                     
                   </div>
                 
@@ -390,18 +336,12 @@ FUNCTIONS 标签库
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/04/13/javaweb-05/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">文件的上传和下载</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/04/11/javaweb-03/">
-                        <span class="hidden-mobile">jsp,Listener监听器</span>
+                      <a href="/2020/07/05/SpringMVC-04/">
+                        <span class="hidden-mobile">SpringMVC核心技术</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -572,7 +512,7 @@ FUNCTIONS 标签库
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "EL表达式，JSTL标签库&nbsp;",
+        "Vue&nbsp;",
       ],
       cursorChar: "(*＾_＾*)",
       typeSpeed: 70,
