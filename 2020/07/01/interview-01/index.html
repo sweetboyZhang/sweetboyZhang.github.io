@@ -74,7 +74,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                Home
               </a>
             </li>
           
@@ -86,7 +86,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                Archives
               </a>
             </li>
           
@@ -98,7 +98,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                Tags
               </a>
             </li>
           
@@ -110,7 +110,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                About
               </a>
             </li>
           
@@ -122,7 +122,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                友链
+                Links
               </a>
             </li>
           
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      5.2k 字
+      5.7k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      98
+      107
        分钟
     </span>
   
@@ -213,7 +213,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 5, 2020 am
+                  本文最后更新于：July 6, 2020 am
                 
               </p>
             
@@ -454,7 +454,22 @@ a = a + <span class="hljs-number">1</span>;</code></pre></div>
 <div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">short</span> a = <span class="hljs-number">1</span>;
 a += <span class="hljs-number">1</span>;</code></pre></div>
 
-<p>+=操作符会对右边的表达式结果强转匹配左边的数据类型,所以没错.</p>
+<p>+=操作符会对右边的表达式结果强转匹配左边的数据类型,所以没错。</p>
+<h2 id="21、try-catch-finally-，try里有return，finally还执行吗？"><a href="#21、try-catch-finally-，try里有return，finally还执行吗？" class="headerlink" title="21、try{}catch{}finally{}，try里有return，finally还执行吗？"></a>21、try{}catch{}finally{}，try里有return，finally还执行吗？</h2><p>执行，并且finally的执行早于try里面的return</p>
+<p><strong>结论：</strong></p>
+<p>1、不管有没有出现异常，finally中的代码都会执行；<br>2、当try和catch中有return时，finally仍然会执行；<br>3、finally是在return后面的表达式运算完成后执行的（此时并没有返回运算后的值，而是先把值保存起来，不管finally中的代码怎么样，都不会影响return的值，仍然是之前保存的值），所以函数返回值是在finally执行前就确定了。<br>4、finally最好不要含有return ,否则程序就会提前退出，返回值就不是try或catch中保存的返回值了。</p>
+<h2 id="22、Exception与Error包结构"><a href="#22、Exception与Error包结构" class="headerlink" title="22、Exception与Error包结构"></a>22、Exception与Error包结构</h2><p>Java中可抛出的异常(Throwable)的结构分为三大类型：<br>被检查的异常(CheckException)、运行时异常(RuntimeException)、错误(Error)</p>
+<p><strong>1、运行时异常：</strong></p>
+<p>定义：RunTimeException及其子类都被称为运行时异常。</p>
+<p>特点：编译器不会检查它，是在程序运行时抛出的异常。</p>
+<p>常见的五种运行时异常：<br>ClassCastException（类转换异常）<br>IndexOutOfBoundException（数组越界）<br>NullPointerException（空指针异常）<br>ArrayStoreException（数据存储异常，操作数组的类型不一样）<br>BufferOverflowException（缓冲区溢出）</p>
+<p><strong>2、被检查异常</strong></p>
+<p>定义:Exception类本身，以及Exception的子类中除了”运行时异常”之外的其它子类都属于被检查异常。</p>
+<p>特点: Java编译器会检查它。此类异常，要么通过throws进行声明抛出，要么通过try-catch进行捕获处<br>理，否则不能通过编译。如：<br>IOException、FileNotFoundException、SQLException</p>
+<p><strong>3、错误</strong></p>
+<p>定义：Error类及其子类。</p>
+<p>特点: 和运行时异常一样，编译器也不会对错误进行检查。<br>当资源不足、约束失败、或是其它程序无法继续运行的条件发生时，就产生错误。程序本身无法修复这<br>些错误的。出现这种错误会导致程序终止运行。如OutOfMemoryError、ThreadDeath</p>
+<h2 id="23、简述线程、程序、进程的基本概念以及他们之间的关系"><a href="#23、简述线程、程序、进程的基本概念以及他们之间的关系" class="headerlink" title="23、简述线程、程序、进程的基本概念以及他们之间的关系"></a>23、简述线程、程序、进程的基本概念以及他们之间的关系</h2><p><strong>线程</strong>与进程相似</p>
 
             </article>
             <hr>
@@ -481,7 +496,7 @@ a += <span class="hljs-number">1</span>;</code></pre></div>
                       <a href="/2020/07/01/dataStructure-04/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">栈</span>
-                        <span class="visible-mobile">上一篇</span>
+                        <span class="visible-mobile">Previous</span>
                       </a>
                     
                   </div>
@@ -490,7 +505,7 @@ a += <span class="hljs-number">1</span>;</code></pre></div>
                     
                       <a href="/2020/06/30/SpringMVC-02/">
                         <span class="hidden-mobile">SpringMVC注解式开发</span>
-                        <span class="visible-mobile">下一篇</span>
+                        <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -507,7 +522,7 @@ a += <span class="hljs-number">1</span>;</code></pre></div>
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
   <div id="tocbot"></div>
 </div>
 
@@ -540,7 +555,7 @@ a += <span class="hljs-number">1</span>;</code></pre></div>
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -549,7 +564,7 @@ a += <span class="hljs-number">1</span>;</code></pre></div>
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
