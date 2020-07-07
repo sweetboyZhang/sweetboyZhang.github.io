@@ -213,13 +213,13 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 2, 2020 am
+                  本文最后更新于：July 7, 2020 am
                 
               </p>
             
             <article class="markdown-body">
               <h2 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h2><p>反射机制允许程序在执行期借助于Reflection API取得任何类的内部信息，并能直接操作任意对象的内部属性及方法。<a id="more"></a><br><strong>类的加载过程：</strong><br>程序经过javac.exe命令后，会生成一个或多个字节码文件(.class)，接着使用java.exe命令对某个字节码文件进行解释运行。相当于将某个字节码文件加载到内存中，即类的加载。加载到内存中的类，我们就成为运行时类，此运行时类就作为Class的一个实例。<br>加载到内存中的运行时类，会缓存一段时间。在此时间内，我们可以通过不同的方式来获取此运行时类。</p>
-<h2 id="获取Class实例"><a href="#获取Class实例" class="headerlink" title="获取Class实例"></a>获取Class实例</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">// 获取Class实例</span>
+<h2 id="获取Class实例"><a href="#获取Class实例" class="headerlink" title="获取Class实例"></a>获取Class实例</h2><pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">// 获取Class实例</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> ClassNotFoundException </span>&#123;
     <span class="hljs-comment">// 方式一:调用运行类属性：.class</span>
     Class class0 = Person<span class="hljs-class">.<span class="hljs-keyword">class</span></span>;
@@ -235,9 +235,9 @@
     ClassLoader classLoader = ClassTest<span class="hljs-class">.<span class="hljs-keyword">class</span>.<span class="hljs-title">getClassLoader</span>()</span>;
     Class class3 = classLoader.loadClass(<span class="hljs-string">"reflection.Person"</span>);
     System.out.println(class3);
-&#125;</code></pre></div>
+&#125;</code></pre>
 
-<h2 id="调用运行时类指定结构"><a href="#调用运行时类指定结构" class="headerlink" title="调用运行时类指定结构"></a>调用运行时类指定结构</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<h2 id="调用运行时类指定结构"><a href="#调用运行时类指定结构" class="headerlink" title="调用运行时类指定结构"></a>调用运行时类指定结构</h2><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test2</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
     <span class="hljs-comment">// 通过反射创建对应的运行时类</span>
     Class&lt;Person&gt; class1 = Person<span class="hljs-class">.<span class="hljs-keyword">class</span></span>;
@@ -272,7 +272,7 @@
     con.setAccessible(<span class="hljs-keyword">true</span>);
     Person p2 = (Person) con.newInstance(<span class="hljs-number">1002</span>,<span class="hljs-string">"Taylor"</span>,<span class="hljs-number">18</span>);
     System.out.println(p2);<span class="hljs-comment">// Person&#123;id=1002, name='Taylor', age=18&#125;</span>
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 
             </article>
@@ -300,7 +300,7 @@
                       <a href="/2020/03/19/mysql-03/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">DML,DDL</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </div>
@@ -309,7 +309,7 @@
                     
                       <a href="/2020/03/13/java-09/">
                         <span class="hidden-mobile">网络编程</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -326,7 +326,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -359,7 +359,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -368,7 +368,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

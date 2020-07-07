@@ -213,13 +213,13 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：June 28, 2020 am
+                  本文最后更新于：July 7, 2020 am
                 
               </p>
             
             <article class="markdown-body">
-              <h2 id="File类的使用"><a href="#File类的使用" class="headerlink" title="File类的使用"></a>File类的使用</h2><p>1、File类的一个对象，代表一个文件或一个文件目录<br>        2、File类声明在java.io包下<a id="more"></a><br><strong>File类对象常用方法：</strong></p>
-<div class="hljs"><pre><code class="hljs java">  <span class="hljs-meta">@Test</span>
+              <h2 id="File类的使用"><a href="#File类的使用" class="headerlink" title="File类的使用"></a>File类的使用</h2><p>1、File类的一个对象，代表一个文件或一个文件目录<br>2、File类声明在java.io包下<a id="more"></a><br><strong>File类对象常用方法：</strong></p>
+<pre><code class="hljs java">  <span class="hljs-meta">@Test</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;
         File file1 = <span class="hljs-keyword">new</span> File(<span class="hljs-string">"src/IO/hello.txt"</span>);
 <span class="hljs-comment">// public String getAbsolutePath()：获取绝对路径</span>
@@ -255,10 +255,10 @@
         file3.createNewFile();
         file3.delete();
 
-    &#125;</code></pre></div>
+    &#125;</code></pre>
 
-<h2 id="I-O流原理及流的分类"><a href="#I-O流原理及流的分类" class="headerlink" title="I/O流原理及流的分类"></a>I/O流原理及流的分类</h2><p>按数据流向分为：输入流，输出流<br>        按操作的数据单位分为：字节流，字符流<br>        按流的角色分为：节点流，处理流<br>        四个抽象基类：<br>        字节流：InputStream和OutputStream<br>        字符流：Writer和Reader<br>        节点流：<br>        操作字节：FileInputStream,FileOutputStream<br>        操作字符：FileWiter,FileReader<br>        缓冲流（处理流的一种）：<br>        操作字节：BufferedInputStream,BufferedOutput<br>        操作字符：BufferedWriter,BufferedReader</p>
-<h2 id="使用FileReader从硬盘中读取字符数据"><a href="#使用FileReader从硬盘中读取字符数据" class="headerlink" title="使用FileReader从硬盘中读取字符数据"></a>使用FileReader从硬盘中读取字符数据</h2><div class="hljs"><pre><code class="hljs java"> <span class="hljs-meta">@Test</span>
+<h2 id="I-O流原理及流的分类"><a href="#I-O流原理及流的分类" class="headerlink" title="I/O流原理及流的分类"></a>I/O流原理及流的分类</h2><p>按数据流向分为：输入流，输出流<br>按操作的数据单位分为：字节流，字符流<br>按流的角色分为：节点流，处理流<br>四个抽象基类：<br>字节流：InputStream，OutputStream<br>字符流：Reader，Writer<br>节点流：<br>操作字节：FileInputStream，FileOutputStream<br>操作字符：FileReader，FileWiter<br>缓冲流（处理流的一种）：<br>操作字节：BufferedInputStream，BufferedOutput<br>操作字符：BufferedReader，BufferedWriter</p>
+<h2 id="使用FileReader从硬盘中读取字符数据"><a href="#使用FileReader从硬盘中读取字符数据" class="headerlink" title="使用FileReader从硬盘中读取字符数据"></a>使用FileReader从硬盘中读取字符数据</h2><pre><code class="hljs java"> <span class="hljs-meta">@Test</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span> </span>&#123;
         FileReader fileReader = <span class="hljs-keyword">null</span>;
         <span class="hljs-keyword">try</span> &#123;
@@ -315,9 +315,9 @@
                 fr.close();
             &#125;
         &#125;
-   &#125;</code></pre></div>
+   &#125;</code></pre>
 
-<h2 id="使用FileWriter向硬盘中写入字符数据"><a href="#使用FileWriter向硬盘中写入字符数据" class="headerlink" title="使用FileWriter向硬盘中写入字符数据"></a>使用FileWriter向硬盘中写入字符数据</h2><div class="hljs"><pre><code class="hljs java"> <span class="hljs-meta">@Test</span> <span class="hljs-comment">// 利用输入流向硬盘中写入数据</span>
+<h2 id="使用FileWriter向硬盘中写入字符数据"><a href="#使用FileWriter向硬盘中写入字符数据" class="headerlink" title="使用FileWriter向硬盘中写入字符数据"></a>使用FileWriter向硬盘中写入字符数据</h2><pre><code class="hljs java"> <span class="hljs-meta">@Test</span> <span class="hljs-comment">// 利用输入流向硬盘中写入数据</span>
     <span class="hljs-comment">/*</span>
 <span class="hljs-comment">    文件不存在则自动创建；</span>
 <span class="hljs-comment">    new FileWriter(file1,false);    写入时将原来文件的内容覆盖(默认为false)</span>
@@ -340,10 +340,10 @@
         &#125;
         &#125;
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <h2 id="使用FileInputStream-FileOutputStream对字节文件的处理"><a href="#使用FileInputStream-FileOutputStream对字节文件的处理" class="headerlink" title="使用FileInputStream,FileOutputStream对字节文件的处理"></a>使用FileInputStream,FileOutputStream对字节文件的处理</h2><p><img src="/2020/03/11/java-08/1.png" srcset="/img/loading.gif" alt></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<pre><code class="hljs java"><span class="hljs-meta">@Test</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;
         FileInputStream fi = <span class="hljs-keyword">null</span>;
         FileOutputStream fo = <span class="hljs-keyword">null</span>;
@@ -375,9 +375,9 @@
                 e.printStackTrace();
             &#125;
         &#125;
-    &#125;</code></pre></div>
+    &#125;</code></pre>
 
-<h2 id="缓冲流的使用"><a href="#缓冲流的使用" class="headerlink" title="缓冲流的使用"></a>缓冲流的使用</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">// 内部通过提供一个缓冲区，提高文件的读取，写入速度</span>
+<h2 id="缓冲流的使用"><a href="#缓冲流的使用" class="headerlink" title="缓冲流的使用"></a>缓冲流的使用</h2><pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">// 内部通过提供一个缓冲区，提高文件的读取，写入速度</span>
   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span></span>&#123;
       BufferedInputStream bis = <span class="hljs-keyword">null</span>;
       BufferedOutputStream bos = <span class="hljs-keyword">null</span>;
@@ -415,12 +415,12 @@
               e.printStackTrace();
           &#125;
       &#125;
-  &#125;</code></pre></div>
+  &#125;</code></pre>
 
 <h2 id="转换流"><a href="#转换流" class="headerlink" title="转换流"></a>转换流</h2><p>InputStreamReader：将IntputStream转换为Reader</p>
 <p>OutputStreamWriter：将Writer转化为OutputStream</p>
-<h2 id="对象流"><a href="#对象流" class="headerlink" title="对象流"></a>对象流</h2><p>序列化：使用ObjectOutputStream类保存基本数据类型数据或对象<br>        反序列化：使用ObjectInputStream类读取基本数据类型数据或对象<br>        <strong>对象的序列化：</strong>允许把内存中的java对象转化为与平台无关的二进制流，从而允许把这种二进制流持久地保存在磁盘上，或是通过网络节点将这种二进制流传输到另一个网络节点。当程序获取到这种二进制流后，可以恢复成原来的java对象。<br>        <strong>对象的序列化与反序列化：</strong></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>  <span class="hljs-comment">//序列化</span>
+<h2 id="对象流"><a href="#对象流" class="headerlink" title="对象流"></a>对象流</h2><p>序列化：使用ObjectOutputStream类保存基本数据类型数据或对象<br>反序列化：使用ObjectInputStream类读取基本数据类型数据或对象<br><strong>对象的序列化：</strong>允许把内存中的java对象转化为与平台无关的二进制流，从而允许把这种二进制流持久地保存在磁盘上，或是通过网络节点将这种二进制流传输到另一个网络节点。当程序获取到这种二进制流后，可以恢复成原来的java对象。<br><strong>对象的序列化与反序列化：</strong></p>
+<pre><code class="hljs java"><span class="hljs-meta">@Test</span>  <span class="hljs-comment">//序列化</span>
    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span></span>&#123;
        ObjectOutputStream oos = <span class="hljs-keyword">null</span>;
        <span class="hljs-keyword">try</span> &#123;
@@ -465,9 +465,9 @@
                &#125;
            &#125;
        &#125;
-   &#125;</code></pre></div>
+   &#125;</code></pre>
 
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<pre><code class="hljs java"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@author</span> zyz</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@description</span> 1、序列化对象需要实现Serializable接口</span>
 <span class="hljs-comment"> *              2、需要提供一个静态的全局常量serialVersionUID</span>
@@ -510,7 +510,7 @@
                 <span class="hljs-string">", age="</span> + age +
                 <span class="hljs-string">'&#125;'</span>;
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 
 
@@ -540,7 +540,7 @@
                       <a href="/2020/03/13/java-09/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">网络编程</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </div>
@@ -549,7 +549,7 @@
                     
                       <a href="/2020/03/11/java-07/">
                         <span class="hidden-mobile">泛型</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -566,7 +566,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -599,7 +599,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -608,7 +608,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

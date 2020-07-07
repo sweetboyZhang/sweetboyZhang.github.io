@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      973 字
+      989 字
     </span>
   
 
@@ -213,14 +213,13 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：June 28, 2020 am
+                  本文最后更新于：July 7, 2020 am
                 
               </p>
             
             <article class="markdown-body">
-              <h2 id="TCP网络编程"><a href="#TCP网络编程" class="headerlink" title="TCP网络编程"></a>TCP网络编程</h2><a id="more"></a>
-
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>  <span class="hljs-comment">// 客户端</span>
+              <h2 id="TCP网络编程"><a href="#TCP网络编程" class="headerlink" title="TCP网络编程"></a>TCP网络编程</h2><p>使用TCP连接进行通信的客户端和服务端<a id="more"></a></p>
+<pre><code class="hljs java"><span class="hljs-meta">@Test</span>  <span class="hljs-comment">// 客户端</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">client</span><span class="hljs-params">()</span> </span>&#123;
     <span class="hljs-comment">// 1.创建Socket对象，指明服务器端的IP和端口号</span>
     Socket socket = <span class="hljs-keyword">null</span>;
@@ -253,9 +252,9 @@
             e.printStackTrace();
         &#125;
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>  <span class="hljs-comment">// 服务端</span>
+<pre><code class="hljs java"><span class="hljs-meta">@Test</span>  <span class="hljs-comment">// 服务端</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">server</span><span class="hljs-params">()</span> </span>&#123;
         Socket socket = <span class="hljs-keyword">null</span>;
         InputStream is = <span class="hljs-keyword">null</span>;
@@ -310,9 +309,9 @@
                 &#125;
             &#125;
         &#125;
-    &#125;</code></pre></div>
+    &#125;</code></pre>
 
-<h2 id="使用TCP实现文件传输"><a href="#使用TCP实现文件传输" class="headerlink" title="使用TCP实现文件传输"></a>使用TCP实现文件传输</h2><div class="hljs"><pre><code class="hljs java">  <span class="hljs-meta">@Test</span>
+<h2 id="使用TCP实现文件传输"><a href="#使用TCP实现文件传输" class="headerlink" title="使用TCP实现文件传输"></a>使用TCP实现文件传输</h2><pre><code class="hljs java">  <span class="hljs-meta">@Test</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">client</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;
         <span class="hljs-comment">// 创建socket并绑定IP和端口号</span>
         Socket socket = <span class="hljs-keyword">new</span> Socket(<span class="hljs-string">"127.0.0.1"</span>,<span class="hljs-number">9999</span>);
@@ -371,9 +370,9 @@
         socket.close();
         serverSocket.close();
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
-<h2 id="UDP网络编程"><a href="#UDP网络编程" class="headerlink" title="UDP网络编程"></a>UDP网络编程</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<h2 id="UDP网络编程"><a href="#UDP网络编程" class="headerlink" title="UDP网络编程"></a>UDP网络编程</h2><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sender</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;
     <span class="hljs-comment">// 1.创建套接字</span>
     DatagramSocket socket = <span class="hljs-keyword">new</span> DatagramSocket();
@@ -402,9 +401,9 @@
     System.out.println(<span class="hljs-keyword">new</span> String(packet.getData(),<span class="hljs-number">0</span>,packet.getLength()));
     <span class="hljs-comment">// 6.关闭socket</span>
     socket.close();
-&#125;</code></pre></div>
+&#125;</code></pre>
 
-<h2 id="URL编程"><a href="#URL编程" class="headerlink" title="URL编程"></a>URL编程</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<h2 id="URL编程"><a href="#URL编程" class="headerlink" title="URL编程"></a>URL编程</h2><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span> </span>&#123;
         HttpURLConnection con = <span class="hljs-keyword">null</span>;
         InputStream is = <span class="hljs-keyword">null</span>;
@@ -452,7 +451,7 @@
             &#125;
 
         &#125;
-    &#125;</code></pre></div>
+    &#125;</code></pre>
             </article>
             <hr>
             <div>
@@ -478,7 +477,7 @@
                       <a href="/2020/03/15/java-10/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">反射</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </div>
@@ -487,7 +486,7 @@
                     
                       <a href="/2020/03/11/java-08/">
                         <span class="hidden-mobile">I/O流</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -504,7 +503,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -537,7 +536,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -546,7 +545,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      6.2k 字
+      7.4k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      115
+      140
        分钟
     </span>
   
@@ -213,14 +213,14 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 6, 2020 am
+                  本文最后更新于：July 7, 2020 am
                 
               </p>
             
             <article class="markdown-body">
               <h2 id="1、Java语言特点"><a href="#1、Java语言特点" class="headerlink" title="1、Java语言特点"></a>1、Java语言特点</h2><p>1、简单易学，有丰富的类库<br>2、面向对象（java最重要的特性，让程序高类聚，低耦合）<br>3、与平台无关性（jvm是java跨平台使用的根本）<br>4、安全可靠<br>5、支持多线程<a id="more"></a></p>
 <h2 id="2、面向对象与面向过程的区别"><a href="#2、面向对象与面向过程的区别" class="headerlink" title="2、面向对象与面向过程的区别"></a>2、面向对象与面向过程的区别</h2><p><strong>面向过程：</strong>是分析解决问题的步骤，通过函数将这些步骤一步一步实现，然后调用则可。性能较高，单片机，嵌入式开发等一般采用面向过程开发。</p>
-<p><strong>面向对象：</strong>是把构成问题的事物分解成各个对象，建立对象的目的也不是为了完成各个步骤，而是为了描述某个事物在解决问题的整个过程中所发生的行为。面向对象有  <strong>继承、封装、多态</strong>的特性，因此设计出的系统易维护、易复用、易拓展。但性能上与面向过程相比较低。</p>
+<p><strong>面向对象：</strong>是把构成问题的事物分解成各个对象，建立对象的目的也不是为了完成各个步骤，而是为了<strong>描述某个事物在解决问题的整个过程中所发生的行为</strong>。面向对象有  <strong>继承、封装、多态</strong>的特性，因此设计出的系统易维护、易复用、易拓展。但性能上与面向过程相比较低。</p>
 <h2 id="3、八种基本数据类型"><a href="#3、八种基本数据类型" class="headerlink" title="3、八种基本数据类型"></a>3、八种基本数据类型</h2><p><img src="/2020/07/01/interview-01/1.jpg" srcset="/img/loading.gif" alt></p>
 <p><strong>基本数据类型(primitive type)</strong><br>整型  byte(1字节)  , short (2字节), int(4字节) , long(8字节) l或L结尾<br>浮点型  float(4字节) 定义时要以f或F结尾 , double(8字节)<br>字符型  char(2字节)<br>布尔型  boolean 只能取两个值之一 ：true , false<br><em>7种基本数据类型之间的计算（不包括布尔类型）:</em><br>1.自动类型提升：<br> 容量小的数据类型变量与容量大的数据类型做运算时，运算结果自动装换为容量大的。<br> byte , char , short –&gt; int –&gt; long –&gt; float –&gt; double<br>2.强制类型转换：<br>使用强转符 () ，可能造成精度损失        </p>
 <p><strong>引用数据类型(reference type)</strong></p>
@@ -472,6 +472,93 @@ a += <span class="hljs-number">1</span>;</code></pre>
 <h2 id="23、简述程序、线程、进程的基本概念以及他们之间的关系"><a href="#23、简述程序、线程、进程的基本概念以及他们之间的关系" class="headerlink" title="23、简述程序、线程、进程的基本概念以及他们之间的关系"></a>23、简述程序、线程、进程的基本概念以及他们之间的关系</h2><p><strong>程序：</strong>为了完成某种需求而编写的一组指令的集合。是静态的。<br><strong>线程：</strong>与进程相似，是一个比进程更小的执行单位，一个进程中的多个线程共享相同发内存单元和资源，进程之间切换的开销小，因此被称为轻量级的进程。<br><strong>进程：</strong>是程序的一次执行过程，是系统运行程序的基本单位 ，是一个动态的过程。系统运行一个程序就是进程从创建，运行到消亡的过程。线程和进程最大的不同在于各进程是独立的，而各线程则不一定，因为同一进程中的线程极有可能会相互影响。从另一角度来说，进程属于操作系统的范畴，主要是同一段时间内，可以同时执行一个以上的程序，而线程则是在同一程序内几乎同时执行一个以上的程序段。</p>
 <h2 id="24、线程有哪些基本状态"><a href="#24、线程有哪些基本状态" class="headerlink" title="24、线程有哪些基本状态?"></a>24、线程有哪些基本状态?</h2><p>Java 线程在运行的生命周期中的指定时刻只可能处于下面6种不同状态的其中一个状态<img src="/2020/07/01/interview-01/1.png" srcset="/img/loading.gif" alt></p>
 <p>当线程执行wait() 方法之后，线程进入<strong>等待</strong>状态。进入等待状态的线程需要依靠其他线程的通知才能够返回到运行状态，而<strong>超时等待</strong> 状态相当于在等待状态的基础上增加了超时限制，比如通过sleep(long millis)方法或wait(long millis)方法可以将Java 线程置于超时等待状态。当超时时间到达后Java 线程将会返回到<strong>运行</strong> 状态。当线程调用同步方法时，在没有获取到锁的情况下，线程将会进入到<strong>阻塞</strong>状态。线程在执行Runnable的run()方法之后将会进入到<strong>终止</strong>状态。</p>
+<h2 id="25、Java中的IO流"><a href="#25、Java中的IO流" class="headerlink" title="25、Java中的IO流"></a>25、Java中的IO流</h2><ul>
+<li>按照流向分，可以分为输入流和输出流；</li>
+<li>按照操作单元分，可以分为字节流和字符流；</li>
+<li>按照流的角色分，可以分为节点流和处理流。</li>
+</ul>
+<p>InputStream/Reader：所有输入流的基类，前者是字节输入，后者是字符输入；<br>OutputStream/Writer：所有输出流的基类，前者是字节输出，后者是字符输出。<br><img src="/2020/07/01/interview-01/4.png" srcset="/img/loading.gif" alt></p>
+<h2 id="26、Java中的IO与NIO的区别"><a href="#26、Java中的IO与NIO的区别" class="headerlink" title="26、Java中的IO与NIO的区别"></a>26、Java中的IO与NIO的区别</h2><ol>
+<li>NIO是以<strong>块</strong>的方式处理数据，但是IO是以最基础的字节流的形式去写入和读出的。所以在效率上的话，肯定是NIO效率比IO效率会高出很多。</li>
+<li>NIO不再是和IO一样用OutputStream和InputStream 输入流的形式来进行处理数据的，但是又是基于这种流的形式，而是采用了<strong>通道</strong>和<strong>缓冲区</strong>的形式来进行处理数据的。</li>
+<li>还有一点就是NIO的通道是可以<strong>双向</strong>的，但是IO中的流只能是<strong>单向</strong>的。</li>
+<li>还有就是NIO的缓冲区（其实也就是一个字节数组）还可以进行分片，可以建立只读缓冲区、直接缓冲区和间接缓冲区，只读缓冲区很明显就是字面意思，直接缓冲区是为加快 I/O 速度，而以一种特殊的方式分配其内存的缓冲区。</li>
+<li>补充一点：NIO比传统的BIO核心区别就是，NIO采用的是<strong>多路复用</strong>的IO模型，普通的IO用的是<strong>阻塞</strong>的IO模型，两个之间的效率肯定是多路复用效率更高</li>
+</ol>
+<h2 id="27、Java中反射的作用原理"><a href="#27、Java中反射的作用原理" class="headerlink" title="27、Java中反射的作用原理"></a>27、Java中反射的作用原理</h2><p><strong>1、定义：</strong></p>
+<p>反射机制允许程序在<strong>执行期</strong>借助于Reflection API取得任何类的内部信息，并能直接操作任意对象的内部属性及方法。在java中，只要给定类的名字，就可以通过反射机制来获取类的所有信息。即动态获取运行时类。</p>
+<p><strong>2、哪里会用到反射机制？</strong></p>
+<p>加载jdbc数据库驱动就是典型的例子：</p>
+<pre><code class="hljs java">Class&lt;?&gt; driver = Class.forName(<span class="hljs-string">"com.mysql.cj.jdbc.Driver"</span>);</code></pre>
+
+<p><strong>3、反射的实现方式</strong></p>
+<p>获取Class对象的四种</p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> ClassNotFoundException </span>&#123;
+    <span class="hljs-comment">// 方式一:调用运行类属性：.class</span>
+    Class class0 = Person<span class="hljs-class">.<span class="hljs-keyword">class</span></span>;
+    System.out.println(class0);
+    <span class="hljs-comment">// 方式二：调用运行时类的对象，调用getClass()</span>
+    Person p1 = <span class="hljs-keyword">new</span> Person();
+    Class class1 = p1.getClass();
+    System.out.println(class1);
+    <span class="hljs-comment">// 方式三：调用Class的静态方法：forName(String classPath)</span>
+    Class class2 = Class.forName(<span class="hljs-string">"reflection.Person"</span>);
+    System.out.println(class2);
+    <span class="hljs-comment">// 方式四：使用类加载器：Classloader</span>
+    ClassLoader classLoader = Classloader.getSystemClassLoader();
+    Class class3 = classLoader.loadClass(<span class="hljs-string">"reflection.Person"</span>);
+    System.out.println(class3);
+&#125;</code></pre>
+
+<p><strong>4、反射中的常用API</strong></p>
+<pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test2</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
+    <span class="hljs-comment">// 通过反射创建对应的运行时类</span>
+    Class&lt;Person&gt; class1 = Person<span class="hljs-class">.<span class="hljs-keyword">class</span></span>;
+    <span class="hljs-comment">// 创建运行时类的对象</span>
+    Person p1 = class1.newInstance();
+    System.out.println(p1);
+    <span class="hljs-comment">// 获取运行时类的属性getField(String fieldName),只能获取权限为public的属性</span>
+    Field id = class1.getField(<span class="hljs-string">"id"</span>);
+    <span class="hljs-comment">// 通常使用getDeclaredField(String FieldName)获取运行时类的属性</span>
+    Field name = class1.getDeclaredField(<span class="hljs-string">"name"</span>);
+    name.setAccessible(<span class="hljs-keyword">true</span>);<span class="hljs-comment">// 表示当前属性时可访问的</span>
+    <span class="hljs-comment">// 设置属性值 set(实例对象,属性值)</span>
+    id.set(p1,<span class="hljs-number">10001</span>);
+    name.set(p1,<span class="hljs-string">"Tony"</span>);
+
+    <span class="hljs-comment">// 获取属性值</span>
+    <span class="hljs-keyword">int</span> p1_id = (<span class="hljs-keyword">int</span>) id.get(p1);
+    System.out.println(p1_id);<span class="hljs-comment">// 10001</span>
+    System.out.println(name.get(p1));<span class="hljs-comment">// Tony</span>
+    System.out.println(p1);<span class="hljs-comment">// Person&#123;id=10001, name='Tony', age=0&#125;</span>
+
+    <span class="hljs-comment">// 获取运行时类方法 getDeclaredMethod(方法名,指定方法的形参列表)</span>
+    Method setAge = class1.getDeclaredMethod(<span class="hljs-string">"setAge"</span>, <span class="hljs-keyword">int</span><span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
+    setAge.setAccessible(<span class="hljs-keyword">true</span>);<span class="hljs-comment">// 指明该方法可访问</span>
+    <span class="hljs-comment">// 执行运行时类方法 invoke(对象实例,实参列表)</span>
+    <span class="hljs-comment">// invoke()的返回值即为对应类中调用方法的返回值</span>
+    setAge.invoke(p1,<span class="hljs-number">24</span>);
+    System.out.println(p1);<span class="hljs-comment">// Person&#123;id=10001, name='Tony', age=24&#125;</span>
+
+    <span class="hljs-comment">// 获取指定构造器</span>
+    Constructor con = class1.getDeclaredConstructor(<span class="hljs-keyword">int</span><span class="hljs-class">.<span class="hljs-keyword">class</span>,<span class="hljs-title">String</span>.<span class="hljs-title">class</span>,<span class="hljs-title">int</span>.<span class="hljs-title">class</span>)</span>;
+    con.setAccessible(<span class="hljs-keyword">true</span>);
+    Person p2 = (Person) con.newInstance(<span class="hljs-number">1002</span>,<span class="hljs-string">"Taylor"</span>,<span class="hljs-number">18</span>);
+    System.out.println(p2);<span class="hljs-comment">// Person&#123;id=1002, name='Taylor', age=18&#125;</span>
+&#125;</code></pre>
+
+<p><strong>5、反射机制的优缺点</strong></p>
+<p><strong>优点：</strong></p>
+<p>1、能够运行时动态获取类的实例，提高灵活性；<br>2、与动态编译结合</p>
+<p><strong>缺点：</strong></p>
+<p>1、使用反射性能较低，需要解析字节码，将内存中的对象进行解析；<br>2、相对不安全，破环了封装性（因为反射可以获得私有属性和方法）。</p>
+<p>解决方案：<br>1、通过setAccessible(true)关闭jdk的安全检查来提升反射速度；<br>2、多次创建一个类的实例时，有缓存会快很多；<br>3、ReflactASM工具类，通过字节码生成的方式加快反射速度；</p>
+<h2 id="28、List、Set、Map的区别"><a href="#28、List、Set、Map的区别" class="headerlink" title="28、List、Set、Map的区别"></a>28、List、Set、Map的区别</h2><ul>
+<li><strong>List(对付顺序的好帮手)：</strong>List接口存储一组不唯一的（可以有多个元素引用相同的对象），有序的对象。</li>
+<li><strong>Set(注重独一无二的本质)：</strong>不允许有重复的集合，不会有多个元素引用相同的对象。</li>
+<li><strong>Map(用Key来搜索的专家)：</strong>使用键值对来存储。Key不能重复，但是可以引用相同的的对象。</li>
+</ul>
 
             </article>
             <hr>
@@ -498,7 +585,7 @@ a += <span class="hljs-number">1</span>;</code></pre>
                       <a href="/2020/07/01/dataStructure-04/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">栈</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </div>
@@ -507,7 +594,7 @@ a += <span class="hljs-number">1</span>;</code></pre>
                     
                       <a href="/2020/06/30/SpringMVC-02/">
                         <span class="hidden-mobile">SpringMVC注解式开发</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -524,7 +611,7 @@ a += <span class="hljs-number">1</span>;</code></pre>
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -557,7 +644,7 @@ a += <span class="hljs-number">1</span>;</code></pre>
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -566,7 +653,7 @@ a += <span class="hljs-number">1</span>;</code></pre>
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

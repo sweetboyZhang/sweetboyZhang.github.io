@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="sweetboyZhang">
   <meta name="keywords" content="">
-  <title>Vue - sweetboyZhang&#39;s Blog</title>
+  <title>Vue基础语法 - sweetboyZhang&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      695 字
+      902 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      17
+      23
        分钟
     </span>
   
@@ -213,7 +213,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 6, 2020 pm
+                  本文最后更新于：July 7, 2020 pm
                 
               </p>
             
@@ -224,7 +224,17 @@
 <p>ViewModel能够观察到数据发生变化，并对视图对应的内容进行更新，同时，也能够监听到视图的变化，通知数据进行改变。</p>
 <p>所以，Vue.js就是MVVM的实现者，它的核心就是实现了<strong>DOM监听</strong>和<strong>数据绑定</strong>。</p>
 <p><img src="/2020/07/06/vue-01/1.png" srcset="/img/loading.gif" alt></p>
-<h2 id="第一个vue程序"><a href="#第一个vue程序" class="headerlink" title="第一个vue程序"></a>第一个vue程序</h2><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<h2 id="第一个vue程序"><a href="#第一个vue程序" class="headerlink" title="第一个vue程序"></a>第一个vue程序</h2><p>引入vue.js</p>
+<p>1、使用cdn</p>
+<pre><code class="hljs js">&lt;!-- 开发环境版本，包含了有帮助的命令行警告 --&gt;
+&lt;script src=<span class="hljs-string">"https://cdn.jsdelivr.net/npm/vue/dist/vue.js"</span>&gt;&lt;<span class="hljs-regexp">/script&gt;</span></code></pre>
+
+<p>or</p>
+<pre><code class="hljs js">&lt;!-- 生产环境版本，优化了尺寸和速度 --&gt;
+&lt;script src=<span class="hljs-string">"https://cdn.jsdelivr.net/npm/vue@2.6.11"</span>&gt;&lt;<span class="hljs-regexp">/script&gt;</span></code></pre>
+
+<p>2、下载vue.js后，引入本地的vue.js</p>
+<pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
@@ -293,17 +303,24 @@
 
 <h2 id="列表渲染——循环"><a href="#列表渲染——循环" class="headerlink" title="列表渲染——循环"></a>列表渲染——循环</h2><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">"item in items"</span>&gt;</span>&#123;&#123;item.message&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">"item in items"</span>&gt;</span>&#123;&#123;item.message&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">ol</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">"value in arr1"</span>&gt;</span>&#123;&#123;value&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">ol</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
 <span class="actionscript">    <span class="hljs-keyword">var</span> v1 = <span class="hljs-keyword">new</span> Vue(&#123;</span>
-<span class="actionscript">        el:<span class="hljs-string">"#app"</span>,</span>
-        data:&#123;
-            items:[
-<span class="actionscript">                &#123;message: <span class="hljs-string">'javaSE'</span>&#125;,&#123;message: <span class="hljs-string">'javaWEB'</span>&#125;,&#123;message: <span class="hljs-string">'javaEE'</span>&#125;</span>
-            ]
+<span class="actionscript">        el: <span class="hljs-string">"#app"</span>,</span>
+        data: &#123;
+            items: [
+<span class="actionscript">                &#123;message: <span class="hljs-string">'javaSE'</span>&#125;, &#123;message: <span class="hljs-string">'javaWEB'</span>&#125;, &#123;message: <span class="hljs-string">'javaEE'</span>&#125;</span>
+            ],
+<span class="actionscript">            arr1: [<span class="hljs-string">"起床"</span>, <span class="hljs-string">"学习"</span>, <span class="hljs-string">"吃饭"</span>, <span class="hljs-string">"睡觉"</span>]</span>
         &#125;
     &#125;);
 <span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
@@ -313,7 +330,28 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">"(item,index) in items"</span>&gt;</span>&#123;&#123;item.message&#125;&#125;---&#123;&#123;index&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
 
-<h2 id="事件处理"><a href="#事件处理" class="headerlink" title="事件处理"></a>事件处理</h2>
+<h2 id="事件处理"><a href="#事件处理" class="headerlink" title="事件处理"></a>事件处理</h2><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">v-on:click</span>=<span class="hljs-string">"fun1"</span>&gt;</span>按钮<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
+<span class="actionscript">    <span class="hljs-keyword">var</span> v1 = <span class="hljs-keyword">new</span> Vue(&#123;</span>
+<span class="actionscript">        el:<span class="hljs-string">"#app"</span>,</span>
+        data:&#123;
+<span class="actionscript">            message: <span class="hljs-string">"这是一个响应函数"</span></span>
+        &#125;,
+<span class="actionscript">        methods:&#123;<span class="hljs-comment">// 方法定义在Vue的method对象中  v-on:函数名   绑定事件</span></span>
+<span class="actionscript">            fun1:<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>&#123;</span>
+<span class="actionscript">                alert(<span class="hljs-keyword">this</span>.message);</span>
+            &#125;
+        &#125;
+    &#125;);
+<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+
+
             </article>
             <hr>
             <div>
@@ -336,13 +374,19 @@
                   <div class="post-prev col-6">
                     
                     
+                      <a href="/2020/07/07/vue-02/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">双向数据绑定与传输</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </div>
                   <div class="post-next col-6">
                     
                     
                       <a href="/2020/07/05/SpringMVC-04/">
                         <span class="hidden-mobile">SpringMVC核心技术</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -359,7 +403,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -392,7 +436,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -401,7 +445,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -512,7 +556,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Vue&nbsp;",
+        "Vue基础语法&nbsp;",
       ],
       cursorChar: "(*＾_＾*)",
       typeSpeed: 70,
