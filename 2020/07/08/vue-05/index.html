@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="sweetboyZhang">
+  <meta name="keywords" content="">
+  <title>Vue-elementUI - sweetboyZhang&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>sweetboyZhang's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                archive
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                tag
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                about
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                links
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-07-08 10:53">
+      July 8, 2020 am
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      41
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：July 8, 2020 pm
+                
+              </p>
+            
+            <article class="markdown-body">
+              <h2 id="vue结合element组件库"><a href="#vue结合element组件库" class="headerlink" title="vue结合element组件库"></a>vue结合element组件库</h2><h3 id="1、创建工程"><a href="#1、创建工程" class="headerlink" title="1、创建工程"></a>1、创建工程</h3><p>在当前目录创建一个名为vue_hello的工程<a id="more"></a></p>
+<pre><code class="hljs shell">vue init webpack vue_hello</code></pre>
+
+<p>进入创建好的工程目录</p>
+<pre><code class="hljs shell">cd vue_hello</code></pre>
+
+<p>安装element-ui</p>
+<pre><code class="hljs shell">npm i element-ui -S</code></pre>
+
+<p>安装项目依赖</p>
+<pre><code class="hljs shell">npm install</code></pre>
+
+<p>安装SASS加载器</p>
+<pre><code class="hljs shell">cnpm install sass-loader node-sass --save-dev</code></pre>
+
+<p>启动测试</p>
+<pre><code class="hljs shell">npm run dev</code></pre>
+
+<h3 id="2、整理自动生成的项目"><a href="#2、整理自动生成的项目" class="headerlink" title="2、整理自动生成的项目"></a>2、整理自动生成的项目</h3><p>项目结构：<br><img src="/2020/07/08/vue-05/1.png" srcset="/img/loading.gif" alt></p>
+<ul>
+<li>assets：用于存放资源文件</li>
+<li>components：用于存放Vue功能组件</li>
+<li>views：用于存放Vue视图组件</li>
+<li>router：用于存放vue-router配置</li>
+</ul>
+<h3 id="3、编写各组件代码"><a href="#3、编写各组件代码" class="headerlink" title="3、编写各组件代码"></a>3、编写各组件代码</h3><p>Login.vue  根据element官网代码修改</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">el-form</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"loginForm"</span> <span class="hljs-attr">:model</span>=<span class="hljs-string">"form"</span> <span class="hljs-attr">:rules</span>=<span class="hljs-string">"rules"</span> <span class="hljs-attr">label-width</span>=<span class="hljs-string">"80px"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"login-box"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"login-title"</span>&gt;</span>欢迎登录<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">el-form-item</span> <span class="hljs-attr">label</span>=<span class="hljs-string">"账号"</span> <span class="hljs-attr">prop</span>=<span class="hljs-string">"username"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">el-input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"请输入账号"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"form.username"</span>/&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">el-form-item</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">el-form-item</span> <span class="hljs-attr">label</span>=<span class="hljs-string">"密码"</span> <span class="hljs-attr">prop</span>=<span class="hljs-string">"password"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">el-input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"请输入密码"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"form.password"</span>/&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">el-form-item</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">el-form-item</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">el-button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"primary"</span> <span class="hljs-attr">v-on:click</span>=<span class="hljs-string">"onSubmit('loginForm')"</span>&gt;</span>登录<span class="hljs-tag">&lt;/<span class="hljs-name">el-button</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">el-form-item</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">el-form</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">el-dialog</span> <span class="hljs-attr">title</span>=<span class="hljs-string">"温馨提示"</span> <span class="hljs-attr">:visible.sync</span>=<span class="hljs-string">"dialogVisible"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"30%"</span> &gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>请输入账号和密码<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"footer"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"dialog-footer"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">el-button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"primary"</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"dialogVisible = false"</span>&gt;</span>确定<span class="hljs-tag">&lt;/<span class="hljs-name">el-button</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">el-dialog</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
+<span class="javascript">  <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span>
+<span class="actionscript">    name: <span class="hljs-string">"Login"</span>,</span>
+    data()&#123;
+<span class="actionscript">      <span class="hljs-keyword">return</span>&#123;</span>
+        form:&#123;
+<span class="actionscript">          username:<span class="hljs-string">''</span>,</span>
+<span class="actionscript">          password:<span class="hljs-string">''</span></span>
+        &#125;,
+<span class="actionscript">        <span class="hljs-comment">//表单验证，需要在 el-form-item 元素中增加prop属性</span></span>
+        rules:&#123;
+          username:[
+<span class="actionscript">            &#123;required:<span class="hljs-literal">true</span>,message:<span class="hljs-string">"账号不可为空"</span>,trigger:<span class="hljs-string">"blur"</span>&#125;</span>
+          ],
+          password:[
+<span class="actionscript">            &#123;required:<span class="hljs-literal">true</span>,message:<span class="hljs-string">"密码不可为空"</span>,trigger:<span class="hljs-string">"blur"</span>&#125;</span>
+          ]
+        &#125;,
+<span class="actionscript">        <span class="hljs-comment">//对话框显示和隐藏</span></span>
+<span class="actionscript">        dialogVisible:<span class="hljs-literal">false</span></span>
+      &#125;
+    &#125;,
+    methods:&#123;
+      onSubmit(formName)&#123;
+<span class="actionscript">        <span class="hljs-comment">//为表单绑定验证功能</span></span>
+<span class="javascript">        <span class="hljs-keyword">this</span>.$refs[formName].validate(<span class="hljs-function">(<span class="hljs-params">valid</span>)=&gt;</span>&#123;</span>
+          if(valid)&#123;
+<span class="actionscript">            <span class="hljs-comment">//使用vue-router路由到指定界面，该方式称为编程式导航</span></span>
+<span class="actionscript">            <span class="hljs-keyword">this</span>.$router.push(<span class="hljs-string">'/main'</span>);</span>
+<span class="actionscript">          &#125;<span class="hljs-keyword">else</span>&#123;</span>
+<span class="actionscript">            <span class="hljs-keyword">this</span>.dialogVisible=<span class="hljs-literal">true</span>;</span>
+<span class="actionscript">            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;</span>
+          &#125;
+        &#125;);
+      &#125;
+    &#125;
+  &#125;
+<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"scss"</span> <span class="hljs-attr">scoped</span>&gt;</span>
+<span class="css">  <span class="hljs-selector-class">.login-box</span>&#123;</span>
+<span class="css">    <span class="hljs-selector-tag">border</span><span class="hljs-selector-pseudo">:1px</span> <span class="hljs-selector-tag">solid</span> <span class="hljs-selector-id">#DCDFE6</span>;</span>
+    width: 350px;
+<span class="css">    <span class="hljs-selector-tag">margin</span><span class="hljs-selector-pseudo">:180px</span> <span class="hljs-selector-tag">auto</span>;</span>
+    padding: 35px 35px 15px 35px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+<span class="css">    <span class="hljs-selector-tag">box-shadow</span>: 0 0 25<span class="hljs-selector-tag">px</span> <span class="hljs-selector-id">#909399</span>;</span>
+  &#125;
+<span class="css">  <span class="hljs-selector-class">.login-title</span>&#123;</span>
+<span class="css">    <span class="hljs-selector-tag">text-align</span><span class="hljs-selector-pseudo">:center</span>;</span>
+    margin: 0 auto 40px auto;
+<span class="css">    <span class="hljs-selector-tag">color</span>: <span class="hljs-selector-id">#303133</span>;</span>
+  &#125;
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span></code></pre>
+
+<p>main.vue</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>首页<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
+<span class="javascript">    <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span>
+<span class="actionscript">        name: <span class="hljs-string">"Main"</span></span>
+    &#125;
+<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+
+<p>路由配置index.js</p>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>;
+<span class="hljs-keyword">import</span> Router <span class="hljs-keyword">from</span> <span class="hljs-string">'vue-router'</span>;
+
+<span class="hljs-keyword">import</span> Main <span class="hljs-keyword">from</span> <span class="hljs-string">"../views/Main"</span>;
+<span class="hljs-keyword">import</span> Login <span class="hljs-keyword">from</span> <span class="hljs-string">"../views/Login"</span>;
+
+Vue.use(Router);
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> Router(&#123;
+  routes: [&#123;
+    path: <span class="hljs-string">'/login'</span>,
+    component: Login
+  &#125;, &#123;
+    path: <span class="hljs-string">'/main'</span>,
+    component: Main
+  &#125;]
+&#125;);</code></pre>
+
+<p>在main.js中引入element-ui和router</p>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>;
+<span class="hljs-keyword">import</span> App <span class="hljs-keyword">from</span> <span class="hljs-string">'./App'</span>;
+
+<span class="hljs-keyword">import</span> router <span class="hljs-keyword">from</span> <span class="hljs-string">'./router'</span>;
+<span class="hljs-keyword">import</span> Element <span class="hljs-keyword">from</span> <span class="hljs-string">'element-ui'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'element-ui/lib/theme-chalk/index.css'</span>;
+
+Vue.config.productionTip = <span class="hljs-literal">false</span>
+
+Vue.use(router);
+Vue.use(Element);
+
+<span class="hljs-keyword">new</span> Vue(&#123;
+  el: <span class="hljs-string">'#app'</span>,
+  router,
+  render: <span class="hljs-function"><span class="hljs-params">h</span> =&gt;</span> h(App)
+&#125;)</code></pre>
+
+<p>默认组件App.vue</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">router-link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">"/login"</span>&gt;</span>登录<span class="hljs-tag">&lt;/<span class="hljs-name">router-link</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">router-view</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">router-view</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
+<span class="javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span>
+<span class="actionscript">  name: <span class="hljs-string">'App'</span>,</span>
+&#125;
+<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+
+<p>在package.json中修改sass-loader版本后，重新<code>npm install</code>，然后启动项目</p>
+<pre><code class="hljs json">"sass-loader": "^7.3.1",</code></pre>
+
+<h3 id="4、最终效果："><a href="#4、最终效果：" class="headerlink" title="4、最终效果："></a>4、最终效果：</h3><img src="/2020/07/08/vue-05/1.gif" srcset="/img/loading.gif" style="zoom:70%;">
+
+<h2 id="嵌套路由"><a href="#嵌套路由" class="headerlink" title="嵌套路由"></a>嵌套路由</h2><p>main.vue</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">el-container</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"height: 500px; border: 1px solid #eee"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">el-aside</span>  &gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">el-menu</span> <span class="hljs-attr">:default-openeds</span>=<span class="hljs-string">"['1', '3']"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">el-submenu</span> <span class="hljs-attr">index</span>=<span class="hljs-string">"1"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">template</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"title"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"el-icon-message"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span>用户管理
+          <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">el-menu-item-group</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">el-menu-item</span> <span class="hljs-attr">index</span>=<span class="hljs-string">"1-1"</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">router-link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">"/user/profile"</span>&gt;</span>个人信息<span class="hljs-tag">&lt;/<span class="hljs-name">router-link</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">el-menu-item</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">el-menu-item</span> <span class="hljs-attr">index</span>=<span class="hljs-string">"1-2"</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">router-link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">"/user/list"</span>&gt;</span>用户列表<span class="hljs-tag">&lt;/<span class="hljs-name">router-link</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">el-menu-item</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">el-menu-item-group</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">el-submenu</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">el-submenu</span> <span class="hljs-attr">index</span>=<span class="hljs-string">"2"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">template</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"title"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"el-icon-menu"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span>内容管理
+          <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">el-menu-item-group</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">el-menu-item</span> <span class="hljs-attr">index</span>=<span class="hljs-string">"2-1"</span>&gt;</span>分类管理<span class="hljs-tag">&lt;/<span class="hljs-name">el-menu-item</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">el-menu-item</span> <span class="hljs-attr">index</span>=<span class="hljs-string">"2-2"</span>&gt;</span>内容列表<span class="hljs-tag">&lt;/<span class="hljs-name">el-menu-item</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">el-menu-item-group</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">el-submenu</span>&gt;</span>
+
+      <span class="hljs-tag">&lt;/<span class="hljs-name">el-menu</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">el-aside</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">el-container</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">el-header</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"text-align: right; font-size: 12px"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">el-dropdown</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"el-icon-setting"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"margin-right: 15px"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">el-dropdown-menu</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"dropdown"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">el-dropdown-item</span>&gt;</span>个人信息<span class="hljs-tag">&lt;/<span class="hljs-name">el-dropdown-item</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">el-dropdown-item</span>&gt;</span>退出登录<span class="hljs-tag">&lt;/<span class="hljs-name">el-dropdown-item</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">el-dropdown-menu</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">el-dropdown</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">el-header</span>&gt;</span>
+
+      <span class="hljs-tag">&lt;<span class="hljs-name">el-main</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">router-view</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">router-view</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">el-main</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">el-container</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">el-container</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
+<span class="javascript">  <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span>
+<span class="actionscript">      name: <span class="hljs-string">'Main'</span></span>
+  &#125;;
+<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span>
+<span class="css">  <span class="hljs-selector-class">.el-header</span> &#123;</span>
+<span class="css">    <span class="hljs-selector-tag">background-color</span>: <span class="hljs-selector-id">#5cecef</span>;</span>
+    line-height: 60px;
+  &#125;
+
+<span class="css">  <span class="hljs-selector-class">.el-aside</span> &#123;</span>
+<span class="css">    <span class="hljs-selector-tag">width</span><span class="hljs-selector-pseudo">:200px</span>;</span>
+<span class="css">    <span class="hljs-selector-tag">background-color</span>: <span class="hljs-selector-id">#5cecef</span>;</span>
+  &#125;
+<span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span></code></pre>
+
+<p>添加两个组件：<br><img src="/2020/07/08/vue-05/2.png" srcset="/img/loading.gif" alt></p>
+<p>index.js</p>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>;
+<span class="hljs-keyword">import</span> Router <span class="hljs-keyword">from</span> <span class="hljs-string">'vue-router'</span>;
+
+<span class="hljs-keyword">import</span> Main <span class="hljs-keyword">from</span> <span class="hljs-string">"../views/Main"</span>;
+<span class="hljs-keyword">import</span> Login <span class="hljs-keyword">from</span> <span class="hljs-string">"../views/Login"</span>;
+<span class="hljs-keyword">import</span> Profile <span class="hljs-keyword">from</span> <span class="hljs-string">"../views/user/Profile"</span>;
+<span class="hljs-keyword">import</span> List <span class="hljs-keyword">from</span> <span class="hljs-string">"../views/user/List"</span>;
+
+Vue.use(Router);
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> Router(&#123;
+  routes: [&#123;
+    path: <span class="hljs-string">'/login'</span>, <span class="hljs-attr">component</span>: Login
+  &#125;, &#123;
+    path: <span class="hljs-string">'/main'</span>, <span class="hljs-attr">component</span>: Main,
+    children:[<span class="hljs-comment">// 嵌套路由</span>
+      &#123;<span class="hljs-attr">path</span>: <span class="hljs-string">'/user/profile'</span>,<span class="hljs-attr">component</span>: Profile&#125;,
+      &#123;<span class="hljs-attr">path</span>: <span class="hljs-string">'/user/list'</span>,<span class="hljs-attr">component</span>: List&#125;
+    ]
+  &#125;]
+&#125;);</code></pre>
+
+<p>效果：<br><img src="/2020/07/08/vue-05/2.gif" srcset="/img/loading.gif" style="zoom:80%;"></p>
+<h2 id="传递参数"><a href="#传递参数" class="headerlink" title="传递参数"></a>传递参数</h2><p>方式一：使用route</p>
+<pre><code class="hljs html"><span class="hljs-comment">&lt;!-- name:组件名/组件地址  params:传递参数 需要对象 v-bind--&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-name">router-link</span> <span class="hljs-attr">:to</span>=<span class="hljs-string">"&#123;name:Profile,params:&#123;id: 1&#125;&#125;"</span>&gt;</span>个人信息<span class="hljs-tag">&lt;/<span class="hljs-name">router-link</span>&gt;</span></code></pre>
+
+<p>接收参数：</p>
+<pre><code class="hljs html"><span class="hljs-comment">&lt;!--所有元素不能在根节点下--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>个人信息<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    &#123;&#123;$route.params.id&#125;&#125;
+ <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+
+<p>方式二：使用props</p>
+<p>配置路由时，设置props为true</p>
+<pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> Router(&#123;
+  routes: [&#123;
+    path: <span class="hljs-string">'/login'</span>, <span class="hljs-attr">component</span>: Login
+  &#125;, &#123;
+    path: <span class="hljs-string">'/main'</span>, <span class="hljs-attr">component</span>: Main,
+    children:[<span class="hljs-comment">// 嵌套路由</span>
+      &#123;<span class="hljs-attr">path</span>: <span class="hljs-string">"/user/profile/:id"</span>,<span class="hljs-attr">name</span>:<span class="hljs-string">"Profile"</span>, <span class="hljs-attr">component</span>: Profile&#125;,
+      &#123;<span class="hljs-attr">path</span>: <span class="hljs-string">"/user/list/:id"</span>, <span class="hljs-attr">name</span>:<span class="hljs-string">"List"</span>,<span class="hljs-attr">component</span>: List,<span class="hljs-attr">props</span>: <span class="hljs-literal">true</span>&#125;
+    ]
+  &#125;]
+&#125;);</code></pre>
+
+<p>接收数据</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>用户列表<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    &#123;&#123;id&#125;&#125;
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></code></pre>
+
+<h2 id="路由模式与404"><a href="#路由模式与404" class="headerlink" title="路由模式与404"></a>路由模式与404</h2><p>路由模式有两种：</p>
+<ul>
+<li>hash：路径带#符号（默认）</li>
+<li>history：路径不带#符号</li>
+</ul>
+<p>在配置路由时设置路由模式：<code>mode: &quot;history&quot;；</code></p>
+<p><strong>404</strong></p>
+<p>在路由配置文件中引入404的组件后，添加一个路由：<br><code>{path: &quot;*&quot;,component: NotFound}]</code></p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/vue/">vue</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/07/08/vue-04/">
+                        <span class="hidden-mobile">Vue-Cli、webpack、vue-Router</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-md">
+    <div class="container custom post-content mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Vue-elementUI&nbsp;",
+      ],
+      cursorChar: "(*＾_＾*)",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
