@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      21
+      16
        分钟
     </span>
   
@@ -213,7 +213,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：June 28, 2020 am
+                  本文最后更新于：July 9, 2020 pm
                 
               </p>
             
@@ -222,20 +222,20 @@
 <h2 id="Maven核心概念"><a href="#Maven核心概念" class="headerlink" title="Maven核心概念"></a>Maven核心概念</h2><p>1、POM：一个文件pom.xml，项目对象模型，把一个项目当作一个模型来使用。控制maven构建项目的过程，管理jar依赖。<br>2、约定的目录结构：maven项目的目录和文件的位置都是规定的。<br>3、坐标：是一个唯一的字符串，用来表示资源。<br>4、依赖管理：管理项目中的jar包<br>5、仓库管理：资源存放的位置<br>6、生命周期：maven构建项目的过程<br>7、插件和目标：执行maven构建的时候用的 工具<br>8、继承<br>9、聚合</p>
 <h2 id="Maven安装"><a href="#Maven安装" class="headerlink" title="Maven安装"></a>Maven安装</h2><p>1、下载解压<br>2、配置环境变量<br>MAVEN_HOME=d:/apache-maven-3.3.9<br>path=%MAVEN_HOME%/bin;<br>3、验证是否安装成功<br>mvn -v<br><img src="/2020/06/01/Maven/1.jpg" srcset="/img/loading.gif" alt></p>
 <h2 id="Maven工程约定的目录结构"><a href="#Maven工程约定的目录结构" class="headerlink" title="Maven工程约定的目录结构"></a>Maven工程约定的目录结构</h2><p><img src="/2020/06/01/Maven/2.jpg" srcset="/img/loading.gif" alt></p>
-<h2 id="仓库"><a href="#仓库" class="headerlink" title="仓库"></a>仓库</h2><p>存放maven使用的jar包和我们项目使用的jar包<br>仓库的分类：<br>本地仓库：个人计算机上的一个文件夹，存放jar包<br>远程仓库：在互联网上使用网络才能使用的仓库。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1、中央仓库：最权威的，所有开发人员都共享使用的一个集中仓库<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2、中央仓库的镜像：就是中央仓库的备份，分布在各大肘，重要城市。减轻中央仓库的压力<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3、私人服务器：在公司内部，局域网中使用，不对外使用<br>仓库的使用：<br>maven仓库的使用不需要认为参与<br>maven首先查本地仓库—&gt;私服—&gt;镜像—&gt;中央仓库</p>
+<h2 id="仓库"><a href="#仓库" class="headerlink" title="仓库"></a>仓库</h2><p>存放maven使用的jar包和我们项目使用的jar包<br>仓库的分类：<br>本地仓库：个人计算机上的一个文件夹，存放jar包<br>远程仓库：在互联网上使用网络才能使用的仓库。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1、中央仓库：最权威的，所有开发人员都共享使用的一个集中仓库<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2、中央仓库的镜像：就是中央仓库的备份，分布在各大州，重要城市。减轻中央仓库的压力<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3、私人服务器：在公司内部，局域网中使用，不对外使用<br>仓库的使用：<br>maven仓库的使用不需要认为参与<br>maven首先查本地仓库—&gt;私服—&gt;镜像—&gt;中央仓库</p>
 <h2 id="POM文件"><a href="#POM文件" class="headerlink" title="POM文件"></a>POM文件</h2><p>项目对象模型，Maven 把一个项目的结构和内容抽象成一个模型，在xml 文件中进行声明，以方便进行构建和描述，pom.xml 是Maven 的灵魂。<br>1、坐标，唯一值，在互联网中唯一标识一个项目</p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.maven<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><span class="hljs-comment">&lt;!-- 公司域名的倒写--&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.maven<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><span class="hljs-comment">&lt;!-- 公司域名的倒写--&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>ch01-maven<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span> <span class="hljs-comment">&lt;!-- 自定义项目的名称--&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span> <span class="hljs-comment">&lt;!-- 自定义版本号--&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span> <span class="hljs-comment">&lt;!-- 自定义版本号--&gt;</span></code></pre>
 
 <p>2、packaging：打包后压缩文件的扩展名，默认为jar，web应用是war<br>3、依赖dependencies和dependency，相当于java中的import</p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>mysql<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mysql-connector-java<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>8.0.13<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span></code></pre>
 
 <p>4、设置属性properties<br>5、build：与构建相关的配置信息</p>
 <h2 id="IDEA集成Maven"><a href="#IDEA集成Maven" class="headerlink" title="IDEA集成Maven"></a>IDEA集成Maven</h2><p><img src="/2020/06/01/Maven/3.jpg" srcset="/img/loading.gif" alt></p>
@@ -246,7 +246,7 @@
 <h2 id="创建Maven版的web项目"><a href="#创建Maven版的web项目" class="headerlink" title="创建Maven版的web项目"></a>创建Maven版的web项目</h2><p><img src="/2020/06/01/Maven/8.jpg" srcset="/img/loading.gif" alt></p>
 <p>项目结构：<br><img src="/2020/06/01/Maven/9.jpg" srcset="/img/loading.gif" alt></p>
 <p>添加依赖：</p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>javax.servlet<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>javax.servlet-api<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.1.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
@@ -257,7 +257,7 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jsp-api<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>provided<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
 
 <p>创建一个Servlet程序<br><img src="/2020/06/01/Maven/10.jpg" srcset="/img/loading.gif" alt></p>
 <p>再运行环境中添加Tomcat服务器：<br><img src="/2020/06/01/Maven/11.jpg" srcset="/img/loading.gif" alt></p>

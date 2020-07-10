@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      56
+      42
        分钟
     </span>
   
@@ -213,12 +213,12 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 3, 2020 am
+                  本文最后更新于：July 9, 2020 am
                 
               </p>
             
             <article class="markdown-body">
-              <h1 id="变量的使用"><a href="#变量的使用" class="headerlink" title="变量的使用"></a>变量的使用</h1><p>1.变量必须先声明后使用。<br>        2.变量都定义在其作用域内，在作用域内有效，出了作用域就失效了。<br>        3.同一个作用域内不能声明两个同名变量。</p>
+              <h1 id="变量的使用"><a href="#变量的使用" class="headerlink" title="变量的使用"></a>变量的使用</h1><p>1.变量必须先声明后使用。<br>2.变量都定义在其作用域内，在作用域内有效，出了作用域就失效了。<br>3.同一个作用域内不能声明两个同名变量。</p>
 <a id="more"></a>
 
 <h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p><img src="/2020/01/09/java-01/1.jpg" srcset="/img/loading.gif" alt></p>
@@ -227,7 +227,7 @@
 <h1 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h1><p><strong>顺序结构</strong><br>        <strong>分支结构</strong><br>        <strong>循环结构</strong><br>        break :  结束当前循环<br>        continue :  结束当次循环</p>
 <h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><p><strong>数组的特点:</strong><br>            1.数组是有序排列的<br>            2.数组属于引用数据类型的变量。数组的元素，既可以是基本数据类型，也可以是引用数据类型的变量<br>            3.创建数组对象时会在内存中开辟一整块连续的内存空间<br>            4.数组的长度一旦确定就不能修改 </p>
 <p><strong>一维数组的使用:</strong></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArrayTest</span> </span>&#123;
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArrayTest</span> </span>&#123;
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
 	<span class="hljs-keyword">int</span> [] nums;<span class="hljs-comment">// 声明</span>
 	<span class="hljs-comment">// 静态初始化:数组的初始化和数组元素的初始化同时进行</span>
@@ -248,13 +248,13 @@
 		System.out.println(nums[i]);
 		&#125;
 	&#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p><strong>一维数组元素的默认初始值</strong><br><em>基本数据类型：</em><br>整形：0<br>浮点型：0.0<br> char型：0（ASCII码值） 而非’0’<br> boolean型：false<br> _引用数据类型：_null</p>
 <p><strong>一维数组的内存解析:</strong></p>
 <p>在栈空间中申请一个变量用来存储堆空间中数组的首地址值<br>        在堆空间中申请一个数组用来存放数组元素</p>
 <p><strong>多维数组的使用：</strong></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArrayTest1</span> </span>&#123;
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArrayTest1</span> </span>&#123;
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
 		<span class="hljs-comment">// 静态初始化</span>
 		<span class="hljs-keyword">int</span>[][] arr =  <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span> [][] &#123;&#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>&#125;,&#123;<span class="hljs-number">4</span>,<span class="hljs-number">5</span>&#125;,&#123;<span class="hljs-number">6</span>&#125;&#125;;
@@ -279,12 +279,12 @@
 			System.out.println();
 		&#125;
 		&#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p><strong>二维数组元素的默认初始值:</strong><br>针对初始化方式一：<code>String [][] arr1 = new String[3][2];</code><br>外层元素的初始化值为：地址值<br>内层元素的初始化值为：与一维数组的初始化情况相同<br>针对初始化方式二：<code>String [][] arr1 = new String[3][];</code><br>外层元素的初始化值为：null<br>内层元素的初始化值为：<font color="red">不能调用，否则报错 </font></p>
 <p><strong>二位数组的内存解析:</strong><br>在栈空间中申请一个变量用来存储堆空间中数组的首地址值<br>在堆空间中申请一个数组用来存放二维数组的外层元素，外层元素中存放着指向存储内层元素数组的首地址<br>在堆空间中申请一个数组用来存储内层元<br><img src="/2020/01/09/java-01/Array_02.png" srcset="/img/loading.gif" alt></p>
 <h2 id="数组中涉及的常见算法"><a href="#数组中涉及的常见算法" class="headerlink" title="数组中涉及的常见算法"></a>数组中涉及的常见算法</h2><p><strong>数组元素的赋值</strong></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<pre><code class="hljs java"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@Description</span> 打印10行杨辉三角</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@author</span> sweetboyZhang</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@date</span> 2020年1月13日上午11:26:21</span>
@@ -313,10 +313,10 @@
 			System.out.println();
 		&#125;
 	&#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p><strong>求数值型数组中元素的最大值、最小值、平均数、总和等</strong></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<pre><code class="hljs java"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@Description</span> 定义一个int型的一维数组，包含10个元素，分别赋一些随机整数，</span>
 <span class="hljs-comment">然后求出所有元素的最大值，最小值，和值，平均值，并输出出来。</span>
 <span class="hljs-comment">要求：所有随机数都是两位数。</span>
@@ -349,25 +349,25 @@
 		System.out.println(<span class="hljs-string">"和值："</span> + sum);
 		System.out.println(<span class="hljs-string">"平均值："</span> + average);
 	&#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p><strong><font color="red">赋值与复制</font></strong></p>
 <p>赋值：<code>array2 = array1;// array1指向堆空间的地址赋给array2,不能称为数组的复制</code><br>            对array2修改就是对array1进行修改<br>        复制：<code>for(int i = 0;i &lt; array2.length;i++) {
             array2[i] = array1[i];
         }</code><br>            对array2修改不会影响到array1</p>
 <p><strong>数组的反转</strong></p>
-<div class="hljs"><pre><code class="hljs java">String[] array1 = <span class="hljs-keyword">new</span> String[] &#123;<span class="hljs-string">"Tom"</span>,<span class="hljs-string">"Taylor"</span>,<span class="hljs-string">"Justin"</span>,<span class="hljs-string">"Troye"</span>,<span class="hljs-string">"Swift"</span>&#125;;
+<pre><code class="hljs java">String[] array1 = <span class="hljs-keyword">new</span> String[] &#123;<span class="hljs-string">"Tom"</span>,<span class="hljs-string">"Taylor"</span>,<span class="hljs-string">"Justin"</span>,<span class="hljs-string">"Troye"</span>,<span class="hljs-string">"Swift"</span>&#125;;
 <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; array1.length/<span class="hljs-number">2</span>;i++) &#123;
 			String temp = array1[i];
 			array1[i] = array1[array1.length-<span class="hljs-number">1</span>-i];
 			array1[array1.length-<span class="hljs-number">1</span>-i] = temp;
-		&#125;</code></pre></div>
+		&#125;</code></pre>
 
 <p><strong>查找</strong></p>
 <ol>
 <li>线性查找</li>
 </ol>
-<div class="hljs"><pre><code class="hljs java">String[] array1 = <span class="hljs-keyword">new</span> String[] &#123;<span class="hljs-string">"Tom"</span>,<span class="hljs-string">"Taylor"</span>,<span class="hljs-string">"Justin"</span>,<span class="hljs-string">"Troye"</span>,<span class="hljs-string">"Swift"</span>&#125;;
+<pre><code class="hljs java">String[] array1 = <span class="hljs-keyword">new</span> String[] &#123;<span class="hljs-string">"Tom"</span>,<span class="hljs-string">"Taylor"</span>,<span class="hljs-string">"Justin"</span>,<span class="hljs-string">"Troye"</span>,<span class="hljs-string">"Swift"</span>&#125;;
 String dest = <span class="hljs-string">"Justin"</span>;
 		<span class="hljs-keyword">boolean</span> isFlag = <span class="hljs-keyword">true</span>;
 		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; array1.length;i++) &#123;
@@ -379,12 +379,12 @@ String dest = <span class="hljs-string">"Justin"</span>;
 		&#125;
 		<span class="hljs-keyword">if</span>(isFlag) &#123;
 			System.out.println(<span class="hljs-string">"没有找到！"</span>);	
-		&#125;</code></pre></div>
+		&#125;</code></pre>
 
 <ol start="2">
 <li>二分查找</li>
 </ol>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">int</span> [] array3 = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span> [] &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>,<span class="hljs-number">10</span>&#125;;
+<pre><code class="hljs java"><span class="hljs-keyword">int</span> [] array3 = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span> [] &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>,<span class="hljs-number">10</span>&#125;;
 		<span class="hljs-keyword">int</span> number = <span class="hljs-number">6</span>;
 		<span class="hljs-keyword">int</span> head = array3[<span class="hljs-number">0</span>];<span class="hljs-comment">// 初始的首索引</span>
 		<span class="hljs-keyword">int</span> end = array3[array3.length -<span class="hljs-number">1</span>];<span class="hljs-comment">// 初始的尾索引</span>
@@ -405,7 +405,7 @@ String dest = <span class="hljs-string">"Justin"</span>;
 		&#125;   
 		<span class="hljs-keyword">if</span>(isFlag1) &#123;
 			System.out.println(<span class="hljs-string">"没有找到该元素！"</span>);
-		&#125;</code></pre></div>
+		&#125;</code></pre>
 
 <p><strong>排序</strong></p>
 <p><strong>冒泡排序</strong></p>
@@ -416,7 +416,7 @@ String dest = <span class="hljs-string">"Justin"</span>;
 <li>针对所有的元素重复以上的步骤，除了最后一个。</li>
 <li>持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要<br>比较为止。</li>
 </ol>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">int</span> [] array = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[] &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">8</span>,<span class="hljs-number">4</span>,<span class="hljs-number">6</span>,<span class="hljs-number">8</span>,<span class="hljs-number">6</span>,<span class="hljs-number">5</span>,<span class="hljs-number">3</span>,<span class="hljs-number">33</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>&#125;;
+<pre><code class="hljs java"><span class="hljs-keyword">int</span> [] array = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[] &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">8</span>,<span class="hljs-number">4</span>,<span class="hljs-number">6</span>,<span class="hljs-number">8</span>,<span class="hljs-number">6</span>,<span class="hljs-number">5</span>,<span class="hljs-number">3</span>,<span class="hljs-number">33</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>&#125;;
 		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; array.length-<span class="hljs-number">1</span>;i++) &#123;
 			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>;j &lt; array.length-<span class="hljs-number">1</span>-i;j++) &#123;
 				<span class="hljs-keyword">if</span>(array[j]&gt;array[j+<span class="hljs-number">1</span>]) &#123;
@@ -428,7 +428,7 @@ String dest = <span class="hljs-string">"Justin"</span>;
 		&#125;	
 		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; array.length;i++) &#123;
 			System.out.print(array[i] + <span class="hljs-string">" "</span>);
-		&#125;</code></pre></div>
+		&#125;</code></pre>
 
 <p><strong>快速排序</strong></p>
 <p>排序思想：</p>
@@ -440,7 +440,7 @@ String dest = <span class="hljs-string">"Justin"</span>;
 </ol>
 <p><strong>Arrays工具类</strong></p>
 <p>java.util.Arrays ：操作数组的工具类，定义了许多操作数组的方法</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
     <span class="hljs-keyword">int</span>[] arr1 = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[] &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>&#125;;
 	<span class="hljs-keyword">int</span>[] arr2 = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[] &#123;<span class="hljs-number">5</span>,<span class="hljs-number">4</span>,<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>&#125;;
 	<span class="hljs-comment">// 1.boolean equals(int[] a,int[] b) 判断两个数组是否相等。</span>
@@ -467,7 +467,7 @@ String dest = <span class="hljs-string">"Justin"</span>;
 		<span class="hljs-keyword">else</span> &#123;
 			System.out.println(<span class="hljs-string">"未找到该元素！"</span>);
 		&#125;
-	&#125;</code></pre></div>
+	&#125;</code></pre>
 
 <p><strong>数组使用的常见异常</strong></p>
 <p>1.数组脚标越界异常<br>    ArrayIndexOutOfBoundsException：访问到了数组中的不存在的脚标时发生。<br>    合理范围：[0,array.length-1]</p>
