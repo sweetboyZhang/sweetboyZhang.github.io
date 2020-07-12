@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      750 字
+      919 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      11
+      13
        分钟
     </span>
   
@@ -213,7 +213,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 10, 2020 pm
+                  本文最后更新于：July 11, 2020 pm
                 
               </p>
             
@@ -233,7 +233,7 @@
     &#125;
 &#125;</code></pre>
 
-<p>整个过程非常的简单，无需像Spring那样进行过多的配置，只需编写处理业务逻辑的代码，即向前端提供接口。</p>
+<p>整个过程非常的简单，无需像SpringMVC那样进行过多的配置，只需编写处理业务逻辑的代码，即向前端提供接口。</p>
 <p>当然，这都源自springboot的自动装配原理。我们所编写的一个个controller不过是一个个组件，springboot已经帮我们装配好了。</p>
 <p><strong>在application.properties中可以修改项目的端口号</strong></p>
 <pre><code class="hljs properties"><span class="hljs-comment"># 更改项目端口号</span>
@@ -281,6 +281,13 @@
 </li>
 </ol>
 <p>1、推断应用的类型是普通的项目还是Web项目<br>2、查找并加载所有可用初始化器 ， 设置到initializers属性中<br>3、找出所有的应用程序监听器，设置到listeners属性中<br>4、推断并设置main方法的定义类，找到运行的主类</p>
+<p><strong>总结：</strong></p>
+<p>1、SpringBoot启动会加载大量的自动配置类</p>
+<p>2、我们看我们需要的功能有没有在SpringBoot默认写好的自动配置类当中；</p>
+<p>3、我们再来看这个自动配置类中到底配置了哪些组件；（只要我们要用的组件存在在其中，我们就不需要再手动配置了）</p>
+<p>4、给容器中自动配置类添加组件的时候，会从properties类中获取某些属性。我们只需要在配置文件中指定这些属性的值即可；</p>
+<p><strong>xxxxAutoConfigurartion：自动配置类；</strong>给容器中添加组件</p>
+<p><strong>xxxxProperties:封装配置文件中相关属性；</strong></p>
 
             </article>
             <hr>
@@ -307,7 +314,7 @@
                       <a href="/2020/07/10/springboot-02/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Springboot配置</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </div>
@@ -316,7 +323,7 @@
                     
                       <a href="/2020/07/08/vue-05/">
                         <span class="hidden-mobile">Vue-elementUI</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -333,7 +340,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -366,7 +373,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -375,7 +382,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

@@ -213,7 +213,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 6, 2020 pm
+                  本文最后更新于：July 12, 2020 pm
                 
               </p>
             
@@ -264,7 +264,9 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/*<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">filter-mapping</span>&gt;</span></code></pre>
 
-<h3 id="3、-RequestParam校正请求参数"><a href="#3、-RequestParam校正请求参数" class="headerlink" title="3、@RequestParam校正请求参数"></a>3、@RequestParam校正请求参数</h3><p>若请求URL 所携带的参数名称与处理方法中指定的参数名不相同时，则需在处理方法参数前，添加一个注解@RequestParam(“请求参数名”)，指定请求URL 所携带参数的名称。<br><img src="/2020/06/30/SpringMVC-02/1.png" srcset="/img/loading.gif" alt>)<img src="/2020/06/30/SpringMVC-02/2.png" srcset="/img/loading.gif" alt></p>
+<h3 id="3、-RequestParam校正请求参数"><a href="#3、-RequestParam校正请求参数" class="headerlink" title="3、@RequestParam校正请求参数"></a>3、@RequestParam校正请求参数</h3><p>若请求URL 所携带的参数名称与处理方法中指定的参数名不相同时，则需在处理方法参数前，添加一个注解@RequestParam(“请求参数名”)，指定请求URL 所携带参数的名称。</p>
+<p><img src="/2020/06/30/SpringMVC-02/1.png" srcset="/img/loading.gif" alt> </p>
+<p><img src="/2020/06/30/SpringMVC-02/2.png" srcset="/img/loading.gif" alt></p>
 <h3 id="4、对象参数接收"><a href="#4、对象参数接收" class="headerlink" title="4、对象参数接收"></a>4、对象参数接收</h3><p>将处理器方法的参数定义为一个对象，只要保证<strong>请求参数名与这个对象的属性同名</strong>即可。</p>
 <pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span> </span>&#123;
     <span class="hljs-keyword">private</span> String name;
@@ -701,7 +703,7 @@
                       <a href="/2020/07/01/interview-01/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Java基础篇</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </div>
@@ -710,7 +712,7 @@
                     
                       <a href="/2020/06/20/SpringMVC-01/">
                         <span class="hidden-mobile">SpringMVC简介</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -727,7 +729,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -760,7 +762,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -769,7 +771,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="sweetboyZhang">
   <meta name="keywords" content="">
-  <title>Springboot配置 - sweetboyZhang&#39;s Blog</title>
+  <title>Springboot Web开发 - sweetboyZhang&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -152,8 +152,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-07-10 16:30">
-      July 10, 2020 pm
+    <time datetime="2020-07-11 15:20">
+      July 11, 2020 pm
     </time>
   </div>
 
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      555 字
+      299 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      9
+      5
        分钟
     </span>
   
@@ -213,84 +213,53 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 11, 2020 pm
+                  本文最后更新于：July 12, 2020 am
                 
               </p>
             
             <article class="markdown-body">
-              <h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>SpringBoot使用一个全局配置文件，用于修改默认配置，文件名固定。</p>
-<ul>
-<li>application.properties：语法结构：key=value</li>
-<li>application.yml，springboot推荐使用：语法结构：key: &nbsp;value <a id="more"></a></li>
-</ul>
-<h2 id="yaml概述"><a href="#yaml概述" class="headerlink" title="yaml概述"></a>yaml概述</h2><p>1、空格不能省略，key:空格value</p>
-<p>2、以缩进来控制层级关系，只要是左边对齐的一列数据都是同一个层级的。</p>
-<p>3、属性和值的大小写都是十分敏感的。</p>
-<h2 id="yaml注入配置文件"><a href="#yaml注入配置文件" class="headerlink" title="yaml注入配置文件"></a>yaml注入配置文件</h2><p><img src="/2020/07/10/springboot-02/6.png" srcset="/img/loading.gif" alt></p>
-<p>测试：</p>
-<pre><code class="hljs java"><span class="hljs-meta">@SpringBootTest</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Springboot02ConfigApplicationTests</span> </span>&#123;
-    <span class="hljs-meta">@Autowired</span>
-    <span class="hljs-keyword">private</span> Cat cat;
-    <span class="hljs-meta">@Autowired</span>
-    <span class="hljs-keyword">private</span> Person person;
-    <span class="hljs-meta">@Test</span>
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">contextLoads</span><span class="hljs-params">()</span> </span>&#123;
-        System.out.println(cat);
-        System.out.println(person);
-    &#125;
-
-&#125;</code></pre>
-
-<p>结果：</p>
-<pre><code class="hljs routeros">Cat&#123;<span class="hljs-attribute">name</span>=<span class="hljs-string">'小白'</span>, <span class="hljs-attribute">age</span>=3&#125;
-Person&#123;<span class="hljs-attribute">name</span>=<span class="hljs-string">'zyz'</span>, <span class="hljs-attribute">age</span>=22, <span class="hljs-attribute">happy</span>=<span class="hljs-literal">true</span>, <span class="hljs-attribute">birth</span>=Fri Jul 10 00:00:00 CST 2020, maps=&#123;<span class="hljs-attribute">k1</span>=v1, <span class="hljs-attribute">k2</span>=v2&#125;, lists=[1, 2, 3], <span class="hljs-attribute">cat</span>=Cat&#123;<span class="hljs-attribute">name</span>=<span class="hljs-string">'小花'</span>, <span class="hljs-attribute">age</span>=2&#125;&#125;</code></pre>
-
-<p>指定随机uuid:</p>
-<pre><code class="hljs yaml"><span class="hljs-attr">name:</span> <span class="hljs-string">zyz$&#123;random.uuid&#125;</span> <span class="hljs-comment"># 随机uuid</span></code></pre>
-
-<h2 id="properties注入"><a href="#properties注入" class="headerlink" title="properties注入"></a>properties注入</h2><p><img src="/2020/07/10/springboot-02/7.png" srcset="/img/loading.gif" alt></p>
-<h2 id="JSR303校验"><a href="#JSR303校验" class="headerlink" title="JSR303校验"></a>JSR303校验</h2><p>Springboot中可以用@validated来校验数据，如果数据异常则会统一抛出异常，方便异常中心统一处理。</p>
-<p>引入依赖</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-validation<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+              <h2 id="静态资源的导入"><a href="#静态资源的导入" class="headerlink" title="静态资源的导入"></a>静态资源的导入</h2><p>resources目录下的public、resource、static都可以存放静态资源。<br>优先级resource &gt; static &gt; public<a id="more"></a><br><img src="/2020/07/11/springboot-03/1.png" srcset="/img/loading.gif" alt></p>
+<h2 id="模板引擎Thymeleaf"><a href="#模板引擎Thymeleaf" class="headerlink" title="模板引擎Thymeleaf"></a>模板引擎Thymeleaf</h2><p>就是将后端的数据渲染到前端的页面上去显示，例如 jsp 就是一个模板引擎。<br><img src="/2020/07/11/springboot-03/2.png" srcset="/img/loading.gif" alt></p>
+<p><strong>thymeleaf 的使用</strong></p>
+<p>首先导入它的依赖，在springboot中要添加其他组件，没有什么是一个starter解决不了的！</p>
+<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--thymeleaf--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-thymeleaf<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
 
-<pre><code class="hljs java"><span class="hljs-meta">@Component</span>
-<span class="hljs-meta">@ConfigurationProperties</span>(prefix = <span class="hljs-string">"person"</span>)
-<span class="hljs-meta">@Validated</span>  <span class="hljs-comment">// 数据校验</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> </span>&#123;
-    <span class="hljs-meta">@Email</span>(message=<span class="hljs-string">"邮箱格式不合法"</span>)<span class="hljs-comment">// 使name只能支持Email格式</span>
-    <span class="hljs-keyword">private</span> String name;
+<p>将测试页面放在templates目录下，编写conntroller跳转页面</p>
+<pre><code class="hljs java"><span class="hljs-meta">@Controller</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestController</span> </span>&#123;
+    <span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/test1"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">test1</span><span class="hljs-params">()</span></span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"test1"</span>;
+    &#125;
 &#125;</code></pre>
 
-<p>运行结果：<br><img src="/2020/07/10/springboot-02/8.png" srcset="/img/loading.gif" alt></p>
-<p> <strong>常见参数</strong></p>
-<p>空检查<br>@Null       验证对象是否为null<br>@NotNull    验证对象是否不为null, 无法查检长度为0的字符串<br>@NotBlank   检查约束字符串是不是Null还有被Trim的长度是否大于0,只对字符串,且会去掉前后空格.<br>@NotEmpty   检查约束元素是否为NULL或者是EMPTY.</p>
-<p>Booelan检查<br>@AssertTrue     验证 Boolean 对象是否为 true<br>@AssertFalse    验证 Boolean 对象是否为 false </p>
-<p>长度检查<br>@Size(min=, max=) 验证对象（Array,Collection,Map,String）长度是否在给定的范围之内  @Length(min=, max=) string is between min and max included</p>
-<p>日期检查<br>@Past       验证 Date 和 Calendar 对象是否在当前时间之前<br>@Future     验证 Date 和 Calendar 对象是否在当前时间之后<br>@Pattern    验证 String 对象是否符合正则表达式的规则</p>
-<h2 id="多环境切换"><a href="#多环境切换" class="headerlink" title="多环境切换"></a>多环境切换</h2><pre><code class="hljs yaml"><span class="hljs-comment"># Springboot多环境配置</span>
-<span class="hljs-attr">server:</span>
-  <span class="hljs-attr">port:</span> <span class="hljs-number">8081</span> <span class="hljs-comment"># 默认环境</span>
-<span class="hljs-attr">spring:</span>
-  <span class="hljs-attr">profiles:</span>
-    <span class="hljs-attr">active:</span> <span class="hljs-string">dev</span> <span class="hljs-comment"># 指定环境</span>
+<p><strong>thmeleaf 语法</strong></p>
+<pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span> <span class="hljs-attr">xmlns:th</span>=<span class="hljs-string">"http://www.thymeleaf.org"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Title<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>test1<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-comment">&lt;!--所有的html元素都可以被thymeleaf替换接管  th:元素名--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"$&#123;msg&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">hr</span>/&gt;</span>
+    <span class="hljs-comment">&lt;!--循环--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">th:each</span>=<span class="hljs-string">"val:$&#123;arr&#125;"</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"$&#123;val&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
 
-<span class="hljs-meta">---</span>
-<span class="hljs-attr">server:</span>
-  <span class="hljs-attr">port:</span> <span class="hljs-number">8082</span>
-<span class="hljs-attr">spring:</span>
-  <span class="hljs-attr">profiles:</span> <span class="hljs-string">test</span>
+<h2 id="接管SpringMVC"><a href="#接管SpringMVC" class="headerlink" title="接管SpringMVC"></a>接管SpringMVC</h2><p>创建config目录，在config目录下编写类</p>
+<pre><code class="hljs java"><span class="hljs-comment">// 接管、扩展SpringMVC</span>
+<span class="hljs-meta">@Configuration</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyMvcConfig</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">WebMvcConfigurer</span> </span>&#123;
 
-<span class="hljs-meta">---</span>
-<span class="hljs-attr">server:</span>
-  <span class="hljs-attr">port:</span> <span class="hljs-number">8083</span>
-<span class="hljs-attr">spring:</span>
-  <span class="hljs-attr">profiles:</span> <span class="hljs-string">dev</span></code></pre>
-
-
+&#125;</code></pre>
             </article>
             <hr>
             <div>
@@ -313,18 +282,12 @@ Person&#123;<span class="hljs-attribute">name</span>=<span class="hljs-string">'
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/07/11/springboot-03/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Springboot Web开发</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/07/09/springboot-01/">
-                        <span class="hidden-mobile">Springboot简介、自动装配原理</span>
+                      <a href="/2020/07/10/springboot-02/">
+                        <span class="hidden-mobile">Springboot配置</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -495,7 +458,7 @@ Person&#123;<span class="hljs-attribute">name</span>=<span class="hljs-string">'
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Springboot配置&nbsp;",
+        "Springboot Web开发&nbsp;",
       ],
       cursorChar: "(*＾_＾*)",
       typeSpeed: 70,
