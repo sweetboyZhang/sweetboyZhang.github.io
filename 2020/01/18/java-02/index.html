@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      6.1k 字
+      6.3k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      90
+      92
        分钟
     </span>
   
@@ -213,7 +213,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 5, 2020 am
+                  本文最后更新于：July 13, 2020 pm
                 
               </p>
             
@@ -221,7 +221,7 @@
               <h1 id="Java面向对象学习的三条主线："><a href="#Java面向对象学习的三条主线：" class="headerlink" title="Java面向对象学习的三条主线："></a>Java面向对象学习的三条主线：</h1><p>1.Java类的成员：属性、方法、构造器；代码块，内部类<br>2.面向对象的三大特征：封装性、继承性、多态性、（抽象性）<br>3.关键字：this , super , static , final , abstract , interface , package , import</p>
 <a id="more"></a>
 <p>类：抽象的，概念上的内容。<br>对象：实实在在的个体。<br>对象是由类派生出来的，是类的实例化。</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<pre><code class="hljs java"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@Description</span> </span>
 <span class="hljs-comment"> * 一、设计类，其实就是设计类的成员</span>
 <span class="hljs-comment"> * 	属性 = 成员变量 = field = 域、字段</span>
@@ -279,17 +279,18 @@
 			System.out.println(<span class="hljs-string">"学习"</span> + language);
 		&#125;
 		
-	&#125;</code></pre></div>
+	&#125;</code></pre>
 
 <p><img src="/2020/01/18/java-02/oop_1.png" srcset="/img/loading.gif" alt="对象的内存解析"></p>
-<h2 id="属性（成员变量）与局部变量"><a href="#属性（成员变量）与局部变量" class="headerlink" title="属性（成员变量）与局部变量"></a>属性（成员变量）与局部变量</h2><p><strong>相同点：</strong><br>            1.定义变量的格式：数据类型 变量名 = 变量值<br>            2.先声明，后使用<br>            3.变量都有其对应的作用域<br><strong>不同点:</strong><br>1.声明的位置不同<br>        属性：直接定义在类的一对{}内<br>        局部变量：声明在方法内、方法形参、代码块内、构造器形参、构造器内部的变量<br>2.权限修饰符不同<br>        属性：声明时可以使用权限修饰符指明其权限<br>                   常见的权限修饰符：private , protected , public ,缺省<br>         局部变量：不可使用权限修饰符<br>3.默认初始化值不同<br>        属性：类的属性根据其类型都有默认的初始化值<br>                  <em>基本数据类型：</em><br>                        整型（byte , short , int , long）:0<br>                        浮点型（float , double）:0.0<br>                        字符型（char）:0（或’\u0000’）<br>                        布尔型（boolean）:false<br>                  <em>引用数据类型（类、数组、接口）：<em>null<br>        局部变量：没有初始化值，<font color="red">调用局部变量之前必须进行初始化</font><br>4.在内存中加载的位置不同<br>        属性：加载到堆空间中（非static）<br>        局部变量：加载到栈空间中<br><strong>属性赋值顺序</strong>：1.默认初始化<br>                           2.显式初始化/代码块中赋值<br>                           3.构造器初始化<br>                           4.通过“对象.方法”或“对象.属性“初始化<br>__JavaBean:</em></em> 符合下列标准的Java类：类是公共的，一个无参的构造器，属性以及对应的get,set方法</p>
+<h2 id="属性（成员变量）与局部变量"><a href="#属性（成员变量）与局部变量" class="headerlink" title="属性（成员变量）与局部变量"></a>属性（成员变量）与局部变量</h2><p><strong>相同点：</strong><br>            1.定义变量的格式：数据类型 变量名 = 变量值<br>            2.先声明，后使用<br>            3.变量都有其对应的作用域<br><strong>不同点:</strong><br>1.声明的位置不同<br>        属性：直接定义在类的一对{}内<br>        局部变量：声明在方法内、方法形参、代码块内、构造器形参、构造器内部的变量<br>2.权限修饰符不同<br>        属性：声明时可以使用权限修饰符指明其权限<br>                   常见的权限修饰符：private , protected , public ,缺省<br>         局部变量：不可使用权限修饰符<br>3.默认初始化值不同<br>        属性：类的属性根据其类型都<strong>有默认的初始化值</strong><br>                  <em>基本数据类型：</em><br>                        整型（byte , short , int , long）:0<br>                        浮点型（float , double）:0.0<br>                        字符型（char）:0（或’\u0000’）<br>                        布尔型（boolean）:false<br>                  _引用数据类型（类、数组、接口）：_null<br>        局部变量：没有初始化值，<strong><font color="red">调用局部变量之前必须进行初始化</font></strong><br><strong>类中实例变量可以不用初始化，使用相应类型的默认值即可；方法中的定义的局部变量必须初始化，否则编译不通过</strong></p>
+<p>4.在内存中加载的位置不同<br>        属性：加载到堆空间中（非static）<br>        局部变量：加载到栈空间中<br><strong>属性赋值顺序</strong>：1.默认初始化<br>                           2.显式初始化/代码块中赋值<br>                           3.构造器初始化<br>                           4.通过“对象.方法”或“对象.属性“初始化<br><strong>JavaBean:</strong> 符合下列标准的Java类：类是公共的，一个无参的构造器，属性以及对应的get,set方法</p>
 <h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p><strong>方法的声明：</strong></p>
-<div class="hljs"><pre><code class="hljs java">权限修饰符 返回值类型 方法名(参数列表)&#123;
+<pre><code class="hljs java">权限修饰符 返回值类型 方法名(参数列表)&#123;
 	方法体
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p><strong>方法的使用</strong>：可以调用当前类的属性和方法 ，方法中不可以定义方法<br>        <strong>方法的封装：</strong></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<pre><code class="hljs java"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@Description</span> </span>
 <span class="hljs-comment"> * 定义类Student，包含三个属性：学号number(int)，年级state(int)，成绩</span>
 <span class="hljs-comment">score(int)。 创建20个学生对象，学号为1到20，年级(1~6)和成绩(0~100)都由随机数确定。</span>
@@ -395,17 +396,17 @@
 	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">display</span><span class="hljs-params">()</span> </span>&#123;
 		<span class="hljs-keyword">return</span> <span class="hljs-string">"学号："</span> + number + <span class="hljs-string">" 年级："</span> + state + <span class="hljs-string">" 成绩："</span> + score;
 	&#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 
 <p><img src="/2020/01/18/java-02/oop_2.png" srcset="/img/loading.gif" alt="对象数组内存解析"></p>
-<div class="hljs"><pre><code class="hljs java">stus[<span class="hljs-number">0</span>] = <span class="hljs-keyword">new</span> Student();
-<span class="hljs-comment">// 引用类型变量stus[0],stus[1],stus[2]...只能存储null 或地址值 ,不能存储对象的属性。必须new一个对象用来存放该对象的属性，且这个引用类型的变量存放着指向该对象的首地址值。</span></code></pre></div>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 匿名对象：创建的一个对象没有显式地赋给一个变量。只能调用一次。</span>
-<span class="hljs-keyword">new</span> Student().display();</code></pre></div>
+<pre><code class="hljs java">stus[<span class="hljs-number">0</span>] = <span class="hljs-keyword">new</span> Student();
+<span class="hljs-comment">// 引用类型变量stus[0],stus[1],stus[2]...只能存储null 或地址值 ,不能存储对象的属性。必须new一个对象用来存放该对象的属性，且这个引用类型的变量存放着指向该对象的首地址值。</span></code></pre>
+<pre><code class="hljs java"><span class="hljs-comment">// 匿名对象：创建的一个对象没有显式地赋给一个变量。只能调用一次。</span>
+<span class="hljs-keyword">new</span> Student().display();</code></pre>
 
 <p><strong>方法的重载：</strong>在同一个类中，允许存在一个以上的同名方法，只需参数个数或参数类型不同即可<br>        <strong>可变个数的形参：</strong>方法名(参数的类型名 … 参数名)<br>        <strong>方法参数的值传递机制：</strong><br>                形参：方法定义时，声明在小括号中的参数<br>                实参：方法调用时，实际传递给形参的数据<br>        <strong>方法参数传递的方式：</strong><font color="red">值传递</font>。即将实际参数值的副本(复制品)传入方法内，而参数本身不受影响。<br>                形参是基本数据类型：将实参基本数据类型变量的“<strong>数据值</strong>”传递给形参<br>                形参是引用数据类型：将实参引用数据类型变量的“<strong>地址值</strong>”传递给形参（含变量的数据类型）</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<pre><code class="hljs java"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@Description</span> 基本数据类型的参数传递测试</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@author</span> sweetboyZhang</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@date</span> 2020年1月21日下午6:42:36</span>
@@ -423,9 +424,9 @@
 		x = <span class="hljs-number">2</span>;
 		System.out.println(<span class="hljs-string">"调用方法后：x = "</span> + x);<span class="hljs-comment">// 2</span>
 	&#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<pre><code class="hljs java"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@Description</span> 引用类型参数传递测试</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@author</span> sweetboyZhang</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@date</span> 2020年1月21日下午7:11:18</span>
@@ -448,14 +449,17 @@
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person1</span></span>&#123;
 	<span class="hljs-keyword">int</span> age;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <h2 id="封装性"><a href="#封装性" class="headerlink" title="封装性"></a>封装性</h2><p><strong>封装性的体现：</strong><br>        1.将类的属性私有化(private)，提供公共的(public)方法来获取(get)和设置(set)属性值<br>        2.不对外暴露的私有方法<br>        3.单例模式<br>        封装性的体现，需要权限修饰符的配合<br>        Java中的4种权限修饰符（从小到大）：private , 缺省 ，protected , public<br><img src="/2020/01/18/java-02/oop_3.png" srcset="/img/loading.gif" alt="权限修饰符的访问权限"></p>
 <p>4种权限均可以用来修饰类的内部结构：属性(成员变量)，方法，构造器，内部类<br>        修饰外部类：缺省，public<br>        局部内部类，局部变量：不能被权限修饰符修饰</p>
+<p>1.一个java文件里，public 的类只能出现一个，只能出现一个，只能出现一个，否则，不管你用哪一个类名命名文件名编译器都会报错</p>
+<p>2.关于多态。子类继承了父类的所有成员，包括private权限的成员变量，但是继承的子类具有私有变量的拥有权但是没有使用权。</p>
+<p>3.private的成员变量，根据权限修饰符的访问控制范围，只有在类内部才能被访问，就算是他的子类，也不能访问。</p>
 <h2 id="构造器（构造方法）"><a href="#构造器（构造方法）" class="headerlink" title="构造器（构造方法）"></a>构造器（构造方法）</h2><p>作用：创建对象 new + 构造器<br>        1.若没有显示的定义类的构造器，则系统默认提供一个空参的构造器。<br>        2.定义构造器的格式：</p>
-<div class="hljs"><pre><code class="hljs java">权限修饰符 类名(形参列表)&#123;
+<pre><code class="hljs java">权限修饰符 类名(形参列表)&#123;
     
-&#125;</code></pre></div>
+&#125;</code></pre>
 <p>3.一个类中可以定义多个构造器，彼此构成重载</p>
 <p><font color="red"><strong>4.构造函数不能被继承，只能被显式或隐式的调用</strong></font></p>
 <h2 id="this"><a href="#this" class="headerlink" title="this"></a>this</h2><p>1.this可修饰或调用：属性，方法，构造器。<br>        2.this修饰属性和方法：this表示当前对象。<br>            在类的方法中，使用“ this.属性 ” 或 “ this.方法 ”  ，调用当前对象的属性或方法，通常可以省略。<br>            方法的形参与类的属性重名时必须使用” this.变量 “显式调用。<br>        3.this调用构造器：<br>            在构造器中通过 this(参数列表) 调用本类其他构造器，不能调用自己。</p>
@@ -463,14 +467,14 @@
 <h2 id="import"><a href="#import" class="headerlink" title="import"></a>import</h2><p>1.在源文件中导入指定的包或接口<br>        2.声明在包的声明和类的声明之间<br>        3.“ xxx.* ”表示导入xxx包下的所有结构<br>        4.如果使用的类或接口在java.lang包下定义的，则可以省略<br>        5.使用本包下定义的类或接口，可以省略</p>
 <h2 id="继承性"><a href="#继承性" class="headerlink" title="继承性"></a>继承性</h2><p>好处：<br>        1.减少了代码的冗余，提高了代码的复用性。<br>        2.便于功能的扩展<br>        3.为多态的使用提供了前提<br>        格式：class A extends B{}<br>        A:子类，派生类，subclass<br>        B:父类，超类，基类，superclass<br>        1.一旦子类A继承父类B以后，子类A中就获取了父类B中的结构中所有的属性和方法。<br>        父类中的private属性和方法仍然被子类所继承，只是由于封装性的原因使得子类不能直接调用父类的结构而        已。<br>        2.子类继承父类后，还可以声明自己特有的属性和方法，实现功能的拓展。<br>        子类和父类的关系不等同于集合与子集的关系。<br>        <strong>Java中继承的规定：</strong><br>        1.一个类可以被多个子类继承。<br>        2.单继承：一个类只允许有一个父类。<br>        3.子父类的关系是相对的。（直接父类，间接父类）。<br>        4.子类一旦继承了父类后，就获取了直接父类以及所有间接父类的属性和方法</p>
 <p><strong>Object类：</strong><br>        1.如果我们没有显式地声明一个类的父类，则此类继承于java.lang.Object类。<br>        2.所有java类(除java.lang.Object类外)都直接或间接地继承于java.lang.Object类。<br>        3.所有java类都具有java.lang.Object类声明的功能。<br>        <strong>Object类中的主要方法：</strong>equal()，toString()<br>        <font color="red">equals()与==的区别:</font><br>        ==：运算符，<br>        1.可以使用在基本数据类型变量和引用数据类型之间(除了boolean类型);<br>        2.如果比较的是基本数据类型的变量，比较两个变量保存的值是否相等(不一定要类型相等)；<br>        例如：2 == 2.0；’2’ == 2；’A’ ==65<br>        3.如果比较的是引用数据类型的变量，比较两个变量存储的地址值是否相等。<br>        equals()：方法,<br>        1.通过对象来调用，只能适用于引用数据类型的变量；<br>        2.Object类中定义的equals()与 == 相同:    </p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">equals</span><span class="hljs-params">(Object obj)</span></span>&#123;
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">equals</span><span class="hljs-params">(Object obj)</span></span>&#123;
      rerturn (<span class="hljs-keyword">this</span> == obj);
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p>3.String , Date , File , 包装类等都重写了Object类中的equal()方法。比较的不是两个引用的地址，而是比较两        个对象的“实体内容”是否相等；<br>        <font color="red">toString():</font><br>        1.输出一个对象的引用时，自动调用；<br>        2.在Object类中的定义：</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>&#123;
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>&#123;
         <span class="hljs-keyword">return</span> getClass().getName() + <span class="hljs-string">"@"</span> + Integer.toHexString(hashCode());
-    &#125;<span class="hljs-comment">// 返回类名和内存地址</span></code></pre></div>
+    &#125;<span class="hljs-comment">// 返回类名和内存地址</span></code></pre>
 
 <p>3.String， Date , File , 包装类等都重写了Object类中的toString()方法。调用对象时返回的时对象的实体内         容。</p>
 <p><strong>方法的重写：</strong><br>​子类继承父类以后，可以对父类中同名同参数方法进行覆盖操作。<br>​应用：重写之后，通过子类对象调用父类中的同名同参数的方法时，实际执行的是子类重写父类的方法。<br>​要求：<br>​1.子类中重写的方法名和形参列表必须与父类中被重写的方法的方法名和形参列表相同。<br>​2.子类中重写的方法的权限修饰符不小于父类中被重写的权限修饰符。(父类中声明为private的方法不能被重        写)<br>​3.返回值类型：</p>
@@ -483,12 +487,12 @@
 <p>4.子类重写的方法抛出的异常类型不大于父类被重写方法抛出的异常类型</p>
 <h2 id="super"><a href="#super" class="headerlink" title="super"></a>super</h2><p>1.在子类的方法或构造器中，通过“super.属性”或“super.方法”的方式 ，显示地调用父类中的属性或方                       法，通常省略，子类和父类出现同名的属性时不可省略。<br>​        2.在子类构造器的首行显示使用“super(形参列表)”调用父类中指定的构造器，且不能与“this(形参列表)”同时存        在。<br>​        3.在子类构造器的首行如果没有显示地声明“super(形参列表)”或“this(形参列表)”，默认调用父类中空参的构造        器。<br>​        4.在子类的多个构造器中至少有一个类的构造器中使用了“super(形参列表)”来调用父类构造器。</p>
 <h2 id="多态性"><a href="#多态性" class="headerlink" title="多态性"></a>多态性</h2><p>1.对象的多态性：父类的引用指向子类对象。<br>​        2.多态的使用：当调用子父类同名同参数的方法时，实际执行的是子类重写父类的方法。(虚拟方法调用)<br>​        在编译期只能调用父类中声明的方法，在运行期实际执行的是子类重写父类的方法。(动态绑定)</p>
-<div class="hljs"><pre><code class="hljs java">Person p1 = <span class="hljs-keyword">new</span> Student;<span class="hljs-comment">// 父类引用指向子类对象</span>
-p1.getInfo();<span class="hljs-comment">// 调用Student类发getInfo()方法</span></code></pre></div>
+<pre><code class="hljs java">Person p1 = <span class="hljs-keyword">new</span> Student;<span class="hljs-comment">// 父类引用指向子类对象</span>
+p1.getInfo();<span class="hljs-comment">// 调用Student类发getInfo()方法</span></code></pre>
 
 <p>3.使用前提：类的继承关系，方法的重写。<br>        4.对象的多态性只使用于方法，不使用于属性。<br><strong>重载与重写的区别：</strong><br>        重载，是指允许存在多个同名方法，而这些方法的参数不同。编译器根据方法不同的参数表，对同名方法的名称做修饰。对于编译器而言，这些同名方法就成了不同的方法。它们的调用地址在编译期就绑定了。Java的重载是可以包括父类和子类的，即子类可以重载父类的同名不同参数的方法。所以：对于重载而言，在方法调用之前，编译器就已经确定了所要调用的方法，这称为<font color="red">“早绑定”或“静态绑定”</font>；<br>        重写，体现了多态性，只有等到方法调用的那一刻，解释运行器才会确定所要调用的具体方法，这称为<font color="red">“晚绑定”或“动态绑定”</font>。</p>
 <h2 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h2><p>a instanceof A :判断对象a是否是类A的实例或子类。若是则返回true，否则返回false.<br>使用：</p>
-<div class="hljs"><pre><code class="hljs java">Person p1 = <span class="hljs-keyword">new</span> Man();<span class="hljs-comment">// 声明一个父类Person对象，并指向子类Man对象</span>
+<pre><code class="hljs java">Person p1 = <span class="hljs-keyword">new</span> Man();<span class="hljs-comment">// 声明一个父类Person对象，并指向子类Man对象</span>
 <span class="hljs-comment">// 向下转型：使用强转符()</span>
 <span class="hljs-comment">// 向下转型目的：</span>
 <span class="hljs-comment">//有了对象的多态性以后，内存中实际加载了子类特有的属性和方法，但是变量声明为父类类型，在编译时只能调用父类中声明的属性和方法,</span>
@@ -497,12 +501,12 @@ p1.getInfo();<span class="hljs-comment">// 调用Student类发getInfo()方法</s
 <span class="hljs-keyword">if</span>(p1 <span class="hljs-keyword">instanceof</span> Man)&#123;
     Man m1 = (Man)p1;
     m1.earnMoney();<span class="hljs-comment">// 调用子类Man中特有的方法(父类Person没有的方法)时，编译前不会报错</span>
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p><img src="/2020/01/18/java-02/oop_6.png" srcset="/img/loading.gif" alt></p>
 <h2 id="包装类"><a href="#包装类" class="headerlink" title="包装类"></a>包装类</h2><p>Java提供了8种基本数据类型的包装类，使得基本数据类型的变量具有类的特征<br><img src="/2020/01/18/java-02/oop_4.png" srcset="/img/loading.gif" alt="8种包装类"></p>
 <p><img src="/2020/01/18/java-02/oop_5.png" srcset="/img/loading.gif" alt="基本类型、包装类与String类间的转换"></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<pre><code class="hljs java"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@Description</span> 基本类型、包装类与String类间的转换</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@author</span> sweetboyZhang </span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@date</span> 2020年2月3日下午2:21:04</span>
@@ -545,7 +549,7 @@ p1.getInfo();<span class="hljs-comment">// 调用Student类发getInfo()方法</s
 		<span class="hljs-keyword">int</span> num7 = Integer.parseInt(str3);
 		System.out.println(str3);
 	&#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <h2 id="static"><a href="#static" class="headerlink" title="static"></a>static</h2><p>1.可以修饰：属性，方法，代码块，内部类。<br>2.使用 static 修饰属性：<br>按是否使用static修饰分为<strong>静态属性(类变量)</strong>和<strong>非静态属性(实例变量)</strong>;<br><strong>非静态属性</strong>：如果创建多个对象，每个对象都独立拥有一套类中的非静态属性。修改其中一个对象中的非静                       态属性时，不会导致其他对象中的相同属性发生变化。<br><strong>静态属性</strong>：多个对象共享一个静态属性。当其中一个对象修改静态属性时，会导致其他对象调用此静态属性                    时，是修改过了的。<br><font color="red">注意</font>：<br>&lt;1&gt;.静态变量随着类的加载而加载，可以通过”类名.静态变量”的方式进行调用。<br>&lt;2&gt;.静态变量的加载早于对象的创建。<br>&lt;3&gt;.由于类只会加载一次，则静态变量在内存中也只会存在一份(存在方法区的静态域中)。<br>&lt;4&gt;.类能调用类变量，但不能调用实例变量；对象既能调用类变量，又能调用实例变量。</p>
 <p><img src="/2020/01/18/java-02/oop_7.png" srcset="/img/loading.gif" alt="类变量与实例变量内存解析"></p>
@@ -559,14 +563,11 @@ p1.getInfo();<span class="hljs-comment">// 调用Student类发getInfo()方法</s
 <h2 id="interface"><a href="#interface" class="headerlink" title="interface"></a>interface</h2><p>1.在java中，接口与类是并列的两个结构。(<strong>默认权限为public</strong>)<br>        2.接口中的成员：</p>
 <ul>
 <li>JDK7及以前：只能定义全局常量(public static final 可以省略)和抽象方法(<strong>默认为public abstract</strong> )</li>
-<li>JDK8：还可以定义静态方法(只能通过接口来调用)，默认方法(public default)(通过实现接口的对象来调用)，<strong>此时被修饰的方法必须带有方法体</strong>。</li>
+<li>JDK8：还可以定义静态方法(public static 只能通过接口来调用)，<strong>此时被修饰的方法必须带有方法体</strong>。</li>
 </ul>
-<p>3.接口中不能定义构造器<br>4.接口通过让类去实现(implements)的方式去使用</p>
-<ul>
-<li>若此类覆盖了接口中所有的抽象方法，则此实现类就可以实例化</li>
-<li>否则，此类仍是一个抽象类</li>
-</ul>
-<p>5.Java通过实现多个接口，弥补单继承的局限性<br>        class A extends B implements C,D,E{}<br>        6.接口之间可以继承，而且可以多继承</p>
+<p>3.接口中不能定义构造器</p>
+<p>4.<strong>非抽象类</strong>实现接口必须重写该接口中的所有抽象方法</p>
+<p>5.Java通过实现多个接口，弥补单继承的局限性<br>  <code>class A extends B implements C,D,E{}</code><br> 6.接口之间可以继承，而且可以多继承</p>
 <h2 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h2><p>Java中允许一个类A声明在另一个类B中，则类A就是内部类，类B就是外部类。<br>        1.非static的成员内部类中的成员不能声明为static的，只有在外部类或static的成员<br>        内部类中才可声明static成员。<br>        2.外部类访问成员内部类的成员，需要“内部类.成员”或“内部类对象.成员”的方式<br>        3.成员内部类可以直接使用外部类的所有成员，包括私有的数据<br>        4.当想要在外部类的静态成员部分使用内部类时，可以考虑内部类声明为静态的        </p>
 
             </article>
