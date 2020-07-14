@@ -213,12 +213,12 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 11, 2020 am
+                  本文最后更新于：July 14, 2020 pm
                 
               </p>
             
             <article class="markdown-body">
-              <h2 id="基础查询"><a href="#基础查询" class="headerlink" title="基础查询"></a>基础查询</h2><p><strong>语法：</strong><br>        select 查询列表 from 表名<br>        <strong>特点：</strong><br>        1.查询列表可以是：表中的字段，常量值，表达式，函数；<br>        2.查询的结果是一个虚拟的表格。<a id="more"></a></p>
+              <h2 id="基础查询"><a href="#基础查询" class="headerlink" title="基础查询"></a>基础查询</h2><p><strong>语法：</strong><br>        select 查询列表 from 表名<br><strong>特点：</strong><br>        1.查询列表可以是：表中的字段，常量值，表达式，函数；<br>        2.查询的结果是一个虚拟的表格。<a id="more"></a></p>
 <pre><code class="hljs sql"><span class="hljs-comment"># 1.查询表中的单个字段</span>
 <span class="hljs-keyword">SELECT</span> first_name <span class="hljs-keyword">FROM</span> employees;
 
@@ -283,7 +283,7 @@
 <span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">where</span> commission_pct = <span class="hljs-literal">NULL</span>; <span class="hljs-comment">-- 查询不到结果</span>
 <span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">WHERE</span> commission_pct <span class="hljs-keyword">IS</span> <span class="hljs-literal">NULL</span>;</code></pre>
 
-<h2 id="排序查询"><a href="#排序查询" class="headerlink" title="排序查询"></a>排序查询</h2><p>语法：select 查询列表 from 表 where 查询条件  order by 排序列表 asc/desc;<br>        特点：1.asc:升序；desc:降序；如果不写，默认为升序<br>                    2.order by 子句支持单个字段，多个字段，表达式，函数，别名<br>                    3.order by 子句一般放在查询语句的最后面，limit子句除外</p>
+<h2 id="排序查询"><a href="#排序查询" class="headerlink" title="排序查询"></a>排序查询</h2><p>语法：select 查询列表 from 表 where 查询条件  order by 排序列表 asc/desc;<br>特点：1.asc:升序；desc:降序；如果不写，默认为升序<br>            2.order by 子句支持单个字段，多个字段，表达式，函数，别名<br>            3.order by 子句一般放在查询语句的最后面，limit子句除外</p>
 <pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> salary <span class="hljs-keyword">ASC</span>; <span class="hljs-comment">-- 升序</span>
 <span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> salary; <span class="hljs-comment">-- 省略时默认为升序排列</span>
 <span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> salary <span class="hljs-keyword">DESC</span>; <span class="hljs-comment">-- 降序</span>
