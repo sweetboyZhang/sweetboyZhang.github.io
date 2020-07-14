@@ -219,14 +219,14 @@
             
             <article class="markdown-body">
               <h2 id="字符串相关类：String"><a href="#字符串相关类：String" class="headerlink" title="字符串相关类：String"></a>字符串相关类：String</h2><p>1.String声明为final，不可被继承。<br>2.实现了Serializable接口：表示字符串是支持序列化的;<br>   实现了Comparable接口：表示String是可以比较大小的；<a id="more"></a><br>3.String内部定义了final char[]    value[]用于存储字符串数据；<br>4.String代表不可变的字符序列。<br>        &lt;1&gt;当对字符串重新赋值；<br>        &lt;2&gt;对现有字符串进行连接操作；<br>        &lt;3&gt;当调用replace()修改指定字符或字符串；<br>        _会重新指定内存区域进行赋值。<br>5.通过字面量的方式给一个字符串赋值，此时字符串的值声明在字符串常量池 中。<br><img src="/2020/02/26/java-05/String_1.png" srcset="/img/loading.gif" alt="字面量赋值方式"><br>6.字符串常量池是不会存储相同内容的字符串的。</p>
-<h3 id="String实例化的两种方式："><a href="#String实例化的两种方式：" class="headerlink" title="String实例化的两种方式："></a>String实例化的两种方式：</h3><div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// String实例化方式一：字面量赋值  字符串常量存储在堆空间中</span>
+<h3 id="String实例化的两种方式："><a href="#String实例化的两种方式：" class="headerlink" title="String实例化的两种方式："></a>String实例化的两种方式：</h3><pre><code class="hljs java"><span class="hljs-comment">// String实例化方式一：字面量赋值  字符串常量存储在堆空间中</span>
 String st1 = <span class="hljs-string">"abc"</span>;
 <span class="hljs-comment">// String实例化方式二：new + 构造器  字符串存储在字符串常量池中</span>
-String st2 = <span class="hljs-keyword">new</span> String(<span class="hljs-string">"abc"</span>);</code></pre></div>
+String st2 = <span class="hljs-keyword">new</span> String(<span class="hljs-string">"abc"</span>);</code></pre>
 
 <p>内存解析：<br><img src="/2020/02/26/java-05/String_2.png" srcset="/img/loading.gif" alt></p>
 <p><img src="/2020/02/26/java-05/String_3.png" srcset="/img/loading.gif" alt></p>
-<h3 id="String常用方法"><a href="#String常用方法" class="headerlink" title="String常用方法"></a>String常用方法</h3> <div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StringMethodTest</span> </span>&#123;
+<h3 id="String常用方法"><a href="#String常用方法" class="headerlink" title="String常用方法"></a>String常用方法</h3> <pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StringMethodTest</span> </span>&#123;
     <span class="hljs-meta">@Test</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span> </span>&#123;
         String st1 = <span class="hljs-string">"Taylor Swift"</span>;
@@ -303,9 +303,9 @@ String st2 = <span class="hljs-keyword">new</span> String(<span class="hljs-stri
         <span class="hljs-comment">// String[] split(String regex)：根据给定正则表达式的匹配拆分此字符串。</span>
         <span class="hljs-comment">// String[] split(String regex, int limit)：根据匹配给定的正则表达式来拆分此 字符串，最多不超过limit个，如果超过了，剩下的全部都放到最后一个元素中。</span>
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
-<h3 id="String-与char-转换"><a href="#String-与char-转换" class="headerlink" title="String 与char[]转换"></a>String 与char[]转换</h3><div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span></span>&#123;
+<h3 id="String-与char-转换"><a href="#String-与char-转换" class="headerlink" title="String 与char[]转换"></a>String 与char[]转换</h3><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span></span>&#123;
         <span class="hljs-comment">// String -&gt; char[]  调用String的toCharArray()</span>
         String st1 = <span class="hljs-string">"qwerasdf"</span>;
         <span class="hljs-keyword">char</span>[] charArray1 = st1.toCharArray();
@@ -315,9 +315,9 @@ String st2 = <span class="hljs-keyword">new</span> String(<span class="hljs-stri
         <span class="hljs-comment">// char[] -&gt; String  调用String()构造器</span>
         String st2 = <span class="hljs-keyword">new</span> String(charArray1);
         System.out.println(st2);
-    &#125;</code></pre></div>
+    &#125;</code></pre>
 
-<h3 id="String与byte-转换"><a href="#String与byte-转换" class="headerlink" title="String与byte[] 转换"></a>String与byte[] 转换</h3><div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test2</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> UnsupportedEncodingException </span>&#123;
+<h3 id="String与byte-转换"><a href="#String与byte-转换" class="headerlink" title="String与byte[] 转换"></a>String与byte[] 转换</h3><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test2</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> UnsupportedEncodingException </span>&#123;
         <span class="hljs-comment">// String -&gt; byte[]  调用String的getBytes()</span>
         String st1 = <span class="hljs-string">"abc123哈哈"</span>;
         <span class="hljs-keyword">byte</span>[] byteArray1 = st1.getBytes();<span class="hljs-comment">// 使用默认编码</span>
@@ -330,10 +330,10 @@ String st2 = <span class="hljs-keyword">new</span> String(<span class="hljs-stri
         String st3 = <span class="hljs-keyword">new</span> String(byteArray2,<span class="hljs-string">"gbk"</span>);
         System.out.println(st3);<span class="hljs-comment">// abc123哈哈</span>
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <h2 id="StringBuffer-与-StringBuilder"><a href="#StringBuffer-与-StringBuilder" class="headerlink" title="StringBuffer 与 StringBuilder"></a>StringBuffer 与 StringBuilder</h2><p>String：不可变的字符序列<br>StringBuffer：可变的字符序列；线程安全，效率低<br>StringBuilder：可变的字符系列；线程不安全，效率高<br>底层都是使用char[]存储<br>StringBuffer(StringBuilder)常用方法：</p>
-<div class="hljs"><pre><code class="hljs java"> <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span></span>&#123;
+<pre><code class="hljs java"> <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span></span>&#123;
         <span class="hljs-comment">// StringBuffer append(xxx)：提供了很多的append()方法，用于进行字符串拼接</span>
         StringBuffer st1 = <span class="hljs-keyword">new</span> StringBuffer(<span class="hljs-string">"abc"</span>);
         st1.append(<span class="hljs-string">"!!!"</span>);<span class="hljs-comment">// abc!!!</span>
@@ -357,10 +357,10 @@ String st2 = <span class="hljs-keyword">new</span> String(<span class="hljs-stri
         <span class="hljs-comment">// public char charAt(int n )</span>
         <span class="hljs-comment">// public void setCharAt(int n ,char ch)</span>
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <h2 id="日期时间API"><a href="#日期时间API" class="headerlink" title="日期时间API"></a>日期时间API</h2><p>Date类</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">// System类中的currentTimeMillis()</span>
+<pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">// System类中的currentTimeMillis()</span>
   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span></span>&#123;
       <span class="hljs-comment">// 时间戳：返回当前时间与1970年1月1日0时0分0秒之间以毫秒为单位的时间差</span>
       <span class="hljs-keyword">long</span> time = System.currentTimeMillis();
@@ -374,10 +374,10 @@ String st2 = <span class="hljs-keyword">new</span> String(<span class="hljs-stri
       System.out.println(date1);<span class="hljs-comment">// 默认调用重写的toString()</span>
       System.out.println(date1.getTime());<span class="hljs-comment">// getTime()获取当前时间对应的毫秒数</span>
       <span class="hljs-comment">// 构造器二：Date(long time)</span>
-  &#125;</code></pre></div>
+  &#125;</code></pre>
 
 <p>SimpleDateFormat类</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<pre><code class="hljs java"><span class="hljs-meta">@Test</span>
    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> ParseException </span>&#123;
        <span class="hljs-comment">// 实例化SimpleDateFormat,使用默认构造器</span>
        SimpleDateFormat sdf = <span class="hljs-keyword">new</span> SimpleDateFormat();
@@ -393,10 +393,10 @@ String st2 = <span class="hljs-keyword">new</span> String(<span class="hljs-stri
        <span class="hljs-comment">// 使用带参构造器</span>
        SimpleDateFormat sdf2 = <span class="hljs-keyword">new</span> SimpleDateFormat(<span class="hljs-string">"yyyy-MM-dd hh-mm-ss"</span>);
        System.out.println(sdf2.format(<span class="hljs-keyword">new</span> Date()));<span class="hljs-comment">// 2020-03-02 02-24-05</span>
-   &#125;</code></pre></div>
+   &#125;</code></pre>
 
 <h2 id="比较器"><a href="#比较器" class="headerlink" title="比较器"></a>比较器</h2><p><strong>自然排序：</strong>java.lang.Comparable<br>        实现Comparable接口的类必须实现toCompare()方法</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Override</span> <span class="hljs-comment">// 按照年龄排序</span>
+<pre><code class="hljs java"><span class="hljs-meta">@Override</span> <span class="hljs-comment">// 按照年龄排序</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">compareTo</span><span class="hljs-params">(Object o)</span> </span>&#123;
         <span class="hljs-keyword">if</span> (o <span class="hljs-keyword">instanceof</span> Person) &#123;
             Person person = (Person)o;
@@ -407,10 +407,10 @@ String st2 = <span class="hljs-keyword">new</span> String(<span class="hljs-stri
             <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"输入类型不匹配"</span>);
         &#125;
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p><strong>定制排序：</strong>java.util.Comparator<br>        需要重写Comparator类中的compare()方法</p>
-<div class="hljs"><pre><code class="hljs java">Comparator comparator = <span class="hljs-keyword">new</span> Comparator() &#123;
+<pre><code class="hljs java">Comparator comparator = <span class="hljs-keyword">new</span> Comparator() &#123;
     <span class="hljs-meta">@Override</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">compare</span><span class="hljs-params">(Object o1, Object o2)</span> </span>&#123;
          <span class="hljs-keyword">if</span>(o1 <span class="hljs-keyword">instanceof</span> Person &amp;&amp; o1 <span class="hljs-keyword">instanceof</span> Person)&#123;
@@ -420,9 +420,9 @@ String st2 = <span class="hljs-keyword">new</span> String(<span class="hljs-stri
                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"传入参数错误"</span>);
          &#125;
     &#125;
-&#125;;</code></pre></div>
+&#125;;</code></pre>
 
-<h2 id="枚举类"><a href="#枚举类" class="headerlink" title="枚举类"></a>枚举类</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EnumTest1</span> </span>&#123;
+<h2 id="枚举类"><a href="#枚举类" class="headerlink" title="枚举类"></a>枚举类</h2><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EnumTest1</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
         StudentGrade stu = StudentGrade.ONE;
         System.out.println(stu);<span class="hljs-comment">// 自动调用Enum中的toString()</span>
@@ -454,7 +454,7 @@ String st2 = <span class="hljs-keyword">new</span> String(<span class="hljs-stri
     <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getGrade</span><span class="hljs-params">()</span></span>&#123;
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.grade;
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 
             </article>

@@ -225,11 +225,11 @@
 <h2 id="算法的时间复杂度"><a href="#算法的时间复杂度" class="headerlink" title="算法的时间复杂度"></a>算法的时间复杂度</h2><p><strong>时间频度</strong></p>
 <p>一个算法中的语句执行的次数，记为T(n)</p>
 <p>例如：</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">int</span> total = <span class="hljs-number">0</span>;
+<pre><code class="hljs java"><span class="hljs-keyword">int</span> total = <span class="hljs-number">0</span>;
 <span class="hljs-keyword">int</span> end = <span class="hljs-number">100</span>;
 <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=end;<span class="hljs-number">1</span>++)&#123;
     total++;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p>循环执行n次，最后再进行一次i&lt;=n的判断，故 T(n) = n+1   </p>
 <p>直接计算：<code>total = (1+end)*end/2</code>  ， T(n) = 1</p>
@@ -238,44 +238,44 @@
 <p><strong>常见的时间复杂度</strong><br><img src="/2020/07/03/algorithm-01/2.png" srcset="/img/loading.gif" alt></p>
 <p>随着问题规模n的不断增大，上述时间复杂度不断增大，算法的执行效率越低</p>
 <p><strong>常数阶O(1)</strong></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>;
+<pre><code class="hljs java"><span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>;
 <span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>;
 i++;
-j++;</code></pre></div>
+j++;</code></pre>
 
 <p>无论代码执行了多少行，只要是没有循环等复杂结构，那这个代码的时间复杂度就都是O(1)。<br>上述代码在执行的时候，它消耗的时间并不随着某个变量的增长而增长，那么无论这类代码有多长，即使有几万几十万行，都可以用O(1)来表示它的时间复杂度。</p>
 <p><strong>对数阶<img src="/2020/07/03/algorithm-01/3.png" srcset="/img/loading.gif" alt></strong></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>;
+<pre><code class="hljs java"><span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>;
 <span class="hljs-keyword">while</span>(i&lt;n)&#123;
     i=i*<span class="hljs-number">2</span>;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p>在while循环中，每次都将i乘以2，假设循环了x次后就退出循环了，则2的x次方等于n，即x=<img src="/2020/07/03/algorithm-01/4.png" srcset="/img/loading.gif" alt></p>
 <p>i=i*3则是<img src="/2020/07/03/algorithm-01/5.png" srcset="/img/loading.gif" alt></p>
 <p><strong>线性阶O(n)</strong></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>
+<pre><code class="hljs java"><span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>
 <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i&lt;n;i++)&#123;
     <span class="hljs-keyword">int</span> j=i;
     sum+=j;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p>for循环里面的代码会执行n次，它消耗的时间是随n的变化而变化的，因此时间复杂度为O(n)</p>
 <p><strong>线性对数阶<img src="/2020/07/03/algorithm-01/6.png" srcset="/img/loading.gif" alt></strong></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;n;j++)&#123;
+<pre><code class="hljs java"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;n;j++)&#123;
     <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>;
 	<span class="hljs-keyword">while</span>(i&lt;n)&#123;
     	i=i*<span class="hljs-number">2</span>;
 	&#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p>将时间复杂度为<img src="/2020/07/03/algorithm-01/4.png" srcset="/img/loading.gif" alt>的代码循环n次</p>
 <p><strong>平方阶<img src="/2020/07/03/algorithm-01/7.png" srcset="/img/loading.gif" alt></strong></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;
+<pre><code class="hljs java"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;
     <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;n;j++)&#123;
         <span class="hljs-keyword">int</span> m=<span class="hljs-number">0</span>;
         m++;
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p>将时间复杂度为O(n)的代码循环n次</p>
 <h2 id="算法的空间复杂度"><a href="#算法的空间复杂度" class="headerlink" title="算法的空间复杂度"></a>算法的空间复杂度</h2><p>1、一个算法的空间复杂度(Space Complexity)定义为该算法所耗费的存储空间，它也是问题规模n的函数。</p>

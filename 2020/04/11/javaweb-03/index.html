@@ -221,7 +221,7 @@
               <h2 id="jsp定义"><a href="#jsp定义" class="headerlink" title="jsp定义"></a>jsp定义</h2><p>jsp全称为 java server page，用来代替servlet程序回传html页面的数据。</p>
 <p><strong>jsp页面的本质就是一个Servlet程序</strong>，在第一次访问jsp页面时，Tomcat服务器就会把jsp页面翻译成一个java源程序，并对它进行编译成.class字节码文件。<a id="more"></a></p>
 <h2 id="jsp语法"><a href="#jsp语法" class="headerlink" title="jsp语法"></a>jsp语法</h2><h3 id="jsp头部的page指令"><a href="#jsp头部的page指令" class="headerlink" title="jsp头部的page指令"></a>jsp头部的page指令</h3><p>jsp 的page 指令可以修改jsp 页面中一些重要的属性，或者行为。</p>
-<div class="hljs"><pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;</code></pre></div>
+<pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;</code></pre>
 
 <p>i. language 属性表示jsp 翻译后是什么语言文件。暂时只支持java。<br>ii. contentType 属性表示jsp 返回的数据类型是什么。也是源码中response.setContentType()参数值<br>iii. pageEncoding 属性表示当前jsp 页面文件本身的字符集。<br>iv. import 属性跟java 源代码中一样。用于导包，导类。<br>v. autoFlush 属性设置当out 输出流缓冲区满了之后，是否自动刷新冲级区。默认值是true。<br>vi. buffer 属性设置out 缓冲区的大小。默认是8kb<br>vii. errorPage 属性设置当jsp 页面运行时出错，自动跳转去的错误页面路径。</p>
 <h3 id="jsp中的常用脚本"><a href="#jsp中的常用脚本" class="headerlink" title="jsp中的常用脚本"></a>jsp中的常用脚本</h3><p>1、声明脚本<br>作用：可以给jsp 翻译出来的java 类定义属性和方法甚至是静态代码块，内部类等。<br>格式：<code>&lt;%!  java代码%&gt;</code></p>
@@ -236,7 +236,7 @@
 <h3 id="转发"><a href="#转发" class="headerlink" title="转发"></a>转发</h3><p>格式：<code>&lt;jsp:forward page=&quot;/&quot;&gt;&lt;/jsp:forward&gt;</code></p>
 <h2 id="Listener监听器"><a href="#Listener监听器" class="headerlink" title="Listener监听器"></a>Listener监听器</h2><p>1、Listener 监听器是javaweb三大组件之一(Servlet程序，Filter过滤器，Listener监听器)。<br>2、Listener是javaEE接口规范，就是接口。<br>3、监听器的作用是，监听某种事物的变化。然后通过回调函数，反馈给客户（程序）去做一些相应的处理。ServletContextListener 它可以监听ServletContext 对象的创建和销毁。<br>ServletContext 对象在web 工程启动的时候创建，在web 工程停止的时候销毁。<br>监听到创建和销毁之后都会分别调用ServletContextListener 监听器的方法反馈。</p>
 <p>使用ServletContextListener 监听器监听ServletContext 对象步骤如下：<br>1、编写一个类去实现ServletContextListener<br>2、实现其两个回调方法<br>3、到web.xml 中去配置监听器</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> listener;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> listener;
 
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ServletContextListenerImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ServletContextListener</span> </span>&#123;
     <span class="hljs-meta">@Override</span>
@@ -248,9 +248,9 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">contextDestroyed</span><span class="hljs-params">(ServletContextEvent sce)</span> </span>&#123;
         System.out.println(<span class="hljs-string">"销毁ServletContext"</span>);
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">web-app</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee"</span></span>
 <span class="hljs-tag">         <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span></span>
 <span class="hljs-tag">         <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"</span></span>
@@ -258,7 +258,7 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">listener</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">listener-class</span>&gt;</span>listener.ServletContextListenerImpl<span class="hljs-tag">&lt;/<span class="hljs-name">listener-class</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">listener</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre>
 
 
             </article>

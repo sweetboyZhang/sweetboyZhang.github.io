@@ -220,7 +220,7 @@
             <article class="markdown-body">
               <p>整合的想法：使用spring的ioc核心技术， 把mybatis中使用的对象交给spring统一创建和管理。spring是容器，存放项目中使用的各种对象，例如Service对象，Dao对象，工具类对象等等<a id="more"></a></p>
 <p>项目结构：<br><img src="/2020/06/16/Spring-03/3.jpg" srcset="/img/loading.gif" alt></p>
-<h2 id="1、在pom-xml文件中添加依赖及插件"><a href="#1、在pom-xml文件中添加依赖及插件" class="headerlink" title="1、在pom.xml文件中添加依赖及插件"></a>1、在pom.xml文件中添加依赖及插件</h2><div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>
+<h2 id="1、在pom-xml文件中添加依赖及插件"><a href="#1、在pom-xml文件中添加依赖及插件" class="headerlink" title="1、在pom.xml文件中添加依赖及插件"></a>1、在pom.xml文件中添加依赖及插件</h2><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
@@ -264,9 +264,9 @@
         <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>druid<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.1.12<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span></code></pre>
 
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">build</span>&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">build</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">resources</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">resource</span>&gt;</span>
             <span class="hljs-tag">&lt;<span class="hljs-name">directory</span>&gt;</span>src/main/java<span class="hljs-tag">&lt;/<span class="hljs-name">directory</span>&gt;</span><span class="hljs-comment">&lt;!--所在的目录--&gt;</span>
@@ -287,13 +287,13 @@
             <span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">plugin</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">plugins</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">build</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">build</span>&gt;</span></code></pre>
 
 <h2 id="2、交给spring的mybatis对象"><a href="#2、交给spring的mybatis对象" class="headerlink" title="2、交给spring的mybatis对象"></a>2、交给spring的mybatis对象</h2><p>1.数据源</p>
 <p>2.SqlSessionFactory对象</p>
 <p>3.Dao对象</p>
 <p>4.Service对象<br>创建spring配置文件applicationContext.xml</p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span></span>
 <span class="hljs-tag">       <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span></span>
 <span class="hljs-tag">       <span class="hljs-attr">xmlns:context</span>=<span class="hljs-string">"http://www.springframework.org/schema/context"</span></span>
@@ -333,15 +333,15 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"employeeService"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.zyz.service.impl.EmployeeServiceImpl"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"employeeDao"</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"employeeDao"</span>/&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre>
 
 <p>jdbc.propeties</p>
-<div class="hljs"><pre><code class="hljs properties"><span class="hljs-meta">jdbc.url</span>=<span class="hljs-string">jdbc:mysql://localhost:3306/mybatis?serverTimezone=Asia/Shanghai</span>
+<pre><code class="hljs properties"><span class="hljs-meta">jdbc.url</span>=<span class="hljs-string">jdbc:mysql://localhost:3306/mybatis?serverTimezone=Asia/Shanghai</span>
 <span class="hljs-meta">jdbc.username</span>=<span class="hljs-string">root</span>
 <span class="hljs-meta">jdbc.password</span>=<span class="hljs-string">2824199842</span>
-<span class="hljs-meta">jdbc.maxActive</span>=<span class="hljs-string">20</span></code></pre></div>
+<span class="hljs-meta">jdbc.maxActive</span>=<span class="hljs-string">20</span></code></pre>
 
-<h2 id="3、mybatis配置文件"><a href="#3、mybatis配置文件" class="headerlink" title="3、mybatis配置文件"></a>3、mybatis配置文件</h2><div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span>
+<h2 id="3、mybatis配置文件"><a href="#3、mybatis配置文件" class="headerlink" title="3、mybatis配置文件"></a>3、mybatis配置文件</h2><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">configuration</span></span>
 <span class="hljs-meta">        <span class="hljs-meta-keyword">PUBLIC</span> <span class="hljs-meta-string">"-//mybatis.org//DTD Config 3.0//EN"</span></span>
 <span class="hljs-meta">        <span class="hljs-meta-string">"http://mybatis.org/dtd/mybatis-3-config.dtd"</span>&gt;</span>
@@ -356,9 +356,9 @@
         <span class="hljs-tag">&lt;<span class="hljs-name">package</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"com.zyz.dao"</span>/&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">mappers</span>&gt;</span>
 
-<span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span></code></pre>
 
-<h2 id="4、在dao包下添加sql映射文件"><a href="#4、在dao包下添加sql映射文件" class="headerlink" title="4、在dao包下添加sql映射文件"></a>4、在dao包下添加sql映射文件</h2><div class="hljs"><pre><code class="hljs sql">&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+<h2 id="4、在dao包下添加sql映射文件"><a href="#4、在dao包下添加sql映射文件" class="headerlink" title="4、在dao包下添加sql映射文件"></a>4、在dao包下添加sql映射文件</h2><pre><code class="hljs sql">&lt;?xml version="1.0" encoding="utf-8" ?&gt;
 &lt;!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" &gt;
@@ -370,15 +370,15 @@
     &lt;<span class="hljs-keyword">select</span> <span class="hljs-keyword">id</span>=<span class="hljs-string">"selectAllEmps"</span> resultType=<span class="hljs-string">"com.zyz.bean.Employee"</span>&gt;
         <span class="hljs-keyword">select</span> <span class="hljs-keyword">id</span>, <span class="hljs-keyword">name</span>, gender, email, dept_id deptId <span class="hljs-keyword">from</span> employee
     &lt;/<span class="hljs-keyword">select</span>&gt;
-&lt;/mapper&gt;</code></pre></div>
+&lt;/mapper&gt;</code></pre>
 
-<h2 id="5、创建service包添加相应的Service接口并实现"><a href="#5、创建service包添加相应的Service接口并实现" class="headerlink" title="5、创建service包添加相应的Service接口并实现"></a>5、创建service包添加相应的Service接口并实现</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">EmployeeService</span> </span>&#123;
+<h2 id="5、创建service包添加相应的Service接口并实现"><a href="#5、创建service包添加相应的Service接口并实现" class="headerlink" title="5、创建service包添加相应的Service接口并实现"></a>5、创建service包添加相应的Service接口并实现</h2><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">EmployeeService</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">addEmp</span><span class="hljs-params">(Employee employee)</span></span>;
 
     <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Employee&gt; <span class="hljs-title">queryAllEmps</span><span class="hljs-params">()</span></span>;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EmployeeServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">EmployeeService</span> </span>&#123;
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EmployeeServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">EmployeeService</span> </span>&#123;
 
     <span class="hljs-keyword">private</span> EmployeeDao employeeDao;
 
@@ -397,9 +397,9 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Employee&gt; <span class="hljs-title">queryAllEmps</span><span class="hljs-params">()</span> </span>&#123;
         <span class="hljs-keyword">return</span> employeeDao.selectAllEmps();
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
-<h2 id="6、创建测试类"><a href="#6、创建测试类" class="headerlink" title="6、创建测试类"></a>6、创建测试类</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestDao</span> </span>&#123;
+<h2 id="6、创建测试类"><a href="#6、创建测试类" class="headerlink" title="6、创建测试类"></a>6、创建测试类</h2><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestDao</span> </span>&#123;
     <span class="hljs-meta">@Test</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span> </span>&#123;
         String config = <span class="hljs-string">"applicationContext.xml"</span>;
@@ -421,9 +421,9 @@
         &#125;
 
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestService</span> </span>&#123;
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestService</span> </span>&#123;
     <span class="hljs-meta">@Test</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span></span>&#123;
         String config = <span class="hljs-string">"applicationContext.xml"</span>;
@@ -447,7 +447,7 @@
         &#125;
     &#125;
 
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 
             </article>

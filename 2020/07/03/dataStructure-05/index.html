@@ -220,7 +220,7 @@
             <article class="markdown-body">
               <p>递归就是方法自己调用自己，每次调用时传入不同的变量。</p>
 <p>递归调用规则：<br>1、当程序执行到一个方法时，就会开辟一个独立的空间(栈)<br>2、每个空间的数据(局部变量)，是独立的。<a id="more"></a><br>3、如果方法中使用的是引用数据类型的变量，就会共享该变量。<br>4、递归必须向退出递归的条件逼近<br>5、当一个方法执行完毕，或者遇到return，就会返回到调用它的那个方法中，继续执行该方法。</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RecursionTest</span> </span>&#123;
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RecursionTest</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
         test(<span class="hljs-number">4</span>);
         <span class="hljs-comment">// System.out.println(factorial(3));</span>
@@ -243,13 +243,13 @@
             <span class="hljs-keyword">return</span> factorial(n-<span class="hljs-number">1</span>)*n;
         &#125;
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p><img src="/2020/07/03/dataStructure-05/1.png" srcset="/img/loading.gif" alt></p>
 <p>输出结果：</p>
-<div class="hljs"><pre><code class="hljs ini"><span class="hljs-attr">n</span>=<span class="hljs-number">2</span>
+<pre><code class="hljs ini"><span class="hljs-attr">n</span>=<span class="hljs-number">2</span>
 <span class="hljs-attr">n</span>=<span class="hljs-number">3</span>
-<span class="hljs-attr">n</span>=<span class="hljs-number">4</span></code></pre></div>
+<span class="hljs-attr">n</span>=<span class="hljs-number">4</span></code></pre>
 
 <p>加入else后输出n=2</p>
 

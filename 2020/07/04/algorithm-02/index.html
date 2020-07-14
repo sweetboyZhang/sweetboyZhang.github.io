@@ -222,7 +222,7 @@
 <p>将排序序列从前向后，依次比较相邻元素的值，若发生逆序则交换，使值较大的元素逐渐从前部移向后部。<a id="more"></a><br><img src="/2020/07/04/algorithm-02/1.png" srcset="/img/loading.gif" alt></p>
 <p><strong>小结：</strong></p>
 <p>1、总共要进行数组长度 -1 趟。<br>2、每趟过后，就会将值最大的元素放在最后面，因此，每趟比较的次数都在逐渐减少。<br>3、如果发现在某趟排序中没有发生过一次交换，说明排序已经完成了，可以提前结束，这就是优化。</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">bubbleSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] arr)</span> </span>&#123;
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">bubbleSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] arr)</span> </span>&#123;
         <span class="hljs-keyword">int</span> temp = <span class="hljs-number">0</span>;
         <span class="hljs-keyword">boolean</span> flag = <span class="hljs-keyword">true</span>;
         <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; arr.length - <span class="hljs-number">1</span>; i++) &#123;
@@ -240,14 +240,14 @@
             &#125;
         &#125;
         System.out.println(Arrays.toString(arr));
-    &#125;</code></pre></div>
+    &#125;</code></pre>
 
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
     <span class="hljs-keyword">int</span>[] arr1 = &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>&#125;;
     <span class="hljs-keyword">int</span>[] arr2 = &#123;<span class="hljs-number">5</span>,<span class="hljs-number">4</span>,<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>&#125;;
     bubbleSort(arr1);
     bubbleSort(arr2);
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p><strong>运行结果：</strong><br><img src="/2020/07/04/algorithm-02/2.png" srcset="/img/loading.gif" alt></p>
 <p>时间复杂度为：O(n²)</p>
@@ -255,7 +255,7 @@
 <p>第一次从arr[0]到arr[n-1]中选取最小值，与arr[0]交换，第二次从arr[1]到arr[n-1]中选最小值，与arr[1]交换，……，第i次从arr[i-1]到arr[n-1]中选取最小值，与arr[i-1]交换，……，第n-1次从arr[n-2]到arr[n-1]中选取最小值与arr[n-2]交换，总共通过n-1次，得到一个从小到大排列的有序序列。<br><img src="/2020/07/04/algorithm-02/3.png" srcset="/img/loading.gif" alt></p>
 <p><strong>小结</strong></p>
 <p>1、总共要进行数组长度 - 1轮排序<br>2、每一轮排序，又是一个小循环，<br>      循环的规则：&lt;1&gt; 假定当前的数是最小数；<br>                             &lt;2&gt; 然后和后面的每一个数比较，如果发现有比当前数更小的数，就重新确定最小数，并得到下                                   标；<br>                            &lt;3&gt; 当遍历到数组的最后时，就得到本轮的最小数，然后交换</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">selectSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] arr)</span></span>&#123;
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">selectSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] arr)</span></span>&#123;
         <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i =<span class="hljs-number">0</span>;i&lt;arr.length-<span class="hljs-number">1</span>;i++)&#123;
             <span class="hljs-keyword">int</span> minIndex = i;
             <span class="hljs-keyword">int</span> min = arr[i];
@@ -276,19 +276,19 @@
             System.out.println(<span class="hljs-string">"第"</span>+(i+<span class="hljs-number">1</span>)+<span class="hljs-string">"轮："</span>+ Arrays.toString(arr));
         &#125;
         System.out.println(Arrays.toString(arr));
-    &#125;</code></pre></div>
+    &#125;</code></pre>
 
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
     <span class="hljs-keyword">int</span>[] arr1 = &#123;<span class="hljs-number">6</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>&#125;;
     <span class="hljs-keyword">int</span>[] arr2 = &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>&#125;;
     selectSort(arr2);
     selectSort(arr1);
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p><strong>运行结果：</strong><br><img src="/2020/07/04/algorithm-02/4.png" srcset="/img/loading.gif" alt></p>
 <h2 id="插入排序（Insertion-Sorting）"><a href="#插入排序（Insertion-Sorting）" class="headerlink" title="插入排序（Insertion Sorting）"></a>插入排序（Insertion Sorting）</h2><p><strong>基本思想：</strong></p>
 <p>把n个待排序的元素看成一个有序表和一个无序表，<strong>开始时有序表只包含1个元素无序表包含n-1个元素</strong>，在排序过程中每次从无序表中取出一个元素，把它的排列码依次与有序表元素的排列码比较，将它插入到有序表的适当位置，使之成为新的有序表。</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">InsertSort</span> </span>&#123;
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">InsertSort</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
         <span class="hljs-keyword">int</span>[] arr = &#123;<span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>&#125;;
         insertSort(arr);
@@ -312,7 +312,7 @@
             System.out.println(<span class="hljs-string">"第"</span>+i +<span class="hljs-string">"轮："</span>+Arrays.toString(arr));
         &#125;
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p><strong>运行结果 ：</strong><br><img src="/2020/07/04/algorithm-02/5.png" srcset="/img/loading.gif" alt></p>
 <h2 id="希尔排序（Shell-Sorting）"><a href="#希尔排序（Shell-Sorting）" class="headerlink" title="希尔排序（Shell Sorting）"></a>希尔排序（Shell Sorting）</h2><p>是简单插入排序经过改进之后的一个<strong>更高效的版本</strong></p>

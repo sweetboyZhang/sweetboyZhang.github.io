@@ -220,7 +220,7 @@
             <article class="markdown-body">
               <h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h2><p>Cookie是服务器通知客户端保存键值对的一种技术。<a id="more"></a><br>客户端有了Cookie后，每次请求都会发送给服务器。<br>Cookie 的值可以唯一地标识客户端，因此 Cookie 常用于会话管理。<br>每个Cookie的 大小不能超过4kb。</p>
 <h3 id="1-创建Cookie"><a href="#1-创建Cookie" class="headerlink" title="1.创建Cookie"></a>1.创建Cookie</h3><p><img src="/2020/04/23/javaweb-06/1.png" srcset="/img/loading.gif" alt></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CookieServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BaseServlet</span> </span>&#123;
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CookieServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BaseServlet</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">createCookie</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
         <span class="hljs-comment">// 1.创建Cookie对象</span>
         Cookie cookie = <span class="hljs-keyword">new</span> Cookie(<span class="hljs-string">"key1"</span>, <span class="hljs-string">"value"</span>);
@@ -228,10 +228,10 @@
         resp.addCookie(cookie);
         resp.getWriter().write(<span class="hljs-string">"Cookie创建成功"</span>);
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <h3 id="2-服务器获取Cookie"><a href="#2-服务器获取Cookie" class="headerlink" title="2.服务器获取Cookie"></a>2.服务器获取Cookie</h3><p><img src="/2020/04/23/javaweb-06/2.png" srcset="/img/loading.gif" alt></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getCookie</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getCookie</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
     Cookie[] cookies = req.getCookies();
     <span class="hljs-keyword">for</span>(Cookie cookie:cookies)&#123;
         <span class="hljs-comment">// getName()返回cookie的key</span>
@@ -249,10 +249,10 @@
     iwantCookie = CookieUtils.findCookie(<span class="hljs-string">"key1"</span>,req.getCookies());    <span class="hljs-keyword">if</span>(iwantCookie!=<span class="hljs-keyword">null</span>)&#123;
     resp.getWriter().write(<span class="hljs-string">"找到了指定的cookie"</span>);
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p><strong>将查找指定Cookie封装成工具类：</strong></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> Utils;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> Utils;
 
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CookieUtils</span> </span>&#123;
     <span class="hljs-comment">/**</span>
@@ -273,11 +273,11 @@
         &#125;
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <h3 id="3-Cookie值的修改"><a href="#3-Cookie值的修改" class="headerlink" title="3.Cookie值的修改"></a>3.Cookie值的修改</h3><p><strong>方案一：</strong><br>1、先创建一个要修改的同名（指的就是key）的Cookie 对象<br>2、在构造器，同时赋于新的Cookie 值。<br>3、调用response.addCookie( Cookie );</p>
 <p><strong>方案二：</strong><br>1、先查找到需要修改的Cookie 对象<br>2、调用setValue()方法赋于新的Cookie 值。<br>3、调用response.addCookie()通知客户端保存修改</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">updateCookie</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">updateCookie</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
    <span class="hljs-comment">/* // 方式一：</span>
 <span class="hljs-comment">    // 1、先创建一个要修改的同名（指的就是key）的Cookie 对象</span>
 <span class="hljs-comment">    // 2、在构造器，同时赋于新的Cookie 值。</span>
@@ -295,33 +295,33 @@
     &#125;
     <span class="hljs-comment">// 3、调用response.addCookie()通知客户端保存修改</span>
     resp.addCookie(cookie);
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <h3 id="4-Cookie的生命控制"><a href="#4-Cookie的生命控制" class="headerlink" title="4.Cookie的生命控制"></a>4.Cookie的生命控制</h3><p>管理cookie什么时候被销毁(删除)<br>setAge()：<br>正数表示在指定的秒数后过期；<br>负数表示浏览器关闭后，cookie就会销毁；（）默认值为-1<br>0表示马上删除cookie。</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">defaultLife</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">defaultLife</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
     Cookie cookie = <span class="hljs-keyword">new</span> Cookie(<span class="hljs-string">"defaultLife"</span>,<span class="hljs-string">"defaultLife"</span>);
     cookie.setMaxAge(-<span class="hljs-number">1</span>); <span class="hljs-comment">// 设置存活时间</span>
     resp.addCookie(cookie);
-&#125;</code></pre></div>
+&#125;</code></pre>
 
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">deleteCookie</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">deleteCookie</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
     Cookie cookie = CookieUtils.findCookie(<span class="hljs-string">"defaultLife"</span>,req.getCookies());
     <span class="hljs-keyword">if</span>(cookie!=<span class="hljs-keyword">null</span>)&#123;
     cookie.setMaxAge(<span class="hljs-number">0</span>);<span class="hljs-comment">// 马上删除cookie</span>
     resp.addCookie(cookie);
     resp.getWriter().write(<span class="hljs-string">"cookie[defaultLife=defaultValue]已删除"</span>);
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <h3 id="5-Cookie有效路径Path的设置"><a href="#5-Cookie有效路径Path的设置" class="headerlink" title="5.Cookie有效路径Path的设置"></a>5.Cookie有效路径Path的设置</h3><p>Cookie的path属性可以有效的过滤哪些Cookie可以发送 个服务器。<br>path属性是通过请求的地址来进行有效的过滤。</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testPath</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testPath</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
     Cookie cookie = <span class="hljs-keyword">new</span> Cookie(<span class="hljs-string">"key2"</span>,<span class="hljs-string">"value2"</span>);
     cookie.setPath(req.getContextPath()+<span class="hljs-string">"/a"</span>);  <span class="hljs-comment">// 设置Path值为  /工程路径/a</span>
     resp.addCookie(cookie);
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <h3 id="6-免输入用户名登录"><a href="#6-免输入用户名登录" class="headerlink" title="6.免输入用户名登录"></a>6.免输入用户名登录</h3><p><img src="/2020/04/23/javaweb-06/3.png" srcset="/img/loading.gif" alt></p>
-<div class="hljs"><pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;
+<pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;
 &lt;html&gt;
 &lt;head&gt;
     &lt;title&gt;login&lt;/title&gt;
@@ -333,9 +333,9 @@
         &lt;input type=<span class="hljs-string">"submit"</span> value=<span class="hljs-string">"登录"</span>/&gt;
     &lt;/form&gt;
 &lt;/body&gt;
-&lt;/html&gt;</code></pre></div>
+&lt;/html&gt;</code></pre>
 
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LoginServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LoginServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;
     <span class="hljs-meta">@Override</span>
     <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doPost</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
         req.setCharacterEncoding(<span class="hljs-string">"UTF-8"</span>);
@@ -351,11 +351,11 @@
             System.out.println(<span class="hljs-string">"登录失败！"</span>);
         &#125;
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <h2 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h2><p>1、Session 是一个接口（HttpSession）。<br>2、Session 就是会话。它是用来维护一个客户端和服务器之间关联的一种技术。<br>3、每个客户端都有自己的一个Session 会话。<br>4、Session 会话中，我们经常用来保存用户登录之后的信息。</p>
 <h3 id="1-创建和获取session"><a href="#1-创建和获取session" class="headerlink" title="1.创建和获取session"></a>1.创建和获取session</h3><p>request.getSeesion()：<br>第一次调用：创建Session会话。<br>之后的调用：获取前面创建好的Session会话对象。<br>isNew()：判断Session是否是刚创建的<br>&nbsp;&nbsp;&nbsp;&nbsp;true：表示刚创建<br>&nbsp;&nbsp;&nbsp;&nbsp;false：表示获取之前创建<br>getId()：得到Session的会话id值</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">createOrGetSession</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">createOrGetSession</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
     <span class="hljs-comment">// 创建或获取Session会话对象</span>
     HttpSession session = req.getSession();
     <span class="hljs-comment">// 判断Session是否是刚刚创建的</span>
@@ -365,9 +365,9 @@
 
     resp.getWriter().write(<span class="hljs-string">"得到Session,id为："</span>+id+<span class="hljs-string">"&lt;br/&gt;"</span>);
     resp.getWriter().write(<span class="hljs-string">"是否是刚刚创建的："</span>+isNew+<span class="hljs-string">"&lt;br/&gt;"</span>);
-&#125;</code></pre></div>
+&#125;</code></pre>
 
-<h3 id="2-Session域数据的存取"><a href="#2-Session域数据的存取" class="headerlink" title="2.Session域数据的存取"></a>2.Session域数据的存取</h3><div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<h3 id="2-Session域数据的存取"><a href="#2-Session域数据的存取" class="headerlink" title="2.Session域数据的存取"></a>2.Session域数据的存取</h3><pre><code class="hljs java"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * 往Session域中保存数据</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param</span> req</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param</span> resp</span>
@@ -389,31 +389,31 @@
 <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getAttribute</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
     Object key1 = req.getSession().getAttribute(<span class="hljs-string">"key1"</span>);
     resp.getWriter().write(<span class="hljs-string">"从Session中获取的key1的数据为："</span>+ key1);
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <h3 id="3-Session生命周期控制"><a href="#3-Session生命周期控制" class="headerlink" title="3.Session生命周期控制"></a>3.Session生命周期控制</h3><p>setMaxInactiveInterval(int  interval)：设置Session超时时间，超过指定的时长就会被销毁。<br>负数表示永不超时。<br>getMaxInactiveInterval()：获取Session超时时长。<br>invalidate()：使当前会话马上超时。</p>
 <p>获取默认超时时长：</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">defaultLife</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">defaultLife</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
     <span class="hljs-keyword">int</span> maxInactiveInterval = req.getSession().getMaxInactiveInterval();
     resp.getWriter().write(<span class="hljs-string">"Session的默认超时时长为："</span>+maxInactiveInterval);<span class="hljs-comment">// 1800</span>
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p> 设置web工程下所有的 Session 默认超时时长：</p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">session-config</span>&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">session-config</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">session-timeout</span>&gt;</span>20<span class="hljs-tag">&lt;/<span class="hljs-name">session-timeout</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">session-config</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">session-config</span>&gt;</span></code></pre>
 
 <p>设置个别Session的超时时长：                                                                                                                                                                                                                                                                                                                                                                                                                                            </p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setLife</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setLife</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
     req.getSession().setMaxInactiveInterval(<span class="hljs-number">3</span>);
     resp.getWriter().write(<span class="hljs-string">"设置Session 3秒后失效~"</span>);
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p>使Session马上失效：</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">deleteNow</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">deleteNow</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
        req.getSession().invalidate();
        resp.getWriter().write(<span class="hljs-string">"设置Session 马上失效~"</span>);
-   &#125;</code></pre></div>
+   &#125;</code></pre>
 
 
             </article>

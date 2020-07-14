@@ -221,20 +221,20 @@
               <h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><p><img src="/2020/06/12/Spring-02/1.jpg" srcset="/img/loading.gif" alt><a id="more"></a></p>
 <h3 id="静态代理"><a href="#静态代理" class="headerlink" title="静态代理"></a>静态代理</h3><p>角色分析：<br>抽象角色：一般使用接口或抽象类来实现。一是通过继承被代理类的方式实现其子类，重写父类方法；二是与被代理类实现共同的一个接口。<br>真实角色：被代理的角色。<br>代理角色：代理真实角色，执行附属操作。<br>客户：使用代理角色来进行一些操作。<br>代码步骤 ：</p>
 <p>1、接口</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Rent</span> </span>&#123;
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Rent</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">rent</span><span class="hljs-params">()</span></span>;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p>2、真实角色</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Host</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Rent</span> </span>&#123;
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Host</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Rent</span> </span>&#123;
     <span class="hljs-meta">@Override</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">rent</span><span class="hljs-params">()</span> </span>&#123;
         System.out.println(<span class="hljs-string">"Host提供租房服务~"</span>);
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p>3、代理角色</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Proxy</span> </span>&#123;
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Proxy</span> </span>&#123;
 
     <span class="hljs-keyword">private</span> Host host;
 
@@ -249,28 +249,28 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">rent</span><span class="hljs-params">()</span></span>&#123;
         host.rent();
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p>4、客户端访问代理角色</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Client</span> </span>&#123;
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Client</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
         Host host = <span class="hljs-keyword">new</span> Host();
         Proxy proxy = <span class="hljs-keyword">new</span> Proxy(host);
         proxy.rent();
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p>好处：<br>1、可以使真实角色的操作更加纯粹，不用去关注其他公共的业务<br>2、公共业务交给代理角色，实现业务分工<br>3、公共业务发生拓展时，方便集中管理<br>缺点：<br>一个真实角色就会产生一个代理角色，造成代码量翻倍</p>
 <h3 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h3><p>代理类是动态生成的，不是我们直接写好的。交给程序去自动生成代理类（在程序运行期间由JVM根据反射等机制动态的生成源码 ）。<br>动态代理分为两大类：基于接口的JDK动态代理；基于类cglib动态代理。<br>1、接口</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">UserService</span> </span>&#123;
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">UserService</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">()</span></span>;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">delete</span><span class="hljs-params">()</span></span>;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">()</span></span>;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">query</span><span class="hljs-params">()</span></span>;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p>2、真实角色</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">UserService</span> </span>&#123;
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">UserService</span> </span>&#123;
     <span class="hljs-meta">@Override</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">()</span> </span>&#123;
         System.out.println(<span class="hljs-string">"添加"</span>);
@@ -290,10 +290,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">query</span><span class="hljs-params">()</span> </span>&#123;
         System.out.println(<span class="hljs-string">"查询"</span>);
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p>3、实现InvocationHandler接口</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyInvocationHandler</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">InvocationHandler</span> </span>&#123;
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyInvocationHandler</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">InvocationHandler</span> </span>&#123;
 
     <span class="hljs-comment">// 目标对象</span>
     <span class="hljs-keyword">private</span> Object target;
@@ -309,10 +309,10 @@
         <span class="hljs-comment">// 执行目标类方法</span>
         <span class="hljs-keyword">return</span> method.invoke(target,args);
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p>4、创建并使用代理对象</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Client</span> </span>&#123;
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Client</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
         <span class="hljs-comment">// 创建目标对象</span>
         UserServiceImpl target = <span class="hljs-keyword">new</span> UserServiceImpl();
@@ -324,33 +324,33 @@
         <span class="hljs-comment">// 通过代理执行方法，会调用myINvocationHandler中的invoke方法</span>
         proxy.add();
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p>动态代理作用：<br>1、在目标类源代码不改变的情况下，增加功能。<br>2、减少代码重复<br>3、专注业务逻辑代码<br>4、解耦合</p>
 <h2 id="AOP定义"><a href="#AOP定义" class="headerlink" title="AOP定义"></a>AOP定义</h2><p>面向切面编程，基于动态代理，可使用jdk,cglib两种代理方式。<br>Spring会根据具体的Bean是否具有接口去选择动态代理方式，如果有接口，使用的是Jdk的动态代理方式，如果没有接口，使用的是cglib的动态代理方式。<br>AOP就是动态代理的规范化，供开发人员以统一的方式使用动态代理。<br>比如你写了个方法用来做一些事情，但这个事情要求登录用户才能做，你就可以在这个方法执行前验证一下，执行后记录下操作日志，把前后的这些与业务逻辑无关的代码抽取出来放一个类里，这个<strong>类就是切面（Aspect），</strong>这个<strong>被环绕的方法就是切点（Pointcut），</strong>你所做的<strong>执行前执行后的</strong>这些<strong>方法统一叫做增强处理（Advice）。</strong></p>
 <p>怎么理解面向切面编程？<br>1、需要在分析项目功能时，找出切面<br>2、合理的安排切面的执行时间（目标方法前，还是目标方法后）—-&gt;通知注解<br>3、合理的安排切面执行的位置（在哪个类，哪个方法增加增强方法）—-&gt;切入点表达式</p>
 <h2 id="AOP实现"><a href="#AOP实现" class="headerlink" title="AOP实现"></a>AOP实现</h2><p>aspectj：开源的aop实现框架<br>加入aspectj依赖</p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-aspects<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.2.5.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
 
 <p>1、真实对象的接口：</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">SomeService</span> </span>&#123;
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">SomeService</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doSome</span><span class="hljs-params">()</span></span>;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p>2、实现真实对象</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SomeServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">SomeService</span> </span>&#123;
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SomeServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">SomeService</span> </span>&#123;
     <span class="hljs-meta">@Override</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doSome</span><span class="hljs-params">()</span> </span>&#123;
         System.out.println(<span class="hljs-string">"doSome方法执行"</span>);
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p>3、切面对象，用于给业务增加功能</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<pre><code class="hljs java"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@Aspect</span> 表示当前类是切面类。</span>
 <span class="hljs-comment"> * 切面类：用于给业务方法增加功能</span>
 <span class="hljs-comment"> */</span>
@@ -369,10 +369,10 @@
         System.out.println(<span class="hljs-string">"前置通知："</span>+<span class="hljs-keyword">new</span> Date());
 
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p>4、添加配置文件，由spring创建需要的对象</p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span></span>
 <span class="hljs-tag">       <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="hljs-attr">xmlns:aop</span>=<span class="hljs-string">"http://www.springframework.org/schema/aop"</span></span>
 <span class="hljs-tag">       <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd"</span>&gt;</span>
@@ -385,30 +385,30 @@
 <span class="hljs-comment">&lt;!-- 声明自动代理生成器：使用aspectj框架内部的功能，创建目标对象的代理对象</span>
 <span class="hljs-comment">    将spring容器中所有目标对象，一次性生成代理对象--&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">aop:aspectj-autoproxy</span> /&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre>
 
 <p>5、测试</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<pre><code class="hljs java"><span class="hljs-meta">@Test</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span> </span>&#123;
     String config = <span class="hljs-string">"applicationContext.xml"</span>;
     ApplicationContext applicationContext = <span class="hljs-keyword">new</span> ClassPathXmlApplicationContext(config);
     SomeService proxy = (SomeService) applicationContext.getBean(<span class="hljs-string">"someService"</span>);
     proxy.doSome();
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p>结果：<br><img src="/2020/06/12/Spring-02/2.jpg" srcset="/img/loading.gif" alt></p>
 <p>后置通知：</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<pre><code class="hljs java"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * returning   目标方法返回值</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param</span> res</span>
 <span class="hljs-comment"> */</span>
 <span class="hljs-meta">@AfterReturning</span>(value = <span class="hljs-string">"execution(public Integer com.zyz.SomeService.doOther(Integer))"</span>,returning = <span class="hljs-string">"res"</span>)
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">myAfterReturn</span><span class="hljs-params">(Object res)</span></span>&#123;
     System.out.println(<span class="hljs-string">"后置通知  获取的返回值为"</span>+res);
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p>环绕通知：</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<pre><code class="hljs java"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param</span> proceedingJoinPoint  固定参数</span>
 <span class="hljs-comment"> */</span>
 
@@ -419,7 +419,7 @@
     res = proceedingJoinPoint.proceed();<span class="hljs-comment">// method.invoke()</span>
     System.out.println(<span class="hljs-string">"目标方法返回值："</span>+res);
     System.out.println(<span class="hljs-string">"环绕通知：目标方法后"</span>);
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 
             </article>

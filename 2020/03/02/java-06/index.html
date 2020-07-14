@@ -219,7 +219,7 @@
             
             <article class="markdown-body">
               <h1 id="集合与数组"><a href="#集合与数组" class="headerlink" title="集合与数组"></a>集合与数组</h1><p><strong>数组：</strong><br>1.一旦初始化，长度就不可修改了；<br>2.一旦定义后，就只能操作指定类型的数据了；<br>3.数组提供的方法非常有限，且效率不高；<a id="more"></a><br>4.获取数组中实际元素的个数，没有现成的属性和方法可调用；<br>5.存储特点：有序，可重复。<br><strong>集合：</strong>Java集合分为Collection和Map两种体系<br><img src="/2020/03/02/java-06/1.jpg" srcset="/img/loading.gif" alt><strong>Collection接口：</strong>单列数据，存储一个一个的对象<br>&lt;1&gt; List接口：元素有序，可重复<br>实现类：<br>ArrayList，作为List接口的主要实现类；线程不安全，效率高；底层使用Object[] elementData存储<br>LinkedList，对于频繁插入，删除效率较高；底层使用双向链表储存<br>Vector，作为List接口的古老实现类；线程安全，效率低；底层使用Object[] elementData存储<br>&lt;2&gt; Set接口：元素无序，不可重复<br>实现类：<br>HashSet，作为Set接口的主要实现类；线程不安全；可以存储null<br>LinkedHashSet，HashSet的子类；遍历时可以按照添加的顺序遍历；对于频繁遍历效率较高<br>TreeSet，要求数据是同一个类型，可按照对象的指定属性进行排序<br><strong>Map接口：</strong>双列数据，存储具有映射关系”key - value对“<br>实现类：<br>HashMap，作为Map的主要实现类；线程不安全，效率高；能存储null的键值对<br>        -&gt; LinkedHashMap，保证在遍历元素时，可以按照添加顺序进行遍历；对于频繁遍历效率较高<br>        -&gt;原因：在原有的HashMap底层结构基础上，添加了一对指针，指向前、后的元素。<br>TreeMap，按照添加的key-value进行排序；底层采用红黑树<br>Hashtable，作为Map的古老实现类；线程安全，效率低；不能存存储null的键值对<br>       -&gt; Properties，常用来处理配置文件。key和value都是String类型</p>
-<h2 id="Collection接口中的方法"><a href="#Collection接口中的方法" class="headerlink" title="Collection接口中的方法"></a>Collection接口中的方法</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<h2 id="Collection接口中的方法"><a href="#Collection接口中的方法" class="headerlink" title="Collection接口中的方法"></a>Collection接口中的方法</h2><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span> </span>&#123;
         Collection coll1 = <span class="hljs-keyword">new</span> ArrayList();
         <span class="hljs-comment">// add(Object e) 将元素e添加到集合中</span>
@@ -274,9 +274,9 @@
         System.out.println(coll3);<span class="hljs-comment">// [1, 2]</span>
         <span class="hljs-comment">// toArray() 集合-&gt;数组</span>
         <span class="hljs-comment">// 数组-&gt;集合 Arrays.asList()</span>
-    &#125;</code></pre></div>
+    &#125;</code></pre>
 
-<h3 id="迭代器Iterator接口"><a href="#迭代器Iterator接口" class="headerlink" title="迭代器Iterator接口"></a>迭代器Iterator接口</h3><div class="hljs"><pre><code class="hljs java"> <span class="hljs-meta">@Test</span>  <span class="hljs-comment">//集合元素的遍历，调用迭代器Iterator接口</span>
+<h3 id="迭代器Iterator接口"><a href="#迭代器Iterator接口" class="headerlink" title="迭代器Iterator接口"></a>迭代器Iterator接口</h3><pre><code class="hljs java"> <span class="hljs-meta">@Test</span>  <span class="hljs-comment">//集合元素的遍历，调用迭代器Iterator接口</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test3</span><span class="hljs-params">()</span> </span>&#123;
         Collection coll1 = <span class="hljs-keyword">new</span> ArrayList();
         coll1.add(<span class="hljs-number">1</span>);
@@ -301,9 +301,9 @@
             System.out.println(iterator.next());
         &#125;
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
-<h3 id="foreach循环"><a href="#foreach循环" class="headerlink" title="foreach循环"></a>foreach循环</h3><div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<h3 id="foreach循环"><a href="#foreach循环" class="headerlink" title="foreach循环"></a>foreach循环</h3><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span></span>&#123;
      Collection coll1 = <span class="hljs-keyword">new</span> ArrayList();
      coll1.add(<span class="hljs-number">1</span>);
@@ -329,9 +329,9 @@
      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; arr1.length; i++) &#123;
          System.out.println(arr1[i]);
      &#125;
- &#125;</code></pre></div>
+ &#125;</code></pre>
 
-<h3 id="List常用方法"><a href="#List常用方法" class="headerlink" title="List常用方法"></a>List常用方法</h3><div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">//List常用方法</span>
+<h3 id="List常用方法"><a href="#List常用方法" class="headerlink" title="List常用方法"></a>List常用方法</h3><pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">//List常用方法</span>
    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span></span>&#123;
    <span class="hljs-comment">// void add(int index, Object ele):在index位置插入ele元素</span>
    <span class="hljs-comment">// boolean addAll(int index, Collection eles):从index位置开始将eles中 的所有元素添加进来</span>
@@ -355,9 +355,9 @@
        System.out.println(list1);<span class="hljs-comment">//[1, 5, 4, 3]</span>
    <span class="hljs-comment">// List subList(int fromIndex, int toIndex):返回从fromIndex到toIndex 位置的子集合</span>
        System.out.println(list1.subList(<span class="hljs-number">1</span>,<span class="hljs-number">4</span>));<span class="hljs-comment">// [5, 4, 3]</span>
-   &#125;</code></pre></div>
+   &#125;</code></pre>
 
-<h3 id="LinkedList的可顺序遍历性"><a href="#LinkedList的可顺序遍历性" class="headerlink" title="LinkedList的可顺序遍历性"></a>LinkedList的可顺序遍历性</h3><div class="hljs"><pre><code class="hljs java">  <span class="hljs-meta">@Test</span> <span class="hljs-comment">// LinkedList可按顺序进行遍历  使用foreach遍历</span>
+<h3 id="LinkedList的可顺序遍历性"><a href="#LinkedList的可顺序遍历性" class="headerlink" title="LinkedList的可顺序遍历性"></a>LinkedList的可顺序遍历性</h3><pre><code class="hljs java">  <span class="hljs-meta">@Test</span> <span class="hljs-comment">// LinkedList可按顺序进行遍历  使用foreach遍历</span>
     <span class="hljs-comment">// LinkedList对数据进行储存时添加了两个引用，用于记录前一个元素和后一个元素的位置，</span>
     <span class="hljs-comment">// 因此可按元素的添加顺序进行遍历，并且对频繁的遍历效率较高</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test2</span><span class="hljs-params">()</span></span>&#123;
@@ -369,11 +369,11 @@
             System.out.println(obj);
         &#125;<span class="hljs-comment">// 1111 2222 3333</span>
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <h3 id="Set常用方法"><a href="#Set常用方法" class="headerlink" title="Set常用方法"></a>Set常用方法</h3><p>HashSet并没有添加新的方法，沿用Collection的方法</p>
 <h3 id="HashSet的添加"><a href="#HashSet的添加" class="headerlink" title="HashSet的添加"></a>HashSet的添加</h3><p>向Set中添加数据一定要重写hashCode()和equals()方法，相等的对象必须具有相同的散列码</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">// HashSet 无序性  使用迭代器遍历</span>
+<pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">// HashSet 无序性  使用迭代器遍历</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span></span>&#123;
         <span class="hljs-comment">// 无序性：不等于随机性，存储的数据在底层数组中并非按照数组索引的顺序添加，而是根据数据的哈希值</span>
         <span class="hljs-comment">// 不可重复性：保证添加的元素按equals()进行判断时，不能返回true</span>
@@ -396,9 +396,9 @@
         <span class="hljs-keyword">while</span>(iterator.hasNext())&#123;
             System.out.println(iterator.next());
         &#125;<span class="hljs-comment">// 333 222 111</span>
-    &#125;</code></pre></div>
+    &#125;</code></pre>
 
-<h3 id="TreeSet按指定属性进行排序"><a href="#TreeSet按指定属性进行排序" class="headerlink" title="TreeSet按指定属性进行排序"></a>TreeSet按指定属性进行排序</h3><div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">//TreeSet按指定属性遍历</span>
+<h3 id="TreeSet按指定属性进行排序"><a href="#TreeSet按指定属性进行排序" class="headerlink" title="TreeSet按指定属性进行排序"></a>TreeSet按指定属性进行排序</h3><pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">//TreeSet按指定属性遍历</span>
    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test3</span><span class="hljs-params">()</span></span>&#123;
        TreeSet treeSet1 = <span class="hljs-keyword">new</span> TreeSet();
        <span class="hljs-comment">// 按大小排序输出</span>
@@ -420,10 +420,10 @@
        <span class="hljs-keyword">while</span>(iterator2.hasNext())&#123;
            System.out.println(iterator2.next());
        &#125;
-   &#125;</code></pre></div>
+   &#125;</code></pre>
 
 <p>Person类实现Comparable接口并重写toCompare()方法</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Override</span> <span class="hljs-comment">// 按照年龄排序</span>
+<pre><code class="hljs java"><span class="hljs-meta">@Override</span> <span class="hljs-comment">// 按照年龄排序</span>
    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">compareTo</span><span class="hljs-params">(Object o)</span> </span>&#123;
        <span class="hljs-keyword">if</span> (o <span class="hljs-keyword">instanceof</span> Person) &#123;
            Person person = (Person)o;
@@ -438,12 +438,12 @@
        <span class="hljs-keyword">else</span>&#123;
            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"输入类型不匹配"</span>);
        &#125;
-   &#125;</code></pre></div>
+   &#125;</code></pre>
 
 <p>输出结果：<br>                        <img src="/2020/03/02/java-06/result.png" srcset="/img/loading.gif" alt></p>
 <hr>
 <p>使用定制排序</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<pre><code class="hljs java"><span class="hljs-meta">@Test</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test4</span><span class="hljs-params">()</span></span>&#123;
     <span class="hljs-comment">//定制排序</span>
     <span class="hljs-comment">// 实例化Comparator类</span>
@@ -468,11 +468,11 @@
     <span class="hljs-keyword">while</span>(iterator2.hasNext())&#123;
         System.out.println(iterator2.next());
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <h2 id="Map接口"><a href="#Map接口" class="headerlink" title="Map接口"></a>Map接口</h2><p><strong>Map的结构：</strong><br>Map中的key：无序，不可重复，使用Set储存所有的key，key所在的类要重写equals()和 hashCode()<br>Map中的value：无序，可重复，使用List存储所有的value，value所在类要重写equals()<br>一个键值对构成一个entry对象<br>Map中的entry：无序，不可重复，使用Set储存所有的entry<br><strong>HashMap的底层实现原理：</strong><br>HashMap map = new HashMap();<br>实例化后，底层创建了一个长度为16的一维数组Entry[] table<br>map.put(key1,value1);<br>在jdk7中，首先调用key1所在类的hashCode()计算key的哈希值，此哈希值通过某种算法后，得到在Entry数组中的存放位置；<br>如果此位置为空，则添加成功，<br>否则将key1的哈希值与此位置上的一个或多个元素(key2,value2)的哈希值比较，<br>如果哈希值不同，则添加成功,<br>否则调用key1所在类的equals()，如果返回false，则添加成功，否则使用value1替换value2。<br>涉及到扩容时，容量扩大为原来的2倍，原有的数据全部被复制过来。</p>
 <p>在jdk8中，没有马上就创建数组，而是在put()时创建Node[]数组</p>
-<h3 id="Map接口中的方法"><a href="#Map接口中的方法" class="headerlink" title="Map接口中的方法"></a>Map接口中的方法</h3><div class="hljs"><pre><code class="hljs java">  <span class="hljs-meta">@Test</span>
+<h3 id="Map接口中的方法"><a href="#Map接口中的方法" class="headerlink" title="Map接口中的方法"></a>Map接口中的方法</h3><pre><code class="hljs java">  <span class="hljs-meta">@Test</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span> </span>&#123;
 <span class="hljs-comment">//  添加、删除、修改操作：</span>
 <span class="hljs-comment">// Object put(Object key,Object value)：将指定key-value添加到(或修改)当前map对象中</span>
@@ -528,9 +528,9 @@
             Map.Entry entry = (Map.Entry) obj;
             System.out.println(entry.getKey() +<span class="hljs-string">"==="</span>+entry.getValue());
         &#125;
-    &#125;</code></pre></div>
+    &#125;</code></pre>
 
-<h1 id="集合工具类"><a href="#集合工具类" class="headerlink" title="集合工具类"></a>集合工具类</h1><div class="hljs"><pre><code class="hljs java">    <span class="hljs-meta">@Test</span>
+<h1 id="集合工具类"><a href="#集合工具类" class="headerlink" title="集合工具类"></a>集合工具类</h1><pre><code class="hljs java">    <span class="hljs-meta">@Test</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span></span>&#123;
 <span class="hljs-comment">// 排序操作：（均为static方法）</span>
 <span class="hljs-comment">// reverse(List)：反转List 中元素的顺序</span>
@@ -561,7 +561,7 @@
         
 <span class="hljs-comment">// boolean replaceAll(List list，Object oldVal，Object newVal)：使用新值替换List 对象的所有旧值</span>
 
-    &#125;</code></pre></div>
+    &#125;</code></pre>
 
 
             </article>

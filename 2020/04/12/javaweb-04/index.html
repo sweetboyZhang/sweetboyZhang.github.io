@@ -219,7 +219,7 @@
             
             <article class="markdown-body">
               <h2 id="EL表达式"><a href="#EL表达式" class="headerlink" title="EL表达式"></a>EL表达式</h2><p>Express Language：表达式语言。<br>作用：代替jsp页面中的表达式脚本在jsp页面中进行数据的输出。<a id="more"></a></p>
-<div class="hljs"><pre><code class="hljs jsp">&lt;body&gt;
+<pre><code class="hljs jsp">&lt;body&gt;
     &lt;%
         request.setAttribute(<span class="hljs-string">"key"</span>,<span class="hljs-string">"value"</span>);
     %&gt;
@@ -227,7 +227,7 @@
     request.getAttribute(<span class="hljs-string">"key"</span>)==<span class="hljs-keyword">null</span>?<span class="hljs-string">""</span>:request.getAttribute(<span class="hljs-string">"key"</span>)
     %&gt;&lt;br/&gt;
     EL表达式输出key的值：$&#123;key&#125;
-&lt;/body&gt;</code></pre></div>
+&lt;/body&gt;</code></pre>
 
 <p>格式：<code>${表达式}</code><br>EL表达式在输出空值的时候，输出的是空串，而jsp表达式输出的是null字符串。</p>
 <h2 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h2><p>关系运算</p>
@@ -235,7 +235,7 @@
 <p>算数运算<br>empty运算：判断一个数据是否为空，为空输出truem，否则输出false<br>三元运算<br>“.”点运算和[] 中括号运算符</p>
 <h2 id="EL表达式中的11个隐含对象"><a href="#EL表达式中的11个隐含对象" class="headerlink" title="EL表达式中的11个隐含对象"></a>EL表达式中的11个隐含对象</h2><p><img src="/2020/04/12/javaweb-04/1.png" srcset="/img/loading.gif" alt></p>
 <p>pageContext对象的使用：</p>
-<div class="hljs"><pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;
+<pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;
 &lt;html&gt;
 &lt;head&gt;
     &lt;title&gt;Title&lt;/title&gt;
@@ -265,18 +265,18 @@ session.getId() 获取会话的唯一标识
 <span class="hljs-number">6</span>. 获取客户端ip 地址：$&#123;pageContext.request.remoteHost&#125;&lt;br/&gt;
 <span class="hljs-number">7</span>. 获取会话的id 编号：$&#123;pageContext.session.id&#125;
 &lt;/body&gt;
-&lt;/html&gt;</code></pre></div>
+&lt;/html&gt;</code></pre>
 
 <h2 id="JSTL标签库"><a href="#JSTL标签库" class="headerlink" title="JSTL标签库"></a>JSTL标签库</h2><p>EL表达式是为了替换jsp中的表达式，而标签库是为了替换jsp中的代码脚本。<br><img src="/2020/04/12/javaweb-04/2.png" srcset="/img/loading.gif" alt></p>
 <p>在jsp 标签库中使用taglib 指令引入标签库</p>
-<div class="hljs"><pre><code class="hljs jsp">CORE 标签库
+<pre><code class="hljs jsp">CORE 标签库
 &lt;%@ taglib prefix=<span class="hljs-string">"c"</span> uri=<span class="hljs-string">"http://java.sun.com/jsp/jstl/core"</span> %&gt;
 FMT 标签库
 &lt;%@ taglib prefix=<span class="hljs-string">"fmt"</span> uri=<span class="hljs-string">"http://java.sun.com/jsp/jstl/fmt"</span> %&gt;
 FUNCTIONS 标签库
-&lt;%@ taglib prefix=<span class="hljs-string">"fn"</span> uri=<span class="hljs-string">"http://java.sun.com/jsp/jstl/functions"</span> %&gt;</code></pre></div>
+&lt;%@ taglib prefix=<span class="hljs-string">"fn"</span> uri=<span class="hljs-string">"http://java.sun.com/jsp/jstl/functions"</span> %&gt;</code></pre>
 
-<h3 id="core核心库使用"><a href="#core核心库使用" class="headerlink" title="core核心库使用"></a>core核心库使用</h3><div class="hljs"><pre><code class="hljs jsp">&lt;%@ page <span class="hljs-keyword">import</span>=<span class="hljs-string">"java.util.HashMap"</span> %&gt;
+<h3 id="core核心库使用"><a href="#core核心库使用" class="headerlink" title="core核心库使用"></a>core核心库使用</h3><pre><code class="hljs jsp">&lt;%@ page <span class="hljs-keyword">import</span>=<span class="hljs-string">"java.util.HashMap"</span> %&gt;
 &lt;%@ page <span class="hljs-keyword">import</span>=<span class="hljs-string">"java.util.Map"</span> %&gt;
 &lt;%@ page <span class="hljs-keyword">import</span>=<span class="hljs-string">"bean.Student"</span> %&gt;
 &lt;%@ page <span class="hljs-keyword">import</span>=<span class="hljs-string">"java.util.List"</span> %&gt;
@@ -359,7 +359,7 @@ FUNCTIONS 标签库
 &lt;/c:forEach&gt;
 &lt;/table&gt;
 &lt;/body&gt;
-&lt;/html&gt;</code></pre></div>
+&lt;/html&gt;</code></pre>
 
 
 

@@ -222,7 +222,7 @@
 <h2 id="MyBatis的使用"><a href="#MyBatis的使用" class="headerlink" title="MyBatis的使用"></a>MyBatis的使用</h2><p><strong>创建测试的数据库mybatis，再创建一个student表</strong></p>
 <p><img src="/2020/05/24/MyBatis-01/1.png" srcset="/img/loading.gif" alt></p>
 <h3 id="1、导入MyBatis-jar等相应的数据库连接驱动等相应的包"><a href="#1、导入MyBatis-jar等相应的数据库连接驱动等相应的包" class="headerlink" title="1、导入MyBatis.jar等相应的数据库连接驱动等相应的包"></a>1、导入MyBatis.jar等相应的数据库连接驱动等相应的包</h3><p>log4j.jar用于打印数据库日志（需要编写相应的.xml配置文件）<br><img src="/2020/05/24/MyBatis-01/2.jpg" srcset="/img/loading.gif" alt></p>
-<h3 id="2、创建对应于数据库中表的javaBean对象"><a href="#2、创建对应于数据库中表的javaBean对象" class="headerlink" title="2、创建对应于数据库中表的javaBean对象"></a>2、创建对应于数据库中表的javaBean对象</h3><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> bean;
+<h3 id="2、创建对应于数据库中表的javaBean对象"><a href="#2、创建对应于数据库中表的javaBean对象" class="headerlink" title="2、创建对应于数据库中表的javaBean对象"></a>2、创建对应于数据库中表的javaBean对象</h3><pre><code class="hljs java"><span class="hljs-keyword">package</span> bean;
 
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Employee</span> </span>&#123;
     <span class="hljs-keyword">private</span> Integer id;
@@ -281,10 +281,10 @@
                 <span class="hljs-string">", email='"</span> + email + <span class="hljs-string">'\''</span> +
                 <span class="hljs-string">'&#125;'</span>;
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <h3 id="3、编写全局配置文件"><a href="#3、编写全局配置文件" class="headerlink" title="3、编写全局配置文件"></a>3、编写全局配置文件</h3><p>mybatis-config.xml</p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">configuration</span></span>
 <span class="hljs-meta">        <span class="hljs-meta-keyword">PUBLIC</span> <span class="hljs-meta-string">"-//mybatis.org//DTD Config 3.0//EN"</span></span>
 <span class="hljs-meta">        <span class="hljs-meta-string">"http://mybatis.org/dtd/mybatis-3-config.dtd"</span>&gt;</span>
@@ -305,18 +305,18 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">mappers</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">"EmployeeMapper.xml"</span>/&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">mappers</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span></code></pre>
 
 <h3 id="4、编写sql映射文件-采用面向接口的方式"><a href="#4、编写sql映射文件-采用面向接口的方式" class="headerlink" title="4、编写sql映射文件(采用面向接口的方式)"></a>4、编写sql映射文件(采用面向接口的方式)</h3><p>创建dao层，并添加EmployeeDao接口</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> dao;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> dao;
 
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">EmployeeDao</span> </span>&#123;
 
     <span class="hljs-function"><span class="hljs-keyword">public</span> Employee <span class="hljs-title">getEmpById</span><span class="hljs-params">(Integer id)</span></span>;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p>EmployeeMapper.xml</p>
-<div class="hljs"><pre><code class="hljs java">&lt;?xml version=<span class="hljs-string">"1.0"</span> encoding=<span class="hljs-string">"UTF-8"</span> ?&gt;
+<pre><code class="hljs java">&lt;?xml version=<span class="hljs-string">"1.0"</span> encoding=<span class="hljs-string">"UTF-8"</span> ?&gt;
 &lt;!DOCTYPE mapper
         PUBLIC <span class="hljs-string">"-//mybatis.org//DTD Mapper 3.0//EN"</span>
         <span class="hljs-string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span>&gt;
@@ -331,10 +331,10 @@
     &lt;select id=<span class="hljs-string">"getEmpById"</span> resultType=<span class="hljs-string">"bean.Employee"</span>&gt;
         select * from employee where id = #&#123;id&#125;
     &lt;/select&gt;
-&lt;/mapper&gt;</code></pre></div>
+&lt;/mapper&gt;</code></pre>
 
 <h3 id="5、测试是否成功"><a href="#5、测试是否成功" class="headerlink" title="5、测试是否成功"></a>5、测试是否成功</h3><p>MybaitTest.java</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> test;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> test;
 
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyBatisTest</span> </span>&#123;
 
@@ -367,7 +367,7 @@
             &#125;
         &#125;
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
             </article>
             <hr>
             <div>

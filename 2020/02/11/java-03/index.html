@@ -222,7 +222,7 @@
 <a id="more"></a>
 <p>异常分类：<br>编译时异常，CheckException及它的子类；<br>运行时异常，RuntimeException类及它的子类。</p>
 <h2 id="异常处理机制一"><a href="#异常处理机制一" class="headerlink" title="异常处理机制一"></a>异常处理机制一</h2><p>异常的处理：抓抛模型<br><strong>抛出异常：</strong>程序在正常执行的过程中，如果出现异常，就会生成一个异常类的对象，并将此对象提交给java运行时系统。<br><strong>捕获异常：</strong>如果一个方法抛出异常，该异常就会抛出给调用者方法中处理。如果异常没有在调用者方法中处理，继续抛给上层方法，直到<font color="red">异常被处理</font>。</p>
-<div class="hljs"><pre><code class="hljs angelscript"><span class="hljs-keyword">try</span>&#123;
+<pre><code class="hljs angelscript"><span class="hljs-keyword">try</span>&#123;
     <span class="hljs-comment">// 可能出现异常的代码    </span>
 &#125;<span class="hljs-keyword">catch</span>(异常类型<span class="hljs-number">1</span> 变量名<span class="hljs-number">1</span>)&#123;
     <span class="hljs-comment">// 处理异常的方式1</span>
@@ -233,11 +233,11 @@
 finally&#123;
     <span class="hljs-comment">// 不论在try代码块中是否发生了异常事件，catch语句是否执行，是否有异常，是否有return，</span>
     <span class="hljs-comment">// finally块中的语句都会被执行。</span>
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <h2 id="异常处理机制二"><a href="#异常处理机制二" class="headerlink" title="异常处理机制二"></a>异常处理机制二</h2><p>throws + 异常类型<br>1.写在方法的声明处，指明可能抛出的异常类型。一旦方法体执行出现异常时，就会将生成的异常类对象抛给调用者。异常代码后续的代码不再执行。<br>2.只是将异常抛给了调用者，并<font color="red">没有将异常处理掉</font>。</p>
 <h2 id="手动抛出异常"><a href="#手动抛出异常" class="headerlink" title="手动抛出异常"></a>手动抛出异常</h2><p>throw + new Exception(“提示信息”)，必须在方法声明时用throws出指明可能抛出的异常。<br>throw : 生成一个异常对象。声明在方法体内。<br>throws : 处理异常。声明在方法的声明处。</p>
-<h2 id="用户自定义异常类"><a href="#用户自定义异常类" class="headerlink" title="用户自定义异常类"></a>用户自定义异常类</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<h2 id="用户自定义异常类"><a href="#用户自定义异常类" class="headerlink" title="用户自定义异常类"></a>用户自定义异常类</h2><pre><code class="hljs java"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@Description</span> 用户自定义异常类MyException，用于描述数据取值范围错误信息。</span>
 <span class="hljs-comment"> *              用户自己的异常类必须继承现有的异常类。 </span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@author</span> sweetboyZhang</span>
@@ -284,7 +284,7 @@ finally&#123;
 		MyExceptionTest my1 = <span class="hljs-keyword">new</span> MyExceptionTest();
 		my1.manager();
 	&#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 
             </article>

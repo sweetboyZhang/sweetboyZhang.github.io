@@ -223,7 +223,7 @@
 <h2 id="数据库的隔离级别"><a href="#数据库的隔离级别" class="headerlink" title="数据库的隔离级别"></a>数据库的隔离级别</h2><p>对于同时运行的多个事务，当这些事务访问数据库中相同的数据时，如果没有采用必要的隔离机制，就会导致各种并发问题：<br><strong>脏读：</strong>对于两个事务T1、T2，T1读取了已经被T2更新但还没有被提交的字段。之后，若T2回滚，T2读取的内容就是临时且无效的。<br><strong>不可重复读：</strong>对于两个事务T1、T2，T1读取了一个字段，然后T2更新了该字段。之后，T1再次读取同一个字段，值就不同了。<br><strong>幻读：</strong>对于两个事务T1、T2，T1从一个表中读取了一个字段，然后T2在该表中插入了一些新的行。之后，若T1再次读取同一个表，就会多出几行。<br><img src="/2020/03/21/mysql-05/1.png" srcset="/img/loading.gif" alt></p>
 <h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2><p>从mysql5.0.1版本开始提供视图功能。一种虚拟存在的表，行和列的数据来自自定义视图的查询中使用的表，并且是在使用视图时动态生成的，只保存了sql逻辑，不保存查询结果。</p>
 <p><strong>创建视图：</strong></p>
-<div class="hljs"><pre><code class="hljs sql"><span class="hljs-comment">/*</span>
+<pre><code class="hljs sql"><span class="hljs-comment">/*</span>
 <span class="hljs-comment">语法：</span>
 <span class="hljs-comment">create view 视图名</span>
 <span class="hljs-comment">as</span>
@@ -236,7 +236,7 @@
 <span class="hljs-keyword">JOIN</span> departments d <span class="hljs-keyword">ON</span> e.department_id=d.department_id
 <span class="hljs-keyword">JOIN</span> jobs j <span class="hljs-keyword">ON</span> e.job_id=j.job_id;
 
-<span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> myview1 <span class="hljs-keyword">WHERE</span> last_name <span class="hljs-keyword">LIKE</span> <span class="hljs-string">"%a%"</span>;</code></pre></div>
+<span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> myview1 <span class="hljs-keyword">WHERE</span> last_name <span class="hljs-keyword">LIKE</span> <span class="hljs-string">"%a%"</span>;</code></pre>
 
 <p><strong>好处：</strong><br>1.重用sql语句<br>2.简化复杂的sql操作，不必知道它的查询细节<br>3.保护数据，提高安全性</p>
 <p><strong>删除视图：</strong>drop view 视图名1,视图名2,…<br>视图与表的区别：<br>视图只是保留了sql逻辑，没有保存数据，虽然可以增删改查，但是一般只作查询使用。</p>

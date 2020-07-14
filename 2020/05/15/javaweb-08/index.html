@@ -213,13 +213,13 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：June 28, 2020 am
+                  本文最后更新于：July 2, 2020 pm
                 
               </p>
             
             <article class="markdown-body">
               <h2 id="json概念"><a href="#json概念" class="headerlink" title="json概念"></a>json概念</h2><p>json是一种轻量级的数据交换格式。<br>1、比xml更为轻量，解析速度更快。<br>2、数据交换指的是客户端和服务器之间业务数据的传递格式。<a id="more"></a></p>
-<h2 id="json在javaScipt中的使用"><a href="#json在javaScipt中的使用" class="headerlink" title="json在javaScipt中的使用"></a>json在javaScipt中的使用</h2><div class="hljs"><pre><code class="hljs javascript"><span class="hljs-comment">// json的定义</span>
+<h2 id="json在javaScipt中的使用"><a href="#json在javaScipt中的使用" class="headerlink" title="json在javaScipt中的使用"></a>json在javaScipt中的使用</h2><pre><code class="hljs javascript"><span class="hljs-comment">// json的定义</span>
 <span class="hljs-keyword">var</span> jsonObj = &#123;
 		<span class="hljs-string">"key1"</span>:<span class="hljs-number">666</span>,
 		<span class="hljs-string">"key2"</span>:<span class="hljs-string">"qwer"</span>,
@@ -239,10 +239,10 @@ alert(jsonObj.key4[<span class="hljs-number">1</span>])<span class="hljs-comment
 alert(jsonString);符串
 <span class="hljs-comment">// json字符串转json对象</span>
 <span class="hljs-keyword">var</span> jsonObj2 = <span class="hljs-built_in">JSON</span>.parse(jsonString);
-alert(jsonObj2);</code></pre></div>
+alert(jsonObj2);</code></pre>
 
 <p> <strong>json的存在有两种形式：</strong><br>1、对象的形式：操作json中的数据时，使用json对象；<br>2、字符串的形式：客户端与服务端之间进行数据交换时，使用json字符串。<br>JSON.stringify()：把json对象转换为json字符串<br>JSON.parse()：把json字符串转换为json对象</p>
-<h2 id="json在java中的使用"><a href="#json在java中的使用" class="headerlink" title="json在java中的使用"></a>json在java中的使用</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">JsonTest</span> </span>&#123;
+<h2 id="json在java中的使用"><a href="#json在java中的使用" class="headerlink" title="json在java中的使用"></a>json在java中的使用</h2><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">JsonTest</span> </span>&#123;
     <span class="hljs-comment">// javaBean和json的相互转换</span>
     <span class="hljs-meta">@Test</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span></span>&#123;
@@ -292,19 +292,19 @@ alert(jsonObj2);</code></pre></div>
         System.out.println(personMap1);
         System.out.println(personMap1.get(<span class="hljs-number">1</span>));
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <h2 id="ajax请求"><a href="#ajax请求" class="headerlink" title="ajax请求"></a>ajax请求</h2><p>AJAX是一种创建交互式网页应用的开发技术。<br>浏览器通过javaScript异步发起请求，局部更新页面的技术。<br>浏览器地址栏不会发生变化；局部更新不会舍弃原来页面的内容。</p>
-<h2 id="原生AJAX请求"><a href="#原生AJAX请求" class="headerlink" title="原生AJAX请求"></a>原生AJAX请求</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">javaScriptAjax</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
+<h2 id="原生AJAX请求"><a href="#原生AJAX请求" class="headerlink" title="原生AJAX请求"></a>原生AJAX请求</h2><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">javaScriptAjax</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
     System.out.println(<span class="hljs-string">"javaScriptAjax调用了~"</span>);
     Person person = <span class="hljs-keyword">new</span> Person(<span class="hljs-number">1</span>,<span class="hljs-string">"Tony"</span>);
     <span class="hljs-comment">// 将需要返回给客户端的对象转换为json字符串</span>
     Gson gson = <span class="hljs-keyword">new</span> Gson();
     String personJsonString = gson.toJson(person);
     resp.getWriter().write(personJsonString);
-&#125;</code></pre></div>
+&#125;</code></pre>
 
-<div class="hljs"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span> <span class="hljs-meta-keyword">PUBLIC</span> <span class="hljs-meta-string">"-//W3C//DTD HTML 4.01 Transitional//EN"</span> <span class="hljs-meta-string">"http://www.w3.org/TR/html4/loose.dtd"</span>&gt;</span>
+<pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span> <span class="hljs-meta-keyword">PUBLIC</span> <span class="hljs-meta-string">"-//W3C//DTD HTML 4.01 Transitional//EN"</span> <span class="hljs-meta-string">"http://www.w3.org/TR/html4/loose.dtd"</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"pragma"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"no-cache"</span>/&gt;</span>
@@ -338,10 +338,10 @@ alert(jsonObj2);</code></pre></div>
 <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"div01"</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
 
 <h2 id="jquery中的ajax请求"><a href="#jquery中的ajax请求" class="headerlink" title="jquery中的ajax请求"></a>jquery中的ajax请求</h2><p><strong>$.ajax 方法</strong><br>url：表示请求的地址<br>type：表示请求的类型GET 或POST 请求<br>data：表示发送给服务器的数据<br>data的格式有两种：<br>一：name=value&amp;name=value<br>二：{key:value}<br>success：请求成功，响应的回调函数<br>dataType：响应的数据类型<br>常用的响应数据类型有：text、xml、json</p>
-<div class="hljs"><pre><code class="hljs javaScript"><span class="hljs-comment">// ajax请求</span>
+<pre><code class="hljs javaScript"><span class="hljs-comment">// ajax请求</span>
 $(<span class="hljs-string">"#ajaxBtn"</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
     $.ajax(&#123;
         url: <span class="hljs-string">"http://localhost:8080/11_json/ajaxServlet"</span>,
@@ -353,10 +353,10 @@ $(<span class="hljs-string">"#ajaxBtn"</span>).click(<span class="hljs-function"
         &#125;,
         dataType: <span class="hljs-string">"json"</span>
     &#125;);
-&#125;);</code></pre></div>
+&#125;);</code></pre>
 
 <p><strong>$.get 方法和$.post 方法</strong><br>url： 请求的url 地址<br>data： 发送的数据<br>callback： 成功的回调函数<br>type ：返回的数据类型</p>
-<div class="hljs"><pre><code class="hljs javaScript"><span class="hljs-comment">// ajax--get请求</span>
+<pre><code class="hljs javaScript"><span class="hljs-comment">// ajax--get请求</span>
 $(<span class="hljs-string">"#getBtn"</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
     $.<span class="hljs-keyword">get</span>(
         "http://localhost:8080/11_json/ajaxServlet",
@@ -381,10 +381,10 @@ $(<span class="hljs-string">"#postBtn"</span>).click(<span class="hljs-function"
         &#125;,
         <span class="hljs-string">"json"</span>
     );
-&#125;);</code></pre></div>
+&#125;);</code></pre>
 
 <p><strong>$.getJSON 方法</strong><br>url： 请求的url 地址<br>data： 发送给服务器的数据<br>callback： 成功的回调函数</p>
-<div class="hljs"><pre><code class="hljs javaScript"><span class="hljs-comment">// ajax--getJson请求</span>
+<pre><code class="hljs javaScript"><span class="hljs-comment">// ajax--getJson请求</span>
 $(<span class="hljs-string">"#getJSONBtn"</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
     $.getJSON(
         <span class="hljs-string">"http://localhost:8080/11_json/ajaxServlet"</span>,
@@ -393,10 +393,10 @@ $(<span class="hljs-string">"#getJSONBtn"</span>).click(<span class="hljs-functi
             alert(<span class="hljs-string">"服务器返回的数据："</span> + data);
             $(<span class="hljs-string">"#msg"</span>).html(<span class="hljs-string">"编号："</span> + data.id + <span class="hljs-string">" 姓名："</span> + data.name);
        &#125;);
-&#125;);</code></pre></div>
+&#125;);</code></pre>
 
 <p><strong>表单序列化serialize()</strong><br>serialize()可以把表单中所有的表单项都获取到，并以name1=value1&amp;name2=value2 的形式拼接。</p>
-<div class="hljs"><pre><code class="hljs javaScript">$(<span class="hljs-string">"#submit"</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+<pre><code class="hljs javaScript">$(<span class="hljs-string">"#submit"</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
      <span class="hljs-comment">// 把参数序列化</span>
      <span class="hljs-keyword">var</span> params = $(<span class="hljs-string">"#form01"</span>).serialize();
      $.getJSON(<span class="hljs-string">"http://localhost:8080/11_json/ajaxServlet"</span>,
@@ -405,7 +405,7 @@ $(<span class="hljs-string">"#getJSONBtn"</span>).click(<span class="hljs-functi
           alert(<span class="hljs-string">"服务器返回的数据："</span> + data);
           $(<span class="hljs-string">"#msg"</span>).html(<span class="hljs-string">"编号："</span> + data.id + <span class="hljs-string">" 姓名："</span> + data.name);
      &#125;);
-&#125;);</code></pre></div>
+&#125;);</code></pre>
 
 
 
