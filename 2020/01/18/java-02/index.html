@@ -213,7 +213,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 13, 2020 pm
+                  本文最后更新于：July 17, 2020 pm
                 
               </p>
             
@@ -551,7 +551,7 @@ p1.getInfo();<span class="hljs-comment">// 调用Student类发getInfo()方法</s
 	&#125;
 &#125;</code></pre>
 
-<h2 id="static"><a href="#static" class="headerlink" title="static"></a>static</h2><p>1.可以修饰：属性，方法，代码块，内部类。<br>2.使用 static 修饰属性：<br>按是否使用static修饰分为<strong>静态属性(类变量)</strong>和<strong>非静态属性(实例变量)</strong>;<br><strong>非静态属性</strong>：如果创建多个对象，每个对象都独立拥有一套类中的非静态属性。修改其中一个对象中的非静                       态属性时，不会导致其他对象中的相同属性发生变化。<br><strong>静态属性</strong>：多个对象共享一个静态属性。当其中一个对象修改静态属性时，会导致其他对象调用此静态属性                    时，是修改过了的。<br><font color="red">注意</font>：<br>&lt;1&gt;.静态变量随着类的加载而加载，可以通过”类名.静态变量”的方式进行调用。<br>&lt;2&gt;.静态变量的加载早于对象的创建。<br>&lt;3&gt;.由于类只会加载一次，则静态变量在内存中也只会存在一份(存在方法区的静态域中)。<br>&lt;4&gt;.类能调用类变量，但不能调用实例变量；对象既能调用类变量，又能调用实例变量。</p>
+<h2 id="static"><a href="#static" class="headerlink" title="static"></a>static</h2><p>1.可以修饰：属性，方法，代码块，内部类。<br>2.使用 static 修饰属性：<br><font color="red"><strong>静态变量只能在类主体中定义，不能在方法中定义。 静态变量属于类所有而不属于方法。</strong></font><br>按是否使用static修饰分为<strong>静态属性(类变量)</strong>和<strong>非静态属性(实例变量)</strong>;<br><strong>非静态属性</strong>：如果创建多个对象，每个对象都独立拥有一套类中的非静态属性。修改其中一个对象中的非静态属性时，不会导致其他对象中的相同属性发生变化。<br><strong>静态属性</strong>：多个对象共享一个静态属性。当其中一个对象修改静态属性时，会导致其他对象调用此静态属性时，是修改过了的。<br><font color="red">注意</font>：<br>&lt;1&gt;.静态变量随着类的加载而加载，可以通过”类名.静态变量”的方式进行调用。<br>&lt;2&gt;.静态变量的加载早于对象的创建。<br>&lt;3&gt;.由于类只会加载一次，则静态变量在内存中也只会存在一份(存在方法区的静态域中)。<br>&lt;4&gt;.类能调用类变量，但不能调用实例变量；对象既能调用类变量，又能调用实例变量。</p>
 <p><img src="/2020/01/18/java-02/oop_7.png" srcset="/img/loading.gif" alt="类变量与实例变量内存解析"></p>
 <p>3.使用 static 修饰方法：<br>        &lt;1&gt;.静态方法随着类的加载而加载，可 通过”类名.静态方法”的方式进行调用。<br>        &lt;2&gt;.类可以调用静态方法，但不能调用非静态方法；对象既可以调用静态方法，又能调用非静态方法。<br>        &lt;3&gt;.静态方法中只能调用静态属性或静态方法；非静态方法中既能调用静态属性又能调用静态方法。<br>        &lt;4&gt;.静态方法中不能使用this,super关键字。</p>
 <p>4.如何确定一个属性是否要声明为static<br>        &lt;1&gt;.属性可以被多个对象所共享，不会随着对象的不同而不同。<br>        &lt;2&gt;.类中的常量常常声明为static</p>
@@ -560,7 +560,7 @@ p1.getInfo();<span class="hljs-comment">// 调用Student类发getInfo()方法</s
 <h2 id="final"><a href="#final" class="headerlink" title="final"></a>final</h2><p>1.修饰类：表明该类不能被继承。例如：String类，System类，StringBuffer类<br>2.修饰方法：表明该方法不能被重写。例如：Object类中的getClass()方法<br>3.修饰变量：此时的“变量”就称为一个常量<br>    &lt;1&gt; final修饰成员变量：显式初始化，声明时直接赋值；代码块中初始化；构造器中初始化。<br>    &lt;2&gt; 修饰局部变量：修饰形参时，表明此形参是一个常量。调用此方法时，给常量形参赋一个实参，以后只            能在方法体内使用此形参，但不能重新赋值。<br>修饰基本数据类型时，在赋值之后就无法改变；<br>修饰引用数据类型时，在赋值后指向的地址无法改变，但是对象的内容可以改变。</p>
 <p>static final 修饰属性：全局常量</p>
 <h2 id="abstract"><a href="#abstract" class="headerlink" title="abstract"></a>abstract</h2><p>1.abstract修饰类：抽象类<br>        &lt;1&gt; 此类不能实例化<br>        &lt;2&gt; 抽象类中一定有构造器，便于子类实例化调用<br>        &lt;3&gt; 通过提供抽象类的子类，通过实例化子类完成相应的操作<br>2.abstract修饰方法：抽象方法(<strong>默认权限为default</strong>)<br>        &lt;1&gt; 只有方法的声明，没有方法体<br>        &lt;2&gt; 包含抽象方法的类一定是抽象类；抽象类中可以没有抽象方法<br>        &lt;3&gt; 若子类重写了父类的所有抽象方法，此子类可以实例化；否则，此子类必须声明为抽象类</p>
-<h2 id="interface"><a href="#interface" class="headerlink" title="interface"></a>interface</h2><p>1.在java中，接口与类是并列的两个结构。(<strong>默认权限为public</strong>)<br>        2.接口中的成员：</p>
+<h2 id="interface"><a href="#interface" class="headerlink" title="interface"></a>interface</h2><p>1.在java中，接口与类是并列的两个结构。(<strong>默认权限为public</strong>)<br>2.接口中的成员：</p>
 <ul>
 <li>JDK7及以前：只能定义全局常量(public static final 可以省略)和抽象方法(<strong>默认为public abstract</strong> )</li>
 <li>JDK8：还可以定义静态方法(public static 只能通过接口来调用)，<strong>此时被修饰的方法必须带有方法体</strong>。</li>
@@ -595,7 +595,7 @@ p1.getInfo();<span class="hljs-comment">// 调用Student类发getInfo()方法</s
                       <a href="/2020/02/11/java-03/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">异常处理</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </div>
@@ -604,7 +604,7 @@ p1.getInfo();<span class="hljs-comment">// 调用Student类发getInfo()方法</s
                     
                       <a href="/2020/01/09/java-01/">
                         <span class="hidden-mobile">数据类型，运算符，数组</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -621,7 +621,7 @@ p1.getInfo();<span class="hljs-comment">// 调用Student类发getInfo()方法</s
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -654,7 +654,7 @@ p1.getInfo();<span class="hljs-comment">// 调用Student类发getInfo()方法</s
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -663,7 +663,7 @@ p1.getInfo();<span class="hljs-comment">// 调用Student类发getInfo()方法</s
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

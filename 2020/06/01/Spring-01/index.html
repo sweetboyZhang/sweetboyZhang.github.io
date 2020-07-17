@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.5k 字
+      1.6k 字
     </span>
   
 
@@ -213,13 +213,15 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 10, 2020 pm
+                  本文最后更新于：July 17, 2020 pm
                 
               </p>
             
             <article class="markdown-body">
               <h2 id="Spring简介"><a href="#Spring简介" class="headerlink" title="Spring简介"></a>Spring简介</h2><p>Spring用于减轻项目模块之间的管理，类与类之间的管理，帮助开发人员创建对象，管理对象之间的关系。<br>Spring核心技术是IOC，AOP。能实现模块之间的，类之间的解耦合。<a id="more"></a><br>优点：<br>1、轻量<br>2、针对接口编程，IOC解耦合<br>3、AOP面向切面编程<br>4、方便集成其他各种框架</p>
 <h2 id="Spring体系结构"><a href="#Spring体系结构" class="headerlink" title="Spring体系结构"></a>Spring体系结构</h2><p><img src="/2020/06/01/Spring-01/1.jpg" srcset="/img/loading.gif" alt></p>
+<p>Spring 框架是一个分层架构，由 7 个定义良好的模块组成。</p>
+<p> Spring DAO，  Spring Web，SpringMVC，Spring AOP，Spring上下文，Spring ORM，核心容器。所以，Spring是一系列轻量级Java EE框架的集合</p>
 <h2 id="IOC控制反转"><a href="#IOC控制反转" class="headerlink" title="IOC控制反转"></a>IOC控制反转</h2><p>Inversion of control：控制反转，是一个概念，一种思想。<br>是指把对象的创建、赋值、管理工作都交给代码以外的容器实现，控制反转就是对对象控制权的转移，由程序代码本身反转到了程序外部容器。<br><strong>控制：</strong>创建对象，对象属性的赋值，对象之间关系的管理。<br><strong>反转：</strong>把原来开发人员管理，创建对象的权力交给代码之外的容器。由容器代替开发人员管理对象。<br>正转：由开发人员在代码中，使用new 构造方法 创建对象，开发人员主动管理对象。<br>容器：一个服务器软件，一个框架(Spring)。<br>IOC的好处：减少对代码的改动，也能实现不同的功能。实现解耦合。<br>IOC的体现：Servlet ,Tomcat作为容器创建Servlet对象。<br>IOC的技术实现：<br>DI(Dependency Injection) 依赖注入，只需要在程序中提供对象的名称，至于对象是如何在容器中创建，赋值，查找都是由容器内部实现的。<br>Spring使用DI实现了IOC的功能，Spring底层创建对象使用的是反射机制。<br>Spring是一个容器。</p>
 <h2 id="使用Spring"><a href="#使用Spring" class="headerlink" title="使用Spring"></a>使用Spring</h2><h3 id="1、使用Maven创建一个普通的java项目"><a href="#1、使用Maven创建一个普通的java项目" class="headerlink" title="1、使用Maven创建一个普通的java项目"></a>1、使用Maven创建一个普通的java项目</h3><p><img src="/2020/06/01/Spring-01/2.jpg" srcset="/img/loading.gif" alt></p>
 <h3 id="2、引入Spring依赖"><a href="#2、引入Spring依赖" class="headerlink" title="2、引入Spring依赖"></a>2、引入Spring依赖</h3><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
@@ -321,7 +323,7 @@
         <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"schoolName"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"清华大学"</span>/&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></code></pre>
 </li>
-<li><p>byType：使用byType 方式自动注入，要求：配置文件中被调用者bean 的class 属性指定的类，<br>要与代码中调用者bean 类的某引用类型属性类型同源。即要么相同，要么有is-a 关系（子<br>  类，或是实现类）。<strong>但这样的同源的被调用bean 只能有一个。</strong></p>
+<li><p>byType：使用byType 方式自动注入，要求：配置文件中被调用者bean 的class 属性指定的类，要与代码中调用者bean 类的某引用类型属性类型同源。即要么相同，要么有is-a 关系（子类，或是实现类）。<strong>但这样的同源的被调用bean 只能有一个。</strong></p>
   <pre><code class="hljs java">&lt;bean id=<span class="hljs-string">"person"</span> <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"com.zyz.bean.Person"</span> autowire=<span class="hljs-string">"byType"</span>&gt;
         &lt;property name=<span class="hljs-string">"id"</span> value=<span class="hljs-string">"10004"</span>/&gt;
         &lt;property name=<span class="hljs-string">"name"</span> value=<span class="hljs-string">"wd788"</span>/&gt;
@@ -371,7 +373,7 @@
                       <a href="/2020/06/01/Maven/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Maven</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </div>
@@ -380,7 +382,7 @@
                     
                       <a href="/2020/05/31/MyBatis-05/">
                         <span class="hidden-mobile">MyBatis缓存机制</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -397,7 +399,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -430,7 +432,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -439,7 +441,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
