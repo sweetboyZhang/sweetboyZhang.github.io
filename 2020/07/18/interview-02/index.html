@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="sweetboyZhang">
   <meta name="keywords" content="">
-  <title>MySQL变量,存储过程,流程结构 - sweetboyZhang&#39;s Blog</title>
+  <title>多线程&amp;并发篇 - sweetboyZhang&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -152,8 +152,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-03-22 07:17">
-      March 22, 2020 am
+    <time datetime="2020-07-18 08:36">
+      July 18, 2020 am
     </time>
   </div>
 
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      995 字
+      754 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      12
+      8
        分钟
     </span>
   
@@ -213,100 +213,39 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：June 28, 2020 am
+                  本文最后更新于：July 18, 2020 pm
                 
               </p>
             
             <article class="markdown-body">
-              <h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p><strong>系统变量：</strong>由系统提供，属于服务层面<br>_全局变量：_服务器每次启动将为所有全局变量赋初值。针对所有会话(连接)有效，但不能跨重启。<br>_会话变量：_仅仅针对于当前的会话(连接)有效。<a id="more"></a><br>查看所有的系统变量：show global | [ session] variable;<br>查看满足条件的系统变量：show global | [session] variable  like ‘%char%’;<br>查看指定系统变量：select @@global | [session].系统变量名;<br>为某个系统变量赋值：<br>set global | [session] 系统变量名=值;<br>set @@global \ [session].系统变量名=值;</p>
-<p><strong>自定义变量：</strong>用户自定义<br>_用户变量：_针对于当前会话(连接)有效<br>1.声明并初始化<br>set @用户变量名=值;<br>set @用户变量名:=值;<br>select @用户变量名:=值;<br>2.赋值<br>set @用户变量名=值;<br>set @用户变量名:=值;<br>select @用户变量名:=值;<br>select into select 字段  into 变量名 from 表;<br>_局部变量：_仅仅在定义它的begin end中有效<br>1.声明<br>declare 变量 类型 [default 值];<br>2.赋值<br>与用户变量相同</p>
-<h2 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h2><p>事先经过编译并存储在数据库中一段sql语句的集合。<br>好处：<br>1.提高了代码的重用性；<br>2.简化操作；<br>3.减少了编译次数并且减少了和数据库服务器的连接次数，提高了效率。</p>
-<pre><code class="hljs sql"><span class="hljs-comment">/*</span>
-<span class="hljs-comment">一、创建存储过程</span>
-<span class="hljs-comment">语法：</span>
-<span class="hljs-comment">create procedure 存储过程名(参数列表)</span>
-<span class="hljs-comment">begin</span>
-<span class="hljs-comment">	存储过程体</span>
-<span class="hljs-comment">end</span>
-<span class="hljs-comment"></span>
-<span class="hljs-comment">1、参数列表分为：参数模式  参数名 参数类型</span>
-<span class="hljs-comment">参数模式：</span>
-<span class="hljs-comment">in：该参数可以作为输入，也就是说该参数需要调用方传入值</span>
-<span class="hljs-comment">out：该参数可以作为输出，也就是说该参数可以作为返回值</span>
-<span class="hljs-comment">inout：该参数既可以作为输入也可以作为输入</span>
-<span class="hljs-comment"></span>
-<span class="hljs-comment">二、调用存储过程</span>
-<span class="hljs-comment">语法：</span>
-<span class="hljs-comment">call  储存过程名(实参列表);</span>
-<span class="hljs-comment">*/</span>
+              <h2 id="1、Java中实现多线程的几种方法"><a href="#1、Java中实现多线程的几种方法" class="headerlink" title="1、Java中实现多线程的几种方法"></a>1、Java中实现多线程的几种方法</h2><p>1、继承Thread类；<br>2、实现Runnable接口，将Runable接口实现类作为形参传递给Thread构造器；<br>3、实现Callable接口，通过FutureTask包装器后传给Thread构造器；<br>4、从线程池中获取线程  <a id="more"></a></p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ThreadTest4</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+        <span class="hljs-comment">// 创建线程池 提供指定线程数量</span>
+        ExecutorService service = Executors.newFixedThreadPool(<span class="hljs-number">10</span>);
+        <span class="hljs-comment">// 创建线程并开始线程</span>
+        service.submit(<span class="hljs-keyword">new</span> MyThread4());
+        service.execute(<span class="hljs-keyword">new</span> MyThread4());
+        <span class="hljs-comment">// 关闭连接池</span>
+        service.shutdown();
+    &#125;
+&#125;
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyThread4</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span></span>&#123;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;
+            System.out.println(Thread.currentThread().getName()+<span class="hljs-string">":"</span>+i);
+        &#125;
+    &#125;
+&#125;</code></pre>
 
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">PROCEDURE</span> myp1()
-<span class="hljs-keyword">BEGIN</span>
-<span class="hljs-keyword">INSERT</span>  <span class="hljs-keyword">INTO</span> <span class="hljs-keyword">admin</span>(username,<span class="hljs-string">`password`</span>)
-<span class="hljs-keyword">VALUES</span>(<span class="hljs-string">"Taylor"</span>,<span class="hljs-string">"123456"</span>),(<span class="hljs-string">"Tom"</span>,<span class="hljs-string">"123456"</span>),(<span class="hljs-string">"Jerry"</span>,<span class="hljs-string">"123456"</span>);
-<span class="hljs-keyword">END</span> 
-
-<span class="hljs-keyword">CALL</span> myp1;
-
-<span class="hljs-comment"># 创建带in模式参数的储存过程</span>
-<span class="hljs-comment"># 创建存储过程判断用户是否登录成功</span>
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">PROCEDURE</span> myp2(<span class="hljs-keyword">IN</span> username <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">10</span>),<span class="hljs-keyword">IN</span> <span class="hljs-string">`password`</span> <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">10</span>))
-<span class="hljs-keyword">BEGIN</span>
-		<span class="hljs-keyword">DECLARE</span> <span class="hljs-keyword">result</span> <span class="hljs-built_in">INT</span> <span class="hljs-keyword">DEFAULT</span>(<span class="hljs-number">0</span>);
-		<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">INTO</span> <span class="hljs-keyword">result</span>
-		<span class="hljs-keyword">FROM</span> <span class="hljs-keyword">admin</span> <span class="hljs-keyword">WHERE</span> admin.username=username <span class="hljs-keyword">AND</span> admin.<span class="hljs-string">`password`</span>=<span class="hljs-string">`password`</span>;
-		<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">IF</span>(<span class="hljs-keyword">result</span>&gt;<span class="hljs-number">0</span>,<span class="hljs-string">"成功"</span>,<span class="hljs-string">"失败"</span>);
-<span class="hljs-keyword">END</span>
-
-<span class="hljs-keyword">CALL</span> myp2(<span class="hljs-string">"Taylor"</span>,<span class="hljs-string">"123456"</span>);
-
-<span class="hljs-comment"># 创建带out模式参数的储存过程</span>
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">PROCEDURE</span> myp3(<span class="hljs-keyword">IN</span> username <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">10</span>),<span class="hljs-keyword">IN</span> <span class="hljs-string">`password`</span> <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">10</span>),<span class="hljs-keyword">OUT</span> <span class="hljs-keyword">result</span> <span class="hljs-built_in">char</span>(<span class="hljs-number">5</span>))
-<span class="hljs-keyword">BEGIN</span>
-		<span class="hljs-keyword">DECLARE</span> result1 <span class="hljs-built_in">INT</span> <span class="hljs-keyword">DEFAULT</span>(<span class="hljs-number">0</span>);
-		<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">INTO</span> result1
-		<span class="hljs-keyword">FROM</span> <span class="hljs-keyword">admin</span> <span class="hljs-keyword">WHERE</span> admin.username=username <span class="hljs-keyword">AND</span> admin.<span class="hljs-string">`password`</span>=<span class="hljs-string">`password`</span>;
-		<span class="hljs-keyword">SET</span> <span class="hljs-keyword">result</span> = <span class="hljs-keyword">IF</span>(result1&gt;<span class="hljs-number">0</span>,<span class="hljs-string">"true"</span>,<span class="hljs-string">"false"</span>);
-<span class="hljs-keyword">END</span>
-
-<span class="hljs-keyword">CALL</span> myp3(<span class="hljs-string">"Taylor"</span>,<span class="hljs-string">"123456"</span>,@<span class="hljs-keyword">result</span>);
-<span class="hljs-keyword">SELECT</span> @<span class="hljs-keyword">result</span>;
-
-<span class="hljs-comment"># 三、删除储存过程</span>
-<span class="hljs-keyword">DROP</span> <span class="hljs-keyword">PROCEDURE</span> myp3;
-
-<span class="hljs-comment"># 四、查看储存过程</span>
-<span class="hljs-keyword">SHOW</span> <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">PROCEDURE</span> myp2;</code></pre>
-
-<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>与储存过程的区别：<br>储存过程：可以有0个或多个返回值，适合批量插入、批量更新<br>函数：有且仅有一个返回值，适合处理数据后返回一个结果。</p>
-<pre><code class="hljs sql"><span class="hljs-comment"># 创建函数</span>
-<span class="hljs-comment">/*</span>
-<span class="hljs-comment">语法：</span>
-<span class="hljs-comment">create function 函数名(参数列表) returns  返回类型</span>
-<span class="hljs-comment">begin</span>
-<span class="hljs-comment">	函数体  </span>
-<span class="hljs-comment">end</span>
-<span class="hljs-comment">*/</span></code></pre>
-
-<h2 id="流程控制结构"><a href="#流程控制结构" class="headerlink" title="流程控制结构"></a>流程控制结构</h2><p><strong>if函数：</strong><br>if(表达式1，表达式2，表达式3)：如果表达式1成立，返回表达式2的值，否则返回表达式3的值。</p>
-<p><strong>case结构：</strong><br>case 变量|表达式|字段<br>when条件1或值 then 要返回的值或要执行的语句;<br>when条件2或值 then 要返回的值或要执行的语句;<br>when条件3或值 then 要返回的值或要执行的语句;<br>……<br>else  要返回的值或要执行的语句;<br> end case;</p>
-<p><strong>if结构：</strong><br>if 条件1 then 语句1；<br>elif 条件2 then 语句2；<br>……<br>else then 语句n；<br>end if;</p>
-<p><strong>循环结构：</strong><br>分类：while , loop  , repeat<br>循环控制：<br>iterate  类似于  continue  ,继续，结束本次循环继续下一次<br>leavele  类似于 break   ,跳出  ，结束当前所在循环<br>1.while</p>
-<pre><code class="hljs sql">[标签:]while 循环条件 <span class="hljs-keyword">do</span>
-	循环体;
-<span class="hljs-keyword">end</span> <span class="hljs-keyword">while</span> [标签];</code></pre>
-
-<p>2.loop</p>
-<pre><code class="hljs sql">[标签:]loop 
-	循环体;
-<span class="hljs-keyword">end</span> <span class="hljs-keyword">loop</span> [标签]</code></pre>
-
-<p>3.repeat</p>
-<pre><code class="hljs sql">[标签:]repeat
-	循环体;
-until 结束循环的条件
- <span class="hljs-keyword">end</span> <span class="hljs-keyword">repeat</span> [标签];</code></pre>
-
+<h2 id="2、如何停止一个正在运行的线程"><a href="#2、如何停止一个正在运行的线程" class="headerlink" title="2、如何停止一个正在运行的线程"></a>2、如何停止一个正在运行的线程</h2><p>1、使用退出标志，使线程正常退出，也就是当run方法执行完成后线程终止。<br>2、使用stop方法强行终止，但不推荐使用，已被废弃<br>3、使用interrupt方法抛出中断异常</p>
+<h2 id="3、notify-与notifyAll-的区别"><a href="#3、notify-与notifyAll-的区别" class="headerlink" title="3、notify()与notifyAll()的区别"></a>3、notify()与notifyAll()的区别</h2><p>任何时候只能有一个线程获得锁，调用notify时只能唤醒等待队列中的某一个线程，这个线程是不固定的，取决于线程调度器；而notifyAll能唤醒等待队列中的所有线程，所有被唤醒的线程争夺锁。</p>
+<h2 id="4、sleep-与wait-的区别"><a href="#4、sleep-与wait-的区别" class="headerlink" title="4、sleep()与wait()的区别"></a>4、sleep()与wait()的区别</h2><p>1、sleep()是声明在Thread类中的方法；而wait()是声明在Object类中的方法；<br>2、wait()只能在同步代码块和同步方法中使用；<br>3、sleep()会使当前线程在指定时间内阻塞，时间到了自动恢复运行的状态；<br>        wait()会释放锁，让其他线程争夺到锁后开始执行。</p>
+<h2 id="5、volatile是什么？可以保证有序性吗？"><a href="#5、volatile是什么？可以保证有序性吗？" class="headerlink" title="5、volatile是什么？可以保证有序性吗？"></a>5、volatile是什么？可以保证有序性吗？</h2><p>一旦共享变量(类的成员变量、类的静态成员变量)被volatile修饰后，那么就有了两层语义：</p>
+<p>1、保证了不同线程对这个变量的可见性，即一个线程修改了某个变量的值，这个新值对其他线程来说是立即可见的，volatile关键字会强制将修改的值写入主存。<br>2、禁止进行指令重排序</p>
+<h2 id="6、Thread类中的start-和run-方法的区别"><a href="#6、Thread类中的start-和run-方法的区别" class="headerlink" title="6、Thread类中的start()和run()方法的区别"></a>6、Thread类中的start()和run()方法的区别</h2><p>start()方法被用来启动新创建的线程，内部会调用run()方法，这和直接调用run()方法的效果不一样。当直接调用run()方法时，只会是在原来的线程中调用，没有新的线程启动，只有start()方法才会启动新的线程。</p>
+<h2 id="7、为什么wait，notify和notifyAll这些方法不在thread类里面？"><a href="#7、为什么wait，notify和notifyAll这些方法不在thread类里面？" class="headerlink" title="7、为什么wait，notify和notifyAll这些方法不在thread类里面？"></a>7、为什么wait，notify和notifyAll这些方法不在thread类里面？</h2><p>Java中提供的锁机制是对象级别的而不是线程级别的，每个对象都有锁，通过线程获得。如果线程需要等待某些锁，那么调用对象中的wait()方法就有意义了。如果wait()定义在Thread类中，线程正在等待的哪个锁就不明显了。简单来说，wait,notify和notifyAll都是锁级别的操作，所以把他们定义在Object中，因为锁属于对象。</p>
 
             </article>
             <hr>
@@ -317,7 +256,7 @@ until 结束循环的条件
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/MYSQL%E5%9F%BA%E7%A1%80/">MYSQL基础</a>
+                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
                     
                   </div>
                 
@@ -330,18 +269,12 @@ until 结束循环的条件
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/03/23/jdbc/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Jdbc核心技术</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/03/21/mysql-05/">
-                        <span class="hidden-mobile">TCL,事务,视图</span>
+                      <a href="/2020/07/15/ssm/">
+                        <span class="hidden-mobile">图书Crud项目</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -512,7 +445,7 @@ until 结束循环的条件
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "MySQL变量,存储过程,流程结构&nbsp;",
+        "多线程&并发篇&nbsp;",
       ],
       cursorChar: "(*＾_＾*)",
       typeSpeed: 70,
