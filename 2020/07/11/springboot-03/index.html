@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      417 字
+      542 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      8
        分钟
     </span>
   
@@ -213,7 +213,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 21, 2020 pm
+                  本文最后更新于：July 22, 2020 pm
                 
               </p>
             
@@ -251,6 +251,13 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">hr</span>/&gt;</span>
     <span class="hljs-comment">&lt;!--循环--&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">th:each</span>=<span class="hljs-string">"val:$&#123;arr&#125;"</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"$&#123;val&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-comment">&lt;!--传递参数--&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">th:href</span>=<span class="hljs-string">"@&#123;/toUpdate/&#125;+$&#123;emp.getId()&#125;"</span>&gt;</span>编辑<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">th:href</span>=<span class="hljs-string">"@&#123;/delete/&#125;+$&#123;emp.getId()&#125;"</span>&gt;</span>删除<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+   <span class="hljs-comment">&lt;!--引入公共组件--&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">th:replace</span>=<span class="hljs-string">"~&#123;common/common::topbar&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-comment">&lt;!--日期格式化--&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"$&#123;#dates.format(emp.getBirth(),'yyyy-MM-dd')&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
 
@@ -266,7 +273,8 @@
 
     <span class="hljs-meta">@Override</span> <span class="hljs-comment">// 配置拦截器</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addInterceptors</span><span class="hljs-params">(InterceptorRegistry registry)</span> </span>&#123;
-        registry.addInterceptor(<span class="hljs-keyword">new</span> LoginHandlerInterceptor()).addPathPatterns(<span class="hljs-string">"/*"</span>)               .excludePathPatterns(<span class="hljs-string">"/index.html"</span>,<span class="hljs-string">"/"</span>,<span class="hljs-string">"/user/login"</span>,<span class="hljs-string">"/static/**"</span>);
+        registry.addInterceptor(<span class="hljs-keyword">new</span> LoginHandlerInterceptor()).addPathPatterns(<span class="hljs-string">"/*"</span>)
+            .excludePathPatterns(<span class="hljs-string">"/index.html"</span>,<span class="hljs-string">"/"</span>,<span class="hljs-string">"/user/login"</span>,<span class="hljs-string">"/static/**"</span>);
     &#125;
 &#125;</code></pre>
 
@@ -285,6 +293,11 @@
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
     &#125;
 &#125;</code></pre>
+
+<h2 id="处理器接收页面传参"><a href="#处理器接收页面传参" class="headerlink" title="处理器接收页面传参"></a>处理器接收页面传参</h2><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">th:href</span>=<span class="hljs-string">"@&#123;/delete/&#125;+$&#123;emp.getId()&#125;"</span>&gt;</span>删除<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></code></pre>
+
+<pre><code class="hljs java"><span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/delete/&#123;id&#125;"</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">delete</span><span class="hljs-params">(@PathVariable(<span class="hljs-string">"id"</span>)</span>Integer id)</span>&#123;&#125;</code></pre>
 
 
             </article>
