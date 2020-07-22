@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      287 字
+      417 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      6
        分钟
     </span>
   
@@ -213,7 +213,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 14, 2020 pm
+                  本文最后更新于：July 21, 2020 pm
                 
               </p>
             
@@ -257,6 +257,33 @@
 <h2 id="接管SpringMVC"><a href="#接管SpringMVC" class="headerlink" title="接管SpringMVC"></a>接管SpringMVC</h2><p>创建config目录，在config目录下编写类，用来接管、扩展SpringMVC</p>
 <pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyMvcConfig</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">WebMvcConfigurer</span> </span>&#123;
+    <span class="hljs-meta">@Override</span> <span class="hljs-comment">// 配置页面映射关系</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addViewControllers</span><span class="hljs-params">(ViewControllerRegistry registry)</span> </span>&#123;
+        registry.addViewController(<span class="hljs-string">"/"</span>).setViewName(<span class="hljs-string">"/index"</span>);
+        registry.addViewController(<span class="hljs-string">"/index.html"</span>).setViewName(<span class="hljs-string">"/index"</span>);
+    registry.addViewController(<span class="hljs-string">"/main.html"</span>).setViewName(<span class="hljs-string">"/dashboard"</span>);
+    &#125;
+
+    <span class="hljs-meta">@Override</span> <span class="hljs-comment">// 配置拦截器</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addInterceptors</span><span class="hljs-params">(InterceptorRegistry registry)</span> </span>&#123;
+        registry.addInterceptor(<span class="hljs-keyword">new</span> LoginHandlerInterceptor()).addPathPatterns(<span class="hljs-string">"/*"</span>)               .excludePathPatterns(<span class="hljs-string">"/index.html"</span>,<span class="hljs-string">"/"</span>,<span class="hljs-string">"/user/login"</span>,<span class="hljs-string">"/static/**"</span>);
+    &#125;
+&#125;</code></pre>
+
+<p>编写拦截器的实现类</p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LoginHandlerInterceptor</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">HandlerInterceptor</span> </span>&#123;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">preHandle</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
+        <span class="hljs-comment">// 登录成功后有user的session</span>
+        Object loginUser = request.getSession().getAttribute(<span class="hljs-string">"loginUser"</span>);
+        <span class="hljs-keyword">if</span>(loginUser==<span class="hljs-keyword">null</span>)&#123;
+            <span class="hljs-comment">// 没有登录</span>
+            request.setAttribute(<span class="hljs-string">"msg"</span>,<span class="hljs-string">"没有权限，请登录！"</span>);
+            request.getRequestDispatcher(<span class="hljs-string">"/index.html"</span>).forward(request,response);
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    &#125;
 &#125;</code></pre>
 
 
