@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="sweetboyZhang">
   <meta name="keywords" content="">
-  <title>多线程&amp;并发篇 - sweetboyZhang&#39;s Blog</title>
+  <title>MySQL篇 - sweetboyZhang&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -152,8 +152,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-07-18 08:36">
-      July 18, 2020 am
+    <time datetime="2020-07-25 08:00">
+      July 25, 2020 am
     </time>
   </div>
 
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      754 字
+      1.2k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      8
+      12
        分钟
     </span>
   
@@ -213,39 +213,55 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 19, 2020 am
+                  本文最后更新于：July 25, 2020 pm
                 
               </p>
             
             <article class="markdown-body">
-              <h2 id="1、Java中实现多线程的几种方法"><a href="#1、Java中实现多线程的几种方法" class="headerlink" title="1、Java中实现多线程的几种方法"></a>1、Java中实现多线程的几种方法</h2><p>1、继承Thread类；<br>2、实现Runnable接口，将Runable接口实现类作为形参传递给Thread构造器；<br>3、实现Callable接口，通过FutureTask包装器后传给Thread构造器；<br>4、从线程池中获取线程  <a id="more"></a></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ThreadTest4</span> </span>&#123;
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
-        <span class="hljs-comment">// 创建线程池 提供指定线程数量</span>
-        ExecutorService service = Executors.newFixedThreadPool(<span class="hljs-number">10</span>);
-        <span class="hljs-comment">// 创建线程并开始线程</span>
-        service.submit(<span class="hljs-keyword">new</span> MyThread4());
-        service.execute(<span class="hljs-keyword">new</span> MyThread4());
-        <span class="hljs-comment">// 关闭连接池</span>
-        service.shutdown();
-    &#125;
-&#125;
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyThread4</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span></span>&#123;
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;
-            System.out.println(Thread.currentThread().getName()+<span class="hljs-string">":"</span>+i);
-        &#125;
-    &#125;
-&#125;</code></pre>
+              <h2 id="1、数据库的三范式是什么"><a href="#1、数据库的三范式是什么" class="headerlink" title="1、数据库的三范式是什么"></a>1、数据库的三范式是什么</h2><p>第一范式：数据表必须是一个二维数据表，<strong>列不可再分</strong>，强调列的原子性，即表中的某一属性不能有几个值。<a id="more"></a></p>
+<p>第二范式：必须建立在第一范式的基础之上，即满足第二范式必须满足第一范式。第二范式要求<strong>每一行必须被唯一标识</strong>，即表中必须要有一个主键，没有包含主键的列必须完全依赖主键。</p>
+<p>第三范式：建立在第二范式的基础之上，要求每一个<strong>非主属性不能传递依赖候选键</strong>。<br>举例来说：Employee(emp_id,emp_name,emp_age,dept_id,dept_name,dept_info)，当员工表中emp_id能够唯一确定员工员工信息，但是dept_name可由dept_id唯一确定，此时，该表不符合第三范式，此时可以删除除了dept_id之外的其他部门信息，把所有部门信息单独建立一张部门表。</p>
+<h2 id="2、数据库的事务"><a href="#2、数据库的事务" class="headerlink" title="2、数据库的事务"></a>2、数据库的事务</h2><p><strong>什么是事务？</strong></p>
+<p>多条sql语句组成的一个执行单元，要么全部执行，要么都不执行。</p>
+<p><strong>事务的特性：</strong>原子性、一致性、隔离性、持久性</p>
+<ul>
+<li>原子性：组成事务的多个数据库操作是一个不可分割的原子单元，只有所有操作都成功，事务才会被提交，任何一个操作失败，已经执行的都必须撤销，让数据库恢复原来的状态。</li>
+<li>一致性：事务提交成功后，数据库所处的状态和它的业务规则是一致的，即数据不会被破坏。</li>
+<li>隔离性：不同事务拥有各自的数据空间，它们的操作不会对各自产生影响。</li>
+<li>持久性：一旦事务提交成功，事务中的所有操作必须持久化到数据库中。</li>
+</ul>
+<h2 id="3、数据库的索引"><a href="#3、数据库的索引" class="headerlink" title="3、数据库的索引"></a>3、数据库的索引</h2><p>索引就是加快检索数据的方法。</p>
+<p>mysql有四种不同的索引：主键索引(primary)、唯一索引(unique)、普通索引、全文索引</p>
+<p>索引并非越多越好，创建索引页需要消耗资源，一是增加了数据库的存储空间，二是在插入和删除时需要花费较多的时间去维护。</p>
+<h2 id="4、drop、delete与truncate的区别"><a href="#4、drop、delete与truncate的区别" class="headerlink" title="4、drop、delete与truncate的区别"></a>4、drop、delete与truncate的区别</h2><p>delete和truncate只能删除数据，不能删除表的结构</p>
+<p>速度：drop&gt;truncate&gt;delete</p>
+<p>truncate不可回滚</p>
+<h2 id="5、什么是视图"><a href="#5、什么是视图" class="headerlink" title="5、什么是视图"></a>5、什么是视图</h2><p>视图是一种虚拟的表，具有和物理表相同的功能。可以对视图进行增、删改、查操作，视图通常是一个表或多个表的行或列的子集。对视图的修改不影响基本表。</p>
+<h2 id="6、什么是内连接、左外连接、右外连接"><a href="#6、什么是内连接、左外连接、右外连接" class="headerlink" title="6、什么是内连接、左外连接、右外连接"></a>6、什么是内连接、左外连接、右外连接</h2><p>内连接：用来匹配两张表中相关联的记录。</p>
+<p>左外连接：除了匹配两张表中相关联的记录外，还会匹配左表剩余的记录，右表中未匹配的字段用NULL表示。</p>
+<p>右外连接：除了匹配两张表中相关联的记录外，还会匹配右表剩余的记录，左表中未匹配的字段用NULL表示。</p>
+<h2 id="7、并发事务带来哪些问题？"><a href="#7、并发事务带来哪些问题？" class="headerlink" title="7、并发事务带来哪些问题？"></a>7、并发事务带来哪些问题？</h2><p><strong>脏读：</strong>对于两个事务t1,t2，t1读取了已经被t2更新但还没提交的数据，若t2回滚，t1读取的数据就是临时且失效的。</p>
+<p><strong>不可重复读：</strong>对于两个事务t1,t2，t1读取了一个字段，然后t2更新了该字段。之后，t1再次读取同一个字段，值就不同了。</p>
+<p><strong>幻读：</strong>对于两个事务t1、t2，t1从一个表中读取了一个字段，然后t2在该表中插入了一些新的行。之后，若t1再次读取同一个表，就会多出几行。</p>
+<h2 id="8、事务的隔离级别"><a href="#8、事务的隔离级别" class="headerlink" title="8、事务的隔离级别"></a>8、事务的隔离级别</h2><p><img src="/2020/07/25/interview-03/1.png" srcset="/img/loading.gif" alt></p>
+<p>mysq默认支持的隔离级别是 可重复读。</p>
+<h2 id="9、mysql数据类型"><a href="#9、mysql数据类型" class="headerlink" title="9、mysql数据类型"></a>9、mysql数据类型</h2><p>1、整数类型<br>Tinyint：1个字节，有符号：-128到127 ，无符号(unsigned)：0到255<br>Smallint：2个字节，有符号：-32768到32767，无符号数：0到65535<br>Mediumint：3个字节<br>int/Integer：4个字节<br>Bigint：8个字节</p>
+<p>2、实数类型<br>float、double、decimal(效率高，精度高)</p>
+<p>3、字符串类型<br>varchar(变长字符串)、char(定长字符串)、text、blob</p>
+<p>4、日期和时间类型<br>timestamp(效率高)、datetime</p>
+<h2 id="10、创建索引的三种方式"><a href="#10、创建索引的三种方式" class="headerlink" title="10、创建索引的三种方式"></a>10、创建索引的三种方式</h2><p>方式一：创建表的时候</p>
+<pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">user</span>(
+	<span class="hljs-keyword">id</span> <span class="hljs-built_in">INT</span> atuo_increment PRIMARY <span class="hljs-keyword">KEY</span>,
+    <span class="hljs-keyword">name</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">20</span>),
+    age <span class="hljs-built_in">TINYINT</span>
+)</code></pre>
 
-<h2 id="2、如何停止一个正在运行的线程"><a href="#2、如何停止一个正在运行的线程" class="headerlink" title="2、如何停止一个正在运行的线程"></a>2、如何停止一个正在运行的线程</h2><p>1、使用退出标志，使线程正常退出，也就是当run方法执行完成后线程终止。<br>2、使用stop方法强行终止，但不推荐使用，已被废弃<br>3、使用interrupt方法抛出中断异常</p>
-<h2 id="3、notify-与notifyAll-的区别"><a href="#3、notify-与notifyAll-的区别" class="headerlink" title="3、notify()与notifyAll()的区别"></a>3、notify()与notifyAll()的区别</h2><p>任何时候只能有一个线程获得锁，调用notify时只能唤醒等待队列中的某一个线程，这个线程是不固定的，取决于线程调度器；而notifyAll能唤醒等待队列中的所有线程，所有被唤醒的线程争夺锁。</p>
-<h2 id="4、sleep-与wait-的区别"><a href="#4、sleep-与wait-的区别" class="headerlink" title="4、sleep()与wait()的区别"></a>4、sleep()与wait()的区别</h2><p>1、sleep()是声明在Thread类中的方法；而wait()是声明在Object类中的方法；<br>2、wait()只能在同步代码块和同步方法中使用；<br>3、sleep()会使当前线程在指定时间内阻塞，时间到了自动恢复运行的状态；<br>        wait()会释放锁，让其他线程争夺到锁后开始执行。</p>
-<h2 id="5、volatile是什么？可以保证有序性吗？"><a href="#5、volatile是什么？可以保证有序性吗？" class="headerlink" title="5、volatile是什么？可以保证有序性吗？"></a>5、volatile是什么？可以保证有序性吗？</h2><p>一旦共享变量(类的成员变量、类的静态成员变量)被volatile修饰后，那么就有了两层语义：</p>
-<p>1、保证了不同线程对这个变量的可见性，即一个线程修改了某个变量的值，这个新值对其他线程来说是立即可见的，volatile关键字会强制将修改的值写入主存。<br>2、禁止进行指令重排序</p>
-<h2 id="6、Thread类中的start-和run-方法的区别"><a href="#6、Thread类中的start-和run-方法的区别" class="headerlink" title="6、Thread类中的start()和run()方法的区别"></a>6、Thread类中的start()和run()方法的区别</h2><p>start()方法被用来启动新创建的线程，内部会调用run()方法，这和直接调用run()方法的效果不一样。当直接调用run()方法时，只会是在原来的线程中调用，没有新的线程启动，只有start()方法才会启动新的线程。</p>
-<h2 id="7、为什么wait，notify和notifyAll这些方法不在thread类里面？"><a href="#7、为什么wait，notify和notifyAll这些方法不在thread类里面？" class="headerlink" title="7、为什么wait，notify和notifyAll这些方法不在thread类里面？"></a>7、为什么wait，notify和notifyAll这些方法不在thread类里面？</h2><p>Java中提供的锁机制是对象级别的而不是线程级别的，每个对象都有锁，通过线程获得。如果线程需要等待某些锁，那么调用对象中的wait()方法就有意义了。如果wait()定义在Thread类中，线程正在等待的哪个锁就不明显了。简单来说，wait,notify和notifyAll都是锁级别的操作，所以把他们定义在Object中，因为锁属于对象。</p>
+<p>方式二：使用alter table命令，创建普通索引、UNIQUE索引或PRIMARY KEY索引。</p>
+<pre><code class="hljs sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> table_name <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">INDEX</span> index_name (column_list);</code></pre>
+
+<p>方式三：使用create index命令，增加普通索引或unique索引</p>
+<pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> index_name <span class="hljs-keyword">ON</span> table_name (column_list);</code></pre>
+
 
             </article>
             <hr>
@@ -269,9 +285,9 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/07/25/interview-03/">
+                      <a href="/2020/07/25/springboot-04/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">MySQL篇</span>
+                        <span class="hidden-mobile">整合Jdbc</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -279,8 +295,8 @@
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/07/15/ssm/">
-                        <span class="hidden-mobile">图书Crud项目</span>
+                      <a href="/2020/07/18/interview-02/">
+                        <span class="hidden-mobile">多线程&并发篇</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -451,7 +467,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "多线程&并发篇&nbsp;",
+        "MySQL篇&nbsp;",
       ],
       cursorChar: "(*＾_＾*)",
       typeSpeed: 70,

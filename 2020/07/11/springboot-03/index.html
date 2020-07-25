@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      542 字
+      591 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      8
+      9
        分钟
     </span>
   
@@ -213,7 +213,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 22, 2020 pm
+                  本文最后更新于：July 25, 2020 pm
                 
               </p>
             
@@ -299,7 +299,17 @@
 <pre><code class="hljs java"><span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/delete/&#123;id&#125;"</span>)
 <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">delete</span><span class="hljs-params">(@PathVariable(<span class="hljs-string">"id"</span>)</span>Integer id)</span>&#123;&#125;</code></pre>
 
+<h2 id="项目配置文件"><a href="#项目配置文件" class="headerlink" title="项目配置文件"></a>项目配置文件</h2><pre><code class="hljs properties"><span class="hljs-comment"># 关闭thymeleaf 缓存</span>
+<span class="hljs-meta">spring.thymeleaf.cache</span>=<span class="hljs-string">false</span>
 
+<span class="hljs-comment"># 项目路径  localhost:8080/zyz</span>
+<span class="hljs-meta">server.servlet.context-path</span>=<span class="hljs-string">/springboot_web</span>
+
+<span class="hljs-comment"># 国际化</span>
+<span class="hljs-comment"># spring.messages.basename=i18n.login</span>
+
+<span class="hljs-comment"># 时间日期格式化</span>
+<span class="hljs-meta">spring.mvc.format.date</span>=<span class="hljs-string">yyyy-MM-dd</span></code></pre>
             </article>
             <hr>
             <div>

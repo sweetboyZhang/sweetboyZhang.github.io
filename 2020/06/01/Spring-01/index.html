@@ -213,7 +213,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 17, 2020 pm
+                  本文最后更新于：July 25, 2020 pm
                 
               </p>
             
@@ -341,7 +341,7 @@
 <pre><code class="hljs xml"><span class="hljs-comment">&lt;!--   声明组件扫描器  组件就是java对象--&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">context:component-scan</span> <span class="hljs-attr">base-package</span>=<span class="hljs-string">"com.zyz.component"</span>/&gt;</span></code></pre>
 
-<p>另外，Spring 还提供了3 个创建对象的注解：<br> @Repository 用于对DAO 实现类进行注解<br> @Service 用于对Service 实现类进行注解<br>@Controller 用于对Controller 实现类进行注解<br>这三个注解与@Component 都可以创建对象，但这三个注解还有其他的含义，@Service创建业务层对象，业务层对象可以加入事务功能，@Controller 注解创建的对象可以作为处理器接收用户的请求。<br>@Repository，@Service，@Controller 是对@Component 注解的细化，标注不同层的对象。即持久层对象，业务层对象，控制层对象。<br>普通类型赋值：<br><img src="/2020/06/01/Spring-01/6.jpg" srcset="/img/loading.gif" alt></p>
+<p>另外，Spring 还提供了3 个创建对象的注解：<br>@Repository 用于对DAO 实现类进行注解<br>@Service 用于对Service 实现类进行注解<br>@Controller 用于对Controller 实现类进行注解<br>这三个注解与@Component 都可以创建对象，但这三个注解还有其他的含义，@Service创建业务层对象，业务层对象可以加入事务功能，@Controller 注解创建的对象可以作为处理器接收用户的请求。<br>@Repository，@Service，@Controller 是对@Component 注解的细化，标注不同层的对象。即持久层对象，业务层对象，控制层对象。<br>普通类型赋值：<br><img src="/2020/06/01/Spring-01/6.jpg" srcset="/img/loading.gif" alt></p>
 <p>byType自动注入（默认）<br><img src="/2020/06/01/Spring-01/7.jpg" srcset="/img/loading.gif" alt></p>
 <p><img src="/2020/06/01/Spring-01/8.jpg" srcset="/img/loading.gif" alt></p>
 <p>byName自动注入<br><img src="/2020/06/01/Spring-01/9.jpg" srcset="/img/loading.gif" alt></p>

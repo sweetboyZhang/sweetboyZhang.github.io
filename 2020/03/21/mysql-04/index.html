@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      660 字
+      656 字
     </span>
   
 
@@ -213,15 +213,15 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：June 28, 2020 am
+                  本文最后更新于：July 25, 2020 am
                 
               </p>
             
             <article class="markdown-body">
               <h2 id="一、数值型"><a href="#一、数值型" class="headerlink" title="一、数值型"></a>一、数值型</h2><p><strong>整型：</strong><br>Tinyint：1个字节，有符号：-128到127 ，无符号(unsigned)：0到255<br>Smallint：2个字节，有符号：-32768到32767，无符号数：0到65535<a id="more"></a><br>Mediumint：3个字节<br>int/Integer：4个字节<br>Bigint：8个字节<br><strong>小数：</strong>M：整数位+小数位，D：小数位<br>定点数：（精度较高）<br>dec(M,D)<br>decimal(M,D)<br>浮点数：<br>float(M,D)：4个字节<br>double(M,D)：8个字节</p>
 <h2 id="二、字符型"><a href="#二、字符型" class="headerlink" title="二、字符型"></a>二、字符型</h2><p><strong>较短的文本：</strong>最多的字符数M<br>char(M)：固定长度，M为0到255  可以省略  默认为1，比较耗费空间，效率较高<br>varchar(M)：可变长度，M为0到65535  不可以省略，节省空间，效率低</p>
-<h2 id="三、日期型"><a href="#三、日期型" class="headerlink" title="三、日期型"></a>三、日期型</h2><p>date：4字节<br>        datetime：8字节<br>        timestamp：4字节<br>        time：3字节<br>        year：1字节</p>
-<h2 id="常见约束"><a href="#常见约束" class="headerlink" title="常见约束"></a>常见约束</h2><p>NOT NULL：非空，保证该字段的值不能为空。比如姓名，学号等<br>        DEFAULT：默认，保证该字段有默认值。比如性别<br>        PRIMARITY：主键，保证该字段具有唯一性，且不为空。比如学号，员工编号<br>        UNIQUE：唯一，保证该字段具有唯一性。比如座位号<br>        CHECK：检查约束（mysql不支持）。比如性别<br>        FOREIGN KEY：外键，用于限制两个表的关系，保证该字段的值必须来自主表的关联的值。在从表添加外键约束，用于引用主表中某一列的值。比如学生表的专业编号，员工表的部门编号，员工表的工种编号    </p>
+<h2 id="三、日期型"><a href="#三、日期型" class="headerlink" title="三、日期型"></a>三、日期型</h2><p>date：4字节<br>datetime：8字节<br>timestamp：4字节<br>time：3字节<br>year：1字节</p>
+<h2 id="常见约束"><a href="#常见约束" class="headerlink" title="常见约束"></a>常见约束</h2><p>NOT NULL：非空，保证该字段的值不能为空。比如姓名，学号等<br>DEFAULT：默认，保证该字段有默认值。比如性别<br>PRIMARITY：主键，保证该字段具有唯一性，且不为空。比如学号，员工编号<br>UNIQUE：唯一，保证该字段具有唯一性。比如座位号<br>CHECK：检查约束（mysql不支持）。比如性别<br>FOREIGN KEY：外键，用于限制两个表的关系，保证该字段的值必须来自主表的关联的值。在从表添加外键约束，用于引用主表中某一列的值。比如学生表的专业编号，员工表的部门编号，员工表的工种编号    </p>
 <pre><code class="hljs sql"><span class="hljs-comment"># 添加列级约束</span>
 <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> stuinfo(
 		<span class="hljs-keyword">id</span> <span class="hljs-built_in">INT</span> PRIMARY <span class="hljs-keyword">KEY</span>,<span class="hljs-comment"># 主键</span>

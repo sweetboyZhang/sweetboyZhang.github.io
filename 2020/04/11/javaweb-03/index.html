@@ -213,7 +213,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 21, 2020 am
+                  本文最后更新于：July 24, 2020 pm
                 
               </p>
             
@@ -228,7 +228,7 @@
 <p>2、表达式脚本<br>作用：在jsp页面上输出数据<br>格式：<code>&lt;%= 表达式 %&gt;</code></p>
 <p>3、代码脚本<br>作用：可以在jsp页面中，编写我们需要的功能(java代码)<br>格式：<code>&lt;% java代码 %&gt;</code></p>
 <h2 id="jsp九大内置对象"><a href="#jsp九大内置对象" class="headerlink" title="jsp九大内置对象"></a>jsp九大内置对象</h2><p>jsp在翻译成servlet代码后内部提供的九个对象。<br>request&nbsp;&nbsp;&nbsp;请求对象<br>response&nbsp;&nbsp;&nbsp;响应对象<br>pageContext&nbsp;&nbsp;&nbsp;jsp上下文对象<br>session&nbsp;&nbsp;&nbsp;会话对象<br>application&nbsp;&nbsp;&nbsp;ServletContext对象<br>config&nbsp;&nbsp;&nbsp;ServletConfig对象<br>page&nbsp;&nbsp;&nbsp;当前的jsp对象<br>exception&nbsp;&nbsp;&nbsp;异常对象<br>out 向客户端输出内容常用的对象</p>
-<p><strong>四个域对象：</strong><br>pageContext&nbsp;&nbsp;&nbsp;&nbsp;(PageContextImpl类)&nbsp;&nbsp;&nbsp;&nbsp;当前的jsp页面有效<br>request&nbsp;&nbsp;&nbsp;&nbsp;(HttpServletRequest类)&nbsp;&nbsp;&nbsp;&nbsp;一次请求有效<br>session&nbsp;&nbsp;&nbsp;&nbsp;(HttpSession类)&nbsp;&nbsp;&nbsp;&nbsp;一次会话范围内有效(打开浏览器访问服务器，直到关闭浏览器)<br>application&nbsp;&nbsp;&nbsp;&nbsp;(ServletContext类)&nbsp;&nbsp;&nbsp;&nbsp;整个web工程范围内都有效(只要web工程不停止，数据一直都在)<br>域对象是可以像Map一样存取数据的对象。四个域对象的功能一样，不同的是它们对数据的存取范围。</p>
+<p><strong>四个域对象：</strong><br>page&nbsp;&nbsp;&nbsp;&nbsp;(PageContextImpl类)&nbsp;&nbsp;&nbsp;&nbsp;当前的jsp页面有效<br>request&nbsp;&nbsp;&nbsp;&nbsp;(HttpServletRequest类)&nbsp;&nbsp;&nbsp;&nbsp;一次请求有效<br>session&nbsp;&nbsp;&nbsp;&nbsp;(HttpSession类)&nbsp;&nbsp;&nbsp;&nbsp;一次会话范围内有效(打开浏览器访问服务器，直到关闭浏览器)<br>application&nbsp;&nbsp;&nbsp;&nbsp;(ServletContext类)&nbsp;&nbsp;&nbsp;&nbsp;整个web工程范围内都有效(只要web工程不停止，数据一直都在)<br>域对象是可以像Map一样存取数据的对象。四个域对象的功能一样，不同的是它们对数据的存取范围。</p>
 <p><strong>jsp中的out输出与response.getWriter()输出的区别：</strong><br><img src="/2020/04/11/javaweb-03/1.png" srcset="/img/loading.gif" alt></p>
 <p><font color="red">统一使用out.print()输出</font></p>
 <h2 id="jsp常用标签"><a href="#jsp常用标签" class="headerlink" title="jsp常用标签"></a>jsp常用标签</h2><h3 id="静态包含"><a href="#静态包含" class="headerlink" title="静态包含"></a>静态包含</h3><p>格式：<code>&lt;%@ include file=&quot;/&quot;%&gt;</code><br>file属性指定要包含的页面路径<br>静态包含的特点：<br>1、静态包含不会翻译被包含的jsp 页面。<br>2、静态包含其实是把被包含的jsp 页面的代码拷贝到包含的位置执行输出。</p>
