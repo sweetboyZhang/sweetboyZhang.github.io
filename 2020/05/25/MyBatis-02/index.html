@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      690 字
+      636 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      9
+      8
        分钟
     </span>
   
@@ -213,7 +213,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：June 28, 2020 am
+                  本文最后更新于：July 26, 2020 pm
                 
               </p>
             
@@ -245,16 +245,13 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">setting</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"mapUnderscoreToCamelCase"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"true"</span>/&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">settings</span>&gt;</span></code></pre>
 
-<h2 id="typeAliases别名处理器"><a href="#typeAliases别名处理器" class="headerlink" title="typeAliases别名处理器"></a>typeAliases别名处理器</h2><pre><code class="hljs xml">    <span class="hljs-comment">&lt;!--   typeAliases 别名处理器   别名不区分大小写</span>
-<span class="hljs-comment">           typeAlias 为某个java类型起别名</span>
-<span class="hljs-comment">                     type  指定要起别名的类型的全类名；默认别名是类名的小写：employee</span>
-<span class="hljs-comment">                     alias  指定新的别名--&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">typeAliases</span>&gt;</span>
-<span class="hljs-comment">&lt;!--        &lt;typeAlias type="bean.Employee" alias="emp"/&gt;--&gt;</span>
-        <span class="hljs-comment">&lt;!-- package  为某个包下的所有类批量起别名</span>
-<span class="hljs-comment">                name:指定包名 为当前包下的所有后代包的每一个类起一个默认别名(类名小写)--&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">package</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"bean"</span>/&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">typeAliases</span>&gt;</span></code></pre>
+<h2 id="typeAliases别名处理器"><a href="#typeAliases别名处理器" class="headerlink" title="typeAliases别名处理器"></a>typeAliases别名处理器</h2><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--typeAliases 别名处理器--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">typeAliases</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- &lt;typeAlias type="bean.Employee" alias="emp"/&gt;--&gt;</span>
+<span class="hljs-comment">&lt;!-- package 为某个包下的所有类批量起别名</span>
+<span class="hljs-comment">             name:指定包名 为当前包下的所有后代包的每一个类起一个默认别名--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">package</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"bean"</span>/&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">typeAliases</span>&gt;</span></code></pre>
 
 <p><img src="/2020/05/25/MyBatis-02/4.jpg" srcset="/img/loading.gif" alt></p>
 <h2 id="typeHandlers类型处理器"><a href="#typeHandlers类型处理器" class="headerlink" title="typeHandlers类型处理器"></a>typeHandlers类型处理器</h2><p>无论是MyBatis 在预处理语句（PreparedStatement）中设置一个参数时，还是从结果集中取出一个值时，都会用类型处理器将获取的值以合适的方式转换成Java 类型。<br><img src="/2020/05/25/MyBatis-02/5.jpg" srcset="/img/loading.gif" alt></p>

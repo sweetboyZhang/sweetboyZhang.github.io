@@ -213,7 +213,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 18, 2020 pm
+                  本文最后更新于：July 26, 2020 pm
                 
               </p>
             
@@ -656,7 +656,7 @@ details <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">200
 <span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre>
 
 <p>到此为止，整个ssm项目的配置文件基本上配置完成了，ssm项目与springboot项目相比，最大的不同就是这种繁杂的配置，但是学习ssm是必不可少的，只有这样才能了解到整个Javaweb工程的核心。<br>下一步是编写controller层以及与前端页面的交互。</p>
-<h2 id="六、Controller层与页面之间的交互"><a href="#六、Controller层与页面之间的交互" class="headerlink" title="六、Controller层与页面之间的交互"></a>六、Controller层与页面之间的交互</h2><p>编写BookController类,添加</p>
+<h2 id="六、Controller层与页面之间的交互"><a href="#六、Controller层与页面之间的交互" class="headerlink" title="六、Controller层与页面之间的交互"></a>六、Controller层与页面之间的交互</h2><p>编写BookController类,添加crud方法</p>
 <h3 id="方法一：查询所有图书"><a href="#方法一：查询所有图书" class="headerlink" title="方法一：查询所有图书"></a>方法一：查询所有图书</h3><pre><code class="hljs java"><span class="hljs-meta">@Controller</span>
 <span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/book"</span>)
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookController</span> </span>&#123;
