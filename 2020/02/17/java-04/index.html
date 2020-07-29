@@ -213,7 +213,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 18, 2020 am
+                  本文最后更新于：July 29, 2020 pm
                 
               </p>
             
@@ -277,7 +277,7 @@
 
 <p><strong>两种创建方式的比较：</strong><br>        开发中：优先选择实现Runnable接口的方式。<br>        原因 ：1.没有类的单继承性的局限性；2.更适合处理多个线程有共享数据的情况。<br>        相同点：两种方式都需要重写run()，将线程要执行的逻辑声明在run()中；启动线程都是调用Thread类中的start()方法</p>
 <h2 id="Thread类中常用方法"><a href="#Thread类中常用方法" class="headerlink" title="Thread类中常用方法"></a>Thread类中常用方法</h2><p><strong>void start()：</strong> 启动线程，并执行对象的run()方法<br><strong>void run()：</strong>线程在被调度时执行的操作<br><strong>String getName()：</strong> 返回线程的名称<br><strong>void setName(String name)：</strong>设置该线程名称<br><strong>static Thread currentThread()：</strong> 返回当前线程。在Thread子类中就是this，通常用于主线程和Runnable实现类<br><strong>static void yield()：</strong>线程让步<br>       &lt;1&gt; 暂停当前正在执行的线程，把执行机会让给优先级相同或更高的线程<br>       &lt;2&gt; 若队列中没有同优先级的线程，忽略此方法<br><strong>join()：</strong>在线程a中调用线程b的 join() 方法时，线程a将被阻塞，直到线程b执行完为止 ;低优先级的线程也可以获得执行<br><strong>static void sleep(long millis)：</strong>(指定时间:毫秒)<br>&lt;1&gt; 令当前活动线程在指定时间段内放弃对CPU控制,使其他线程有机会被执行,时间到后重排队<br>&lt;2&gt; 抛出InterruptedException异常<br><strong>stop()：</strong>强制线程生命期结束，不推荐使用<br><strong>boolean isAlive()：</strong>返回boolean，判断线程是否还活着</p>
-<h2 id="线程的调度"><a href="#线程的调度" class="headerlink" title="线程的调度"></a>线程的调度</h2><p><strong>调度的策略：</strong>时间片；抢占式。<br>        <strong>Java的调度方法：</strong><br>        &lt;1&gt; 同优先级线程组成先进先出队列(先到先服务)，使用时间片策略；<br>        &lt;2&gt; 对高优先级，使用抢占式策略，高优先级的线程抢占CPU.<br>        <strong>线程的优先级等级：</strong><br>        MAX_PRIORITY : 10<br>        MIN_PRIORITY : 1<br>        NORM_PRIORITY : 5<br>        <strong>涉及的方法：</strong><br>        getPriority() : 返回线程优先级；<br>        setPriority(int newPriority) : 重新设置线程的优先级。<br>        __说明： __<br>        线程创建时继承父线程的优先级；<br>        低优先级只是获得调度的概率低，并非一定是在高优先级线程之后才被调用</p>
+<h2 id="线程的调度"><a href="#线程的调度" class="headerlink" title="线程的调度"></a>线程的调度</h2><p><strong>调度的策略：</strong>时间片；抢占式。<br>        <strong>Java的调度方法：</strong><br>        &lt;1&gt; 同优先级线程组成先进先出队列(先到先服务)，使用时间片策略；<br>        &lt;2&gt; 对高优先级，使用抢占式策略，高优先级的线程抢占CPU.<br>        <strong>线程的优先级等级：</strong><br>        MAX_PRIORITY : 10<br>        MIN_PRIORITY : 1<br>        NORM_PRIORITY : 5<br>        <strong>涉及的方法：</strong><br>        getPriority() : 返回线程优先级；<br>        setPriority(int newPriority) : 重新设置线程的优先级。<br>        <strong>说明：</strong><br>        线程创建时继承父线程的优先级；<br>        低优先级只是获得调度的概率低，并非一定是在高优先级线程之后才被调用</p>
 <h2 id="线程的生命周期"><a href="#线程的生命周期" class="headerlink" title="线程的生命周期"></a>线程的生命周期</h2><p><img src="/2020/02/17/java-04/threadLift.png" srcset="/img/loading.gif" alt="线程生命周期"></p>
 <h2 id="线程的同步"><a href="#线程的同步" class="headerlink" title="线程的同步"></a>线程的同步</h2><p>多个线程执行的不确定性会引起结果的不稳定性；<br>多个线程对数据的共享，会造成操作的不完整性。<br><strong>方式一：同步代码块</strong></p>
 <pre><code class="hljs java">synchronize(<span class="hljs-comment">/*同步监视器*/</span>)&#123;
@@ -574,7 +574,7 @@
                       <a href="/2020/02/20/mysql-01/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">MySQL概述</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </div>
@@ -583,7 +583,7 @@
                     
                       <a href="/2020/02/11/java-03/">
                         <span class="hidden-mobile">异常处理</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -600,7 +600,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -633,7 +633,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -642,7 +642,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
