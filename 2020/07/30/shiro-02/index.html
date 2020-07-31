@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      443 字
+      791 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      11
        分钟
     </span>
   
@@ -213,7 +213,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 30, 2020 pm
+                  本文最后更新于：July 31, 2020 pm
                 
               </p>
             
@@ -272,8 +272,7 @@
     &#125;
 &#125;</code></pre>
 
-<p>在ShiroConfig类中实现登录拦截</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
+<h2 id="5、在ShiroConfig类中实现登录拦截"><a href="#5、在ShiroConfig类中实现登录拦截" class="headerlink" title="5、在ShiroConfig类中实现登录拦截"></a>5、在ShiroConfig类中实现登录拦截</h2><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ShiroConfig</span> </span>&#123;
 
     <span class="hljs-comment">// ShiroFilterFactoryBean</span>
@@ -316,6 +315,68 @@
     &#125;
 &#125;</code></pre>
 
+<h2 id="6、登录认证"><a href="#6、登录认证" class="headerlink" title="6、登录认证"></a>6、登录认证</h2><p>在MyController中添加login方法</p>
+<pre><code class="hljs java"><span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/login"</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">login</span><span class="hljs-params">(String username,String password,Model model)</span></span>&#123;
+    <span class="hljs-comment">// 获取当前用户</span>
+    Subject subject = SecurityUtils.getSubject();
+    <span class="hljs-comment">// 封装用户登录信息</span>
+    UsernamePasswordToken token = <span class="hljs-keyword">new</span> UsernamePasswordToken(username, password);
+    <span class="hljs-keyword">try</span> &#123;
+        subject.login(token);<span class="hljs-comment">// 执行登录方法</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"index"</span>;<span class="hljs-comment">// 登录成功，返回首页</span>
+    &#125; <span class="hljs-keyword">catch</span> (UnknownAccountException e) &#123;<span class="hljs-comment">// 用户名不存在</span>
+       model.addAttribute(<span class="hljs-string">"msg"</span>,<span class="hljs-string">"用户名不存在"</span>);
+       <span class="hljs-keyword">return</span> <span class="hljs-string">"login"</span>;
+    &#125; <span class="hljs-keyword">catch</span> (IncorrectCredentialsException e)&#123;
+        model.addAttribute(<span class="hljs-string">"msg"</span>,<span class="hljs-string">"密码错误"</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"login"</span>;
+    &#125;
+&#125;</code></pre>
+
+<p>在UserRealm类中的认证方法中验证用户名和密码</p>
+<pre><code class="hljs java"><span class="hljs-comment">// 认证</span>
+<span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">protected</span> AuthenticationInfo <span class="hljs-title">doGetAuthenticationInfo</span><span class="hljs-params">(AuthenticationToken authenticationToken)</span> <span class="hljs-keyword">throws</span> AuthenticationException </span>&#123;
+    System.out.println(<span class="hljs-string">"认证doGetAuthenticationInfo"</span>);
+    <span class="hljs-comment">// 验证用户名 密码 （实际应该从数据库中获取）</span>
+    String name = <span class="hljs-string">"zyz"</span>;
+    String password = <span class="hljs-string">"123456"</span>;
+    UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
+    <span class="hljs-comment">// 用户名验证</span>
+    <span class="hljs-keyword">if</span>(!token.getUsername().equals(name))&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<span class="hljs-comment">// 自动抛出UnknownAccountException</span>
+    &#125;
+    <span class="hljs-comment">// 密码认证，shiro内部实现</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> SimpleAuthenticationInfo(<span class="hljs-string">""</span>,password,<span class="hljs-string">""</span>);
+&#125;</code></pre>
+
+<h2 id="7、整合Mybatis实现登录认证"><a href="#7、整合Mybatis实现登录认证" class="headerlink" title="7、整合Mybatis实现登录认证"></a>7、整合Mybatis实现登录认证</h2><p>前提：<br>将springboot整合mybatis的环境搭建好，创建User实体类；创建UserMapper接口，并添加<br>queryUserByName(String name)方法，添加sql映射；创建UserService接口及其实现类UserServiceImpl。</p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserRealm</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AuthorizingRealm</span> </span>&#123;
+    <span class="hljs-meta">@Autowired</span>
+    <span class="hljs-keyword">private</span> UserService userService;
+    <span class="hljs-comment">// 授权</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> AuthorizationInfo <span class="hljs-title">doGetAuthorizationInfo</span><span class="hljs-params">(PrincipalCollection principalCollection)</span> </span>&#123;
+        System.out.println(<span class="hljs-string">"授权doGetAuthorizationInfo"</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+    &#125;
+
+    <span class="hljs-comment">// 认证</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> AuthenticationInfo <span class="hljs-title">doGetAuthenticationInfo</span><span class="hljs-params">(AuthenticationToken authenticationToken)</span> <span class="hljs-keyword">throws</span> AuthenticationException </span>&#123;
+        System.out.println(<span class="hljs-string">"认证doGetAuthenticationInfo"</span>);
+        UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
+        User user = userService.queryUserByName(token.getUsername());
+        <span class="hljs-comment">// 用户名验证</span>
+        <span class="hljs-keyword">if</span>(user==<span class="hljs-keyword">null</span>)&#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<span class="hljs-comment">// 自动抛出UnknownAccountException</span>
+        &#125;
+        <span class="hljs-comment">// 密码认证，shiro内部实现</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> SimpleAuthenticationInfo(<span class="hljs-string">""</span>,user.getPwd(),<span class="hljs-string">""</span>);
+    &#125;
+&#125;</code></pre>
+
 
             </article>
             <hr>
@@ -345,7 +406,7 @@
                     
                       <a href="/2020/07/30/shiro-01/">
                         <span class="hidden-mobile">Shiro快速开始</span>
-                        <span class="visible-mobile">下一篇</span>
+                        <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -362,7 +423,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
   <div id="tocbot"></div>
 </div>
 
@@ -395,7 +456,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -404,7 +465,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

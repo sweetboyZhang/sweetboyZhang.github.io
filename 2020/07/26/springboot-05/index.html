@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      666 字
+      563 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      11
+      10
        分钟
     </span>
   
@@ -213,7 +213,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 26, 2020 pm
+                  本文最后更新于：July 31, 2020 pm
                 
               </p>
             
@@ -230,26 +230,7 @@
     <span class="hljs-attr">username:</span> <span class="hljs-string">root</span>
     <span class="hljs-attr">password:</span> <span class="hljs-number">2824199842</span>
     <span class="hljs-attr">url:</span> <span class="hljs-string">jdbc:mysql://localhost:3306/mybatis?serverTimezone=Asia/Shanghai</span>
-    <span class="hljs-attr">driver-class-name:</span> <span class="hljs-string">com.mysql.cj.jdbc.Driver</span>
-    <span class="hljs-comment">#Spring Boot 默认是不注入这些属性值的，需要自己绑定</span>
-    <span class="hljs-comment">#druid 数据源专有配置</span>
-    <span class="hljs-attr">initialSize:</span> <span class="hljs-number">5</span>
-    <span class="hljs-attr">minIdle:</span> <span class="hljs-number">5</span>
-    <span class="hljs-attr">maxActive:</span> <span class="hljs-number">20</span>
-    <span class="hljs-attr">maxWait:</span> <span class="hljs-number">60000</span>
-    <span class="hljs-attr">timeBetweenEvictionRunsMillis:</span> <span class="hljs-number">60000</span>
-    <span class="hljs-attr">minEvictableIdleTimeMillis:</span> <span class="hljs-number">300000</span>
-    <span class="hljs-attr">validationQuery:</span> <span class="hljs-string">SELECT</span> <span class="hljs-number">1</span> <span class="hljs-string">FROM</span> <span class="hljs-string">DUAL</span>
-    <span class="hljs-attr">testWhileIdle:</span> <span class="hljs-literal">true</span>
-    <span class="hljs-attr">testOnBorrow:</span> <span class="hljs-literal">false</span>
-    <span class="hljs-attr">testOnReturn:</span> <span class="hljs-literal">false</span>
-    <span class="hljs-attr">poolPreparedStatements:</span> <span class="hljs-literal">true</span>
-    <span class="hljs-comment">#配置监控统计拦截的filters，stat:监控统计、log4j：日志记录、wall：防御sql注入</span>
-    <span class="hljs-comment">#需要导入 log4j 依赖</span>
-    <span class="hljs-attr">filters:</span> <span class="hljs-string">stat,wall,log4j</span>
-    <span class="hljs-attr">maxPoolPreparedStatementPerConnectionSize:</span> <span class="hljs-number">20</span>
-    <span class="hljs-attr">useGlobalDataSourceStat:</span> <span class="hljs-literal">true</span>
-    <span class="hljs-attr">connectionProperties:</span> <span class="hljs-string">druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500</span></code></pre>
+    <span class="hljs-attr">driver-class-name:</span> <span class="hljs-string">com.mysql.cj.jdbc.Driver</span></code></pre>
 
 <h2 id="3、测试是否能连接成功"><a href="#3、测试是否能连接成功" class="headerlink" title="3、测试是否能连接成功"></a>3、测试是否能连接成功</h2><pre><code class="hljs java"><span class="hljs-meta">@SpringBootTest</span>
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Springboot05MybatisApplicationTests</span> </span>&#123;
@@ -394,7 +375,7 @@
                       <a href="/2020/07/28/springboot-06/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">SpringSecurity</span>
-                        <span class="visible-mobile">上一篇</span>
+                        <span class="visible-mobile">Previous</span>
                       </a>
                     
                   </div>
@@ -403,7 +384,7 @@
                     
                       <a href="/2020/07/25/springboot-04/">
                         <span class="hidden-mobile">整合jdbc，Druid</span>
-                        <span class="visible-mobile">下一篇</span>
+                        <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -420,7 +401,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
   <div id="tocbot"></div>
 </div>
 
@@ -453,7 +434,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -462,7 +443,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
