@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="sweetboyZhang">
   <meta name="keywords" content="">
-  <title>Tags - MySQL基础 - sweetboyZhang&#39;s Blog</title>
+  <title>标签 - MYSQL基础 - sweetboyZhang&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -160,34 +160,22 @@
                 
 
 <div class="list-group">
-  <p class="h4">4 posts in total.</p>
+  <p class="h4">共计 2 篇文章</p>
   <hr>
   
     
       
       <p class="h5">2020</p>
     
-    <a href="/2020/03/21/mysql-04/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MySQL数据类型，约束，标识列</span>
+    <a href="/2020/03/22/mysql-06/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">MySQL变量,存储过程,流程结构</span>
+      <span style="float: right;">03-22</span>
+    </a>
+  
+    
+    <a href="/2020/03/21/mysql-05/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">TCL,事务,视图</span>
       <span style="float: right;">03-21</span>
-    </a>
-  
-    
-    <a href="/2020/03/19/mysql-03/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">DML,DDL</span>
-      <span style="float: right;">03-19</span>
-    </a>
-  
-    
-    <a href="/2020/02/22/mysql-02/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">DQL,常见函数</span>
-      <span style="float: right;">02-22</span>
-    </a>
-  
-    
-    <a href="/2020/02/20/mysql-01/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MySQL概述</span>
-      <span style="float: right;">02-20</span>
     </a>
   
 </div>
@@ -214,7 +202,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -223,7 +211,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -309,7 +297,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Tag - MySQL基础&nbsp;",
+        "标签 - MYSQL基础&nbsp;",
       ],
       cursorChar: "(*＾_＾*)",
       typeSpeed: 70,
@@ -379,6 +367,37 @@
           //animate() 方法执行 CSS 属性集的自定义动画。
           //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
           //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+�情请看http://www.w3school.com.cn/jquery/effect_animate.asp
           $i.animate({
             //将原来的位置向上移动180
             "top": y - 180,

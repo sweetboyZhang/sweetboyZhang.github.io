@@ -213,7 +213,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 1, 2020 pm
+                  本文最后更新于：August 1, 2020 am
                 
               </p>
             
@@ -327,7 +327,7 @@
 &#125;</code></pre>
 
 <p>动态代理作用：<br>1、在目标类源代码不改变的情况下，增加功能。<br>2、减少代码重复<br>3、专注业务逻辑代码<br>4、解耦合</p>
-<h2 id="AOP定义"><a href="#AOP定义" class="headerlink" title="AOP定义"></a>AOP定义</h2><p>面向切面编程，基于动态代理，可使用jdk,cglib两种代理方式。<br>Spring会根据具体的Bean是否具有接口去选择动态代理方式，如果有接口，使用的是Jdk的动态代理方式，如果没有接口，使用的是cglib的动态代理方式。<br>AOP就是动态代理的规范化，供开发人员以统一的方式使用动态代理。<br>比如你写了个方法用来做一些事情，但这个事情要求登录用户才能做，你就可以在这个方法执行前验证一下，执行后记录下操作日志，把前后的这些与业务逻辑无关的代码抽取出来放一个类里，这个<strong>类就是切面（Aspect），</strong>这个<strong>被环绕的方法就是切点（Pointcut），</strong>你所做的<strong>执行前执行后的</strong>这些<strong>方法统一叫做增强处理（Advice）。</strong></p>
+<h2 id="AOP定义"><a href="#AOP定义" class="headerlink" title="AOP定义"></a>AOP定义</h2><p>面向切面编程，基于动态代理，可使用jdk,cglib两种代理方式。<br>Spring会根据具体的Bean是否具有接口去选择动态代理方式，如果有接口，使用的是Jdk的动态代理方式，如果没有接口，使用的是cglib的动态代理方式。<br>AOP就是动态代理的规范化，供开发人员以统一的方式使用动态代理。<br>比如你写了个方法用来做一些事情，但这个事情要求登录用户才能做，你就可以在这个方法执行前验证一下，执行后记录下操作日志，把前后的这些与业务逻辑无关的代码抽取出来放一个类里，这个<strong>类就是切面（Aspect），</strong>这个<strong>被环绕的方法就是切点（Pointcut），</strong>你所做的<strong>执行前执行后的</strong>这些方法统一叫做<strong>增强处理（Advice）。</strong></p>
 <p>怎么理解面向切面编程？<br>1、需要在分析项目功能时，找出切面<br>2、合理的安排切面的执行时间（目标方法前，还是目标方法后）—-&gt;通知注解<br>3、合理的安排切面执行的位置（在哪个类，哪个方法增加增强方法）—-&gt;切入点表达式</p>
 <h2 id="AOP实现"><a href="#AOP实现" class="headerlink" title="AOP实现"></a>AOP实现</h2><p>aspectj：开源的aop实现框架<br>加入aspectj依赖</p>
 <pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
@@ -447,7 +447,7 @@
                       <a href="/2020/06/16/Spring-03/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Spring集成MyBatis</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </div>
@@ -456,7 +456,7 @@
                     
                       <a href="/2020/06/01/Maven/">
                         <span class="hidden-mobile">Maven</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -473,7 +473,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -506,7 +506,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -515,7 +515,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

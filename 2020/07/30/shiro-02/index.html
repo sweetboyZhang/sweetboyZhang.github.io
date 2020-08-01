@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      791 字
+      1.3k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      11
+      21
        分钟
     </span>
   
@@ -213,7 +213,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 31, 2020 pm
+                  本文最后更新于：August 1, 2020 pm
                 
               </p>
             
@@ -299,7 +299,7 @@
         <span class="hljs-keyword">return</span> bean;
     &#125;
 
-    <span class="hljs-comment">// DafaultWebSecurityManager</span>
+    <span class="hljs-comment">// DefaultWebSecurityManager</span>
     <span class="hljs-meta">@Bean</span>(name = <span class="hljs-string">"securityManager"</span>)
     <span class="hljs-function"><span class="hljs-keyword">public</span> DefaultWebSecurityManager <span class="hljs-title">getDefaultwebSecurityManager</span><span class="hljs-params">(@Qualifier(<span class="hljs-string">"userRealm"</span>)</span> UserRealm userRealm)</span>&#123;<span class="hljs-comment">// @Qualifier通过byName注入name默认为方法名</span>
         DefaultWebSecurityManager securityManager = <span class="hljs-keyword">new</span> DefaultWebSecurityManager();
@@ -351,15 +351,63 @@
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> SimpleAuthenticationInfo(<span class="hljs-string">""</span>,password,<span class="hljs-string">""</span>);
 &#125;</code></pre>
 
-<h2 id="7、整合Mybatis实现登录认证"><a href="#7、整合Mybatis实现登录认证" class="headerlink" title="7、整合Mybatis实现登录认证"></a>7、整合Mybatis实现登录认证</h2><p>前提：<br>将springboot整合mybatis的环境搭建好，创建User实体类；创建UserMapper接口，并添加<br>queryUserByName(String name)方法，添加sql映射；创建UserService接口及其实现类UserServiceImpl。</p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserRealm</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AuthorizingRealm</span> </span>&#123;
+<h2 id="7、整合Mybatis实现认证和授权"><a href="#7、整合Mybatis实现认证和授权" class="headerlink" title="7、整合Mybatis实现认证和授权"></a>7、整合Mybatis实现认证和授权</h2><p>前提：<br>将springboot整合mybatis的环境搭建好，创建User实体类；创建UserMapper接口，并添加<br>queryUserByName(String name)方法，添加sql映射；创建UserService接口及其实现类UserServiceImpl。</p>
+<p>ShiroConfig.java</p>
+<pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ShiroConfig</span> </span>&#123;
+    <span class="hljs-meta">@Bean</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> ShiroFilterFactoryBean <span class="hljs-title">getShiroFilterFactoryBean</span><span class="hljs-params">(@Qualifier(<span class="hljs-string">"securityManager"</span>)</span> DefaultWebSecurityManager securityManager)</span>&#123;
+        ShiroFilterFactoryBean bean = <span class="hljs-keyword">new</span> ShiroFilterFactoryBean();
+        <span class="hljs-comment">// 关联 securityManager,设置安全管理器</span>
+        bean.setSecurityManager(securityManager);
+        <span class="hljs-comment">// 拦截</span>
+        Map&lt;String, String&gt; filterMap = <span class="hljs-keyword">new</span> LinkedHashMap&lt;&gt;();
+
+        <span class="hljs-comment">// 授权</span>
+        filterMap.put(<span class="hljs-string">"/user/add"</span>,<span class="hljs-string">"perms[user:add]"</span>);
+        filterMap.put(<span class="hljs-string">"/user/update"</span>,<span class="hljs-string">"perms[user:update]"</span>);
+
+        filterMap.put(<span class="hljs-string">"/user/*"</span>,<span class="hljs-string">"authc"</span>);
+        bean.setFilterChainDefinitionMap(filterMap);
+        <span class="hljs-comment">// 权限不够自动跳转到登录页面</span>
+        bean.setLoginUrl(<span class="hljs-string">"/toLogin"</span>);
+        <span class="hljs-comment">// 未授权页面</span>
+        bean.setUnauthorizedUrl(<span class="hljs-string">"/noauth"</span>);
+        <span class="hljs-keyword">return</span> bean;
+    &#125;
+
+    <span class="hljs-comment">// DefaultWebSecurityManager</span>
+    <span class="hljs-meta">@Bean</span>(name = <span class="hljs-string">"securityManager"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> DefaultWebSecurityManager <span class="hljs-title">getDefaultwebSecurityManager</span><span class="hljs-params">(@Qualifier(<span class="hljs-string">"userRealm"</span>)</span> UserRealm userRealm)</span>&#123;<span class="hljs-comment">// @Qualifier通过byName注入name默认为方法名</span>
+        DefaultWebSecurityManager securityManager = <span class="hljs-keyword">new</span> DefaultWebSecurityManager();
+        <span class="hljs-comment">// 关联UserRealm</span>
+        securityManager.setRealm(userRealm);
+        <span class="hljs-keyword">return</span> securityManager;
+    &#125;
+
+    <span class="hljs-comment">// 创建 realm 对象</span>
+    <span class="hljs-meta">@Bean</span>  <span class="hljs-comment">// @Bean将对象交给Spring管理</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> UserRealm <span class="hljs-title">userRealm</span><span class="hljs-params">()</span></span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> UserRealm();
+    &#125;
+&#125;</code></pre>
+
+<p>UserRealm.java</p>
+<pre><code class="hljs java"><span class="hljs-comment">// 自定义授权对象  需要继承AuthorizingRealm</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserRealm</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AuthorizingRealm</span> </span>&#123;
     <span class="hljs-meta">@Autowired</span>
     <span class="hljs-keyword">private</span> UserService userService;
     <span class="hljs-comment">// 授权</span>
     <span class="hljs-meta">@Override</span>
     <span class="hljs-function"><span class="hljs-keyword">protected</span> AuthorizationInfo <span class="hljs-title">doGetAuthorizationInfo</span><span class="hljs-params">(PrincipalCollection principalCollection)</span> </span>&#123;
         System.out.println(<span class="hljs-string">"授权doGetAuthorizationInfo"</span>);
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+        SimpleAuthorizationInfo info = <span class="hljs-keyword">new</span> SimpleAuthorizationInfo();
+        <span class="hljs-comment">// 获取当前对象</span>
+        Subject subject = SecurityUtils.getSubject();
+        User currentUser = (User) subject.getPrincipal();
+        <span class="hljs-comment">// 从数据库中获取权限，设置权限</span>
+        info.addStringPermission(currentUser.getPerms());
+        <span class="hljs-keyword">return</span> info;
     &#125;
 
     <span class="hljs-comment">// 认证</span>
@@ -372,10 +420,72 @@
         <span class="hljs-keyword">if</span>(user==<span class="hljs-keyword">null</span>)&#123;
             <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<span class="hljs-comment">// 自动抛出UnknownAccountException</span>
         &#125;
+          <span class="hljs-comment">// 可将user对象存放至session域中</span>
+        <span class="hljs-comment">/*Subject subject = SecurityUtils.getSubject();</span>
+<span class="hljs-comment">        Session session = subject.getSession();</span>
+<span class="hljs-comment">        session.setAttribute("user",user);</span>
+<span class="hljs-comment">        System.out.println(user);*/</span>
         <span class="hljs-comment">// 密码认证，shiro内部实现</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> SimpleAuthenticationInfo(<span class="hljs-string">""</span>,user.getPwd(),<span class="hljs-string">""</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> SimpleAuthenticationInfo(user,user.getPwd(),<span class="hljs-string">""</span>);
     &#125;
 &#125;</code></pre>
+
+<p>MyController.java</p>
+<pre><code class="hljs java"><span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/noauth"</span>)
+<span class="hljs-meta">@ResponseBody</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">unauthorized</span><span class="hljs-params">()</span></span>&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"未授权"</span>;
+&#125;
+
+<span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/user/logout"</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">logout</span><span class="hljs-params">()</span></span>&#123;
+    Subject subject = SecurityUtils.getSubject();
+    subject.logout();
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"redirect:/"</span>;
+&#125;</code></pre>
+
+<h2 id="8、整合thymeleaf根据权限显示组件"><a href="#8、整合thymeleaf根据权限显示组件" class="headerlink" title="8、整合thymeleaf根据权限显示组件"></a>8、整合thymeleaf根据权限显示组件</h2><p>1、导入依赖</p>
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.github.theborakompanioni<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>thymeleaf-extras-shiro<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+
+<p>2、在ShiroConfig.java中添加配置</p>
+<pre><code class="hljs java"><span class="hljs-comment">// 整合ShiroDialect:用来整合shiro和thymeleaf</span>
+<span class="hljs-meta">@Bean</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> ShiroDialect <span class="hljs-title">getShiroDialect</span><span class="hljs-params">()</span></span>&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ShiroDialect();
+&#125;</code></pre>
+
+<p>3、在页面中添加名称空间</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span> <span class="hljs-attr">xmlns:th</span>=<span class="hljs-string">"http://www.thymeleaf.org"</span></span>
+<span class="hljs-tag">      <span class="hljs-attr">xmlns:shiro</span>=<span class="hljs-string">"http://www.thymeleaf.org/thymeleaf-extras-shiro"</span>&gt;</span></code></pre>
+
+<p>4、修改页面</p>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span> <span class="hljs-attr">xmlns:th</span>=<span class="hljs-string">"http://www.thymeleaf.org"</span></span>
+<span class="hljs-tag">      <span class="hljs-attr">xmlns:shiro</span>=<span class="hljs-string">"http://www.thymeleaf.org/thymeleaf-extras-shiro"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>title<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>首页<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">shiro:notAuthenticated</span> <span class="hljs-attr">th:href</span>=<span class="hljs-string">"@&#123;toLogin&#125;"</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"登录"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-symbol">&amp;nbsp;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">shiro:principal</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"name"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">shiro:authenticated</span> <span class="hljs-attr">th:href</span>=<span class="hljs-string">"@&#123;user/logout&#125;"</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"注销"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"$&#123;msg&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">hr</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">shiro:hasPermission</span>=<span class="hljs-string">"user:add"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">th:href</span>=<span class="hljs-string">"@&#123;user/add&#125;"</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"添加"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">shiro:hasPermission</span>=<span class="hljs-string">"user:update"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">th:href</span>=<span class="hljs-string">"@&#123;user/update&#125;"</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"修改"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
 
 
             </article>
@@ -400,13 +510,19 @@
                   <div class="post-prev col-6">
                     
                     
+                      <a href="/2020/08/01/interview-04/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Spring篇</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </div>
                   <div class="post-next col-6">
                     
                     
                       <a href="/2020/07/30/shiro-01/">
                         <span class="hidden-mobile">Shiro快速开始</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -423,7 +539,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -456,7 +572,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -465,7 +581,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

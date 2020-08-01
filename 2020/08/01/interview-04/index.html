@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="sweetboyZhang">
   <meta name="keywords" content="">
-  <title>MySQL变量,存储过程,流程结构 - sweetboyZhang&#39;s Blog</title>
+  <title>Spring篇 - sweetboyZhang&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -152,8 +152,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-03-22 07:17">
-      March 22, 2020 am
+    <time datetime="2020-08-01 08:42">
+      August 1, 2020 am
     </time>
   </div>
 
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      995 字
+      1.1k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      12
+      11
        分钟
     </span>
   
@@ -213,101 +213,24 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：June 28, 2020 am
+                  本文最后更新于：August 1, 2020 am
                 
               </p>
             
             <article class="markdown-body">
-              <h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p><strong>系统变量：</strong>由系统提供，属于服务层面<br>_全局变量：_服务器每次启动将为所有全局变量赋初值。针对所有会话(连接)有效，但不能跨重启。<br>_会话变量：_仅仅针对于当前的会话(连接)有效。<a id="more"></a><br>查看所有的系统变量：show global | [ session] variable;<br>查看满足条件的系统变量：show global | [session] variable  like ‘%char%’;<br>查看指定系统变量：select @@global | [session].系统变量名;<br>为某个系统变量赋值：<br>set global | [session] 系统变量名=值;<br>set @@global \ [session].系统变量名=值;</p>
-<p><strong>自定义变量：</strong>用户自定义<br>_用户变量：_针对于当前会话(连接)有效<br>1.声明并初始化<br>set @用户变量名=值;<br>set @用户变量名:=值;<br>select @用户变量名:=值;<br>2.赋值<br>set @用户变量名=值;<br>set @用户变量名:=值;<br>select @用户变量名:=值;<br>select into select 字段  into 变量名 from 表;<br>_局部变量：_仅仅在定义它的begin end中有效<br>1.声明<br>declare 变量 类型 [default 值];<br>2.赋值<br>与用户变量相同</p>
-<h2 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h2><p>事先经过编译并存储在数据库中一段sql语句的集合。<br>好处：<br>1.提高了代码的重用性；<br>2.简化操作；<br>3.减少了编译次数并且减少了和数据库服务器的连接次数，提高了效率。</p>
-<pre><code class="hljs sql"><span class="hljs-comment">/*</span>
-<span class="hljs-comment">一、创建存储过程</span>
-<span class="hljs-comment">语法：</span>
-<span class="hljs-comment">create procedure 存储过程名(参数列表)</span>
-<span class="hljs-comment">begin</span>
-<span class="hljs-comment">	存储过程体</span>
-<span class="hljs-comment">end</span>
-<span class="hljs-comment"></span>
-<span class="hljs-comment">1、参数列表分为：参数模式  参数名 参数类型</span>
-<span class="hljs-comment">参数模式：</span>
-<span class="hljs-comment">in：该参数可以作为输入，也就是说该参数需要调用方传入值</span>
-<span class="hljs-comment">out：该参数可以作为输出，也就是说该参数可以作为返回值</span>
-<span class="hljs-comment">inout：该参数既可以作为输入也可以作为输入</span>
-<span class="hljs-comment"></span>
-<span class="hljs-comment">二、调用存储过程</span>
-<span class="hljs-comment">语法：</span>
-<span class="hljs-comment">call  储存过程名(实参列表);</span>
-<span class="hljs-comment">*/</span>
-
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">PROCEDURE</span> myp1()
-<span class="hljs-keyword">BEGIN</span>
-<span class="hljs-keyword">INSERT</span>  <span class="hljs-keyword">INTO</span> <span class="hljs-keyword">admin</span>(username,<span class="hljs-string">`password`</span>)
-<span class="hljs-keyword">VALUES</span>(<span class="hljs-string">"Taylor"</span>,<span class="hljs-string">"123456"</span>),(<span class="hljs-string">"Tom"</span>,<span class="hljs-string">"123456"</span>),(<span class="hljs-string">"Jerry"</span>,<span class="hljs-string">"123456"</span>);
-<span class="hljs-keyword">END</span> 
-
-<span class="hljs-keyword">CALL</span> myp1;
-
-<span class="hljs-comment"># 创建带in模式参数的储存过程</span>
-<span class="hljs-comment"># 创建存储过程判断用户是否登录成功</span>
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">PROCEDURE</span> myp2(<span class="hljs-keyword">IN</span> username <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">10</span>),<span class="hljs-keyword">IN</span> <span class="hljs-string">`password`</span> <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">10</span>))
-<span class="hljs-keyword">BEGIN</span>
-		<span class="hljs-keyword">DECLARE</span> <span class="hljs-keyword">result</span> <span class="hljs-built_in">INT</span> <span class="hljs-keyword">DEFAULT</span>(<span class="hljs-number">0</span>);
-		<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">INTO</span> <span class="hljs-keyword">result</span>
-		<span class="hljs-keyword">FROM</span> <span class="hljs-keyword">admin</span> <span class="hljs-keyword">WHERE</span> admin.username=username <span class="hljs-keyword">AND</span> admin.<span class="hljs-string">`password`</span>=<span class="hljs-string">`password`</span>;
-		<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">IF</span>(<span class="hljs-keyword">result</span>&gt;<span class="hljs-number">0</span>,<span class="hljs-string">"成功"</span>,<span class="hljs-string">"失败"</span>);
-<span class="hljs-keyword">END</span>
-
-<span class="hljs-keyword">CALL</span> myp2(<span class="hljs-string">"Taylor"</span>,<span class="hljs-string">"123456"</span>);
-
-<span class="hljs-comment"># 创建带out模式参数的储存过程</span>
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">PROCEDURE</span> myp3(<span class="hljs-keyword">IN</span> username <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">10</span>),<span class="hljs-keyword">IN</span> <span class="hljs-string">`password`</span> <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">10</span>),<span class="hljs-keyword">OUT</span> <span class="hljs-keyword">result</span> <span class="hljs-built_in">char</span>(<span class="hljs-number">5</span>))
-<span class="hljs-keyword">BEGIN</span>
-		<span class="hljs-keyword">DECLARE</span> result1 <span class="hljs-built_in">INT</span> <span class="hljs-keyword">DEFAULT</span>(<span class="hljs-number">0</span>);
-		<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">INTO</span> result1
-		<span class="hljs-keyword">FROM</span> <span class="hljs-keyword">admin</span> <span class="hljs-keyword">WHERE</span> admin.username=username <span class="hljs-keyword">AND</span> admin.<span class="hljs-string">`password`</span>=<span class="hljs-string">`password`</span>;
-		<span class="hljs-keyword">SET</span> <span class="hljs-keyword">result</span> = <span class="hljs-keyword">IF</span>(result1&gt;<span class="hljs-number">0</span>,<span class="hljs-string">"true"</span>,<span class="hljs-string">"false"</span>);
-<span class="hljs-keyword">END</span>
-
-<span class="hljs-keyword">CALL</span> myp3(<span class="hljs-string">"Taylor"</span>,<span class="hljs-string">"123456"</span>,@<span class="hljs-keyword">result</span>);
-<span class="hljs-keyword">SELECT</span> @<span class="hljs-keyword">result</span>;
-
-<span class="hljs-comment"># 三、删除储存过程</span>
-<span class="hljs-keyword">DROP</span> <span class="hljs-keyword">PROCEDURE</span> myp3;
-
-<span class="hljs-comment"># 四、查看储存过程</span>
-<span class="hljs-keyword">SHOW</span> <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">PROCEDURE</span> myp2;</code></pre>
-
-<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>与储存过程的区别：<br>储存过程：可以有0个或多个返回值，适合批量插入、批量更新<br>函数：有且仅有一个返回值，适合处理数据后返回一个结果。</p>
-<pre><code class="hljs sql"><span class="hljs-comment"># 创建函数</span>
-<span class="hljs-comment">/*</span>
-<span class="hljs-comment">语法：</span>
-<span class="hljs-comment">create function 函数名(参数列表) returns  返回类型</span>
-<span class="hljs-comment">begin</span>
-<span class="hljs-comment">	函数体  </span>
-<span class="hljs-comment">end</span>
-<span class="hljs-comment">*/</span></code></pre>
-
-<h2 id="流程控制结构"><a href="#流程控制结构" class="headerlink" title="流程控制结构"></a>流程控制结构</h2><p><strong>if函数：</strong><br>if(表达式1，表达式2，表达式3)：如果表达式1成立，返回表达式2的值，否则返回表达式3的值。</p>
-<p><strong>case结构：</strong><br>case 变量|表达式|字段<br>when条件1或值 then 要返回的值或要执行的语句;<br>when条件2或值 then 要返回的值或要执行的语句;<br>when条件3或值 then 要返回的值或要执行的语句;<br>……<br>else  要返回的值或要执行的语句;<br> end case;</p>
-<p><strong>if结构：</strong><br>if 条件1 then 语句1；<br>elif 条件2 then 语句2；<br>……<br>else then 语句n；<br>end if;</p>
-<p><strong>循环结构：</strong><br>分类：while , loop  , repeat<br>循环控制：<br>iterate  类似于  continue  ,继续，结束本次循环继续下一次<br>leavele  类似于 break   ,跳出  ，结束当前所在循环<br>1.while</p>
-<pre><code class="hljs sql">[标签:]while 循环条件 <span class="hljs-keyword">do</span>
-	循环体;
-<span class="hljs-keyword">end</span> <span class="hljs-keyword">while</span> [标签];</code></pre>
-
-<p>2.loop</p>
-<pre><code class="hljs sql">[标签:]loop 
-	循环体;
-<span class="hljs-keyword">end</span> <span class="hljs-keyword">loop</span> [标签]</code></pre>
-
-<p>3.repeat</p>
-<pre><code class="hljs sql">[标签:]repeat
-	循环体;
-until 结束循环的条件
- <span class="hljs-keyword">end</span> <span class="hljs-keyword">repeat</span> [标签];</code></pre>
-
-
+              <h2 id="1、Spring的IOC和AOP机制"><a href="#1、Spring的IOC和AOP机制" class="headerlink" title="1、Spring的IOC和AOP机制?"></a>1、Spring的IOC和AOP机制?</h2><p>IOC，控制反转是Spring的核心，AOP，面向切面编程是Spring的组要组成部分。<br>IOC就是典型的工厂模式，通过sessionfactory去注入实例。<br>AOP就是典型的代理模式。<a id="more"></a></p>
+<p>代理模式是常见的java设计模式，特征是代理类与委托类有相同的接口，代理类主要负责为委托类预处理消息、过滤消息、把消息转发给委托类，以及时候处理消息等。代理类与委托类之间通常会存在关联关系，一个代理类的对象与一个委托类的对象关联，代理类对象本身并不真正实现服务，而是通过调用委托类的对象的相关方法，来提供特定的服务。</p>
+<p><strong>IOC</strong><br>在传统的程序设计中，当调用者需要被调用者协助的时候，通常由调用者创建被调用者的实例对象。但在spring里创建被调用者的工作不在由调用者来完成，而是交给了spring容器，这就叫控制反转。spring容器创建对象后，注入调用者，因此也被称为依赖注入。控制反转与依赖注入是同一个概念。<br><strong>IOC初始化过程</strong><br>spring容器启动时，会初始化配置文件中的bean，然后在你需要调用的时候，将初始化的bean注入到指定的类（调用相应的setter方法），不需要你再new这些对象了<br><img src="/2020/08/01/interview-04/1.png" srcset="/img/loading.gif" alt></p>
+<p><strong>AOP</strong></p>
+<p>AOP是以另一个角度来考虑程序结构，通过分析程序的结构关注点来完善OOP。OOP将应用程序分解成各个层次的对象，而AOP将程序分解成多个切面。OOP引入继承，封装和多态等概念来建立一种对象层次结构，用来模拟公共行为的一个集合。当我们需要为分散的对象引入公共的行为时，OOP显得不合适了。也就是说OOP允许你定义从上到下的关系，而不适合从左到右的关系。<br>例如日志功能，日志代码往往水平地散布在所有对象层次中，而与它所散布到的对象的核心功能毫无关系，在OOP的设计中，导致了大量的重复代码，而不利于各个模块之间的重用。<br>AOP则将程序中的交叉业务逻辑（如安全，事务，日志等），封装成一个切面，然后注入到目标对象中去。</p>
+<h2 id="2、Spring中Autowired和Resource关键字的区别"><a href="#2、Spring中Autowired和Resource关键字的区别" class="headerlink" title="2、Spring中Autowired和Resource关键字的区别"></a>2、Spring中Autowired和Resource关键字的区别</h2><p>@Resource不是spring中的注解，但是spring提供了对它的支持。<br><strong>共同点</strong><br>都可以写在字段和setter方法上，写在字段上就不需要再写setter方法了</p>
+<p><strong>不同点</strong><br>@Autowired<br>默认按照byType方式装配依赖对象。结合@Qualifier注解可以按照byName方式装配依赖对象</p>
+<p>@Resource<br>默认按照byName方式自动注入(设置name属性值，不指定则按照反射机制使用byName注入)，通过指定type属性可按照byType方式注入。</p>
+<h2 id="3、依赖注入的方式有哪几种？"><a href="#3、依赖注入的方式有哪几种？" class="headerlink" title="3、依赖注入的方式有哪几种？"></a>3、依赖注入的方式有哪几种？</h2><p><strong>1、构造器注入</strong></p>
+<p><strong>2、setter方法注入</strong></p>
+<p><strong>3、接口注入</strong></p>
+<h2 id="4、讲一下什么是Spring"><a href="#4、讲一下什么是Spring" class="headerlink" title="4、讲一下什么是Spring"></a>4、讲一下什么是Spring</h2><p>Spring是一个轻量级的IOC和AOP容器框架。是为Java应用程序提供基础性服务的一套框架，目的是用<br>于简化企业应用程序的开发，它使得开发者只需要关心业务需求。常见的配置方式有三种：基于XML的<br>配置、基于注解的配置、基于Java的配置(使用@Config注解创建配置类)。<br>主要由以下几个模块组成：<br>Spring Core：核心类库，提供IOC服务；<br>Spring Context：提供框架式的Bean访问方式，以及企业级功能（JNDI、定时任务等）；<br>Spring AOP：AOP服务；<br>Spring DAO：对JDBC的抽象，简化了数据访问异常的处理；<br>Spring ORM：对现有的ORM框架的支持；<br>Spring Web：提供了基本的面向Web的综合特性，例如多方文件上传；<br>Spring MVC：提供面向Web应用的Model-View-Controller实现。</p>
+<h2 id="5、SpringMVC流程"><a href="#5、SpringMVC流程" class="headerlink" title="5、SpringMVC流程"></a>5、SpringMVC流程</h2>
             </article>
             <hr>
             <div>
@@ -317,7 +240,7 @@ until 结束循环的条件
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/MYSQL%E5%9F%BA%E7%A1%80/">MYSQL基础</a>
+                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
                     
                   </div>
                 
@@ -330,18 +253,12 @@ until 结束循环的条件
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/03/23/jdbc/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Jdbc核心技术</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/03/21/mysql-05/">
-                        <span class="hidden-mobile">TCL,事务,视图</span>
+                      <a href="/2020/07/30/shiro-02/">
+                        <span class="hidden-mobile">Springboot整合shiro</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -512,7 +429,7 @@ until 结束循环的条件
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "MySQL变量,存储过程,流程结构&nbsp;",
+        "Spring篇&nbsp;",
       ],
       cursorChar: "(*＾_＾*)",
       typeSpeed: 70,
