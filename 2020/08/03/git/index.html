@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="sweetboyZhang">
   <meta name="keywords" content="">
-  <title>Swagger简介与使用 - sweetboyZhang&#39;s Blog</title>
+  <title>Git - sweetboyZhang&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -152,8 +152,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-08-02 08:17">
-      August 2, 2020 am
+    <time datetime="2020-08-03 16:16">
+      August 3, 2020 pm
     </time>
   </div>
 
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      887 字
+      599 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      12
+      7
        分钟
     </span>
   
@@ -213,180 +213,108 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：August 2, 2020 am
+                  本文最后更新于：August 3, 2020 pm
                 
               </p>
             
             <article class="markdown-body">
-              <p>背景：前后端分离时代的来临  Vue+Springboot</p>
-<p>后端时代：前端至负责管理静态页面；html==&gt;后端。模板引擎jsp=&gt;后端是主力</p>
-<p>前后端分离时代：<a id="more"></a></p>
-<ul>
-<li>后端：后端控制层，服务层，数据访问层</li>
-<li>前端：前端控制层，视图层<ul>
-<li>伪造后端数据，json。不需要后端，前端工程依然能够跑起来</li>
-</ul>
-</li>
-<li>前后端交互：API</li>
-<li>前后端相互独立，松耦合</li>
-<li>前后端甚至可以分布在不同的服务器上</li>
-</ul>
-<p>产生的一个问题：</p>
-<ul>
-<li>前后端集成联调，前后端人员无法做到“及时协商，尽早解决”，最终导致问题爆发。</li>
-</ul>
-<p>解决方案：</p>
-<ul>
-<li>首先指定schema，实时更新最新的API，降低集成的风险</li>
-<li>早些年：<ul>
-<li>指定word计划文档；</li>
-<li>前端测试后端接口：postman</li>
-<li>后端提供接口，需要实时更新最新的消息及改动</li>
-</ul>
-</li>
-<li>Swagger产生 ！</li>
-</ul>
-<h2 id="Swagger简介"><a href="#Swagger简介" class="headerlink" title="Swagger简介"></a>Swagger简介</h2><ul>
-<li>号称世界上最流行的API框架</li>
-<li>ReatFul API 文档在线自动生成工具=&gt;API文档与API自动更新</li>
-<li>直接运行，可以在线测试API接口</li>
-<li>支持多种语言</li>
-</ul>
-<h2 id="Springboot集成Swagger"><a href="#Springboot集成Swagger" class="headerlink" title="Springboot集成Swagger"></a>Springboot集成Swagger</h2><p>1、创建springboot项目并导入web依赖</p>
-<p>2、导入相关依赖</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.springfox<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>springfox-swagger2<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.springfox<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>springfox-swagger-ui<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+              <p>Git是目前最先进的分布式版本控制系统。没有中央服务器，每个人的电脑就是一个完整的版本库，工作的时候不需要联网。相互推送就能看到对方的修改了。<a id="more"></a><br>SVN是集中式版本控制系统，版本库是集中放在中央服务器上的，所以工作时首先要从中央服务器得到最新的版本，然后工作，工作完成后推送给服务器。</p>
+<h2 id="查看不同级别的配置"><a href="#查看不同级别的配置" class="headerlink" title="查看不同级别的配置"></a>查看不同级别的配置</h2><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看系统config</span>
+git config --system --list
+<span class="hljs-meta">#</span><span class="bash"> 查看当前用户</span>
+git config --global --list</code></pre>
 
-<p>3、编写一个hellworld</p>
-<p>4、编写Swagger配置类</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
-<span class="hljs-meta">@EnableSwagger</span>2  <span class="hljs-comment">// 开启Swagger2</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SwaggerConfig</span> </span>&#123;
+<h2 id="设置用户名与邮箱"><a href="#设置用户名与邮箱" class="headerlink" title="设置用户名与邮箱"></a>设置用户名与邮箱</h2><pre><code class="hljs shell">git config --global user.name "sweetboyZhang"  # 名称
+git config --global user.email "2824199842@qq.com"   # 邮箱</code></pre>
 
-&#125;</code></pre>
+<h2 id="三个区域"><a href="#三个区域" class="headerlink" title="三个区域"></a>三个区域</h2><p>Git本地有三个工作区域：工作目录（Working Directory）、暂存区(Stage/Index)、资源库(Repository），如果在加上远程的git仓库(Remote Directory)就可以分为四个工作区域。<br><img src="/2020/08/03/git/1.png" srcset="/img/loading.gif" style="zoom:80%;"></p>
+<h2 id="git项目搭建"><a href="#git项目搭建" class="headerlink" title="git项目搭建"></a>git项目搭建</h2><p><strong>创建工作目录</strong></p>
+<p>工作目录就是git管理的文件夹，可以是项目目录，也可以是空目录。<br><img src="/2020/08/03/git/2.png" srcset="/img/loading.gif" alt></p>
+<p><strong>搭建本地仓库</strong></p>
+<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 在当前目录创建一个全新的仓库</span>
+git init</code></pre>
 
-<p>5、测试访问：<a href="http://localhost:8080/swagger-ui.html" target="_blank" rel="noopener">http://localhost:8080/swagger-ui.html</a><br><img src="/2020/08/02/swagger/1.png" srcset="/img/loading.gif" alt></p>
-<h2 id="配置Swagger"><a href="#配置Swagger" class="headerlink" title="配置Swagger"></a>配置Swagger</h2><p>Swagger的bean实例 Docket</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
-<span class="hljs-meta">@EnableSwagger</span>2  <span class="hljs-comment">// 开启Swagger2</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SwaggerConfig</span> </span>&#123;
+<p><strong>克隆远程仓库</strong></p>
+<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 克隆一个项目和它整个代码历史</span>
+git clone [url]</code></pre>
 
-    <span class="hljs-comment">// 配置Swagger的Docket的bean实例</span>
-    <span class="hljs-meta">@Bean</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> Docket <span class="hljs-title">docket</span><span class="hljs-params">()</span></span>&#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Docket( <span class="hljs-keyword">new</span> DocumentationType(<span class="hljs-string">"swagger"</span>, <span class="hljs-string">"2.0"</span>))
-                .apiInfo(apiInfo());
-    &#125;
+<h2 id="git文件操作"><a href="#git文件操作" class="headerlink" title="git文件操作"></a>git文件操作</h2><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看文件状态</span>
+git status [filename]
 
-    <span class="hljs-comment">// 配置Swagger的apiInfo</span>
-    <span class="hljs-function"><span class="hljs-keyword">private</span> ApiInfo <span class="hljs-title">apiInfo</span><span class="hljs-params">()</span></span>&#123;
-        Contact contact = <span class="hljs-keyword">new</span> Contact(<span class="hljs-string">"sweetboyZhang"</span>, <span class="hljs-string">"https://sweetboyZhang.github.io"</span>, <span class="hljs-string">"2824199842@qq.com"</span>);
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ApiInfo(
-                <span class="hljs-string">"My Swagger API 文档"</span>,
-                <span class="hljs-string">"这是一个Swagger测试"</span>,
-                <span class="hljs-string">"1.0"</span>,
-                <span class="hljs-string">"https://sweetboyZhang.github.io"</span>,
-                contact,
-                <span class="hljs-string">"Apache 2.0"</span>,
-                <span class="hljs-string">"http://www.apache.org/licenses/LICENSE-2.0"</span>,
-                <span class="hljs-keyword">new</span> ArrayList&lt;VendorExtension&gt;());
-    &#125;
-    
-&#125;</code></pre>
+<span class="hljs-meta">#</span><span class="bash"> 查看所有文件状态</span>
+git status
 
-<h2 id="配置Swagger扫描路径"><a href="#配置Swagger扫描路径" class="headerlink" title="配置Swagger扫描路径"></a>配置Swagger扫描路径</h2><pre><code class="hljs java"><span class="hljs-meta">@Bean</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> Docket <span class="hljs-title">docket</span><span class="hljs-params">()</span></span>&#123;
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Docket( <span class="hljs-keyword">new</span> DocumentationType(<span class="hljs-string">"swagger"</span>, <span class="hljs-string">"2.0"</span>))
-            .apiInfo(apiInfo())
-            .select()
-            <span class="hljs-comment">// RequestHandlerSelectors配置要扫描接口的方式</span>
-            <span class="hljs-comment">// basePackage 指定要扫描的包</span>
-            <span class="hljs-comment">// any() 扫描全部</span>
-            <span class="hljs-comment">// none() 不扫描</span>
-            <span class="hljs-comment">// withClassAnnotation(xxx.class)扫描类上的注解</span>
-            <span class="hljs-comment">// withMethodAnnotation(xxx.class)扫描方法上的注解</span>
-            .apis(RequestHandlerSelectors.basePackage(<span class="hljs-string">"com.zyz.controller"</span>))
-            <span class="hljs-comment">// .paths 过滤路径</span>
-            .build();
-&#125;</code></pre>
+<span class="hljs-meta">#</span><span class="bash"> 添加所有文件到暂存区</span>
+git add .
 
-<h2 id="根据环境是否开启Swagger"><a href="#根据环境是否开启Swagger" class="headerlink" title="根据环境是否开启Swagger"></a>根据环境是否开启Swagger</h2><pre><code class="hljs java"><span class="hljs-meta">@Bean</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> Docket <span class="hljs-title">docket</span><span class="hljs-params">(Environment environment)</span></span>&#123;
-    <span class="hljs-comment">// 设置要显示的Swagger环境</span>
-    Profiles profiles = Profiles.of(<span class="hljs-string">"dev"</span>);
-    <span class="hljs-comment">// 获取项目环境</span>
-    <span class="hljs-keyword">boolean</span> flag = environment.acceptsProfiles(profiles);
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Docket( <span class="hljs-keyword">new</span> DocumentationType(<span class="hljs-string">"swagger"</span>, <span class="hljs-string">"2.0"</span>))
-            .apiInfo(apiInfo())
-            .enable(flag)<span class="hljs-comment">// 设置是否启动Swagger</span>
-            .select()
-            <span class="hljs-comment">// RequestHandlerSelectors配置要扫描接口的方式</span>
-            <span class="hljs-comment">// basePackage 指定要扫描的包</span>
-            <span class="hljs-comment">// any() 扫描全部</span>
-            <span class="hljs-comment">// none() 不扫描</span>
-            <span class="hljs-comment">// withClassAnnotation(xxx.class)扫描类上的注解</span>
-            <span class="hljs-comment">// withMethodAnnotation(xxx.class)扫描方法上的注解</span>
-            .apis(RequestHandlerSelectors.basePackage(<span class="hljs-string">"com.zyz.controller"</span>))
-            <span class="hljs-comment">// .paths 过滤路径</span>
-            .build();
-&#125;</code></pre>
+<span class="hljs-meta">#</span><span class="bash"> 提交文件到本地仓库 -m 提交信息</span>
+git commit -m "[msg]"</code></pre>
 
-<p>application-dev.properties</p>
-<pre><code class="hljs properties"><span class="hljs-comment"># 生产环境</span>
-<span class="hljs-meta">server.port</span>=<span class="hljs-string">8080</span></code></pre>
+<h2 id="项目中忽略上传文件"><a href="#项目中忽略上传文件" class="headerlink" title="项目中忽略上传文件"></a>项目中忽略上传文件</h2><p>.gitignore</p>
+<pre><code class="hljs gitignore">*.class
+*.log
+*.lock
 
-<p>application-pro.properties</p>
-<pre><code class="hljs properties"><span class="hljs-comment"># 上线环境</span>
-<span class="hljs-meta">server.port</span>=<span class="hljs-string">8081</span></code></pre>
+# Package File 
+*.jar
+*.war
+*.ear
+target&#x2F;
 
-<p>application.properties</p>
-<pre><code class="hljs properties"><span class="hljs-comment"># 激活生产环境</span>
-<span class="hljs-meta">spring.profiles.active</span>=<span class="hljs-string">dev</span></code></pre>
+# idea
+.idea&#x2F;
+*.iml
+bin&#x2F;
+.settings&#x2F;
+.classpath
+.project
+*.ips
+*.iws
 
-<h2 id="配置分组"><a href="#配置分组" class="headerlink" title="配置分组"></a>配置分组</h2><p>方便多人协同开发</p>
-<pre><code class="hljs java">.groupName(<span class="hljs-string">"zyz"</span>)</code></pre>
+*velocity.log*
 
-<pre><code class="hljs java"><span class="hljs-meta">@Bean</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> Docket <span class="hljs-title">docket1</span><span class="hljs-params">()</span></span>&#123;
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Docket(DocumentationType.SWAGGER_2).groupName(<span class="hljs-string">"A"</span>);
-&#125;
-<span class="hljs-meta">@Bean</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> Docket <span class="hljs-title">docket2</span><span class="hljs-params">()</span></span>&#123;
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Docket(DocumentationType.SWAGGER_2).groupName(<span class="hljs-string">"B"</span>);
-&#125;
-<span class="hljs-meta">@Bean</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> Docket <span class="hljs-title">docket3</span><span class="hljs-params">()</span></span>&#123;
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Docket(DocumentationType.SWAGGER_2).groupName(<span class="hljs-string">"C"</span>);
-&#125;</code></pre>
+# STS
+.apt_generared
+.factorypath
+.springbean
 
-<h2 id="配置实体类"><a href="#配置实体类" class="headerlink" title="配置实体类"></a>配置实体类</h2><pre><code class="hljs java"><span class="hljs-comment">// 只要接口中的返回值有实体类，Swagger就会扫描到</span>
-<span class="hljs-meta">@ApiOperation</span>(<span class="hljs-string">"user控制方法"</span>)<span class="hljs-comment">// 方法注释</span>
-<span class="hljs-meta">@PostMapping</span>(<span class="hljs-string">"/user"</span>)
-<span class="hljs-function"><span class="hljs-keyword">public</span> User <span class="hljs-title">user</span><span class="hljs-params">(@ApiParam(<span class="hljs-string">"用户名"</span>)</span>String name,@<span class="hljs-title">ApiParam</span><span class="hljs-params">(<span class="hljs-string">"密码"</span>)</span> String password)</span>&#123;
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> User(name,password);
-&#125;</code></pre>
+*.log
+tmp&#x2F;</code></pre>
 
-<pre><code class="hljs java"><span class="hljs-meta">@Data</span>
-<span class="hljs-meta">@AllArgsConstructor</span>
-<span class="hljs-meta">@NoArgsConstructor</span>
-<span class="hljs-meta">@ApiModel</span>(<span class="hljs-string">"用户实体类"</span>)<span class="hljs-comment">// 注释</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;
-    <span class="hljs-meta">@ApiModelProperty</span>(<span class="hljs-string">"用户名"</span>)
-    <span class="hljs-keyword">private</span> String name;
-    <span class="hljs-meta">@ApiModelProperty</span>(<span class="hljs-string">"密码"</span>)
-    <span class="hljs-keyword">private</span> String password;
-&#125;</code></pre>
+<h2 id="绑定远程仓库"><a href="#绑定远程仓库" class="headerlink" title="绑定远程仓库"></a>绑定远程仓库</h2><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 生成公钥</span>
+ssh-keygen</code></pre>
 
+<p>在浏览器上创建空仓库后，就可以clone到本地仓库了</p>
+<p><img src="/2020/08/03/git/4.png" srcset="/img/loading.gif" alt></p>
+<h2 id="IDEA中集成git"><a href="#IDEA中集成git" class="headerlink" title="IDEA中集成git"></a>IDEA中集成git</h2><p>1、创建项目</p>
+<p>2、将远程的git文件目录复制到项目中</p>
+<p><img src="/2020/08/03/git/3.png" srcset="/img/loading.gif" alt></p>
+<p>3、使用命令或者是图形界面添加文件，提交文件，上传文件</p>
+<pre><code class="hljs shell">git add .
+git commit -m "[提交信息]"
+git push</code></pre>
 
-<p><img src="/2020/08/02/swagger/2.png" srcset="/img/loading.gif" alt></p>
+<h2 id="git分支"><a href="#git分支" class="headerlink" title="git分支"></a>git分支</h2><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 列出本地所有分支</span>
+git branch
+
+<span class="hljs-meta">#</span><span class="bash"> 列出所有远程分支</span>
+git branch -r
+ 
+<span class="hljs-meta">#</span><span class="bash"> 新建一个分支，但依然停留在当前分支</span>
+git branch [branch-name]
+ 
+<span class="hljs-meta">#</span><span class="bash"> 新建一个分支，并切换到该分支</span>
+git checkout -b [branch]
+ 
+<span class="hljs-meta">#</span><span class="bash"> 合并指定分支到当前分支</span>
+<span class="hljs-meta">$</span><span class="bash"> git merge [branch]</span>
+ 
+<span class="hljs-meta">#</span><span class="bash"> 删除分支</span>
+<span class="hljs-meta">$</span><span class="bash"> git branch -d [branch-name]</span>
+ 
+<span class="hljs-meta">#</span><span class="bash"> 删除远程分支</span>
+<span class="hljs-meta">$</span><span class="bash"> git push origin --delete [branch-name]</span></code></pre>
+
 
             </article>
             <hr>
@@ -397,7 +325,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Swagger/">Swagger</a>
+                      <a class="hover-with-bg" href="/tags/git/">git</a>
                     
                   </div>
                 
@@ -410,18 +338,12 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/08/03/springboot-07/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">任务</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/07/30/shiro-02/">
-                        <span class="hidden-mobile">Springboot整合shiro</span>
+                      <a href="/2020/08/03/springboot-07/">
+                        <span class="hidden-mobile">任务</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -592,7 +514,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Swagger简介与使用&nbsp;",
+        "Git&nbsp;",
       ],
       cursorChar: "(*＾_＾*)",
       typeSpeed: 70,

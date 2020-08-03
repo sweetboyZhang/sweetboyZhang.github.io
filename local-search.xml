@@ -4,6 +4,44 @@
   
   
   <entry>
+    <title>Git</title>
+    <link href="/2020/08/03/git/"/>
+    <url>/2020/08/03/git/</url>
+    
+    <content type="html"><![CDATA[<p>Git是目前最先进的分布式版本控制系统。没有中央服务器，每个人的电脑就是一个完整的版本库，工作的时候不需要联网。相互推送就能看到对方的修改了。<a id="more"></a><br>SVN是集中式版本控制系统，版本库是集中放在中央服务器上的，所以工作时首先要从中央服务器得到最新的版本，然后工作，工作完成后推送给服务器。</p><h2 id="查看不同级别的配置"><a href="#查看不同级别的配置" class="headerlink" title="查看不同级别的配置"></a>查看不同级别的配置</h2><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看系统config</span>git config --system --list<span class="hljs-meta">#</span><span class="bash"> 查看当前用户</span>git config --global --list</code></pre><h2 id="设置用户名与邮箱"><a href="#设置用户名与邮箱" class="headerlink" title="设置用户名与邮箱"></a>设置用户名与邮箱</h2><pre><code class="hljs shell">git config --global user.name "sweetboyZhang"  # 名称git config --global user.email "2824199842@qq.com"   # 邮箱</code></pre><h2 id="三个区域"><a href="#三个区域" class="headerlink" title="三个区域"></a>三个区域</h2><p>Git本地有三个工作区域：工作目录（Working Directory）、暂存区(Stage/Index)、资源库(Repository），如果在加上远程的git仓库(Remote Directory)就可以分为四个工作区域。<br><img src="/2020/08/03/git/1.png" srcset="/img/loading.gif" style="zoom:80%;"></p><h2 id="git项目搭建"><a href="#git项目搭建" class="headerlink" title="git项目搭建"></a>git项目搭建</h2><p><strong>创建工作目录</strong></p><p>工作目录就是git管理的文件夹，可以是项目目录，也可以是空目录。<br><img src="/2020/08/03/git/2.png" srcset="/img/loading.gif" alt></p><p><strong>搭建本地仓库</strong></p><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 在当前目录创建一个全新的仓库</span>git init</code></pre><p><strong>克隆远程仓库</strong></p><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 克隆一个项目和它整个代码历史</span>git clone [url]</code></pre><h2 id="git文件操作"><a href="#git文件操作" class="headerlink" title="git文件操作"></a>git文件操作</h2><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看文件状态</span>git status [filename]<span class="hljs-meta">#</span><span class="bash"> 查看所有文件状态</span>git status<span class="hljs-meta">#</span><span class="bash"> 添加所有文件到暂存区</span>git add .<span class="hljs-meta">#</span><span class="bash"> 提交文件到本地仓库 -m 提交信息</span>git commit -m "[msg]"</code></pre><h2 id="项目中忽略上传文件"><a href="#项目中忽略上传文件" class="headerlink" title="项目中忽略上传文件"></a>项目中忽略上传文件</h2><p>.gitignore</p><pre><code class="hljs gitignore">*.class*.log*.lock# Package File *.jar*.war*.eartarget&#x2F;# idea.idea&#x2F;*.imlbin&#x2F;.settings&#x2F;.classpath.project*.ips*.iws*velocity.log*# STS.apt_generared.factorypath.springbean*.logtmp&#x2F;</code></pre><h2 id="绑定远程仓库"><a href="#绑定远程仓库" class="headerlink" title="绑定远程仓库"></a>绑定远程仓库</h2><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 生成公钥</span>ssh-keygen</code></pre><p>在浏览器上创建空仓库后，就可以clone到本地仓库了</p><p><img src="/2020/08/03/git/4.png" srcset="/img/loading.gif" alt></p><h2 id="IDEA中集成git"><a href="#IDEA中集成git" class="headerlink" title="IDEA中集成git"></a>IDEA中集成git</h2><p>1、创建项目</p><p>2、将远程的git文件目录复制到项目中</p><p><img src="/2020/08/03/git/3.png" srcset="/img/loading.gif" alt></p><p>3、使用命令或者是图形界面添加文件，提交文件，上传文件</p><pre><code class="hljs shell">git add .git commit -m "[提交信息]"git push</code></pre><h2 id="git分支"><a href="#git分支" class="headerlink" title="git分支"></a>git分支</h2><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 列出本地所有分支</span>git branch<span class="hljs-meta">#</span><span class="bash"> 列出所有远程分支</span>git branch -r <span class="hljs-meta">#</span><span class="bash"> 新建一个分支，但依然停留在当前分支</span>git branch [branch-name] <span class="hljs-meta">#</span><span class="bash"> 新建一个分支，并切换到该分支</span>git checkout -b [branch] <span class="hljs-meta">#</span><span class="bash"> 合并指定分支到当前分支</span><span class="hljs-meta">$</span><span class="bash"> git merge [branch]</span> <span class="hljs-meta">#</span><span class="bash"> 删除分支</span><span class="hljs-meta">$</span><span class="bash"> git branch -d [branch-name]</span> <span class="hljs-meta">#</span><span class="bash"> 删除远程分支</span><span class="hljs-meta">$</span><span class="bash"> git push origin --delete [branch-name]</span></code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>git</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>任务</title>
+    <link href="/2020/08/03/springboot-07/"/>
+    <url>/2020/08/03/springboot-07/</url>
+    
+    <content type="html"><![CDATA[<h2 id="异步任务"><a href="#异步任务" class="headerlink" title="异步任务"></a>异步任务</h2><p>1、在启动类添加<code>@EnableAsync</code> ，表示 开启异步注解功能</p><p>2、在方法上添加<code>@Async</code>，表示异步方法</p><pre><code class="hljs java"><span class="hljs-meta">@Service</span><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AsyncService</span> </span>&#123;    <span class="hljs-comment">// 使用注解表示异步任务</span>    <span class="hljs-meta">@Async</span>    <span class="hljs-function"><span class="hljs-keyword">public</span>  <span class="hljs-keyword">void</span> <span class="hljs-title">hello</span><span class="hljs-params">()</span></span>&#123;        <span class="hljs-keyword">try</span> &#123;            sleep(<span class="hljs-number">3000</span>);        &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;            e.printStackTrace();        &#125;        System.out.println(<span class="hljs-string">"数据正在处理......"</span>);    &#125;&#125;</code></pre><p>3、在Controller中直接调用即可</p><h2 id="邮件发送"><a href="#邮件发送" class="headerlink" title="邮件发送"></a>邮件发送</h2><p>1、导入依赖</p><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-mail<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre><p>2、打开邮箱的POP3/SMTP服务获取授权码，设置-&gt;账户-&gt;开启pop3和smtp服务</p><p><img src="/2020/08/03/springboot-07/1.png" srcset="/img/loading.gif" alt></p><p>3、编写配置文件</p><pre><code class="hljs java"><span class="hljs-meta">@RestController</span><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EmailController</span> </span>&#123;    <span class="hljs-meta">@Autowired</span>    <span class="hljs-keyword">private</span> JavaMailSenderImpl mailSender;    <span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/sendMail"</span>)    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">sendMail</span><span class="hljs-params">()</span></span>&#123;        SimpleMailMessage mailMessage = <span class="hljs-keyword">new</span> SimpleMailMessage();        mailMessage.setSubject(<span class="hljs-string">"通知"</span>);        mailMessage.setText(<span class="hljs-string">"hello"</span>);        mailMessage.setTo(<span class="hljs-string">"2824199842@qq.com"</span>);        mailMessage.setFrom(<span class="hljs-string">"2824199842@qq.com"</span>);        mailSender.send(mailMessage);        <span class="hljs-keyword">return</span> <span class="hljs-string">"send ok"</span>;    &#125;    <span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/sendMail2"</span>)    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">sendMail2</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception</span>&#123;        MimeMessage mimeMessage = mailSender.createMimeMessage();        MimeMessageHelper helper = <span class="hljs-keyword">new</span> MimeMessageHelper(mimeMessage,<span class="hljs-keyword">true</span>);        helper.setSubject(<span class="hljs-string">"通知"</span>);        helper.setText(<span class="hljs-string">"&lt;p style='color:red'&gt;hello~&lt;/p&gt;"</span>,<span class="hljs-keyword">true</span>);        helper.addAttachment(<span class="hljs-string">"1.jpg"</span>,<span class="hljs-keyword">new</span> File(<span class="hljs-string">"C:\\Users\\28241\\Pictures\\Saved Pictures\\1.jpg"</span>));<span class="hljs-comment">// 附件</span>        helper.setTo(<span class="hljs-string">"2824199842@qq.com"</span>);        helper.setFrom(<span class="hljs-string">"2824199842@qq.com"</span>);        mailSender.send(mimeMessage);        <span class="hljs-keyword">return</span> <span class="hljs-string">"send ok"</span>;    &#125;&#125;</code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Springboot</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Swagger简介与使用</title>
     <link href="/2020/08/02/swagger/"/>
     <url>/2020/08/02/swagger/</url>

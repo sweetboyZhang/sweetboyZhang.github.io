@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="sweetboyZhang">
   <meta name="keywords" content="">
-  <title>Swagger简介与使用 - sweetboyZhang&#39;s Blog</title>
+  <title>任务 - sweetboyZhang&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -152,8 +152,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-08-02 08:17">
-      August 2, 2020 am
+    <time datetime="2020-08-03 08:17">
+      August 3, 2020 am
     </time>
   </div>
 
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      887 字
+      269 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      12
+      4
        分钟
     </span>
   
@@ -213,180 +213,68 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：August 2, 2020 am
+                  本文最后更新于：August 3, 2020 pm
                 
               </p>
             
             <article class="markdown-body">
-              <p>背景：前后端分离时代的来临  Vue+Springboot</p>
-<p>后端时代：前端至负责管理静态页面；html==&gt;后端。模板引擎jsp=&gt;后端是主力</p>
-<p>前后端分离时代：<a id="more"></a></p>
-<ul>
-<li>后端：后端控制层，服务层，数据访问层</li>
-<li>前端：前端控制层，视图层<ul>
-<li>伪造后端数据，json。不需要后端，前端工程依然能够跑起来</li>
-</ul>
-</li>
-<li>前后端交互：API</li>
-<li>前后端相互独立，松耦合</li>
-<li>前后端甚至可以分布在不同的服务器上</li>
-</ul>
-<p>产生的一个问题：</p>
-<ul>
-<li>前后端集成联调，前后端人员无法做到“及时协商，尽早解决”，最终导致问题爆发。</li>
-</ul>
-<p>解决方案：</p>
-<ul>
-<li>首先指定schema，实时更新最新的API，降低集成的风险</li>
-<li>早些年：<ul>
-<li>指定word计划文档；</li>
-<li>前端测试后端接口：postman</li>
-<li>后端提供接口，需要实时更新最新的消息及改动</li>
-</ul>
-</li>
-<li>Swagger产生 ！</li>
-</ul>
-<h2 id="Swagger简介"><a href="#Swagger简介" class="headerlink" title="Swagger简介"></a>Swagger简介</h2><ul>
-<li>号称世界上最流行的API框架</li>
-<li>ReatFul API 文档在线自动生成工具=&gt;API文档与API自动更新</li>
-<li>直接运行，可以在线测试API接口</li>
-<li>支持多种语言</li>
-</ul>
-<h2 id="Springboot集成Swagger"><a href="#Springboot集成Swagger" class="headerlink" title="Springboot集成Swagger"></a>Springboot集成Swagger</h2><p>1、创建springboot项目并导入web依赖</p>
-<p>2、导入相关依赖</p>
+              <h2 id="异步任务"><a href="#异步任务" class="headerlink" title="异步任务"></a>异步任务</h2><p>1、在启动类添加<code>@EnableAsync</code> ，表示 开启异步注解功能</p>
+<p>2、在方法上添加<code>@Async</code>，表示异步方法</p>
+<pre><code class="hljs java"><span class="hljs-meta">@Service</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AsyncService</span> </span>&#123;
+    <span class="hljs-comment">// 使用注解表示异步任务</span>
+    <span class="hljs-meta">@Async</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span>  <span class="hljs-keyword">void</span> <span class="hljs-title">hello</span><span class="hljs-params">()</span></span>&#123;
+        <span class="hljs-keyword">try</span> &#123;
+            sleep(<span class="hljs-number">3000</span>);
+        &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;
+            e.printStackTrace();
+        &#125;
+        System.out.println(<span class="hljs-string">"数据正在处理......"</span>);
+
+    &#125;
+&#125;</code></pre>
+
+<p>3、在Controller中直接调用即可</p>
+<h2 id="邮件发送"><a href="#邮件发送" class="headerlink" title="邮件发送"></a>邮件发送</h2><p>1、导入依赖</p>
 <pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.springfox<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>springfox-swagger2<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.springfox<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>springfox-swagger-ui<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-mail<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
 
-<p>3、编写一个hellworld</p>
-<p>4、编写Swagger配置类</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
-<span class="hljs-meta">@EnableSwagger</span>2  <span class="hljs-comment">// 开启Swagger2</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SwaggerConfig</span> </span>&#123;
+<p>2、打开邮箱的POP3/SMTP服务获取授权码，设置-&gt;账户-&gt;开启pop3和smtp服务</p>
+<p><img src="/2020/08/03/springboot-07/1.png" srcset="/img/loading.gif" alt></p>
+<p>3、编写配置文件</p>
+<pre><code class="hljs java"><span class="hljs-meta">@RestController</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EmailController</span> </span>&#123;
+    <span class="hljs-meta">@Autowired</span>
+    <span class="hljs-keyword">private</span> JavaMailSenderImpl mailSender;
 
-&#125;</code></pre>
-
-<p>5、测试访问：<a href="http://localhost:8080/swagger-ui.html" target="_blank" rel="noopener">http://localhost:8080/swagger-ui.html</a><br><img src="/2020/08/02/swagger/1.png" srcset="/img/loading.gif" alt></p>
-<h2 id="配置Swagger"><a href="#配置Swagger" class="headerlink" title="配置Swagger"></a>配置Swagger</h2><p>Swagger的bean实例 Docket</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
-<span class="hljs-meta">@EnableSwagger</span>2  <span class="hljs-comment">// 开启Swagger2</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SwaggerConfig</span> </span>&#123;
-
-    <span class="hljs-comment">// 配置Swagger的Docket的bean实例</span>
-    <span class="hljs-meta">@Bean</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> Docket <span class="hljs-title">docket</span><span class="hljs-params">()</span></span>&#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Docket( <span class="hljs-keyword">new</span> DocumentationType(<span class="hljs-string">"swagger"</span>, <span class="hljs-string">"2.0"</span>))
-                .apiInfo(apiInfo());
+    <span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/sendMail"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">sendMail</span><span class="hljs-params">()</span></span>&#123;
+        SimpleMailMessage mailMessage = <span class="hljs-keyword">new</span> SimpleMailMessage();
+        mailMessage.setSubject(<span class="hljs-string">"通知"</span>);
+        mailMessage.setText(<span class="hljs-string">"hello"</span>);
+        mailMessage.setTo(<span class="hljs-string">"2824199842@qq.com"</span>);
+        mailMessage.setFrom(<span class="hljs-string">"2824199842@qq.com"</span>);
+        mailSender.send(mailMessage);
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"send ok"</span>;
     &#125;
 
-    <span class="hljs-comment">// 配置Swagger的apiInfo</span>
-    <span class="hljs-function"><span class="hljs-keyword">private</span> ApiInfo <span class="hljs-title">apiInfo</span><span class="hljs-params">()</span></span>&#123;
-        Contact contact = <span class="hljs-keyword">new</span> Contact(<span class="hljs-string">"sweetboyZhang"</span>, <span class="hljs-string">"https://sweetboyZhang.github.io"</span>, <span class="hljs-string">"2824199842@qq.com"</span>);
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ApiInfo(
-                <span class="hljs-string">"My Swagger API 文档"</span>,
-                <span class="hljs-string">"这是一个Swagger测试"</span>,
-                <span class="hljs-string">"1.0"</span>,
-                <span class="hljs-string">"https://sweetboyZhang.github.io"</span>,
-                contact,
-                <span class="hljs-string">"Apache 2.0"</span>,
-                <span class="hljs-string">"http://www.apache.org/licenses/LICENSE-2.0"</span>,
-                <span class="hljs-keyword">new</span> ArrayList&lt;VendorExtension&gt;());
+    <span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/sendMail2"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">sendMail2</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception</span>&#123;
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        MimeMessageHelper helper = <span class="hljs-keyword">new</span> MimeMessageHelper(mimeMessage,<span class="hljs-keyword">true</span>);
+        helper.setSubject(<span class="hljs-string">"通知"</span>);
+        helper.setText(<span class="hljs-string">"&lt;p style='color:red'&gt;hello~&lt;/p&gt;"</span>,<span class="hljs-keyword">true</span>);
+        helper.addAttachment(<span class="hljs-string">"1.jpg"</span>,<span class="hljs-keyword">new</span> File(<span class="hljs-string">"C:\\Users\\28241\\Pictures\\Saved Pictures\\1.jpg"</span>));<span class="hljs-comment">// 附件</span>
+        helper.setTo(<span class="hljs-string">"2824199842@qq.com"</span>);
+        helper.setFrom(<span class="hljs-string">"2824199842@qq.com"</span>);
+        mailSender.send(mimeMessage);
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"send ok"</span>;
     &#125;
-    
 &#125;</code></pre>
 
-<h2 id="配置Swagger扫描路径"><a href="#配置Swagger扫描路径" class="headerlink" title="配置Swagger扫描路径"></a>配置Swagger扫描路径</h2><pre><code class="hljs java"><span class="hljs-meta">@Bean</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> Docket <span class="hljs-title">docket</span><span class="hljs-params">()</span></span>&#123;
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Docket( <span class="hljs-keyword">new</span> DocumentationType(<span class="hljs-string">"swagger"</span>, <span class="hljs-string">"2.0"</span>))
-            .apiInfo(apiInfo())
-            .select()
-            <span class="hljs-comment">// RequestHandlerSelectors配置要扫描接口的方式</span>
-            <span class="hljs-comment">// basePackage 指定要扫描的包</span>
-            <span class="hljs-comment">// any() 扫描全部</span>
-            <span class="hljs-comment">// none() 不扫描</span>
-            <span class="hljs-comment">// withClassAnnotation(xxx.class)扫描类上的注解</span>
-            <span class="hljs-comment">// withMethodAnnotation(xxx.class)扫描方法上的注解</span>
-            .apis(RequestHandlerSelectors.basePackage(<span class="hljs-string">"com.zyz.controller"</span>))
-            <span class="hljs-comment">// .paths 过滤路径</span>
-            .build();
-&#125;</code></pre>
-
-<h2 id="根据环境是否开启Swagger"><a href="#根据环境是否开启Swagger" class="headerlink" title="根据环境是否开启Swagger"></a>根据环境是否开启Swagger</h2><pre><code class="hljs java"><span class="hljs-meta">@Bean</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> Docket <span class="hljs-title">docket</span><span class="hljs-params">(Environment environment)</span></span>&#123;
-    <span class="hljs-comment">// 设置要显示的Swagger环境</span>
-    Profiles profiles = Profiles.of(<span class="hljs-string">"dev"</span>);
-    <span class="hljs-comment">// 获取项目环境</span>
-    <span class="hljs-keyword">boolean</span> flag = environment.acceptsProfiles(profiles);
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Docket( <span class="hljs-keyword">new</span> DocumentationType(<span class="hljs-string">"swagger"</span>, <span class="hljs-string">"2.0"</span>))
-            .apiInfo(apiInfo())
-            .enable(flag)<span class="hljs-comment">// 设置是否启动Swagger</span>
-            .select()
-            <span class="hljs-comment">// RequestHandlerSelectors配置要扫描接口的方式</span>
-            <span class="hljs-comment">// basePackage 指定要扫描的包</span>
-            <span class="hljs-comment">// any() 扫描全部</span>
-            <span class="hljs-comment">// none() 不扫描</span>
-            <span class="hljs-comment">// withClassAnnotation(xxx.class)扫描类上的注解</span>
-            <span class="hljs-comment">// withMethodAnnotation(xxx.class)扫描方法上的注解</span>
-            .apis(RequestHandlerSelectors.basePackage(<span class="hljs-string">"com.zyz.controller"</span>))
-            <span class="hljs-comment">// .paths 过滤路径</span>
-            .build();
-&#125;</code></pre>
-
-<p>application-dev.properties</p>
-<pre><code class="hljs properties"><span class="hljs-comment"># 生产环境</span>
-<span class="hljs-meta">server.port</span>=<span class="hljs-string">8080</span></code></pre>
-
-<p>application-pro.properties</p>
-<pre><code class="hljs properties"><span class="hljs-comment"># 上线环境</span>
-<span class="hljs-meta">server.port</span>=<span class="hljs-string">8081</span></code></pre>
-
-<p>application.properties</p>
-<pre><code class="hljs properties"><span class="hljs-comment"># 激活生产环境</span>
-<span class="hljs-meta">spring.profiles.active</span>=<span class="hljs-string">dev</span></code></pre>
-
-<h2 id="配置分组"><a href="#配置分组" class="headerlink" title="配置分组"></a>配置分组</h2><p>方便多人协同开发</p>
-<pre><code class="hljs java">.groupName(<span class="hljs-string">"zyz"</span>)</code></pre>
-
-<pre><code class="hljs java"><span class="hljs-meta">@Bean</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> Docket <span class="hljs-title">docket1</span><span class="hljs-params">()</span></span>&#123;
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Docket(DocumentationType.SWAGGER_2).groupName(<span class="hljs-string">"A"</span>);
-&#125;
-<span class="hljs-meta">@Bean</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> Docket <span class="hljs-title">docket2</span><span class="hljs-params">()</span></span>&#123;
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Docket(DocumentationType.SWAGGER_2).groupName(<span class="hljs-string">"B"</span>);
-&#125;
-<span class="hljs-meta">@Bean</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> Docket <span class="hljs-title">docket3</span><span class="hljs-params">()</span></span>&#123;
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Docket(DocumentationType.SWAGGER_2).groupName(<span class="hljs-string">"C"</span>);
-&#125;</code></pre>
-
-<h2 id="配置实体类"><a href="#配置实体类" class="headerlink" title="配置实体类"></a>配置实体类</h2><pre><code class="hljs java"><span class="hljs-comment">// 只要接口中的返回值有实体类，Swagger就会扫描到</span>
-<span class="hljs-meta">@ApiOperation</span>(<span class="hljs-string">"user控制方法"</span>)<span class="hljs-comment">// 方法注释</span>
-<span class="hljs-meta">@PostMapping</span>(<span class="hljs-string">"/user"</span>)
-<span class="hljs-function"><span class="hljs-keyword">public</span> User <span class="hljs-title">user</span><span class="hljs-params">(@ApiParam(<span class="hljs-string">"用户名"</span>)</span>String name,@<span class="hljs-title">ApiParam</span><span class="hljs-params">(<span class="hljs-string">"密码"</span>)</span> String password)</span>&#123;
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> User(name,password);
-&#125;</code></pre>
-
-<pre><code class="hljs java"><span class="hljs-meta">@Data</span>
-<span class="hljs-meta">@AllArgsConstructor</span>
-<span class="hljs-meta">@NoArgsConstructor</span>
-<span class="hljs-meta">@ApiModel</span>(<span class="hljs-string">"用户实体类"</span>)<span class="hljs-comment">// 注释</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;
-    <span class="hljs-meta">@ApiModelProperty</span>(<span class="hljs-string">"用户名"</span>)
-    <span class="hljs-keyword">private</span> String name;
-    <span class="hljs-meta">@ApiModelProperty</span>(<span class="hljs-string">"密码"</span>)
-    <span class="hljs-keyword">private</span> String password;
-&#125;</code></pre>
-
-
-<p><img src="/2020/08/02/swagger/2.png" srcset="/img/loading.gif" alt></p>
 
             </article>
             <hr>
@@ -397,7 +285,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Swagger/">Swagger</a>
+                      <a class="hover-with-bg" href="/tags/Springboot/">Springboot</a>
                     
                   </div>
                 
@@ -410,9 +298,9 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/08/03/springboot-07/">
+                      <a href="/2020/08/03/git/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">任务</span>
+                        <span class="hidden-mobile">Git</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -420,8 +308,8 @@
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/07/30/shiro-02/">
-                        <span class="hidden-mobile">Springboot整合shiro</span>
+                      <a href="/2020/08/02/swagger/">
+                        <span class="hidden-mobile">Swagger简介与使用</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -592,7 +480,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Swagger简介与使用&nbsp;",
+        "任务&nbsp;",
       ],
       cursorChar: "(*＾_＾*)",
       typeSpeed: 70,
