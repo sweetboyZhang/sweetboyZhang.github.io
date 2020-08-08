@@ -213,12 +213,21 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 29, 2020 pm
+                  本文最后更新于：August 5, 2020 pm
                 
               </p>
             
             <article class="markdown-body">
-              <h2 id="字符串相关类：String"><a href="#字符串相关类：String" class="headerlink" title="字符串相关类：String"></a>字符串相关类：String</h2><p>1.String声明为final，不可被继承。<br>2.实现了Serializable接口：表示字符串是支持序列化的;<br>   实现了Comparable接口：表示String是可以比较大小的；<a id="more"></a><br>3.String内部定义了final char[]    value[]用于存储字符串数据；<br>4.String代表不可变的字符序列。<br>        &lt;1&gt;当对字符串重新赋值；<br>        &lt;2&gt;对现有字符串进行连接操作；<br>        &lt;3&gt;当调用replace()修改指定字符或字符串；<br>        _会重新指定内存区域进行赋值。<br>5.通过字面量的方式给一个字符串赋值，此时字符串的值声明在字符串常量池 中。<br><img src="/2020/02/26/java-05/String_1.png" srcset="/img/loading.gif" alt="字面量赋值方式"><br>6.字符串常量池是不会存储相同内容的字符串的。</p>
+              <h2 id="字符串相关类：String"><a href="#字符串相关类：String" class="headerlink" title="字符串相关类：String"></a>字符串相关类：String</h2><p>1.String声明为final，不可被继承。<br>2.实现了Serializable接口：表示字符串是支持序列化的;<br>   实现了Comparable接口：表示String是可以比较大小的；<a id="more"></a><br>3.String内部定义了final char[]    value[]用于存储字符串数据；<br>4.String代表不可变的字符序列。</p>
+<ul>
+<li><p>当对字符串重新赋值；</p>
+</li>
+<li><p>对现有字符串进行连接操作；</p>
+</li>
+<li><p>当调用replace()修改指定字符或字符串时；<br>  <strong>都会重新指定内存区域进行赋值。</strong></p>
+</li>
+</ul>
+<p>5.通过字面量的方式给一个字符串赋值，此时字符串的值声明在字符串常量池 中。<br><img src="/2020/02/26/java-05/String_1.png" srcset="/img/loading.gif" alt="字面量赋值方式"><br>    6.字符串常量池是不会存储相同内容的字符串的。</p>
 <h3 id="String实例化的两种方式："><a href="#String实例化的两种方式：" class="headerlink" title="String实例化的两种方式："></a>String实例化的两种方式：</h3><pre><code class="hljs java"><span class="hljs-comment">// String实例化方式一：字面量赋值  字符串常量存储在堆空间中</span>
 String st1 = <span class="hljs-string">"abc"</span>;
 <span class="hljs-comment">// String实例化方式二：new + 构造器  字符串存储在字符串常量池中</span>
@@ -482,7 +491,7 @@ String st2 = <span class="hljs-keyword">new</span> String(<span class="hljs-stri
                       <a href="/2020/03/02/java-06/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">集合</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </div>
@@ -491,7 +500,7 @@ String st2 = <span class="hljs-keyword">new</span> String(<span class="hljs-stri
                     
                       <a href="/2020/02/25/linux-02/">
                         <span class="hidden-mobile">Linux 常用命令</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -508,7 +517,7 @@ String st2 = <span class="hljs-keyword">new</span> String(<span class="hljs-stri
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -541,7 +550,7 @@ String st2 = <span class="hljs-keyword">new</span> String(<span class="hljs-stri
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -550,7 +559,7 @@ String st2 = <span class="hljs-keyword">new</span> String(<span class="hljs-stri
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

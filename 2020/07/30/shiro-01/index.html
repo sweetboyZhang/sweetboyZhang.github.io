@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      699 字
+      682 字
     </span>
   
 
@@ -213,34 +213,34 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 30, 2020 pm
+                  本文最后更新于：August 6, 2020 am
                 
               </p>
             
             <article class="markdown-body">
               <p>Apach Shiro 是一个java安全框架，能够实现身份认证，授权，加密和会话管理等功能。<a id="more"></a></p>
-<h2 id="1、先创建一个maven工程"><a href="#1、先创建一个maven工程" class="headerlink" title="1、先创建一个maven工程"></a>1、先创建一个maven工程</h2><h2 id="2、导入依赖"><a href="#2、导入依赖" class="headerlink" title="2、导入依赖"></a>2、导入依赖</h2><pre><code class="hljs xml-dtd">&lt;dependencies&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.apache.shiro&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;shiro-core&lt;&#x2F;artifactId&gt;
-        &lt;version&gt;1.4.1&lt;&#x2F;version&gt;
-    &lt;&#x2F;dependency&gt;
-        &lt;dependency&gt;
-        &lt;groupId&gt;org.slf4j&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;jcl-over-slf4j&lt;&#x2F;artifactId&gt;
-        &lt;version&gt;1.7.21&lt;&#x2F;version&gt;
-    &lt;&#x2F;dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.slf4j&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;slf4j-log4j12&lt;&#x2F;artifactId&gt;
-        &lt;version&gt;1.7.21&lt;&#x2F;version&gt;
-    &lt;&#x2F;dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;log4j&lt;&#x2F;groupId&gt;
-        &lt;artifactId&gt;log4j&lt;&#x2F;artifactId&gt;
-        &lt;version&gt;1.2.17&lt;&#x2F;version&gt;
-    &lt;&#x2F;dependency&gt;
-&lt;&#x2F;dependencies&gt;</code></pre>
+<h2 id="1、先创建一个maven工程"><a href="#1、先创建一个maven工程" class="headerlink" title="1、先创建一个maven工程"></a>1、先创建一个maven工程</h2><h2 id="2、导入依赖"><a href="#2、导入依赖" class="headerlink" title="2、导入依赖"></a>2、导入依赖</h2><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.shiro<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>shiro-core<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.4.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.slf4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jcl-over-slf4j<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.7.21<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.slf4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>slf4j-log4j12<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.7.21<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>log4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>log4j<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.2.17<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span></code></pre>
 
 <h2 id="3、添加配置文件"><a href="#3、添加配置文件" class="headerlink" title="3、添加配置文件"></a>3、添加配置文件</h2><p>log4j.properties</p>
 <pre><code class="hljs properties"><span class="hljs-meta">log4j.rootLogger</span>=<span class="hljs-string">INFO, stdout</span>
@@ -370,7 +370,7 @@
                       <a href="/2020/07/30/shiro-02/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Springboot整合shiro</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </div>
@@ -379,7 +379,7 @@
                     
                       <a href="/2020/07/28/springboot-06/">
                         <span class="hidden-mobile">SpringSecurity</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -396,7 +396,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -429,7 +429,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -438,7 +438,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
