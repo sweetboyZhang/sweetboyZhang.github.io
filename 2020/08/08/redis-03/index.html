@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      350 字
+      555 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      9
        分钟
     </span>
   
@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：August 8, 2020 am
+                  本文最后更新于：August 8, 2020 pm
                 
               </p>
             
@@ -223,7 +223,7 @@
               <h2 id="geospatial地理位置"><a href="#geospatial地理位置" class="headerlink" title="geospatial地理位置"></a>geospatial地理位置</h2><p>添加地理数据</p>
 <ul>
 <li>有效的经度从-180度到180度。</li>
-<li>有效的纬度从-85.05112878度到85.05112878度。</li>
+<li>有效的纬度从-85.05112878度到85.05112878度。<a id="more"></a></li>
 </ul>
 <pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 可通过java程序一次性道路</span>
 127.0.0.1:6379&gt; geoadd china:city 113.16 30.65 tianmen
@@ -282,7 +282,40 @@
 2) "shanghai"
 3) "beijing"</code></pre>
 
-<h2 id="hyperloglog"><a href="#hyperloglog" class="headerlink" title="hyperloglog"></a>hyperloglog</h2>
+<h2 id="hyperloglog"><a href="#hyperloglog" class="headerlink" title="hyperloglog"></a>hyperloglog</h2><p> 主要用于基数统计</p>
+<pre><code class="hljs shell">pfadd mykey q w e r t y
+(integer) 1
+127.0.0.1:6379&gt; pfcount mykey
+(integer) 6</code></pre>
+
+<h2 id="Bitmap"><a href="#Bitmap" class="headerlink" title="Bitmap"></a>Bitmap</h2><p>位存储，一般用于用户是否登录，统计用户是否活跃，统计打卡</p>
+<p>使用bitmap记录一周的打卡：周一：1 周二：0 ……</p>
+ <pre><code class="hljs shell">127.0.0.1:6379&gt; setbit sign 0 1
+(integer) 0
+127.0.0.1:6379&gt; setbit sign 1 0
+(integer) 0
+127.0.0.1:6379&gt; setbit sign 2 0
+(integer) 0
+127.0.0.1:6379&gt; setbit sign 3 1
+(integer) 0
+127.0.0.1:6379&gt; setbit sign 4 1
+(integer) 0
+127.0.0.1:6379&gt; setbit sign 5 1
+(integer) 0
+127.0.0.1:6379&gt; setbit sign 6 0
+(integer) 0</code></pre>
+
+<p>查看是否打卡</p>
+<pre><code class="hljs shell">127.0.0.1:6379&gt; getbit sign 0 # 查看星期一是否打卡
+(integer) 1</code></pre>
+
+<p>统计打卡天数</p>
+<pre><code class="hljs shell">127.0.0.1:6379&gt; bitcount sign  # 统计一周的打卡次数
+(integer) 4</code></pre>
+
+
+
+
             </article>
             <hr>
             <div>
@@ -304,6 +337,12 @@
                 <div class="post-prevnext row">
                   <div class="post-prev col-6">
                     
+                    
+                      <a href="/2020/08/08/redis-04/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">事务</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </div>
                   <div class="post-next col-6">

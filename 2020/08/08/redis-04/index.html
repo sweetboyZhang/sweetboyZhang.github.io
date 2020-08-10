@@ -19,10 +19,19 @@
   <meta name="description" content="">
   <meta name="author" content="sweetboyZhang">
   <meta name="keywords" content="">
-  <title>Archives - sweetboyZhang&#39;s Blog</title>
+  <title>事务 - sweetboyZhang&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs.min.css" />
+  
+
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -44,7 +53,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -142,6 +151,48 @@
             </span>
 
             
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-08 15:17">
+      August 8, 2020 pm
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      708 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      9
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-post-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
           </div>
 
           
@@ -152,103 +203,200 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">72 posts in total.</p>
-  <hr>
-  
-    
       
-      <p class="h5">2020</p>
-    
-    <a href="/2020/07/30/shiro-01/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Shiro快速开始</span>
-      <span style="float: right;">07-30</span>
-    </a>
-  
-    
-    <a href="/2020/07/28/springboot-06/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">SpringSecurity</span>
-      <span style="float: right;">07-28</span>
-    </a>
-  
-    
-    <a href="/2020/07/26/springboot-05/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">整合MyBatis</span>
-      <span style="float: right;">07-26</span>
-    </a>
-  
-    
-    <a href="/2020/07/25/springboot-04/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">整合jdbc，Druid</span>
-      <span style="float: right;">07-25</span>
-    </a>
-  
-    
-    <a href="/2020/07/15/ssm/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">图书Crud项目</span>
-      <span style="float: right;">07-15</span>
-    </a>
-  
-    
-    <a href="/2020/07/11/springboot-03/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Springboot Web开发</span>
-      <span style="float: right;">07-11</span>
-    </a>
-  
-    
-    <a href="/2020/07/10/springboot-02/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Springboot配置</span>
-      <span style="float: right;">07-10</span>
-    </a>
-  
-    
-    <a href="/2020/07/09/springboot-01/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Springboot简介、自动装配原理</span>
-      <span style="float: right;">07-09</span>
-    </a>
-  
-    
-    <a href="/2020/07/08/vue-05/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Vue-elementUI</span>
-      <span style="float: right;">07-08</span>
-    </a>
-  
-    
-    <a href="/2020/07/08/vue-04/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Vue-Cli、webpack、vue-Router</span>
-      <span style="float: right;">07-08</span>
-    </a>
-  
-</div>
 
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/archives/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/8/">8</a><a class="extend next" rel="next" href="/archives/page/3/"><i class="iconfont icon-arrowright"></i></a>
-    </span>
-  </nav>
-  
-  <script>
-    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
-      ele.href += '#board';
-    }
-  </script>
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：August 10, 2020 am
+                
+              </p>
+            
+            <article class="markdown-body">
+              <p>Redis事务的本质：一组命令的集合。一个事务中的所有命令都会被序列化，在事务的执行过程中，会顺序执行。</p>
+<p>一次性，顺序性，排他性<a id="more"></a></p>
+<p>Redis没有隔离级别的概念。</p>
+<p>Redis单条命令是保证原子性的，但是事务不保证原子性。</p>
+<p>所有命令在事务中，并没有直接执行！只有发起执行命令时才会执行！</p>
+<h2 id="Redis事务流程"><a href="#Redis事务流程" class="headerlink" title="Redis事务流程"></a>Redis事务流程</h2><ul>
+<li>开启事务 （multi）</li>
+<li>命令入队</li>
+<li>执行事务（exec）</li>
+</ul>
+<pre><code class="hljs bash">127.0.0.1:6379&gt; multi
+OK
+127.0.0.1:6379&gt; <span class="hljs-built_in">set</span> k1 v1
+QUEUED
+127.0.0.1:6379&gt; <span class="hljs-built_in">set</span> k2 v2
+QUEUED
+127.0.0.1:6379&gt; <span class="hljs-built_in">set</span> k3 v3
+QUEUED
+127.0.0.1:6379&gt; get k2
+QUEUED
+127.0.0.1:6379&gt; <span class="hljs-built_in">set</span> k4 v4
+QUEUED
+127.0.0.1:6379&gt; <span class="hljs-built_in">exec</span>
+1) OK
+2) OK
+3) OK
+4) <span class="hljs-string">"v2"</span>
+5) OK</code></pre>
+
+<p>放弃事务</p>
+<pre><code class="hljs shell">127.0.0.1:6379&gt; discard
+OK</code></pre>
+
+<p>编译型异常，事务中的所用命令都不会执行。</p>
+<p>运行时异常，其他命令正常执行，异常命令抛出异常。</p>
+<h2 id="监控（使用watch实现乐观锁）"><a href="#监控（使用watch实现乐观锁）" class="headerlink" title="监控（使用watch实现乐观锁）"></a>监控（使用watch实现乐观锁）</h2><blockquote>
+<p> 悲观锁</p>
+</blockquote>
+<ul>
+<li>认为任何时候都会出现问题，无论做什么都加锁。</li>
+</ul>
+<blockquote>
+<p>乐观锁</p>
+</blockquote>
+<ul>
+<li>认为什么时候都不会出问题，所以不会上锁，更新数据时去判断一下，在此期间是否有人修改过这个数据。<ul>
+<li>获取version</li>
+<li>更新的时候比较version</li>
+</ul>
+</li>
+</ul>
+<p>测试监视功能</p>
+<pre><code class="hljs shell">127.0.0.1:6379&gt; set money 100  
+OK
+127.0.0.1:6379&gt; set out 0
+OK
+127.0.0.1:6379&gt; watch money # 监视money对象
+OK
+127.0.0.1:6379&gt; multi # 事务正常结束，数据期间没有发生变动，这个时候就正常执行成功
+OK
+127.0.0.1:6379&gt; decrby money 20
+QUEUED
+127.0.0.1:6379&gt; incrby out 20
+QUEUED
+127.0.0.1:6379&gt; exec
+1) (integer) 80
+2) (integer) 20</code></pre>
+
+<p>测试多线程修改值，使用watch可以当作redis的乐观锁操作</p>
+<p>客户端1：对money对象进行监视，并开启事务，先不执行事务</p>
+<pre><code class="hljs shell">127.0.0.1:6379&gt; watch money
+OK
+127.0.0.1:6379&gt; multi
+OK
+127.0.0.1:6379&gt; decrby money 20
+QUEUED
+127.0.0.1:6379&gt; incrby out 20
+QUEUED</code></pre>
+
+<p>再打开一个客户端2，对money对象的值进行修改</p>
+<pre><code class="hljs shell">127.0.0.1:6379&gt; get money
+"80"
+127.0.0.1:6379&gt; set money 100
+OK</code></pre>
+
+<p>在客户端1中执行事务，因为监视的值发生了改变，所以事务执行失败！</p>
+<pre><code class="hljs shell">127.0.0.1:6379&gt; exec
+(nil)</code></pre>
+
+<blockquote>
+<p>自旋锁</p>
+</blockquote>
+<p>执行失败后，放弃监视（解锁），再重新监视（加锁），获取监视对象的最新值，再执行事务，即可成功</p>
+<pre><code class="hljs shell">127.0.0.1:6379&gt; unwatch
+OK
+127.0.0.1:6379&gt; watch money
+OK
+127.0.0.1:6379&gt; multi
+OK
+127.0.0.1:6379&gt; decrby money 20
+QUEUED
+127.0.0.1:6379&gt; incrby out 20
+QUEUED
+127.0.0.1:6379&gt; exec
+1) (integer) 80
+2) (integer) 40</code></pre>
 
 
-
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Redis/">Redis</a>
+                    
+                  </div>
+                
               </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/08/08/redis-05/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Jedis,Springboot集成Redis</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/08/redis-03/">
+                        <span class="hidden-mobile">三种特殊类型</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
             </div>
+
+            
           </div>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-md">
+    <div class="container custom post-content mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
     
   </main>
 
@@ -466,10 +614,10 @@
       }
 
       // 如果是文章，请求文章的浏览数，并自增
-      if ('false' === 'true') {
+      if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/archives/page/2/index.html');
+          var target = decodeURI('/2020/08/08/redis-04/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -531,6 +679,31 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
 
 
   <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
@@ -538,7 +711,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Archive&nbsp;",
+        "事务&nbsp;",
       ],
       cursorChar: "(*＾_＾*)",
       typeSpeed: 70,
@@ -553,6 +726,21 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
 
 
   <script  src="/js/local-search.js" ></script>
@@ -566,6 +754,20 @@
   </script>
 
 
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
 
 
 
