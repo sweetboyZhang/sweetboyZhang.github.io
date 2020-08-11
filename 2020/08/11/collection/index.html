@@ -19,10 +19,19 @@
   <meta name="description" content="">
   <meta name="author" content="sweetboyZhang">
   <meta name="keywords" content="">
-  <title>归档 - sweetboyZhang&#39;s Blog</title>
+  <title>Collection - sweetboyZhang&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs.min.css" />
+  
+
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -44,7 +53,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -142,6 +151,48 @@
             </span>
 
             
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-11 07:35">
+      August 11, 2020 am
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      11
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-post-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
           </div>
 
           
@@ -152,43 +203,183 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 74 篇文章</p>
-  <hr>
-  
-    
       
-      <p class="h5">2020</p>
-    
-    <a href="/2020/01/18/java-02/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">面向对象</span>
-      <span style="float: right;">01-18</span>
-    </a>
-  
-    
-    <a href="/2020/01/09/java-01/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">数据类型，运算符，数组</span>
-      <span style="float: right;">01-09</span>
-    </a>
-  
-</div>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：August 11, 2020 am
+                
+              </p>
+            
+            <article class="markdown-body">
+              <h2 id="集合的作用"><a href="#集合的作用" class="headerlink" title="集合的作用"></a>集合的作用</h2><p>简单来说，集合就是存储对象的容器，方便我们操作多个Java对象。<a id="more"></a></p>
+<h2 id="集合分类"><a href="#集合分类" class="headerlink" title="集合分类"></a>集合分类</h2><p>集合接口以及常用实现类<br><img src="/2020/08/11/collection/1.png" srcset="/img/loading.gif" alt></p>
+<p>使用场景：</p>
+<ul>
+<li>如果是集合类型，可选择List或Set。LIst是插入有序，可重复的；Set 是不可重复的。</li>
+<li>如果是key-value类型，则选择Map。保持插入顺序选择LinkedHashMap;排序选择TreeMap。</li>
+</ul>
+<h2 id="Collection"><a href="#Collection" class="headerlink" title="Collection"></a>Collection</h2><h3 id="1、Collection介绍"><a href="#1、Collection介绍" class="headerlink" title="1、Collection介绍"></a>1、Collection介绍</h3><p>集合与数组的区别：</p>
+<ul>
+<li>数组长度固定，集合长度可变</li>
+<li>数组可以存储基本数据类型和引用数据类型；集合只能存储引用数据类型，存储基本数据类型时会自动装箱，转换为对应的包装类。</li>
+</ul>
+<p><img src="/2020/08/11/collection/2.png" srcset="/img/loading.gif" alt></p>
+<p>基本方法：</p>
+<pre><code class="hljs java"><span class="hljs-number">1</span>、添加功能：
+	<span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">add</span><span class="hljs-params">(Object obj)</span>：添加一个元素</span>
+<span class="hljs-function">    <span class="hljs-keyword">boolean</span> <span class="hljs-title">addAll</span><span class="hljs-params">(Collection c)</span>：添加一个集合的所有元素</span>
+<span class="hljs-function">2、删除功能：</span>
+<span class="hljs-function">    <span class="hljs-keyword">void</span> <span class="hljs-title">clear</span><span class="hljs-params">()</span>：移除所有元素</span>
+<span class="hljs-function">    <span class="hljs-keyword">boolean</span> <span class="hljs-title">remove</span><span class="hljs-params">(Object obj)</span>：移除一个元素</span>
+<span class="hljs-function">    <span class="hljs-keyword">boolean</span> <span class="hljs-title">removeAll</span><span class="hljs-params">(Collecion c)</span>：移除当前集合的所有元素，只要一个元素被移除就返回<span class="hljs-keyword">true</span></span>
+<span class="hljs-function">3、判断功能：</span>
+<span class="hljs-function">    <span class="hljs-keyword">boolean</span> <span class="hljs-title">contains</span><span class="hljs-params">(Object obj)</span>：判断当前集合是否包含当前元素</span>
+<span class="hljs-function">    <span class="hljs-keyword">boolean</span> <span class="hljs-title">containsAll</span><span class="hljs-params">(Collection c)</span>：判断当前集合包含指定集合</span>
+<span class="hljs-function">    <span class="hljs-keyword">boolean</span> <span class="hljs-title">isEmpty</span><span class="hljs-params">()</span>：判断集合是否为空</span>
+<span class="hljs-function">4、获取功能：</span>
+<span class="hljs-function">    Iterator&lt;E&gt; <span class="hljs-title">iterator</span><span class="hljs-params">()</span>：获取迭代器</span>
+<span class="hljs-function">5、长度功能：</span>
+<span class="hljs-function">    <span class="hljs-keyword">int</span> <span class="hljs-title">size</span><span class="hljs-params">()</span>：获取元素个数</span>
+<span class="hljs-function">6、交集功能：</span>
+<span class="hljs-function">    <span class="hljs-keyword">boolean</span> <span class="hljs-title">retainAll</span><span class="hljs-params">(Collection c)</span>：移除当前集合中集合c没有的元素，最终结果保存至当前集合中</span></code></pre>
 
+<h3 id="2、迭代器（Iterator）"><a href="#2、迭代器（Iterator）" class="headerlink" title="2、迭代器（Iterator）"></a>2、迭代器（Iterator）</h3><p>java.utils.Collection继承了java.lang.Iterable接口，Collection继承了Iterable的Iterator()方法，返回Iterator对象。</p>
+<p>java.utils.Iterator也是一个接口，只有三个方法</p>
+<ul>
+<li>hasNext()</li>
+<li>next()</li>
+<li>remove()</li>
+</ul>
+<p>这三个方法通过Collection的实现类以内部类的方式实现，因为Collection的实现类存储结构不同，遍历方式也必然不同，必须通过各个实现类以内部类的方式实现，来完成对不同实现类的遍历。</p>
+<pre><code class="hljs java"> <span class="hljs-meta">@Test</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test3</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-comment">// 1、创建集合对象</span>
+        Collection coll1 = <span class="hljs-keyword">new</span> ArrayList();
+        <span class="hljs-comment">// 2、添加数据到集合中</span>
+        coll1.add(<span class="hljs-number">1</span>);
+        coll1.add(<span class="hljs-number">2</span>);
+        coll1.add(<span class="hljs-number">3</span>);
+        <span class="hljs-comment">// 3、使用集合对象获取迭代器对象</span>
+        Iterator iterator = coll1.iterator();
+        <span class="hljs-comment">// 起始指针位于第一个元素之前</span>
+        <span class="hljs-comment">// hasNext() 判断是否还有下一个元素</span>
+        <span class="hljs-comment">// next() 指针下移，将下移以后的集合位置上的元素返回</span>
+        <span class="hljs-comment">// 4、遍历集合</span>
+        <span class="hljs-keyword">while</span>(iterator.hasNext())&#123;<span class="hljs-comment">// 5、判断是否存在元素</span>
+            Object obj = iterator.next();<span class="hljs-comment">// 6、下移到下一个元素的位置</span>
+            <span class="hljs-keyword">if</span>(obj.equals(<span class="hljs-keyword">new</span> Integer(<span class="hljs-number">1</span>)))&#123;
+                iterator.remove();<span class="hljs-comment">// 移除当前元素</span>
+            &#125;
+        &#125;
+        iterator = coll1.iterator();
+        <span class="hljs-keyword">while</span>(iterator.hasNext())&#123;
+            System.out.println(iterator.next());
+        &#125;
+    &#125;
+&#125;</code></pre>
 
+<h3 id="3、List集合"><a href="#3、List集合" class="headerlink" title="3、List集合"></a>3、List集合</h3><p>LIst集合特点：有序（存取顺序与取出顺序一致），可重复。</p>
+<p>List集合常用实现类</p>
+<ul>
+<li>ArrayList：底层数据结构是数组，线程不安全</li>
+<li>LinkedList：底层结构是链表，线程不安全</li>
+<li>Vector：底层数据结构是数组，线程安全</li>
+</ul>
+<h4 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h4><p>底层其实就是一个数组，但是可以进行扩容，实现动态增长。</p>
+<p>构造方法：<br>指定了容量则按照该容量初始化，未指定则返回一个空数组</p>
+<p>add(E   e)方法：<br>步骤：检查是否需要扩容—&gt;插入元素</p>
+<p>add(int index,E e)<br>步骤：检查角标—&gt;检查是否需要扩容—&gt;插入元素</p>
+<p>get(int index)：检查角标—&gt;返回元素</p>
+<p>set(int index,E e)：检查角标—&gt;替代元素—&gt;返回旧值</p>
+<p>remove(int index)：检查角标—&gt;删除元素—&gt;计算出需要移动的个数，并移动—&gt;设置为null，让gc回收</p>
+<h4 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h4><p>LinkedList底层是双向链表 </p>
+<h4 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h4><p>Vector底层也是数组，与ArrayList最大的区别就是：<strong>同步(线程安全)</strong></p>
+<h3 id="4、Set集合"><a href="#4、Set集合" class="headerlink" title="4、Set集合"></a>4、Set集合</h3><p>Set集合特点：元素不可重复</p>
+<p>Set集合常用实现类</p>
+<ul>
+<li>HashSet：底层数据结构是哈希表。</li>
+<li>TreeSet：底层数据结构是红黑数（平衡二叉树）；保证元素有序。</li>
+<li>LinkedHashSet：底层数据结构由哈希表和链表组成。</li>
+</ul>
+<h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><h3 id="1、Map介绍"><a href="#1、Map介绍" class="headerlink" title="1、Map介绍"></a>1、Map介绍</h3>
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/java%E9%9B%86%E5%90%88/">java集合</a>
+                    
+                  </div>
+                
               </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/08/11/project-01/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Project_01</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/10/redis-06/">
+                        <span class="hidden-mobile">持久化</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
             </div>
+
+            
           </div>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-md">
+    <div class="container custom post-content mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
     
   </main>
 
@@ -406,10 +597,10 @@
       }
 
       // 如果是文章，请求文章的浏览数，并自增
-      if ('false' === 'true') {
+      if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/archives/2020/01/index.html');
+          var target = decodeURI('/2020/08/11/collection/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -471,6 +662,31 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
 
 
   <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
@@ -478,7 +694,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "归档&nbsp;",
+        "Collection&nbsp;",
       ],
       cursorChar: "(*＾_＾*)",
       typeSpeed: 70,
@@ -493,6 +709,21 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
 
 
   <script  src="/js/local-search.js" ></script>
@@ -506,6 +737,20 @@
   </script>
 
 
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
 
 
 

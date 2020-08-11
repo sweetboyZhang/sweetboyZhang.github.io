@@ -162,16 +162,22 @@
                 
 
 <div class="list-group">
-  <p class="h4">共计 73 篇文章</p>
+  <p class="h4">共计 74 篇文章</p>
   <hr>
   
     
       
       <p class="h5">2020</p>
     
-    <a href="/2020/08/10/project-01/" class="list-group-item list-group-item-action">
+    <a href="/2020/08/11/project-01/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">Project_01</span>
-      <span style="float: right;">08-10</span>
+      <span style="float: right;">08-11</span>
+    </a>
+  
+    
+    <a href="/2020/08/11/collection/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">Collection</span>
+      <span style="float: right;">08-11</span>
     </a>
   
     
@@ -222,13 +228,19 @@
       <span style="float: right;">08-03</span>
     </a>
   
-    
-    <a href="/2020/08/02/swagger/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Swagger简介与使用</span>
-      <span style="float: right;">08-02</span>
-    </a>
-  
 </div>
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/archives/2020/08/page/2/">2</a><a class="extend next" rel="next" href="/archives/2020/08/page/2/"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
 
 
 
