@@ -19,7 +19,7 @@
   <meta name="description" content="">
   <meta name="author" content="sweetboyZhang">
   <meta name="keywords" content="">
-  <title>Project_01 - sweetboyZhang&#39;s Blog</title>
+  <title>员工管理系统 - sweetboyZhang&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      0 字
+      497 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      7
        分钟
     </span>
   
@@ -215,12 +215,128 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：August 11, 2020 am
+                  本文最后更新于：August 11, 2020 pm
                 
               </p>
             
             <article class="markdown-body">
-              
+              <h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><p>模块，功能，技术选型：</p>
+<ul>
+<li><p>用户模块：</p>
+<ul>
+<li>1、用户登录<ul>
+<li>2、用户注册</li>
+<li>3、验证码实现</li>
+<li>4、欢迎xx用户登录</li>
+<li>5、安全退出</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>员工管理模块：</p>
+<ul>
+<li>6、员工信息展示</li>
+<li>7、员工的添加</li>
+<li>8、员工的删除</li>
+<li>9、员工的修改</li>
+<li>10、员工列表加入Redis缓存实现</li>
+</ul>
+</li>
+<li><p>技术选型</p>
+<ul>
+<li>前端：vue+axios</li>
+<li>后端：springboot + mybatis + mysql + redis</li>
+</ul>
+</li>
+</ul>
+<h2 id="库表设计"><a href="#库表设计" class="headerlink" title="库表设计"></a>库表设计</h2><p>1、系统需要哪些表</p>
+<p>用户表</p>
+<p>员工表</p>
+<p>2、分析表与表之间的关系</p>
+<p>用户表管理员工表，没有什么关系，涉及到的都是单表操作</p>
+<p>3、分析表中的字段</p>
+<p>用户表字段<br>id、username、realname、password、gender、status、registerTime</p>
+<p>员工表</p>
+<p>id、name、photoPath、salary、age</p>
+<p>创建emp数据库，创建表</p>
+<pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> t_user(
+	<span class="hljs-keyword">id</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">6</span>) primary <span class="hljs-keyword">key</span> auto_increment,
+	username <span class="hljs-built_in">varchar</span>(<span class="hljs-number">50</span>),
+	realname <span class="hljs-built_in">varchar</span>(<span class="hljs-number">50</span>),
+    <span class="hljs-keyword">password</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">50</span>),
+    gender <span class="hljs-built_in">varchar</span>(<span class="hljs-number">4</span>),
+    <span class="hljs-keyword">status</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">4</span>),
+    regist_time <span class="hljs-built_in">timestamp</span>
+);
+
+<span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> t_emp(
+	<span class="hljs-keyword">id</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">6</span>) primary <span class="hljs-keyword">key</span> auto_increment,
+    <span class="hljs-keyword">name</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">50</span>),
+    photo_path <span class="hljs-built_in">varchar</span>(<span class="hljs-number">100</span>),
+    salary <span class="hljs-keyword">double</span>(<span class="hljs-number">10</span>,<span class="hljs-number">2</span>),
+    age <span class="hljs-built_in">int</span>(<span class="hljs-number">3</span>)
+)</code></pre>
+
+<h2 id="详细设计"><a href="#详细设计" class="headerlink" title="详细设计"></a>详细设计</h2><p>流程图，伪代码（小项目省略）</p>
+<h2 id="编码环节"><a href="#编码环节" class="headerlink" title="编码环节"></a>编码环节</h2><h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><p>springboot+mybatis+mysql、引入员工系统页面</p>
+<p>项目名：emps</p>
+<p>项目结构：</p>
+<pre><code class="hljs diff"><span class="hljs-deletion">-src/main/java</span>
+<span class="hljs-comment">--------------com.zyz.</span>
+<span class="hljs-comment">---------------------bean</span>
+<span class="hljs-comment">---------------------dao</span>
+<span class="hljs-comment">---------------------service</span>
+<span class="hljs-comment">---------------------controller</span>
+<span class="hljs-deletion">-src/main/resource</span>
+<span class="hljs-comment">------------------application.yml </span>
+<span class="hljs-comment">------------------application-dev.yml  测试环境</span>
+<span class="hljs-comment">------------------application-prod.yml 生产环境</span>
+<span class="hljs-comment">------------------com.zyz.mapper/   mapper配置文件</span>
+<span class="hljs-comment">------------------com.zyz.sql/      数据库文件</span>
+<span class="hljs-comment">------------------static/          静态资源</span></code></pre>
+
+<h3 id="正式进入编码"><a href="#正式进入编码" class="headerlink" title="正式进入编码"></a>正式进入编码</h3><h4 id="1、创建springboot项目，勾选相应的依赖"><a href="#1、创建springboot项目，勾选相应的依赖" class="headerlink" title="1、创建springboot项目，勾选相应的依赖"></a>1、创建springboot项目，勾选相应的依赖</h4><p><img src="/2020/08/11/project-01/1.png" srcset="/img/loading.gif" alt></p>
+<p>引入其他依赖</p>
+<pre><code class="hljs xml"> <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.alibaba<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>druid<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.1.23<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>commons-fileupload<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>commons-fileupload<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.4<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+
+<h4 id="2、编写springboot配置文件"><a href="#2、编写springboot配置文件" class="headerlink" title="2、编写springboot配置文件"></a>2、编写springboot配置文件</h4><pre><code class="hljs yml"><span class="hljs-attr">server:</span>
+  <span class="hljs-attr">servlet:</span>
+    <span class="hljs-attr">context-path:</span> <span class="hljs-string">/empAdmin</span>
+
+<span class="hljs-attr">spring:</span>
+  <span class="hljs-attr">datasource:</span>
+    <span class="hljs-attr">username:</span> <span class="hljs-string">root</span>
+    <span class="hljs-attr">password:</span> <span class="hljs-number">2824199842</span>
+    <span class="hljs-attr">url:</span> <span class="hljs-string">jdbc:mysql://127.0.0.1:3306/emp?serverTimezone=Asia/Shanghai</span>
+    <span class="hljs-attr">driver-class-name:</span> <span class="hljs-string">com.mysql.cj.jdbc.Driver</span>
+    <span class="hljs-attr">type:</span> <span class="hljs-string">com.alibaba.druid.pool.DruidDataSource</span>
+
+<span class="hljs-attr">mybatis:</span>
+  <span class="hljs-attr">type-aliases-package:</span> <span class="hljs-string">com.zyz.bean</span>
+  <span class="hljs-attr">mapper-locations:</span>  <span class="hljs-string">classpath:com/zyz/mapper/*.xml</span>
+  <span class="hljs-attr">configuration:</span>
+    <span class="hljs-attr">map-underscore-to-camel-case:</span> <span class="hljs-literal">true</span>
+
+<span class="hljs-attr">logging:</span>
+  <span class="hljs-attr">level:</span>
+    <span class="hljs-attr">com:</span>
+      <span class="hljs-attr">zyz:</span>
+        <span class="hljs-attr">dao:</span> <span class="hljs-string">debug</span>
+        <span class="hljs-attr">service:</span> <span class="hljs-string">info</span>
+        <span class="hljs-attr">controller:</span> <span class="hljs-string">info</span></code></pre>
+
+
+
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><h2 id="部署上线"><a href="#部署上线" class="headerlink" title="部署上线"></a>部署上线</h2>
             </article>
             <hr>
             <div>
@@ -249,7 +365,7 @@
                     
                       <a href="/2020/08/11/collection/">
                         <span class="hidden-mobile">Collection</span>
-                        <span class="visible-mobile">下一篇</span>
+                        <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -266,7 +382,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
   <div id="tocbot"></div>
 </div>
 
@@ -299,7 +415,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -308,7 +424,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -598,7 +714,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Project_01&nbsp;",
+        "员工管理系统&nbsp;",
       ],
       cursorChar: "(*＾_＾*)",
       typeSpeed: 70,
