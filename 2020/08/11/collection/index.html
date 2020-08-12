@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1k 字
+      1.9k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      11
+      22
        分钟
     </span>
   
@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：August 11, 2020 am
+                  本文最后更新于：August 12, 2020 am
                 
               </p>
             
@@ -301,8 +301,10 @@
 <p>get(int index)：检查角标—&gt;返回元素</p>
 <p>set(int index,E e)：检查角标—&gt;替代元素—&gt;返回旧值</p>
 <p>remove(int index)：检查角标—&gt;删除元素—&gt;计算出需要移动的个数，并移动—&gt;设置为null，让gc回收</p>
+<p>在<strong>增删时候，需要数组的拷贝复制(navite 方法由C/C++实现)</strong></p>
 <h4 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h4><p>LinkedList底层是双向链表 </p>
 <h4 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h4><p>Vector底层也是数组，与ArrayList最大的区别就是：<strong>同步(线程安全)</strong></p>
+<p>所有方法都是同步的，<strong>有性能损失</strong>。</p>
 <h3 id="4、Set集合"><a href="#4、Set集合" class="headerlink" title="4、Set集合"></a>4、Set集合</h3><p>Set集合特点：元素不可重复</p>
 <p>Set集合常用实现类</p>
 <ul>
@@ -310,7 +312,77 @@
 <li>TreeSet：底层数据结构是红黑数（平衡二叉树）；保证元素有序。</li>
 <li>LinkedHashSet：底层数据结构由哈希表和链表组成。</li>
 </ul>
-<h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><h3 id="1、Map介绍"><a href="#1、Map介绍" class="headerlink" title="1、Map介绍"></a>1、Map介绍</h3>
+<h4 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h4><ul>
+<li>实现Set接口</li>
+<li>不保证迭代顺序</li>
+<li>允许元素为null</li>
+<li><strong>底层实际上是一个HashMap实例</strong></li>
+<li>非同步</li>
+<li>初始容量非常影响迭代性能</li>
+</ul>
+<h4 id="TreeSet"><a href="#TreeSet" class="headerlink" title="TreeSet"></a>TreeSet</h4><ul>
+<li>可以实现排序功能</li>
+<li><strong>底层实际上是一个TreeMap实例</strong></li>
+<li>非同步</li>
+</ul>
+<h4 id="LinkedHashSet"><a href="#LinkedHashSet" class="headerlink" title="LinkedHashSet"></a>LinkedHashSet</h4><ul>
+<li>迭代是有序的</li>
+<li>允许为null</li>
+<li><strong>底层实际上是一个HashMap+双向链表实例(其实就是LinkedHashMap)…</strong></li>
+<li>非同步</li>
+<li>性能比HashSet差一丢丢，因为要维护一个双向链表</li>
+<li>初始容量与迭代无关，LinkedHashSet迭代的是双向链表</li>
+</ul>
+<h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><h3 id="1、Map介绍"><a href="#1、Map介绍" class="headerlink" title="1、Map介绍"></a>1、Map介绍</h3><p>特点：将键映射到值的对象，一个映射不能有重复的键，每个键最多映射一个值。</p>
+<p>Map与Collection的区别</p>
+<ul>
+<li>Map集合存储的元素是成对出现的，键唯一，值可以重复</li>
+<li>Collection集合存储的元素是单独出现的，子类List存储的值可重复，Set不可重复</li>
+</ul>
+<p><img src="/2020/08/11/collection/3.png" srcset="/img/loading.gif" alt></p>
+<p>基本方法：</p>
+<pre><code class="hljs java"><span class="hljs-number">1</span>、添加功能：
+    put(K key,V value)  添加元素，key存在则替换
+<span class="hljs-number">2</span>、删除功能：
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">clear</span><span class="hljs-params">()</span>  移除所有键值对</span>
+<span class="hljs-function">    <span class="hljs-title">remove</span><span class="hljs-params">(Object key)</span>  根据键删除值，并把值返回</span>
+<span class="hljs-function">3、判断功能：</span>
+<span class="hljs-function">    <span class="hljs-keyword">boolean</span> <span class="hljs-title">containsKey</span><span class="hljs-params">(Object key)</span>  判断集合是否包含指定的键</span>
+<span class="hljs-function">    <span class="hljs-keyword">boolean</span> <span class="hljs-title">containsValue</span><span class="hljs-params">(Object value)</span>  判断集合是否包含指定的值</span>
+<span class="hljs-function">    <span class="hljs-keyword">boolean</span> <span class="hljs-title">isEmpty</span><span class="hljs-params">()</span>  判断集合是否为空</span>
+<span class="hljs-function">4、获取功能：</span>
+<span class="hljs-function">    Set&lt;Map.Entry&lt;K key,V value&gt;&gt; <span class="hljs-title">entrySet</span><span class="hljs-params">()</span>  返回键值对对象的集合</span>
+<span class="hljs-function">    <span class="hljs-title">get</span><span class="hljs-params">(Object key)</span>  根据键获取值</span>
+<span class="hljs-function">    Set&lt;K&gt; <span class="hljs-title">keySet</span><span class="hljs-params">()</span>  获取集合中所有的键的集合</span>
+<span class="hljs-function">    Collection&lt;V&gt; <span class="hljs-title">values</span><span class="hljs-params">()</span>  获取集合中所有值的集合</span>
+<span class="hljs-function">5、长度功能：</span>
+<span class="hljs-function">    <span class="hljs-keyword">int</span> <span class="hljs-title">size</span><span class="hljs-params">()</span>  返回集合中键值对的对数</span></code></pre>
+
+<h4 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h4><ul>
+<li>无序，允许为null，非同步</li>
+<li>底层有散列表（数组+链表）实现</li>
+</ul>
+<p><strong>put(K key,V value)方法</strong>：map.put(key1,value1)</p>
+<p>在jdk7中，首先调用key1所在类的hashCode()计算key的哈希值，此哈希值通过某种算法后，得到在Entry数组中的存放位置；<br>如果此位置为空，则添加成功，<br>否则将key1的哈希值与此位置上的一个或多个元素(key2,value2)的哈希值比较，<br>如果哈希值不同，则添加成功,<br>否则调用key1所在类的equals()，如果返回false，则添加成功，否则使用value1替换value2。<br>涉及到扩容时，容量扩大为原来的2倍，原有的数据全部被复制过来。</p>
+<p>在jdk8中，没有马上就创建数组，而是在put()时创建Node[]数组</p>
+<p><strong>get(Object key)</strong>：计算key的哈希值，通过getNode(int hash,Object key)获取对应的value</p>
+<p><strong>remove(Object key)</strong>：计算key的哈希值，通过removeNode(int hash,Object key,Object value) 删除该键值对，并返回值</p>
+<p><strong>HashMap与HashTable的区别：</strong></p>
+<p>从存储结构和实现来讲基本上都是相同的。HashTable是线程安全的，另外它不允许key和value为null。Hashtable是个过时的集合类，不建议在新代码中使用，不需要线程安全的场合可以用HashMap替换，需要线程安全的场合可以用ConcurrentHashMap替换。</p>
+<p>在JDK8中HashMap的底层是：<strong>数组+链表(散列表)+红黑树</strong></p>
+<h4 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a>LinkedHashMap</h4><ul>
+<li>底层是散列表和双向链表</li>
+<li>允许为null，不同步</li>
+<li>插入的顺序是有序的(底层链表致使有序)</li>
+</ul>
+<h4 id="TreeMap"><a href="#TreeMap" class="headerlink" title="TreeMap"></a>TreeMap</h4><ul>
+<li>实现了NavigableMap接口，而NavigableMap接口继承着SortedMap接口，所以是有序的</li>
+<li>底层是红黑树</li>
+<li>key不能为null，为null为抛出NullPointerException的</li>
+<li>不同步</li>
+<li>使用Comparator或者Comparable来比较key是否相等与排序的问题</li>
+</ul>
+
             </article>
             <hr>
             <div>
@@ -336,7 +408,7 @@
                       <a href="/2020/08/11/project-01/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">员工管理系统</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </div>
@@ -345,7 +417,7 @@
                     
                       <a href="/2020/08/10/redis-06/">
                         <span class="hidden-mobile">持久化</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -362,7 +434,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -395,7 +467,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -404,7 +476,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
