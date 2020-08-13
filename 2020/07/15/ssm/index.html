@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.3k 字
+      4.6k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      73
+      76
        分钟
     </span>
   
@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：August 11, 2020 am
+                  本文最后更新于：August 13, 2020 am
                 
               </p>
             
@@ -922,6 +922,54 @@ details <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">200
     bookService.deleteBookById(id);
     <span class="hljs-keyword">return</span> <span class="hljs-string">"redirect:/book/allBooks"</span>;
 &#125;</code></pre>
+
+<h3 id="方法五：模糊搜索"><a href="#方法五：模糊搜索" class="headerlink" title="方法五：模糊搜索"></a>方法五：模糊搜索</h3><p>mapper层：</p>
+<pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment">    * 根据书名模糊搜索</span>
+<span class="hljs-comment">    * <span class="hljs-doctag">@param</span> name</span>
+<span class="hljs-comment">    * <span class="hljs-doctag">@return</span></span>
+<span class="hljs-comment">    */</span>
+   <span class="hljs-function">List&lt;Book&gt; <span class="hljs-title">queryBookByName</span><span class="hljs-params">(@Param(<span class="hljs-string">"bookName"</span>)</span> String name)</span>;</code></pre>
+
+<pre><code class="hljs java">&lt;select id=<span class="hljs-string">"queryBookByName"</span> resultType=<span class="hljs-string">"com.zyz.bean.Book"</span>&gt;
+    select * from books where name like #&#123;bookName&#125;
+&lt;/select&gt;</code></pre>
+
+<p>service层</p>
+<pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 通过name模糊查询书籍</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param</span> name</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@return</span></span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function">List&lt;Book&gt; <span class="hljs-title">queryBookByName</span><span class="hljs-params">(String name)</span></span>;</code></pre>
+
+<pre><code class="hljs java"> <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Book&gt; <span class="hljs-title">queryBookByName</span><span class="hljs-params">(String name)</span> </span>&#123;
+String realName = name.trim();<span class="hljs-comment">// 去掉前后端空格</span>
+      <span class="hljs-keyword">return</span> bookMapper.queryBookByName(<span class="hljs-string">"%"</span>+realName+<span class="hljs-string">"%"</span>);
+  &#125;</code></pre>
+
+<p>controller层</p>
+<pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 根据名称模糊查询书籍</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param</span> bkName</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param</span> model</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@return</span></span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/queryBook"</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">queryBook</span><span class="hljs-params">(String bkName,Model model)</span></span>&#123;
+    List&lt;Book&gt; books = bookService.queryBookByName(bkName);
+    System.out.println(books);
+    model.addAttribute(<span class="hljs-string">"books"</span>,books);
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"allBooks"</span>;
+&#125;</code></pre>
+
+<p>前端页面：</p>
+<pre><code class="hljs jsp">&lt;form action=<span class="hljs-string">"$&#123;pageContext.request.contextPath&#125;/book/queryBook"</span> method=<span class="hljs-string">"post"</span>&gt;
+    &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"col-xs-3"</span>&gt;
+        &lt;input <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"form-control"</span> type=<span class="hljs-string">"text"</span> name=<span class="hljs-string">"bkName"</span> placeholder=<span class="hljs-string">"请输入要查询的书籍名称"</span>required&gt;
+    &lt;/div&gt;
+    &lt;input <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"btn btn-primary"</span> type=<span class="hljs-string">"submit"</span> value=<span class="hljs-string">"查询"</span> &gt;
+&lt;/form&gt;</code></pre>
 
 <h2 id="项目总体结构"><a href="#项目总体结构" class="headerlink" title="项目总体结构"></a>项目总体结构</h2><img src="/2020/07/15/ssm/5.png" srcset="/img/loading.gif" style="zoom:80%;">
 

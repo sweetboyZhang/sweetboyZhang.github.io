@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.8k 字
+      2.5k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      31
+      41
        分钟
     </span>
   
@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：August 12, 2020 pm
+                  本文最后更新于：August 13, 2020 pm
                 
               </p>
             
@@ -296,6 +296,7 @@
 <span class="hljs-comment">------------------static/          静态资源</span></code></pre>
 
 <h3 id="正式进入编码"><a href="#正式进入编码" class="headerlink" title="正式进入编码"></a>正式进入编码</h3><h4 id="1、创建springboot项目，勾选相应的依赖"><a href="#1、创建springboot项目，勾选相应的依赖" class="headerlink" title="1、创建springboot项目，勾选相应的依赖"></a>1、创建springboot项目，勾选相应的依赖</h4><p><img src="/2020/08/11/project-01/1.png" srcset="/img/loading.gif" alt></p>
+<p>搭建项目基本结构：<br><img src="/2020/08/11/project-01/2.png" srcset="/img/loading.gif" alt></p>
 <p>引入其他依赖</p>
 <pre><code class="hljs xml"> <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.alibaba<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
@@ -323,7 +324,7 @@
 
 <span class="hljs-attr">mybatis:</span>
   <span class="hljs-attr">type-aliases-package:</span> <span class="hljs-string">com.zyz.bean</span>
-  <span class="hljs-attr">mapper-locations:</span>  <span class="hljs-string">classpath:com/zyz/mapper/*.xml</span>
+  <span class="hljs-attr">mapper-locations:</span>  <span class="hljs-string">classpath:com/zyz/mapper/*.xml</span> <span class="hljs-comment"># 要在接口中添加@Mapper注解</span>
   <span class="hljs-attr">configuration:</span>
     <span class="hljs-attr">map-underscore-to-camel-case:</span> <span class="hljs-literal">true</span>
 
@@ -336,12 +337,11 @@
         <span class="hljs-attr">controller:</span> <span class="hljs-string">info</span></code></pre>
 
 <h4 id="3、实现验证码展示功能"><a href="#3、实现验证码展示功能" class="headerlink" title="3、实现验证码展示功能"></a>3、实现验证码展示功能</h4><blockquote>
-<p>使用验证码工具类</p>
+<p>验证码工具类</p>
 </blockquote>
 <pre><code class="hljs java"><span class="hljs-keyword">package</span> com.zyz.utils;
 
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">VerifyCodeUtils</span></span>&#123;
-
     <span class="hljs-comment">//使用到Algerian字体，系统里没有的话需要安装字体，字体只显示大写，去掉了1,0,i,o几个容易混淆的字符</span>
     <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String VERIFY_CODES = <span class="hljs-string">"23456789ABCDEFGHJKLMNPQRSTUVWXYZ"</span>;
     <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Random random = <span class="hljs-keyword">new</span> Random();
@@ -637,7 +637,7 @@
         created() &#123;  <span class="hljs-comment">// 页面加载前执行  发起异步请求</span>
             <span class="hljs-keyword">this</span>.getSrc();
             <span class="hljs-comment">// 显示当前日期</span>
-            <span class="hljs-keyword">this</span>.date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getFullYear() + <span class="hljs-string">"/"</span> + (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getMonth() + <span class="hljs-number">1</span>) + <span class="hljs-string">"/"</span> + <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getDay();
+            <span class="hljs-keyword">this</span>.date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getFullYear() + <span class="hljs-string">"/"</span> + (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getMonth() + <span class="hljs-number">1</span>) + <span class="hljs-string">"/"</span> + <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getDate();
         &#125;
     &#125;)
 &lt;<span class="hljs-regexp">/script&gt;</span></code></pre>
@@ -649,7 +649,153 @@
 
 <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>&#123;&#123;date&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></code></pre>
 
-<h4 id="4、实现注册功能"><a href="#4、实现注册功能" class="headerlink" title="4、实现注册功能"></a>4、实现注册功能</h4><h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><h2 id="部署上线"><a href="#部署上线" class="headerlink" title="部署上线"></a>部署上线</h2>
+<h4 id="4、实现注册功能"><a href="#4、实现注册功能" class="headerlink" title="4、实现注册功能"></a>4、实现注册功能</h4><blockquote>
+<p>创建User实体类，使用lombok！</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> com.zyz.bean;
+<span class="hljs-meta">@Data</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;
+    <span class="hljs-keyword">private</span> String id;
+    <span class="hljs-keyword">private</span> String username;
+    <span class="hljs-keyword">private</span> String realname;
+    <span class="hljs-keyword">private</span> String password;
+    <span class="hljs-keyword">private</span> String gender;
+    <span class="hljs-keyword">private</span> String status;
+    <span class="hljs-keyword">private</span> Date registerTime;
+&#125;</code></pre>
+
+<blockquote>
+<p>编写dao层</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> com.zyz.dao;
+
+<span class="hljs-meta">@Mapper</span>
+<span class="hljs-meta">@Repository</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">UserDao</span> </span>&#123;
+    <span class="hljs-comment">// 添加用户</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">save</span><span class="hljs-params">(User user)</span></span>;
+
+    <span class="hljs-comment">// 根据用户名查找用户</span>
+    <span class="hljs-function">User <span class="hljs-title">queryUserByName</span><span class="hljs-params">(String username)</span></span>;
+&#125;</code></pre>
+
+<p>对应的sql映射文件</p>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="utf-8" ?&gt;</span>
+<span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">mapper</span></span>
+<span class="hljs-meta">        <span class="hljs-meta-keyword">PUBLIC</span> <span class="hljs-meta-string">"-//mybatis.org//DTD Mapper 3.0//EN"</span></span>
+<span class="hljs-meta">        <span class="hljs-meta-string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span> &gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">namespace</span>=<span class="hljs-string">"com.zyz.dao.UserDao"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">insert</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"save"</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">"User"</span> <span class="hljs-attr">useGeneratedKeys</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">keyProperty</span>=<span class="hljs-string">"id"</span>&gt;</span>
+        insert into t_user
+        values
+        (#&#123;id&#125;,#&#123;username&#125;,#&#123;realname&#125;,#&#123;password&#125;,#&#123;gender&#125;,#&#123;status&#125;,#&#123;registerTime&#125;)
+    <span class="hljs-tag">&lt;/<span class="hljs-name">insert</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"queryUserByName"</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">"String"</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">"User"</span>&gt;</span>
+        select id,username,realname,password,gender,status,register_time
+        from t_user where username=#&#123;username&#125;
+    <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span></code></pre>
+
+<blockquote>
+<p>编写service层</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> com.zyz.service;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">UserService</span> </span>&#123;
+    <span class="hljs-comment">// 用户注册</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">register</span><span class="hljs-params">(User user)</span></span>;
+&#125;</code></pre>
+
+<p>实现对应的service接口</p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> com.zyz.service.impl;
+
+<span class="hljs-meta">@Service</span>
+<span class="hljs-meta">@Transactional</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">UserService</span> </span>&#123;
+
+    <span class="hljs-meta">@Autowired</span>
+    <span class="hljs-keyword">private</span> UserDao userDao;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">register</span><span class="hljs-params">(User user)</span> </span>&#123;
+        <span class="hljs-comment">// 判断用户是否存在</span>
+        User user1 = userDao.queryUserByName(user.getUsername());
+        <span class="hljs-keyword">if</span>(user1==<span class="hljs-keyword">null</span>)&#123;
+            <span class="hljs-comment">// 生成用户状态</span>
+            user.setStatus(<span class="hljs-string">"已激活"</span>);
+            <span class="hljs-comment">// 设置用户注册时间</span>
+            user.setRegisterTime(<span class="hljs-keyword">new</span> Date());
+            <span class="hljs-comment">// 调用dao</span>
+            userDao.save(user);
+        &#125;<span class="hljs-keyword">else</span>&#123;
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"用户名已存在！"</span>);
+        &#125;
+    &#125;
+&#125;</code></pre>
+
+<blockquote>
+<p>编写controller层，在UserController中添加响应注册请求的方法</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-meta">@Autowired</span>
+<span class="hljs-keyword">private</span> UserService userService;
+
+<span class="hljs-meta">@PostMapping</span>(<span class="hljs-string">"register"</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> Map&lt;String, Object&gt; <span class="hljs-title">register</span><span class="hljs-params">(@RequestBody User user, String code, HttpSession session)</span> </span>&#123;
+    Map&lt;String, Object&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
+    <span class="hljs-keyword">try</span> &#123;
+        <span class="hljs-comment">// 判断验证码</span>
+        <span class="hljs-keyword">if</span> (StringUtils.isEmpty(code)) &#123;
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"验证码为空！"</span>);
+        &#125;
+        String realCode = (String) session.getAttribute(<span class="hljs-string">"code"</span>);
+        <span class="hljs-keyword">if</span> (realCode.equalsIgnoreCase(code)) &#123;
+            <span class="hljs-keyword">if</span> (StringUtils.isEmpty(user.getUsername())) &#123;
+                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"用户名为空！"</span>);
+            &#125;
+            <span class="hljs-keyword">if</span> (StringUtils.isEmpty(user.getPassword())) &#123;
+                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"密码为空！"</span>);
+            &#125;
+            <span class="hljs-comment">// 调用service方法</span>
+            userService.register(user);
+            map.put(<span class="hljs-string">"status"</span>, <span class="hljs-keyword">true</span>);
+            map.put(<span class="hljs-string">"msg"</span>, <span class="hljs-string">"提示：注册成功！"</span>);
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"验证码错误！"</span>);
+        &#125;
+    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;
+        e.printStackTrace();
+        map.put(<span class="hljs-string">"status"</span>, <span class="hljs-keyword">false</span>);
+        map.put(<span class="hljs-string">"msg"</span>, <span class="hljs-string">"提示："</span> + e.getMessage());
+    &#125;
+    <span class="hljs-keyword">return</span> map;
+&#125;</code></pre>
+
+<blockquote>
+<p>编写前端页面</p>
+</blockquote>
+<p>在vue对象的data中添加user对象，用来接收页面的参数<br><img src="/2020/08/11/project-01/4.png" srcset="/img/loading.gif" alt></p>
+<p>将页面中的表单项与user的每一个属性值绑定，.trim去掉前后空格<br><img src="/2020/08/11/project-01/3.png" srcset="/img/loading.gif" alt></p>
+<p>给按钮绑定注册事件</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"register"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">value</span>= <span class="hljs-string">" 注 册 "</span>/&gt;</span></code></pre>
+
+<p>发起注册请求</p>
+<pre><code class="hljs js"><span class="hljs-comment">// 注册</span>
+register() &#123;
+    axios.post(<span class="hljs-string">"http://localhost:8080/empAdmin/user/register?code="</span> + <span class="hljs-keyword">this</span>.code, <span class="hljs-keyword">this</span>.user)
+        .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;
+            <span class="hljs-comment">// console.log(res.data);</span>
+            <span class="hljs-keyword">if</span> (res.data.status) &#123;
+                <span class="hljs-comment">// 注册成功，跳转登录页面</span>
+                alert(res.data.msg + <span class="hljs-string">"点击确定跳转至登录页面！"</span>);
+                location.href = <span class="hljs-string">"http://localhost:8080/empAdmin/login.html"</span>;
+            &#125; <span class="hljs-keyword">else</span> &#123;
+                <span class="hljs-comment">// 注册失败</span>
+                alert(res.data.msg + <span class="hljs-string">"点击确定重新注册！"</span>);
+            &#125;
+        &#125;);
+&#125;</code></pre>
+
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><h2 id="部署上线"><a href="#部署上线" class="headerlink" title="部署上线"></a>部署上线</h2>
             </article>
             <hr>
             <div>
@@ -671,6 +817,12 @@
                 <div class="post-prevnext row">
                   <div class="post-prev col-6">
                     
+                    
+                      <a href="/2020/08/13/thread/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">多线程</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </div>
                   <div class="post-next col-6">
