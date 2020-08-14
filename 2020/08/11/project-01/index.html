@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.5k 字
+      3.1k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      41
+      51
        分钟
     </span>
   
@@ -215,12 +215,12 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：August 13, 2020 pm
+                  本文最后更新于：August 14, 2020 pm
                 
               </p>
             
             <article class="markdown-body">
-              <h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><p>模块，功能，技术选型：<a id="more"></a></p>
+              <h1 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h1><p>模块，功能，技术选型：<a id="more"></a></p>
 <ul>
 <li><p>用户模块：</p>
 <ul>
@@ -249,7 +249,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="库表设计"><a href="#库表设计" class="headerlink" title="库表设计"></a>库表设计</h2><p>1、系统需要哪些表</p>
+<h1 id="库表设计"><a href="#库表设计" class="headerlink" title="库表设计"></a>库表设计</h1><p>1、系统需要哪些表</p>
 <p>用户表</p>
 <p>员工表</p>
 <p>2、分析表与表之间的关系</p>
@@ -277,8 +277,8 @@
     age <span class="hljs-built_in">int</span>(<span class="hljs-number">3</span>)
 )</code></pre>
 
-<h2 id="详细设计"><a href="#详细设计" class="headerlink" title="详细设计"></a>详细设计</h2><p>流程图，伪代码（小项目省略）</p>
-<h2 id="编码环节"><a href="#编码环节" class="headerlink" title="编码环节"></a>编码环节</h2><h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><p>springboot+mybatis+mysql、引入员工系统页面</p>
+<h1 id="详细设计"><a href="#详细设计" class="headerlink" title="详细设计"></a>详细设计</h1><p>流程图，伪代码（小项目省略）</p>
+<h1 id="编码环节"><a href="#编码环节" class="headerlink" title="编码环节"></a>编码环节</h1><h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><p>springboot+mybatis+mysql、引入员工系统页面</p>
 <p>项目名：emps</p>
 <p>项目结构：</p>
 <pre><code class="hljs diff"><span class="hljs-deletion">-src/main/java</span>
@@ -295,7 +295,7 @@
 <span class="hljs-comment">------------------com.zyz.sql/      数据库文件</span>
 <span class="hljs-comment">------------------static/          静态资源</span></code></pre>
 
-<h3 id="正式进入编码"><a href="#正式进入编码" class="headerlink" title="正式进入编码"></a>正式进入编码</h3><h4 id="1、创建springboot项目，勾选相应的依赖"><a href="#1、创建springboot项目，勾选相应的依赖" class="headerlink" title="1、创建springboot项目，勾选相应的依赖"></a>1、创建springboot项目，勾选相应的依赖</h4><p><img src="/2020/08/11/project-01/1.png" srcset="/img/loading.gif" alt></p>
+<h2 id="正式进入编码"><a href="#正式进入编码" class="headerlink" title="正式进入编码"></a>正式进入编码</h2><h3 id="一、用户模块"><a href="#一、用户模块" class="headerlink" title="一、用户模块"></a>一、用户模块</h3><h4 id="1、创建springboot项目，勾选相应的依赖"><a href="#1、创建springboot项目，勾选相应的依赖" class="headerlink" title="1、创建springboot项目，勾选相应的依赖"></a>1、创建springboot项目，勾选相应的依赖</h4><p><img src="/2020/08/11/project-01/1.png" srcset="/img/loading.gif" alt></p>
 <p>搭建项目基本结构：<br><img src="/2020/08/11/project-01/2.png" srcset="/img/loading.gif" alt></p>
 <p>引入其他依赖</p>
 <pre><code class="hljs xml"> <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
@@ -593,61 +593,60 @@
 <span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span>
 <span class="hljs-comment">     */</span>
     <span class="hljs-meta">@GetMapping</span>(<span class="hljs-string">"getImageCode"</span>)
-    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getImageCode</span><span class="hljs-params">(HttpSession session)</span> <span class="hljs-keyword">throws</span> Exception</span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getImageCode</span><span class="hljs-params">(HttpServletRequest request)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
         <span class="hljs-comment">// 使用工具类生成验证码并输出</span>
         ByteArrayOutputStream os = <span class="hljs-keyword">new</span> ByteArrayOutputStream();
         String code = VerifyCodeUtils.generateVerifyCode(<span class="hljs-number">4</span>);
-        VerifyCodeUtils.outputImage(<span class="hljs-number">100</span>,<span class="hljs-number">30</span>,os,code);
-        <span class="hljs-comment">// 保存至session</span>
-        session.setAttribute(<span class="hljs-string">"code"</span>,code);
+        VerifyCodeUtils.outputImage(<span class="hljs-number">100</span>, <span class="hljs-number">30</span>, os, code);
+        <span class="hljs-comment">// 保存至applicationContext域中</span>
+        request.getServletContext().setAttribute(<span class="hljs-string">"code"</span>, code);
         <span class="hljs-comment">// 将图片转换为base64</span>
         String s = Base64Utils.encodeToString(os.toByteArray());
-        <span class="hljs-keyword">return</span> <span class="hljs-string">"data:image/png;base64,"</span>+s;
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"data:image/png;base64,"</span> + s;
     &#125;
 &#125;</code></pre>
 
 <blockquote>
 <p>在前端发起异步请求</p>
 </blockquote>
-<pre><code class="hljs js">&lt;script src=<span class="hljs-string">"js/vue.js"</span>&gt;&lt;<span class="hljs-regexp">/script&gt;</span>
-<span class="hljs-regexp">&lt;script src="js/</span>axios.min.js<span class="hljs-string">"&gt;&lt;/script&gt;</span>
-<span class="hljs-string">&lt;script&gt;</span>
-<span class="hljs-string">    var app = new Vue(&#123;</span>
-        el: "#wrap",
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"js/vue.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"js/axios.min.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
+<span class="actionscript">    <span class="hljs-keyword">var</span> app = <span class="hljs-keyword">new</span> Vue(&#123;</span>
+<span class="actionscript">        el: <span class="hljs-string">"#wrap"</span>,</span>
         data: &#123;
-            url: <span class="hljs-string">""</span>,
-            date: <span class="hljs-string">""</span>,
-
+<span class="actionscript">            url: <span class="hljs-string">""</span>,</span>
+<span class="actionscript">            date: <span class="hljs-string">""</span>,</span>
         &#125;,
         methods: &#123;
-            <span class="hljs-comment">// 更换验证码</span>
+<span class="actionscript">            <span class="hljs-comment">// 更换验证码</span></span>
             getImg() &#123;
-                <span class="hljs-keyword">this</span>.getSrc()
+<span class="actionscript">                <span class="hljs-keyword">this</span>.getSrc()</span>
             &#125;,
-            <span class="hljs-comment">// 封装获取验证码的请求方法</span>
+<span class="actionscript">            <span class="hljs-comment">// 封装获取验证码的请求方法</span></span>
             getSrc() &#123;
-                <span class="hljs-keyword">var</span> _this = <span class="hljs-keyword">this</span>;
-                axios.get(<span class="hljs-string">"http://localhost:8080/empAdmin/user/getImageCode?time="</span> + <span class="hljs-built_in">Math</span>.random())
-                    .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;
-                        <span class="hljs-comment">// console.log(res.data);</span>
+<span class="actionscript">                <span class="hljs-keyword">var</span> _this = <span class="hljs-keyword">this</span>;</span>
+<span class="javascript">                axios.get(<span class="hljs-string">"http://localhost:8080/empAdmin/user/getImageCode?time="</span> + <span class="hljs-built_in">Math</span>.random())</span>
+<span class="javascript">                    .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;</span>
+<span class="actionscript">                        <span class="hljs-comment">// console.log(res.data);</span></span>
                         _this.url = res.data;
                     &#125;);
             &#125;
         &#125;,
-        created() &#123;  <span class="hljs-comment">// 页面加载前执行  发起异步请求</span>
-            <span class="hljs-keyword">this</span>.getSrc();
-            <span class="hljs-comment">// 显示当前日期</span>
-            <span class="hljs-keyword">this</span>.date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getFullYear() + <span class="hljs-string">"/"</span> + (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getMonth() + <span class="hljs-number">1</span>) + <span class="hljs-string">"/"</span> + <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getDate();
+<span class="actionscript">        created() &#123;  <span class="hljs-comment">// 页面加载前执行  发起异步请求</span></span>
+<span class="actionscript">            <span class="hljs-keyword">this</span>.getSrc();</span>
+<span class="actionscript">            <span class="hljs-comment">// 显示当前日期</span></span>
+<span class="javascript">            <span class="hljs-keyword">this</span>.date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getFullYear() + <span class="hljs-string">"/"</span> + (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getMonth() + <span class="hljs-number">1</span>) + <span class="hljs-string">"/"</span> + <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getDate();</span>
         &#125;
     &#125;)
-&lt;<span class="hljs-regexp">/script&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
 
 <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"num"</span> <span class="hljs-attr">:src</span>=<span class="hljs-string">"url"</span>/&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"javascript:;"</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"getImg"</span>&gt;</span>换一张<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span></code></pre>
 
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>&#123;&#123;date&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></code></pre>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-text</span>=<span class="hljs-string">"date"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></code></pre>
 
 <h4 id="4、实现注册功能"><a href="#4、实现注册功能" class="headerlink" title="4、实现注册功能"></a>4、实现注册功能</h4><blockquote>
 <p>创建User实体类，使用lombok！</p>
@@ -739,15 +738,15 @@
 <pre><code class="hljs java"><span class="hljs-meta">@Autowired</span>
 <span class="hljs-keyword">private</span> UserService userService;
 
-<span class="hljs-meta">@PostMapping</span>(<span class="hljs-string">"register"</span>)
-<span class="hljs-function"><span class="hljs-keyword">public</span> Map&lt;String, Object&gt; <span class="hljs-title">register</span><span class="hljs-params">(@RequestBody User user, String code, HttpSession session)</span> </span>&#123;
+<span class="hljs-meta">@PostMapping</span>(<span class="hljs-string">"register"</span>) <span class="hljs-comment">// @RequestBody将前端传来的json字符串转换为java对象</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> Map&lt;String, Object&gt; <span class="hljs-title">register</span><span class="hljs-params">(@RequestBody User user, String code, HttpServletRequest request)</span> </span>&#123;
     Map&lt;String, Object&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
     <span class="hljs-keyword">try</span> &#123;
         <span class="hljs-comment">// 判断验证码</span>
         <span class="hljs-keyword">if</span> (StringUtils.isEmpty(code)) &#123;
             <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"验证码为空！"</span>);
         &#125;
-        String realCode = (String) session.getAttribute(<span class="hljs-string">"code"</span>);
+        String realCode = (String) request.getServletContext().getAttribute(<span class="hljs-string">"code"</span>);
         <span class="hljs-keyword">if</span> (realCode.equalsIgnoreCase(code)) &#123;
             <span class="hljs-keyword">if</span> (StringUtils.isEmpty(user.getUsername())) &#123;
                 <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"用户名为空！"</span>);
@@ -795,7 +794,113 @@ register() &#123;
         &#125;);
 &#125;</code></pre>
 
-<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><h2 id="部署上线"><a href="#部署上线" class="headerlink" title="部署上线"></a>部署上线</h2>
+<h4 id="5、实现登录功能"><a href="#5、实现登录功能" class="headerlink" title="5、实现登录功能"></a>5、实现登录功能</h4><blockquote>
+<p>dao层</p>
+</blockquote>
+<p>已经有通过名字查询用户信息的方法<code>queryUserByName(String username)</code>，service层直接调用即可</p>
+<blockquote>
+<p>service层</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> User <span class="hljs-title">login</span><span class="hljs-params">(User user)</span> </span>&#123;
+    <span class="hljs-comment">// 根据输入的用户名查询用户</span>
+    User user1 = userDao.queryUserByName(user.getUsername());
+    <span class="hljs-comment">// 判断用户是否存在  使用ObjectUtils!</span>
+    <span class="hljs-keyword">if</span>(!ObjectUtils.isEmpty(user1))&#123;
+        <span class="hljs-keyword">if</span>(user1.getPassword().equals(user.getPassword()))&#123;
+            <span class="hljs-keyword">return</span> user1;
+        &#125;<span class="hljs-keyword">else</span>&#123;
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"密码错误！"</span>);
+        &#125;
+    &#125;<span class="hljs-keyword">else</span>&#123;
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"用户名不存在或错误！"</span>);
+    &#125;
+&#125;</code></pre>
+
+<blockquote>
+<p>controller层</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-meta">@PostMapping</span>(<span class="hljs-string">"login"</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> Map&lt;String,Object&gt; <span class="hljs-title">login</span><span class="hljs-params">(@RequestBody User user)</span></span>&#123;
+    Map&lt;String,Object&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
+    <span class="hljs-keyword">try</span> &#123;
+        userService.login(user);
+        map.put(<span class="hljs-string">"status"</span>,<span class="hljs-keyword">true</span>);
+        map.put(<span class="hljs-string">"msg"</span>,<span class="hljs-string">"提示：登录成功！"</span>);
+    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;
+        e.printStackTrace();
+        map.put(<span class="hljs-string">"status"</span>,<span class="hljs-keyword">false</span>);
+        map.put(<span class="hljs-string">"msg"</span>,<span class="hljs-string">"提示："</span>+e.getMessage());
+    &#125;
+    <span class="hljs-keyword">return</span> map;
+&#125;</code></pre>
+
+<blockquote>
+<p>前端页面</p>
+</blockquote>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-text</span>=<span class="hljs-string">"date"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></code></pre>
+
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"user.username"</span> /&gt;</span></code></pre>
+
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"user.password"</span> /&gt;</span></code></pre>
+
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
+<span class="actionscript">	<span class="hljs-keyword">var</span> app = <span class="hljs-keyword">new</span> Vue(&#123;</span>
+<span class="actionscript">		el: <span class="hljs-string">"#wrap"</span>,</span>
+		data: &#123;
+<span class="actionscript">			date: <span class="hljs-string">""</span>,</span>
+			user: &#123;&#125;,
+		&#125;,
+		created()&#123;
+<span class="javascript">			<span class="hljs-keyword">this</span>.date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getFullYear() + <span class="hljs-string">"/"</span> + (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getMonth() + <span class="hljs-number">1</span>) + <span class="hljs-string">"/"</span> + <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getDate();</span>
+		&#125;,
+		methods:&#123;
+			login()&#123;
+<span class="actionscript">				<span class="hljs-comment">// console.log(this.user);</span></span>
+<span class="actionscript">				axios.post(<span class="hljs-string">"http://localhost:8080/empAdmin/user/login"</span>,<span class="hljs-keyword">this</span>.user)</span>
+<span class="javascript">				.then(<span class="hljs-function"><span class="hljs-params">res</span>=&gt;</span>&#123;</span>
+<span class="actionscript">					<span class="hljs-comment">// console.log(res.data);</span></span>
+					if(res.data.status)&#123;
+<span class="actionscript">						alert(res.data.msg+<span class="hljs-string">"点击确定跳转员工管理页面！"</span>);</span>
+<span class="actionscript">						location.href=<span class="hljs-string">"/empAdmin/emplist.html"</span>;</span>
+<span class="actionscript">					&#125;<span class="hljs-keyword">else</span>&#123;</span>
+<span class="actionscript">						alert(res.data.msg+<span class="hljs-string">"点击确定重新登录！"</span>)</span>
+					&#125;
+				&#125;)
+			&#125;
+		&#125;
+	&#125;)
+<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+
+<h4 id="6、实现用户登录信息展示"><a href="#6、实现用户登录信息展示" class="headerlink" title="6、实现用户登录信息展示"></a>6、实现用户登录信息展示</h4><p>登录成功后的信息都在后端这边，前端拿不到这些数据。</p>
+<p>在前后端未分离的时候，通常都是通过服务端的HttpSession来保存这些信息，服务端在创建了Session的同时，会为该Session生成唯一的sessionId并保存到浏览器中，在随后的请求通过携带sessionId重新获得已经创建的Session；</p>
+<p>而在前后端分离的系统中，前端与后端分别部署在不同的服务器上，前后端交互时，前端请求不会带上后端sessionId，session获取不到。因此将信息保存至浏览器中的localStorage中</p>
+<p>在controller中保存用户信息：<br><img src="/2020/08/11/project-01/5.png" srcset="/img/loading.gif" alt></p>
+<p>在员工展示页面显示登录名：</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
+<span class="actionscript">   <span class="hljs-keyword">var</span> app = <span class="hljs-keyword">new</span> Vue(&#123;</span>
+<span class="actionscript">      el: <span class="hljs-string">"#wrap"</span>,</span>
+      data:&#123;
+<span class="actionscript">         date: <span class="hljs-string">""</span>,</span>
+<span class="actionscript">         user:&#123;&#125; <span class="hljs-comment">// 存放用户登录信息</span></span>
+      &#125;,
+      created()&#123;
+<span class="javascript">         <span class="hljs-keyword">this</span>.date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getFullYear() + <span class="hljs-string">"/"</span> + (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getMonth() + <span class="hljs-number">1</span>) + <span class="hljs-string">"/"</span> + <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getDate();</span>
+<span class="actionscript">         <span class="hljs-keyword">var</span> userString = localStorage.getItem(<span class="hljs-string">"user"</span>);</span>
+<span class="actionscript">         <span class="hljs-keyword">if</span>(userString!=<span class="hljs-literal">null</span>)&#123;<span class="hljs-comment">// 已登录</span></span>
+<span class="actionscript">            <span class="hljs-comment">// 将json字符串转换为json对象</span></span>
+<span class="javascript">            <span class="hljs-keyword">this</span>.user = <span class="hljs-built_in">JSON</span>.parse(userString);</span>
+<span class="actionscript">         &#125;<span class="hljs-keyword">else</span>&#123;<span class="hljs-comment">// 未登录</span></span>
+<span class="actionscript">            alert(<span class="hljs-string">"请登录！点击确定跳转登录页面"</span>);</span>
+<span class="actionscript">            location.href=<span class="hljs-string">"/empAdmin/login.html"</span>;</span>
+         &#125;
+      &#125;,
+   &#125;)
+<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>用户：<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">v-show</span>=<span class="hljs-string">"user!=null"</span> <span class="hljs-attr">v-text</span>=<span class="hljs-string">"user.username"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"color: red"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></code></pre>
+
+<h4 id="7、实现退出功能"><a href="#7、实现退出功能" class="headerlink" title="7、实现退出功能"></a>7、实现退出功能</h4><h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><h2 id="部署上线"><a href="#部署上线" class="headerlink" title="部署上线"></a>部署上线</h2>
             </article>
             <hr>
             <div>
@@ -821,7 +926,7 @@ register() &#123;
                       <a href="/2020/08/13/thread/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">多线程</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </div>
@@ -830,7 +935,7 @@ register() &#123;
                     
                       <a href="/2020/08/11/collection/">
                         <span class="hidden-mobile">Collection</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -847,7 +952,7 @@ register() &#123;
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -880,7 +985,7 @@ register() &#123;
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -889,7 +994,7 @@ register() &#123;
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.2k 字
+      1.8k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      14
+      21
        分钟
     </span>
   
@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：August 13, 2020 pm
+                  本文最后更新于：August 14, 2020 pm
                 
               </p>
             
@@ -368,6 +368,139 @@
 <blockquote>
 <p>field()方法</p>
 </blockquote>
+<p>暂停当前正在执行的线程，把执行机会让给优先级相同或更高的线程，不确保真正的让出。</p>
+<blockquote>
+<p>join()方法</p>
+</blockquote>
+<p>使调用的线程先执行，执行完后再执行其他线程；</p>
+<p>低优先级的线程也可以获得执行。</p>
+<blockquote>
+<p>wait()方法</p>
+</blockquote>
+<p>wait()是Object类中定义的native方法；</p>
+<p>一旦线程执行此方法，当前线程就会进入阻塞状态，并释放锁</p>
+<blockquote>
+<p>notify()方法</p>
+</blockquote>
+<p>notify()也是Object类中定义的native方法；</p>
+<p>一旦执行此方法就会唤醒被wait的一个线程。若有多个线程被wait，则唤醒优先级高的</p>
+<blockquote>
+<p>notifyAll()方法</p>
+</blockquote>
+<p>也是Object类中的方法，唤醒所有wait的线程</p>
+<blockquote>
+<p>interrupt()方法</p>
+</blockquote>
+<p>线程中断在之前的版本中有stop()方法，因为存在安全问题被设置过时了。</p>
+<p>stop()方法可以让一个线程A终止一个线程B，被终止的线程会立即释放锁，这可能会让对象处于不一致的状态。</p>
+<p>一般使用interrupt()来请求终止线程。</p>
+<ul>
+<li>interrupt不会真正停止一个线程，仅仅是发出一个中断信号，告诉他应该要结束了</li>
+<li>让线程自己处理，到底是中断还是继续执行</li>
+</ul>
+<pre><code class="hljs java">Thread t1 = <span class="hljs-keyword">new</span> Thread( <span class="hljs-keyword">new</span> Runnable()&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span></span>&#123;
+        <span class="hljs-comment">// 若未发生中断，就正常执行任务</span>
+        <span class="hljs-keyword">while</span>(!Thread.currentThread.isInterrupted())&#123;
+            <span class="hljs-comment">// 正常任务代码……</span>
+        &#125;
+        <span class="hljs-comment">// 中断的处理代码……</span>
+        doSomething();
+    &#125;
+&#125; ).start();</code></pre>
+
+<p>如果阻塞线程调用了interrupt()方法，那么会<strong>抛出异常，设置标志位为false，同时该线程会退出阻塞</strong>。</p>
+<h2 id="Synchronized锁与Lock锁"><a href="#Synchronized锁与Lock锁" class="headerlink" title="Synchronized锁与Lock锁"></a>Synchronized锁与Lock锁</h2><p><strong>Synchronized锁使用：</strong></p>
+<blockquote>
+<p>方式一：同步代码块</p>
+</blockquote>
+<p>将可能出现线程安全问题的代码使用<code>synchronized</code>关键字包裹</p>
+<pre><code class="hljs java"><span class="hljs-keyword">synchronized</span>(<span class="hljs-comment">/*锁*/</span>)&#123;<span class="hljs-comment">// 要保证是同一把锁</span>
+    <span class="hljs-comment">// 需要同步的代码</span>
+&#125;</code></pre>
+
+<blockquote>
+<p>方式二：同步方法</p>
+</blockquote>
+<p> 将可能出现线程安全问题的代码块封装成一个同步方法</p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-title">func</span><span class="hljs-params">()</span></span>&#123;
+    <span class="hljs-comment">// 方法体</span>
+&#125;</code></pre>
+
+<p><strong>Lock锁</strong></p>
+<p>通过显式定义同步锁对象，即Lock对象，来实现同步。</p>
+<pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">buyTicket</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span></span>&#123;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> ticketNum = <span class="hljs-number">100</span>;
+    <span class="hljs-comment">// 1.实例化ReentrantLock</span>
+    <span class="hljs-comment">// ReentrantLock类实现了Lock，以及创建锁的lock()方法，释放锁的unlock()方法。</span>
+    ReentrantLock lock = <span class="hljs-keyword">new</span> ReentrantLock();
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">while</span>(<span class="hljs-keyword">true</span>)&#123;
+            <span class="hljs-keyword">try</span>&#123;
+                <span class="hljs-comment">// 2.调用锁定方法lock()</span>
+                lock.lock();
+                <span class="hljs-keyword">if</span>(ticketNum&gt;<span class="hljs-number">0</span>)&#123;
+                    ticketNum--;
+                &#125;<span class="hljs-keyword">else</span>&#123;
+                    <span class="hljs-keyword">break</span>;
+                &#125;
+            &#125;<span class="hljs-keyword">finally</span>&#123;
+                <span class="hljs-comment">// 3.调用解锁方法unlock()</span>
+                lock.unlock();
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             </article>
             <hr>
@@ -378,7 +511,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+                      <a class="hover-with-bg" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%80%BB%E7%BB%93/">多线程总结</a>
                     
                   </div>
                 
@@ -397,7 +530,7 @@
                     
                       <a href="/2020/08/11/project-01/">
                         <span class="hidden-mobile">员工管理系统</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -414,7 +547,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -447,7 +580,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -456,7 +589,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
