@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.1k 字
+      4.2k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      51
+      70
        分钟
     </span>
   
@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：August 14, 2020 pm
+                  本文最后更新于：August 15, 2020 pm
                 
               </p>
             
@@ -710,7 +710,6 @@
 <pre><code class="hljs java"><span class="hljs-keyword">package</span> com.zyz.service.impl;
 
 <span class="hljs-meta">@Service</span>
-<span class="hljs-meta">@Transactional</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">UserService</span> </span>&#123;
 
     <span class="hljs-meta">@Autowired</span>
@@ -803,6 +802,12 @@ register() &#123;
 </blockquote>
 <pre><code class="hljs java"><span class="hljs-meta">@Override</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> User <span class="hljs-title">login</span><span class="hljs-params">(User user)</span> </span>&#123;
+    <span class="hljs-keyword">if</span>(StringUtils.isEmpty(user.getUsername()))&#123;
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"用户名为空！"</span>);
+    &#125;
+    <span class="hljs-keyword">if</span>(StringUtils.isEmpty(user.getPassword()))&#123;
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"密码为空！"</span>);
+     &#125;
     <span class="hljs-comment">// 根据输入的用户名查询用户</span>
     User user1 = userDao.queryUserByName(user.getUsername());
     <span class="hljs-comment">// 判断用户是否存在  使用ObjectUtils!</span>
@@ -900,7 +905,270 @@ register() &#123;
 
 <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>用户：<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">v-show</span>=<span class="hljs-string">"user!=null"</span> <span class="hljs-attr">v-text</span>=<span class="hljs-string">"user.username"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"color: red"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></code></pre>
 
-<h4 id="7、实现退出功能"><a href="#7、实现退出功能" class="headerlink" title="7、实现退出功能"></a>7、实现退出功能</h4><h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><h2 id="部署上线"><a href="#部署上线" class="headerlink" title="部署上线"></a>部署上线</h2>
+<h4 id="7、实现退出功能"><a href="#7、实现退出功能" class="headerlink" title="7、实现退出功能"></a>7、实现退出功能</h4><p>删除localStorage中的用户数据，跳转至登录页</p>
+<pre><code class="hljs js">methods:&#123;
+    <span class="hljs-comment">// 处理安全退出</span>
+          logout()&#123;
+              localStorage.removeItem(<span class="hljs-string">"user"</span>);
+      		  location.href=<span class="hljs-string">"/empAdmin/login.html"</span>;
+          &#125;
+&#125;</code></pre>
+
+<h3 id="二、员工模块"><a href="#二、员工模块" class="headerlink" title="二、员工模块"></a>二、员工模块</h3><h4 id="1、展示所有员工的信息"><a href="#1、展示所有员工的信息" class="headerlink" title="1、展示所有员工的信息"></a>1、展示所有员工的信息</h4><blockquote>
+<p>创建实体类</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> com.zyz.bean;
+
+<span class="hljs-meta">@Data</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Emp</span> </span>&#123;
+    <span class="hljs-keyword">private</span> String id;
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-keyword">private</span> String photoPath;
+    <span class="hljs-keyword">private</span> Double salary;
+    <span class="hljs-keyword">private</span> Integer age;
+&#125;</code></pre>
+
+<blockquote>
+<p>dao层</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> com.zyz.dao;
+
+<span class="hljs-meta">@Mapper</span>
+<span class="hljs-meta">@Repository</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">EmpDao</span> </span>&#123;
+    <span class="hljs-comment">// 查询所有员工</span>
+    <span class="hljs-function">List&lt;Emp&gt; <span class="hljs-title">listAll</span><span class="hljs-params">()</span></span>;
+&#125;</code></pre>
+
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="utf-8" ?&gt;</span>
+<span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">mapper</span></span>
+<span class="hljs-meta">        <span class="hljs-meta-keyword">PUBLIC</span> <span class="hljs-meta-string">"-//mybatis.org//DTD Mapper 3.0//EN"</span></span>
+<span class="hljs-meta">        <span class="hljs-meta-string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span> &gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">namespace</span>=<span class="hljs-string">"com.zyz.dao.EmpDao"</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"listAll"</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">"Emp"</span>&gt;</span>
+        select id,name,photo_path,salary,age from t_emp
+    <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span></code></pre>
+
+<blockquote>
+<p>service层</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> com.zyz.service;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">EmpService</span> </span>&#123;
+    <span class="hljs-comment">// 展示所有员工</span>
+    <span class="hljs-function">List&lt;Emp&gt; <span class="hljs-title">listAll</span><span class="hljs-params">()</span></span>;
+&#125;</code></pre>
+
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> com.zyz.service.impl;
+
+<span class="hljs-meta">@Service</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EmpServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">EmpService</span> </span>&#123;
+
+    <span class="hljs-meta">@Autowired</span>
+    <span class="hljs-keyword">private</span> EmpDao empDao;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Emp&gt; <span class="hljs-title">listAll</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> empDao.listAll();
+    &#125;
+&#125;</code></pre>
+
+<blockquote>
+<p>controller层</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> com.zyz.controller;
+
+<span class="hljs-meta">@RestController</span>
+<span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"emp"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EmpController</span> </span>&#123;
+    <span class="hljs-meta">@Autowired</span>
+    <span class="hljs-keyword">private</span> EmpService empService;
+
+    <span class="hljs-meta">@GetMapping</span>(<span class="hljs-string">"listAll"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Emp&gt; <span class="hljs-title">listAll</span><span class="hljs-params">()</span></span>&#123;
+        List&lt;Emp&gt; emps = empService.listAll();
+        <span class="hljs-keyword">return</span> emps;
+    &#125;
+&#125;</code></pre>
+
+<blockquote>
+<p>前端</p>
+</blockquote>
+<p>在data中添加一个数组，用来存放所有员工<br><img src="/2020/08/11/project-01/6.png" srcset="/img/loading.gif" alt></p>
+<pre><code class="hljs js"><span class="hljs-comment">// 查询员工</span>
+axios.get(<span class="hljs-string">"http://localhost:8080/empAdmin/emp/listAll"</span>)
+    .then(<span class="hljs-function"><span class="hljs-params">res</span>=&gt;</span>&#123;
+    <span class="hljs-comment">// console.log(res.data);</span>
+    <span class="hljs-keyword">this</span>.emps = res.data;
+    <span class="hljs-comment">// console.log(this.emps);</span>
+&#125;)</code></pre>
+
+<pre><code class="hljs html"><span class="hljs-comment">&lt;!--遍历员工列表--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">tr</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">"(emp,index) in emps"</span> <span class="hljs-attr">:key</span>=<span class="hljs-string">"emp.id"</span> <span class="hljs-attr">:class</span>=<span class="hljs-string">"index%2==0?'row1':'row2'"</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">v-text</span>=<span class="hljs-string">"emp.id"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">v-text</span>=<span class="hljs-string">"emp.name"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">:src</span>=<span class="hljs-string">"emp.photoPath"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"height: 60px;"</span>&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">v-text</span>=<span class="hljs-string">"emp.salary"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">v-text</span>=<span class="hljs-string">"emp.age"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"emplist.html"</span>&gt;</span>删除<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-symbol">&amp;nbsp;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"updateEmp.html"</span>&gt;</span>修改<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span></code></pre>
+
+<h4 id="2、添加员工"><a href="#2、添加员工" class="headerlink" title="2、添加员工"></a>2、添加员工</h4><blockquote>
+<p>dao层</p>
+</blockquote>
+<p>添加添加员工的方法：</p>
+<pre><code class="hljs java"><span class="hljs-comment">// 添加员工</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(Emp emp)</span></span>;</code></pre>
+
+<p>对应的mapper文件</p>
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">insert</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"add"</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">"Emp"</span> <span class="hljs-attr">useGeneratedKeys</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">keyProperty</span>=<span class="hljs-string">"id"</span>&gt;</span>
+    insert into t_emp values(#&#123;id&#125;,#&#123;name&#125;,#&#123;photoPath&#125;,#&#123;salary&#125;,#&#123;age&#125;)
+<span class="hljs-tag">&lt;/<span class="hljs-name">insert</span>&gt;</span></code></pre>
+
+<blockquote>
+<p>service层</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(Emp emp)</span></span>;</code></pre>
+
+<pre><code class="hljs java"><span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(Emp emp)</span> </span>&#123;
+    <span class="hljs-keyword">if</span>(StringUtils.isEmpty(emp.getName()))&#123;
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"请输入用户名！"</span>);
+    &#125;
+    <span class="hljs-keyword">if</span>(StringUtils.isEmpty(emp.getSalary()))&#123;
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"请输入薪资！"</span>);
+    &#125;
+    <span class="hljs-keyword">if</span>(StringUtils.isEmpty(emp.getAge()))&#123;
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"请输入年龄！"</span>);
+    &#125;
+    empDao.add(emp);
+&#125;</code></pre>
+
+<blockquote>
+<p>controller层</p>
+</blockquote>
+<pre><code class="hljs yml"><span class="hljs-comment"># 配置上传文件的地址</span>
+<span class="hljs-attr">upload:</span>
+  <span class="hljs-attr">dir:</span>
+    <span class="hljs-string">D:\IDEA_workspace\emps\src\main\resources\static\photos</span></code></pre>
+
+<pre><code class="hljs java"><span class="hljs-comment">// 注入上传用户头像的地址 </span>
+<span class="hljs-meta">@Value</span>(<span class="hljs-string">"$&#123;upload.dir&#125;"</span>)
+ <span class="hljs-keyword">private</span> String realPath;
+
+<span class="hljs-meta">@PostMapping</span>(<span class="hljs-string">"addEmp"</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> Map&lt;String, Object&gt; <span class="hljs-title">addEmp</span><span class="hljs-params">(Emp emp, MultipartFile photo)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;
+    <span class="hljs-comment">// System.out.println("员工信息："+emp);</span>
+    <span class="hljs-comment">// System.out.println("头像："+photo);</span>
+    HashMap&lt;String, Object&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
+    <span class="hljs-keyword">try</span> &#123;
+        <span class="hljs-comment">// 头像保存</span>
+        <span class="hljs-comment">// 1、修改文件名</span>
+        <span class="hljs-keyword">if</span> (!ObjectUtils.isEmpty(photo)) &#123;
+            String newFileName = UUID.randomUUID().toString() + <span class="hljs-string">"."</span> +
+                    FilenameUtils.getExtension(photo.getOriginalFilename());
+            <span class="hljs-comment">// System.out.println(newFileName);</span>
+            <span class="hljs-comment">// 2、图像上传</span>
+            photo.transferTo(<span class="hljs-keyword">new</span> File(realPath, newFileName));
+            <span class="hljs-comment">// 3、设置头像访问地址</span>
+            emp.setPhotoPath(newFileName);
+            <span class="hljs-comment">// 添加员工到数据库中</span>
+            empService.add(emp);
+            map.put(<span class="hljs-string">"status"</span>, <span class="hljs-keyword">true</span>);
+            map.put(<span class="hljs-string">"msg"</span>, <span class="hljs-string">"添加成功！"</span>);
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"请上传头像"</span>);
+        &#125;
+
+    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;
+        e.printStackTrace();
+        map.put(<span class="hljs-string">"status"</span>, <span class="hljs-keyword">false</span>);
+        map.put(<span class="hljs-string">"msg"</span>, <span class="hljs-string">"提示："</span> + e.getMessage());
+    &#125;
+    <span class="hljs-keyword">return</span> map;
+&#125;</code></pre>
+
+<blockquote>
+<p>前端</p>
+</blockquote>
+<p>绑定表单属性，对文件添加引用<br><img src="/2020/08/11/project-01/7.png" srcset="/img/loading.gif" alt></p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
+<span class="actionscript">   <span class="hljs-keyword">var</span> app = <span class="hljs-keyword">new</span> Vue(&#123;</span>
+<span class="actionscript">      el: <span class="hljs-string">"#wrap"</span>,</span>
+      data:&#123;
+<span class="actionscript">         date: <span class="hljs-string">""</span>,</span>
+<span class="actionscript">         user:&#123;&#125;, <span class="hljs-comment">// 存放用户登录信息</span></span>
+<span class="actionscript">         emp:&#123;    <span class="hljs-comment">// 存放员工信息</span></span>
+<span class="actionscript">            name:<span class="hljs-string">""</span>,</span>
+<span class="actionscript">            age:<span class="hljs-string">""</span>,</span>
+<span class="actionscript">            salary:<span class="hljs-string">""</span>,</span>
+<span class="actionscript">            empPhoto:<span class="hljs-string">""</span></span>
+         &#125;,
+      &#125;,
+      created()&#123;
+<span class="javascript">         <span class="hljs-keyword">this</span>.date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getFullYear() + <span class="hljs-string">"/"</span> + (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getMonth() + <span class="hljs-number">1</span>) + <span class="hljs-string">"/"</span> + <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getDate();</span>
+<span class="actionscript">         <span class="hljs-keyword">var</span> userString = localStorage.getItem(<span class="hljs-string">"user"</span>);</span>
+<span class="actionscript">         <span class="hljs-keyword">if</span>(userString!=<span class="hljs-literal">null</span>)&#123;<span class="hljs-comment">// 已登录</span></span>
+<span class="actionscript">            <span class="hljs-comment">// 将json字符串转换为json对象</span></span>
+<span class="javascript">            <span class="hljs-keyword">this</span>.user = <span class="hljs-built_in">JSON</span>.parse(userString);</span>
+<span class="actionscript">         &#125;<span class="hljs-keyword">else</span>&#123;<span class="hljs-comment">// 未登录</span></span>
+<span class="actionscript">            alert(<span class="hljs-string">"请登录！点击确定跳转登录页面"</span>);</span>
+<span class="actionscript">            location.href=<span class="hljs-string">"/empAdmin/login.html"</span>;</span>
+         &#125;
+      &#125;,
+      methods:&#123;
+<span class="actionscript">         <span class="hljs-comment">// 处理安全退出</span></span>
+         logout()&#123;
+<span class="actionscript">            localStorage.removeItem(<span class="hljs-string">"user"</span>);</span>
+<span class="actionscript">            location.href=<span class="hljs-string">"/empAdmin/login.html"</span>;</span>
+         &#125;,
+         addEmp()&#123;
+<span class="actionscript">            <span class="hljs-comment">// console.log(this.emp);</span></span>
+<span class="actionscript">            <span class="hljs-comment">// console.log(this.$refs.empPhoto.files[0]);</span></span>
+<span class="actionscript">            <span class="hljs-comment">// 文件上传必须是post请求  entype必须为multipart/from-data</span></span>
+
+<span class="actionscript">            <span class="hljs-comment">// 构造表单</span></span>
+<span class="actionscript">            <span class="hljs-keyword">var</span> fromData = <span class="hljs-keyword">new</span> FormData();</span>
+<span class="actionscript">            fromData.append(<span class="hljs-string">"name"</span>,<span class="hljs-keyword">this</span>.emp.name);</span>
+<span class="actionscript">            fromData.append(<span class="hljs-string">"age"</span>,<span class="hljs-keyword">this</span>.emp.age);</span>
+<span class="actionscript">            fromData.append(<span class="hljs-string">"salary"</span>,<span class="hljs-keyword">this</span>.emp.salary);</span>
+<span class="actionscript">            fromData.append(<span class="hljs-string">"photo"</span>,<span class="hljs-keyword">this</span>.$refs.empPhoto.files[<span class="hljs-number">0</span>]);</span>
+            axios(&#123;
+<span class="actionscript">               method:<span class="hljs-string">"post"</span>,</span>
+<span class="actionscript">               url:<span class="hljs-string">"http://localhost:8080/empAdmin/emp/addEmp"</span>,</span>
+               data:fromData,
+<span class="actionscript">               headers:&#123;<span class="hljs-string">'content-type'</span>:<span class="hljs-string">'multipart/from-data'</span>&#125;</span>
+<span class="javascript">            &#125;).then(<span class="hljs-function"><span class="hljs-params">res</span>=&gt;</span>&#123;</span>
+<span class="actionscript">               <span class="hljs-comment">// console.log(res.data);</span></span>
+               if(res.data.status)&#123;
+<span class="javascript">                  <span class="hljs-keyword">if</span>(<span class="hljs-built_in">window</span>.confirm(res.data.msg+<span class="hljs-string">"点击跳转员工列表页面"</span>))&#123;</span>
+<span class="actionscript">                     location.href=<span class="hljs-string">"/empAdmin/emplist.html"</span>;</span>
+<span class="actionscript">                  &#125;<span class="hljs-keyword">else</span>&#123;</span>
+                     location.reload();
+                  &#125;
+<span class="actionscript">               &#125;<span class="hljs-keyword">else</span>&#123;</span>
+                  alert(res.data.msg);
+               &#125;
+            &#125;)
+         &#125;
+      &#125;
+   &#125;)
+<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+
+<p>修改显示用户头像的标签路径</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">:src</span>=<span class="hljs-string">"'/empAdmin/photos/'+emp.photoPath"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"height: 60px;"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span></code></pre>
+
+<h4 id="3、删除员工"><a href="#3、删除员工" class="headerlink" title="3、删除员工"></a>3、删除员工</h4><h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><h1 id="部署上线"><a href="#部署上线" class="headerlink" title="部署上线"></a>部署上线</h1>
             </article>
             <hr>
             <div>
@@ -926,7 +1194,7 @@ register() &#123;
                       <a href="/2020/08/13/thread/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">多线程</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </div>
@@ -935,7 +1203,7 @@ register() &#123;
                     
                       <a href="/2020/08/11/collection/">
                         <span class="hidden-mobile">Collection</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -952,7 +1220,7 @@ register() &#123;
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -985,7 +1253,7 @@ register() &#123;
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -994,7 +1262,7 @@ register() &#123;
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
