@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.2k 字
+      5.8k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      70
+      94
        分钟
     </span>
   
@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：August 15, 2020 pm
+                  本文最后更新于：August 16, 2020 pm
                 
               </p>
             
@@ -287,10 +287,10 @@
 <span class="hljs-comment">---------------------dao</span>
 <span class="hljs-comment">---------------------service</span>
 <span class="hljs-comment">---------------------controller</span>
+<span class="hljs-comment">---------------------utils</span>
+<span class="hljs-comment">---------------------cache</span>
 <span class="hljs-deletion">-src/main/resource</span>
 <span class="hljs-comment">------------------application.yml </span>
-<span class="hljs-comment">------------------application-dev.yml  测试环境</span>
-<span class="hljs-comment">------------------application-prod.yml 生产环境</span>
 <span class="hljs-comment">------------------com.zyz.mapper/   mapper配置文件</span>
 <span class="hljs-comment">------------------com.zyz.sql/      数据库文件</span>
 <span class="hljs-comment">------------------static/          静态资源</span></code></pre>
@@ -1168,7 +1168,335 @@ axios.get(<span class="hljs-string">"http://localhost:8080/empAdmin/emp/listAll"
    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">:src</span>=<span class="hljs-string">"'/empAdmin/photos/'+emp.photoPath"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"height: 60px;"</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span></code></pre>
 
-<h4 id="3、删除员工"><a href="#3、删除员工" class="headerlink" title="3、删除员工"></a>3、删除员工</h4><h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><h1 id="部署上线"><a href="#部署上线" class="headerlink" title="部署上线"></a>部署上线</h1>
+<h4 id="3、删除员工"><a href="#3、删除员工" class="headerlink" title="3、删除员工"></a>3、删除员工</h4><blockquote>
+<p>dao层</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-comment">// 删除员工</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">delete</span><span class="hljs-params">(String id)</span></span>;
+
+<span class="hljs-comment">// 根据id查询员工</span>
+<span class="hljs-function">Emp <span class="hljs-title">queryEmpById</span><span class="hljs-params">(String id)</span></span>;</code></pre>
+
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">delete</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"delete"</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">"String"</span> &gt;</span>
+    delete from t_emp where id = #&#123;id&#125;
+<span class="hljs-tag">&lt;/<span class="hljs-name">delete</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"queryEmpById"</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">"Emp"</span>&gt;</span>
+    select id,name,photo_path,salary,age from t_emp
+    where id = #&#123;id&#125;
+<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre>
+
+<blockquote>
+<p>service层</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-comment">// 删除员工</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">delete</span><span class="hljs-params">(String id)</span></span>;
+
+<span class="hljs-comment">// 根据id查询员工</span>
+<span class="hljs-function">Emp <span class="hljs-title">queryEmpById</span><span class="hljs-params">(String id)</span></span>;</code></pre>
+
+<pre><code class="hljs java"><span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">delete</span><span class="hljs-params">(String id)</span> </span>&#123;
+    empDao.delete(id);
+&#125;
+
+<span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> Emp <span class="hljs-title">queryEmpById</span><span class="hljs-params">(String id)</span> </span>&#123;
+    <span class="hljs-keyword">return</span> empDao.queryEmpById(id);
+&#125;</code></pre>
+
+<blockquote>
+<p>controller层</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-meta">@GetMapping</span>(<span class="hljs-string">"delete"</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> Map&lt;String,Object&gt; <span class="hljs-title">delete</span><span class="hljs-params">(String id)</span></span>&#123;
+    HashMap&lt;String, Object&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
+    <span class="hljs-keyword">try</span> &#123;
+        <span class="hljs-comment">// 删除员工头像</span>
+        Emp emp = empService.queryEmpById(id);
+        File file = <span class="hljs-keyword">new</span> File(emp.getPhotoPath());
+        <span class="hljs-keyword">if</span>(file.exists())&#123;
+            file.delete();
+        &#125;
+        empService.delete(id);
+        map.put(<span class="hljs-string">"status"</span>,<span class="hljs-keyword">true</span>);
+        map.put(<span class="hljs-string">"msg"</span>,<span class="hljs-string">"删除成功"</span>);
+    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;
+        e.printStackTrace();
+        map.put(<span class="hljs-string">"status"</span>,<span class="hljs-keyword">false</span>);
+        map.put(<span class="hljs-string">"msg"</span>,<span class="hljs-string">"删除失败"</span>);
+    &#125;
+    <span class="hljs-keyword">return</span> map;
+&#125;</code></pre>
+
+<blockquote>
+<p>前端</p>
+</blockquote>
+<pre><code class="hljs html">// 删除员工
+deleteEmp(id) &#123;
+    if (window.confirm("确认删除吗？")) &#123;
+        axios.get("http://localhost:8080/empAdmin/emp/delete?id=" + id)
+            .then(res =&gt; &#123;
+                if (res.data.status) &#123;
+                    alert(res.data.msg);
+                    location.reload();
+                &#125; else &#123;
+                    alert(res.data.msg);
+                &#125;
+            &#125;)
+    &#125;
+&#125;</code></pre>
+
+<p>参数传递：</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"javascript:;"</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"deleteEmp(emp.id)"</span>&gt;</span>删除<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></code></pre>
+
+<h4 id="4、修改员工"><a href="#4、修改员工" class="headerlink" title="4、修改员工"></a>4、修改员工</h4><blockquote>
+<p>dao</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-comment">// 修改员工</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">(Emp emp)</span></span>;</code></pre>
+
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">update</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"update"</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">"Emp"</span>&gt;</span>
+    update t_emp set
+    name=#&#123;name&#125;,photo_path=#&#123;photoPath&#125;,salary=#&#123;salary&#125;,age=#&#123;age&#125;
+    where id = #&#123;id&#125;
+<span class="hljs-tag">&lt;/<span class="hljs-name">update</span>&gt;</span></code></pre>
+
+<blockquote>
+<p>service</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-comment">// 修改员工</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">(Emp emp)</span></span>;</code></pre>
+
+<pre><code class="hljs java"><span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">(Emp emp)</span> </span>&#123;
+    <span class="hljs-keyword">if</span>(StringUtils.isEmpty(emp.getName()))&#123;
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"请输入用户名！"</span>);
+    &#125;
+    <span class="hljs-keyword">if</span>(StringUtils.isEmpty(emp.getSalary()))&#123;
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"请输入薪资！"</span>);
+    &#125;
+    <span class="hljs-keyword">if</span>(StringUtils.isEmpty(emp.getAge()))&#123;
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"请输入年龄！"</span>);
+    &#125;
+    empDao.update(emp);
+&#125;</code></pre>
+
+<blockquote>
+<p>controller</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-meta">@PostMapping</span>(<span class="hljs-string">"update"</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> Map&lt;String, Object&gt; <span class="hljs-title">update</span><span class="hljs-params">(Emp emp, MultipartFile photo)</span> </span>&#123;
+    HashMap&lt;String, Object&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
+    <span class="hljs-keyword">try</span> &#123;
+        <span class="hljs-comment">// 头像保存</span>
+        <span class="hljs-comment">// 1、修改文件名</span>
+        <span class="hljs-keyword">if</span> (!ObjectUtils.isEmpty(photo)) &#123;
+            String newFileName = UUID.randomUUID().toString() + <span class="hljs-string">"."</span> +
+                    FilenameUtils.getExtension(photo.getOriginalFilename());
+            <span class="hljs-comment">// 2、图像上传</span>
+            photo.transferTo(<span class="hljs-keyword">new</span> File(realPath, newFileName));
+            <span class="hljs-comment">// 3、设置头像访问地址</span>
+            emp.setPhotoPath(newFileName);
+        &#125;
+        empService.update(emp);
+        map.put(<span class="hljs-string">"status"</span>, <span class="hljs-keyword">true</span>);
+        map.put(<span class="hljs-string">"msg"</span>, <span class="hljs-string">"修改成功！"</span>);
+    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;
+        e.printStackTrace();
+        map.put(<span class="hljs-string">"status"</span>, <span class="hljs-keyword">false</span>);
+        map.put(<span class="hljs-string">"msg"</span>, <span class="hljs-string">"提示："</span>+e.getMessage());
+    &#125;
+    <span class="hljs-keyword">return</span> map;
+&#125;</code></pre>
+
+<blockquote>
+<p>前端</p>
+</blockquote>
+<p>从员工列表中选中员工的id传递给修改页面：</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"javascript:;"</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"updateEmp(emp.id)"</span>&gt;</span>修改<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></code></pre>
+
+<pre><code class="hljs js"><span class="hljs-comment">// 修改员工</span>
+updateEmp(id)&#123;
+    location.href=<span class="hljs-string">"/empAdmin/updateEmp.html?id="</span>+id;
+&#125;</code></pre>
+
+<p>在修改页面创建前(created()方法中)发起获取当前员工信息的请求</p>
+<pre><code class="hljs js"><span class="hljs-comment">// 获取员工id</span>
+<span class="hljs-keyword">var</span> start = location.href.lastIndexOf(<span class="hljs-string">"="</span>);
+<span class="hljs-keyword">var</span> id = location.href.substring(start+<span class="hljs-number">1</span>);
+<span class="hljs-comment">// console.log(id);</span>
+<span class="hljs-comment">// 查询当前员工显示在页面上</span>
+axios.get(<span class="hljs-string">"http://localhost:8080/empAdmin/emp/getEmp?id="</span>+id)
+.then(<span class="hljs-function"><span class="hljs-params">res</span>=&gt;</span>&#123;
+    <span class="hljs-built_in">console</span>.log(res.data)
+    <span class="hljs-keyword">this</span>.emp = res.data;
+&#125;)</code></pre>
+
+<p>使用v-model将返回的json数据绑定表单中的属性值</p>
+<p>旧照片的显示和新照片上传<br><img src="/2020/08/11/project-01/8.png" srcset="/img/loading.gif" alt></p>
+<p>绑定更新事件</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"updateEmp"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"更 新"</span>/&gt;</span></code></pre>
+
+<pre><code class="hljs js"><span class="hljs-comment">// 更新员工信息</span>
+updateEmp() &#123;
+    <span class="hljs-keyword">var</span> formData = <span class="hljs-keyword">new</span> FormData();
+    formData.append(<span class="hljs-string">"id"</span>,<span class="hljs-keyword">this</span>.emp.id);
+    formData.append(<span class="hljs-string">"name"</span>,<span class="hljs-keyword">this</span>.emp.name);
+    formData.append(<span class="hljs-string">"photoPath"</span>,<span class="hljs-keyword">this</span>.emp.photoPath)
+    formData.append(<span class="hljs-string">"photo"</span>,<span class="hljs-keyword">this</span>.$refs.empPhoto.files[<span class="hljs-number">0</span>]);
+    formData.append(<span class="hljs-string">"salary"</span>,<span class="hljs-keyword">this</span>.emp.salary);
+    formData.append(<span class="hljs-string">"age"</span>,<span class="hljs-keyword">this</span>.emp.age);
+    <span class="hljs-built_in">console</span>.log(formData);
+    axios(&#123;
+        method: <span class="hljs-string">"post"</span>,
+        url:<span class="hljs-string">"http://localhost:8080/empAdmin/emp/update"</span>,
+        data: formData,
+        headers:&#123;<span class="hljs-string">'content-type'</span>:<span class="hljs-string">'multipart/form-data'</span>&#125;
+    &#125;).then(<span class="hljs-function"><span class="hljs-params">res</span>=&gt;</span>&#123;
+        <span class="hljs-keyword">if</span>(res.data.status)&#123;
+            <span class="hljs-keyword">if</span>(<span class="hljs-built_in">window</span>.confirm(res.data.msg))&#123;
+                location.href=<span class="hljs-string">"/empAdmin/emplist.html"</span>;
+            &#125;
+        &#125;<span class="hljs-keyword">else</span>&#123;
+            alert(res.data.msg);
+        &#125;
+    &#125;)
+&#125;</code></pre>
+
+<h3 id="整合Redis缓存"><a href="#整合Redis缓存" class="headerlink" title="整合Redis缓存"></a>整合Redis缓存</h3><p>1、导入依赖：</p>
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+
+<p>2、配置Redis访问ip和端口</p>
+<pre><code class="hljs yml"><span class="hljs-attr">spring:</span>
+  <span class="hljs-attr">datasource:</span>
+    <span class="hljs-attr">username:</span> <span class="hljs-string">root</span>
+    <span class="hljs-attr">password:</span> <span class="hljs-number">2824199842</span>
+    <span class="hljs-attr">url:</span> <span class="hljs-string">jdbc:mysql://127.0.0.1:3306/emp?serverTimezone=Asia/Shanghai</span>
+    <span class="hljs-attr">driver-class-name:</span> <span class="hljs-string">com.mysql.cj.jdbc.Driver</span>
+    <span class="hljs-attr">type:</span> <span class="hljs-string">com.alibaba.druid.pool.DruidDataSource</span>
+  <span class="hljs-attr">redis:</span>
+    <span class="hljs-attr">host:</span> <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>
+    <span class="hljs-attr">port:</span> <span class="hljs-number">6379</span></code></pre>
+
+<p>3、创建RedisCache类实现mybatis中的Cache接口，对操纵mybatis缓存</p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> com.zyz.cache;
+
+<span class="hljs-comment">// 使用redis操纵mybatis缓存</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RedisCache</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Cache</span> </span>&#123;
+    <span class="hljs-comment">// 对应mapper文件中的namespace</span>
+    <span class="hljs-keyword">private</span> String id;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">RedisCache</span><span class="hljs-params">(String id)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.id = id;
+    &#125;
+
+    <span class="hljs-comment">// 封装获取redisTemplate的方法</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> RedisTemplate <span class="hljs-title">getRedisTemplate</span><span class="hljs-params">()</span></span>&#123;
+        RedisTemplate redisTemplate =(RedisTemplate) ApplicationContextUtils.getBean(<span class="hljs-string">"redisTemplate"</span>);
+        <span class="hljs-comment">// 指定序列化方式</span>
+        redisTemplate.setKeySerializer(<span class="hljs-keyword">new</span> StringRedisSerializer());
+        redisTemplate.setHashKeySerializer(<span class="hljs-keyword">new</span> StringRedisSerializer());
+        <span class="hljs-keyword">return</span> redisTemplate;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getId</span><span class="hljs-params">()</span> </span>&#123;
+        System.out.println(<span class="hljs-string">"当前缓存的id："</span>+id);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.id;
+    &#125;
+
+    <span class="hljs-comment">// 放入redis缓存</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">putObject</span><span class="hljs-params">(Object key, Object value)</span> </span>&#123;
+        System.out.println(<span class="hljs-string">"放入缓存的key-value"</span>+key+<span class="hljs-string">"-"</span>+value);
+        <span class="hljs-comment">// 获取redisTemplate</span>
+        getRedisTemplate().opsForHash().put(id,key.toString(),value);
+    &#125;
+
+    <span class="hljs-comment">// 从redis缓存中获取</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">getObject</span><span class="hljs-params">(Object key)</span> </span>&#123;
+        System.out.println(<span class="hljs-string">"获取缓存的key-value"</span>+key+<span class="hljs-string">"-"</span>+getRedisTemplate().opsForHash().get(id,key.toString()));
+        <span class="hljs-keyword">return</span> getRedisTemplate().opsForHash().get(id,key.toString());
+    &#125;
+
+    <span class="hljs-comment">// 删除指定缓存信息</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">removeObject</span><span class="hljs-params">(Object o)</span> </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+    &#125;
+
+    <span class="hljs-comment">// 清除缓存信息</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">clear</span><span class="hljs-params">()</span> </span>&#123;
+        System.out.println(<span class="hljs-string">"清除缓存"</span>);
+        getRedisTemplate().delete(id);
+    &#125;
+
+    <span class="hljs-comment">// 缓存大小</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getSize</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> getRedisTemplate().opsForValue().size(id).intValue();
+    &#125;
+&#125;</code></pre>
+
+<p>4、创建工具类applicationContextUtils实现ApplicationContextAware获取工厂实例，并从中获取需要的实现类</p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> com.zyz.utils;
+
+<span class="hljs-meta">@Component</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApplicationContextUtils</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ApplicationContextAware</span> </span>&#123;
+    
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> ApplicationContext applicationContext;
+    <span class="hljs-comment">// 获取当前工厂</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setApplicationContext</span><span class="hljs-params">(ApplicationContext applicationContext)</span> <span class="hljs-keyword">throws</span> BeansException </span>&#123;
+        <span class="hljs-keyword">this</span>.applicationContext = applicationContext;
+    &#125;
+
+    <span class="hljs-comment">// 获取工厂中的实现类</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Object <span class="hljs-title">getBean</span><span class="hljs-params">(String name)</span></span>&#123;
+        <span class="hljs-keyword">return</span> applicationContext.getBean(name);
+    &#125;
+&#125;</code></pre>
+
+<p>存储在缓存中的实体类必须实现Serializable接口<br><img src="/2020/08/11/project-01/9.png" srcset="/img/loading.gif" alt></p>
+<p>5、在mapper文件中设置自定义的Redis缓存</p>
+<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 使用自定义的Redis缓存 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">cache</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"com.zyz.cache.RedisCache"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">cache</span>&gt;</span></code></pre>
+
+<p><img src="/2020/08/11/project-01/10.png" srcset="/img/loading.gif" alt></p>
+<p><img src="/2020/08/11/project-01/11.png" srcset="/img/loading.gif" alt></p>
+<h1 id="项目员工展示界面"><a href="#项目员工展示界面" class="headerlink" title="项目员工展示界面"></a>项目员工展示界面</h1><p><img src="/2020/08/11/project-01/12.png" srcset="/img/loading.gif" alt></p>
+<h1 id="项目总结"><a href="#项目总结" class="headerlink" title="项目总结"></a>项目总结</h1><p>做了什么？</p>
+<ul>
+<li>实现了管理员的注册和登录</li>
+<li>员工的增删改查功能</li>
+</ul>
+<p>学到了什么？</p>
+<ul>
+<li><p>使用了Redis作为Mybatis的缓存，以前只是对Mybatis的缓存机制停留在了解阶段，这次使用上了之前学习的Redis数据库。</p>
+</li>
+<li><p>使用了vue对页面进行渲染，axios发起异步请求，熟悉了前后端分离系统的数据交互模式</p>
+</li>
+<li><p>学习到了使用ObjectUtils，StringUtils对一些属性进行非空判断</p>
+</li>
+<li><p>使用 Exception+ResponseBody，讲异常返回给前端，给用户友好的提示</p>
+</li>
+<li><p>使用localStorage保存用户登录信息</p>
+</li>
+<li><p>在vue中构造表单，填充数据和文件，后端使用MultipartFile类接收前端的文件，并上传值到指定目录</p>
+</li>
+</ul>
+<p>遇到的问题，怎么解决的？</p>
+<ul>
+<li>上传用户照片的问题，在指定的上传目录发现了文件的存在，可是却在浏览器中显示不出来，通过查看数据库中员工表的信息，发现其他属性都存在，只有照片为空，通过在controller的添加方法打上断点，调试发现图片并没有保存到员工对象中，通过添加相应的set方法，最后解决了问题。</li>
+<li>在项目中我使用了date来显示当前的日期，而对前后端的交互中要频繁使用到data变量，在一次测试过程中就一不小心写错了，检查了很长事件才发现，真的差之一毫，谬之千里啊！</li>
+</ul>
+
             </article>
             <hr>
             <div>
@@ -1178,7 +1506,7 @@ axios.get(<span class="hljs-string">"http://localhost:8080/empAdmin/emp/listAll"
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/springboot%E9%A1%B9%E7%9B%AE/">springboot项目</a>
+                      <a class="hover-with-bg" href="/tags/springboot-vue%E9%A1%B9%E7%9B%AE/">springboot-vue项目</a>
                     
                   </div>
                 
@@ -1194,7 +1522,7 @@ axios.get(<span class="hljs-string">"http://localhost:8080/empAdmin/emp/listAll"
                       <a href="/2020/08/13/thread/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">多线程</span>
-                        <span class="visible-mobile">上一篇</span>
+                        <span class="visible-mobile">Previous</span>
                       </a>
                     
                   </div>
@@ -1203,7 +1531,7 @@ axios.get(<span class="hljs-string">"http://localhost:8080/empAdmin/emp/listAll"
                     
                       <a href="/2020/08/11/collection/">
                         <span class="hidden-mobile">Collection</span>
-                        <span class="visible-mobile">下一篇</span>
+                        <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -1220,7 +1548,7 @@ axios.get(<span class="hljs-string">"http://localhost:8080/empAdmin/emp/listAll"
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
   <div id="tocbot"></div>
 </div>
 
@@ -1253,7 +1581,7 @@ axios.get(<span class="hljs-string">"http://localhost:8080/empAdmin/emp/listAll"
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -1262,7 +1590,7 @@ axios.get(<span class="hljs-string">"http://localhost:8080/empAdmin/emp/listAll"
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
