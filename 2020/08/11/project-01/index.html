@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      5.8k 字
+      5.9k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      94
+      96
        分钟
     </span>
   
@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：August 16, 2020 pm
+                  本文最后更新于：August 18, 2020 pm
                 
               </p>
             
@@ -324,7 +324,7 @@
 
 <span class="hljs-attr">mybatis:</span>
   <span class="hljs-attr">type-aliases-package:</span> <span class="hljs-string">com.zyz.bean</span>
-  <span class="hljs-attr">mapper-locations:</span>  <span class="hljs-string">classpath:com/zyz/mapper/*.xml</span> <span class="hljs-comment"># 要在接口中添加@Mapper注解</span>
+  <span class="hljs-attr">mapper-locations:</span> <span class="hljs-string">classpath:com/zyz/mapper/*.xml</span> <span class="hljs-comment"># 要在接口中添加@Mapper注解</span>
   <span class="hljs-attr">configuration:</span>
     <span class="hljs-attr">map-underscore-to-camel-case:</span> <span class="hljs-literal">true</span>
 
@@ -881,6 +881,24 @@ register() &#123;
 <p>在前后端未分离的时候，通常都是通过服务端的HttpSession来保存这些信息，服务端在创建了Session的同时，会为该Session生成唯一的sessionId并保存到浏览器中，在随后的请求通过携带sessionId重新获得已经创建的Session；</p>
 <p>而在前后端分离的系统中，前端与后端分别部署在不同的服务器上，前后端交互时，前端请求不会带上后端sessionId，session获取不到。因此将信息保存至浏览器中的localStorage中</p>
 <p>在controller中保存用户信息：<br><img src="/2020/08/11/project-01/5.png" srcset="/img/loading.gif" alt></p>
+<p>登录成功后保存用户信息到localStorage:</p>
+<pre><code class="hljs js">login()&#123;
+   <span class="hljs-comment">// console.log(this.user);</span>
+   axios.post(<span class="hljs-string">"http://localhost:8080/empAdmin/user/login"</span>,<span class="hljs-keyword">this</span>.user)
+   .then(<span class="hljs-function"><span class="hljs-params">res</span>=&gt;</span>&#123;
+      <span class="hljs-comment">// console.log(res.data);</span>
+      <span class="hljs-keyword">if</span>(res.data.status)&#123;
+         alert(res.data.msg+<span class="hljs-string">"点击确定跳转员工管理页面！"</span>);
+         <span class="hljs-comment">// 将用户信息存放指localStorage中</span>
+         <span class="hljs-comment">// JSON.stringify()将json对象转换为json字符串</span>
+         localStorage.setItem(<span class="hljs-string">"user"</span>,<span class="hljs-built_in">JSON</span>.stringify(res.data.user));
+         location.href=<span class="hljs-string">"/empAdmin/emplist.html"</span>;
+      &#125;<span class="hljs-keyword">else</span>&#123;
+         alert(res.data.msg+<span class="hljs-string">"点击确定重新登录！"</span>)
+      &#125;
+   &#125;)
+&#125;</code></pre>
+
 <p>在员工展示页面显示登录名：</p>
 <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
 <span class="actionscript">   <span class="hljs-keyword">var</span> app = <span class="hljs-keyword">new</span> Vue(&#123;</span>
@@ -1232,15 +1250,15 @@ axios.get(<span class="hljs-string">"http://localhost:8080/empAdmin/emp/listAll"
 <blockquote>
 <p>前端</p>
 </blockquote>
-<pre><code class="hljs html">// 删除员工
+<pre><code class="hljs js"><span class="hljs-comment">// 删除员工</span>
 deleteEmp(id) &#123;
-    if (window.confirm("确认删除吗？")) &#123;
-        axios.get("http://localhost:8080/empAdmin/emp/delete?id=" + id)
-            .then(res =&gt; &#123;
-                if (res.data.status) &#123;
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">window</span>.confirm(<span class="hljs-string">"确认删除吗？"</span>)) &#123;
+        axios.get(<span class="hljs-string">"http://localhost:8080/empAdmin/emp/delete?id="</span> + id)
+            .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;
+                <span class="hljs-keyword">if</span> (res.data.status) &#123;
                     alert(res.data.msg);
                     location.reload();
-                &#125; else &#123;
+                &#125; <span class="hljs-keyword">else</span> &#123;
                     alert(res.data.msg);
                 &#125;
             &#125;)
@@ -1470,7 +1488,13 @@ updateEmp() &#123;
 
 <p><img src="/2020/08/11/project-01/10.png" srcset="/img/loading.gif" alt></p>
 <p><img src="/2020/08/11/project-01/11.png" srcset="/img/loading.gif" alt></p>
-<h1 id="项目员工展示界面"><a href="#项目员工展示界面" class="headerlink" title="项目员工展示界面"></a>项目员工展示界面</h1><p><img src="/2020/08/11/project-01/12.png" srcset="/img/loading.gif" alt></p>
+<h1 id="主要界面"><a href="#主要界面" class="headerlink" title="主要界面"></a>主要界面</h1><p><img src="/2020/08/11/project-01/13.png" srcset="/img/loading.gif" style="zoom:80%;"><img src="/2020/08/11/project-01/14.png" srcset="/img/loading.gif" alt></p>
+<img src="/2020/08/11/project-01/12.png" srcset="/img/loading.gif" style="zoom:80%;">
+
+<img src="/2020/08/11/project-01/16.png" srcset="/img/loading.gif" style="zoom:80%;">
+
+<img src="/2020/08/11/project-01/15.png" srcset="/img/loading.gif" style="zoom:80%;">
+
 <h1 id="项目总结"><a href="#项目总结" class="headerlink" title="项目总结"></a>项目总结</h1><p>做了什么？</p>
 <ul>
 <li>实现了管理员的注册和登录</li>

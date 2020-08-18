@@ -19,7 +19,7 @@
   <meta name="description" content="">
   <meta name="author" content="sweetboyZhang">
   <meta name="keywords" content="">
-  <title>递归 - sweetboyZhang&#39;s Blog</title>
+  <title>常见排序算法 - sweetboyZhang&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -154,8 +154,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-07-03 14:29">
-      July 3, 2020 pm
+    <time datetime="2020-08-17 14:19">
+      August 17, 2020 pm
     </time>
   </div>
 
@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      233 字
+      1.2k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      17
        分钟
     </span>
   
@@ -215,45 +215,184 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：August 12, 2020 am
+                  本文最后更新于：August 18, 2020 pm
                 
               </p>
             
             <article class="markdown-body">
-              <p>递归就是方法自己调用自己，每次调用时传入不同的变量。</p>
-<p>递归调用规则：<br>1、当程序执行到一个方法时，就会开辟一个独立的空间(栈)<br>2、每个空间的数据(局部变量)，是独立的。<a id="more"></a><br>3、如果方法中使用的是引用数据类型的变量，就会共享该变量。<br>4、递归必须向退出递归的条件逼近<br>5、当一个方法执行完毕，或者遇到return，就会返回到调用它的那个方法中，继续执行该方法。</p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RecursionTest</span> </span>&#123;
+              <h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><a id="more"></a>
+
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BubbleSort</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
-        test(<span class="hljs-number">4</span>);
-        <span class="hljs-comment">// System.out.println(factorial(3));</span>
-    &#125;
+        <span class="hljs-keyword">int</span>[] arr = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">5</span>&#125;;
+        <span class="hljs-comment">/**</span>
+<span class="hljs-comment">         *  算法思路：</span>
+<span class="hljs-comment">         *  假设从小到大排列：</span>
+<span class="hljs-comment">         *  对数组中的每个数进行两两比较，将如果前一个数大于后一个数，则交换位置，</span>
+<span class="hljs-comment">         *  这样一趟比较下来，最大的那个数就排到了最后</span>
+<span class="hljs-comment">         *  也就是说，i个数据进行 i-1 趟比较就完成了排序</span>
+<span class="hljs-comment">         */</span>
 
-    <span class="hljs-comment">// 打印</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;
-        <span class="hljs-keyword">if</span> (n &gt; <span class="hljs-number">2</span>) &#123;
-            test(n - <span class="hljs-number">1</span>);
+        <span class="hljs-comment">// 第1趟  5次比较</span>
+       <span class="hljs-comment">/* for (int i = 0; i &lt; 5; i++) &#123;</span>
+<span class="hljs-comment">            if (arr[i] &gt; arr[i + 1]) &#123;</span>
+<span class="hljs-comment">                int temp = arr[i];</span>
+<span class="hljs-comment">                arr[i] = arr[i + 1];</span>
+<span class="hljs-comment">                arr[i + 1] = temp;</span>
+<span class="hljs-comment">            &#125;</span>
+<span class="hljs-comment">        &#125;</span>
+<span class="hljs-comment">        System.out.println(Arrays.toString(arr));// 最大的数排到了最后[5, 4, 3, 2, 1, 6]*/</span>
+        <span class="hljs-comment">// 第2趟  4次比较</span>
+        <span class="hljs-comment">// 第3趟  3次比较</span>
+        <span class="hljs-comment">// ......</span>
+        <span class="hljs-comment">// 第n-1趟  6-(i-1)=5-n次比较  =&gt;arr.length-1-i次</span>
+
+        <span class="hljs-comment">// 将两层循环嵌套</span>
+        <span class="hljs-comment">/**</span>
+<span class="hljs-comment">         * 改进：</span>
+<span class="hljs-comment">         * 假如一趟比较下来，没有发生过一次交换，那么可以认为数组已经排好序列了</span>
+<span class="hljs-comment">         * 可以设置一个标志位，发生了比较就修改标志位，如果在某趟比较中没有发生交换，则直接结束循环</span>
+<span class="hljs-comment">         */</span>
+        <span class="hljs-keyword">boolean</span> flag;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; arr.length - <span class="hljs-number">1</span>; i++) &#123;
+            flag = <span class="hljs-keyword">true</span>;
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; arr.length - <span class="hljs-number">1</span> - i; j++) &#123;
+                <span class="hljs-keyword">if</span> (arr[j] &gt; arr[j + <span class="hljs-number">1</span>]) &#123;
+                    flag = <span class="hljs-keyword">false</span>;
+                    <span class="hljs-keyword">int</span> temp = arr[j];
+                    arr[j] = arr[j + <span class="hljs-number">1</span>];
+                    arr[j + <span class="hljs-number">1</span>] = temp;
+                &#125;
+            &#125;
+            <span class="hljs-keyword">if</span>(flag)&#123;
+                <span class="hljs-keyword">break</span>;
+            &#125;
+            System.out.println(<span class="hljs-string">"第"</span> + (i + <span class="hljs-number">1</span>) + <span class="hljs-string">"趟比较："</span> + Arrays.toString(arr));
         &#125;
-        System.out.println(<span class="hljs-string">"n="</span> + n);
-
-    &#125;
-
-    <span class="hljs-comment">// 阶乘</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">factorial</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span></span>&#123;
-        <span class="hljs-keyword">if</span>(n==<span class="hljs-number">1</span>)&#123;
-            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
-        &#125;<span class="hljs-keyword">else</span>&#123;
-            <span class="hljs-keyword">return</span> factorial(n-<span class="hljs-number">1</span>)*n;
-        &#125;
+        System.out.println(<span class="hljs-string">"最终结果："</span> + Arrays.toString(arr));
     &#125;
 &#125;</code></pre>
 
-<p><img src="/2020/07/03/dataStructure-05/1.png" srcset="/img/loading.gif" alt></p>
-<p>输出结果：</p>
-<pre><code class="hljs ini"><span class="hljs-attr">n</span>=<span class="hljs-number">2</span>
-<span class="hljs-attr">n</span>=<span class="hljs-number">3</span>
-<span class="hljs-attr">n</span>=<span class="hljs-number">4</span></code></pre>
+<p>相同的数据在排序前后，如果顺序不发生变化，那么就是稳定的。</p>
+<p>由此可见，冒泡排序是稳定的。</p>
+<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SelectSort</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+        <span class="hljs-keyword">int</span>[] arr = &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>&#125;;
+        <span class="hljs-comment">/**</span>
+<span class="hljs-comment">         *算法思路：</span>
+<span class="hljs-comment">         * 假设从大到小排列：</span>
+<span class="hljs-comment">         * 第1轮从数组的第1个数到最后中选择出一个最大的值，与第1个数进行交换，</span>
+<span class="hljs-comment">         * 第2轮从数组的第2个数到最后一个数选择一个最大的值，与第2个数交换</span>
+<span class="hljs-comment">         * ...</span>
+<span class="hljs-comment">         * 第i-1轮从数组的第i-1个数到最后一个数选择一个最大的值，与第i-1个数交换</span>
+<span class="hljs-comment">         */</span>
 
-<p>加入else后输出n=2</p>
+<span class="hljs-comment">/*        // 第1轮  从第1个数开始到结束</span>
+<span class="hljs-comment">        int max = 0;</span>
+<span class="hljs-comment">        for (int i = 0; i &lt; 6; i++) &#123;</span>
+<span class="hljs-comment">            if(max&lt;arr[i])&#123;</span>
+<span class="hljs-comment">                max = arr[i];</span>
+<span class="hljs-comment">            &#125;</span>
+<span class="hljs-comment">        &#125;</span>
+<span class="hljs-comment">        // 将最大的数与第1个数交换</span>
+<span class="hljs-comment">        int temp = arr[5];</span>
+<span class="hljs-comment">        arr[5] = arr[0];</span>
+<span class="hljs-comment">        arr[0] = temp;</span>
+<span class="hljs-comment">        System.out.println("第一轮："+ Arrays.toString(arr));</span>
+<span class="hljs-comment"></span>
+<span class="hljs-comment">        //第2轮  从第2个开始到结束</span>
+<span class="hljs-comment">        max = 0;</span>
+<span class="hljs-comment">        for (int i = 1; i &lt;6 ; i++) &#123;</span>
+<span class="hljs-comment">            if(max&lt;arr[i])&#123;</span>
+<span class="hljs-comment">                max = arr[i];</span>
+<span class="hljs-comment">            &#125;</span>
+<span class="hljs-comment">        &#125;</span>
+<span class="hljs-comment">        // 将最大的数与第2个数交换</span>
+<span class="hljs-comment">        temp = arr[4];</span>
+<span class="hljs-comment">        arr[4] = arr[1];</span>
+<span class="hljs-comment">        arr[1] = temp;</span>
+<span class="hljs-comment">        System.out.println("第二轮："+ Arrays.toString(arr));*/</span>
+
+
+        <span class="hljs-comment">// 循环嵌套</span>
+        <span class="hljs-keyword">int</span> max = <span class="hljs-number">0</span>;<span class="hljs-comment">// 最大数</span>
+        <span class="hljs-keyword">int</span> index = <span class="hljs-number">0</span>;<span class="hljs-comment">// 最大数的下标</span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; arr.length-<span class="hljs-number">1</span> ; i++) &#123;
+            max = arr[i];<span class="hljs-comment">// 假设最大数就是第一个数</span>
+            index = i;
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = i+<span class="hljs-number">1</span>; j &lt; arr.length ; j++) &#123;<span class="hljs-comment">// 第i轮从第i个数到结束进行比较（由于假定最大数就是第一个数，所以从i+1个数开始）</span>
+                <span class="hljs-keyword">if</span>(max&lt;arr[j])&#123;
+                    max = arr[j];
+                    index = j;
+                &#125;
+            &#125;
+            <span class="hljs-comment">/**</span>
+<span class="hljs-comment">             * 改进：</span>
+<span class="hljs-comment">             * 如果最大数的下标就是假设的第一个数的下标，则不用进行交换了,直接退出循环</span>
+<span class="hljs-comment">             */</span>
+            <span class="hljs-comment">// 第i轮最大数与第i个数交换</span>
+            <span class="hljs-keyword">if</span>(index!=i)&#123;
+                arr[index] = arr[i];
+                arr[i] = max;
+                System.out.println(<span class="hljs-string">"第"</span>+(i+<span class="hljs-number">1</span>)+<span class="hljs-string">"轮："</span>+Arrays.toString(arr));
+            &#125;<span class="hljs-keyword">else</span>&#123;
+                <span class="hljs-keyword">break</span>;
+            &#125;
+
+        &#125;
+        System.out.println(<span class="hljs-string">"结果："</span>+ Arrays.toString(arr));
+    &#125;
+&#125;</code></pre>
+
+<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><pre><code class="hljs java"><span class="hljs-keyword">package</span> insertsort;
+
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">InsertSort3</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+        <span class="hljs-keyword">int</span> arr[] = &#123;<span class="hljs-number">6</span>, <span class="hljs-number">5</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>&#125;;
+        <span class="hljs-comment">/**</span>
+<span class="hljs-comment">         *将一个数插入到有序序列中，得到一个新的有序系列</span>
+<span class="hljs-comment">         * 在数组中将第一个数当作是一个有序序列，</span>
+<span class="hljs-comment">         * 将其余的所有数一次插入有序序列中，成为一个新的有序序列</span>
+<span class="hljs-comment">         */</span>
+     <span class="hljs-comment">/*   // 第一趟 &#123;6&#125;  &lt;- 5     =====  &#123;5,6&#125;</span>
+<span class="hljs-comment">        if (arr[0] &lt; arr[1]) &#123;</span>
+<span class="hljs-comment">        &#125; else &#123;</span>
+<span class="hljs-comment">            int temp = arr[0];</span>
+<span class="hljs-comment">            arr[0] = arr[1];</span>
+<span class="hljs-comment">            arr[1] = temp;</span>
+<span class="hljs-comment">        &#125;</span>
+<span class="hljs-comment">        System.out.println("第一趟" + Arrays.toString(arr));// [5, 6, 4, 3, 2, 1]</span>
+<span class="hljs-comment"></span>
+<span class="hljs-comment">        // 第二趟 &#123;5，6&#125;  &lt;- 4   =====  &#123;4,5,6&#125;</span>
+<span class="hljs-comment">        if (arr[1] &lt; arr[2]) &#123;</span>
+<span class="hljs-comment">        &#125; else &#123;    // 将所有比arr[2]大的元素后移一位 </span>
+<span class="hljs-comment">            int temp = arr[2];</span>
+<span class="hljs-comment">            arr[2] = arr[1];//  &#123;5,6,6&#125;</span>
+<span class="hljs-comment">            if (temp &gt; arr[0]) &#123;</span>
+<span class="hljs-comment">                arr[1] = temp;</span>
+<span class="hljs-comment">            &#125; else &#123;</span>
+<span class="hljs-comment">                int swaptemp = arr[0];</span>
+<span class="hljs-comment">                arr[1] = swaptemp;      // &#123;5,5,6&#125;</span>
+<span class="hljs-comment">                arr[0] = temp;        // &#123;4,5,6&#125;</span>
+<span class="hljs-comment">            &#125;</span>
+<span class="hljs-comment">        &#125;</span>
+<span class="hljs-comment">        System.out.println("第二趟" + Arrays.toString(arr));// [4, 5, 6, 3, 2, 1]*/</span>
+        <span class="hljs-comment">// 循环嵌套</span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; arr.length; i++) &#123;
+            <span class="hljs-keyword">int</span> temp = arr[i];<span class="hljs-comment">// 记录当前元素</span>
+            <span class="hljs-keyword">int</span> j = i - <span class="hljs-number">1</span>;<span class="hljs-comment">// 当前元素的前一个元素的下标</span>
+            <span class="hljs-keyword">while</span> (j &gt;= <span class="hljs-number">0</span> &amp;&amp; temp &lt; arr[j]) &#123;
+                arr[j + <span class="hljs-number">1</span>] = arr[j];<span class="hljs-comment">// 比temp大的所有元素后移一位</span>
+                j--;
+            &#125;
+            arr[j + <span class="hljs-number">1</span>] = temp;<span class="hljs-comment">// 将当前数据插入合适的位置中</span>
+            System.out.println(Arrays.toString(arr));
+        &#125;
+        System.out.println(Arrays.toString(arr));
+    &#125;
+&#125;</code></pre>
+
 
             </article>
             <hr>
@@ -264,7 +403,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                      <a class="hover-with-bg" href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">排序算法</a>
                     
                   </div>
                 
@@ -277,18 +416,12 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/07/04/SpringMVC-03/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">SSM整合开发</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/07/01/dataStructure-04/">
-                        <span class="hidden-mobile">栈</span>
+                      <a href="/2020/08/17/project-02/">
+                        <span class="hidden-mobile">旅游信息管理系统</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -544,7 +677,7 @@
       if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/2020/07/03/dataStructure-05/');
+          var target = decodeURI('/2020/08/17/arithmetic/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -638,7 +771,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "递归&nbsp;",
+        "常见排序算法&nbsp;",
       ],
       cursorChar: "(*＾_＾*)",
       typeSpeed: 70,
