@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.2k 字
+      1.5k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      17
+      22
        分钟
     </span>
   
@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：August 18, 2020 pm
+                  本文最后更新于：August 19, 2020 pm
                 
               </p>
             
@@ -344,7 +344,7 @@
     &#125;
 &#125;</code></pre>
 
-<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">InsertSort3</span> </span>&#123;
+<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">InsertSort</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
         <span class="hljs-keyword">int</span> arr[] = &#123;<span class="hljs-number">6</span>, <span class="hljs-number">5</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>&#125;;
         <span class="hljs-comment">/**</span>
@@ -390,7 +390,53 @@
     &#125;
 &#125;</code></pre>
 
+<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">QuickSort</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+        <span class="hljs-keyword">int</span>[] arr = &#123;<span class="hljs-number">6</span>,<span class="hljs-number">5</span>,<span class="hljs-number">4</span>,<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>&#125;;
+        quickSort(arr,<span class="hljs-number">0</span>,<span class="hljs-number">5</span>);
+        System.out.println(Arrays.toString(arr));
+        Arrays.sort(arr);
+    &#125;
 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> arr</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> l 数组第一个元素的下标</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> r 数组最后一个元素的下标</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">quickSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] arr, <span class="hljs-keyword">int</span> l, <span class="hljs-keyword">int</span> r)</span> </span>&#123;
+        <span class="hljs-keyword">int</span> i = l;
+        <span class="hljs-keyword">int</span> j = r;
+        <span class="hljs-keyword">int</span> pivot = arr[(l+r)/<span class="hljs-number">2</span>];<span class="hljs-comment">// 中间的元素作为支点</span>
+        <span class="hljs-keyword">while</span>(i&lt;=j)&#123;
+            <span class="hljs-comment">// 在支点左边寻找比支点大的数</span>
+            <span class="hljs-keyword">while</span>(pivot&gt;arr[i])&#123;
+                i++;
+            &#125;
+            <span class="hljs-comment">// 在支点右边寻找比支点小的数</span>
+            <span class="hljs-keyword">while</span>(pivot&lt;arr[j])&#123;
+                j--;
+            &#125;
+            <span class="hljs-comment">// 此时已经分别找到了比支点小的数(右边)、比支点大的数(左边)，它们进行交换</span>
+            <span class="hljs-keyword">if</span>(i&lt;=j)&#123;
+                <span class="hljs-keyword">int</span> temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+                i++;
+                j--;
+            &#125;
+        &#125;
+        <span class="hljs-comment">// 上面一个while保证了第一趟排序支点的左边比支点小，支点的右边比支点大</span>
+        <span class="hljs-comment">// 左边再做排序，直到左边剩下一个数(递归出口)</span>
+        <span class="hljs-keyword">if</span> (l &lt; j)&#123;
+            quickSort(arr, l, j);
+        &#125;
+        <span class="hljs-comment">// 右边再做排序，直到右边剩下一个数(递归出口)</span>
+        <span class="hljs-keyword">if</span> (i &lt; r)&#123;
+            quickSort(arr, i, r);
+        &#125;
+    &#125;
+&#125;</code></pre>
             </article>
             <hr>
             <div>
@@ -419,7 +465,7 @@
                     
                       <a href="/2020/08/17/project-02/">
                         <span class="hidden-mobile">旅游信息管理系统</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -436,7 +482,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -469,7 +515,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -478,7 +524,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

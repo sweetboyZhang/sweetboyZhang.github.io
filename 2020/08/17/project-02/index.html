@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.6k 字
+      2.5k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      27
+      44
        分钟
     </span>
   
@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：August 18, 2020 pm
+                  本文最后更新于：August 19, 2020 am
                 
               </p>
             
@@ -636,7 +636,285 @@
     &#125;
 &#125;</code></pre>
 
+<h3 id="省份模块"><a href="#省份模块" class="headerlink" title="省份模块"></a>省份模块</h3><h4 id="展示所有省份"><a href="#展示所有省份" class="headerlink" title="展示所有省份"></a>展示所有省份</h4><blockquote>
+<p>bean</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> com.zyz.bean;
 
+<span class="hljs-meta">@Data</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Province</span> </span>&#123;
+    <span class="hljs-keyword">private</span> String id;
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-keyword">private</span> String tags;
+    <span class="hljs-keyword">private</span> Integer placecounts;
+&#125;</code></pre>
+
+<blockquote>
+<p>dao</p>
+</blockquote>
+<p>抽取BaseDao</p>
+<pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.List;
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param</span> &lt;T&gt; 类型</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param</span> &lt;K&gt; 条件参数的类型</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">BaseDao</span>&lt;<span class="hljs-title">T</span>,<span class="hljs-title">K</span>&gt; </span>&#123;
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(T t)</span></span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">delete</span><span class="hljs-params">(K k)</span></span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">(T t)</span></span>;
+    
+    <span class="hljs-function">T <span class="hljs-title">queryByName</span><span class="hljs-params">(K k)</span></span>;
+
+    <span class="hljs-function">List&lt;T&gt; <span class="hljs-title">listByPage</span><span class="hljs-params">(Integer start,Integer rows)</span></span>;
+
+    <span class="hljs-function">Integer <span class="hljs-title">findTotal</span><span class="hljs-params">()</span></span>;
+
+&#125;</code></pre>
+
+<p>ProvinceDap继承BaseDao</p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> com.zyz.dao;
+
+<span class="hljs-meta">@Mapper</span>
+<span class="hljs-meta">@Repository</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">ProvinceDao</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BaseDao</span>&lt;<span class="hljs-title">Province</span>,<span class="hljs-title">String</span>&gt;</span>&#123;
+
+&#125;</code></pre>
+
+<pre><code class="hljs java">&lt;?xml version=<span class="hljs-string">"1.0"</span> encoding=<span class="hljs-string">"utf-8"</span> ?&gt;
+&lt;!DOCTYPE mapper
+        PUBLIC <span class="hljs-string">"-//mybatis.org//DTD Mapper 3.0//EN"</span>
+        <span class="hljs-string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span> &gt;
+&lt;mapper namespace=<span class="hljs-string">"com.zyz.dao.ProvinceDao"</span>&gt;
+    &lt;!--  分页查询  --&gt;
+    &lt;select id=<span class="hljs-string">"listByPage"</span> resultType=<span class="hljs-string">"Province"</span>&gt;
+        select id,name,tags,placecounts from t_province
+        order by placecounts desc
+        limit #&#123;start&#125;,#&#123;rows&#125;
+    &lt;/select&gt;
+
+    &lt;!-- 查询总记录数 --&gt;
+    &lt;select id=<span class="hljs-string">"findTotal"</span> resultType=<span class="hljs-string">"Integer"</span>&gt;
+        <span class="hljs-function">select <span class="hljs-title">count</span><span class="hljs-params">(*)</span> from t_province</span>
+<span class="hljs-function">    &lt;/select&gt;</span>
+<span class="hljs-function"></span>
+<span class="hljs-function">&lt;/mapper&gt;</span></code></pre>
+
+<blockquote>
+<p>service</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> com.zyz.service;
+
+
+<span class="hljs-keyword">import</span> com.zyz.bean.Province;
+<span class="hljs-keyword">import</span> java.util.List;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">ProvinceService</span> </span>&#123;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 分页查询</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> page  当前页</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> rows  每一页显示的记录数</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function">List&lt;Province&gt; <span class="hljs-title">listByPage</span><span class="hljs-params">(Integer page, Integer rows)</span></span>;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 查询总记录数</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function">Integer <span class="hljs-title">findTotal</span><span class="hljs-params">()</span></span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(Province province)</span></span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">delete</span><span class="hljs-params">(String id)</span></span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">(Province province)</span></span>;
+
+    <span class="hljs-function">Province <span class="hljs-title">queryByName</span><span class="hljs-params">(String name)</span></span>;
+&#125;</code></pre>
+
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> com.zyz.service.impl;
+
+<span class="hljs-keyword">import</span> com.zyz.bean.Province;
+<span class="hljs-keyword">import</span> com.zyz.dao.ProvinceDao;
+<span class="hljs-keyword">import</span> com.zyz.service.ProvinceService;
+<span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;
+<span class="hljs-keyword">import</span> org.springframework.stereotype.Service;
+<span class="hljs-keyword">import</span> java.util.List;
+
+<span class="hljs-meta">@Service</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProvinceServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ProvinceService</span> </span>&#123;
+
+    <span class="hljs-meta">@Autowired</span>
+    <span class="hljs-keyword">private</span> ProvinceDao provinceDao;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Province&gt; <span class="hljs-title">listByPage</span><span class="hljs-params">(Integer page, Integer rows)</span> </span>&#123;
+        <span class="hljs-keyword">int</span> start = (page-<span class="hljs-number">1</span>)*rows;
+        <span class="hljs-keyword">return</span> provinceDao.listByPage(start,rows);
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Integer <span class="hljs-title">findTotal</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> provinceDao.findTotal();
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(Province province)</span> </span>&#123;
+        
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">delete</span><span class="hljs-params">(String id)</span> </span>&#123;
+
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">(Province province)</span> </span>&#123;
+
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Province <span class="hljs-title">queryByName</span><span class="hljs-params">(String name)</span> </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+    &#125;
+&#125;</code></pre>
+
+<blockquote>
+<p>controller</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> com.zyz.controller;
+
+<span class="hljs-keyword">import</span> com.zyz.bean.Province;
+<span class="hljs-keyword">import</span> com.zyz.service.ProvinceService;
+<span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;
+<span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.GetMapping;
+<span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;
+<span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RestController;
+
+<span class="hljs-keyword">import</span> java.util.HashMap;
+<span class="hljs-keyword">import</span> java.util.List;
+<span class="hljs-keyword">import</span> java.util.Map;
+
+<span class="hljs-meta">@RestController</span>
+<span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"province"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProvinceController</span> </span>&#123;
+
+    <span class="hljs-meta">@Autowired</span>
+    <span class="hljs-keyword">private</span> ProvinceService provinceService;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 查询所有省份</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> page</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> rows</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-meta">@GetMapping</span>(<span class="hljs-string">"listByPage"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Map&lt;String, Object&gt; <span class="hljs-title">listByPage</span><span class="hljs-params">(Integer page, Integer rows)</span> </span>&#123;
+        page = page == <span class="hljs-keyword">null</span> ? <span class="hljs-number">1</span> : page;
+        rows = rows == <span class="hljs-keyword">null</span> ? <span class="hljs-number">4</span> : rows;
+        HashMap&lt;String, Object&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
+        <span class="hljs-comment">// 分页处理</span>
+        List&lt;Province&gt; provinces = provinceService.listByPage(page, rows);
+        <span class="hljs-comment">// 计算总页数</span>
+        Integer total = provinceService.findTotal();
+        Integer totalPage = total % rows == <span class="hljs-number">0</span> ? total / rows : (total / rows) + <span class="hljs-number">1</span>;
+        map.put(<span class="hljs-string">"provinces"</span>, provinces);
+        map.put(<span class="hljs-string">"total"</span>, total);
+        map.put(<span class="hljs-string">"totalPage"</span>, totalPage);
+        map.put(<span class="hljs-string">"page"</span>, page);
+        <span class="hljs-keyword">return</span> map;
+    &#125;
+&#125;</code></pre>
+
+<blockquote>
+<p>前端</p>
+</blockquote>
+<pre><code class="hljs js">&lt;script&gt;
+    <span class="hljs-keyword">var</span> app = <span class="hljs-keyword">new</span> Vue(&#123;
+        el: <span class="hljs-string">"#wrap"</span>,
+        data:&#123;
+            date: <span class="hljs-string">""</span>,
+            url: <span class="hljs-string">""</span>,
+            user: &#123;&#125;,
+            provinces: [],
+            page: <span class="hljs-number">1</span>,
+            rows: <span class="hljs-number">0</span>,
+            totalPage: <span class="hljs-number">0</span>,
+            total: <span class="hljs-number">0</span>,
+        &#125;,
+        methods:&#123;
+            <span class="hljs-comment">// 判断是否登录</span>
+            isLogin()&#123;
+                <span class="hljs-keyword">var</span> user = localStorage.getItem(<span class="hljs-string">"user"</span>);
+                <span class="hljs-keyword">if</span>(user==<span class="hljs-literal">null</span>)&#123;
+                    location.href=<span class="hljs-string">"http://localhost:8080/travelsAdmin/login.html"</span>;
+                &#125;<span class="hljs-keyword">else</span>&#123;
+                    <span class="hljs-keyword">this</span>.user = <span class="hljs-built_in">JSON</span>.parse(user);
+                &#125;
+            &#125;,
+            <span class="hljs-comment">// 显示当前日期</span>
+            showDate()&#123;
+                <span class="hljs-keyword">var</span> realDate = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
+                <span class="hljs-keyword">this</span>.date=realDate.getFullYear()+<span class="hljs-string">"/"</span>+(realDate.getMonth()+<span class="hljs-number">1</span>)+<span class="hljs-string">"/"</span>+realDate.getDate();
+            &#125;,
+            <span class="hljs-comment">// 退出</span>
+            logout()&#123;
+                localStorage.removeItem(<span class="hljs-string">"user"</span>);
+                location.href=<span class="hljs-string">"http://localhost:8080/travelsAdmin/login.html"</span>;
+            &#125;,
+            <span class="hljs-comment">// 查询所有省份</span>
+            listAll(page)&#123;
+                <span class="hljs-keyword">if</span>(page&gt;=<span class="hljs-number">1</span>)&#123;
+                    <span class="hljs-keyword">this</span>.page = page;
+                &#125;
+                axios.get(<span class="hljs-string">"http://localhost:8080/travelsAdmin/province/listByPage?page="</span>+<span class="hljs-keyword">this</span>.page)
+                .then(<span class="hljs-function"><span class="hljs-params">res</span>=&gt;</span>&#123;
+                    <span class="hljs-keyword">this</span>.provinces = res.data.provinces;
+                    <span class="hljs-keyword">this</span>.page = res.data.page;
+                    <span class="hljs-keyword">this</span>.total = res.data.total;
+                    <span class="hljs-keyword">this</span>.totalPage = res.data.totalPage;
+                &#125;);
+            &#125;,
+        &#125;,
+        created()&#123;
+            <span class="hljs-comment">// 判断是否登录</span>
+            <span class="hljs-keyword">this</span>.isLogin();
+            <span class="hljs-comment">// 显示当前日期</span>
+            <span class="hljs-keyword">this</span>.showDate();
+            <span class="hljs-comment">// 查询所有省份</span>
+            <span class="hljs-keyword">this</span>.listAll();
+        &#125;
+    &#125;)
+&lt;<span class="hljs-regexp">/script&gt;</span></code></pre>
+
+<p>遍历当前查询到的信息</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">tr</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">"province in provinces"</span> <span class="hljs-attr">:key</span>=<span class="hljs-string">"province.id"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">v-text</span>=<span class="hljs-string">"province.id"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">v-text</span>=<span class="hljs-string">"province.name"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">v-text</span>=<span class="hljs-string">"province.tags"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">v-text</span>=<span class="hljs-string">"province.placecounts"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span></code></pre>
+
+<p>分页控件</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"pages"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"javascript:;"</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">"page!=1"</span>@<span class="hljs-attr">click</span>=<span class="hljs-string">"listAll(page-1)"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"page"</span>&gt;</span><span class="hljs-symbol">&amp;lt;</span>上一页<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"javascript:;"</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">"page==1"</span>  <span class="hljs-attr">disabled</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"page"</span>&gt;</span><span class="hljs-symbol">&amp;lt;</span>上一页<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"javascript:;"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"page"</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">"num in totalPage"</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"listAll(num)"</span> <span class="hljs-attr">v-text</span>=<span class="hljs-string">"num"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"javascript:;"</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">"page!=totalPage"</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"listAll(page+1)"</span><span class="hljs-attr">class</span>=<span class="hljs-string">"page"</span> &gt;</span>下一页<span class="hljs-symbol">&amp;gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"javascript:;"</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">"page==totalPage"</span> <span class="hljs-attr">disabled</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"page"</span>&gt;</span>下一页<span class="hljs-symbol">&amp;gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+
+<h4 id="添加省份"><a href="#添加省份" class="headerlink" title="添加省份"></a>添加省份</h4>
             </article>
             <hr>
             <div>
@@ -662,7 +940,7 @@
                       <a href="/2020/08/17/arithmetic/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">常见排序算法</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </div>
@@ -671,7 +949,7 @@
                     
                       <a href="/2020/08/13/thread/">
                         <span class="hidden-mobile">多线程</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -688,7 +966,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -721,7 +999,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -730,7 +1008,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
