@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.5k 字
+      3.5k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      44
+      62
        分钟
     </span>
   
@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：August 19, 2020 am
+                  本文最后更新于：August 20, 2020 am
                 
               </p>
             
@@ -513,6 +513,10 @@
 &#125;</code></pre>
 
 <blockquote>
+<p>前端</p>
+<p>使用v-model将表单中的数据与vue中data绑定</p>
+</blockquote>
+<blockquote>
 <p>登录</p>
 </blockquote>
 <pre><code class="hljs js">&lt;script src=<span class="hljs-string">"js/axios.min.js"</span>&gt;&lt;<span class="hljs-regexp">/script&gt;</span>
@@ -669,6 +673,8 @@
     <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">(T t)</span></span>;
     
     <span class="hljs-function">T <span class="hljs-title">queryByName</span><span class="hljs-params">(K k)</span></span>;
+    
+    <span class="hljs-function">T <span class="hljs-title">queryById</span><span class="hljs-params">(K k)</span></span>;
 
     <span class="hljs-function">List&lt;T&gt; <span class="hljs-title">listByPage</span><span class="hljs-params">(Integer start,Integer rows)</span></span>;
 
@@ -676,7 +682,7 @@
 
 &#125;</code></pre>
 
-<p>ProvinceDap继承BaseDao</p>
+<p>ProvinceDao继承BaseDao</p>
 <pre><code class="hljs java"><span class="hljs-keyword">package</span> com.zyz.dao;
 
 <span class="hljs-meta">@Mapper</span>
@@ -734,6 +740,8 @@
     <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">delete</span><span class="hljs-params">(String id)</span></span>;
 
     <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">(Province province)</span></span>;
+    
+    <span class="hljs-function">Province <span class="hljs-title">queryById</span><span class="hljs-params">(String id)</span></span>;
 
     <span class="hljs-function">Province <span class="hljs-title">queryByName</span><span class="hljs-params">(String name)</span></span>;
 &#125;</code></pre>
@@ -914,7 +922,280 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"javascript:;"</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">"page==totalPage"</span> <span class="hljs-attr">disabled</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"page"</span>&gt;</span>下一页<span class="hljs-symbol">&amp;gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
 
-<h4 id="添加省份"><a href="#添加省份" class="headerlink" title="添加省份"></a>添加省份</h4>
+<h4 id="添加省份"><a href="#添加省份" class="headerlink" title="添加省份"></a>添加省份</h4><blockquote>
+<p>dao</p>
+</blockquote>
+<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--  添加省份  --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">insert</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"add"</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">"Province"</span> <span class="hljs-attr">useGeneratedKeys</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">keyProperty</span>=<span class="hljs-string">"id"</span>&gt;</span>
+    insert into t_province values(#&#123;id&#125;,#&#123;name&#125;,#&#123;tags&#125;,#&#123;placecounts&#125;)
+<span class="hljs-tag">&lt;/<span class="hljs-name">insert</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!--  根据名称查省份  --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"queryByName"</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">"String"</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">"Province"</span>&gt;</span>
+    select id,name,tags,placecounts from t_province where name=#&#123;name&#125;
+<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre>
+
+<blockquote>
+<p>service</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(Province province)</span> </span>&#123;
+    <span class="hljs-keyword">if</span>(StringUtils.isEmpty(province.getName()))&#123;
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"请输入省份！"</span>);
+    &#125;
+    <span class="hljs-keyword">if</span>(StringUtils.isEmpty(province.getTags()))&#123;
+        <span class="hljs-keyword">throw</span>  <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"请输入标签！"</span>);
+    &#125;
+    <span class="hljs-keyword">if</span>(StringUtils.isEmpty(province.getPlacecounts()))&#123;
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"请输入景点数量！"</span>);
+    &#125;
+    Province realProvince = provinceDao.queryByName(province.getName());
+    <span class="hljs-keyword">if</span>(!ObjectUtils.isEmpty(realProvince))&#123;
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"该省份已存在！"</span>);
+    &#125;
+    provinceDao.add(province);
+&#125;</code></pre>
+
+<blockquote>
+<p>controller</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 添加省份</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param</span> province</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@return</span></span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-meta">@PostMapping</span>(<span class="hljs-string">"add"</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> Map&lt;String,Object&gt; <span class="hljs-title">add</span><span class="hljs-params">(@RequestBody Province province)</span></span>&#123;
+    HashMap&lt;String, Object&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
+    <span class="hljs-keyword">try</span> &#123;
+        provinceService.add(province);
+        map.put(<span class="hljs-string">"status"</span>,<span class="hljs-keyword">true</span>);
+        map.put(<span class="hljs-string">"msg"</span>,<span class="hljs-string">"提示：添加成功！"</span>);
+    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;
+        e.printStackTrace();
+        map.put(<span class="hljs-string">"status"</span>,<span class="hljs-keyword">false</span>);
+        map.put(<span class="hljs-string">"msg"</span>,<span class="hljs-string">"提示："</span>+e.getMessage());
+    &#125;
+    <span class="hljs-keyword">return</span> map;
+&#125;</code></pre>
+
+<blockquote>
+<p>前端</p>
+</blockquote>
+<p>省份管理页：</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"toAdd"</span> &gt;</span>添加省份<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></code></pre>
+
+<pre><code class="hljs js"><span class="hljs-comment">// 跳转添加页面</span>
+toAdd()&#123;
+    location.href=<span class="hljs-string">"addprovince.html"</span>;
+&#125;</code></pre>
+
+<p>添加页：</p>
+<pre><code class="hljs js"><span class="hljs-comment">// 添加省份方法</span>
+add() &#123;
+    axios.post(<span class="hljs-string">"http://localhost:8080/travelsAdmin/province/add"</span>, <span class="hljs-keyword">this</span>.province)
+        .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;
+            <span class="hljs-keyword">if</span> (res.data.status) &#123;
+                <span class="hljs-keyword">if</span> (<span class="hljs-built_in">window</span>.confirm(res.data.msg + <span class="hljs-string">"点击确定跳转管理页面"</span>)) &#123;
+                    location.href = <span class="hljs-string">"provincelist.html"</span>;
+                &#125; <span class="hljs-keyword">else</span> &#123;
+                    location.reload();
+                &#125;
+            &#125; <span class="hljs-keyword">else</span> &#123;
+                alert(res.data.msg);
+            &#125;
+        &#125;)
+&#125;</code></pre>
+
+<h4 id="删除省份"><a href="#删除省份" class="headerlink" title="删除省份"></a>删除省份</h4><blockquote>
+<p>dao</p>
+</blockquote>
+<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--  删除省份  --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">delete</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"delete"</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">"String"</span>&gt;</span>
+    delete from t_province where id = #&#123;id&#125;
+<span class="hljs-tag">&lt;/<span class="hljs-name">delete</span>&gt;</span></code></pre>
+
+<blockquote>
+<p>serivce</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">delete</span><span class="hljs-params">(String id)</span> </span>&#123;
+    provinceDao.delete(id);
+&#125;</code></pre>
+
+<blockquote>
+<p>controller</p>
+<pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 删除省份</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param</span> id</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@return</span></span>
+<span class="hljs-comment">*/</span>
+<span class="hljs-meta">@GetMapping</span>(<span class="hljs-string">"delete"</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> Map&lt;String,Object&gt; <span class="hljs-title">delete</span><span class="hljs-params">(String id)</span></span>&#123;
+    HashMap&lt;String, Object&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
+    <span class="hljs-keyword">try</span> &#123;
+        provinceService.delete(id);
+        map.put(<span class="hljs-string">"status"</span>,<span class="hljs-keyword">true</span>);
+        map.put(<span class="hljs-string">"msg"</span>,<span class="hljs-string">"提示：删除成功！"</span>);
+    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;
+        e.printStackTrace();
+        map.put(<span class="hljs-string">"status"</span>,<span class="hljs-keyword">false</span>);
+        map.put(<span class="hljs-string">"msg"</span>,<span class="hljs-string">"提示：删除失败"</span>);
+    &#125;
+    <span class="hljs-keyword">return</span> map;
+&#125;</code></pre>
+</blockquote>
+<blockquote>
+<p>前端</p>
+</blockquote>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"javascript:;"</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"deletePro(province.id)"</span>&gt;</span>删除省份<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></code></pre>
+
+<pre><code class="hljs js"><span class="hljs-comment">// 删除省份</span>
+deletePro(id) &#123;
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">window</span>.confirm(<span class="hljs-string">"确定删除吗？"</span>)) &#123;
+        axios.get(<span class="hljs-string">"http://localhost:8080/travelsAdmin/province/delete?id="</span>+id)
+            .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;
+                <span class="hljs-keyword">if</span> (res.data.status) &#123;
+                    alert(res.data.msg);
+                    location.reload();
+                &#125; <span class="hljs-keyword">else</span> &#123;
+                    alert(res.data.msg);
+                &#125;
+            &#125;)
+    &#125;
+&#125;</code></pre>
+
+<h4 id="修改省份"><a href="#修改省份" class="headerlink" title="修改省份"></a>修改省份</h4><blockquote>
+<p>dao</p>
+</blockquote>
+<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--  根据id查询省份  --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"queryById"</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">"String"</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">"Province"</span>&gt;</span>
+    select id,name,tags,placecounts from t_province where id = #&#123;id&#125;
+<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!--  修改省份  --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">update</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"update"</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">"Province"</span>&gt;</span>
+    update t_province set name=#&#123;name&#125;,tags=#&#123;tags&#125;,placecounts=#&#123;placecounts&#125;
+    where id=#&#123;id&#125;
+<span class="hljs-tag">&lt;/<span class="hljs-name">update</span>&gt;</span></code></pre>
+
+<blockquote>
+<p>service</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">(Province province)</span> </span>&#123;
+    <span class="hljs-keyword">if</span>(StringUtils.isEmpty(province.getName()))&#123;
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"请输入省份！"</span>);
+    &#125;
+    <span class="hljs-keyword">if</span>(StringUtils.isEmpty(province.getTags()))&#123;
+        <span class="hljs-keyword">throw</span>  <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"请输入标签！"</span>);
+    &#125;
+    <span class="hljs-keyword">if</span>(StringUtils.isEmpty(province.getPlacecounts()))&#123;
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"请输入景点数量！"</span>);
+    &#125;
+    provinceDao.update(province);
+&#125;
+
+<span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> Province <span class="hljs-title">queryById</span><span class="hljs-params">(String id)</span> </span>&#123;
+    <span class="hljs-keyword">return</span> provinceDao.queryById(id);
+&#125;</code></pre>
+
+<blockquote>
+<p>controller</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 修改省份</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param</span> province</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@return</span></span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-meta">@PostMapping</span>(<span class="hljs-string">"update"</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> Map&lt;String,Object&gt; <span class="hljs-title">update</span><span class="hljs-params">(@RequestBody Province province)</span></span>&#123;
+    HashMap&lt;String, Object&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
+    <span class="hljs-keyword">try</span> &#123;
+        provinceService.update(province);
+        map.put(<span class="hljs-string">"status"</span>,<span class="hljs-keyword">true</span>);
+        map.put(<span class="hljs-string">"msg"</span>,<span class="hljs-string">"提示：修改成功！"</span>);
+    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;
+        e.printStackTrace();
+        map.put(<span class="hljs-string">"status"</span>,<span class="hljs-keyword">false</span>);
+        map.put(<span class="hljs-string">"msg"</span>,<span class="hljs-string">"提示："</span>+e.getMessage());
+    &#125;
+    <span class="hljs-keyword">return</span> map;
+&#125;
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 获取省份</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param</span> id</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@return</span></span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-meta">@GetMapping</span>(<span class="hljs-string">"getProvince"</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> Province <span class="hljs-title">getProvince</span><span class="hljs-params">(String id)</span></span>&#123;
+    Province province = provinceService.queryById(id);
+    <span class="hljs-keyword">return</span> province;
+&#125;</code></pre>
+
+<blockquote>
+<p>前端</p>
+</blockquote>
+<p>管理页面：</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"javascript:;"</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"toUpdate(province.id)"</span>&gt;</span>修改省份<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></code></pre>
+
+<pre><code class="hljs js"><span class="hljs-comment">// 跳转修改页面</span>
+toUpdate(id) &#123;
+    location.href = <span class="hljs-string">"updateprovince.html?id="</span> + id;
+&#125;</code></pre>
+
+<p>修改页面：</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"update"</span>&gt;</span>修 改<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><span class="hljs-symbol">&amp;emsp;</span></code></pre>
+
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
+<span class="actionscript">    <span class="hljs-keyword">var</span> app = <span class="hljs-keyword">new</span> Vue(&#123;</span>
+<span class="actionscript">        el: <span class="hljs-string">"#wrap"</span>,</span>
+        data: &#123;
+<span class="actionscript">            date: <span class="hljs-string">""</span>,</span>
+            province: &#123;&#125;,
+        &#125;,
+        methods: &#123;
+<span class="actionscript">            <span class="hljs-comment">// 显示当前日期方法</span></span>
+            showDate() &#123;
+<span class="javascript">                <span class="hljs-keyword">var</span> realDate = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();</span>
+<span class="actionscript">                <span class="hljs-keyword">this</span>.date = realDate.getFullYear() + <span class="hljs-string">"/"</span> + (realDate.getMonth() + <span class="hljs-number">1</span>) + <span class="hljs-string">"/"</span> + realDate.getDate();</span>
+            &#125;,
+<span class="actionscript">            <span class="hljs-comment">// 根据id查询当前省份</span></span>
+            getProvince()&#123;
+<span class="actionscript">                <span class="hljs-comment">// 获取id</span></span>
+<span class="actionscript">                <span class="hljs-keyword">var</span> start = location.href.lastIndexOf(<span class="hljs-string">"="</span>);</span>
+<span class="actionscript">                <span class="hljs-keyword">var</span> id = location.href.substring(start+<span class="hljs-number">1</span>);</span>
+<span class="actionscript">                axios.get(<span class="hljs-string">"http://localhost:8080/travelsAdmin/province/getProvince?id="</span>+id)</span>
+<span class="javascript">                    .then(<span class="hljs-function"><span class="hljs-params">res</span>=&gt;</span>&#123;</span>
+<span class="actionscript">                        <span class="hljs-comment">// console.log(res.data);</span></span>
+<span class="actionscript">                        <span class="hljs-keyword">this</span>.province = res.data;</span>
+                    &#125;)
+            &#125;,
+<span class="actionscript">            <span class="hljs-comment">// 修改省份方法</span></span>
+            update() &#123;
+<span class="actionscript">                axios.post(<span class="hljs-string">"http://localhost:8080/travelsAdmin/province/update"</span>, <span class="hljs-keyword">this</span>.province)</span>
+<span class="javascript">                    .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;</span>
+                        if (res.data.status) &#123;
+                            alert(res.data.msg);
+<span class="actionscript">                            location.href = <span class="hljs-string">"provincelist.html"</span>;</span>
+<span class="actionscript">                        &#125; <span class="hljs-keyword">else</span> &#123;</span>
+                            alert(res.data.msg);
+                        &#125;
+                    &#125;)
+            &#125;
+        &#125;,
+        created() &#123;
+<span class="actionscript">            <span class="hljs-comment">// 显示当前日期</span></span>
+<span class="actionscript">            <span class="hljs-keyword">this</span>.showDate();</span>
+<span class="actionscript">            <span class="hljs-comment">// 查询当前省份的信息</span></span>
+<span class="actionscript">            <span class="hljs-keyword">this</span>.getProvince();</span>
+        &#125;,
+    &#125;)
+<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+
+<h3 id="景点模块"><a href="#景点模块" class="headerlink" title="景点模块"></a>景点模块</h3><h4 id="根据省份展示该省份的所有景点"><a href="#根据省份展示该省份的所有景点" class="headerlink" title="根据省份展示该省份的所有景点"></a>根据省份展示该省份的所有景点</h4>
             </article>
             <hr>
             <div>
@@ -940,7 +1221,7 @@
                       <a href="/2020/08/17/arithmetic/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">常见排序算法</span>
-                        <span class="visible-mobile">上一篇</span>
+                        <span class="visible-mobile">Previous</span>
                       </a>
                     
                   </div>
@@ -949,7 +1230,7 @@
                     
                       <a href="/2020/08/13/thread/">
                         <span class="hidden-mobile">多线程</span>
-                        <span class="visible-mobile">下一篇</span>
+                        <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -966,7 +1247,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
   <div id="tocbot"></div>
 </div>
 
@@ -999,7 +1280,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -1008,7 +1289,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
