@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.5k 字
+      3.6k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      62
+      63
        分钟
     </span>
   
@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：August 20, 2020 am
+                  本文最后更新于：August 21, 2020 pm
                 
               </p>
             
@@ -878,9 +878,7 @@
             &#125;,
             <span class="hljs-comment">// 查询所有省份</span>
             listAll(page)&#123;
-                <span class="hljs-keyword">if</span>(page&gt;=<span class="hljs-number">1</span>)&#123;
-                    <span class="hljs-keyword">this</span>.page = page;
-                &#125;
+                <span class="hljs-keyword">this</span>.page = page;
                 axios.get(<span class="hljs-string">"http://localhost:8080/travelsAdmin/province/listByPage?page="</span>+<span class="hljs-keyword">this</span>.page)
                 .then(<span class="hljs-function"><span class="hljs-params">res</span>=&gt;</span>&#123;
                     <span class="hljs-keyword">this</span>.provinces = res.data.provinces;
@@ -896,7 +894,7 @@
             <span class="hljs-comment">// 显示当前日期</span>
             <span class="hljs-keyword">this</span>.showDate();
             <span class="hljs-comment">// 查询所有省份</span>
-            <span class="hljs-keyword">this</span>.listAll();
+            <span class="hljs-keyword">this</span>.listAll(<span class="hljs-keyword">this</span>.page);
         &#125;
     &#125;)
 &lt;<span class="hljs-regexp">/script&gt;</span></code></pre>
@@ -912,14 +910,17 @@
 <span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span></code></pre>
 
 <p>分页控件</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"pages"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"javascript:;"</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">"page!=1"</span>@<span class="hljs-attr">click</span>=<span class="hljs-string">"listAll(page-1)"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"page"</span>&gt;</span><span class="hljs-symbol">&amp;lt;</span>上一页<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"javascript:;"</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">"page==1"</span>  <span class="hljs-attr">disabled</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"page"</span>&gt;</span><span class="hljs-symbol">&amp;lt;</span>上一页<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<pre><code class="hljs html"> <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"pages"</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"javascript:;"</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">"page!=1"</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"listAll(page-1)"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"page"</span>&gt;</span><span class="hljs-symbol">&amp;lt;</span>上一页<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"javascript:;"</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">"page==1"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"page"</span>&gt;</span><span class="hljs-symbol">&amp;lt;</span>上一页<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
 
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"javascript:;"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"page"</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">"num in totalPage"</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"listAll(num)"</span> <span class="hljs-attr">v-text</span>=<span class="hljs-string">"num"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">"num in totalPage"</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"javascript:;"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"page"</span>  <span class="hljs-attr">v-if</span>=<span class="hljs-string">"num!=page"</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"listAll(num)"</span> <span class="hljs-attr">v-text</span>=<span class="hljs-string">"num"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"javascript:;"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"page"</span>  <span class="hljs-attr">v-if</span>=<span class="hljs-string">"num==page"</span> <span class="hljs-attr">v-text</span>=<span class="hljs-string">"num"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
 
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"javascript:;"</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">"page!=totalPage"</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"listAll(page+1)"</span><span class="hljs-attr">class</span>=<span class="hljs-string">"page"</span> &gt;</span>下一页<span class="hljs-symbol">&amp;gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"javascript:;"</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">"page==totalPage"</span> <span class="hljs-attr">disabled</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"page"</span>&gt;</span>下一页<span class="hljs-symbol">&amp;gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"javascript:;"</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">"page!=totalPage"</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"listAll(page+1)"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"page"</span>&gt;</span>下一页<span class="hljs-symbol">&amp;gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"javascript:;"</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">"page==totalPage"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"page"</span>&gt;</span>下一页<span class="hljs-symbol">&amp;gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
 
 <h4 id="添加省份"><a href="#添加省份" class="headerlink" title="添加省份"></a>添加省份</h4><blockquote>
@@ -1195,7 +1196,23 @@ toUpdate(id) &#123;
     &#125;)
 <span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
 
-<h3 id="景点模块"><a href="#景点模块" class="headerlink" title="景点模块"></a>景点模块</h3><h4 id="根据省份展示该省份的所有景点"><a href="#根据省份展示该省份的所有景点" class="headerlink" title="根据省份展示该省份的所有景点"></a>根据省份展示该省份的所有景点</h4>
+<h3 id="景点模块"><a href="#景点模块" class="headerlink" title="景点模块"></a>景点模块</h3><h4 id="根据省份展示该省份的所有景点"><a href="#根据省份展示该省份的所有景点" class="headerlink" title="根据省份展示该省份的所有景点"></a>根据省份展示该省份的所有景点</h4><blockquote>
+<p>创建实体类</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> com.zyz.bean;
+
+<span class="hljs-meta">@Data</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Place</span> </span>&#123;
+    <span class="hljs-keyword">private</span> String id;
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-keyword">private</span> String picpath;
+    <span class="hljs-keyword">private</span> Double hotticket;
+    <span class="hljs-keyword">private</span> Double dimticket;<span class="hljs-comment">// 淡季门票</span>
+    <span class="hljs-keyword">private</span> String details;
+    <span class="hljs-keyword">private</span> String provinceid;
+&#125;</code></pre>
+
+
             </article>
             <hr>
             <div>
