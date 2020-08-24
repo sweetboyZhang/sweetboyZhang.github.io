@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      5.7k 字
+      6.4k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      100
+      108
        分钟
     </span>
   
@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：August 23, 2020 pm
+                  本文最后更新于：August 24, 2020 pm
                 
               </p>
             
@@ -1765,6 +1765,130 @@ toUpdate(id) &#123;
     <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span></code></pre>
 
+<h3 id="使用Redis作为Mybatis的缓存"><a href="#使用Redis作为Mybatis的缓存" class="headerlink" title="使用Redis作为Mybatis的缓存"></a>使用Redis作为Mybatis的缓存</h3><p>1、配置Redis地址和端口</p>
+<pre><code class="hljs yml"><span class="hljs-attr">spring:</span>
+  <span class="hljs-attr">redis:</span>
+    <span class="hljs-attr">host:</span> <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>
+    <span class="hljs-attr">port:</span> <span class="hljs-number">6379</span></code></pre>
+
+<p>2、实现mybatis中的Cache接口</p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> com.zyz.cache;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RedisCache</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Cache</span> </span>&#123;
+
+    <span class="hljs-keyword">private</span> String id;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">RedisCache</span><span class="hljs-params">( String id)</span></span>&#123;
+        <span class="hljs-keyword">this</span>.id = id;
+    &#125;
+
+    <span class="hljs-comment">// 获取RedisTemplate</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> RedisTemplate <span class="hljs-title">getRedisTemplate</span><span class="hljs-params">()</span></span>&#123;
+        RedisTemplate template =(RedisTemplate) ApplicationContextUtils.getBean(<span class="hljs-string">"redisTemplate"</span>);
+        <span class="hljs-keyword">return</span> template;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getId</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.id;
+    &#125;
+
+    <span class="hljs-comment">// 将数据存入Redis</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">putObject</span><span class="hljs-params">(Object key, Object value)</span> </span>&#123;
+        getRedisTemplate().opsForHash().put(id,key.toString(),value);
+    &#125;
+
+    <span class="hljs-comment">// 从Redis中获取数据</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">getObject</span><span class="hljs-params">(Object key)</span> </span>&#123;
+        <span class="hljs-keyword">return</span> getRedisTemplate().opsForHash().get(id,key.toString());
+    &#125;
+
+    <span class="hljs-comment">// 删除指定缓存信息</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">removeObject</span><span class="hljs-params">(Object key)</span> </span>&#123;
+        <span class="hljs-keyword">return</span> getRedisTemplate().opsForHash().delete(id,key.toString());
+    &#125;
+
+    <span class="hljs-comment">// 清除缓存</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">clear</span><span class="hljs-params">()</span> </span>&#123;
+        getRedisTemplate().delete(id);
+    &#125;
+
+    <span class="hljs-comment">// 获取数据大小</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getSize</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> getRedisTemplate().opsForValue().size(id).intValue();
+    &#125;
+&#125;</code></pre>
+
+<p>工具类ApplicationContextUtils获取工厂实例</p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> com.zyz.utils;
+
+<span class="hljs-meta">@Component</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApplicationContextUtils</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ApplicationContextAware</span> </span>&#123;
+
+    <span class="hljs-comment">// 当前工厂</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> ApplicationContext applicationContext;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setApplicationContext</span><span class="hljs-params">(ApplicationContext applicationContext)</span> <span class="hljs-keyword">throws</span> BeansException </span>&#123;
+        <span class="hljs-keyword">this</span>.applicationContext = applicationContext;
+    &#125;
+
+    <span class="hljs-comment">// 获取工厂中的实现类</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Object <span class="hljs-title">getBean</span><span class="hljs-params">(String name)</span></span>&#123;
+        <span class="hljs-keyword">return</span> applicationContext.getBean(name);
+    &#125;
+&#125;</code></pre>
+
+<p>3、在mapper文件中添加自定义的Redis缓存</p>
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">cache</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"com.zyz.cache.RedisCache"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">cache</span>&gt;</span></code></pre>
+
+<p>4、存储在Redis中的实体类必须实现Serializable接口<br><img src="/2020/08/17/project-02/2.png" srcset="/img/loading.gif" alt></p>
+<h1 id="主要界面"><a href="#主要界面" class="headerlink" title="主要界面"></a>主要界面</h1><blockquote>
+<p>用户模块</p>
+</blockquote>
+<p><img src="/2020/08/17/project-02/3.png" srcset="/img/loading.gif" alt></p>
+<p><img src="/2020/08/17/project-02/4.png" srcset="/img/loading.gif" alt></p>
+<blockquote>
+<p>省份模块</p>
+</blockquote>
+<p><img src="/2020/08/17/project-02/5.png" srcset="/img/loading.gif" alt></p>
+<p><img src="/2020/08/17/project-02/6.png" srcset="/img/loading.gif" alt></p>
+<p><img src="/2020/08/17/project-02/7.png" srcset="/img/loading.gif" alt></p>
+<blockquote>
+<p>景点模块</p>
+</blockquote>
+<p><img src="/2020/08/17/project-02/8.png" srcset="/img/loading.gif" alt></p>
+<p><img src="/2020/08/17/project-02/9.png" srcset="/img/loading.gif" alt></p>
+<p><img src="/2020/08/17/project-02/10.png" srcset="/img/loading.gif" alt></p>
+<h1 id="项目总结"><a href="#项目总结" class="headerlink" title="项目总结"></a>项目总结</h1><p>做了什么？</p>
+<ul>
+<li>管理员的注册和登录</li>
+<li>省份信息的增删改查</li>
+<li>景点信息的增删改查</li>
+</ul>
+<p>学到了什么？</p>
+<ul>
+<li>在前后端分离中分页查询功能的实现</li>
+<li>使用mysql中的meduimtext数据类型存储图片，图片需要先进行base64编码然后存进数据库</li>
+<li>vue中选择框的数据双向绑定</li>
+</ul>
+<p>遇到的问题？怎么解决的？</p>
+<ul>
+<li>在完成添加景点功能时，在浏览器端调试总是出现undefined的错误，仔细与之前的添加功能相比，此添加功能涉及到了文件的上传，需要构造表单，然后在表单中添加数据  <img src="/2020/08/17/project-02/11.png" srcset="/img/loading.gif" style="zoom:80%;">
+
+
+</li>
+</ul>
+<pre><code>&lt;img src=&quot;project-02/12.png&quot; style=&quot;zoom:80%;&quot; /&gt;</code></pre><ul>
+<li><p>在修改景点信息时，提交一直显示图片为上传，仔细读出现不难发现，如果在修改景点信息时沿用添加景点时的那种方式，<img src="/2020/08/17/project-02/13.png" srcset="/img/loading.gif" alt><br>  所以一直显示图片未上传，只要修改一下判断逻辑就可以了，在判断没有修改图片时直接更新，修改图片后进行重命名，文件上传然后更新<br>  <img src="/2020/08/17/project-02/14.png" srcset="/img/loading.gif" alt>  </p>
+</li>
+<li><p>景点省份为空<br>  <img src="/2020/08/17/project-02/15.png" srcset="/img/loading.gif" alt></p>
+</li>
+</ul>
 
             </article>
             <hr>
@@ -1791,7 +1915,7 @@ toUpdate(id) &#123;
                       <a href="/2020/08/17/arithmetic/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">常见排序算法</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </div>
@@ -1800,7 +1924,7 @@ toUpdate(id) &#123;
                     
                       <a href="/2020/08/13/thread/">
                         <span class="hidden-mobile">多线程</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -1817,7 +1941,7 @@ toUpdate(id) &#123;
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -1850,7 +1974,7 @@ toUpdate(id) &#123;
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -1859,7 +1983,7 @@ toUpdate(id) &#123;
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      5.9k 字
+      6k 字
     </span>
   
 
@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：August 22, 2020 am
+                  本文最后更新于：August 24, 2020 am
                 
               </p>
             
@@ -1382,7 +1382,7 @@ updateEmp() &#123;
     &#125;)
 &#125;</code></pre>
 
-<h3 id="整合Redis缓存"><a href="#整合Redis缓存" class="headerlink" title="整合Redis缓存"></a>整合Redis缓存</h3><p>1、导入依赖：</p>
+<h3 id="三、整合Redis缓存"><a href="#三、整合Redis缓存" class="headerlink" title="三、整合Redis缓存"></a>三、整合Redis缓存</h3><p>1、导入依赖：</p>
 <pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
@@ -1415,9 +1415,6 @@ updateEmp() &#123;
     <span class="hljs-comment">// 封装获取redisTemplate的方法</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> RedisTemplate <span class="hljs-title">getRedisTemplate</span><span class="hljs-params">()</span></span>&#123;
         RedisTemplate redisTemplate =(RedisTemplate) ApplicationContextUtils.getBean(<span class="hljs-string">"redisTemplate"</span>);
-        <span class="hljs-comment">// 指定序列化方式</span>
-        redisTemplate.setKeySerializer(<span class="hljs-keyword">new</span> StringRedisSerializer());
-        redisTemplate.setHashKeySerializer(<span class="hljs-keyword">new</span> StringRedisSerializer());
         <span class="hljs-keyword">return</span> redisTemplate;
     &#125;
 
@@ -1502,18 +1499,13 @@ updateEmp() &#123;
 </ul>
 <p>学到了什么？</p>
 <ul>
-<li><p>使用了Redis作为Mybatis的缓存，以前只是对Mybatis的缓存机制停留在了解阶段，这次使用上了之前学习的Redis数据库。</p>
-</li>
-<li><p>使用了vue对页面进行渲染，axios发起异步请求，熟悉了前后端分离系统的数据交互模式</p>
-</li>
-<li><p>学习到了使用ObjectUtils，StringUtils对一些属性进行非空判断</p>
-</li>
-<li><p>使用 Exception+ResponseBody，讲异常返回给前端，给用户友好的提示</p>
-</li>
-<li><p>使用localStorage保存用户登录信息</p>
-</li>
-<li><p>在vue中构造表单，填充数据和文件，后端使用MultipartFile类接收前端的文件，并上传值到指定目录</p>
-</li>
+<li>使用了Redis作为Mybatis的缓存，以前只是对Mybatis的缓存机制停留在了解阶段，这次使用上了之前学习的Redis数据库</li>
+<li>使用了vue对页面进行渲染，axios发起异步请求，熟悉了前后端分离系统的数据交互模式</li>
+<li>使用base64格式在浏览器端显示图片，需要在base64格式的图片前面加上<code>data:image/png;base64,</code>前缀</li>
+<li>学习到了使用ObjectUtils，StringUtils对一些属性进行非空判断</li>
+<li>使用 Exception+ResponseBody，讲异常返回给前端，给用户友好的提示</li>
+<li>使用localStorage保存用户登录信息</li>
+<li>在vue中构造表单，填充数据和文件，后端使用MultipartFile类接收前端的文件，并上传值到指定目录</li>
 </ul>
 <p>遇到的问题，怎么解决的？</p>
 <ul>
@@ -1546,7 +1538,7 @@ updateEmp() &#123;
                       <a href="/2020/08/13/thread/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">多线程</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </div>
@@ -1555,7 +1547,7 @@ updateEmp() &#123;
                     
                       <a href="/2020/08/11/collection/">
                         <span class="hidden-mobile">Collection</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -1572,7 +1564,7 @@ updateEmp() &#123;
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -1605,7 +1597,7 @@ updateEmp() &#123;
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -1614,7 +1606,7 @@ updateEmp() &#123;
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
