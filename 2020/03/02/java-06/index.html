@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      45
+      44
        分钟
     </span>
   
@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：August 14, 2020 pm
+                  本文最后更新于：September 1, 2020 pm
                 
               </p>
             
@@ -382,13 +382,13 @@
         <span class="hljs-comment">/*</span>
 <span class="hljs-comment">        添加元素的过程：</span>
 <span class="hljs-comment">        向HashSet中添加元素a,首先调用元素a所在类的hashCode(),计算元素a的哈希值,</span>
-<span class="hljs-comment">        此哈希值通过某种算法计算出在HashSet底层数组中的存放位置,判断此位置上是否有其他元素：</span>
+<span class="hljs-comment">        此哈希值与数组长度-1做与运算，计算出在HashSet底层数组中的存放位置,判断此位置上是否有其他元素：</span>
 <span class="hljs-comment">            如果此位置没有其他元素，则元素a添加成功</span>
 <span class="hljs-comment">            如果此位置上有元素b(或以链表形式存在的多个元素),则比较a,b的哈希值：</span>
-<span class="hljs-comment">                如果哈希值不相同，则元素a添加成功(以链表形式,jdk7:元素a指向原来的元素;jdk8:原来的元素指向元素a)</span>
+<span class="hljs-comment">                如果哈希值不相同，则元素a添加成功(以链表形式,jdk7:元素a指向原来的元素，并取代原来元素的位置;jdk8:采用红黑树（查找速度快）)</span>
 <span class="hljs-comment">                如果哈希值相同，进而调用元素a所在类的equals()：</span>
 <span class="hljs-comment">                    equals()返回true,则元素a添加失败</span>
-<span class="hljs-comment">                    equals()返回false,则添加成功(以链表形式,jdk7:元素a指向原来的元素;jdk8:原来的元素指向元素a)</span>
+<span class="hljs-comment">                    equals()返回false,则添加成功</span>
 <span class="hljs-comment">         */</span>
         HashSet set1 = <span class="hljs-keyword">new</span> HashSet();
         set1.add(<span class="hljs-number">111</span>);
@@ -591,7 +591,7 @@
                       <a href="/2020/03/11/java-07/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">泛型</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </div>
@@ -600,7 +600,7 @@
                     
                       <a href="/2020/02/26/java-05/">
                         <span class="hidden-mobile">Java常用类</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -617,7 +617,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -650,7 +650,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -659,7 +659,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

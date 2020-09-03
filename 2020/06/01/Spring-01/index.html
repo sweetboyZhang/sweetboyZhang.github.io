@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 30, 2020 pm
+                  本文最后更新于：September 1, 2020 pm
                 
               </p>
             
@@ -253,23 +253,22 @@
 <span class="hljs-tag">       <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans</span></span>
 <span class="hljs-tag"><span class="hljs-string">       http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span>
 
-<span class="hljs-comment">&lt;!-- 声明bean 一个bean标签声明一个对象</span>
-<span class="hljs-comment">--&gt;</span>
+<span class="hljs-comment">&lt;!-- 声明bean 一个bean标签声明一个对象--&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"someService"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.zyz.service.impl.SomeServiceImpl"</span>/&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre>
 
 <h3 id="4、使用spring创建对象，调用对象方法"><a href="#4、使用spring创建对象，调用对象方法" class="headerlink" title="4、使用spring创建对象，调用对象方法"></a>4、使用spring创建对象，调用对象方法</h3><pre><code class="hljs java"><span class="hljs-comment">// 使用Spring 容器创建对象</span>
-    <span class="hljs-meta">@Test</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test2</span><span class="hljs-params">()</span></span>&#123;
-        <span class="hljs-comment">// 1、指明spring配置文件名称</span>
-        String config = <span class="hljs-string">"beans.xml"</span>;
-        <span class="hljs-comment">// 2、创建spring容器对象 ApplicationContext</span>
-        <span class="hljs-comment">// 从类路径加载配置文件（创建配置文件中的所有对象）</span>
-        ApplicationContext applicationContext = <span class="hljs-keyword">new</span> ClassPathXmlApplicationContext(config);
-        <span class="hljs-comment">// 3、从容器中获取对象</span>
-        SomeService someService = (SomeService) applicationContext.getBean(<span class="hljs-string">"someService"</span>);<span class="hljs-comment">// 通过id</span>
-        someService.doSome();
-    &#125;</code></pre>
+<span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test2</span><span class="hljs-params">()</span></span>&#123;
+    <span class="hljs-comment">// 1、指明spring配置文件名称</span>
+    String config = <span class="hljs-string">"beans.xml"</span>;
+    <span class="hljs-comment">// 2、创建spring容器对象 ApplicationContext</span>
+    <span class="hljs-comment">// 从类路径加载配置文件（创建配置文件中的所有对象）</span>
+    ApplicationContext applicationContext = <span class="hljs-keyword">new</span> ClassPathXmlApplicationContext(config);
+    <span class="hljs-comment">// 3、从容器中获取对象</span>
+    SomeService someService = (SomeService) applicationContext.getBean(<span class="hljs-string">"someService"</span>);<span class="hljs-comment">// 通过id</span>
+    someService.doSome();
+&#125;</code></pre>
 
 <h2 id="di依赖注入"><a href="#di依赖注入" class="headerlink" title="di依赖注入"></a>di依赖注入</h2><p>语法分类：set注入；构造注入</p>
 <h3 id="基于xml文件"><a href="#基于xml文件" class="headerlink" title="基于xml文件"></a>基于xml文件</h3><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--普通类型  set注入--&gt;</span>
@@ -375,7 +374,7 @@
                       <a href="/2020/06/01/Maven/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Maven</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </div>
@@ -384,7 +383,7 @@
                     
                       <a href="/2020/05/31/MyBatis-05/">
                         <span class="hidden-mobile">MyBatis缓存机制</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -401,7 +400,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -434,7 +433,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -443,7 +442,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

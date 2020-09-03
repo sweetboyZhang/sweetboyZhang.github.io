@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      37
+      36
        分钟
     </span>
   
@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：August 14, 2020 pm
+                  本文最后更新于：September 2, 2020 pm
                 
               </p>
             
@@ -524,22 +524,12 @@
         ExecutorService service = Executors.newFixedThreadPool(<span class="hljs-number">10</span>);
         <span class="hljs-comment">// 创建线程并开始线程</span>
         service.submit(<span class="hljs-keyword">new</span> MyThread4());
-        <span class="hljs-comment">//service.execute(new MyThread4());</span>
-        service.execute(<span class="hljs-keyword">new</span> MyThread5());
+        service.execute(<span class="hljs-keyword">new</span> MyThread4());
         <span class="hljs-comment">// 关闭连接池</span>
         service.shutdown();
     &#125;
 &#125;
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyThread4</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span></span>&#123;
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;
-            System.out.println(Thread.currentThread().getName()+<span class="hljs-string">":"</span>+i);
-        &#125;
-    &#125;
-&#125;
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyThread5</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span></span>&#123;
     <span class="hljs-meta">@Override</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;
         <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;
@@ -576,7 +566,7 @@
                       <a href="/2020/02/20/mysql-01/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">MySQL概述</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </div>
@@ -585,7 +575,7 @@
                     
                       <a href="/2020/02/11/java-03/">
                         <span class="hidden-mobile">异常处理</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -602,7 +592,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -635,7 +625,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -644,7 +634,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
