@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.2k 字
+      2.4k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      32
+      33
        分钟
     </span>
   
@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：August 14, 2020 pm
+                  本文最后更新于：September 8, 2020 pm
                 
               </p>
             
@@ -229,14 +229,20 @@
 <li><p>当调用replace()修改指定字符或字符串时；<br>  <strong>都会重新指定内存区域进行赋值。</strong></p>
 </li>
 </ul>
-<p>5.通过字面量的方式给一个字符串赋值，此时字符串的值声明在字符串常量池 中。<br><img src="/2020/02/26/java-05/String_1.png" srcset="/img/loading.gif" alt="字面量赋值方式"><br>    6.字符串常量池是不会存储相同内容的字符串的。</p>
-<h3 id="String实例化的两种方式："><a href="#String实例化的两种方式：" class="headerlink" title="String实例化的两种方式："></a>String实例化的两种方式：</h3><pre><code class="hljs java"><span class="hljs-comment">// String实例化方式一：字面量赋值  字符串常量存储在堆空间中</span>
+<p>5.通过字面量的方式给一个字符串赋值，此时字符串的值声明在字符串常量池中。</p>
+<p>在jdk1.6之前，字符串常量池在JVM的方法区中，jdk1.7之后移到了堆中的永久代（jdk1.8改为元空间）</p>
+<p><img src="/2020/02/26/java-05/String_1.png" srcset="/img/loading.gif" alt="字面量赋值方式"><br>    6.字符串常量池是不会存储相同内容的字符串的。</p>
+<h3 id="String实例化的两种方式："><a href="#String实例化的两种方式：" class="headerlink" title="String实例化的两种方式："></a>String实例化的两种方式：</h3><pre><code class="hljs java"><span class="hljs-comment">// String实例化方式一：字面量赋值 </span>
+<span class="hljs-comment">// 首先会从字符串常量池中查找，如果该字符串已经存在，在返回引用，否则在字符串常量池中创建</span>
 String st1 = <span class="hljs-string">"abc"</span>;
-<span class="hljs-comment">// String实例化方式二：new + 构造器  字符串存储在字符串常量池中</span>
+<span class="hljs-comment">// String实例化方式二：new + 构造器 在堆空间中创建</span>
 String st2 = <span class="hljs-keyword">new</span> String(<span class="hljs-string">"abc"</span>);</code></pre>
 
 <p>内存解析：<br><img src="/2020/02/26/java-05/String_2.png" srcset="/img/loading.gif" alt></p>
 <p><img src="/2020/02/26/java-05/String_3.png" srcset="/img/loading.gif" alt></p>
+<blockquote>
+<p>intern 方法是一个native方法，intern方法会从字符串常量池中查询当前字符串是否存在，如果存在，就直接返回当前字符串；如果不存在就会将当前字符串放入常量池中，之后再返回。</p>
+</blockquote>
 <h3 id="String常用方法"><a href="#String常用方法" class="headerlink" title="String常用方法"></a>String常用方法</h3> <pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StringMethodTest</span> </span>&#123;
     <span class="hljs-meta">@Test</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span> </span>&#123;

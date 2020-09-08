@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：September 1, 2020 pm
+                  本文最后更新于：September 8, 2020 pm
                 
               </p>
             
@@ -385,7 +385,7 @@
 <span class="hljs-comment">        此哈希值与数组长度-1做与运算，计算出在HashSet底层数组中的存放位置,判断此位置上是否有其他元素：</span>
 <span class="hljs-comment">            如果此位置没有其他元素，则元素a添加成功</span>
 <span class="hljs-comment">            如果此位置上有元素b(或以链表形式存在的多个元素),则比较a,b的哈希值：</span>
-<span class="hljs-comment">                如果哈希值不相同，则元素a添加成功(以链表形式,jdk7:元素a指向原来的元素，并取代原来元素的位置;jdk8:采用红黑树（查找速度快）)</span>
+<span class="hljs-comment">                如果哈希值不相同，则元素a添加成功(以链表形式,元素a指向原来的元素，并取代原来元素的位置;jdk8:采用红黑树（查找速度快）)</span>
 <span class="hljs-comment">                如果哈希值相同，进而调用元素a所在类的equals()：</span>
 <span class="hljs-comment">                    equals()返回true,则元素a添加失败</span>
 <span class="hljs-comment">                    equals()返回false,则添加成功</span>

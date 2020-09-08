@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：August 14, 2020 pm
+                  本文最后更新于：September 8, 2020 pm
                 
               </p>
             
@@ -363,8 +363,9 @@
 <li>底层有散列表（数组+链表）实现</li>
 </ul>
 <p><strong>put(K key,V value)方法</strong>：map.put(key1,value1)</p>
-<p>在jdk7中，首先调用key1所在类的hashCode()计算key的哈希值，此哈希值通过某种算法后，得到在Entry数组中的存放位置；<br>如果此位置为空，则添加成功，<br>否则将key1的哈希值与此位置上的一个或多个元素(key2,value2)的哈希值比较，<br>如果哈希值不同，则添加成功,<br>否则调用key1所在类的equals()，如果返回false，则添加成功，否则使用value1替换value2。<br>涉及到扩容时，容量扩大为原来的2倍，原有的数据全部被复制过来。</p>
-<p>在jdk8中，没有马上就创建数组，而是在put()时创建Node[]数组</p>
+<p>首先调用key1所在类的hashCode()计算key的哈希值，此哈希值与数组长度-1做位运算，得到在Entry数组中的存放位置；<br>如果此位置为空，则添加成功，<br>否则将key1的哈希值与此位置上元素的哈希值比较，<br>如果哈希值不同，则添加成功,<br>否则调用key1所在类的equals()，如果返回false，则添加成功，否则添加失败</p>
+<p>当元素个数达到容量的0.75时，就会扩容，容量扩大为原来的2倍，原有的数据全部被复制过来。</p>
+<p>jdk1.7是以链表的形式添加元素，jdk1.8之后，链表长度大于8的时候，链表会转换为红黑树。</p>
 <p><strong>get(Object key)</strong>：计算key的哈希值，通过getNode(int hash,Object key)获取对应的value</p>
 <p><strong>remove(Object key)</strong>：计算key的哈希值，通过removeNode(int hash,Object key,Object value) 删除该键值对，并返回值</p>
 <p><strong>HashMap与HashTable的区别：</strong></p>
