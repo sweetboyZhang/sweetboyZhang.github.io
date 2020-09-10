@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：September 8, 2020 pm
+                  本文最后更新于：September 9, 2020 am
                 
               </p>
             
@@ -257,7 +257,10 @@ DriverManager.getCallerClassLoader();</code></pre>
 <blockquote>
 <p>垃圾回收过程</p>
 </blockquote>
-<p>Eden区满了，触发第一次GC，称为Minor GC，<br>GC过程（复制 -&gt; 清空 -&gt; 互换），<br><img src="/2020/09/06/jvm/7.png" srcset="/img/loading.gif" style="zoom: 67%;"></p>
+<p>Eden区满了，触发第一次GC，称为Minor GC，将存活数据复制到From区，清空Eden区，</p>
+<blockquote>
+<p>GC过程（复制 -&gt; 清空 -&gt; 互换），<br><img src="/2020/09/06/jvm/7.png" srcset="/img/loading.gif" style="zoom: 67%;"></p>
+</blockquote>
 <p>当Eden区再次触发GC时，会扫描Eden区和From区，对两个区域进行垃圾回收，经过这次回收还存活的对象直接复制到To区，同时把这些数据的年龄加1，清空Eden区和From区，清空后的From区成为下次GC的To区，完成交换，如此交换15次，若数据还有存活则存入老年区。</p>
 <p>养老区满了，开启Full GC，FGC多次，养老区也无法腾出空间了，抛出OOM</p>
 <blockquote>
@@ -287,13 +290,19 @@ DriverManager.getCallerClassLoader();</code></pre>
                   <div class="post-prev col-6">
                     
                     
+                      <a href="/2020/09/09/mysql-senior/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">连接查询和索引</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </div>
                   <div class="post-next col-6">
                     
                     
                       <a href="/2020/08/17/project-02/">
                         <span class="hidden-mobile">旅游信息管理系统</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -310,7 +319,7 @@ DriverManager.getCallerClassLoader();</code></pre>
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -343,7 +352,7 @@ DriverManager.getCallerClassLoader();</code></pre>
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -352,7 +361,7 @@ DriverManager.getCallerClassLoader();</code></pre>
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

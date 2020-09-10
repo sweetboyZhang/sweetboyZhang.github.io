@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.9k 字
+      3.6k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      54
+      49
        分钟
     </span>
   
@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 14, 2020 pm
+                  本文最后更新于：September 9, 2020 am
                 
               </p>
             
@@ -446,40 +446,7 @@
 <span class="hljs-comment"># 查询每个部门每个工种的员工的平均工资，并按平均工资的高低显示 </span>
 <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">AVG</span>(salary),job_id,department_id <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> job_id,department_id <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-keyword">AVG</span>(salary) <span class="hljs-keyword">DESC</span>;</code></pre>
 
-<h2 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h2><p><strong>sql92语法：</strong></p>
-<pre><code class="hljs sql"><span class="hljs-comment"># 1.等值连接</span>
-<span class="hljs-comment"># 查询员工名对应的部门名</span>
-<span class="hljs-keyword">SELECT</span> last_name,department_name <span class="hljs-keyword">FROM</span> employees,departments
-<span class="hljs-keyword">WHERE</span> employees.department_id=departments.department_id;
-<span class="hljs-comment"># 查询有奖金的员工名、部门名</span>
-<span class="hljs-keyword">SELECT</span> last_name,department_name,commission_pct <span class="hljs-keyword">FROM</span> employees e,departments d
-<span class="hljs-keyword">WHERE</span> e.department_id=d.department_id <span class="hljs-keyword">AND</span> commission_pct <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>;
-<span class="hljs-comment"># 查询城市名中第二个字符为o的部门名和城市名</span>
-<span class="hljs-keyword">SELECT</span> department_name,city <span class="hljs-keyword">from</span> departments d,locations l
-<span class="hljs-keyword">WHERE</span> d.location_id = l.location_id <span class="hljs-keyword">AND</span> city <span class="hljs-keyword">LIKE</span> <span class="hljs-string">"_o%"</span>;
-<span class="hljs-comment"># 查询每个城市的部门个数</span>
-<span class="hljs-keyword">SELECT</span> city,<span class="hljs-keyword">COUNT</span>(*) 个数 <span class="hljs-keyword">FROM</span> departments d,locations l 
-<span class="hljs-keyword">WHERE</span> d.location_id=l.location_id <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> city;
-<span class="hljs-comment"># 查询有奖金的每个部门的部门名和部门领导编号和该部门的最低工资</span>
-<span class="hljs-keyword">SELECT</span> department_name,d.manager_id,<span class="hljs-keyword">MIN</span>(salary) <span class="hljs-keyword">FROM</span> departments d,employees e
-<span class="hljs-keyword">WHERE</span> d.department_id = e.department_id <span class="hljs-keyword">AND</span> commission_pct <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>
-<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> department_name,d.manager_id;
-<span class="hljs-comment"># 查询每个工种的工种名和员工个数，并按员工个数排序</span>
-<span class="hljs-keyword">SELECT</span> job_title 工种名,<span class="hljs-keyword">count</span>(*) 员工个数 <span class="hljs-keyword">FROM</span> jobs j,employees e
-<span class="hljs-keyword">WHERE</span>  j.job_id=e.job_id <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> job_title <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-keyword">count</span>(*);
-
-<span class="hljs-comment">#2.非等值连接</span>
-<span class="hljs-comment"># 查询员工的工资级别和等级</span>
-<span class="hljs-keyword">SELECT</span> salary,grade_level <span class="hljs-keyword">FROM</span> employees,job_grades
-<span class="hljs-keyword">WHERE</span> salary <span class="hljs-keyword">BETWEEN</span> lowest_sal <span class="hljs-keyword">AND</span> highest_sal
-
-<span class="hljs-comment"># 3.自连接</span>
-<span class="hljs-comment"># 查询员工名和上级编号</span>
-<span class="hljs-keyword">SELECT</span> e.employee_id,e.last_name,m.employee_id,m.last_name
-<span class="hljs-keyword">FROM</span> employees e,employees m <span class="hljs-keyword">WHERE</span> e.manager_id = m.employee_id;</code></pre>
-
-<p><strong>sql99语法：</strong></p>
-<pre><code class="hljs sql"><span class="hljs-comment"># 一、内连接</span>
+<h2 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h2><pre><code class="hljs sql"><span class="hljs-comment"># 一、内连接</span>
 <span class="hljs-comment">/*</span>
 <span class="hljs-comment">语法：</span>
 <span class="hljs-comment">select 查询列表</span>
@@ -617,7 +584,7 @@
                       <a href="/2020/02/24/linux-01/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Linux目录结构,Xshell,Xftp，vim</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </div>
@@ -626,7 +593,7 @@
                     
                       <a href="/2020/02/20/mysql-01/">
                         <span class="hidden-mobile">MySQL概述</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -643,7 +610,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -676,7 +643,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -685,7 +652,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

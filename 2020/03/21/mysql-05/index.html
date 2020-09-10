@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      930 字
+      998 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      10
+      11
        分钟
     </span>
   
@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：September 3, 2020 pm
+                  本文最后更新于：September 9, 2020 pm
                 
               </p>
             
@@ -242,7 +242,7 @@
 
 <p><strong>好处：</strong><br>1.重用sql语句<br>2.简化复杂的sql操作，不必知道它的查询细节<br>3.保护数据，提高安全性</p>
 <p><strong>删除视图：</strong>drop view 视图名1,视图名2,…<br>视图与表的区别：<br>视图只是保留了sql逻辑，没有保存数据，虽然可以增删改查，但是一般只作查询使用。</p>
-<h2 id="索引的分类"><a href="#索引的分类" class="headerlink" title="索引的分类"></a>索引的分类</h2><p>索引是帮助数据库高效获取数据的数据结构。<br>分为：</p>
+<h2 id="索引的分类"><a href="#索引的分类" class="headerlink" title="索引的分类"></a>索引的分类</h2><p>索引是帮助数据库高效获取数据的数据结构。建立索引时会将数据排序，类似于图书的目录，根据目录中的索引查找到对应的页码。<br>分为：</p>
 <ul>
 <li>主键索引（primary key）<ul>
 <li>唯一的标识，主键不可重复，只能由一个列作为主键</li>
@@ -261,18 +261,21 @@
 </ul>
 </li>
 </ul>
-<p>增加索引</p>
-<pre><code class="hljs sql"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> <span class="hljs-string">`表名`</span> <span class="hljs-keyword">add</span> 索引 索引名(列名)</code></pre>
+<blockquote>
+<p>创建索引的三种方式</p>
+</blockquote>
+<p>方式一：创建表的时候</p>
+<pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">user</span>(
+	<span class="hljs-keyword">id</span> <span class="hljs-built_in">INT</span> atuo_increment PRIMARY <span class="hljs-keyword">KEY</span>,
+    <span class="hljs-keyword">name</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">20</span>),
+    age <span class="hljs-built_in">TINYINT</span>
+)</code></pre>
 
-<p>创建表时添加</p>
-<pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> book(
-	<span class="hljs-keyword">id</span> <span class="hljs-built_in">INT</span>,<span class="hljs-comment"># 编号</span>
-	bname <span class="hljs-built_in">varchar</span>(<span class="hljs-number">20</span>),<span class="hljs-comment"># 书名</span>
-	price <span class="hljs-keyword">DOUBLE</span>,<span class="hljs-comment"># 价格</span>
-	author <span class="hljs-built_in">INT</span>,<span class="hljs-comment"># 作者id</span>
-	publishDate DATETIME <span class="hljs-comment"># 出版日期</span>
-    PRIMARY <span class="hljs-keyword">KEY</span> (<span class="hljs-keyword">id</span>),
-	);</code></pre>
+<p>方式二：使用alter table命令，创建普通索引、UNIQUE索引或PRIMARY KEY索引。</p>
+<pre><code class="hljs sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> table_name <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">INDEX</span> index_name (column_list);</code></pre>
+
+<p>方式三：使用create index命令，增加普通索引或unique索引</p>
+<pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> index_name <span class="hljs-keyword">ON</span> table_name (column_list);</code></pre>
 
 <p>索引在数据小的时候，作用不大，但是在数据大时，区别十分明显</p>
 <h2 id="索引原则"><a href="#索引原则" class="headerlink" title="索引原则"></a>索引原则</h2><ul>
@@ -307,7 +310,7 @@
                       <a href="/2020/03/22/mysql-06/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">MySQL变量,存储过程,流程结构</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </div>
@@ -316,7 +319,7 @@
                     
                       <a href="/2020/03/21/mysql-04/">
                         <span class="hidden-mobile">MySQL数据类型，约束，标识列</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -333,7 +336,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -366,7 +369,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -375,7 +378,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
