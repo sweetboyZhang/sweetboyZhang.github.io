@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      78 字
+      1.7k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      26
        分钟
     </span>
   
@@ -215,13 +215,326 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：September 10, 2020 am
+                  本文最后更新于：September 11, 2020 pm
                 
               </p>
             
             <article class="markdown-body">
               <h2 id="NIO简介"><a href="#NIO简介" class="headerlink" title="NIO简介"></a>NIO简介</h2><p>Java NIO 是从jdk1.4开始引入的一个新的IO API ,可以完全代替标准的IO API。NIO与原来的IO有同样的作用和目的，但是使用方式完全不同，NIO支持<strong>面向缓冲区</strong>的、基于通道的IO操作，读写操作更加高效。<a id="more"></a></p>
+<p><strong>IO与NIO的区别：</strong><br><img src="/2020/09/09/nio/1.png" srcset="/img/loading.gif" style="zoom:80%;"></p>
+<p>NIO系统的核心在于：通道（Channel）和缓冲区（Buffer）。通道表示打开到IO设备（文件、套接字等）的连接，缓冲区负责暂时存放传输数据。<br><font color="red">简而言之，Channel负责传输，Buffer负责存储。</font></p>
+<h2 id="Buffer存取数据"><a href="#Buffer存取数据" class="headerlink" title="Buffer存取数据"></a>Buffer存取数据</h2><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 一、Buffer在NIO中负责数据的存取。缓存区就是数组，用于存储不同类型的数据</span>
+<span class="hljs-comment"> * 根据数据类型不同 boolean除外</span>
+<span class="hljs-comment"> * ByteBuffer</span>
+<span class="hljs-comment"> * CharBuffer</span>
+<span class="hljs-comment"> * ShortBuffer</span>
+<span class="hljs-comment"> * IntBuffer</span>
+<span class="hljs-comment"> * LongBuffer</span>
+<span class="hljs-comment"> * FloatBuffer</span>
+<span class="hljs-comment"> * DoubleBuffer</span>
+<span class="hljs-comment"> * 都通过allocate() 获取缓冲区</span>
+<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> * 二、Buffer存取数据的核心方法</span>
+<span class="hljs-comment"> * put():存</span>
+<span class="hljs-comment"> * get():取</span>
+<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> * 三、Buffer四个核心属性</span>
+<span class="hljs-comment"> * capacity:容量，表示缓冲区中存储数据的最大容量，一旦声明不可改变</span>
+<span class="hljs-comment"> * limit:界限，表示缓冲区可以操作数据的大小，limit后的数据不可操作</span>
+<span class="hljs-comment"> * position:位置，表示缓冲区正在操作数据的位置</span>
+<span class="hljs-comment"> * mark:标记，记录当前 position的位置，可通过 reset恢复到 mark位置</span>
+<span class="hljs-comment"> * 0&lt;=mark&lt;=position&lt;=limit&lt;=capacity</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BufferTest</span> </span>&#123;
+    <span class="hljs-meta">@Test</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span></span>&#123;
+        <span class="hljs-comment">// 1、分配指定大小的缓冲区</span>
+        System.out.println(<span class="hljs-string">"-------allocate--------"</span>);
+        ByteBuffer buffer = ByteBuffer.allocate(<span class="hljs-number">1024</span>);
+        System.out.println(buffer.position());<span class="hljs-comment">// 0</span>
+        System.out.println(buffer.limit());<span class="hljs-comment">// 1024</span>
+        System.out.println(buffer.capacity());<span class="hljs-comment">// 1024</span>
+        <span class="hljs-comment">// 2、利用put()存入数据到缓冲区</span>
+        System.out.println(<span class="hljs-string">"----------put----------"</span>);
+        String str = <span class="hljs-string">"abcde"</span>;
+        buffer.put(str.getBytes());
+        System.out.println(buffer.position());<span class="hljs-comment">// 5</span>
+        System.out.println(buffer.limit());<span class="hljs-comment">// 1024</span>
+        System.out.println(buffer.capacity());<span class="hljs-comment">// 1024</span>
+        <span class="hljs-comment">// 3、切换读取数据模式</span>
+        System.out.println(<span class="hljs-string">"----------flip----------"</span>);
+        buffer.flip();
+        System.out.println(buffer.position());<span class="hljs-comment">// 0</span>
+        System.out.println(buffer.limit());<span class="hljs-comment">// 5</span>
+        System.out.println(buffer.capacity());<span class="hljs-comment">// 1024</span>
+        <span class="hljs-comment">// 4、利用get()读取数据</span>
+        System.out.println(<span class="hljs-string">"----------get-----------"</span>);
+        <span class="hljs-keyword">byte</span>[] dest = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[buffer.limit()];
+        buffer.get(dest);
+        System.out.println(buffer.position());<span class="hljs-comment">// 5</span>
+        System.out.println(buffer.limit());<span class="hljs-comment">// 5</span>
+        System.out.println(buffer.capacity());<span class="hljs-comment">// 1024</span>
+        System.out.println(<span class="hljs-string">"读取的数据："</span>+<span class="hljs-keyword">new</span> String(dest,<span class="hljs-number">0</span>,dest.length));
+        <span class="hljs-comment">// 5、rewind():可重复读取数据 将核心属性恢复到读之前的状态</span>
+        System.out.println(<span class="hljs-string">"---------rewind---------"</span>);
+        buffer.rewind();
+        System.out.println(buffer.position());<span class="hljs-comment">// 0</span>
+        System.out.println(buffer.limit());<span class="hljs-comment">// 5</span>
+        System.out.println(buffer.capacity());<span class="hljs-comment">// 1024</span>
+        <span class="hljs-comment">// 6、clear():清空缓冲区，但是数据还在，处于被遗忘的状态</span>
+        System.out.println(<span class="hljs-string">"---------clear---------"</span>);
+        buffer.clear();
+        System.out.println(buffer.position());<span class="hljs-comment">// 0</span>
+        System.out.println(buffer.limit());<span class="hljs-comment">// 1024</span>
+        System.out.println(buffer.capacity());<span class="hljs-comment">// 1024</span>
+    &#125;
+    
+    <span class="hljs-meta">@Test</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test2</span><span class="hljs-params">()</span></span>&#123;
+        String str = <span class="hljs-string">"abcde"</span>;
+        ByteBuffer buffer = ByteBuffer.allocate(<span class="hljs-number">1024</span>);
+        buffer.put(str.getBytes());
+        buffer.flip();
+        <span class="hljs-keyword">byte</span>[] dest = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[buffer.limit()];
+        buffer.get(dest,<span class="hljs-number">0</span>,<span class="hljs-number">2</span>);
+        System.out.println(<span class="hljs-string">"读取到的字符串:"</span>+<span class="hljs-keyword">new</span> String(dest,<span class="hljs-number">0</span>,dest.length));<span class="hljs-comment">// ab</span>
+        System.out.println(<span class="hljs-string">"position:"</span>+buffer.position());<span class="hljs-comment">// 2</span>
+        <span class="hljs-comment">// 标记position</span>
+        buffer.mark();
+        <span class="hljs-comment">/**</span>
+<span class="hljs-comment">         *  buffer.get(dest,2,2);</span>
+<span class="hljs-comment">         *  System.out.println("读取到的字符串:"+new String(dest,0,dest.length));// acbd</span>
+<span class="hljs-comment">         */</span>
+        buffer.get(dest,<span class="hljs-number">0</span>,<span class="hljs-number">2</span>);
+        System.out.println(<span class="hljs-string">"读取到的字符串:"</span>+<span class="hljs-keyword">new</span> String(dest,<span class="hljs-number">0</span>,dest.length));<span class="hljs-comment">// cd</span>
+        System.out.println(<span class="hljs-string">"position:"</span>+buffer.position());<span class="hljs-comment">// 4</span>
+        <span class="hljs-comment">// reset重置  将position恢复到mark时的位置</span>
+        buffer.reset();
+        System.out.println(<span class="hljs-string">"position:"</span>+buffer.position());<span class="hljs-comment">// 2</span>
+        <span class="hljs-comment">// 判断缓冲区是否还有剩余数据</span>
+        <span class="hljs-keyword">if</span>(buffer.hasRemaining())&#123;
+            <span class="hljs-comment">// 输出剩余数据的个数</span>
+            System.out.println(buffer.remaining());<span class="hljs-comment">// 3</span>
+        &#125;
+    &#125;
+&#125;</code></pre>
 
+<h2 id="直接缓冲区和非直接缓冲区"><a href="#直接缓冲区和非直接缓冲区" class="headerlink" title="直接缓冲区和非直接缓冲区"></a>直接缓冲区和非直接缓冲区</h2><p>非直接缓冲区：通过allocate()方法分配缓冲区，将缓冲区建立在JVM的内存中</p>
+<p>直接缓冲区：通过allocateDirect()方法分配，将缓冲区直接建立在物理内存中。可以提高效率。</p>
+<pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test3</span><span class="hljs-params">()</span></span>&#123;
+    ByteBuffer buffer = ByteBuffer.allocateDirect(<span class="hljs-number">1024</span>);
+    <span class="hljs-comment">// 判断是否为直接缓冲区</span>
+    System.out.println(buffer.isDirect());<span class="hljs-comment">// true</span>
+&#125;</code></pre>
+
+<h2 id="Channel传输数据"><a href="#Channel传输数据" class="headerlink" title="Channel传输数据"></a>Channel传输数据</h2><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 一、Channel用于源节点与目标节点的连接，负责缓冲区中数据的传输</span>
+<span class="hljs-comment"> * 二、主要实现类：</span>
+<span class="hljs-comment"> * FileChannel</span>
+<span class="hljs-comment"> * SocketChannel</span>
+<span class="hljs-comment"> * ServerSocketChannel</span>
+<span class="hljs-comment"> * DatagramChannel</span>
+<span class="hljs-comment"> * 三、获取通道</span>
+<span class="hljs-comment"> * 1、Java针对支持通道的类提供了 getChannel()方法</span>
+<span class="hljs-comment"> * 本地 IO:</span>
+<span class="hljs-comment"> * FileInputStream/FileOutputStream</span>
+<span class="hljs-comment"> * RandomAccessFile</span>
+<span class="hljs-comment"> * 网络 IO:</span>
+<span class="hljs-comment"> * Socket</span>
+<span class="hljs-comment"> * ServerSocket</span>
+<span class="hljs-comment"> * DatagramSocket</span>
+<span class="hljs-comment"> * 2、jdk1.7中NIO.2针对各个通道提供了静态的 open()方法</span>
+<span class="hljs-comment"> *                 以及Files工具类的 newByteChannel()方法</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ChannelTest</span> </span>&#123;
+    <span class="hljs-meta">@Test</span> <span class="hljs-comment">// 完成文件的复制 非直接缓冲区</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span></span>&#123;
+        FileInputStream fis = <span class="hljs-keyword">null</span>;
+        FileOutputStream fos = <span class="hljs-keyword">null</span>;
+        FileChannel fisChannel = <span class="hljs-keyword">null</span>;
+        FileChannel fosChannel = <span class="hljs-keyword">null</span>;
+        <span class="hljs-keyword">try</span> &#123;
+            <span class="hljs-comment">// 创建输入输出流</span>
+            fis = <span class="hljs-keyword">new</span> FileInputStream(<span class="hljs-string">"1.jpg"</span>);
+            fos = <span class="hljs-keyword">new</span> FileOutputStream(<span class="hljs-string">"2.jpg"</span>);
+            <span class="hljs-comment">// 获取通道</span>
+            fisChannel = fis.getChannel();
+            fosChannel = fos.getChannel();
+            <span class="hljs-comment">// 分配缓冲区</span>
+            ByteBuffer buffer = ByteBuffer.allocate(<span class="hljs-number">1024</span>);
+            <span class="hljs-comment">// 将通道中的数据存入缓冲区</span>
+            <span class="hljs-keyword">while</span>(fisChannel.read(buffer)!=-<span class="hljs-number">1</span>)&#123;
+                <span class="hljs-comment">// 读取缓冲区中的数据并写入通道</span>
+                buffer.flip();<span class="hljs-comment">// 切换成读模式</span>
+                fosChannel.write(buffer);
+                <span class="hljs-comment">// 清空缓冲区</span>
+                buffer.clear();
+            &#125;
+        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
+            e.printStackTrace();
+        &#125; <span class="hljs-keyword">finally</span> &#123;
+            <span class="hljs-comment">// 关闭资源</span>
+            <span class="hljs-keyword">if</span>(fis!=<span class="hljs-keyword">null</span>)&#123;
+                <span class="hljs-keyword">try</span> &#123;
+                    fis.close();
+                &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
+                    e.printStackTrace();
+                &#125;
+            &#125;
+            <span class="hljs-keyword">if</span>(fos!=<span class="hljs-keyword">null</span>)&#123;
+                <span class="hljs-keyword">try</span> &#123;
+                    fos.close();
+                &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
+                    e.printStackTrace();
+                &#125;
+            &#125;
+            <span class="hljs-keyword">if</span>(fisChannel!=<span class="hljs-keyword">null</span>)&#123;
+                <span class="hljs-keyword">try</span> &#123;
+                    fisChannel.close();
+                &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
+                    e.printStackTrace();
+                &#125;
+            &#125;
+            <span class="hljs-keyword">if</span>(fosChannel!=<span class="hljs-keyword">null</span>)&#123;
+                <span class="hljs-keyword">try</span> &#123;
+                    fosChannel.close();
+                &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
+                    e.printStackTrace();
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre>
+
+<pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">// 完成文件的复制(内存映射文件) 直接缓冲区</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test2</span><span class="hljs-params">()</span></span>&#123;
+    FileChannel fisChannel = <span class="hljs-keyword">null</span>;
+    FileChannel fosChannel = <span class="hljs-keyword">null</span>;
+    <span class="hljs-keyword">try</span> &#123;
+        <span class="hljs-comment">// 使用相应的通道的open方法获取通道</span>
+        fisChannel = FileChannel.open(Paths.get(<span class="hljs-string">"1.jpg"</span>), StandardOpenOption.READ);
+        fosChannel = FileChannel.open(Paths.get(<span class="hljs-string">"3.jpg"</span>),StandardOpenOption.READ,StandardOpenOption.WRITE,StandardOpenOption.CREATE);
+        <span class="hljs-comment">// 创建内存映射文件</span>
+        MappedByteBuffer inMapperBuf = fisChannel.map(FileChannel.MapMode.READ_ONLY, <span class="hljs-number">0</span>, fisChannel.size());
+        MappedByteBuffer outMapperBuf = fosChannel.map(FileChannel.MapMode.READ_WRITE, <span class="hljs-number">0</span>, fisChannel.size());
+
+        <span class="hljs-keyword">byte</span>[] dest = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[inMapperBuf.limit()];
+        <span class="hljs-comment">// 直接缓冲区中的数据进行读写</span>
+        inMapperBuf.get(dest);
+        outMapperBuf.put(dest);
+    &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
+        e.printStackTrace();
+    &#125; <span class="hljs-keyword">finally</span> &#123;
+        <span class="hljs-keyword">if</span>(fisChannel!=<span class="hljs-keyword">null</span>)&#123;
+            <span class="hljs-keyword">try</span> &#123;
+                fisChannel.close();
+            &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
+                e.printStackTrace();
+            &#125;
+        &#125;
+        <span class="hljs-keyword">if</span>(fosChannel!=<span class="hljs-keyword">null</span>)&#123;
+            <span class="hljs-keyword">try</span> &#123;
+                fosChannel.close();
+            &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
+                e.printStackTrace();
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre>
+
+<p>对于直接字节缓存区来说，JVM会尽最大努力直接在此缓冲区执行本机的IO操作，避免每次调用基础操作系统的一个本机IO操作之前或之后，将缓冲区的内容复制到中间的缓冲区中。<br><img src="/2020/09/09/nio/3.png" srcset="/img/loading.gif" style="zoom:80%;"></p>
+<h2 id="通道之间的数据传输"><a href="#通道之间的数据传输" class="headerlink" title="通道之间的数据传输"></a>通道之间的数据传输</h2><pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">// 通道之间的数据传输</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test3</span><span class="hljs-params">()</span></span>&#123;
+    FileChannel fisChannel = <span class="hljs-keyword">null</span>;
+    FileChannel fosChannel = <span class="hljs-keyword">null</span>;
+    <span class="hljs-keyword">try</span> &#123;
+        fisChannel = FileChannel.open(Paths.get(<span class="hljs-string">"1.jpg"</span>), StandardOpenOption.READ);
+        fosChannel = FileChannel.open(Paths.get(<span class="hljs-string">"4.jpg"</span>), StandardOpenOption.READ,StandardOpenOption.WRITE,StandardOpenOption.CREATE);
+
+        fisChannel.transferTo(<span class="hljs-number">0</span>,fisChannel.size(),fosChannel);
+        <span class="hljs-comment">// fosChannel.transferFrom(fisChannel,0,fisChannel.size());</span>
+    &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
+        e.printStackTrace();
+    &#125; <span class="hljs-keyword">finally</span> &#123;
+        <span class="hljs-keyword">if</span>(fisChannel!=<span class="hljs-keyword">null</span>)&#123;
+            <span class="hljs-keyword">try</span> &#123;
+                fisChannel.close();
+            &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
+                e.printStackTrace();
+            &#125;
+        &#125;
+        <span class="hljs-keyword">if</span>(fosChannel!=<span class="hljs-keyword">null</span>)&#123;
+            <span class="hljs-keyword">try</span> &#123;
+                fosChannel.close();
+            &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
+                e.printStackTrace();
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre>
+
+<h2 id="分散读取和聚集写入"><a href="#分散读取和聚集写入" class="headerlink" title="分散读取和聚集写入"></a>分散读取和聚集写入</h2><p>分散读取：将通道中读取到的数据分散到多个缓冲区中。</p>
+<p>聚集写入：将多个缓冲区中的数据写入到一个通道中。</p>
+<pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">// 分散读取和聚集写入</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test4</span><span class="hljs-params">()</span> </span>&#123;
+    RandomAccessFile randomAccessFile1 = <span class="hljs-keyword">null</span>;
+    RandomAccessFile randomAccessFile2 = <span class="hljs-keyword">null</span>;
+    FileChannel inChannel = <span class="hljs-keyword">null</span>;
+    FileChannel outChannel = <span class="hljs-keyword">null</span>;
+    <span class="hljs-keyword">try</span> &#123;
+        randomAccessFile1 = <span class="hljs-keyword">new</span> RandomAccessFile(<span class="hljs-string">"1.jpg"</span>, <span class="hljs-string">"rw"</span>);
+        inChannel = randomAccessFile1.getChannel();
+        ByteBuffer buffer1 = ByteBuffer.allocate(<span class="hljs-number">102400</span>);
+        ByteBuffer buffer2 = ByteBuffer.allocate(<span class="hljs-number">102400</span>);
+        <span class="hljs-comment">// 分散读取</span>
+        ByteBuffer[] buffers = &#123;buffer1, buffer2&#125;;
+        inChannel.read(buffers);
+
+        <span class="hljs-comment">// 聚集写入</span>
+        randomAccessFile2 = <span class="hljs-keyword">new</span> RandomAccessFile(<span class="hljs-string">"5.jpg"</span>, <span class="hljs-string">"rw"</span>);
+        outChannel = randomAccessFile2.getChannel();
+        <span class="hljs-keyword">for</span>(ByteBuffer buffer:buffers)&#123;
+            buffer.flip();
+        &#125;
+        outChannel.write(buffers);
+
+    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;
+        e.printStackTrace();
+    &#125; <span class="hljs-keyword">finally</span> &#123;
+        <span class="hljs-keyword">if</span> (randomAccessFile1 != <span class="hljs-keyword">null</span>) &#123;
+            <span class="hljs-keyword">try</span> &#123;
+                randomAccessFile1.close();
+            &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
+                e.printStackTrace();
+            &#125;
+        &#125;
+        <span class="hljs-keyword">if</span> (randomAccessFile2 != <span class="hljs-keyword">null</span>) &#123;
+            <span class="hljs-keyword">try</span> &#123;
+                randomAccessFile2.close();
+            &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
+                e.printStackTrace();
+            &#125;
+        &#125;
+        <span class="hljs-keyword">if</span> (inChannel!=<span class="hljs-keyword">null</span>)&#123;
+            <span class="hljs-keyword">try</span> &#123;
+                inChannel.close();
+            &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
+                e.printStackTrace();
+            &#125;
+        &#125;
+        <span class="hljs-keyword">if</span> (outChannel!=<span class="hljs-keyword">null</span>)&#123;
+            <span class="hljs-keyword">try</span> &#123;
+                outChannel.close();
+            &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
+                e.printStackTrace();
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre>
+
+<h2 id="阻塞与非阻塞"><a href="#阻塞与非阻塞" class="headerlink" title="阻塞与非阻塞"></a>阻塞与非阻塞</h2>
             </article>
             <hr>
             <div>
@@ -250,7 +563,7 @@
                     
                       <a href="/2020/09/09/mysql-senior/">
                         <span class="hidden-mobile">连接查询和索引</span>
-                        <span class="visible-mobile">下一篇</span>
+                        <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -267,7 +580,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
   <div id="tocbot"></div>
 </div>
 
@@ -300,7 +613,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -309,7 +622,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
