@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.7k 字
+      2.7k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      26
+      39
        分钟
     </span>
   
@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：September 11, 2020 pm
+                  本文最后更新于：September 12, 2020 am
                 
               </p>
             
@@ -534,7 +534,152 @@
     &#125;
 &#125;</code></pre>
 
-<h2 id="阻塞与非阻塞"><a href="#阻塞与非阻塞" class="headerlink" title="阻塞与非阻塞"></a>阻塞与非阻塞</h2>
+<h2 id="阻塞与非阻塞"><a href="#阻塞与非阻塞" class="headerlink" title="阻塞与非阻塞"></a>阻塞与非阻塞</h2><ul>
+<li>传统的IO 流都是阻塞式的。当一个线程调用read() 或write()时，该线程被阻塞，直到有一些数据被读取或写入，该线程在此期间不能执行其他任务。因此，在完成网络通信进行IO 操作时，由于线程会阻塞，所以服务器端必须为每个客户端都提供一个独立的线程进行处理，当服务器端需要处理大量客户端时，性能急剧下降。</li>
+<li>Java NIO 是非阻塞模式的。当线程从某通道进行读写数据时，若没有数据可用时，该线程可以进行其他任务。线程通常将非阻塞IO 的空闲时间用于在其他通道上执行IO 操作，所以单独的线程可以管理多个输入和输出通道。因此，NIO 可以让服务器端使用一个或有限几个线程来同时处理连接到服务器端的所有客户端请求。</li>
+</ul>
+<blockquote>
+<p>阻塞式IO通信</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BlockTest</span> </span>&#123;
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 使用 NIO完成网络通信的三个核心</span>
+<span class="hljs-comment">     * 1、通道 Channel:负责来连接</span>
+<span class="hljs-comment">     * SocketChannel/ServerSocketChannel</span>
+<span class="hljs-comment">     * DatagramChannel</span>
+<span class="hljs-comment">     * 2、缓冲区 buffer: 负责数据存储</span>
+<span class="hljs-comment">     * 3、选择器 Selector:是SelectableChannel对象的多路复用器，用于监控 SelectableSelector的IO状况</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-meta">@Test</span> <span class="hljs-comment">// 图片发送</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">client</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception</span>&#123;
+        System.out.println(<span class="hljs-string">"图片发送~"</span>);
+        <span class="hljs-comment">// 1、获取通道</span>
+        SocketChannel socketChannel = SocketChannel.open(<span class="hljs-keyword">new</span> InetSocketAddress(<span class="hljs-string">"127.0.0.1"</span>, <span class="hljs-number">9999</span>));
+        FileChannel inFileChannel = FileChannel.open(Paths.get(<span class="hljs-string">"1.jpg"</span>), StandardOpenOption.READ);
+        <span class="hljs-comment">// 2、获取缓冲区</span>
+        ByteBuffer buffer = ByteBuffer.allocate(<span class="hljs-number">1024</span>);
+        <span class="hljs-comment">// 3、读取通道中的数据</span>
+        <span class="hljs-keyword">while</span> (inFileChannel.read(buffer)!=-<span class="hljs-number">1</span>)&#123;
+            buffer.flip();
+            <span class="hljs-comment">// 4、发送到服务端</span>
+            socketChannel.write(buffer);
+            buffer.clear();
+        &#125;
+        System.out.println(<span class="hljs-string">"图片发送完成！"</span>);
+        socketChannel.shutdownOutput();
+        <span class="hljs-comment">// 接收服务端的反馈信息</span>
+        <span class="hljs-keyword">int</span> len = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">while</span>((len = socketChannel.read(buffer))!=-<span class="hljs-number">1</span>)&#123;
+            buffer.flip();
+            System.out.println(<span class="hljs-keyword">new</span> String(buffer.array(),<span class="hljs-number">0</span>,len));
+            buffer.clear();
+        &#125;
+        <span class="hljs-comment">// 5、关闭资源</span>
+        inFileChannel.close();
+        socketChannel.close();
+
+    &#125;
+
+    <span class="hljs-meta">@Test</span> <span class="hljs-comment">// 图片接收</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">server</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception</span>&#123;
+        System.out.println(<span class="hljs-string">"服务端开启!"</span>);
+        <span class="hljs-comment">// 1、获取通道</span>
+        ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
+        FileChannel outFileChannel = FileChannel.open(Paths.get(<span class="hljs-string">"666.jpg"</span>), StandardOpenOption.WRITE,StandardOpenOption.CREATE);
+        <span class="hljs-comment">// 2、绑定端口</span>
+        serverSocketChannel.bind(<span class="hljs-keyword">new</span> InetSocketAddress(<span class="hljs-number">9999</span>));
+        <span class="hljs-comment">// 3、获取客户端连接的通道</span>
+        SocketChannel clientSocketChannel = serverSocketChannel.accept();
+        <span class="hljs-comment">// 4、创建缓冲区</span>
+        ByteBuffer buffer = ByteBuffer.allocate(<span class="hljs-number">1024</span>);
+        <span class="hljs-comment">// 5、读写数据</span>
+        <span class="hljs-keyword">while</span>(clientSocketChannel.read(buffer)!=-<span class="hljs-number">1</span>)&#123;
+            buffer.flip();
+            outFileChannel.write(buffer);
+            buffer.clear();
+        &#125;
+        <span class="hljs-comment">/**</span>
+<span class="hljs-comment">         * 给客户端发送反馈信息</span>
+<span class="hljs-comment">         * 1、将数据存入缓冲区</span>
+<span class="hljs-comment">         * 2、读取缓冲区中的数据并写入客户端通道中</span>
+<span class="hljs-comment">         * 3、清空缓冲区</span>
+<span class="hljs-comment">         */</span>
+        buffer.put(<span class="hljs-string">"来自服务端：我已经接收完成了！"</span>.getBytes());
+        buffer.flip();
+        clientSocketChannel.write(buffer);
+        buffer.clear();
+        <span class="hljs-comment">// 6、关闭资源</span>
+        outFileChannel.close();
+        serverSocketChannel.close();
+        clientSocketChannel.close();
+        System.out.println(<span class="hljs-string">"图片接收完成！"</span>);
+    &#125;
+&#125;</code></pre>
+
+<blockquote>
+<p>非阻塞式IO通信</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NonBlockTest</span> </span>&#123;
+    <span class="hljs-meta">@Test</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">client</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception</span>&#123;
+        <span class="hljs-comment">// 1、获取通道</span>
+        SocketChannel socketChannel = SocketChannel.open(<span class="hljs-keyword">new</span> InetSocketAddress(<span class="hljs-string">"127.0.0.1"</span>, <span class="hljs-number">9999</span>));
+        <span class="hljs-comment">// 2、切换成非阻塞模式</span>
+        socketChannel.configureBlocking(<span class="hljs-keyword">false</span>);
+        <span class="hljs-comment">// 3、分配缓冲区</span>
+        ByteBuffer buffer = ByteBuffer.allocate(<span class="hljs-number">1024</span>);
+        <span class="hljs-comment">// 4、发送数据</span>
+        buffer.put(<span class="hljs-keyword">new</span> Date().toString().getBytes());
+        buffer.flip();
+        socketChannel.write(buffer);
+        socketChannel.close();
+
+    &#125;
+
+    <span class="hljs-meta">@Test</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">server</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception</span>&#123;
+        <span class="hljs-comment">// 1、获取通道</span>
+        ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
+        <span class="hljs-comment">// 2、切换为非阻塞模式</span>
+        serverSocketChannel.configureBlocking(<span class="hljs-keyword">false</span>);
+        <span class="hljs-comment">// 3、绑定端口</span>
+        serverSocketChannel.bind(<span class="hljs-keyword">new</span> InetSocketAddress(<span class="hljs-number">9999</span>));
+        <span class="hljs-comment">// 4、获取选择器</span>
+        Selector selector = Selector.open();
+        <span class="hljs-comment">// 5、注册通道到选择器上</span>
+        serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
+        <span class="hljs-comment">// 6、通过轮询的方式获取通道</span>
+        <span class="hljs-keyword">while</span>(selector.select()&gt;<span class="hljs-number">0</span>)&#123;
+            <span class="hljs-comment">// 7、获取注册的所有选择键</span>
+            Iterator&lt;SelectionKey&gt; iterator = selector.selectedKeys().iterator();
+            <span class="hljs-keyword">while</span>(iterator.hasNext())&#123;
+                SelectionKey selectionKey = iterator.next();
+                <span class="hljs-comment">// 9、判断事件就绪</span>
+                <span class="hljs-keyword">if</span>(selectionKey.isAcceptable())&#123;
+                    <span class="hljs-comment">// 10、接收就绪，获取连接</span>
+                    SocketChannel clientSocketChannel = serverSocketChannel.accept();
+                    <span class="hljs-comment">// 11、设置为非阻塞</span>
+                    clientSocketChannel.configureBlocking(<span class="hljs-keyword">false</span>);
+                    <span class="hljs-comment">// 12、注册通道并监控读就绪事件</span>
+                    clientSocketChannel.register(selector,SelectionKey.OP_READ);
+                &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(selectionKey.isReadable())&#123;<span class="hljs-comment">// 13、获取读就绪状态的通道</span>
+                    SocketChannel clientSocketChannel = (SocketChannel) selectionKey.channel();
+                    ByteBuffer buffer = ByteBuffer.allocate(<span class="hljs-number">1024</span>);
+                    <span class="hljs-keyword">int</span> len = <span class="hljs-number">0</span>;
+                    <span class="hljs-keyword">while</span>((len = clientSocketChannel.read(buffer))!=-<span class="hljs-number">1</span>)&#123;
+                        buffer.flip();
+                        System.out.println(<span class="hljs-keyword">new</span> String(buffer.array()));
+                        buffer.clear();
+                    &#125;
+                &#125;
+                <span class="hljs-comment">// 14、取消选择键</span>
+                iterator.remove();
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre>
+
+
             </article>
             <hr>
             <div>
