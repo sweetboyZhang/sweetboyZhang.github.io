@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      233 字
+      278 字
     </span>
   
 
@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：August 17, 2020 am
+                  本文最后更新于：September 17, 2020 am
                 
               </p>
             
@@ -254,6 +254,19 @@
 <span class="hljs-attr">n</span>=<span class="hljs-number">4</span></code></pre>
 
 <p>加入else后输出n=2</p>
+<blockquote>
+<p>斐波那契数列实现</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getFeibo</span><span class="hljs-params">(<span class="hljs-keyword">int</span> num)</span></span>&#123;
+    <span class="hljs-keyword">if</span>(num&lt;=<span class="hljs-number">0</span>)&#123;
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"参数非法！"</span>);
+    &#125;
+    <span class="hljs-keyword">if</span>(num==<span class="hljs-number">1</span>||num==<span class="hljs-number">2</span>)&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+    &#125;
+    <span class="hljs-keyword">return</span> getFeibo(num-<span class="hljs-number">1</span>)+getFeibo(num-<span class="hljs-number">2</span>);
+&#125;</code></pre>
+
 
             </article>
             <hr>
@@ -277,10 +290,10 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/05/09/arithmetic/">
+                      <a href="/2020/05/09/dataStructure-06/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">常见排序算法</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="hidden-mobile">二叉树</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </div>
@@ -289,7 +302,7 @@
                     
                       <a href="/2020/05/07/dataStructure-04/">
                         <span class="hidden-mobile">栈</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -306,7 +319,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -339,7 +352,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -348,7 +361,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

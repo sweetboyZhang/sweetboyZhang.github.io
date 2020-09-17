@@ -19,7 +19,7 @@
   <meta name="description" content="">
   <meta name="author" content="sweetboyZhang">
   <meta name="keywords" content="">
-  <title>Spring事务 - sweetboyZhang&#39;s Blog</title>
+  <title>二叉树 - sweetboyZhang&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -154,8 +154,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-06-19 14:23">
-      June 19, 2020 pm
+    <time datetime="2020-05-09 13:20">
+      May 9, 2020 pm
     </time>
   </div>
 
@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.1k 字
+      1k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      15
+      14
        分钟
     </span>
   
@@ -215,112 +215,236 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 17, 2020 am
+                  本文最后更新于：September 17, 2020 pm
                 
               </p>
             
             <article class="markdown-body">
-              <p>spring提供一种处理事务的统一模型，能使用统一的步骤，完成多种不同数据库访问技术的事务处理。<a id="more"></a><br><img src="/2020/06/19/Spring-04/1.png" srcset="/img/loading.gif" alt></p>
-<h2 id="spring管理事务的三个方面"><a href="#spring管理事务的三个方面" class="headerlink" title="spring管理事务的三个方面"></a>spring管理事务的三个方面</h2><p>1、事务管理器<br>事务管理器是一个接口和它的众多实现类，由事务管理器对象完成事务的提交和回滚。<br>实现类：spring将每一种数据库访问技术对应的事务处理类都创建好了<br>mybatis访问数据库——-DateSourceTransactionManager<br>hibernate访问数据库———HibernateTransactionManager<br>使用方法：告诉spring你使用的那种数据库的访问方式</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"  "</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"  ...DateSourceTransaction"</span>/&gt;</span></code></pre>
-
-<p>2、事务的类型<br>（1）事务的隔离级别<br><img src="/2020/06/19/Spring-04/2.jpg" srcset="/img/loading.gif" alt><br>(2)事务的超时时间<br>表示一个方法的最长执行时间，如果方法执行超过了该时间，事务就回滚<br>(3)事务的传播行为<br>PROPAGATION_REQUIRED：指定的方法必须在事务内执行。若当前存在事务，就加入到当前事务中；若当前没有事务，则创建一个新事务。这种传播行为是最常见的选择，也是Spring 默认的事务传播行为。<br>PROPAGATION_REQUIRES_NEW：总是新建一个事务，若当前存在事务，就将当前事务挂起，直到新事务执行完毕。<br>PROPAGATION_SUPPORTS：指定的方法支持当前事务，但若当前没有事务，也可以以非事务方式执行。</p>
-<p>3、spring提交事务，回滚事务的时机<br>(1)业务方法执行成功，没有异常抛出，spring会在方法指向后提交事务<br>(2)业务方法抛出运行时异常，spring执行回滚<br>运行时异常定义：RuntimeException和它的子类都是运行时异常，NullPointException，NumberFormatException<br>(3)业务方法抛出非运行时异常，受查异常时，提交事务。<br>受查异常：写代码时必须处理的异常，IOException，SQLException</p>
-<h2 id="事务应用——购买商品项目"><a href="#事务应用——购买商品项目" class="headerlink" title="事务应用——购买商品项目"></a>事务应用——购买商品项目</h2><p>实现购买商品，模拟用户下订单，向订单中添加销售记录，从商品表中减少库存。</p>
-<h3 id="注解方式"><a href="#注解方式" class="headerlink" title="注解方式"></a>注解方式</h3><p>1、在spring配置文件添加事务管理器和事务注解驱动</p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 声明事务管理器   --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"transactionManager"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.springframework.jdbc.datasource.DataSourceTransactionManager"</span>&gt;</span>
-    <span class="hljs-comment">&lt;!--  连接的数据库，指定数据源 --&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"dataSource"</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"myDataSource"</span>/&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
-
-<span class="hljs-comment">&lt;!-- 开启事务注解驱动 告诉spring使用注解管理事务，创建代理对象--&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">tx:annotation-driven</span> <span class="hljs-attr">transaction-manager</span>=<span class="hljs-string">"transactionManager"</span>/&gt;</span></code></pre>
-
-<p>2、在需要使用事务的方法上添加Transactional注解</p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BuyGoodsServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">BuyGoodsService</span> </span>&#123;
-    <span class="hljs-keyword">private</span> SaleDao saleDao;
-    <span class="hljs-keyword">private</span> GoodsDao goodsDao;
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setSaleDao</span><span class="hljs-params">(SaleDao saleDao)</span> </span>&#123;
-        <span class="hljs-keyword">this</span>.saleDao = saleDao;
+              <p>树结构提高了数据的存储、读取速度。<a id="more"></a></p>
+<h2 id="二叉树基本概念"><a href="#二叉树基本概念" class="headerlink" title="二叉树基本概念"></a>二叉树基本概念</h2><p>每个节点最多只能有两个子节点，分别为左节点，右节点。</p>
+<p>满二叉树：节点数=2^n-1，n为层数。</p>
+<p>完全二叉树：如果该二叉树的所有叶子节点都在最后一层或者倒数第二层，而且<strong>最后一层的叶子节点在左边连续</strong>，<strong>倒数第二层的叶子节点在右边连续</strong>。</p>
+<h2 id="二叉树的遍历"><a href="#二叉树的遍历" class="headerlink" title="二叉树的遍历"></a>二叉树的遍历</h2><p>前序遍历: <strong>先输出父节点</strong>，再遍历左子树和右子树</p>
+<p>中序遍历: 先遍历左子树，<strong>再输出父节点</strong>，再遍历右子树</p>
+<p>后序遍历: 先遍历左子树，再遍历右子树，<strong>最后输出父节点</strong></p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BinaryTreeDemo</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+        <span class="hljs-comment">// 创建二叉树</span>
+        BinaryTree tree = <span class="hljs-keyword">new</span> BinaryTree();
+        <span class="hljs-comment">// 创建节点</span>
+        Node root = <span class="hljs-keyword">new</span> Node(<span class="hljs-number">1</span>);
+        Node node1 = <span class="hljs-keyword">new</span> Node(<span class="hljs-number">2</span>);
+        Node node2 = <span class="hljs-keyword">new</span> Node(<span class="hljs-number">3</span>);
+        Node node3 = <span class="hljs-keyword">new</span> Node(<span class="hljs-number">4</span> );
+        <span class="hljs-comment">// 在树中添加节点</span>
+        tree.setRoot(root);
+        root.setLeft(node1);
+        root.setRight(node2);
+        node1.setLeft(node3);
+        System.out.println(<span class="hljs-string">"前序遍历："</span>);
+        tree.preOrder();<span class="hljs-comment">// 1243</span>
+        System.out.println(<span class="hljs-string">"中序遍历："</span>);
+        tree.midOrder();<span class="hljs-comment">// 4213</span>
+        System.out.println(<span class="hljs-string">"后序遍历："</span>);
+        tree.lastOrder();<span class="hljs-comment">// 4231</span>
     &#125;
 
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setGoodsDao</span><span class="hljs-params">(GoodsDao goodsDao)</span> </span>&#123;
-        <span class="hljs-keyword">this</span>.goodsDao = goodsDao;
+&#125;
+
+<span class="hljs-comment">// 创建二叉树</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BinaryTree</span> </span>&#123;
+    <span class="hljs-keyword">private</span> Node root; <span class="hljs-comment">// 根节点</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">BinaryTree</span><span class="hljs-params">()</span> </span>&#123;
     &#125;
 
-    <span class="hljs-comment">/*@Transactional(</span>
-<span class="hljs-comment">            propagation = Propagation.REQUIRED,// 传播行为(默认)</span>
-<span class="hljs-comment">            isolation = Isolation.DEFAULT,// 隔离级别(默认)</span>
-<span class="hljs-comment">            readOnly = false,</span>
-<span class="hljs-comment">            rollbackFor = &#123; // 发生指定异常时回滚</span>
-<span class="hljs-comment">                    RuntimeException.class</span>
-<span class="hljs-comment">            &#125;</span>
-<span class="hljs-comment"></span>
-<span class="hljs-comment">    )*/</span>
-    <span class="hljs-meta">@Transactional</span>
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">buy</span><span class="hljs-params">(Integer gid, Integer nums)</span> </span>&#123;
-        System.out.println(<span class="hljs-string">"buy开始"</span>);
-        <span class="hljs-comment">// 记录销售信息，向sale表中添加记录</span>
-        saleDao.insertSale(<span class="hljs-keyword">new</span> Sale(<span class="hljs-keyword">null</span>, gid, nums));
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Node <span class="hljs-title">getRoot</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> root;
+    &#125;
 
-        Goods goods = goodsDao.selectGoodsById(gid);
-        <span class="hljs-keyword">if</span> (goods == <span class="hljs-keyword">null</span>) &#123;
-            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"商品不存在！"</span>);
-        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(goods.getAmount()&lt;nums)&#123;
-            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"商品不足"</span>);
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setRoot</span><span class="hljs-params">(Node root)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.root = root;
+    &#125;
+
+    <span class="hljs-comment">// 前序遍历</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">preOrder</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">if</span> (root != <span class="hljs-keyword">null</span>) &#123;
+            root.preOrder();
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            System.out.println(<span class="hljs-string">"当前二叉树为空！"</span>);
         &#125;
+    &#125;
 
-        <span class="hljs-comment">// 更新库存</span>
-        goodsDao.updateGoods(<span class="hljs-keyword">new</span> Goods(gid,<span class="hljs-keyword">null</span>,nums,<span class="hljs-keyword">null</span>));
+    <span class="hljs-comment">// 中序遍历</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">midOrder</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">if</span> (root != <span class="hljs-keyword">null</span>) &#123;
+            root.midOrder();
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            System.out.println(<span class="hljs-string">"当前二叉树为空！"</span>);
+        &#125;
+    &#125;
 
-        System.out.println(<span class="hljs-string">"buy结束"</span>);
+    <span class="hljs-comment">// 后序遍历</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">lastOrder</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">if</span> (root != <span class="hljs-keyword">null</span>) &#123;
+            root.lastOrder();
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            System.out.println(<span class="hljs-string">"当前二叉树为空！"</span>);
+        &#125;
+    &#125;
+
+&#125;
+
+
+<span class="hljs-comment">// 创建节点</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Node</span> </span>&#123;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> no;<span class="hljs-comment">// 存储的数据</span>
+    <span class="hljs-keyword">private</span> Node left; <span class="hljs-comment">// 左节点</span>
+    <span class="hljs-keyword">private</span> Node right; <span class="hljs-comment">// 右节点</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Node</span><span class="hljs-params">(<span class="hljs-keyword">int</span> no)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.no = no;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getNo</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> no;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setNo</span><span class="hljs-params">(<span class="hljs-keyword">int</span> no)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.no = no;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Node <span class="hljs-title">getLeft</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> left;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setLeft</span><span class="hljs-params">(Node left)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.left = left;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Node <span class="hljs-title">getRight</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> right;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setRight</span><span class="hljs-params">(Node right)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.right = right;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"Node&#123;"</span> +
+                <span class="hljs-string">"no="</span> + no +
+                <span class="hljs-string">'&#125;'</span>;
+    &#125;
+
+    <span class="hljs-comment">// 前序遍历</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">preOrder</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-comment">// 打印根节点(当前节点)</span>
+        System.out.println(<span class="hljs-keyword">this</span>);
+        <span class="hljs-comment">// 递归遍历左子树</span>
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.left != <span class="hljs-keyword">null</span>) &#123;
+            <span class="hljs-keyword">this</span>.left.preOrder();
+        &#125;
+        <span class="hljs-comment">// 递归遍历右子树</span>
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.right != <span class="hljs-keyword">null</span>) &#123;
+            <span class="hljs-keyword">this</span>.right.preOrder();
+        &#125;
+    &#125;
+
+    <span class="hljs-comment">// 中序遍历</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">midOrder</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-comment">// 递归遍历左子树</span>
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.left != <span class="hljs-keyword">null</span>) &#123;
+            <span class="hljs-keyword">this</span>.left.midOrder();
+        &#125;
+        <span class="hljs-comment">// 打印根节点(当前节点)</span>
+        System.out.println(<span class="hljs-keyword">this</span>);
+        <span class="hljs-comment">// 递归遍历右子树</span>
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.right != <span class="hljs-keyword">null</span>) &#123;
+            <span class="hljs-keyword">this</span>.right.midOrder();
+        &#125;
+    &#125;
+
+    <span class="hljs-comment">// 后续遍历</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">lastOrder</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-comment">// 递归遍历左子树</span>
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.left != <span class="hljs-keyword">null</span>) &#123;
+            <span class="hljs-keyword">this</span>.left.lastOrder();
+        &#125;
+        <span class="hljs-comment">// 递归遍历右子树</span>
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.right != <span class="hljs-keyword">null</span>) &#123;
+            <span class="hljs-keyword">this</span>.right.lastOrder();
+        &#125;
+        <span class="hljs-comment">// 打印根节点</span>
+        System.out.println(<span class="hljs-keyword">this</span>);
     &#125;
 &#125;</code></pre>
 
-<h3 id="使用aspectj完成事务配置"><a href="#使用aspectj完成事务配置" class="headerlink" title="使用aspectj完成事务配置"></a>使用aspectj完成事务配置</h3><p>1、添加aspectj依赖</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-	<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-	<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-aspects<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-	<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.2.5.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<h2 id="二叉树查找指定节点"><a href="#二叉树查找指定节点" class="headerlink" title="二叉树查找指定节点"></a>二叉树查找指定节点</h2><pre><code class="hljs java"><span class="hljs-comment">// 前序遍历查找节点</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> Node <span class="hljs-title">preOrderSearch</span><span class="hljs-params">(<span class="hljs-keyword">int</span> no)</span> </span>&#123;
+    Node node = <span class="hljs-keyword">null</span>;
+    <span class="hljs-comment">// 判断是否是当前节点</span>
+    <span class="hljs-keyword">if</span> (no == <span class="hljs-keyword">this</span>.no) &#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+    &#125;
+    <span class="hljs-comment">// 判断当前节点的左子节点是否为空，不为空则递归查找</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.left != <span class="hljs-keyword">null</span>) &#123;
+        node = <span class="hljs-keyword">this</span>.left.preOrderSearch(no);
+    &#125;
+    <span class="hljs-comment">// 找到后直接返回</span>
+    <span class="hljs-keyword">if</span> (node != <span class="hljs-keyword">null</span>) &#123;
+        <span class="hljs-keyword">return</span> node;
+    &#125;
+    <span class="hljs-comment">// 判断当前节点的右子节点是否为空，不为空则递归查找</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.right != <span class="hljs-keyword">null</span>) &#123;
+        <span class="hljs-keyword">this</span>.right.preOrderSearch(no);
+    &#125;
+    <span class="hljs-keyword">return</span> node;
+&#125;</code></pre>
 
-<p>2、声明事务管理器</p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 声明事务管理器   --&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"transactionManager"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.springframework.jdbc.datasource.DataSourceTransactionManager"</span>&gt;</span>
-        <span class="hljs-comment">&lt;!--  连接的数据库，指定数据源 --&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"dataSource"</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"myDataSource"</span>/&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></code></pre>
+<pre><code class="hljs java"><span class="hljs-comment">// 前序遍历查找节点</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> Node <span class="hljs-title">preOrderSearch</span><span class="hljs-params">(<span class="hljs-keyword">int</span> no)</span> </span>&#123;
+    <span class="hljs-keyword">if</span> (root != <span class="hljs-keyword">null</span>) &#123;
+        <span class="hljs-keyword">return</span> root.preOrderSearch(no);
+    &#125; <span class="hljs-keyword">else</span> &#123;
+        System.out.println(<span class="hljs-string">"当前二叉树为空！"</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+    &#125;
+&#125;</code></pre>
 
-<p>3、声明业务方法及事务属性</p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--  声明业务方法及事务属性（隔离级别、传播行为、超时时间）  --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">tx:advice</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"myAdvice"</span> <span class="hljs-attr">transaction-manager</span>=<span class="hljs-string">"transactionManager"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">tx:attributes</span>&gt;</span><span class="hljs-comment">&lt;!-- name 方法名称  可使用通配符--&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">tx:method</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"buy"</span> <span class="hljs-attr">propagation</span>=<span class="hljs-string">"REQUIRED"</span> <span class="hljs-attr">isolation</span>=<span class="hljs-string">"DEFAULT"</span></span>
-<span class="hljs-tag">                   <span class="hljs-attr">rollback-for</span>=<span class="hljs-string">"java.lang.RuntimeException"</span>/&gt;</span>
-        <span class="hljs-comment">&lt;!--修改方法  --&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">tx:method</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"update*"</span>/&gt;</span>
-        <span class="hljs-comment">&lt;!--删除方法  --&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">tx:method</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"delete*"</span>/&gt;</span>
-        <span class="hljs-comment">&lt;!--查询方法  --&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">tx:method</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"query*"</span> <span class="hljs-attr">propagation</span>=<span class="hljs-string">"SUPPORTS"</span> <span class="hljs-attr">read-only</span>=<span class="hljs-string">"true"</span>/&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">tx:attributes</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">tx:advice</span>&gt;</span></code></pre>
+<h2 id="删除指定节点"><a href="#删除指定节点" class="headerlink" title="删除指定节点"></a>删除指定节点</h2><pre><code class="hljs java"><span class="hljs-comment">// 删除指定节点</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">delete</span><span class="hljs-params">(<span class="hljs-keyword">int</span> no)</span> </span>&#123;
+    <span class="hljs-comment">// 判断左子节点是否为该节点</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.left != <span class="hljs-keyword">null</span> &amp;&amp; <span class="hljs-keyword">this</span>.left.no == no) &#123;
+        <span class="hljs-keyword">this</span>.left = <span class="hljs-keyword">null</span>;
+        <span class="hljs-keyword">return</span>;
+    &#125;
+    <span class="hljs-comment">// 判断右子节点是否为该节点</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.right != <span class="hljs-keyword">null</span> &amp;&amp; <span class="hljs-keyword">this</span>.right.no == no) &#123;
+        <span class="hljs-keyword">this</span>.right = <span class="hljs-keyword">null</span>;
+    &#125;
+    <span class="hljs-comment">// 如果左子节点不是该节点，则对左子树进行递归删除</span>
+    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.left!=<span class="hljs-keyword">null</span>)&#123;
+        <span class="hljs-keyword">this</span>.left.delete(no);
+    &#125;
+    <span class="hljs-comment">// 如果右子节点不是该节点，则对右子树进行递归删除</span>
+    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.right!=<span class="hljs-keyword">null</span>)&#123;
+        <span class="hljs-keyword">this</span>.right.delete(no);
+    &#125;
+&#125;</code></pre>
 
-<p>4、配置aop</p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--配置aop  --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">aop:config</span>&gt;</span>
-    <span class="hljs-comment">&lt;!--配置切入点表达式：指定哪些包中的类需要使用事务</span>
-<span class="hljs-comment">        id:切入点表达式的名称，唯一值</span>
-<span class="hljs-comment">        expression:切入点表达式，指定哪些类需要使用事务，aspectj会自动创建代理对象--&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">aop:pointcut</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"servicePt"</span> <span class="hljs-attr">expression</span>=<span class="hljs-string">"execution(* *..service..*.*(..))"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">aop:pointcut</span>&gt;</span>
-    <span class="hljs-comment">&lt;!--配置增强器  关联advice和pointcut</span>
-<span class="hljs-comment">                    advice-ref  通知,tx:advice的id值</span>
-<span class="hljs-comment">                    pointcut-ref  切入点表达式aop:pointcut的id值 --&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">aop:advisor</span> <span class="hljs-attr">advice-ref</span>=<span class="hljs-string">"myAdvice"</span> <span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">"servicePt"</span>/&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">aop:config</span>&gt;</span></code></pre>
+<pre><code class="hljs java"><span class="hljs-comment">// 删除指定节点</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">delete</span><span class="hljs-params">(<span class="hljs-keyword">int</span> no)</span> </span>&#123;
+    <span class="hljs-keyword">if</span> (root != <span class="hljs-keyword">null</span>) &#123;
+        <span class="hljs-keyword">if</span> (root.getNo() == no) &#123;
+            root = <span class="hljs-keyword">null</span>;
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            root.delete(no);
+        &#125;
+    &#125; <span class="hljs-keyword">else</span> &#123;
+        System.out.println(<span class="hljs-string">"当前二叉树为空！"</span>);
+    &#125;
+&#125;</code></pre>
             </article>
             <hr>
             <div>
@@ -330,7 +454,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Spring/">Spring</a>
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
                     
                   </div>
                 
@@ -343,9 +467,9 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/06/20/Spring-05/">
+                      <a href="/2020/05/09/arithmetic/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Web项目环境搭建</span>
+                        <span class="hidden-mobile">常见排序算法</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -353,8 +477,8 @@
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/06/16/Spring-03/">
-                        <span class="hidden-mobile">Spring集成MyBatis</span>
+                      <a href="/2020/05/08/dataStructure-05/">
+                        <span class="hidden-mobile">递归</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -610,7 +734,7 @@
       if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/2020/06/19/Spring-04/');
+          var target = decodeURI('/2020/05/09/dataStructure-06/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -704,7 +828,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Spring事务&nbsp;",
+        "二叉树&nbsp;",
       ],
       cursorChar: "(*＾_＾*)",
       typeSpeed: 70,
