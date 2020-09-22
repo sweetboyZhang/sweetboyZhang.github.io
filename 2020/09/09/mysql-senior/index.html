@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      766 字
+      831 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      9
+      10
        分钟
     </span>
   
@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：September 20, 2020 pm
+                  本文最后更新于：September 22, 2020 pm
                 
               </p>
             
@@ -304,6 +304,10 @@
 <li>Where 条件里用不到的字段不创建索引</li>
 <li>过滤性不好的不适合建索引</li>
 </ul>
+<p><strong>注意：</strong></p>
+<ul>
+<li>在使用like“%字段%”进行查询时，是进行全表扫描的，不会使用索引，因为索引是遵循最左匹配的原则的，所以说当扫描到第一个是“%”时，并不会使用索引进行查询。</li>
+</ul>
 
             </article>
             <hr>
@@ -330,7 +334,7 @@
                       <a href="/2020/09/09/nio/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">NIO</span>
-                        <span class="visible-mobile">上一篇</span>
+                        <span class="visible-mobile">Previous</span>
                       </a>
                     
                   </div>
@@ -339,7 +343,7 @@
                     
                       <a href="/2020/09/06/jvm/">
                         <span class="hidden-mobile">JVM入门</span>
-                        <span class="visible-mobile">下一篇</span>
+                        <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -356,7 +360,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
   <div id="tocbot"></div>
 </div>
 
@@ -389,7 +393,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -398,7 +402,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

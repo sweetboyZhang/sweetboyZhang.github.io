@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.3k 字
+      2.4k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      32
+      33
        分钟
     </span>
   
@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：September 16, 2020 am
+                  本文最后更新于：September 22, 2020 pm
                 
               </p>
             
@@ -227,6 +227,9 @@
 <p><strong>基本数据类型(primitive type)</strong><br>        整型  byte(1字节) -128~127 , short (2字节), int(4字节) , long(8字节) l或L结尾<br>        浮点型  float(4字节) 定义时要以f或F结尾 , double(8字节)<br>        字符型  char(2字节)<br>        布尔型  boolean 只能取两个值之一 ：true , false<br><em>7种基本数据类型之间的计算（不包括布尔类型）:</em><br>        1.自动类型提升：<br>               容量小的数据类型变量与容量大的数据类型做运算时，运算结果自动装换为容量大的。<br>               byte , char , short –&gt; int –&gt; long –&gt; float –&gt; double<br><strong>所有的byte , short , char 类型的值将被提升为int型；</strong><br><strong>被final 修饰的变量不会自动提升其类型</strong></p>
 <p>​        2.强制类型转换：<br>​        使用强转符 () ，可能造成精度损失<br><strong>引用数据类型(reference type)</strong><br>​        类 class<br>​        String类型：  声明时使用一对””，可以与8种基本数据类型做运算，+ 只能表示连接<br>​        接口 interfere<br>​        数组 [ ]</p>
 <h1 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h1><p>​    <strong>算术运算符</strong><br>​            <strong>逻辑运算符</strong><br>​            <strong>&amp;&amp;与&amp;的区别：</strong><br>​            &amp; : 左边无论真假，右边进行运算<br>​            &amp;&amp; ： 左边为真，右边参与运算；左边为假，右边不参与运算<br>​            <strong>|与||的区别：</strong><br>​            ||：左边为真，右边不参与运算<br>​            <strong>位运算：</strong><br>​         <img src="/2020/01/09/java-01/1.png" srcset="/img/loading.gif" alt></p>
+<p><strong>运算符优先级：</strong></p>
+<p>单目乘除为(位)关系，逻辑三目后赋值。 </p>
+<p>单目：单目运算符+ –(负数) ++ – 等<br>乘除：算数单目运算符* / % + -<br>为（位）：位移单目运算符&lt;&lt; &gt;&gt;<br>关系：关系单目运算符&gt; &lt; &gt;= &lt;= == !=<br>逻辑：逻辑单目运算符&amp;&amp; || &amp; | ^<br>三目：三目单目运算符A &gt; B ? X : Y<br>后：无意义，仅仅为了凑字数<br>赋值：赋值=</p>
 <h1 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h1><p><strong>顺序结构</strong><br>        <strong>分支结构</strong><br>        <strong>循环结构</strong><br>        break :  结束当前循环<br>        continue :  结束当次循环</p>
 <h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><p><strong>数组的特点:</strong><br>            1.数组是有序排列的<br>            2.数组属于引用数据类型的变量。数组的元素，既可以是基本数据类型，也可以是引用数据类型的变量<br>            3.创建数组对象时会在内存中开辟一整块连续的内存空间<br>            4.数组的长度一旦确定就不能修改 </p>
 <p><strong>一维数组的使用:</strong></p>
@@ -492,7 +495,7 @@ String dest = <span class="hljs-string">"Justin"</span>;
                       <a href="/2020/01/18/java-02/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">面向对象</span>
-                        <span class="visible-mobile">上一篇</span>
+                        <span class="visible-mobile">Previous</span>
                       </a>
                     
                   </div>
@@ -512,7 +515,7 @@ String dest = <span class="hljs-string">"Justin"</span>;
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
   <div id="tocbot"></div>
 </div>
 
@@ -545,7 +548,7 @@ String dest = <span class="hljs-string">"Justin"</span>;
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -554,7 +557,7 @@ String dest = <span class="hljs-string">"Justin"</span>;
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

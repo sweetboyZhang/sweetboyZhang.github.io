@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.6k 字
+      2k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      21
+      26
        分钟
     </span>
   
@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：September 1, 2020 pm
+                  本文最后更新于：September 22, 2020 pm
                 
               </p>
             
@@ -348,6 +348,16 @@
 <p>byName自动注入（当一个接口有多个实现类时，需要使用次方式注入）<br><img src="/2020/06/01/Spring-01/9.jpg" srcset="/img/loading.gif" alt></p>
 <p><img src="/2020/06/01/Spring-01/8.jpg" srcset="/img/loading.gif" alt></p>
 <p><strong>JDK注解@Resource自动注入</strong><br>byName（默认），按Name不能注入成功则按Type<br><img src="/2020/06/01/Spring-01/10.jpg" srcset="/img/loading.gif" alt></p>
+<h2 id="bean-作用域"><a href="#bean-作用域" class="headerlink" title="bean 作用域"></a>bean 作用域</h2><p>Spring容器中的Bean是否线程安全，容器本身并没有提供Bean的线程安全策略，因此可以说<strong>Spring容器中的Bean本身不具备线程安全的特性</strong>，但是具体还是要结合具体scope的Bean去研究。</p>
+<p>1、singleton:单例，默认作用域。</p>
+<p>2、prototype:原型，每次创建一个新对象。</p>
+<p>3、request:请求，每次Http请求创建一个新对象，适用于WebApplicationContext环境下。</p>
+<p>4、session:会话，同一个会话共享一个实例，不同会话使用不用的实例。</p>
+<p>5、global-session:全局会话，所有会话共享一个实例。</p>
+<p>对于单例Bean,所有线程都共享一个单例实例Bean,因此是存在资源的竞争。</p>
+<p>如果单例Bean,是一个无状态Bean，也就是线程中的操作不会对Bean的成员执行查询以外的操作，那么这个单例Bean是线程安全的。比如Spring mvc 的 Controller、Service、Dao等，这些Bean大多是无状态的，只关注于方法本身。</p>
+<p>对于有状态的bean，Spring官方提供的bean，一般提供了通过ThreadLocal去解决线程安全的方法，比如RequestContextHolder、TransactionSynchronizationManager、LocaleContextHolder等。<br><strong>注： Spring容器本身并没有提供线程安全的策略，因此是否线程安全完全取决于Bean本身的特性。</strong></p>
+<h3 id="使用ThreadLocal的好处"><a href="#使用ThreadLocal的好处" class="headerlink" title="使用ThreadLocal的好处"></a>使用ThreadLocal的好处</h3><p>使得多线程场景下，多个线程对这个单例Bean的成员变量并不存在资源的竞争，因为ThreadLocal为每个线程保存线程私有的数据。</p>
 
             </article>
             <hr>
@@ -374,7 +384,7 @@
                       <a href="/2020/06/01/Maven/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Maven</span>
-                        <span class="visible-mobile">上一篇</span>
+                        <span class="visible-mobile">Previous</span>
                       </a>
                     
                   </div>
@@ -383,7 +393,7 @@
                     
                       <a href="/2020/05/31/MyBatis-05/">
                         <span class="hidden-mobile">MyBatis缓存机制</span>
-                        <span class="visible-mobile">下一篇</span>
+                        <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -400,7 +410,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
   <div id="tocbot"></div>
 </div>
 
@@ -433,7 +443,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -442,7 +452,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

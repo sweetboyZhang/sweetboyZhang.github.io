@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：September 2, 2020 pm
+                  本文最后更新于：September 22, 2020 pm
                 
               </p>
             
@@ -254,7 +254,7 @@
 <p><strong>Servlet的生命周期：</strong></p>
 <p>1、加载：容器通过类加载器使用Servlet类对应的文件来加载Servlet</p>
 <p>2、创建：通过<strong>调用Servlet的构造函数来创建一个Servlet实例</strong></p>
-<p>3、初始化：通过调用Servlet的init()方法来完成初始化工作，<strong>这个方法是在Servlet已经被创建，但在向客户端提供服务之前调用。</strong></p>
+<p>3、初始化：通过调用Servlet的init()方法来完成初始化工作，ServletConfig对象读取web.xml获取初始化参数，对Servlet进行初始化</p>
 <p>4、处理客户请求：Servlet创建后就可以处理请求，当有新的客户端请求时，Web容器都会<strong>创建一个新的线程</strong>来处理该请求。接着调用Servlet的Service()方法来响应客户端请求（Service方法根据请求的method属性来调用doGet()和doPost()）</p>
 <p>5、卸载：<strong>容器在卸载Servlet之前</strong>需要调用destroy()方法，让Servlet释放其占用的资源。</p>
 <p><strong>通过继承HttpServlet实现Servlet程序：</strong>一般在实际开发中使用此方式<br>1、编写一个类去继承HttpServlet类<br>2、根据业务需求重写doGet 或 doPost 方法<br>3、在web.xml中配置servlet程序的访问地址<br><img src="/2020/04/05/javaweb-01/1.png" srcset="/img/loading.gif" alt></p>
@@ -411,7 +411,7 @@
                       <a href="/2020/04/08/javaweb-02/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">书城项目</span>
-                        <span class="visible-mobile">上一篇</span>
+                        <span class="visible-mobile">Previous</span>
                       </a>
                     
                   </div>
@@ -420,7 +420,7 @@
                     
                       <a href="/2020/03/24/java-11/">
                         <span class="hidden-mobile">Java8新特性</span>
-                        <span class="visible-mobile">下一篇</span>
+                        <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -437,7 +437,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
   <div id="tocbot"></div>
 </div>
 
@@ -470,7 +470,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -479,7 +479,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

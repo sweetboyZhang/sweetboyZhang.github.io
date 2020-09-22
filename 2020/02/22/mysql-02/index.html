@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：September 9, 2020 am
+                  本文最后更新于：September 22, 2020 pm
                 
               </p>
             
@@ -262,7 +262,7 @@
 <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">CONCAT</span>(salary,<span class="hljs-string">','</span>,<span class="hljs-keyword">IFNULL</span>(commission_pct,<span class="hljs-number">0</span>)) <span class="hljs-keyword">AS</span> <span class="hljs-string">'月薪,年奖金率'</span> <span class="hljs-keyword">FROM</span> employees;
 <span class="hljs-comment"># 11.ISNULL(expr) expr为null 返回0，否则返回1</span></code></pre>
 
-<h2 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h2><p><strong>语法：</strong><br>        select 查询列表 from 表名 where 筛选条件<br>        <strong>分类：</strong><br>        1.按条件表达式进行筛选<br>        条件运算符：&gt; &lt; != &lt;&gt; &gt;= &lt;=<br>        2.按逻辑表达式<br>        &amp;&amp; || ! and or not<br>        3.模糊查询<br>         <em>like：</em><br>                1.一般与通配符搭配使用<br>                2.通配符(使用\转义)：<br>                     %：表示0个或任意多个字符;<br>                     _ ：表示任意单个字符;<br>         <em>(not) between and：</em> 包含边界值<br>        <em>in：</em> 判断某字段的值是否属于in列表中的某一项<br>        in列表中的元素类型要相同或兼容<br>        _is null / is not null：_只能判断是否为null;<br>        &lt;=&gt; : 安全等于，既能判断是否为null也能判断数字;<br>        = 和 &lt;&gt;不能判断null</p>
+<h2 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h2><p><strong>语法：</strong><br>        select 查询列表 from 表名 where 筛选条件<br>        <strong>分类：</strong><br>        1.按条件表达式进行筛选<br>        条件运算符：&gt; &lt; != &lt;&gt; &gt;= &lt;=<br>        2.按逻辑表达式<br>        &amp;&amp; || ! and or not<br>        3.模糊查询<br>         <em>like：</em><br>                1.一般与通配符搭配使用<br>                2.通配符(使用\转义)：<br>                     %：表示0个或任意多个字符;<br>                     _ ：表示任意单个字符;<br>         <em>(not) between and：</em> 包含边界值<br>        <em>in：</em> 判断某字段的值是否属于in列表中的某一项<br>        in列表中的元素类型要相同或兼容<br>        <em>is null / is not null：</em>只能判断是否为null;<br>        &lt;=&gt; : 安全等于，既能判断是否为null也能判断数字;<br>        = 和 &lt;&gt;不能判断null</p>
 <pre><code class="hljs sql"><span class="hljs-comment"># 1.按条件表达式筛选</span>
 <span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">WHERE</span> salary&gt;<span class="hljs-number">15000</span>;
 <span class="hljs-keyword">SELECT</span> last_name,first_name,salary <span class="hljs-keyword">FROM</span>  employees <span class="hljs-keyword">WHERE</span> department_id&lt;&gt;<span class="hljs-number">90</span>;
@@ -413,7 +413,7 @@
 	<span class="hljs-keyword">ELSE</span> <span class="hljs-string">'D'</span>
 <span class="hljs-keyword">END</span> <span class="hljs-keyword">AS</span> <span class="hljs-string">'工资等级'</span> <span class="hljs-keyword">FROM</span> employees;</code></pre>
 
-<h3 id="分组函数"><a href="#分组函数" class="headerlink" title="分组函数"></a>分组函数</h3><p><strong>作用：</strong>用作统计使用，又称聚合函数，统计函数，组函数<br>        <strong>特点：</strong><br>        1.sum，avg一般处理数值型数据；max，min，count可以处理任何类型<br>        2.以上分组函数都忽略null值<br>        3.可以和discount()搭配使用实现去重<br>        4.一般使用count(*)统计行数<br>        5.和分组函数一起查询的字段必须是group by后面的字段</p>
+<h3 id="分组函数"><a href="#分组函数" class="headerlink" title="分组函数"></a>分组函数</h3><p><strong>作用：</strong>用作统计使用，又称聚合函数，统计函数，组函数<br>        <strong>特点：</strong><br>        1.sum，avg一般处理数值型数据；max，min，count可以处理任何类型<br>        2.以上分组函数都忽略null值<br>        3.可以和discount()搭配使用实现去重<br>        4.一般使用count(*)统计行数，没有记录返回0<br>        5.和分组函数一起查询的字段必须是group by后面的字段</p>
 <pre><code class="hljs sql"><span class="hljs-comment"># sum() 求和</span>
 <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">sum</span>(salary) <span class="hljs-keyword">FROM</span> employees;
 <span class="hljs-comment"># avg() 求平均值</span>
@@ -544,7 +544,7 @@
 <h2 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h2><pre><code class="hljs sql"><span class="hljs-comment"># 分页查询</span>
 <span class="hljs-comment">/*</span>
 <span class="hljs-comment">分页提交sql请求</span>
-<span class="hljs-comment">select 查询列表 from 表名 limit 起始索引，结果的数目</span>
+<span class="hljs-comment">select 查询列表 from 表名 limit 起始索引(从0开始)，结果的数目</span>
 <span class="hljs-comment">limit语句放在查询语句的最后 </span>
 <span class="hljs-comment">要显示的页数 page , 每页的条目数size</span>
 <span class="hljs-comment">select 查询列表 from 表名 limit (page-1)*size,size;</span>
@@ -584,7 +584,7 @@
                       <a href="/2020/02/24/linux-01/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Linux目录结构,Xshell,Xftp，vim</span>
-                        <span class="visible-mobile">上一篇</span>
+                        <span class="visible-mobile">Previous</span>
                       </a>
                     
                   </div>
@@ -593,7 +593,7 @@
                     
                       <a href="/2020/02/20/mysql-01/">
                         <span class="hidden-mobile">MySQL概述</span>
-                        <span class="visible-mobile">下一篇</span>
+                        <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -610,7 +610,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
   <div id="tocbot"></div>
 </div>
 
@@ -643,7 +643,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -652,7 +652,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
