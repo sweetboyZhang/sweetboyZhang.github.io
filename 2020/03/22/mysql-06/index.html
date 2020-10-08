@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      995 字
+      1k 字
     </span>
   
 
@@ -215,14 +215,14 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：September 3, 2020 pm
+                  本文最后更新于：October 8, 2020 pm
                 
               </p>
             
             <article class="markdown-body">
               <h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p><strong>系统变量：</strong>由系统提供，属于服务层面<br>_全局变量：_服务器每次启动将为所有全局变量赋初值。针对所有会话(连接)有效，但不能跨重启。<br>_会话变量：_仅仅针对于当前的会话(连接)有效。<a id="more"></a><br>查看所有的系统变量：show global | [ session] variable;<br>查看满足条件的系统变量：show global | [session] variable  like ‘%char%’;<br>查看指定系统变量：select @@global | [session].系统变量名;<br>为某个系统变量赋值：<br>set global | [session] 系统变量名=值;<br>set @@global \ [session].系统变量名=值;</p>
 <p><strong>自定义变量：</strong>用户自定义<br>_用户变量：_针对于当前会话(连接)有效<br>1.声明并初始化<br>set @用户变量名=值;<br>set @用户变量名:=值;<br>select @用户变量名:=值;<br>2.赋值<br>set @用户变量名=值;<br>set @用户变量名:=值;<br>select @用户变量名:=值;<br>select into select 字段  into 变量名 from 表;<br>_局部变量：_仅仅在定义它的begin end中有效<br>1.声明<br>declare 变量 类型 [default 值];<br>2.赋值<br>与用户变量相同</p>
-<h2 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h2><p>事先经过编译并存储在数据库中一段sql语句的集合。<br>好处：<br>1.提高了代码的重用性；<br>2.简化操作；<br>3.减少了编译次数并且减少了和数据库服务器的连接次数，提高了效率。</p>
+<h2 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h2><p>事先经过编译并存储在数据库中一组完成特定功能的sql语句的集合。就是数据库 SQL 语言层面的代码封装与重用。<br>好处：<br>1.提高了代码的重用性；<br>2.简化操作；<br>3.减少了编译次数并且减少了和数据库服务器的连接次数，提高了效率。</p>
 <pre><code class="hljs sql"><span class="hljs-comment">/*</span>
 <span class="hljs-comment">一、创建存储过程</span>
 <span class="hljs-comment">语法：</span>
@@ -319,7 +319,7 @@ until 结束循环的条件
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/MySQL%E5%9F%BA%E7%A1%80/">MySQL基础</a>
+                      <a class="hover-with-bg" href="/tags/MySQL/">MySQL</a>
                     
                   </div>
                 
@@ -335,7 +335,7 @@ until 结束循环的条件
                       <a href="/2020/03/23/jdbc/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Jdbc核心技术</span>
-                        <span class="visible-mobile">上一篇</span>
+                        <span class="visible-mobile">Previous</span>
                       </a>
                     
                   </div>
@@ -344,7 +344,7 @@ until 结束循环的条件
                     
                       <a href="/2020/03/21/mysql-05/">
                         <span class="hidden-mobile">事务,视图，索引</span>
-                        <span class="visible-mobile">下一篇</span>
+                        <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -361,7 +361,7 @@ until 结束循环的条件
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
   <div id="tocbot"></div>
 </div>
 
@@ -394,7 +394,7 @@ until 结束循环的条件
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -403,7 +403,7 @@ until 结束循环的条件
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
