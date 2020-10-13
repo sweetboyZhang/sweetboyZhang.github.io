@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      902 字
+      1k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      11
+      13
        分钟
     </span>
   
@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：October 8, 2020 pm
+                  本文最后更新于：October 13, 2020 pm
                 
               </p>
             
@@ -344,7 +344,6 @@
         tv.play();
     &#125;
 &#125;</code></pre>
-
 <h3 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h3></li>
 </ul>
 <p>让原来的子类和父类都继承一个通用的基类，原有的继承关系去掉，采用依赖，聚合，组合等关系代替。</p>
@@ -372,7 +371,15 @@
 
 <h3 id="泛化关系-Generalization"><a href="#泛化关系-Generalization" class="headerlink" title="泛化关系 Generalization"></a>泛化关系 Generalization</h3><p>就是继承关系，它是依赖关系的特例。<br><img src="/2020/10/07/designModel-01/2.png" srcset="/img/loading.gif" alt></p>
 <h3 id="实现关系-Realization"><a href="#实现关系-Realization" class="headerlink" title="实现关系 Realization"></a>实现关系 Realization</h3><p>就是A类实现B类，也是依赖关系的特例<br><img src="/2020/10/07/designModel-01/3.png" srcset="/img/loading.gif" alt></p>
-<h3 id="关联关系-Association"><a href="#关联关系-Association" class="headerlink" title="关联关系 Association"></a>关联关系 Association</h3>
+<h3 id="关联关系-Association"><a href="#关联关系-Association" class="headerlink" title="关联关系 Association"></a>关联关系 Association</h3><p>类与类之间的联系，也是依赖关系的特例。<br>关联具有导航性，即单向或双向。<br>关联具有多重性，一对一或一对多</p>
+<p>单向一对一：<br><img src="/2020/10/07/designModel-01/4.png" srcset="/img/loading.gif" alt></p>
+<p>双向一对一：<br><img src="/2020/10/07/designModel-01/5.png" srcset="/img/loading.gif" alt></p>
+<h3 id="聚合关系-Aggregation"><a href="#聚合关系-Aggregation" class="headerlink" title="聚合关系 Aggregation"></a>聚合关系 Aggregation</h3><p>表示整体和局部之间的关系，整体和局部可以分开，是关联关系的特例。</p>
+<blockquote>
+<p>Moniter、Mouse聚合于Computer<br><img src="/2020/10/07/designModel-01/6.png" srcset="/img/loading.gif" alt></p>
+</blockquote>
+<h3 id="组合关系-Composition"><a href="#组合关系-Composition" class="headerlink" title="组合关系 Composition"></a>组合关系 Composition</h3><p>如果聚合关系中整体和局部是不可分开的，就升级为组合关系。<br><img src="/2020/10/07/designModel-01/7.png" srcset="/img/loading.gif" alt></p>
+
             </article>
             <hr>
             <div>
@@ -395,13 +402,19 @@
                   <div class="post-prev col-6">
                     
                     
+                      <a href="/2020/10/09/designModel-02/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">单例设计模式</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </div>
                   <div class="post-next col-6">
                     
                     
                       <a href="/2020/09/09/nio/">
                         <span class="hidden-mobile">NIO</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -418,7 +431,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -451,7 +464,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -460,7 +473,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
