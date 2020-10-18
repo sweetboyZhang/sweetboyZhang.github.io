@@ -19,7 +19,7 @@
   <meta name="description" content="">
   <meta name="author" content="sweetboyZhang">
   <meta name="keywords" content="">
-  <title>Archives - sweetboyZhang&#39;s Blog</title>
+  <title>Tags - JWT - sweetboyZhang&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -44,7 +44,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 80vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -162,85 +162,19 @@
                 
 
 <div class="list-group">
-  <p class="h4">83 posts in total.</p>
+  <p class="h4">1 posts in total.</p>
   <hr>
   
     
       
       <p class="h5">2020</p>
     
-    <a href="/2020/07/28/springboot-06/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">SpringSecurity</span>
-      <span style="float: right;">07-28</span>
-    </a>
-  
-    
-    <a href="/2020/07/26/springboot-05/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">整合MyBatis</span>
-      <span style="float: right;">07-26</span>
-    </a>
-  
-    
-    <a href="/2020/07/25/springboot-04/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">整合jdbc，Druid</span>
-      <span style="float: right;">07-25</span>
-    </a>
-  
-    
-    <a href="/2020/07/15/ssm/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">图书Crud项目</span>
-      <span style="float: right;">07-15</span>
-    </a>
-  
-    
-    <a href="/2020/07/11/springboot-03/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Springboot Web开发</span>
-      <span style="float: right;">07-11</span>
-    </a>
-  
-    
-    <a href="/2020/07/10/springboot-02/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Springboot配置</span>
-      <span style="float: right;">07-10</span>
-    </a>
-  
-    
-    <a href="/2020/07/09/springboot-01/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Springboot简介、自动装配原理</span>
-      <span style="float: right;">07-09</span>
-    </a>
-  
-    
-    <a href="/2020/07/08/vue-05/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Vue-elementUI</span>
-      <span style="float: right;">07-08</span>
-    </a>
-  
-    
-    <a href="/2020/07/08/vue-04/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Vue-Cli、webpack、vue-Router</span>
-      <span style="float: right;">07-08</span>
-    </a>
-  
-    
-    <a href="/2020/07/07/vue-03/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">计算属性、内容分发、自定义事件</span>
-      <span style="float: right;">07-07</span>
+    <a href="/2020/10/18/jwt/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">JWT原理及使用</span>
+      <span style="float: right;">10-18</span>
     </a>
   
 </div>
-
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2020/07/page/2/">2</a><a class="extend next" rel="next" href="/archives/2020/07/page/2/"><i class="iconfont icon-arrowright"></i></a>
-    </span>
-  </nav>
-  
-  <script>
-    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
-      ele.href += '#board';
-    }
-  </script>
 
 
 
@@ -469,7 +403,7 @@
       if ('false' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/archives/2020/07/index.html');
+          var target = decodeURI('/tags/JWT/index.html');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -538,7 +472,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Archive&nbsp;",
+        "Tag - JWT&nbsp;",
       ],
       cursorChar: "(*＾_＾*)",
       typeSpeed: 70,
