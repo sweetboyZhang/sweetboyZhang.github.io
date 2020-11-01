@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      33
+      34
        分钟
     </span>
   
@@ -215,28 +215,29 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：September 30, 2020 am
+                  本文最后更新于：October 29, 2020 pm
                 
               </p>
             
             <article class="markdown-body">
-              <h1 id="变量的使用"><a href="#变量的使用" class="headerlink" title="变量的使用"></a>变量的使用</h1><p>1.变量必须先声明后使用。<br>2.变量都定义在其作用域内，在作用域内有效，出了作用域就失效了。<br>3.同一个作用域内不能声明两个同名变量。</p>
+              <h2 id="变量的使用"><a href="#变量的使用" class="headerlink" title="变量的使用"></a>变量的使用</h2><p>1.变量必须先声明后使用。<br>2.变量都定义在其作用域内，在作用域内有效，出了作用域就失效了。<br>3.同一个作用域内不能声明两个同名变量。</p>
 <a id="more"></a>
 
 <h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p><img src="/2020/01/09/java-01/1.jpg" srcset="/img/loading.gif" alt></p>
 <p><strong>基本数据类型(primitive type)</strong><br>        整型  byte(1字节) -128~127 , short (2字节), int(4字节) , long(8字节) l或L结尾<br>        浮点型  float(4字节) 定义时要以f或F结尾 , double(8字节)<br>        字符型  char(2字节)<br>        布尔型  boolean 只能取两个值之一 ：true , false<br><em>7种基本数据类型之间的计算（不包括布尔类型）:</em><br>        1.自动类型提升：<br>               容量小的数据类型变量与容量大的数据类型做运算时，运算结果自动装换为容量大的。<br>               byte , char , short –&gt; int –&gt; long –&gt; float –&gt; double<br><strong>所有的byte , short , char 类型的值将被提升为int型；</strong><br><strong>被final 修饰的变量不会自动提升其类型</strong></p>
 <p>​        2.强制类型转换：<br>​        使用强转符 () ，可能造成精度损失<br><strong>引用数据类型(reference type)</strong><br>​        类 class<br>​        String类型：  声明时使用一对””，可以与8种基本数据类型做运算，+ 只能表示连接<br>​        接口 interfere<br>​        数组 [ ]</p>
-<h1 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h1><p>​    <strong>算术运算符</strong><br>​            <strong>逻辑运算符</strong><br>​            <strong>&amp;&amp;与&amp;的区别：</strong><br>​            &amp; : 左边无论真假，右边进行运算<br>​            &amp;&amp; ： 左边为真，右边参与运算；左边为假，右边不参与运算<br>​            <strong>|与||的区别：</strong><br>​            ||：左边为真，右边不参与运算<br>​            <strong>位运算：</strong><br>​         <img src="/2020/01/09/java-01/1.png" srcset="/img/loading.gif" alt></p>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><p>​    <strong>算术运算符</strong><br>​            <strong>逻辑运算符</strong><br>​            <strong>&amp;&amp;与&amp;的区别：</strong><br>​            &amp; : 左边无论真假，右边进行运算<br>​            &amp;&amp; ： 左边为真，右边参与运算；左边为假，右边不参与运算<br>​            <strong>|与||的区别：</strong><br>​            ||：左边为真，右边不参与运算<br>​            <strong>位运算：</strong><br>​         <img src="/2020/01/09/java-01/1.png" srcset="/img/loading.gif" alt></p>
 <p><strong>运算符优先级：</strong></p>
 <p>单目乘除为(位)关系，逻辑三目后赋值。 </p>
 <p>单目：单目运算符+ –(负数) ++ – 等<br>乘除：算数单目运算符* / % + -<br>为（位）：位移单目运算符&lt;&lt; &gt;&gt;<br>关系：关系单目运算符&gt; &lt; &gt;= &lt;= == !=<br>逻辑：逻辑单目运算符&amp;&amp; || &amp; | ^<br>三目：三目单目运算符A &gt; B ? X : Y<br>后：无意义，仅仅为了凑字数<br>赋值：赋值=</p>
-<h1 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h1><p><strong>顺序结构</strong><br>        <strong>分支结构</strong><br>        <strong>循环结构</strong><br>        break :  结束当前循环<br>        continue :  结束当次循环</p>
-<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><p><strong>数组的特点:</strong><br>            1.数组是有序排列的<br>            2.数组属于引用数据类型的变量。数组的元素，既可以是基本数据类型，也可以是引用数据类型的变量<br>            3.创建数组对象时会在内存中开辟一整块连续的内存空间<br>            4.数组的长度一旦确定就不能修改 </p>
+<h2 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h2><p><strong>顺序结构</strong><br><strong>分支结构</strong><br><strong>循环结构</strong><br>        break :  结束当前循环<br>        continue :  结束当次循环</p>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p><strong>数组的特点:</strong><br>            1.数组是有序排列的<br>            2.数组属于引用数据类型的变量。数组的元素，既可以是基本数据类型，也可以是引用数据类型的变量<br>            3.创建数组对象时会在内存中开辟一整块连续的内存空间<br>            4.数组的长度一旦确定就不能修改 </p>
 <p><strong>一维数组的使用:</strong></p>
 <pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArrayTest</span> </span>&#123;
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
 	<span class="hljs-keyword">int</span>[] nums;<span class="hljs-comment">// 声明</span>
 	<span class="hljs-comment">// 静态初始化:数组的初始化和数组元素的初始化同时进行</span>
+    <span class="hljs-comment">// int型数组元素数量小于指定容量时，以0填充</span>
 	nums = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[] &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>&#125;;
     <span class="hljs-comment">// int[] nums = &#123;1,2,3,4,5,6&#125;</span>
         

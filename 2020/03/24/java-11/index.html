@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      341 字
+      2.3k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      34
        分钟
     </span>
   
@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：August 14, 2020 pm
+                  本文最后更新于：October 29, 2020 pm
                 
               </p>
             
@@ -264,6 +264,284 @@
         System.out.println(com1.compare(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>));
     &#125;
 &#125;</code></pre>
+
+<h2 id="Lambda表达式的应用"><a href="#Lambda表达式的应用" class="headerlink" title="Lambda表达式的应用"></a>Lambda表达式的应用</h2><h3 id="forEach-遍历Map"><a href="#forEach-遍历Map" class="headerlink" title="forEach 遍历Map"></a>forEach 遍历Map</h3><pre><code class="hljs java">Map&lt;String,Object&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;String,Object&gt;();
+map.put(<span class="hljs-string">"key1"</span>, <span class="hljs-number">1</span>);
+map.put(<span class="hljs-string">"key2"</span>, <span class="hljs-number">2</span>);
+map.put(<span class="hljs-string">"key3"</span>, <span class="hljs-number">3</span>);
+map.put(<span class="hljs-string">"key4"</span>, <span class="hljs-number">4</span>);
+map.forEach((key,value) -&gt; &#123;
+    System.out.println(<span class="hljs-string">"key:"</span> + key + <span class="hljs-string">",value:"</span> + value);
+&#125;)</code></pre>
+
+<h3 id="forEach-遍历List"><a href="#forEach-遍历List" class="headerlink" title="forEach 遍历List"></a>forEach 遍历List</h3><pre><code class="hljs java">List&lt;Integer&gt; list = <span class="hljs-keyword">new</span> ArrayList&lt;Integer&gt;();
+list.add(<span class="hljs-number">1</span>);
+list.add(<span class="hljs-number">2</span>);
+list.add(<span class="hljs-number">3</span>);
+list.forEach(value -&gt; &#123;
+    System.out.println(<span class="hljs-string">"value:"</span> + value);
+&#125;)</code></pre>
+
+<h3 id="创建并开启线程"><a href="#创建并开启线程" class="headerlink" title="创建并开启线程"></a>创建并开启线程</h3><pre><code class="hljs java"><span class="hljs-keyword">new</span> Thread(()-&gt;System.out.println(<span class="hljs-string">"new Thread start"</span>)).start();</code></pre>
+
+<h2 id="Stream-流"><a href="#Stream-流" class="headerlink" title="Stream 流"></a>Stream 流</h2><p>以集合为例，一个流式处理的操作我们首先需要调用<code>stream()</code>函数将其<strong>转换成流</strong>，然后再调用相应的<strong>中间操作</strong>达到我们需要对集合进行的操作，比如筛选、转换等，最后通过<strong>终端操作</strong>对前面的结果进行封装，返回我们需要的形式。<br><img src="/2020/03/24/java-11/myBlog\source\_posts\java-11\1.jpg" srcset="/img/loading.gif" style="zoom:80%;"></p>
+<h3 id="常用api的使用"><a href="#常用api的使用" class="headerlink" title="常用api的使用"></a>常用api的使用</h3><p>创建实体类</p>
+<pre><code class="hljs java"><span class="hljs-meta">@Data</span>
+<span class="hljs-meta">@NoArgsConstructor</span>
+<span class="hljs-meta">@AllArgsConstructor</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span></span>&#123;
+<span class="hljs-keyword">private</span> Long id;       
+<span class="hljs-keyword">private</span> String name;   
+<span class="hljs-keyword">private</span> Integer age;   
+<span class="hljs-keyword">private</span> String school;</code></pre>
+
+<p>初始化</p>
+<pre><code class="hljs java">List&lt;User&gt; list = <span class="hljs-keyword">new</span> ArrayList&lt;User&gt;()&#123;
+            &#123;
+                add(<span class="hljs-keyword">new</span> User(<span class="hljs-number">1L</span>,<span class="hljs-string">"张三"</span>,<span class="hljs-number">10</span>, <span class="hljs-string">"清华大学"</span>));
+                add(<span class="hljs-keyword">new</span> User(<span class="hljs-number">2L</span>,<span class="hljs-string">"李四"</span>,<span class="hljs-number">12</span>, <span class="hljs-string">"清华大学"</span>));
+                add(<span class="hljs-keyword">new</span> User(<span class="hljs-number">3L</span>,<span class="hljs-string">"王五"</span>,<span class="hljs-number">15</span>, <span class="hljs-string">"清华大学"</span>));
+                add(<span class="hljs-keyword">new</span> User(<span class="hljs-number">4L</span>,<span class="hljs-string">"赵六"</span>,<span class="hljs-number">12</span>, <span class="hljs-string">"清华大学"</span>));
+                add(<span class="hljs-keyword">new</span> User(<span class="hljs-number">5L</span>,<span class="hljs-string">"田七"</span>,<span class="hljs-number">25</span>, <span class="hljs-string">"北京大学"</span>));
+                add(<span class="hljs-keyword">new</span> User(<span class="hljs-number">6L</span>,<span class="hljs-string">"小明"</span>,<span class="hljs-number">16</span>, <span class="hljs-string">"北京大学"</span>));
+                add(<span class="hljs-keyword">new</span> User(<span class="hljs-number">7L</span>,<span class="hljs-string">"小红"</span>,<span class="hljs-number">14</span>, <span class="hljs-string">"北京大学"</span>));
+                add(<span class="hljs-keyword">new</span> User(<span class="hljs-number">8L</span>,<span class="hljs-string">"小华"</span>,<span class="hljs-number">14</span>, <span class="hljs-string">"浙江大学"</span>));
+                add(<span class="hljs-keyword">new</span> User(<span class="hljs-number">9L</span>,<span class="hljs-string">"小丽"</span>,<span class="hljs-number">17</span>, <span class="hljs-string">"浙江大学"</span>));
+                add(<span class="hljs-keyword">new</span> User(<span class="hljs-number">10L</span>,<span class="hljs-string">"小何"</span>,<span class="hljs-number">10</span>, <span class="hljs-string">"浙江大学"</span>));
+            &#125;
+        &#125;;</code></pre>
+
+<blockquote>
+<p>filter 过滤</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-comment">// 筛选出学校是清华大学的所有用户并打印输出他们的姓名</span>
+List&lt;User&gt; userList = list.stream()
+                .filter(user -&gt; <span class="hljs-string">"清华大学"</span>.equals(user.getSchool()))
+                .collect(Collectors.toList());
+        userList.forEach(user -&gt; &#123;
+            System.out.print(user.getName() + <span class="hljs-string">" "</span>);
+        &#125;);</code></pre>
+
+<p>输出结果：</p>
+<pre><code class="hljs shell">张三 李四 王五 赵六</code></pre>
+
+<blockquote>
+<p>distinct</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-comment">// distinct 获取所有user的年龄（年龄不重复）</span>
+<span class="hljs-comment">// map 方法用于映射每个元素到对应的结果</span>
+<span class="hljs-comment">// List&lt;Integer&gt; userAgeList = list.stream().map(User::getAge)</span>
+List&lt;Integer&gt; userAgeList = list.stream()
+        .map(user -&gt; user.getAge())
+        .distinct()
+        .collect(Collectors.toList());
+userAgeList.forEach(age -&gt; &#123;
+    System.out.print(age + <span class="hljs-string">" "</span>);
+&#125;);</code></pre>
+
+<p>输出结果：</p>
+<pre><code class="hljs shell">18 20 16 19 25 22 21</code></pre>
+
+<blockquote>
+<p>limit  返回前n个元素的流，当集合长度小于n时，则返回所有集合</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-comment">// 获取年龄是偶数的前2名user</span>
+List&lt;User&gt; userList2 = list.stream()
+        .filter(user -&gt; user.getAge() % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>)
+        .limit(<span class="hljs-number">2</span>)
+        .collect(Collectors.toList());
+userList2.forEach(user -&gt; &#123;
+    System.out.print(user.getName() + <span class="hljs-string">" "</span>);
+&#125;);</code></pre>
+
+<pre><code class="hljs shell">张三 李四</code></pre>
+
+<blockquote>
+<p>sorted</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-comment">// 将所有user按年龄从大到小排序</span>
+List&lt;User&gt; userList3 = list.stream()
+        .sorted((user1, user2) -&gt; user2.getAge() - user1.getAge())
+        .collect(Collectors.toList());
+System.out.println(userList3);</code></pre>
+
+<p>输出结果：</p>
+<pre><code class="hljs shell">[User&#123;id=5, name='田七', age=25, school='北京大学'&#125;, User&#123;id=8, name='小华', age=22, school='浙江大学'&#125;, User&#123;id=9, name='小丽', age=21, school='浙江大学'&#125;, User&#123;id=2, name='李四', age=20, school='清华大学'&#125;, User&#123;id=7, name='小红', age=20, school='北京大学'&#125;, User&#123;id=4, name='赵六', age=19, school='清华大学'&#125;, User&#123;id=1, name='张三', age=18, school='清华大学'&#125;, User&#123;id=10, name='小何', age=18, school='浙江大学'&#125;, User&#123;id=3, name='王五', age=16, school='清华大学'&#125;, User&#123;id=6, name='小明', age=16, school='北京大学'&#125;]</code></pre>
+
+<blockquote>
+<p>skip  跳过几个元素再输出</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-comment">// 跳过前两个user,输出之后的user</span>
+    List&lt;User&gt; userList4 = list
+        .stream()
+        .skip(<span class="hljs-number">2</span>)
+        .collect(Collectors.toList());
+    System.out.println(userList4);</code></pre>
+
+<p>输出结果：</p>
+<pre><code class="hljs shell">[User&#123;id=3, name='王五', age=16, school='清华大学'&#125;, User&#123;id=4, name='赵六', age=19, school='清华大学'&#125;, User&#123;id=5, name='田七', age=25, school='北京大学'&#125;, User&#123;id=6, name='小明', age=16, school='北京大学'&#125;, User&#123;id=7, name='小红', age=20, school='北京大学'&#125;, User&#123;id=8, name='小华', age=22, school='浙江大学'&#125;, User&#123;id=9, name='小丽', age=21, school='浙江大学'&#125;, User&#123;id=10, name='小何', age=18, school='浙江大学'&#125;]</code></pre>
+
+<blockquote>
+<p>map 映射元素结果</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-comment">// 筛选出学校是清华大学的所有学生</span>
+List&lt;String&gt; nameList = list.stream()
+        .filter(user -&gt; <span class="hljs-string">"清华大学"</span>.equals(user.getSchool()))
+        .map(user -&gt; user.getName())
+        .collect(Collectors.toList());
+System.out.println(nameList);
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 除了上面这类基础的map，java8还提供了mapToDouble(ToDoubleFunction&lt;? super T&gt; mapper)，</span>
+<span class="hljs-comment"> * mapToInt(ToIntFunction&lt;? super T&gt; mapper)，</span>
+<span class="hljs-comment"> * mapToLong(ToLongFunction&lt;? super T&gt; mapper)，</span>
+<span class="hljs-comment"> * java8为这些流设定了一些特殊的操作</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-comment">// 统计学校为北京大学的所有用户的人数</span>
+<span class="hljs-keyword">long</span> count = list.stream()
+        .filter(user -&gt; <span class="hljs-string">"北京大学"</span>.equals(user.getSchool()))
+        .mapToInt(user -&gt; user.getAge()).count();
+System.out.println(<span class="hljs-string">"北京大学用户的人数："</span> + count);</code></pre>
+
+<p>输出结果：</p>
+<pre><code class="hljs shell">[张三, 李四, 王五, 赵六]
+北京大学用户的人数：3</code></pre>
+
+<blockquote>
+<p>匹配</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-comment">// allMatch</span>
+<span class="hljs-comment">// 用于检测是否全部都满足指定的参数行为，如果全部满足则返回true</span>
+<span class="hljs-comment">// 判断所有用户的年龄是否都大于18岁</span>
+<span class="hljs-keyword">boolean</span> isAllAdult = list.stream().allMatch(user -&gt; user.getAge() &gt; <span class="hljs-number">18</span>);
+System.out.println(isAllAdult);
+
+<span class="hljs-comment">// anyMatch</span>
+<span class="hljs-comment">// 检测是否存在一个或多个满足指定的参数行为，如果满足则返回true</span>
+<span class="hljs-comment">// 判断是否有大于18岁的用户</span>
+<span class="hljs-keyword">boolean</span> isAnyAdult = list.stream().anyMatch(user -&gt; user.getAge() &gt; <span class="hljs-number">18</span>);
+System.out.println(isAnyAdult);
+
+<span class="hljs-comment">// noneMatch　　</span>
+<span class="hljs-comment">// 检测是否不存在满足指定行为的元素，如果不存在则返回true</span></code></pre>
+
+<p>输出结果：</p>
+<pre><code class="hljs shell">false
+true</code></pre>
+
+<blockquote>
+<p>findFirst  用于返回满足条件的第一个元素</p>
+</blockquote>
+<pre><code class="hljs java">Optional&lt;User&gt; first = list.stream()
+        .filter(user -&gt; user.getAge() == <span class="hljs-number">18</span>)
+        .findFirst();
+User user = first.get();
+System.out.println(user);</code></pre>
+
+<p>输出结果：</p>
+<pre><code class="hljs shell">User&#123;id=1, name='张三', age=18, school='清华大学'&#125;</code></pre>
+
+<blockquote>
+<p>counting  计算个数</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-comment">// Long counting = list.stream().collect(Collectors.counting());</span>
+<span class="hljs-keyword">long</span> counting = list.stream().count();
+System.out.println(<span class="hljs-string">"总人数："</span>+counting);</code></pre>
+
+<p>输出结果：</p>
+<pre><code class="hljs shell">总人数：10</code></pre>
+
+<blockquote>
+<p>maxBy  minBy  计算最大值 最小值</p>
+</blockquote>
+<pre><code class="hljs java">Integer maxAge = list.stream()
+        .collect(Collectors.maxBy((user1, user2) -&gt; user1.getAge() - user2.getAge()))
+        .get().getAge();
+Integer minAge = list.stream()
+        .collect(Collectors.minBy((user1, user2) -&gt; user1.getAge() - user2.getAge()))
+        .get().getAge();
+System.out.println(<span class="hljs-string">"最大年龄："</span> + maxAge);
+System.out.println(<span class="hljs-string">"最小年龄："</span> + minAge);
+<span class="hljs-comment">// 方式二： 使用比较器</span>
+Integer maxAge2 = list.stream()
+        .collect(Collectors.maxBy(Comparator.comparing(User::getAge)))
+        .get()
+        .getAge();
+Integer minAge2 = list.stream()
+        .collect(Collectors.minBy(Comparator.comparing(User::getAge)))
+        .get()
+        .getAge();
+System.out.println(<span class="hljs-string">"最大年龄："</span> + maxAge2);
+System.out.println(<span class="hljs-string">"最小年龄："</span> + minAge2);</code></pre>
+
+<p>输出结果：</p>
+<pre><code class="hljs shell">最大年龄：25
+最小年龄：16
+最大年龄：25
+最小年龄：16</code></pre>
+
+<blockquote>
+<p>summingInt、summingLong、summingDouble 计算总和</p>
+</blockquote>
+<pre><code class="hljs java">Integer ageSum = list.stream().collect(Collectors.summingInt(User::getAge));
+System.out.println(<span class="hljs-string">"年龄总合为："</span> + ageSum);</code></pre>
+
+<p>输出结果：</p>
+<pre><code class="hljs shell">年龄总合为：195</code></pre>
+
+<blockquote>
+<p>averageInt、averageLong、averageDouble 计算平均值</p>
+</blockquote>
+<pre><code class="hljs java">Double ageAverage = list.stream().collect(Collectors.averagingInt(User::getAge));
+System.out.println(<span class="hljs-string">"年龄平均值："</span> + ageAverage);</code></pre>
+
+<p>输出结果：</p>
+<pre><code class="hljs shell">年龄平均值：19.5</code></pre>
+
+<blockquote>
+<p>summarizingInt、summarizingLong、summarizingDouble  </p>
+<p>一次性查询元素个数、总和、最大值、最小值和平均值</p>
+</blockquote>
+<pre><code class="hljs java">IntSummaryStatistics collect = list.stream()
+    .collect(Collectors.summarizingInt(User::getAge));
+System.out.println(collect);</code></pre>
+
+<p>输出结果：</p>
+<pre><code class="hljs shell">IntSummaryStatistics&#123;count=10, sum=195, min=16, average=19.500000, max=25&#125;</code></pre>
+
+<blockquote>
+<p>joining 字符串拼接</p>
+</blockquote>
+<pre><code class="hljs java">String names = list.stream()
+    .map(User::getName)
+    .collect(Collectors.joining(<span class="hljs-string">","</span>));
+System.out.println(names);</code></pre>
+
+<p>输出结果：</p>
+<pre><code class="hljs shell">张三,李四,王五,赵六,田七,小明,小红,小华,小丽,小何</code></pre>
+
+<blockquote>
+<p>groupingBy 分组</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-comment">// 根据大学划分用户</span>
+Map&lt;String, List&lt;User&gt;&gt; userBySchool = list.stream()
+    .collect(Collectors.groupingBy(User::getSchool));
+System.out.println(userBySchool);</code></pre>
+
+<p>输出结果：</p>
+<pre><code class="hljs shell">&#123;浙江大学=[User&#123;id=8, name='小华', age=22, school='浙江大学'&#125;, User&#123;id=9, name='小丽', age=21, school='浙江大学'&#125;, User&#123;id=10, name='小何', age=18, school='浙江大学'&#125;], 北京大学=[User&#123;id=5, name='田七', age=25, school='北京大学'&#125;, User&#123;id=6, name='小明', age=16, school='北京大学'&#125;, User&#123;id=7, name='小红', age=20, school='北京大学'&#125;], 清华大学=[User&#123;id=1, name='张三', age=18, school='清华大学'&#125;, User&#123;id=2, name='李四', age=20, school=</code></pre>
+
+<blockquote>
+<p>partitioningBy  分区</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-comment">// 按照是否是清华大学的user将所有user分为两个部分</span>
+Map&lt;Boolean, List&lt;User&gt;&gt; userByQinghua = list.stream()
+    .collect(Collectors.partitioningBy(user1 -&gt; <span class="hljs-string">"清华大学"</span>.equals(user1.getSchool())));
+System.out.println(userByQinghua);</code></pre>
+
+<p>输出结果：</p>
+<pre><code class="hljs shell">&#123;false=[User&#123;id=5, name='田七', age=25, school='北京大学'&#125;, User&#123;id=6, name='小明', age=16, school='北京大学'&#125;, User&#123;id=7, name='小红', age=20, school='北京大学'&#125;, User&#123;id=8, name='小华', age=22, school='浙江大学'&#125;, User&#123;id=9, name='小丽', age=21, school='浙江大学'&#125;, User&#123;id=10, name='小何', age=18, school='浙江大学'&#125;], true=[User&#123;id=1, name='张三', age=18, school='清华大学'&#125;, User&#123;id=2, name='李四', age=20, school='清华大学'&#125;, User&#123;id=3, name='王五', age=16, school='清华大学'&#125;, User&#123;id=4, name='赵六', age=19, school='清华大学'&#125;]&#125;</code></pre>
+
 
             </article>
             <hr>

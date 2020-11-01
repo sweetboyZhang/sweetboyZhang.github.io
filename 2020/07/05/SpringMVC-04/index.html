@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2k 字
+      2.1k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      27
+      28
        分钟
     </span>
   
@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：July 15, 2020 am
+                  本文最后更新于：November 1, 2020 pm
                 
               </p>
             
@@ -347,12 +347,12 @@
     &#125;
 &#125;</code></pre>
 
-<pre><code class="hljs scala">public <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NameException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">MyUserException</span> </span>&#123;
-    public <span class="hljs-type">NameException</span>() &#123;
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NameException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">MyUserException</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">NameException</span><span class="hljs-params">()</span> </span>&#123;
         <span class="hljs-keyword">super</span>();
     &#125;
 
-    public <span class="hljs-type">NameException</span>(<span class="hljs-type">String</span> message) &#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">NameException</span><span class="hljs-params">(String message)</span> </span>&#123;
         <span class="hljs-keyword">super</span>(message);
     &#125;
 &#125;</code></pre>
@@ -406,7 +406,7 @@
 <span class="hljs-tag">&lt;<span class="hljs-name">context:component-scan</span> <span class="hljs-attr">base-package</span>=<span class="hljs-string">"com.zyz.handler"</span>/&gt;</span></code></pre>
 
 <p>4、编写异常跳转的页面</p>
-<h2 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h2><p>1、拦截器是springmvc中的一种，需要实现HandlerInterceptor接口<br>2、拦截器与过滤器类似，功能方向的侧重点不同。<br>过滤器是用来过滤请求参数，设置编码字符集等工作。<br>拦截器是拦截用户请求，做请求判断。<br>3、拦截器是全局的，可以对多个Controller做拦截<br>一个项目可以有多个拦截器，一起拦截用户请求。<br>用处：用户登录，权限检查，记录日志</p>
+<h2 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h2><p>拦截器（interceptor），是一种面向切面编程的实现，将多个模块的通用服务进行分离，如权限管理、日志服务，就可以将其各自封装为一个可重用模块。而这些通用服务的具体实现是通过拦截器来完成，比如用户客户端访问一些保密模块都应先通过权限审查的拦截器来进行权限审查，确定用户是否具有该项操作的权限后方能向下执行。在面向切面编程中就是在调用业务方法前调用一个方法，或者在调用业务方法后调用一个方法。</p>
 <p><strong>拦截器的执行时间：</strong></p>
 <p>1、在请求处理之前，也就是controller类中的方法执行之前先被拦截。<br>2、在控制器方法执行之后也会执行拦截器。<br>3、在请求处理完成后也会执行拦截器。</p>
 <p><strong>拦截器类</strong></p>
@@ -481,8 +481,11 @@
 <p>preHandle()返回true时：<br><img src="/2020/07/05/SpringMVC-04/1.png" srcset="/img/loading.gif" alt></p>
 <p><img src="/2020/07/05/SpringMVC-04/2.png" srcset="/img/loading.gif" alt><br>返回false，跳转到提示页面，请求被终止，不会执行preHandle()以后的方法</p>
 <p>当有多个拦截器时<br><img src="/2020/07/05/SpringMVC-04/3.png" srcset="/img/loading.gif" alt></p>
-<p><strong>拦截器与过滤器的区别</strong></p>
-<p>1、过滤器是Servlet中的对象，拦截器是框架中的对象；<br>2、过滤器是实现Filter接口的对象，拦截器是实现HandlerInterceptor接口的对象；<br>3、过滤器是用来设置request，response的 参数，属性的，侧重对数据的过滤<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;拦截器是用来验证请求的，能截断请求<br>4、过滤器是在拦截器之前执行的<br>5、过滤器可以处理jsp，js，html等<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;拦截器是侧重拦截Controller的对象</p>
+<blockquote>
+<p>拦截器与过滤器的区别</p>
+</blockquote>
+<p>过滤器，是在java web中将你传入的request、response提前过滤掉一些信息，或者提前设置一些参数。然后再传入Servlet或Struts2的 action进行业务逻辑处理。比如过滤掉非法url（，或者在传入Servlet或Struts2的action前统一设置字符集，或者去除掉一些非法字符。</p>
+<p>通俗理解：<br>（1）过滤器（Filter）：当你有一堆东西的时候，你只希望选择符合你要求的某一些东西。定义这些要求的工具，就是过滤器。<br>（2）拦截器（Interceptor）：在一个流程正在进行的时候，你希望干预它的进展，甚至终止它进行，这是拦截器做的事情。</p>
 
             </article>
             <hr>
