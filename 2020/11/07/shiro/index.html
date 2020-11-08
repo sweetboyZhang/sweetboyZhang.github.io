@@ -154,8 +154,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-10-07 15:22">
-      October 7, 2020 pm
+    <time datetime="2020-11-07 15:22">
+      November 7, 2020 pm
     </time>
   </div>
 
@@ -215,14 +215,14 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：November 8, 2020 am
+                  本文最后更新于：November 8, 2020 pm
                 
               </p>
             
             <article class="markdown-body">
               <h2 id="权限管理"><a href="#权限管理" class="headerlink" title="权限管理"></a>权限管理</h2><p>权限的管理包含<strong>身份认证</strong>和<strong>授权</strong>两部分，对于需要访问控制资源的用户需要先通过身份认证，认证通过的用户并且具有该资源的访问权限方可访问。<a id="more"></a></p>
 <h2 id="Shiro"><a href="#Shiro" class="headerlink" title="Shiro"></a>Shiro</h2><p>Shiro是apache旗下一个开源框架，它将软件系统的安全认证相关的功能抽取出来，实现用户身份认证，权限授权、加密、会话管理等功能，组成了一个通用的安全认证框架。</p>
-<h2 id="Shiro核心架构"><a href="#Shiro核心架构" class="headerlink" title="Shiro核心架构"></a>Shiro核心架构</h2><p><img src="/2020/10/07/shiro/1.png" srcset="/img/loading.gif" alt></p>
+<h2 id="Shiro核心架构"><a href="#Shiro核心架构" class="headerlink" title="Shiro核心架构"></a>Shiro核心架构</h2><p><img src="/2020/11/07/shiro/1.png" srcset="/img/loading.gif" alt></p>
 <blockquote>
 <p>Subject</p>
 </blockquote>
@@ -276,7 +276,7 @@
 <li><strong>credential：凭证信息</strong></li>
 </ul>
 <p>是只有主体自己知道的安全信息，如密码，证书等。</p>
-<h3 id="认证流程"><a href="#认证流程" class="headerlink" title="认证流程"></a>认证流程</h3><img src="/2020/10/07/shiro/2.png" srcset="/img/loading.gif" style="zoom:80%;">
+<h3 id="认证流程"><a href="#认证流程" class="headerlink" title="认证流程"></a>认证流程</h3><img src="/2020/11/07/shiro/2.png" srcset="/img/loading.gif" style="zoom:80%;">
 
 <blockquote>
 <p>用户名校验   </p>
@@ -286,7 +286,7 @@
 <p>密码校验</p>
 <p>调用<code>AuthenticatingRealm</code> 类中的  <code>assertCredentialsMatch</code> 方法</p>
 </blockquote>
-<img src="/2020/10/07/shiro/3.png" srcset="/img/loading.gif" style="zoom: 40%;">
+<img src="/2020/11/07/shiro/3.png" srcset="/img/loading.gif" style="zoom: 40%;">
 
 <h2 id="Shiro中的授权"><a href="#Shiro中的授权" class="headerlink" title="Shiro中的授权"></a>Shiro中的授权</h2><p>授权，即访问控制，控制谁能访问哪些资源。主体进行身份认证后需要分配权限方可访问系统的资源，对于某些资源没有权限是无法访问的。</p>
 <h3 id="Shiro中的授权的关键对象"><a href="#Shiro中的授权的关键对象" class="headerlink" title="Shiro中的授权的关键对象"></a>Shiro中的授权的关键对象</h3><ul>
@@ -301,7 +301,7 @@
 <li><strong>Permission：权限许可</strong></li>
 </ul>
 <p>规定了主体对资源的操作许可，如用户查询权限、用户添加权限、修改权限、某个类方法的调用权限等。</p>
-<h3 id="授权流程"><a href="#授权流程" class="headerlink" title="授权流程"></a>授权流程</h3><p><img src="/2020/10/07/shiro/4.png" srcset="/img/loading.gif" alt></p>
+<h3 id="授权流程"><a href="#授权流程" class="headerlink" title="授权流程"></a>授权流程</h3><p><img src="/2020/11/07/shiro/4.png" srcset="/img/loading.gif" alt></p>
 <h3 id="授权方式"><a href="#授权方式" class="headerlink" title="授权方式"></a>授权方式</h3><ul>
 <li><p>基于角色的访问控制</p>
 <ul>
@@ -352,19 +352,19 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/10/09/designModel-02/">
+                      <a href="/2020/11/08/shrio-02/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">单例设计模式</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="hidden-mobile">整合Springboot</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/10/07/designModel-01/">
-                        <span class="hidden-mobile">设计模式七大原则</span>
-                        <span class="visible-mobile">Next</span>
+                      <a href="/2020/10/31/elementui/">
+                        <span class="hidden-mobile">ElementUI</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -381,7 +381,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -414,7 +414,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -423,7 +423,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -619,7 +619,7 @@
       if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/2020/10/07/shiro/');
+          var target = decodeURI('/2020/11/07/shiro/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
