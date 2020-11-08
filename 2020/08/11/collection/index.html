@@ -234,7 +234,7 @@
 </ul>
 <p><img src="/2020/08/11/collection/2.png" srcset="/img/loading.gif" alt></p>
 <p>基本方法：</p>
-<pre><code class="hljs java"><span class="hljs-number">1</span>、添加功能：
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-number">1</span>、添加功能：
 	<span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">add</span><span class="hljs-params">(Object obj)</span>：添加一个元素</span>
 <span class="hljs-function">    <span class="hljs-keyword">boolean</span> <span class="hljs-title">addAll</span><span class="hljs-params">(Collection c)</span>：添加一个集合的所有元素</span>
 <span class="hljs-function">2、删除功能：</span>
@@ -250,7 +250,7 @@
 <span class="hljs-function">5、长度功能：</span>
 <span class="hljs-function">    <span class="hljs-keyword">int</span> <span class="hljs-title">size</span><span class="hljs-params">()</span>：获取元素个数</span>
 <span class="hljs-function">6、交集功能：</span>
-<span class="hljs-function">    <span class="hljs-keyword">boolean</span> <span class="hljs-title">retainAll</span><span class="hljs-params">(Collection c)</span>：移除当前集合中集合c没有的元素，最终结果保存至当前集合中</span></code></pre>
+<span class="hljs-function">    <span class="hljs-keyword">boolean</span> <span class="hljs-title">retainAll</span><span class="hljs-params">(Collection c)</span>：移除当前集合中集合c没有的元素，最终结果保存至当前集合中</span></code></pre></div>
 
 <h3 id="2、迭代器（Iterator）"><a href="#2、迭代器（Iterator）" class="headerlink" title="2、迭代器（Iterator）"></a>2、迭代器（Iterator）</h3><p>java.utils.Collection继承了java.lang.Iterable接口，Collection继承了Iterable的Iterator()方法，返回Iterator对象。</p>
 <p>java.utils.Iterator也是一个接口，只有三个方法</p>
@@ -260,7 +260,7 @@
 <li>remove()</li>
 </ul>
 <p>这三个方法通过Collection的实现类以内部类的方式实现，因为Collection的实现类存储结构不同，遍历方式也必然不同，必须通过各个实现类以内部类的方式实现，来完成对不同实现类的遍历。</p>
-<pre><code class="hljs java"> <span class="hljs-meta">@Test</span>
+<div class="hljs"><pre><code class="hljs java"> <span class="hljs-meta">@Test</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test3</span><span class="hljs-params">()</span> </span>&#123;
         <span class="hljs-comment">// 1、创建集合对象</span>
         Collection coll1 = <span class="hljs-keyword">new</span> ArrayList();
@@ -285,7 +285,7 @@
             System.out.println(iterator.next());
         &#125;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <h3 id="3、List集合"><a href="#3、List集合" class="headerlink" title="3、List集合"></a>3、List集合</h3><p>LIst集合特点：有序（存取顺序与取出顺序一致），可重复。</p>
 <p>List集合常用实现类</p>
@@ -341,7 +341,7 @@
 </ul>
 <p><img src="/2020/08/11/collection/3.png" srcset="/img/loading.gif" alt></p>
 <p>基本方法：</p>
-<pre><code class="hljs java"><span class="hljs-number">1</span>、添加功能：
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-number">1</span>、添加功能：
     put(K key,V value)  添加元素，key存在则替换
 <span class="hljs-number">2</span>、删除功能：
     <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">clear</span><span class="hljs-params">()</span>  移除所有键值对</span>
@@ -358,7 +358,7 @@
 <span class="hljs-function">5、长度功能：</span>
 <span class="hljs-function">    <span class="hljs-keyword">int</span> <span class="hljs-title">size</span><span class="hljs-params">()</span>  返回集合中键值对的对数</span>
 <span class="hljs-function">6、遍历功能：</span>
-<span class="hljs-function">    <span class="hljs-keyword">void</span> <span class="hljs-title">forEach</span><span class="hljs-params">(Object key, Object value)</span></span></code></pre>
+<span class="hljs-function">    <span class="hljs-keyword">void</span> <span class="hljs-title">forEach</span><span class="hljs-params">(Object key, Object value)</span></span></code></pre></div>
 
 <h4 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h4><ul>
 <li>无序，允许为null，非同步</li>
@@ -771,7 +771,7 @@
         '  ',
         "Java集合总结&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -787,8 +787,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

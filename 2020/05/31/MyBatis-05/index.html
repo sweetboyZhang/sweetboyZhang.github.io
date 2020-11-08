@@ -222,7 +222,7 @@
             <article class="markdown-body">
               <p>MyBatis系统中默认定义了两级缓存。<br>一级缓存和二级缓存：<br>1、默认情况下，只有一级缓存开启。(SqlSession级别的缓存，也称本地缓存)<br>2、二级缓存需要手动开启和配置。(namespace级别全局缓存)<br>3、MyBatis定义了缓存接口Cache，可以通过实现Cache接口自定义二级缓存<a id="more"></a></p>
 <h2 id="一级缓存"><a href="#一级缓存" class="headerlink" title="一级缓存"></a>一级缓存</h2><p>与数据库<font color="red">同一次会话期间</font>查询到的数据会存放在本地缓存中；<br>以后如果需要获取相同的数据，会从缓存中查找，不会访问数据库。</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testFirstLevelCache</span><span class="hljs-params">()</span><span class="hljs-keyword">throws</span> IOException</span>&#123;
     SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
     SqlSession sqlSession = <span class="hljs-keyword">null</span>;
@@ -240,26 +240,26 @@
             sqlSession.close();
         &#125;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><img src="/2020/05/31/MyBatis-05/1.jpg" srcset="/img/loading.gif" alt></p>
 <p>可以看见在两次查询中，sql语句只向数据库发送了一次，并且第二次查询得到的对象与第一次完全相同，说明第二次查询访问的是内存中的缓存。</p>
 <p><strong>一级缓存失效的情况：</strong><br>1、不同的SqlSession对应不同的一级缓存；<br>2、同一个SqlSession但是查询条件不同；<br>3、同一个SqlSession两次查询期间执行了任何一次增删改操作；<br>4、同一个SqlSession两次查询期间手动清空了缓存。sqlSession.clearCache()</p>
 <h2 id="二级缓存"><a href="#二级缓存" class="headerlink" title="二级缓存"></a>二级缓存</h2><p>工作机制：<br>1、一个会话，查询一条数据，这个数据就会被保存在当前会话的一级缓存中；<br>2、<strong>如果会话关闭</strong>，一级缓存中的数据就会保存到二级缓存中。新的会话就会参照二级缓存。<br>3、不同的namespace查出的数据会放在自己对应的缓存中(map)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sqlSession——–EmployeeMapper——-Employee<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;——–DepartmentMapper——-Department<br>使用：<br>1、开启全局二级缓存</p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--  开启全局缓存--&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">setting</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"cacheEnabled"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"true"</span>/&gt;</span></code></pre>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--  开启全局缓存--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">setting</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"cacheEnabled"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"true"</span>/&gt;</span></code></pre></div>
 
 <p>2、在sql映射文件mapper.xml中配置使用二级缓存<br>只需在mapper标签的第一行添加：</p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- cache参数：</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- cache参数：</span>
 <span class="hljs-comment">          eviction 缓存回收策略  默认LRU 最近最少使用</span>
 <span class="hljs-comment">          flushInterval 缓存刷新间隔  默认不刷新</span>
 <span class="hljs-comment">          readOnly  是否只读 默认flase</span>
 <span class="hljs-comment">          size 缓存大小</span>
 <span class="hljs-comment">          type 自定义缓存全类名(实现Cache接口)--&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">cache</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">cache</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;<span class="hljs-name">cache</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">cache</span>&gt;</span></code></pre></div>
 
 <p>3、JavaBean对象需要实现序列化Serializable接口</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testSecondLevelCache</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;
     SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
     SqlSession sqlSession1 = <span class="hljs-keyword">null</span>;
@@ -284,7 +284,7 @@
             sqlSession2.close();
         &#125;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><img src="/2020/05/31/MyBatis-05/2.jpg" srcset="/img/loading.gif" alt></p>
 <h2 id="关闭缓存"><a href="#关闭缓存" class="headerlink" title="关闭缓存"></a>关闭缓存</h2><p>1、cacheEnabled=false：关闭二级缓存，一级缓存还可以使用<br>2、每一个select标签都有useCache = “true”（默认）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;useCache = “false”：关闭二级缓存，一级缓存还可以使用<br>3、每一个增删改标签默认flushCache=”true”，查询标签默认flushCache=”false”<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;增删改操作执行完后就会清空缓存<br>4、sqlSession.clearCache()：只是清空当前sqlSession的一级缓存</p>
@@ -675,7 +675,7 @@
         '  ',
         "MyBatis缓存机制&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -691,8 +691,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

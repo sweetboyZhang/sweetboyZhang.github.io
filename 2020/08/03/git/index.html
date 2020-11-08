@@ -215,32 +215,32 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：October 29, 2020 pm
+                  本文最后更新于：November 6, 2020 pm
                 
               </p>
             
             <article class="markdown-body">
               <p>Git是目前最先进的分布式版本控制系统。没有中央服务器，每个人的电脑就是一个完整的版本库，工作的时候不需要联网。相互推送就能看到对方的修改了。<a id="more"></a><br>SVN是集中式版本控制系统，版本库是集中放在中央服务器上的，所以工作时首先要从中央服务器得到最新的版本，然后工作，工作完成后推送给服务器。</p>
-<h2 id="查看不同级别的配置"><a href="#查看不同级别的配置" class="headerlink" title="查看不同级别的配置"></a>查看不同级别的配置</h2><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看系统config</span>
+<h2 id="查看不同级别的配置"><a href="#查看不同级别的配置" class="headerlink" title="查看不同级别的配置"></a>查看不同级别的配置</h2><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看系统config</span>
 git config --system --list
 <span class="hljs-meta">#</span><span class="bash"> 查看当前用户</span>
-git config --global --list</code></pre>
+git config --global --list</code></pre></div>
 
-<h2 id="设置用户名与邮箱"><a href="#设置用户名与邮箱" class="headerlink" title="设置用户名与邮箱"></a>设置用户名与邮箱</h2><pre><code class="hljs shell">git config --global user.name "sweetboyZhang"  # 名称
-git config --global user.email "2824199842@qq.com"   # 邮箱</code></pre>
+<h2 id="设置用户名与邮箱"><a href="#设置用户名与邮箱" class="headerlink" title="设置用户名与邮箱"></a>设置用户名与邮箱</h2><div class="hljs"><pre><code class="hljs shell">git config --global user.name "sweetboyZhang"  # 名称
+git config --global user.email "2824199842@qq.com"   # 邮箱</code></pre></div>
 
 <h2 id="三个区域"><a href="#三个区域" class="headerlink" title="三个区域"></a>三个区域</h2><p>Git本地有三个工作区域：工作目录（Working Directory）、暂存区(Stage/Index)、资源库(Repository），如果在加上远程的git仓库(Remote Directory)就可以分为四个工作区域。<br><img src="/2020/08/03/git/1.png" srcset="/img/loading.gif" style="zoom:80%;"></p>
 <h2 id="git项目搭建"><a href="#git项目搭建" class="headerlink" title="git项目搭建"></a>git项目搭建</h2><p><strong>创建工作目录</strong></p>
 <p>工作目录就是git管理的文件夹，可以是项目目录，也可以是空目录。<br><img src="/2020/08/03/git/2.png" srcset="/img/loading.gif" alt></p>
 <p><strong>搭建本地仓库</strong></p>
-<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 在当前目录创建一个全新的仓库</span>
-git init</code></pre>
+<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 在当前目录创建一个全新的仓库</span>
+git init</code></pre></div>
 
 <p><strong>克隆远程仓库</strong></p>
-<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 克隆一个项目和它整个代码历史</span>
-git clone [url]</code></pre>
+<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 克隆一个项目和它整个代码历史</span>
+git clone [url]</code></pre></div>
 
-<h2 id="git文件操作"><a href="#git文件操作" class="headerlink" title="git文件操作"></a>git文件操作</h2><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看文件状态</span>
+<h2 id="git文件操作"><a href="#git文件操作" class="headerlink" title="git文件操作"></a>git文件操作</h2><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看文件状态</span>
 git status [filename]
 
 <span class="hljs-meta">#</span><span class="bash"> 查看所有文件状态</span>
@@ -250,10 +250,10 @@ git status
 git add .
 
 <span class="hljs-meta">#</span><span class="bash"> 提交文件到本地仓库 -m 提交信息</span>
-git commit -m "[msg]"</code></pre>
+git commit -m "[msg]"</code></pre></div>
 
 <h2 id="项目中忽略上传文件"><a href="#项目中忽略上传文件" class="headerlink" title="项目中忽略上传文件"></a>项目中忽略上传文件</h2><p>.gitignore</p>
-<pre><code class="hljs gitignore">*.class
+<div class="hljs"><pre><code class="hljs gitignore">*.class
 *.log
 *.lock
 
@@ -281,10 +281,10 @@ bin&#x2F;
 .springbean
 
 *.log
-tmp&#x2F;</code></pre>
+tmp&#x2F;</code></pre></div>
 
-<h2 id="绑定远程仓库"><a href="#绑定远程仓库" class="headerlink" title="绑定远程仓库"></a>绑定远程仓库</h2><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 生成公钥</span>
-ssh-keygen</code></pre>
+<h2 id="绑定远程仓库"><a href="#绑定远程仓库" class="headerlink" title="绑定远程仓库"></a>绑定远程仓库</h2><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 生成公钥</span>
+ssh-keygen</code></pre></div>
 
 <p>在浏览器上创建空仓库后，就可以clone到本地仓库了</p>
 <p><img src="/2020/08/03/git/4.png" srcset="/img/loading.gif" alt></p>
@@ -292,11 +292,11 @@ ssh-keygen</code></pre>
 <p>2、将远程的git文件目录复制到项目中</p>
 <p><img src="/2020/08/03/git/3.png" srcset="/img/loading.gif" alt></p>
 <p>3、使用命令或者是图形界面添加文件，提交文件，上传文件</p>
-<pre><code class="hljs shell">git add .
+<div class="hljs"><pre><code class="hljs shell">git add .
 git commit -m "[提交信息]"
-git push</code></pre>
+git push</code></pre></div>
 
-<h2 id="git分支"><a href="#git分支" class="headerlink" title="git分支"></a>git分支</h2><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 列出本地所有分支</span>
+<h2 id="git分支"><a href="#git分支" class="headerlink" title="git分支"></a>git分支</h2><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 列出本地所有分支</span>
 git branch
 
 <span class="hljs-meta">#</span><span class="bash"> 列出所有远程分支</span>
@@ -315,7 +315,7 @@ git checkout -b [branch]
 <span class="hljs-meta">$</span><span class="bash"> git branch -d [branch-name]</span>
  
 <span class="hljs-meta">#</span><span class="bash"> 删除远程分支</span>
-<span class="hljs-meta">$</span><span class="bash"> git push origin --delete [branch-name]</span></code></pre>
+<span class="hljs-meta">$</span><span class="bash"> git push origin --delete [branch-name]</span></code></pre></div>
 
 
             </article>
@@ -327,7 +327,7 @@ git checkout -b [branch]
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/git/">git</a>
+                      <a class="hover-with-bg" href="/tags/Git/">Git</a>
                     
                   </div>
                 
@@ -703,7 +703,7 @@ git checkout -b [branch]
         '  ',
         "Git&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -719,8 +719,10 @@ git checkout -b [branch]
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

@@ -222,11 +222,11 @@
             <article class="markdown-body">
               <p>动态SQL可以极大的简化拼装SQL的操作。类似于JSTL。</p>
 <h2 id="if标签"><a href="#if标签" class="headerlink" title="if标签"></a>if标签</h2><p>动态传入查询所需要的条件。<a id="more"></a></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">EmployeeMapperDynamicSQL</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">EmployeeMapperDynamicSQL</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Employee&gt; <span class="hljs-title">getEmpByConditionIf</span><span class="hljs-params">(Employee emp)</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">namespace</span>=<span class="hljs-string">"dao.EmployeeMapperDynamicSQL"</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">namespace</span>=<span class="hljs-string">"dao.EmployeeMapperDynamicSQL"</span>&gt;</span>
    <span class="hljs-comment">&lt;!-- 查询某些条件没带上可能会出现sql拼接问题</span>
 <span class="hljs-comment">        1.给where后面加上1=1,以后的条件都and xxx</span>
 <span class="hljs-comment">        2.去掉where,使用&lt;where&gt;&lt;/where&gt;标签将所有查询条件包括在内</span>
@@ -241,9 +241,9 @@
         <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">"gender==0 or gender==1"</span>&gt;</span>gender=#&#123;gender&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">where</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span></code></pre></div>
 
-<h2 id="choose标签"><a href="#choose标签" class="headerlink" title="choose标签"></a>choose标签</h2><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"getEmpByConditionChoose"</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">"bean.Employee"</span>&gt;</span>
+<h2 id="choose标签"><a href="#choose标签" class="headerlink" title="choose标签"></a>choose标签</h2><div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"getEmpByConditionChoose"</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">"bean.Employee"</span>&gt;</span>
     select * from employee
     <span class="hljs-tag">&lt;<span class="hljs-name">where</span>&gt;</span>
     <span class="hljs-comment">&lt;!-- 如果带了id就用id查，如果带了name就用name查；只会进入其中一个--&gt;</span>
@@ -254,9 +254,9 @@
             <span class="hljs-tag">&lt;<span class="hljs-name">otherwise</span>&gt;</span>gender=0<span class="hljs-tag">&lt;/<span class="hljs-name">otherwise</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">choose</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">where</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre></div>
 
-<h2 id="set标签"><a href="#set标签" class="headerlink" title="set标签"></a>set标签</h2><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">update</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"updateEmp"</span>&gt;</span>
+<h2 id="set标签"><a href="#set标签" class="headerlink" title="set标签"></a>set标签</h2><div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">update</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"updateEmp"</span>&gt;</span>
     update employee
     <span class="hljs-tag">&lt;<span class="hljs-name">set</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">"name!=null and name.trim()!=''"</span>&gt;</span> name=#&#123;name&#125;,<span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span>
@@ -265,12 +265,12 @@
         <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">"gender==0 or gender==1"</span>&gt;</span>gender=#&#123;gender&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">set</span>&gt;</span>
     where id=#&#123;id&#125;
-<span class="hljs-tag">&lt;/<span class="hljs-name">update</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">update</span>&gt;</span></code></pre></div>
 
-<h2 id="foreach标签"><a href="#foreach标签" class="headerlink" title="foreach标签"></a>foreach标签</h2><pre><code class="hljs java"><span class="hljs-comment">// 查询员工 id在给定集合中</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Employee&gt; <span class="hljs-title">getEmpByConditionForeach</span><span class="hljs-params">( @Param(<span class="hljs-string">"ids"</span>)</span> List&lt;Integer&gt; ids)</span>;</code></pre>
+<h2 id="foreach标签"><a href="#foreach标签" class="headerlink" title="foreach标签"></a>foreach标签</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 查询员工 id在给定集合中</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Employee&gt; <span class="hljs-title">getEmpByConditionForeach</span><span class="hljs-params">( @Param(<span class="hljs-string">"ids"</span>)</span> List&lt;Integer&gt; ids)</span>;</code></pre></div>
 
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"getEmpByConditionForeach"</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">"bean.Employee"</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"getEmpByConditionForeach"</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">"bean.Employee"</span>&gt;</span>
     select  * from employee where id in
     <span class="hljs-comment">&lt;!-- collection 指定要遍历的集合  list类型的参数会被封装成map</span>
 <span class="hljs-comment">                    item  将当前遍历出的元素赋值给指定变量</span>
@@ -282,29 +282,29 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">foreach</span> <span class="hljs-attr">collection</span>=<span class="hljs-string">"ids"</span> <span class="hljs-attr">item</span>=<span class="hljs-string">"item_id"</span> <span class="hljs-attr">separator</span>=<span class="hljs-string">","</span> <span class="hljs-attr">open</span>=<span class="hljs-string">"("</span> <span class="hljs-attr">close</span>=<span class="hljs-string">")"</span>&gt;</span>
         #&#123;item_id&#125;
     <span class="hljs-tag">&lt;/<span class="hljs-name">foreach</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre></div>
 
-<pre><code class="hljs java">List&lt;Employee&gt; employeeList = mapper.getEmpByConditionForeach(Arrays.asList(<span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>));
+<div class="hljs"><pre><code class="hljs java">List&lt;Employee&gt; employeeList = mapper.getEmpByConditionForeach(Arrays.asList(<span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>));
 <span class="hljs-keyword">for</span>(Employee emp:employeeList)&#123;
     System.out.println(emp);
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<h2 id="foreach批量添加数据"><a href="#foreach批量添加数据" class="headerlink" title="foreach批量添加数据"></a>foreach批量添加数据</h2><pre><code class="hljs java"><span class="hljs-comment">// 批量添加</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addEmps</span><span class="hljs-params">(@Param(<span class="hljs-string">"emps"</span>)</span> List&lt;Employee&gt; emps)</span>;</code></pre>
+<h2 id="foreach批量添加数据"><a href="#foreach批量添加数据" class="headerlink" title="foreach批量添加数据"></a>foreach批量添加数据</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 批量添加</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addEmps</span><span class="hljs-params">(@Param(<span class="hljs-string">"emps"</span>)</span> List&lt;Employee&gt; emps)</span>;</code></pre></div>
 
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">insert</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"addEmps"</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">insert</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"addEmps"</span>&gt;</span>
     INSERT INTO employee(name,email,gender,dept_id)
     VALUES
     <span class="hljs-tag">&lt;<span class="hljs-name">foreach</span> <span class="hljs-attr">collection</span>=<span class="hljs-string">"emps"</span> <span class="hljs-attr">item</span>=<span class="hljs-string">"emp"</span> <span class="hljs-attr">separator</span>=<span class="hljs-string">","</span>&gt;</span>
         (#&#123;emp.name&#125;,#&#123;emp.email&#125;,#&#123;emp.gender&#125;,#&#123;emp.deptId&#125;)
     <span class="hljs-tag">&lt;/<span class="hljs-name">foreach</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">insert</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">insert</span>&gt;</span></code></pre></div>
 
-<pre><code class="hljs java">List&lt;Employee&gt; emps = <span class="hljs-keyword">new</span> ArrayList&lt;Employee&gt;();
+<div class="hljs"><pre><code class="hljs java">List&lt;Employee&gt; emps = <span class="hljs-keyword">new</span> ArrayList&lt;Employee&gt;();
 emps.add(<span class="hljs-keyword">new</span> Employee(<span class="hljs-keyword">null</span>,<span class="hljs-string">"wd123"</span>,<span class="hljs-string">"1"</span>,<span class="hljs-string">"wd123@qq.com"</span>,<span class="hljs-number">1</span>,<span class="hljs-keyword">new</span> Department()));
 emps.add(<span class="hljs-keyword">new</span> Employee(<span class="hljs-keyword">null</span>,<span class="hljs-string">"lz123"</span>,<span class="hljs-string">"1"</span>,<span class="hljs-string">"lz123@qq.com"</span>,<span class="hljs-number">2</span>,<span class="hljs-keyword">new</span> Department()));
 mapper.addEmps(emps);
-sqlSession.commit();</code></pre>
+sqlSession.commit();</code></pre></div>
             </article>
             <hr>
             <div>
@@ -690,7 +690,7 @@ sqlSession.commit();</code></pre>
         '  ',
         "MyBatis动态SQL&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -706,8 +706,10 @@ sqlSession.commit();</code></pre>
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

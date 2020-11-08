@@ -222,7 +222,7 @@
             <article class="markdown-body">
               <h1 id="实现一个简单的注册功能"><a href="#实现一个简单的注册功能" class="headerlink" title="实现一个简单的注册功能"></a>实现一个简单的注册功能</h1><p>项目整体结构：<a id="more"></a><br><img src="/2020/06/20/Spring-05/2.jpg" srcset="/img/loading.gif" alt></p>
 <h2 id="1、使用maven创建web项目"><a href="#1、使用maven创建web项目" class="headerlink" title="1、使用maven创建web项目"></a>1、使用maven创建web项目</h2><p><img src="/2020/06/20/Spring-05/1.jpg" srcset="/img/loading.gif" alt></p>
-<h2 id="2、添加依赖和插件"><a href="#2、添加依赖和插件" class="headerlink" title="2、添加依赖和插件"></a>2、添加依赖和插件</h2><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>
+<h2 id="2、添加依赖和插件"><a href="#2、添加依赖和插件" class="headerlink" title="2、添加依赖和插件"></a>2、添加依赖和插件</h2><div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
@@ -310,11 +310,11 @@
             <span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">plugin</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">plugins</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">build</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">build</span>&gt;</span></code></pre></div>
 
 <p>将spring-mybatis整合的代码复制到src下</p>
 <h2 id="3、编写页面"><a href="#3、编写页面" class="headerlink" title="3、编写页面"></a>3、编写页面</h2><p>index.jsp</p>
-<pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;
+<div class="hljs"><pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;
 &lt;html&gt;
 &lt;head&gt;
     &lt;title&gt;注册页面&lt;/title&gt;
@@ -349,10 +349,10 @@
         &lt;/table&gt;
     &lt;/form&gt;
 &lt;/body&gt;
-&lt;/html&gt;</code></pre>
+&lt;/html&gt;</code></pre></div>
 
 <p>registerSuccess.jsp</p>
-<pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;
+<div class="hljs"><pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;
 &lt;html&gt;
 &lt;head&gt;
     &lt;title&gt;注册成功页面&lt;/title&gt;
@@ -360,9 +360,9 @@
 &lt;body&gt;
     &lt;p&gt;注册成功&lt;/p&gt;
 &lt;/body&gt;
-&lt;/html&gt;</code></pre>
+&lt;/html&gt;</code></pre></div>
 
-<h2 id="4、编写servlet"><a href="#4、编写servlet" class="headerlink" title="4、编写servlet"></a>4、编写servlet</h2><h3 id="1-在web-xml中注册servlet和listener"><a href="#1-在web-xml中注册servlet和listener" class="headerlink" title="1.在web.xml中注册servlet和listener"></a>1.在web.xml中注册servlet和listener</h3><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--注册servlet--&gt;</span>
+<h2 id="4、编写servlet"><a href="#4、编写servlet" class="headerlink" title="4、编写servlet"></a>4、编写servlet</h2><h3 id="1-在web-xml中注册servlet和listener"><a href="#1-在web-xml中注册servlet和listener" class="headerlink" title="1.在web.xml中注册servlet和listener"></a>1.在web.xml中注册servlet和listener</h3><div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--注册servlet--&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">servlet</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>RegisterServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">servlet-class</span>&gt;</span>com.zyz.controller.RegisterServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-class</span>&gt;</span>
@@ -381,9 +381,9 @@
 <span class="hljs-tag">&lt;/<span class="hljs-name">context-param</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">listener</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">listener-class</span>&gt;</span>org.springframework.web.context.ContextLoaderListener<span class="hljs-tag">&lt;/<span class="hljs-name">listener-class</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">listener</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">listener</span>&gt;</span></code></pre></div>
 
-<h3 id="2、编写servlet程序"><a href="#2、编写servlet程序" class="headerlink" title="2、编写servlet程序"></a>2、编写servlet程序</h3><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RegisterServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;
+<h3 id="2、编写servlet程序"><a href="#2、编写servlet程序" class="headerlink" title="2、编写servlet程序"></a>2、编写servlet程序</h3><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RegisterServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doPost</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
         String name = request.getParameter(<span class="hljs-string">"name"</span>);
         String gender = request.getParameter(<span class="hljs-string">"gender"</span>);
@@ -415,7 +415,7 @@
     <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doGet</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
 
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
             </article>
@@ -803,7 +803,7 @@
         '  ',
         "Web项目环境搭建&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -819,8 +819,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

@@ -256,7 +256,7 @@
 </ul>
 <h2 id="Springboot集成Swagger"><a href="#Springboot集成Swagger" class="headerlink" title="Springboot集成Swagger"></a>Springboot集成Swagger</h2><p>1、创建springboot项目并导入web依赖</p>
 <p>2、导入相关依赖</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.springfox<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>springfox-swagger2<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
@@ -265,19 +265,19 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.springfox<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>springfox-swagger-ui<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre></div>
 
 <p>3、编写一个hellworld</p>
 <p>4、编写Swagger配置类</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
 <span class="hljs-meta">@EnableSwagger</span>2  <span class="hljs-comment">// 开启Swagger2</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SwaggerConfig</span> </span>&#123;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>5、测试访问：<a href="http://localhost:8080/swagger-ui.html" target="_blank" rel="noopener">http://localhost:8080/swagger-ui.html</a><br><img src="/2020/08/02/swagger/1.png" srcset="/img/loading.gif" alt></p>
 <h2 id="配置Swagger"><a href="#配置Swagger" class="headerlink" title="配置Swagger"></a>配置Swagger</h2><p>Swagger的bean实例 Docket</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
 <span class="hljs-meta">@EnableSwagger</span>2  <span class="hljs-comment">// 开启Swagger2</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SwaggerConfig</span> </span>&#123;
 
@@ -302,9 +302,9 @@
                 <span class="hljs-keyword">new</span> ArrayList&lt;VendorExtension&gt;());
     &#125;
     
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<h2 id="配置Swagger扫描路径"><a href="#配置Swagger扫描路径" class="headerlink" title="配置Swagger扫描路径"></a>配置Swagger扫描路径</h2><pre><code class="hljs java"><span class="hljs-meta">@Bean</span>
+<h2 id="配置Swagger扫描路径"><a href="#配置Swagger扫描路径" class="headerlink" title="配置Swagger扫描路径"></a>配置Swagger扫描路径</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Bean</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> Docket <span class="hljs-title">docket</span><span class="hljs-params">()</span></span>&#123;
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Docket( <span class="hljs-keyword">new</span> DocumentationType(<span class="hljs-string">"swagger"</span>, <span class="hljs-string">"2.0"</span>))
             .apiInfo(apiInfo())
@@ -318,9 +318,9 @@
             .apis(RequestHandlerSelectors.basePackage(<span class="hljs-string">"com.zyz.controller"</span>))
             <span class="hljs-comment">// .paths 过滤路径</span>
             .build();
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<h2 id="根据环境是否开启Swagger"><a href="#根据环境是否开启Swagger" class="headerlink" title="根据环境是否开启Swagger"></a>根据环境是否开启Swagger</h2><pre><code class="hljs java"><span class="hljs-meta">@Bean</span>
+<h2 id="根据环境是否开启Swagger"><a href="#根据环境是否开启Swagger" class="headerlink" title="根据环境是否开启Swagger"></a>根据环境是否开启Swagger</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Bean</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> Docket <span class="hljs-title">docket</span><span class="hljs-params">(Environment environment)</span></span>&#123;
     <span class="hljs-comment">// 设置要显示的Swagger环境</span>
     Profiles profiles = Profiles.of(<span class="hljs-string">"dev"</span>);
@@ -339,24 +339,24 @@
             .apis(RequestHandlerSelectors.basePackage(<span class="hljs-string">"com.zyz.controller"</span>))
             <span class="hljs-comment">// .paths 过滤路径</span>
             .build();
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>application-dev.properties</p>
-<pre><code class="hljs properties"><span class="hljs-comment"># 生产环境</span>
-<span class="hljs-meta">server.port</span>=<span class="hljs-string">8080</span></code></pre>
+<div class="hljs"><pre><code class="hljs properties"><span class="hljs-comment"># 生产环境</span>
+<span class="hljs-meta">server.port</span>=<span class="hljs-string">8080</span></code></pre></div>
 
 <p>application-pro.properties</p>
-<pre><code class="hljs properties"><span class="hljs-comment"># 上线环境</span>
-<span class="hljs-meta">server.port</span>=<span class="hljs-string">8081</span></code></pre>
+<div class="hljs"><pre><code class="hljs properties"><span class="hljs-comment"># 上线环境</span>
+<span class="hljs-meta">server.port</span>=<span class="hljs-string">8081</span></code></pre></div>
 
 <p>application.properties</p>
-<pre><code class="hljs properties"><span class="hljs-comment"># 激活生产环境</span>
-<span class="hljs-meta">spring.profiles.active</span>=<span class="hljs-string">dev</span></code></pre>
+<div class="hljs"><pre><code class="hljs properties"><span class="hljs-comment"># 激活生产环境</span>
+<span class="hljs-meta">spring.profiles.active</span>=<span class="hljs-string">dev</span></code></pre></div>
 
 <h2 id="配置分组"><a href="#配置分组" class="headerlink" title="配置分组"></a>配置分组</h2><p>方便多人协同开发</p>
-<pre><code class="hljs java">.groupName(<span class="hljs-string">"zyz"</span>)</code></pre>
+<div class="hljs"><pre><code class="hljs java">.groupName(<span class="hljs-string">"zyz"</span>)</code></pre></div>
 
-<pre><code class="hljs java"><span class="hljs-meta">@Bean</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Bean</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> Docket <span class="hljs-title">docket1</span><span class="hljs-params">()</span></span>&#123;
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Docket(DocumentationType.SWAGGER_2).groupName(<span class="hljs-string">"A"</span>);
 &#125;
@@ -367,16 +367,16 @@
 <span class="hljs-meta">@Bean</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> Docket <span class="hljs-title">docket3</span><span class="hljs-params">()</span></span>&#123;
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Docket(DocumentationType.SWAGGER_2).groupName(<span class="hljs-string">"C"</span>);
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<h2 id="配置实体类"><a href="#配置实体类" class="headerlink" title="配置实体类"></a>配置实体类</h2><pre><code class="hljs java"><span class="hljs-comment">// 只要接口中的返回值有实体类，Swagger就会扫描到</span>
+<h2 id="配置实体类"><a href="#配置实体类" class="headerlink" title="配置实体类"></a>配置实体类</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 只要接口中的返回值有实体类，Swagger就会扫描到</span>
 <span class="hljs-meta">@ApiOperation</span>(<span class="hljs-string">"user控制方法"</span>)<span class="hljs-comment">// 方法注释</span>
 <span class="hljs-meta">@PostMapping</span>(<span class="hljs-string">"/user"</span>)
 <span class="hljs-function"><span class="hljs-keyword">public</span> User <span class="hljs-title">user</span><span class="hljs-params">(@ApiParam(<span class="hljs-string">"用户名"</span>)</span>String name,@<span class="hljs-title">ApiParam</span><span class="hljs-params">(<span class="hljs-string">"密码"</span>)</span> String password)</span>&#123;
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> User(name,password);
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<pre><code class="hljs java"><span class="hljs-meta">@Data</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Data</span>
 <span class="hljs-meta">@AllArgsConstructor</span>
 <span class="hljs-meta">@NoArgsConstructor</span>
 <span class="hljs-meta">@ApiModel</span>(<span class="hljs-string">"用户实体类"</span>)<span class="hljs-comment">// 注释</span>
@@ -385,7 +385,7 @@
     <span class="hljs-keyword">private</span> String name;
     <span class="hljs-meta">@ApiModelProperty</span>(<span class="hljs-string">"密码"</span>)
     <span class="hljs-keyword">private</span> String password;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 <p><img src="/2020/08/02/swagger/2.png" srcset="/img/loading.gif" alt></p>
@@ -775,7 +775,7 @@
         '  ',
         "Swagger简介与使用&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -791,8 +791,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

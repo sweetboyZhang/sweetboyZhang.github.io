@@ -224,7 +224,7 @@
 <h2 id="二、字符型"><a href="#二、字符型" class="headerlink" title="二、字符型"></a>二、字符型</h2><p><strong>较短的文本：</strong>最多的字符数M<br>char(M)：固定长度，M为0到255  可以省略  默认为1，比较耗费空间，效率较高<br>varchar(M)：可变长度，M为0到65535  不可以省略，节省空间，效率低</p>
 <h2 id="三、日期型"><a href="#三、日期型" class="headerlink" title="三、日期型"></a>三、日期型</h2><p>date：4字节<br>datetime：8字节<br>timestamp：4字节<br>time：3字节<br>year：1字节</p>
 <h2 id="常见约束"><a href="#常见约束" class="headerlink" title="常见约束"></a>常见约束</h2><p>NOT NULL：非空，保证该字段的值不能为空。比如姓名，学号等<br>DEFAULT：默认，保证该字段有默认值。比如性别<br>PRIMARITY：主键，保证该字段具有唯一性，且不为空。比如学号，员工编号<br>UNIQUE：唯一，保证该字段具有唯一性。比如座位号<br>CHECK：检查约束（mysql不支持）。比如性别<br>FOREIGN KEY：外键，用于限制两个表的关系，保证该字段的值必须来自主表的关联的值。在从表添加外键约束，用于引用主表中某一列的值。比如学生表的专业编号，员工表的部门编号，员工表的工种编号    </p>
-<pre><code class="hljs sql"><span class="hljs-comment"># 添加列级约束</span>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-comment"># 添加列级约束</span>
 <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> stuinfo(
 		<span class="hljs-keyword">id</span> <span class="hljs-built_in">INT</span> PRIMARY <span class="hljs-keyword">KEY</span>,<span class="hljs-comment"># 主键</span>
 		stuname <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">10</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,<span class="hljs-comment"># 非空</span>
@@ -262,9 +262,9 @@ majorid <span class="hljs-built_in">INT</span>,
 <span class="hljs-comment">alter table 表名 modify column 字段名 字段类型 新约束;</span>
 <span class="hljs-comment">2.添加表级约束</span>
 <span class="hljs-comment">alter table 表名 add [constraint 约束名] 约束类型(字段名) [外键的引用]</span>
-<span class="hljs-comment">*/</span></code></pre>
+<span class="hljs-comment">*/</span></code></pre></div>
 
-<h2 id="标识列"><a href="#标识列" class="headerlink" title="标识列"></a>标识列</h2><pre><code class="hljs sql"><span class="hljs-comment">/*</span>
+<h2 id="标识列"><a href="#标识列" class="headerlink" title="标识列"></a>标识列</h2><div class="hljs"><pre><code class="hljs sql"><span class="hljs-comment">/*</span>
 <span class="hljs-comment">1.标识列必须与key（主键，外键，unique）搭配</span>
 <span class="hljs-comment">2.一个表至多有一个标识列</span>
 <span class="hljs-comment">3.标识列的类型只能是数值型</span>
@@ -280,7 +280,7 @@ seatid <span class="hljs-built_in">INT</span>,
 majorid <span class="hljs-built_in">INT</span>
 );
 <span class="hljs-comment"># 修改表时设置标识列</span>
-<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> stuinfo <span class="hljs-keyword">MODIFY</span>  <span class="hljs-keyword">COLUMN</span> <span class="hljs-keyword">id</span> <span class="hljs-built_in">INT</span> PRIMARY <span class="hljs-keyword">KEY</span> AUTO_INCREMENT;</code></pre>
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> stuinfo <span class="hljs-keyword">MODIFY</span>  <span class="hljs-keyword">COLUMN</span> <span class="hljs-keyword">id</span> <span class="hljs-built_in">INT</span> PRIMARY <span class="hljs-keyword">KEY</span> AUTO_INCREMENT;</code></pre></div>
 
 
 
@@ -670,7 +670,7 @@ majorid <span class="hljs-built_in">INT</span>
         '  ',
         "MySQL数据类型，约束，标识列&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -686,8 +686,10 @@ majorid <span class="hljs-built_in">INT</span>
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

@@ -222,7 +222,7 @@
             <article class="markdown-body">
               <h2 id="Filter过滤器的作用"><a href="#Filter过滤器的作用" class="headerlink" title="Filter过滤器的作用"></a>Filter过滤器的作用</h2><p>作用：拦截请求，过滤响应<br>拦截请求常见的应用场景：1、权限检查 ；2、日志操作；3、事务管理 ……<a id="more"></a><br><img src="/2020/05/13/javaweb-07/1.png" srcset="/img/loading.gif" alt></p>
 <h3 id="Filter过滤器的使用"><a href="#Filter过滤器的使用" class="headerlink" title="Filter过滤器的使用"></a>Filter过滤器的使用</h3><p>1.编写一个类去实现Filter接口<br>2.实现过滤  方法doFilter()<br>3.到web.xml中配置Filter的拦截路径</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Override</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Override</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doFilter</span><span class="hljs-params">(ServletRequest request, ServletResponse response, FilterChain chain)</span> <span class="hljs-keyword">throws</span> IOException, ServletException </span>&#123;
     HttpServletRequest req = (HttpServletRequest) request;
     HttpSession session = req.getSession();
@@ -234,9 +234,9 @@
         <span class="hljs-comment">// 让程序继续向下访问用户的目标资源</span>
         chain.doFilter(request,response);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<pre><code class="hljs xml"> <span class="hljs-tag">&lt;<span class="hljs-name">filter</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"> <span class="hljs-tag">&lt;<span class="hljs-name">filter</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">filter-name</span>&gt;</span>AdminFilter<span class="hljs-tag">&lt;/<span class="hljs-name">filter-name</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">filter-class</span>&gt;</span>filter.AdminFilter<span class="hljs-tag">&lt;/<span class="hljs-name">filter-class</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">filter</span>&gt;</span>
@@ -245,28 +245,28 @@
         <span class="hljs-tag">&lt;<span class="hljs-name">filter-name</span>&gt;</span>AdminFilter<span class="hljs-tag">&lt;/<span class="hljs-name">filter-name</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/admin/*<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">filter-mapping</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre></div>
 
 <h3 id="Filter的生命周期"><a href="#Filter的生命周期" class="headerlink" title="Filter的生命周期"></a>Filter的生命周期</h3><p>Filter生命周期包含的方法：<br>Web工程启动时就创建了：1、构造器方法；2、init 初始化方法<br>每次拦截到请求就开始执行：3、doFilter 过滤方法<br>Web工程停止时：4、destory  销毁方法</p>
 <h3 id="FilterConfig类"><a href="#FilterConfig类" class="headerlink" title="FilterConfig类"></a>FilterConfig类</h3><p>包含了Filter过滤器的配置信息<br>FilterConfig类的作用是获取filter过滤器的配置信息：<br>1、获取Filter的名称filter-name的内容<br>2、获取Filter中配置的init-param的初始化参数<br>3、获取ServletContext对象</p>
 <h3 id="FilterChain过滤器链"><a href="#FilterChain过滤器链" class="headerlink" title="FilterChain过滤器链"></a>FilterChain过滤器链</h3><p><img src="/2020/05/13/javaweb-07/2.png" srcset="/img/loading.gif" alt></p>
 <h3 id="Filter的拦截路径"><a href="#Filter的拦截路径" class="headerlink" title="Filter的拦截路径"></a>Filter的拦截路径</h3><p>1、精确匹配，拦截的是指定路径的一个资源，请求地址必须是 : <code>http://ip:port/工程路径/a.jsp</code></p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">filter-mapping</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">filter-mapping</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">filter-name</span>&gt;</span>AdminFilter<span class="hljs-tag">&lt;/<span class="hljs-name">filter-name</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/admin/a.jsp<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">filter-mapping</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">filter-mapping</span>&gt;</span></code></pre></div>
 
 <p>2、目录匹配，拦截的是目录下的所有资源</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">filter-mapping</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">filter-mapping</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">filter-name</span>&gt;</span>AdminFilter<span class="hljs-tag">&lt;/<span class="hljs-name">filter-name</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/admin/*<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">filter-mapping</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">filter-mapping</span>&gt;</span></code></pre></div>
 
 <p>3、后缀名匹配，拦截的是指定后缀名的资源</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">filter-mapping</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">filter-mapping</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">filter-name</span>&gt;</span>AdminFilter<span class="hljs-tag">&lt;/<span class="hljs-name">filter-name</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>*.html<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">filter-mapping</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">filter-mapping</span>&gt;</span></code></pre></div>
 
 <p>Filter只关心请求地址是否匹配，不关心资源是否存在。</p>
 <h2 id="ThreadLocal的使用"><a href="#ThreadLocal的使用" class="headerlink" title="ThreadLocal的使用"></a>ThreadLocal的使用</h2><p>作用：解决线程安全问题。<br>ThreadLocal可以给当前线程关联一个数据(普通变量，对象，数组，集合)。<br>ThreadLocald 特点：<br>1、ThreadLocal可以为当前线程关联一个数据；(可以像Map一样存取数据，key为当前线程)；<br>2、每一个ThreadLoacl对象，只能为当前线程关联一个数据；<br>3、每个ThreadLocal对象实例化时，一般都是static类型；<br>4、ThreadLocal中保存的数据，在线程销毁后，JVM自动释放。</p>
@@ -656,7 +656,7 @@
         '  ',
         "Filter,ThreadLocal&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -672,8 +672,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

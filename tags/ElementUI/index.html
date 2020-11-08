@@ -19,19 +19,10 @@
   <meta name="description" content="">
   <meta name="author" content="sweetboyZhang">
   <meta name="keywords" content="">
-  <title>Shiro - sweetboyZhang&#39;s Blog</title>
+  <title>标签 - ElementUI - sweetboyZhang&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
-
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
-
-  
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs.min.css" />
-  
-
-  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -53,7 +44,7 @@
 
 
 <body>
-  <header style="height: 70vh;">
+  <header style="height: 80vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -151,48 +142,6 @@
             </span>
 
             
-              
-  <div class="mt-3 post-meta">
-    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-10-31 15:22">
-      October 31, 2020 pm
-    </time>
-  </div>
-
-
-<div class="mt-1">
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      1.4k 字
-    </span>
-  
-
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      14
-       分钟
-    </span>
-  
-
-  
-  
-    
-      <!-- LeanCloud 统计文章PV -->
-      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="leancloud-post-views"></span> 次
-      </span>
-    
-  
-</div>
-
-            
           </div>
 
           
@@ -203,196 +152,37 @@
 
   <main>
     
+      <div class="container nopadding-md">
+        <div class="py-5" id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<div class="list-group">
+  <p class="h4">共计 1 篇文章</p>
+  <hr>
+  
+    
       
+      <p class="h5">2020</p>
+    
+    <a href="/2020/10/31/elementui/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">ElementUI</span>
+      <span style="float: right;">10-31</span>
+    </a>
+  
+</div>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <div class="post-content mx-auto" id="post">
-            
-              <p class="note note-info">
-                
-                  本文最后更新于：November 1, 2020 pm
-                
-              </p>
-            
-            <article class="markdown-body">
-              <h2 id="权限管理"><a href="#权限管理" class="headerlink" title="权限管理"></a>权限管理</h2><p>权限的管理包含<strong>身份认证</strong>和<strong>授权</strong>两部分，对于需要访问控制资源的用户需要先通过身份认证，认证通过的用户并且具有该资源的访问权限方可访问。<a id="more"></a></p>
-<h2 id="Shiro"><a href="#Shiro" class="headerlink" title="Shiro"></a>Shiro</h2><p>Shiro是apache旗下一个开源框架，它将软件系统的安全认证相关的功能抽取出来，实现用户身份认证，权限授权、加密、会话管理等功能，组成了一个通用的安全认证框架。</p>
-<h2 id="Shiro核心架构"><a href="#Shiro核心架构" class="headerlink" title="Shiro核心架构"></a>Shiro核心架构</h2><p><img src="/2020/10/31/shiro/1.png" srcset="/img/loading.gif" alt></p>
-<blockquote>
-<p>Subject</p>
-</blockquote>
-<p><code>Subject即主体</code>，外部应用与subject进行交互，subject记录了当前操作用户，将用户的概念理解为当前操作的主体，可能是一个通过浏览器请求的用户，也可能是一个运行的程序。Subject在shiro中是一个接口，接口中定义了很多认证授权相关的方法，外部程序通过subject进行认证授权，而subject是通过SecurityManager安全管理器进行认证授权。</p>
-<blockquote>
-<p>SecurityManager</p>
-</blockquote>
-<p><code>SecurityManager即安全管理器</code>，对全部的subject进行安全管理，它是shiro的核心，负责对所有的subject进行安全管理。通过SecurityManager可以完成subject的认证、授权等，实质上SecurityManager是通过Authenticator进行认证，通过Authorizer进行授权，通过SessionManager进行会话管理等。</p>
-<p><code>SecurityManager是一个接口，继承了Authenticator, Authorizer, SessionManager这三个接口。</code></p>
-<blockquote>
-<p>Authenticator</p>
-</blockquote>
-<p><code>Authenticator即认证器</code>，对用户身份进行认证，Authenticator是一个接口，shiro提供ModularRealmAuthenticator实现类，通过ModularRealmAuthenticator基本上可以满足大多数需求，也可以自定义认证器。</p>
-<blockquote>
-<p>Authorizer</p>
-</blockquote>
-<p><code>Authorizer即授权器</code>，用户通过认证器认证通过，在访问功能时需要通过授权器判断用户是否有此功能的操作权限。</p>
-<blockquote>
-<p>Realm</p>
-</blockquote>
-<p><code>Realm即领域</code>，相当于datasource数据源，securityManager进行安全认证需要通过Realm获取用户权限数据，比如：如果用户身份数据在数据库那么realm就需要从数据库获取用户身份信息。</p>
-<ul>
-<li>注意：不要把realm理解成只是从数据源取数据，在realm中还有认证授权校验的相关的代码。</li>
-</ul>
-<blockquote>
-<p>SessionManager</p>
-</blockquote>
-<p><code>sessionManager即会话管理</code>，shiro框架定义了一套会话管理，它不依赖web容器的session，所以shiro可以使用在非web应用上，也可以将分布式应用的会话集中在一点管理，此特性可使它实现单点登录。</p>
-<blockquote>
-<p>SessionDAO</p>
-</blockquote>
-<p><code>SessionDAO即会话dao</code>，是对session会话操作的一套接口，比如要将session存储到数据库，可以通过jdbc将会话存储到数据库。</p>
-<blockquote>
-<p>CacheManager</p>
-</blockquote>
-<p><code>CacheManager即缓存管理</code>，将用户权限数据存储在缓存，这样可以提高性能。</p>
-<blockquote>
-<p>Cryptography</p>
-</blockquote>
-<p><code>Cryptography即密码管理</code>，shiro提供了一套加密/解密的组件，方便开发。比如提供常用的散列、加/解密等功能。</p>
-<h2 id="Shiro中的认证"><a href="#Shiro中的认证" class="headerlink" title="Shiro中的认证"></a>Shiro中的认证</h2><p>认证就是判断一个用户是否为合法用户的处理过程。最常用的简单身份认证方式是系统通过核对用户输入的<strong>用户名</strong>和<strong>口令</strong>，看其是否与系统中存储的该用户的用户名和口令一致，来判断用户身份是否正确。</p>
-<h3 id="shiro中认证的关键对象"><a href="#shiro中认证的关键对象" class="headerlink" title="shiro中认证的关键对象"></a>shiro中认证的关键对象</h3><ul>
-<li><strong>Subject：主体</strong></li>
-</ul>
-<p>访问系统的用户，主体可以是用户，程序等。</p>
-<ul>
-<li><strong>Princopal：身份信息</strong></li>
-</ul>
-<p>是主体（subject）进行身份认证的标识，标识必须具有<code>唯一性</code>，如用户名、手机号、邮箱地址等，一个主体可以有多个身份，但是必须有一个主身份（Primary Principal）。</p>
-<ul>
-<li><strong>credential：凭证信息</strong></li>
-</ul>
-<p>是只有主体自己知道的安全信息，如密码，证书等。</p>
-<h3 id="认证流程"><a href="#认证流程" class="headerlink" title="认证流程"></a>认证流程</h3><img src="/2020/10/31/shiro/2.png" srcset="/img/loading.gif" style="zoom:80%;">
 
-<blockquote>
-<p>用户名校验   </p>
-<p>调用的是 <code>SimpleAccountRealm</code> 类中的 <code>doGetAuthenticationInfo</code> 方法</p>
-</blockquote>
-<blockquote>
-<p>密码校验</p>
-<p>调用<code>AuthenticatingRealm</code> 类中的  <code>assertCredentialsMatch</code> 方法</p>
-</blockquote>
-<img src="/2020/10/31/shiro/3.png" srcset="/img/loading.gif" style="zoom: 40%;">
 
-<h2 id="Shiro中的授权"><a href="#Shiro中的授权" class="headerlink" title="Shiro中的授权"></a>Shiro中的授权</h2><p>授权，即访问控制，控制谁能访问哪些资源。主体进行身份认证后需要分配权限方可访问系统的资源，对于某些资源没有权限是无法访问的。</p>
-<h3 id="Shiro中的授权的关键对象"><a href="#Shiro中的授权的关键对象" class="headerlink" title="Shiro中的授权的关键对象"></a>Shiro中的授权的关键对象</h3><ul>
-<li><strong>Subject：主体</strong></li>
-</ul>
-<p>需要访问系统中的资源的用户、程序。</p>
-<ul>
-<li><strong>Resource：资源</strong></li>
-</ul>
-<p>如系统菜单、页面、按钮、类方法、系统商品信息等。资源包括<code>资源类型</code>和<code>资源实例</code>，比如<code>商品信息为资源类型</code>，如编号为001的商品信息属于资源实例。</p>
-<ul>
-<li><strong>Permission：权限许可</strong></li>
-</ul>
-<p>规定了主体对资源的操作许可，如用户查询权限、用户添加权限、修改权限、某个类方法的调用权限等。</p>
-<h3 id="授权流程"><a href="#授权流程" class="headerlink" title="授权流程"></a>授权流程</h3><p><img src="/2020/10/31/shiro/4.png" srcset="/img/loading.gif" alt></p>
-<h3 id="授权方式"><a href="#授权方式" class="headerlink" title="授权方式"></a>授权方式</h3><ul>
-<li><p>基于角色的访问控制</p>
-<ul>
-<li><p>RABC基于角色的访问控制（Role-Based Access Control）是以角色为中心进行访问控制。</p>
-<p>  角色就是一组权限的集合，给用户分授权就是给用户分配角色。</p>
-  <pre><code class="hljs java"><span class="hljs-keyword">if</span>(subject.hasRole(<span class="hljs-string">"admin"</span>))&#123;
-    <span class="hljs-comment">// 角色为admin能访问的资源</span>
-&#125;</code></pre>
-</li>
-</ul>
-</li>
-<li><p>基于资源的访问控制</p>
-<ul>
-<li><p>RABC基于资源的访问控制（Resource-Base Access Control）是以资源为中心进行访问控制</p>
-  <pre><code class="hljs java"><span class="hljs-keyword">if</span>(subject.isPermission(<span class="hljs-string">"user:update:001"</span>))&#123;
-    <span class="hljs-comment">// 用户具有修改资源实例001的权限</span>
-&#125;
-<span class="hljs-keyword">if</span>(subject.isPermission(<span class="hljs-string">"user:update:*"</span>))&#123;
-    <span class="hljs-comment">// 用户具有对所有资源进行修改的权力</span>
-&#125;</code></pre>
-</li>
-<li><p>权限字符串：<strong>资源标识符 : 操作 : 资源实例标识符</strong></p>
-<p>  对资源的哪个资源实例具有什么（增删改查）操作，权限字符串也可以使用 * 通配符</p>
-</li>
-</ul>
-</li>
-</ul>
-
-            </article>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/Shiro/">Shiro</a>
-                    
-                  </div>
-                
               </div>
-              
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
-              
-              
-                <div class="post-prevnext row">
-                  <div class="post-prev col-6">
-                    
-                    
-                  </div>
-                  <div class="post-next col-6">
-                    
-                    
-                      <a href="/2020/10/26/rabbitmq_02/">
-                        <span class="hidden-mobile">整合Springboot</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </div>
-                </div>
-              
             </div>
-
-            
           </div>
         </div>
       </div>
-    </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div id="tocbot"></div>
-</div>
-
-      </div>
-    
-  </div>
-</div>
-
-<!-- Custom -->
-
-  <div class="col-lg-7 mx-auto nopadding-md">
-    <div class="container custom post-content mx-auto">
-      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
-    </div>
-  </div>
-
-
     
   </main>
 
@@ -610,10 +400,10 @@
       }
 
       // 如果是文章，请求文章的浏览数，并自增
-      if ('true' === 'true') {
+      if ('false' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/2020/10/31/shiro/');
+          var target = decodeURI('/tags/ElementUI/index.html');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -675,31 +465,6 @@
 
 
 
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
-  <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: 'article.markdown-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
-  </script>
-
 
 
   <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
@@ -707,9 +472,9 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Shiro&nbsp;",
+        "标签 - ElementUI&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -721,21 +486,6 @@
   </script>
 
 
-
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
-      
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
-  </script>
 
 
 
@@ -750,20 +500,6 @@
   </script>
 
 
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
-      }
-    );
-  </script>
 
 
 

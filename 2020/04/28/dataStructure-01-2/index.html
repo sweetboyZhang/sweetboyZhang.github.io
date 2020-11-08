@@ -221,7 +221,7 @@
             
             <article class="markdown-body">
               <h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><p>队列是一个有序列表，可以用数组和链表来实现。<br>遵循<strong>先进先出</strong>原则。<a id="more"></a><br><img src="/2020/04/28/dataStructure-01-2/3.png" srcset="/img/loading.gif" alt></p>
-<h3 id="1、数组模拟队列"><a href="#1、数组模拟队列" class="headerlink" title="1、数组模拟队列"></a>1、数组模拟队列</h3><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArrayQueueDemo</span> </span>&#123;
+<h3 id="1、数组模拟队列"><a href="#1、数组模拟队列" class="headerlink" title="1、数组模拟队列"></a>1、数组模拟队列</h3><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArrayQueueDemo</span> </span>&#123;
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
 		ArrayQueue queue = <span class="hljs-keyword">new</span> ArrayQueue(<span class="hljs-number">3</span>);
 		<span class="hljs-keyword">char</span> key = <span class="hljs-string">' '</span>;
@@ -335,13 +335,13 @@
 		&#125;
 		<span class="hljs-keyword">return</span> arr[front+<span class="hljs-number">1</span>];
 	&#125;	
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <h3 id="2、环形队列"><a href="#2、环形队列" class="headerlink" title="2、环形队列"></a>2、环形队列</h3><p>1.目前数组使用一次之后就不能再使用了，没有达到复用的效果。<br>2.将数组使用算法，改进成为一个环形队列&nbsp;&nbsp;&nbsp;取模%<br><img src="/2020/04/28/dataStructure-01-2/4.png" srcset="/img/loading.gif" alt></p>
 <blockquote>
 <p>循环队列中，由于入队时尾指针向前追赶头指针；出队时头指针向前追赶尾指针，造成队空和队满时头尾指针均相等。因此，无法通过条件front==rear来判别队列是”空”还是”满”。<br>解决这个问题的方法至少有三种：<br>① 另设一布尔变量以区别队列的空和满；<br>② 少用一个元素的空间。约定入队前，测试尾指针在循环意义下加1后是否等于头指针，若相等则认为队满</p>
 </blockquote>
-<pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CircleQueue</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CircleQueue</span> </span>&#123;
 	<span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> maxSize;<span class="hljs-comment">// 表示数组的最大容量</span>
 	<span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> front;<span class="hljs-comment">// 队列头</span>
 	<span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> rear;<span class="hljs-comment">// 队列尾</span>
@@ -412,7 +412,7 @@
 		&#125;
 		<span class="hljs-keyword">return</span> arr[front];
 	&#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
             </article>
             <hr>
             <div>
@@ -798,7 +798,7 @@
         '  ',
         "队列&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -814,8 +814,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

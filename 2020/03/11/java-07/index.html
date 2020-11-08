@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      174 字
+      445 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      7
        分钟
     </span>
   
@@ -215,13 +215,17 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：October 29, 2020 pm
+                  本文最后更新于：November 6, 2020 pm
                 
               </p>
             
             <article class="markdown-body">
-              <h2 id="泛型的概念"><a href="#泛型的概念" class="headerlink" title="泛型的概念"></a>泛型的概念</h2><p>允许在定义类、接口时通过一个标识表示类中某个属性的类型或者时某个方法的返回值及参数类型<a id="more"></a></p>
-<pre><code class="hljs java">    <span class="hljs-meta">@Test</span>
+              <h2 id="泛型的概念"><a href="#泛型的概念" class="headerlink" title="泛型的概念"></a>泛型的概念</h2><p>允许在定义类、接口时通过一个标识表示类中某个属性的类型或者是某个方法的返回值及参数类型。<a id="more"></a></p>
+<ul>
+<li>类型的参数化，就是可以把类型像方法的参数那样传递。</li>
+<li>泛型使编译器可以在编译期间对类型进行检查以提高类型安全，减少运行时由于对象类型不匹配引发的异常。</li>
+</ul>
+<div class="hljs"><pre><code class="hljs java">    <span class="hljs-meta">@Test</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span></span>&#123;
         ArrayList&lt;Integer&gt; list = <span class="hljs-keyword">new</span> ArrayList&lt;Integer&gt;();
         list.add(<span class="hljs-number">111</span>);
@@ -248,9 +252,44 @@
             Map.Entry&lt;String,Integer&gt; entry = iterator.next();
             System.out.println(entry .getKey()+<span class="hljs-string">"-----"</span>+entry .getValue());
         &#125;
-    &#125;</code></pre>
+    &#125;</code></pre></div>
 
+<h2 id="List-lt-gt-、List-lt-extends-T-gt-与-List-lt-super-T-gt"><a href="#List-lt-gt-、List-lt-extends-T-gt-与-List-lt-super-T-gt" class="headerlink" title="List&lt;?&gt;、List&lt;? extends T&gt; 与 List&lt;? super T&gt;"></a>List&lt;?&gt;、List&lt;? extends T&gt; 与 List&lt;? super T&gt;</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test3</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+        List list = <span class="hljs-keyword">new</span> ArrayList();
+        list.add(<span class="hljs-keyword">new</span> Object());
+        list.add(<span class="hljs-keyword">new</span> Integer(<span class="hljs-number">111</span>));
+        list.add(<span class="hljs-keyword">new</span> String(<span class="hljs-string">"aaa"</span>));
+        Object o = list.get(<span class="hljs-number">0</span>);
 
+        <span class="hljs-comment">// List&lt;?&gt; 允许添加元素，不允许添加元素</span>
+        List&lt;?&gt; list1 = list;
+        list1.remove(<span class="hljs-number">0</span>);
+        list1.remove(<span class="hljs-keyword">new</span> Integer(<span class="hljs-number">111</span>));
+        <span class="hljs-comment">// list1.add(new String("bbb"));</span>
+        Object o1 = list1.get(<span class="hljs-number">0</span>);
+        list1.stream().forEach(System.out::println);
+
+        ArrayList&lt;Person&gt; persons = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+        persons.add(<span class="hljs-keyword">new</span> Person());
+        persons.add(<span class="hljs-keyword">new</span> Male());
+        persons.add(<span class="hljs-keyword">new</span> Female());
+        <span class="hljs-comment">// List&lt;? extends Person&gt; 允许get元素，不允许添加元素</span>
+        List&lt;? extends Person&gt; persons1 = persons;
+        <span class="hljs-comment">// persons1.add(new Person());</span>
+        <span class="hljs-comment">// persons1.add(new Male());</span>
+        <span class="hljs-comment">// persons1.add(new Female());</span>
+        Person person = persons1.get(<span class="hljs-number">0</span>);
+
+        <span class="hljs-comment">// List&lt;? super Person&gt; 允许添加元素，不允许get元素</span>
+        List&lt;? <span class="hljs-keyword">super</span> Person&gt; persons2 = <span class="hljs-keyword">new</span> ArrayList&lt;Person&gt;();
+        persons2.add(<span class="hljs-keyword">new</span> Male());
+        persons2.add(<span class="hljs-keyword">new</span> Female());
+        persons2.add(<span class="hljs-keyword">new</span> Person());
+        <span class="hljs-comment">// Person person = persons2.get(0);</span>
+
+    &#125;
+&#125;</code></pre></div>
             </article>
             <hr>
             <div>
@@ -636,7 +675,7 @@
         '  ',
         "泛型&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -652,8 +691,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

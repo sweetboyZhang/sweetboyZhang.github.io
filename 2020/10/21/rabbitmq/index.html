@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：October 29, 2020 pm
+                  本文最后更新于：November 6, 2020 pm
                 
               </p>
             
@@ -241,24 +241,25 @@
 <p>AMQP（advanced message queuing protocol）在2003年时被提出，最早用于解决金融领不同平台之间的消息传递交互问题。顾名思义，AMQP是一种协议，更准确的说是一种binary wire-level protocol（链接协议）。这是其和JMS的本质差别，AMQP不从API层进行限定，而是直接定义网络交换的数据格式。这使得实现了AMQP的provider天然性就是跨平台的。</p>
 </blockquote>
 <h2 id="RabbitMQ的使用"><a href="#RabbitMQ的使用" class="headerlink" title="RabbitMQ的使用"></a>RabbitMQ的使用</h2><h3 id="访问rabbitmq的管理界面"><a href="#访问rabbitmq的管理界面" class="headerlink" title="访问rabbitmq的管理界面"></a>访问rabbitmq的管理界面</h3><p>地址为  ip:15672 </p>
-<p><img src="/2020/10/21/rabbitmq/D:%5CmyBlog%5Csource_posts%5Crabbitmq%5C1.png" srcset="/img/loading.gif" alt></p>
-<p>添加用户，以及虚拟主机<br><img src="/2020/10/21/rabbitmq/D:%5CmyBlog%5Csource_posts%5Crabbitmq%5C2.png" srcset="/img/loading.gif" alt></p>
-<p><font color="red">还需要在当前登录管理界面的用户下添加新增的虚拟主机地址，否则监控不到在新增虚拟主机下的创建的消息队列！</font><br><img src="/2020/10/21/rabbitmq/D:%5CmyBlog%5Csource_posts%5Crabbitmq%5C3.png" srcset="/img/loading.gif" alt></p>
+<img src="/2020/10/21/rabbitmq/1.png" srcset="/img/loading.gif" style="zoom:80%;">
+
+<p>添加用户，以及虚拟主机<br><img src="/2020/10/21/rabbitmq/2.png" srcset="/img/loading.gif" style="zoom:80%;"></p>
+<p><font color="red">还需要在当前登录管理界面的用户下添加新增的虚拟主机地址，否则监控不到在新增虚拟主机下的创建的消息队列！</font><br><img src="/2020/10/21/rabbitmq/3.png" srcset="/img/loading.gif" alt></p>
 <h3 id="使用java创建消息队列模型"><a href="#使用java创建消息队列模型" class="headerlink" title="使用java创建消息队列模型"></a>使用java创建消息队列模型</h3><p>引入依赖</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.rabbitmq<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>amqp-client<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.7.2<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre></div>
 
-<h4 id="第一种模型（直连）"><a href="#第一种模型（直连）" class="headerlink" title="第一种模型（直连）"></a>第一种模型（直连）</h4><p><img src="/2020/10/21/rabbitmq/D:%5CmyBlog%5Csource_posts%5Crabbitmq%5C4.png" srcset="/img/loading.gif" alt></p>
+<h4 id="第一种模型（直连）"><a href="#第一种模型（直连）" class="headerlink" title="第一种模型（直连）"></a>第一种模型（直连）</h4><p><img src="/2020/10/21/rabbitmq/4.png" srcset="/img/loading.gif" alt></p>
 <ul>
 <li>P：生产者，也就是要发送消息的程序。</li>
 <li>C：消费者：消息的接收者，会一直等待消息到来。</li>
 <li>queue：消息队列，图中红色部分。类似一个邮箱，可以缓存消息；生产者向其中投递消息，消费者从其中取出消息。</li>
 </ul>
 <p><strong>生产者的实现：</strong></p>
-<pre><code class="hljs java"><span class="hljs-comment">// 生产消息</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 生产消息</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MessageProvider</span> </span>&#123;
 
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException, TimeoutException </span>&#123;
@@ -296,11 +297,11 @@
         channel.close();
         connection.close();
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<p>在管理界面查看创建的mq<img src="/2020/10/21/rabbitmq/D:%5CmyBlog%5Csource_posts%5Crabbitmq%5C5.png" srcset="/img/loading.gif" alt></p>
+<p>在管理界面查看创建的mq<img src="/2020/10/21/rabbitmq/5.png" srcset="/img/loading.gif" alt></p>
 <p><strong>消费者的实现：</strong></p>
-<pre><code class="hljs java"><span class="hljs-comment">// 接收消息</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 接收消息</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MessageConsumer</span> </span>&#123;
 
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException, TimeoutException </span>&#123;
@@ -333,13 +334,13 @@
         <span class="hljs-comment">// connection.close();</span>
 
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<p><img src="/2020/10/21/rabbitmq/D:%5CmyBlog%5Csource_posts%5Crabbitmq%5C6.png" srcset="/img/loading.gif" alt></p>
+<p><img src="/2020/10/21/rabbitmq/6.png" srcset="/img/loading.gif" alt></p>
 <blockquote>
 <p>封装工具类</p>
 </blockquote>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RabbitMQUtils</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RabbitMQUtils</span> </span>&#123;
     <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> ConnectionFactory connectionFactory;
 
     <span class="hljs-comment">// 让ConnectionFactory只加载一次</span>
@@ -382,16 +383,16 @@
             e.printStackTrace();
         &#125;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<h4 id="第二种模型（work-queue）"><a href="#第二种模型（work-queue）" class="headerlink" title="第二种模型（work queue）"></a>第二种模型（work queue）</h4><p><code>Work queues</code>，也被称为（<code>Task queues</code>），任务模型。当消息处理比较耗时的时候，可能生产消息的速度会远远大于消息的消费速度。长此以往，消息就会堆积越来越多，无法及时处理。此时就可以使用work 模型：<strong>让多个消费者绑定到一个队列，共同消费队列中的消息</strong>。队列中的消息一旦消费，就会消失，因此任务是不会被重复执行的。<br><img src="/2020/10/21/rabbitmq/D:%5CmyBlog%5Csource_posts%5Crabbitmq%5C7.png" srcset="/img/loading.gif" alt></p>
+<h4 id="第二种模型（work-queue）"><a href="#第二种模型（work-queue）" class="headerlink" title="第二种模型（work queue）"></a>第二种模型（work queue）</h4><p><code>Work queues</code>，也被称为（<code>Task queues</code>），任务模型。当消息处理比较耗时的时候，可能生产消息的速度会远远大于消息的消费速度。长此以往，消息就会堆积越来越多，无法及时处理。此时就可以使用work 模型：<strong>让多个消费者绑定到一个队列，共同消费队列中的消息</strong>。队列中的消息一旦消费，就会消失，因此任务是不会被重复执行的。<br><img src="/2020/10/21/rabbitmq/7.png" srcset="/img/loading.gif" alt></p>
 <ul>
 <li>P：生产者：任务的发布者</li>
 <li>C1：消费者-1，领取任务并且完成任务，假设完成速度较慢</li>
 <li>C2：消费者-2：领取任务并完成任务，假设完成速度快</li>
 </ul>
 <p><strong>生产者</strong></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Provider</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Provider</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;
         <span class="hljs-comment">// 获取连接</span>
         Connection conn = RabbitMQUtils.getConnection();
@@ -406,10 +407,10 @@
         <span class="hljs-comment">// 关闭资源</span>
         RabbitMQUtils.close(conn,channel);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><strong>消费者-1</strong></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Consumer1</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Consumer1</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;
         Connection conn = RabbitMQUtils.getConnection();
         Channel channel = conn.createChannel();
@@ -426,10 +427,10 @@
             &#125;
         &#125;);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><strong>消费者-2</strong></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Consumer2</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Consumer2</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;
         Connection conn = RabbitMQUtils.getConnection();
         Channel channel = conn.createChannel();
@@ -441,13 +442,13 @@
             &#125;
         &#125;);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <ul>
 <li>默认为平均分发，将消息平均分配给每个消费者，这种分发方式叫做循环。</li>
 </ul>
 <p>通过关闭自动确认和开启手动确认来保证 “能者多劳 ”——消费快的消费者消费更多的消息。</p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Consumer1</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Consumer1</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;
         Connection conn = RabbitMQUtils.getConnection();
         Channel channel = conn.createChannel();
@@ -471,9 +472,9 @@
             &#125;
         &#125;);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<h4 id="第三种模型（广播）"><a href="#第三种模型（广播）" class="headerlink" title="第三种模型（广播）"></a>第三种模型（广播）</h4><p><img src="/2020/10/21/rabbitmq/D:%5CmyBlog%5Csource_posts%5Crabbitmq%5C8.png" srcset="/img/loading.gif" alt></p>
+<h4 id="第三种模型（广播）"><a href="#第三种模型（广播）" class="headerlink" title="第三种模型（广播）"></a>第三种模型（广播）</h4><p><img src="/2020/10/21/rabbitmq/8.png" srcset="/img/loading.gif" alt></p>
 <p>在广播模式下，消息发送流程是这样的：</p>
 <ul>
 <li>可以有多个消费者</li>
@@ -484,7 +485,7 @@
 <li>队列的消费者都能拿到消息。实现一条消息被多个消费者消费</li>
 </ul>
 <p><strong>生产者：</strong></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Provider</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Provider</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
         Connection conn = RabbitMQUtils.getConnection();
         Channel channel = conn.createChannel();
@@ -495,10 +496,10 @@
         RabbitMQUtils.close(conn,channel);
 
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><strong>消费者：</strong></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception</span>&#123;
         Connection conn = RabbitMQUtils.getConnection();
         Channel channel = conn.createChannel();
@@ -517,7 +518,7 @@
         &#125;);
 
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>此时生产者生产的一条消息可以被多个消费者同时消费。</p>
 <h4 id="第四种模型（路由）"><a href="#第四种模型（路由）" class="headerlink" title="第四种模型（路由）"></a>第四种模型（路由）</h4><p>在Fanout模式中，一条消息，会被所有订阅的队列都消费。但是，在某些场景下，我们希望不同的消息被不同的队列消费。这时就要用到Direct类型的Exchange。</p>
@@ -527,7 +528,7 @@
 <li>消息的发送方在 向 Exchange发送消息时，也必须指定消息的 <code>RoutingKey</code>。</li>
 <li>Exchange不再把消息交给每一个绑定的队列，而是根据消息的<code>Routing Key</code>进行判断，只有队列的<code>Routingkey</code>与消息的 <code>Routing key</code>完全一致，才会接收到消息</li>
 </ul>
-<p><img src="/2020/10/21/rabbitmq/D:%5CmyBlog%5Csource_posts%5Crabbitmq%5C9.png" srcset="/img/loading.gif" alt></p>
+<p><img src="/2020/10/21/rabbitmq/9.png" srcset="/img/loading.gif" alt></p>
 <ul>
 <li>P：生产者，向Exchange发送消息，发送消息时，会指定一个routing key。</li>
 <li>X：Exchange（交换机），接收生产者的消息，然后把消息递交给 与routing key完全匹配的队列</li>
@@ -535,7 +536,7 @@
 <li>C2：消费者，其所在队列指定了需要routing key 为 info、error、warning 的消息</li>
 </ul>
 <p><strong>生产者：</strong></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MsProvider</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MsProvider</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
         Connection connection = RabbitMQUtils.getConnection();
         Channel channel = connection.createChannel();
@@ -543,10 +544,10 @@
         channel.basicPublish(<span class="hljs-string">"log_direct"</span>,<span class="hljs-string">"info"</span>,<span class="hljs-keyword">null</span>,<span class="hljs-string">"routingKey为info的消息"</span>.getBytes());
         RabbitMQUtils.close(connection,channel);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><strong>消费者：</strong></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MsConsumer</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MsConsumer</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
         Connection connection = RabbitMQUtils.getConnection();
         Channel channel = connection.createChannel();
@@ -560,7 +561,7 @@
             &#125;
         &#125;);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><strong>Routing模型之topic</strong></p>
 <p><code>Topic</code>类型的<code>Exchange</code>与<code>Direct</code>相比，都是可以根据<code>RoutingKey</code>把消息路由到不同的队列。只不过<code>Topic</code>类型<code>Exchange</code>可以让队列在绑定<code>Routing key</code> 的时候使用通配符！这种模型<code>Routingkey</code> 一般都是由一个或多个单词组成，多个单词之间以”.”分割，例如： <code>item.insert</code></p>
@@ -951,7 +952,7 @@
         '  ',
         "RabbitMQ&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -967,8 +968,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

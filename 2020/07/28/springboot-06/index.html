@@ -225,10 +225,10 @@
 <h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><h3 id="1、创建springboot工程，并导入相应的依赖"><a href="#1、创建springboot工程，并导入相应的依赖" class="headerlink" title="1、创建springboot工程，并导入相应的依赖"></a>1、创建springboot工程，并导入相应的依赖</h3><p><img src="/2020/07/28/springboot-06/1.png" srcset="/img/loading.gif" alt></p>
 <h3 id="2、导入静态工程"><a href="#2、导入静态工程" class="headerlink" title="2、导入静态工程"></a>2、导入静态工程</h3><p><img src="/2020/07/28/springboot-06/2.png" srcset="/img/loading.gif" alt></p>
 <p>关闭thymeleaf缓存：</p>
-<pre><code class="hljs properties"><span class="hljs-comment"># 关闭thymeleaf缓存</span>
-<span class="hljs-meta">spring.thymeleaf.cache</span>=<span class="hljs-string">false</span></code></pre>
+<div class="hljs"><pre><code class="hljs properties"><span class="hljs-comment"># 关闭thymeleaf缓存</span>
+<span class="hljs-meta">spring.thymeleaf.cache</span>=<span class="hljs-string">false</span></code></pre></div>
 
-<h3 id="3、编写RouterController实现页面跳转"><a href="#3、编写RouterController实现页面跳转" class="headerlink" title="3、编写RouterController实现页面跳转"></a>3、编写RouterController实现页面跳转</h3><pre><code class="hljs java"><span class="hljs-meta">@Controller</span>
+<h3 id="3、编写RouterController实现页面跳转"><a href="#3、编写RouterController实现页面跳转" class="headerlink" title="3、编写RouterController实现页面跳转"></a>3、编写RouterController实现页面跳转</h3><div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Controller</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RouterController</span> </span>&#123;
 
     <span class="hljs-meta">@RequestMapping</span>(&#123;<span class="hljs-string">"/"</span>,<span class="hljs-string">"/index"</span>&#125;)
@@ -255,7 +255,7 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toLevel3</span><span class="hljs-params">(@PathVariable(<span class="hljs-string">"id"</span>)</span><span class="hljs-keyword">int</span> id)</span>&#123;
         <span class="hljs-keyword">return</span> <span class="hljs-string">"views/level3/"</span>+id;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <h2 id="SpringSecurity使用"><a href="#SpringSecurity使用" class="headerlink" title="SpringSecurity使用"></a>SpringSecurity使用</h2><p>仅需引入spring-boot-starter-security模块，进行少量的配置，便可以实现强大的安全管理。</p>
 <ul>
@@ -264,12 +264,12 @@
 <li>@EnableWebSecurity：开启WebSecurity模式</li>
 </ul>
 <p>SpringScurity的两个主要目标就是<strong>认证</strong>和<strong>授权</strong>。</p>
-<h3 id="1、引入SpringSecurity模块"><a href="#1、引入SpringSecurity模块" class="headerlink" title="1、引入SpringSecurity模块"></a>1、引入SpringSecurity模块</h3><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+<h3 id="1、引入SpringSecurity模块"><a href="#1、引入SpringSecurity模块" class="headerlink" title="1、引入SpringSecurity模块"></a>1、引入SpringSecurity模块</h3><div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-security<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre></div>
 
-<h3 id="2、创建config目录，添加SecurityConfig类"><a href="#2、创建config目录，添加SecurityConfig类" class="headerlink" title="2、创建config目录，添加SecurityConfig类"></a>2、创建config目录，添加SecurityConfig类</h3><pre><code class="hljs java"><span class="hljs-comment">// 基于AOP</span>
+<h3 id="2、创建config目录，添加SecurityConfig类"><a href="#2、创建config目录，添加SecurityConfig类" class="headerlink" title="2、创建config目录，添加SecurityConfig类"></a>2、创建config目录，添加SecurityConfig类</h3><div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 基于AOP</span>
 <span class="hljs-meta">@EnableWebSecurity</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SecurityConfig</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WebSecurityConfigurerAdapter</span> </span>&#123;
     <span class="hljs-comment">// 请求授权的规则</span>
@@ -303,34 +303,34 @@
                 .withUser(<span class="hljs-string">"guest"</span>).password(<span class="hljs-keyword">new</span> BCryptPasswordEncoder().encode(<span class="hljs-string">"123456"</span>)).roles(<span class="hljs-string">"vip1"</span>);
 
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<pre><code class="hljs html"><span class="hljs-comment">&lt;!--注销--&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-comment">&lt;!--注销--&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"item"</span> <span class="hljs-attr">th:href</span>=<span class="hljs-string">"@&#123;/logout&#125;"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sign-out icon"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span> 注销
-<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></code></pre></div>
 
 <p>thymeleaf与springsecurity整合，使页面仅仅显示当前用户权限能够访问的页面，当前用户没有权限访问的页面则不显示。<br>需要导入thymeleaf与springsecurity的整合包</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.thymeleaf.extras<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>thymeleaf-extras-springsecurity4<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.0.4.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre></div>
 
 <p>高版本的springboot不支持，需要降低版本</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">parent</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">parent</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.0.9.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">relativePath</span>/&gt;</span> <span class="hljs-comment">&lt;!-- lookup parent from repository --&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">parent</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">parent</span>&gt;</span></code></pre></div>
 
 <p>在html页面添加命名空间</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span> <span class="hljs-attr">xmlns:th</span>=<span class="hljs-string">"http://www.thymeleaf.org"</span></span>
-<span class="hljs-tag">      <span class="hljs-attr">xmlns:sec</span>=<span class="hljs-string">"http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"</span>&gt;</span></code></pre>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span> <span class="hljs-attr">xmlns:th</span>=<span class="hljs-string">"http://www.thymeleaf.org"</span></span>
+<span class="hljs-tag">      <span class="hljs-attr">xmlns:sec</span>=<span class="hljs-string">"http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"</span>&gt;</span></code></pre></div>
 
 <p>thymeleaf整合SpringSecurity</p>
-<pre><code class="hljs html"><span class="hljs-comment">&lt;!--未登录--&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-comment">&lt;!--未登录--&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">sec:authorize</span>=<span class="hljs-string">"!isAuthenticated()"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"item"</span> <span class="hljs-attr">th:href</span>=<span class="hljs-string">"@&#123;/toLogin&#125;"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"address card icon"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span> 登录
@@ -348,16 +348,16 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"item"</span> <span class="hljs-attr">th:href</span>=<span class="hljs-string">"@&#123;/logout&#125;"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sign-out icon"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span>注销
     <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></div>
 
 <p>根据权限显示组件</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"column"</span> <span class="hljs-attr">sec:authorize</span>=<span class="hljs-string">"hasRole('vip1')"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"column"</span> <span class="hljs-attr">sec:authorize</span>=<span class="hljs-string">"hasRole('vip1')"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></div>
 
 <p>定制登录页面</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">th:action</span>=<span class="hljs-string">"@&#123;/toLogin&#125;"</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"post"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></code></pre>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">th:action</span>=<span class="hljs-string">"@&#123;/toLogin&#125;"</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"post"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></code></pre></div>
 
 <p>添加”记住我“组件</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"checkbox"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"remember"</span>&gt;</span>记住我</code></pre>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"checkbox"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"remember"</span>&gt;</span>记住我</code></pre></div>
 
 
             </article>
@@ -745,7 +745,7 @@
         '  ',
         "SpringSecurity&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -761,8 +761,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

@@ -223,7 +223,7 @@
               <h2 id="NIO简介"><a href="#NIO简介" class="headerlink" title="NIO简介"></a>NIO简介</h2><p>Java NIO 是从jdk1.4开始引入的一个新的IO API ,可以完全代替标准的IO API。NIO与原来的IO有同样的作用和目的，但是使用方式完全不同，NIO支持<strong>面向缓冲区</strong>的、基于通道的IO操作，读写操作更加高效。<a id="more"></a></p>
 <p><strong>IO与NIO的区别：</strong><br><img src="/2020/09/09/nio/1.png" srcset="/img/loading.gif" style="zoom:80%;"></p>
 <p>NIO系统的核心在于：通道（Channel）和缓冲区（Buffer）。通道表示打开到IO设备（文件、套接字等）的连接，缓冲区负责暂时存放传输数据。<br><font color="red">简而言之，Channel负责传输，Buffer负责存储。</font></p>
-<h2 id="Buffer存取数据"><a href="#Buffer存取数据" class="headerlink" title="Buffer存取数据"></a>Buffer存取数据</h2><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<h2 id="Buffer存取数据"><a href="#Buffer存取数据" class="headerlink" title="Buffer存取数据"></a>Buffer存取数据</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * 一、Buffer在NIO中负责数据的存取。缓存区就是数组，用于存储不同类型的数据</span>
 <span class="hljs-comment"> * 根据数据类型不同 boolean除外</span>
 <span class="hljs-comment"> * ByteBuffer</span>
@@ -318,18 +318,18 @@
             System.out.println(buffer.remaining());<span class="hljs-comment">// 3</span>
         &#125;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <h2 id="直接缓冲区和非直接缓冲区"><a href="#直接缓冲区和非直接缓冲区" class="headerlink" title="直接缓冲区和非直接缓冲区"></a>直接缓冲区和非直接缓冲区</h2><p>非直接缓冲区：通过allocate()方法分配缓冲区，将缓冲区建立在JVM的内存中</p>
 <p>直接缓冲区：通过allocateDirect()方法分配，将缓冲区直接建立在物理内存中。可以提高效率。</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test3</span><span class="hljs-params">()</span></span>&#123;
     ByteBuffer buffer = ByteBuffer.allocateDirect(<span class="hljs-number">1024</span>);
     <span class="hljs-comment">// 判断是否为直接缓冲区</span>
     System.out.println(buffer.isDirect());<span class="hljs-comment">// true</span>
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<h2 id="Channel传输数据"><a href="#Channel传输数据" class="headerlink" title="Channel传输数据"></a>Channel传输数据</h2><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<h2 id="Channel传输数据"><a href="#Channel传输数据" class="headerlink" title="Channel传输数据"></a>Channel传输数据</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * 一、Channel用于源节点与目标节点的连接，负责缓冲区中数据的传输</span>
 <span class="hljs-comment"> * 二、主要实现类：</span>
 <span class="hljs-comment"> * FileChannel</span>
@@ -406,9 +406,9 @@
             &#125;
         &#125;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">// 完成文件的复制(内存映射文件) 直接缓冲区</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">// 完成文件的复制(内存映射文件) 直接缓冲区</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test2</span><span class="hljs-params">()</span></span>&#123;
     FileChannel fisChannel = <span class="hljs-keyword">null</span>;
     FileChannel fosChannel = <span class="hljs-keyword">null</span>;
@@ -442,10 +442,10 @@
             &#125;
         &#125;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>对于直接字节缓存区来说，JVM会尽最大努力直接在此缓冲区执行本机的IO操作，避免每次调用基础操作系统的一个本机IO操作之前或之后，将缓冲区的内容复制到中间的缓冲区中。<br><img src="/2020/09/09/nio/3.png" srcset="/img/loading.gif" style="zoom:80%;"></p>
-<h2 id="通道之间的数据传输"><a href="#通道之间的数据传输" class="headerlink" title="通道之间的数据传输"></a>通道之间的数据传输</h2><pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">// 通道之间的数据传输</span>
+<h2 id="通道之间的数据传输"><a href="#通道之间的数据传输" class="headerlink" title="通道之间的数据传输"></a>通道之间的数据传输</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">// 通道之间的数据传输</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test3</span><span class="hljs-params">()</span></span>&#123;
     FileChannel fisChannel = <span class="hljs-keyword">null</span>;
     FileChannel fosChannel = <span class="hljs-keyword">null</span>;
@@ -473,11 +473,11 @@
             &#125;
         &#125;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <h2 id="分散读取和聚集写入"><a href="#分散读取和聚集写入" class="headerlink" title="分散读取和聚集写入"></a>分散读取和聚集写入</h2><p>分散读取：将通道中读取到的数据分散到多个缓冲区中。</p>
 <p>聚集写入：将多个缓冲区中的数据写入到一个通道中。</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">// 分散读取和聚集写入</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">// 分散读取和聚集写入</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test4</span><span class="hljs-params">()</span> </span>&#123;
     RandomAccessFile randomAccessFile1 = <span class="hljs-keyword">null</span>;
     RandomAccessFile randomAccessFile2 = <span class="hljs-keyword">null</span>;
@@ -532,7 +532,7 @@
             &#125;
         &#125;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <h2 id="阻塞与非阻塞"><a href="#阻塞与非阻塞" class="headerlink" title="阻塞与非阻塞"></a>阻塞与非阻塞</h2><ul>
 <li>传统的IO 流都是阻塞式的。当一个线程调用read() 或write()时，该线程被阻塞，直到有一些数据被读取或写入，该线程在此期间不能执行其他任务。因此，在完成网络通信进行IO 操作时，由于线程会阻塞，所以服务器端必须为每个客户端都提供一个独立的线程进行处理，当服务器端需要处理大量客户端时，性能急剧下降。</li>
@@ -541,7 +541,7 @@
 <blockquote>
 <p>阻塞式IO通信</p>
 </blockquote>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BlockTest</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BlockTest</span> </span>&#123;
     <span class="hljs-comment">/**</span>
 <span class="hljs-comment">     * 使用 NIO完成网络通信的三个核心</span>
 <span class="hljs-comment">     * 1、通道 Channel:负责来连接</span>
@@ -614,12 +614,12 @@
         clientSocketChannel.close();
         System.out.println(<span class="hljs-string">"图片接收完成！"</span>);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <blockquote>
 <p>非阻塞式IO通信</p>
 </blockquote>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NonBlockTest</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NonBlockTest</span> </span>&#123;
     <span class="hljs-meta">@Test</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">client</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception</span>&#123;
         <span class="hljs-comment">// 1、获取通道</span>
@@ -677,7 +677,7 @@
             &#125;
         &#125;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
             </article>
@@ -1065,7 +1065,7 @@
         '  ',
         "NIO&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -1081,8 +1081,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

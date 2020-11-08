@@ -235,14 +235,14 @@
 <blockquote>
 <p>获取加载器的方法</p>
 </blockquote>
-<pre><code class="hljs java"><span class="hljs-comment">// 获取当前类加载器</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 获取当前类加载器</span>
 clazz.getClassLoader();
 <span class="hljs-comment">// 获取当前线程上下文的ClassLoader</span>
 Thread.currentThread().getContextClassLoader();
 <span class="hljs-comment">// 获取系统的ClassLoader</span>
 ClassLoader.getSystemClassLoader();
 <span class="hljs-comment">// 获取调用者的ClassLoader</span>
-DriverManager.getCallerClassLoader();</code></pre>
+DriverManager.getCallerClassLoader();</code></pre></div>
 
 <blockquote>
 <p>双亲委派机制</p>
@@ -653,7 +653,7 @@ DriverManager.getCallerClassLoader();</code></pre>
         '  ',
         "JVM入门&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -669,8 +669,10 @@ DriverManager.getCallerClassLoader();</code></pre>
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

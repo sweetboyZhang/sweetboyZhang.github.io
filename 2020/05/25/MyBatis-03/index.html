@@ -221,7 +221,7 @@
             
             <article class="markdown-body">
               <h2 id="实现增删改查功能"><a href="#实现增删改查功能" class="headerlink" title="实现增删改查功能"></a>实现增删改查功能</h2><p>映射文件指导着MyBatis如何进行数据库增删改查<br>在EmployeeMapper接口中添加增删改查的方法:<a id="more"></a></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> dao;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> dao;
 
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">EmployeeMapper</span> </span>&#123;
 
@@ -232,10 +232,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">updateEmp</span><span class="hljs-params">(Employee employee)</span></span>;
 
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">deleteEmpById</span><span class="hljs-params">(Integer id)</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>在映射文件Employee.xml添加相应的sql映射：</p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">mapper</span></span>
 <span class="hljs-meta">        <span class="hljs-meta-keyword">PUBLIC</span> <span class="hljs-meta-string">"-//mybatis.org//DTD Mapper 3.0//EN"</span></span>
 <span class="hljs-meta">        <span class="hljs-meta-string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span>&gt;</span>
@@ -268,10 +268,10 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">delete</span>  <span class="hljs-attr">id</span>=<span class="hljs-string">"deleteEmpById"</span>&gt;</span>
         delete from employee where id=#&#123;id&#125;
     <span class="hljs-tag">&lt;/<span class="hljs-name">delete</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span></code></pre></div>
 
 <p>测试增删改方法：</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test3</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;
         SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
         SqlSession sqlSession = <span class="hljs-keyword">null</span>;
@@ -294,45 +294,45 @@
                 sqlSession.close();
             &#125;
         &#125;
-    &#125;</code></pre>
+    &#125;</code></pre></div>
 
 <h2 id="MyBatis参数处理"><a href="#MyBatis参数处理" class="headerlink" title="MyBatis参数处理"></a>MyBatis参数处理</h2><p>单个参数：mybatis不会做特殊处理。&nbsp;&nbsp;&nbsp;&nbsp;#{参数名}：取出参数<br>多个参数：mybatis会做特殊处理，多个参数封装成一个map<br>key：参数param1,param2…<br>value：传入的参数值<br>#{param1}或#{0}：取出参数值1<br><strong>通过注解明确指定封装类型的key：</strong></p>
-<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> Employee <span class="hljs-title">getEmpByIdAndName</span><span class="hljs-params">(@Param(<span class="hljs-string">"id"</span>)</span>Integer id,@<span class="hljs-title">Param</span><span class="hljs-params">(<span class="hljs-string">"name"</span>)</span>String name)</span>;</code></pre>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> Employee <span class="hljs-title">getEmpByIdAndName</span><span class="hljs-params">(@Param(<span class="hljs-string">"id"</span>)</span>Integer id,@<span class="hljs-title">Param</span><span class="hljs-params">(<span class="hljs-string">"name"</span>)</span>String name)</span>;</code></pre></div>
 
 <p>#{指定的key}：取出对应的参数值<br><strong>#{}与${}的区别：</strong><br>#{}：是以预编译的形式，将参数设置到sql；防止sql注入<br>${}：直接拼装到sql中；有安全问题</p>
 <h2 id="select元素"><a href="#select元素" class="headerlink" title="select元素"></a>select元素</h2><p>1、返回list对象</p>
-<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Employee&gt; <span class="hljs-title">getEmpsByNameLike</span><span class="hljs-params">(String name)</span></span>;</code></pre>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Employee&gt; <span class="hljs-title">getEmpsByNameLike</span><span class="hljs-params">(String name)</span></span>;</code></pre></div>
 
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"getEmpsByNameLike"</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">"bean.Employee"</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"getEmpsByNameLike"</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">"bean.Employee"</span>&gt;</span>
     select * from employee where name like #&#123;name&#125;
-<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre></div>
 
-<pre><code class="hljs java">List&lt;Employee&gt; employeeList = mapper.getEmpsByNameLike(<span class="hljs-string">"%o%"</span>);<span class="hljs-comment">// 查询name含有o的所有记录</span></code></pre>
+<div class="hljs"><pre><code class="hljs java">List&lt;Employee&gt; employeeList = mapper.getEmpsByNameLike(<span class="hljs-string">"%o%"</span>);<span class="hljs-comment">// 查询name含有o的所有记录</span></code></pre></div>
 
 <p>2、返回map对象(单条记录)</p>
-<pre><code class="hljs java"><span class="hljs-comment">// 返回一条记录的map key:列名   value:对应的值</span>
-   <span class="hljs-function"><span class="hljs-keyword">public</span> Map&lt;String,Object&gt; <span class="hljs-title">getEmpByIdReturnMap</span><span class="hljs-params">(Integer id)</span></span>;</code></pre>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 返回一条记录的map key:列名   value:对应的值</span>
+   <span class="hljs-function"><span class="hljs-keyword">public</span> Map&lt;String,Object&gt; <span class="hljs-title">getEmpByIdReturnMap</span><span class="hljs-params">(Integer id)</span></span>;</code></pre></div>
 
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"getEmpByIdReturnMap"</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">"map"</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"getEmpByIdReturnMap"</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">"map"</span>&gt;</span>
      select * from employee where id=#&#123;id&#125;
- <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre>
+ <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre></div>
 
-<pre><code class="hljs java">Map&lt;String,Object&gt; map = mapper.getEmpByIdReturnMap(<span class="hljs-number">1</span>);
-System.out.println(map);<span class="hljs-comment">// &#123;gender=1, name=zyz001, id=1, email=zyz001@qq.com&#125;</span></code></pre>
+<div class="hljs"><pre><code class="hljs java">Map&lt;String,Object&gt; map = mapper.getEmpByIdReturnMap(<span class="hljs-number">1</span>);
+System.out.println(map);<span class="hljs-comment">// &#123;gender=1, name=zyz001, id=1, email=zyz001@qq.com&#125;</span></code></pre></div>
 
 <p>2、返回map对象(多条记录)</p>
-<pre><code class="hljs java"><span class="hljs-comment">// 返回多条记录发map key:主键  value:封装后的bean对象</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 返回多条记录发map key:主键  value:封装后的bean对象</span>
   <span class="hljs-comment">// 告诉mybatis封装这个map的时候使用哪个属性作为map的主键</span>
   <span class="hljs-meta">@MapKey</span>(<span class="hljs-string">"id"</span>)
-  <span class="hljs-function"><span class="hljs-keyword">public</span> Map&lt;Integer,Employee&gt; <span class="hljs-title">getEmpsByNameLikeReturnMap</span><span class="hljs-params">(String name)</span></span>;</code></pre>
+  <span class="hljs-function"><span class="hljs-keyword">public</span> Map&lt;Integer,Employee&gt; <span class="hljs-title">getEmpsByNameLikeReturnMap</span><span class="hljs-params">(String name)</span></span>;</code></pre></div>
 
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"getEmpsByNameLikeReturnMap"</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">"bean.Employee"</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"getEmpsByNameLikeReturnMap"</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">"bean.Employee"</span>&gt;</span>
        select * from employee where name like #&#123;name&#125;;
-<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre></div>
 
-<pre><code class="hljs java">Map&lt;Integer,Employee&gt; employeeMap = mapper.getEmpsByNameLikeReturnMap(<span class="hljs-string">"%o%"</span>);</code></pre>
+<div class="hljs"><pre><code class="hljs java">Map&lt;Integer,Employee&gt; employeeMap = mapper.getEmpsByNameLikeReturnMap(<span class="hljs-string">"%o%"</span>);</code></pre></div>
 
-<h2 id="resultMap-自定义结果集封装规则"><a href="#resultMap-自定义结果集封装规则" class="headerlink" title="resultMap 自定义结果集封装规则"></a>resultMap 自定义结果集封装规则</h2><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- resultMap  自定义结果集规则</span>
+<h2 id="resultMap-自定义结果集封装规则"><a href="#resultMap-自定义结果集封装规则" class="headerlink" title="resultMap 自定义结果集封装规则"></a>resultMap 自定义结果集封装规则</h2><div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- resultMap  自定义结果集规则</span>
 <span class="hljs-comment">            id  方便引用</span>
 <span class="hljs-comment">            type 自定义规则的java类型</span>
 <span class="hljs-comment">            --&gt;</span>
@@ -348,10 +348,10 @@ System.out.println(map);<span class="hljs-comment">// &#123;gender=1, name=zyz00
 <span class="hljs-tag">&lt;/<span class="hljs-name">resultMap</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"getEmpById"</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">"MyEmp"</span>&gt;</span>
     select * from employee where id=#&#123;id&#125;
-<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre></div>
 
 <p>联合查询：级联属性封装结果集 </p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">resultMap</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"MyEmpAndDept"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"bean.Employee"</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">resultMap</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"MyEmpAndDept"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"bean.Employee"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">id</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"id"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"id"</span>/&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"name"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"name"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"gender"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"gender"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
@@ -364,10 +364,10 @@ System.out.println(map);<span class="hljs-comment">// &#123;gender=1, name=zyz00
         SELECT e.id id,e.name name,e.gender gender,e.email email,
         e.dept_id dept_id,d.id d_id,d.dept_name dept_name
         from employee e,dept d WHERE e.dept_id=d.id AND e.id=#&#123;id&#125;;
-<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre></div>
 
 <p> 联合查询：通过association标签封装结果集   </p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">resultMap</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"MyEmpAndDept2"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"bean.Employee"</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">resultMap</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"MyEmpAndDept2"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"bean.Employee"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">id</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"id"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"id"</span>/&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"name"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"name"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"gender"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"gender"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
@@ -380,22 +380,22 @@ System.out.println(map);<span class="hljs-comment">// &#123;gender=1, name=zyz00
         <span class="hljs-tag">&lt;<span class="hljs-name">id</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"d_id"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"id"</span>/&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"dept_name"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"departmentName"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">association</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">resultMap</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">resultMap</span>&gt;</span></code></pre></div>
 
 <p>分部查询：先查询员工，得到员工信息后再根据员工的部门编号，查询部门信息</p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">DepartmentMapper</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">DepartmentMapper</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> Department <span class="hljs-title">getDeptById</span><span class="hljs-params">(Integer id)</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>DepartmentMapper.xml</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">namespace</span>=<span class="hljs-string">"dao.DepartmentMapper"</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">namespace</span>=<span class="hljs-string">"dao.DepartmentMapper"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"getDeptById"</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">"bean.Department"</span>&gt;</span>
         select id,dept_name departmentName from dept where id=#&#123;id&#125;
     <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span></code></pre></div>
 
 <p>EmployeeMapper.xml</p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--  分部查询  可以启动延迟加载--&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--  分部查询  可以启动延迟加载--&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">resultMap</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"MyEmpByStep"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"bean.Employee"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">id</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"id"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"id"</span>/&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"name"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"name"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
@@ -411,35 +411,35 @@ System.out.println(map);<span class="hljs-comment">// &#123;gender=1, name=zyz00
     <span class="hljs-tag">&lt;/<span class="hljs-name">resultMap</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"getEmpByIdStep"</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">"MyEmpByStep"</span>&gt;</span>
         select * from employee where id=#&#123;id&#125;
-    <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre></div>
 
 <p>mybatis-config.xml</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">setting</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">setting</span>&gt;</span>
 	<span class="hljs-comment">&lt;!--  开启延迟加载 --&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">setting</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"lazyLoadingEnabled"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"true"</span>/&gt;</span>
 	<span class="hljs-comment">&lt;!-- 按需加载--&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">setting</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"aggressiveLazyLoading"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"false"</span>/&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">setting</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">setting</span>&gt;</span></code></pre></div>
 
 <p>使用时才进行加载：</p>
-<pre><code class="hljs java">Employee empByIdStep = mapper.getEmpByIdStep(<span class="hljs-number">1</span>);
-System.out.println(empByIdStep.getName());</code></pre>
+<div class="hljs"><pre><code class="hljs java">Employee empByIdStep = mapper.getEmpByIdStep(<span class="hljs-number">1</span>);
+System.out.println(empByIdStep.getName());</code></pre></div>
 
 <p><img src="/2020/05/25/MyBatis-03/1.jpg" srcset="/img/loading.gif" alt></p>
-<pre><code class="hljs java">Employee empByIdStep = mapper.getEmpByIdStep(<span class="hljs-number">1</span>);
-System.out.println(empByIdStep);</code></pre>
+<div class="hljs"><pre><code class="hljs java">Employee empByIdStep = mapper.getEmpByIdStep(<span class="hljs-number">1</span>);
+System.out.println(empByIdStep);</code></pre></div>
 
 <p><img src="/2020/05/25/MyBatis-03/2.jpg" srcset="/img/loading.gif" alt></p>
 <p><strong>Collection集合类型&amp;嵌套结果集：</strong><br>通过部门编号查找所有在该部门的员工，返回一个List员工集合</p>
-<pre><code class="hljs java"><span class="hljs-keyword">private</span> Integer id;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">private</span> Integer id;
 <span class="hljs-keyword">private</span> String departmentName;
-<span class="hljs-keyword">private</span> List&lt;Employee&gt; emps;</code></pre>
+<span class="hljs-keyword">private</span> List&lt;Employee&gt; emps;</code></pre></div>
 
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">DepartmentMapper</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">DepartmentMapper</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> Department <span class="hljs-title">getDeptByIdPlus</span><span class="hljs-params">(Integer id)</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">resultMap</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"MyDept"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"bean.Department"</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">resultMap</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"MyDept"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"bean.Department"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">id</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"did"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"id"</span>/&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"dept_name"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"departmentName"</span>/&gt;</span>
     <span class="hljs-comment">&lt;!-- collection标签用来定义关联集合类型的属性的封装规则</span>
@@ -455,11 +455,11 @@ System.out.println(empByIdStep);</code></pre>
 <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"getDeptByIdPlus"</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">"MyDept"</span>&gt;</span>
     SELECT d.id did ,dept_name,e.id eid,e.`name`,e.gender,e.email,e.dept_id
     FROM dept d LEFT JOIN employee e ON d.id=e.dept_id WHERE d.id=#&#123;id&#125;
-<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre></div>
 
-<pre><code class="hljs java">Department deptByIdPlus = mapper.getDeptByIdPlus(<span class="hljs-number">1</span>);
+<div class="hljs"><pre><code class="hljs java">Department deptByIdPlus = mapper.getDeptByIdPlus(<span class="hljs-number">1</span>);
 System.out.println(deptByIdPlus);
-System.out.println(deptByIdPlus.getEmps());</code></pre>
+System.out.println(deptByIdPlus.getEmps());</code></pre></div>
 
 <p><img src="/2020/05/25/MyBatis-03/3.jpg" srcset="/img/loading.gif" alt></p>
 
@@ -848,7 +848,7 @@ System.out.println(deptByIdPlus.getEmps());</code></pre>
         '  ',
         "MyBatis映射文件&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -864,8 +864,10 @@ System.out.println(deptByIdPlus.getEmps());</code></pre>
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

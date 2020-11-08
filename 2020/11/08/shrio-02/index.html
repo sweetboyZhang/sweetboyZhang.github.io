@@ -19,7 +19,7 @@
   <meta name="description" content="">
   <meta name="author" content="sweetboyZhang">
   <meta name="keywords" content="">
-  <title>Vue基础语法 - sweetboyZhang&#39;s Blog</title>
+  <title>整合Springboot - sweetboyZhang&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -154,8 +154,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-07-06 16:19">
-      July 6, 2020 pm
+    <time datetime="2020-11-08 10:49">
+      November 8, 2020 am
     </time>
   </div>
 
@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      902 字
+      231 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      14
+      2
        分钟
     </span>
   
@@ -215,144 +215,78 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：October 29, 2020 pm
+                  本文最后更新于：November 8, 2020 am
                 
               </p>
             
             <article class="markdown-body">
-              <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>Vue 是一套用于构建用户界面的<strong>渐进式框架</strong>。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注<strong>视图层</strong>，不仅易于上手，还便于与第三方库或既有项目整合。(如vue_router：跳转，vue_resource：通信，vuex：管理)<a id="more"></a></p>
-<h2 id="MVVM模式的实现者"><a href="#MVVM模式的实现者" class="headerlink" title="MVVM模式的实现者"></a>MVVM模式的实现者</h2><p><strong>Model：</strong>模型层，在这里表示javascript<br><strong>View：</strong>视图层，在这里表示DOM（html操作的元素）<br><strong>VIewModel：</strong>连接视图和数据的中间件，Vue.js就是MVVM中的ViewModel层的实现者</p>
-<p>在MVVM架构中，是不允许数据和视图进行直接通信的，只能通过ModelView来通信，而ModelView就是定义了一个Observer观察者。</p>
-<p>ViewModel能够观察到数据发生变化，并对视图对应的内容进行更新，同时，也能够监听到视图的变化，通知数据进行改变。</p>
-<p>所以，Vue.js就是MVVM的实现者，它的核心就是实现了<strong>DOM监听</strong>和<strong>数据绑定</strong>。</p>
-<p><img src="/2020/07/06/vue-01/1.png" srcset="/img/loading.gif" alt></p>
-<h2 id="第一个vue程序"><a href="#第一个vue程序" class="headerlink" title="第一个vue程序"></a>第一个vue程序</h2><p>引入vue.js</p>
-<p>1、使用cdn</p>
-<pre><code class="hljs js">&lt;!-- 开发环境版本，包含了有帮助的命令行警告 --&gt;
-&lt;script src=<span class="hljs-string">"https://cdn.jsdelivr.net/npm/vue/dist/vue.js"</span>&gt;&lt;<span class="hljs-regexp">/script&gt;</span></code></pre>
-
-<p>or</p>
-<pre><code class="hljs js">&lt;!-- 生产环境版本，优化了尺寸和速度 --&gt;
-&lt;script src=<span class="hljs-string">"https://cdn.jsdelivr.net/npm/vue@2.6.11"</span>&gt;&lt;<span class="hljs-regexp">/script&gt;</span></code></pre>
-
-<p>2、下载vue.js后，引入本地的vue.js</p>
-<pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Title<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"../js/vue.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>
-    &#123;&#123;message&#125;&#125;
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
-<span class="actionscript">    <span class="hljs-keyword">var</span> v1 = <span class="hljs-keyword">new</span> Vue(&#123;</span>
-<span class="actionscript">        el:<span class="hljs-string">"#app"</span>,</span>
-        data:&#123;
-<span class="actionscript">            message:<span class="hljs-string">"Hello,vue!"</span></span>
-        &#125;
-    &#125;);
-<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
-
-<h2 id="使用v-bind绑定元素特性"><a href="#使用v-bind绑定元素特性" class="headerlink" title="使用v-bind绑定元素特性"></a>使用v-bind绑定元素特性</h2><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Title<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"../js/vue.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">v-bind:title</span>=<span class="hljs-string">"message"</span>&gt;</span>鼠标悬停查看信息<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-    
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
-<span class="actionscript">    <span class="hljs-keyword">var</span> v1 = <span class="hljs-keyword">new</span> Vue(&#123;</span>
-<span class="actionscript">        el:<span class="hljs-string">"#app"</span>,</span>
-        data:&#123;
-<span class="actionscript">            message:<span class="hljs-string">"Hello,vue!"</span></span>
-        &#125;
-    &#125;);
-<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
-
-<p>指令带有前缀v-，表示它们是vue提供的特殊特性，它们会在渲染的DOM上应用特殊的响应式行为。</p>
-<h2 id="条件渲染——判断"><a href="#条件渲染——判断" class="headerlink" title="条件渲染——判断"></a>条件渲染——判断</h2><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">"flag"</span>&gt;</span>flag为true<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">v-else</span>&gt;</span>flag为false<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-
-    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">"type==='A'"</span>&gt;</span>A<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">v-else-if</span>=<span class="hljs-string">"type==='B'"</span>&gt;</span>B<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">v-else</span>&gt;</span>不是A也不是B<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
-<span class="actionscript">    <span class="hljs-keyword">var</span> v1 = <span class="hljs-keyword">new</span> Vue(&#123;</span>
-<span class="actionscript">        el:<span class="hljs-string">"#app"</span>,</span>
-        data:&#123;
-<span class="actionscript">            flag: <span class="hljs-literal">true</span>,</span>
-<span class="actionscript">            type: <span class="hljs-string">'C'</span></span>
-        &#125;
-    &#125;);
-<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
-
-<h2 id="列表渲染——循环"><a href="#列表渲染——循环" class="headerlink" title="列表渲染——循环"></a>列表渲染——循环</h2><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">"item in items"</span>&gt;</span>&#123;&#123;item.message&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
-
-    <span class="hljs-tag">&lt;<span class="hljs-name">ol</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">"value in arr1"</span>&gt;</span>&#123;&#123;value&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">ol</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-
-<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
-<span class="actionscript">    <span class="hljs-keyword">var</span> v1 = <span class="hljs-keyword">new</span> Vue(&#123;</span>
-<span class="actionscript">        el: <span class="hljs-string">"#app"</span>,</span>
-        data: &#123;
-            items: [
-<span class="actionscript">                &#123;message: <span class="hljs-string">'javaSE'</span>&#125;, &#123;message: <span class="hljs-string">'javaWEB'</span>&#125;, &#123;message: <span class="hljs-string">'javaEE'</span>&#125;</span>
-            ],
-<span class="actionscript">            arr1: [<span class="hljs-string">"起床"</span>, <span class="hljs-string">"学习"</span>, <span class="hljs-string">"吃饭"</span>, <span class="hljs-string">"睡觉"</span>]</span>
-        &#125;
-    &#125;);
-<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
-
-<p>打印索引：</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">"(item,index) in items"</span>&gt;</span>&#123;&#123;item.message&#125;&#125;---&#123;&#123;index&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
-
-<h2 id="事件处理"><a href="#事件处理" class="headerlink" title="事件处理"></a>事件处理</h2><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-
-<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">v-on:click</span>=<span class="hljs-string">"fun1"</span>&gt;</span>按钮<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-
-<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
-<span class="actionscript">    <span class="hljs-keyword">var</span> v1 = <span class="hljs-keyword">new</span> Vue(&#123;</span>
-<span class="actionscript">        el:<span class="hljs-string">"#app"</span>,</span>
-        data:&#123;
-<span class="actionscript">            message: <span class="hljs-string">"这是一个响应函数"</span></span>
-        &#125;,
-<span class="actionscript">        methods:&#123;<span class="hljs-comment">// 方法定义在Vue的method对象中  v-on:函数名   绑定事件</span></span>
-<span class="actionscript">            fun1:<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>&#123;</span>
-<span class="actionscript">                alert(<span class="hljs-keyword">this</span>.message);</span>
-            &#125;
-        &#125;
-    &#125;);
-<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
-
+              <ul>
+<li>shrio中提供的过滤器</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>配置缩写</th>
+<th>对应的过滤器</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>anon</td>
+<td>AnonymousFilter</td>
+<td>指定url可以匿名访问</td>
+</tr>
+<tr>
+<td>authc</td>
+<td>FormAuthenticationFilter</td>
+<td>指定url需要form表单登录，默认会从请求中获取<code>username</code>、<code>password</code>,<code>rememberMe</code>等参数并尝试登录，如果登录不了就会跳转到loginUrl配置的路径。</td>
+</tr>
+<tr>
+<td>authcBasic</td>
+<td>BasicHttpAuthenticationFilter</td>
+<td>指定url需要basic登录</td>
+</tr>
+<tr>
+<td>logout</td>
+<td>LogoutFilter</td>
+<td>登出过滤器，配置指定url就可以实现退出功能，非常方便</td>
+</tr>
+<tr>
+<td>noSessionCreation</td>
+<td>NoSessionCreationFilter</td>
+<td>禁止创建会话</td>
+</tr>
+<tr>
+<td>perms</td>
+<td>PermissionsAuthorizationFilter</td>
+<td>需要指定权限才能访问</td>
+</tr>
+<tr>
+<td>port</td>
+<td>PortFilter</td>
+<td>需要指定端口才能访问</td>
+</tr>
+<tr>
+<td>rest</td>
+<td>HttpMethodPermissionFilter</td>
+<td>将http请求方法转化成相应的动词来构造一个权限字符串，这个感觉意义不大，有兴趣自己看源码的注释</td>
+</tr>
+<tr>
+<td>roles</td>
+<td>RolesAuthorizationFilter</td>
+<td>需要指定角色才能访问</td>
+</tr>
+<tr>
+<td>ssl</td>
+<td>SslFilter</td>
+<td>需要https请求才能访问</td>
+</tr>
+<tr>
+<td>user</td>
+<td>UserFilter</td>
+<td>需要已登录或“记住我”的用户才能访问</td>
+</tr>
+</tbody></table>
 
             </article>
             <hr>
@@ -363,7 +297,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/vue/">vue</a>
+                      <a class="hover-with-bg" href="/tags/Shrio/">Shrio</a>
                     
                   </div>
                 
@@ -376,18 +310,12 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/07/07/vue-02/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">双向数据绑定与传输</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/07/05/SpringMVC-04/">
-                        <span class="hidden-mobile">SpringMVC核心技术</span>
+                      <a href="/2020/10/31/elementui/">
+                        <span class="hidden-mobile">ElementUI</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -643,7 +571,7 @@
       if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/2020/07/06/vue-01/');
+          var target = decodeURI('/2020/11/08/shrio-02/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -737,9 +665,9 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Vue基础语法&nbsp;",
+        "整合Springboot&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -755,8 +683,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

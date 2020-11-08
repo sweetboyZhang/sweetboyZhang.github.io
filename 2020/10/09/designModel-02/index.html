@@ -223,7 +223,7 @@
               <p>设计模式分为三种类型：创建型模式、结构型模式、行为型模式，共23种。<a id="more"></a></p>
 <h2 id="单例设计模式"><a href="#单例设计模式" class="headerlink" title="单例设计模式"></a>单例设计模式</h2><p>单例设计模式属于创建型模式，就是采取一定的方法保证整个软件系统中，对某个类只能存在一个对象实例，并且该类只提供一个获取该对象实例的方法(静态方法)。</p>
 <h3 id="单例模式的几种写法"><a href="#单例模式的几种写法" class="headerlink" title="单例模式的几种写法"></a>单例模式的几种写法</h3><h4 id="饿汉式（静态常量）"><a href="#饿汉式（静态常量）" class="headerlink" title="饿汉式（静态常量）"></a>饿汉式（静态常量）</h4><p>步骤：<br>1、构造器私有化；<br>2、类内部创建一个静态的对象实例并私有化；<br>3、对外暴露一个静态的公共方法getInstance()</p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SingletonTest1</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SingletonTest1</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
         Singleton instance1 = Singleton.getInstance();
         Singleton instance2 = Singleton.getInstance();
@@ -244,10 +244,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Singleton <span class="hljs-title">getInstance</span><span class="hljs-params">()</span></span>&#123;
         <span class="hljs-keyword">return</span> singleton;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>优点：在类装载时就完成了对象的实例化，避免了线程同步问题。<br>缺点：由于在类加载时就完成了类的实例化，没有达到懒加载的效果，如果这个实例对象一直没有使用过，就会造成内存的浪费。</p>
-<h4 id="饿汉式（静态代码块）"><a href="#饿汉式（静态代码块）" class="headerlink" title="饿汉式（静态代码块）"></a>饿汉式（静态代码块）</h4><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.zyz.singleton;
+<h4 id="饿汉式（静态代码块）"><a href="#饿汉式（静态代码块）" class="headerlink" title="饿汉式（静态代码块）"></a>饿汉式（静态代码块）</h4><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.zyz.singleton;
 
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SingletonTest2</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
@@ -275,9 +275,9 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Singleton <span class="hljs-title">getInstance</span><span class="hljs-params">()</span></span>&#123;
         <span class="hljs-keyword">return</span> singleton;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<h4 id="懒汉式（线程不安全）"><a href="#懒汉式（线程不安全）" class="headerlink" title="懒汉式（线程不安全）"></a>懒汉式（线程不安全）</h4><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SingletonTest3</span> </span>&#123;
+<h4 id="懒汉式（线程不安全）"><a href="#懒汉式（线程不安全）" class="headerlink" title="懒汉式（线程不安全）"></a>懒汉式（线程不安全）</h4><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SingletonTest3</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
         Singleton instance1 = Singleton.getInstance();
         Singleton instance2 = Singleton.getInstance();
@@ -302,12 +302,12 @@
         &#125;
         <span class="hljs-keyword">return</span> singleton;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>达到了懒加载的效果，但是存在线程安全问题，在多线程环境下可能会创建多个对象实例。</p>
 <h4 id="懒汉式（线程安全，同步方法）"><a href="#懒汉式（线程安全，同步方法）" class="headerlink" title="懒汉式（线程安全，同步方法）"></a>懒汉式（线程安全，同步方法）</h4><p>使用<code>synchronized</code>关键字修饰getInstance()方法</p>
 <h4 id="双重检查"><a href="#双重检查" class="headerlink" title="双重检查"></a>双重检查</h4><p>解决了线程安全问题，懒加载问题，同时保证了效率，在实际开发中推荐使用。</p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SingletonTest4</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SingletonTest4</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
         Singleton instance1 = Singleton.getInstance();
         Singleton instance2 = Singleton.getInstance();
@@ -338,10 +338,10 @@
         &#125;
         <span class="hljs-keyword">return</span> singleton;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <h4 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h4><p>静态内部类不会自动加载，只有调用静态内部类的方法，静态域，或者构造方法的时候才会加载，并且只加载一次。</p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SingletonTest5</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SingletonTest5</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
         Singleton instance1 = Singleton.getInstance();
         Singleton instance2 = Singleton.getInstance();
@@ -365,9 +365,9 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Singleton <span class="hljs-title">getInstance</span><span class="hljs-params">()</span> </span>&#123;
         <span class="hljs-keyword">return</span> SingletonInstance.INSTANCE;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<h4 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h4><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SingletonTest6</span> </span>&#123;
+<h4 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h4><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SingletonTest6</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
         Singleton instance1 = Singleton.INSTANCE;
         Singleton instance2 = Singleton.INSTANCE;
@@ -377,7 +377,7 @@
 
 <span class="hljs-keyword">enum</span> Singleton &#123;
     INSTANCE;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <h3 id="单例模式的使用场景"><a href="#单例模式的使用场景" class="headerlink" title="单例模式的使用场景"></a>单例模式的使用场景</h3><ul>
 <li>需要频繁创建和销毁的对象</li>
@@ -418,8 +418,8 @@
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/10/07/designModel-01/">
-                        <span class="hidden-mobile">设计模式七大原则</span>
+                      <a href="/2020/10/07/shiro/">
+                        <span class="hidden-mobile">Shiro</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -771,7 +771,7 @@
         '  ',
         "单例设计模式&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -787,8 +787,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

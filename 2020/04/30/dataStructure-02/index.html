@@ -223,7 +223,7 @@
               <h2 id="1、链表介绍"><a href="#1、链表介绍" class="headerlink" title="1、链表介绍"></a>1、链表介绍</h2><p>链表是有序的列表，在内存中的存储结构：<br><img src="/2020/04/30/dataStructure-02/1.png" srcset="/img/loading.gif" alt></p>
 <a id="more"></a>小结:
 <p>1)链表是以节点的方式来存储,是链式存储<br>2)每个节点包含 data 域， next 域：指向下一个节点<br>3)如图：发现链表的<strong>各个节点不一定是连续存储</strong>.<br>4)链表分带头节点的链表和没有头节点的链表，根据实际的需求来确定逻辑结构图：<br><img src="/2020/04/30/dataStructure-02/2.png" srcset="/img/loading.gif" alt></p>
-<h2 id="2、单链表的创建，插入，删除，显示"><a href="#2、单链表的创建，插入，删除，显示" class="headerlink" title="2、单链表的创建，插入，删除，显示"></a>2、单链表的创建，插入，删除，显示</h2><pre><code class="hljs java"><span class="hljs-keyword">package</span> linkedlist;
+<h2 id="2、单链表的创建，插入，删除，显示"><a href="#2、单链表的创建，插入，删除，显示" class="headerlink" title="2、单链表的创建，插入，删除，显示"></a>2、单链表的创建，插入，删除，显示</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> linkedlist;
 
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SingleLinkedListDemo</span> </span>&#123;
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
@@ -398,9 +398,9 @@
 			System.out.printf(<span class="hljs-string">"没有找到编号为%d的节点"</span>,id);
 		&#125;
 	&#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<h2 id="3、求单链表有效节点个数"><a href="#3、求单链表有效节点个数" class="headerlink" title="3、求单链表有效节点个数"></a>3、求单链表有效节点个数</h2><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getLength</span><span class="hljs-params">(HeroNode head)</span> </span>&#123;
+<h2 id="3、求单链表有效节点个数"><a href="#3、求单链表有效节点个数" class="headerlink" title="3、求单链表有效节点个数"></a>3、求单链表有效节点个数</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getLength</span><span class="hljs-params">(HeroNode head)</span> </span>&#123;
 	<span class="hljs-keyword">if</span> (head.next == <span class="hljs-keyword">null</span>) &#123;
 		<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 	&#125;
@@ -411,9 +411,9 @@
 		cur = cur.next;
 	&#125;
 	<span class="hljs-keyword">return</span> length;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<h2 id="4、查找倒数第-k-个节点"><a href="#4、查找倒数第-k-个节点" class="headerlink" title="4、查找倒数第 k 个节点"></a>4、查找倒数第 k 个节点</h2><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> HeroNode <span class="hljs-title">findLastIndexNode</span><span class="hljs-params">(HeroNode head, <span class="hljs-keyword">int</span> index)</span> </span>&#123;
+<h2 id="4、查找倒数第-k-个节点"><a href="#4、查找倒数第-k-个节点" class="headerlink" title="4、查找倒数第 k 个节点"></a>4、查找倒数第 k 个节点</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> HeroNode <span class="hljs-title">findLastIndexNode</span><span class="hljs-params">(HeroNode head, <span class="hljs-keyword">int</span> index)</span> </span>&#123;
 	<span class="hljs-comment">// 判断链表是否为空</span>
 	<span class="hljs-keyword">if</span> (head.next == <span class="hljs-keyword">null</span>) &#123;
 		<span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
@@ -430,10 +430,10 @@
 		cur = cur.next;
 	&#125;
 	<span class="hljs-keyword">return</span> cur;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <h2 id="5、单链表的反转"><a href="#5、单链表的反转" class="headerlink" title="5、单链表的反转"></a>5、单链表的反转</h2><p><img src="/2020/04/30/dataStructure-02/3.png" srcset="/img/loading.gif" alt></p>
- <pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">reverseList</span><span class="hljs-params">(HeroNode head)</span> </span>&#123;
+ <div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">reverseList</span><span class="hljs-params">(HeroNode head)</span> </span>&#123;
 		<span class="hljs-keyword">if</span> (head.next == <span class="hljs-keyword">null</span> || head.next.next == <span class="hljs-keyword">null</span>) &#123;
 			System.out.println(<span class="hljs-string">"链表为空或长度为 1！"</span>);
 			<span class="hljs-keyword">return</span>;
@@ -451,9 +451,9 @@
 		
 		<span class="hljs-comment">// 将新链表的第一个节点连接到原来链表的头节点上</span>
 		head.next = reverseHead.next;
-	&#125;</code></pre>
+	&#125;</code></pre></div>
 
-<h2 id="6、逆序打印单链表"><a href="#6、逆序打印单链表" class="headerlink" title="6、逆序打印单链表"></a>6、逆序打印单链表</h2><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">reversePrint</span><span class="hljs-params">(HeroNode head)</span> </span>&#123;
+<h2 id="6、逆序打印单链表"><a href="#6、逆序打印单链表" class="headerlink" title="6、逆序打印单链表"></a>6、逆序打印单链表</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">reversePrint</span><span class="hljs-params">(HeroNode head)</span> </span>&#123;
 		<span class="hljs-keyword">if</span>(head.next == <span class="hljs-keyword">null</span>) &#123;
 			System.out.println(<span class="hljs-string">"链表为空！"</span>);
 			<span class="hljs-keyword">return</span>;
@@ -470,7 +470,7 @@
 		<span class="hljs-keyword">while</span>(stack.size()&gt;<span class="hljs-number">0</span>) &#123;
 			System.out.println(stack.pop());
 		&#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 
@@ -860,7 +860,7 @@
         '  ',
         "单链表&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -876,8 +876,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

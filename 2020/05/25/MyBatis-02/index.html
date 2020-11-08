@@ -222,43 +222,43 @@
             <article class="markdown-body">
               <h2 id="在IDEA中引入XML的dtd约束文件"><a href="#在IDEA中引入XML的dtd约束文件" class="headerlink" title="在IDEA中引入XML的dtd约束文件"></a>在IDEA中引入XML的dtd约束文件</h2><p>便于在编写xml文件时有提示信息<br><img src="/2020/05/25/MyBatis-02/1.jpg" srcset="/img/loading.gif" alt><a id="more"></a></p>
 <p><img src="/2020/05/25/MyBatis-02/2.jpg" srcset="/img/loading.gif" alt></p>
-<h2 id="properties属性"><a href="#properties属性" class="headerlink" title="properties属性"></a>properties属性</h2><pre><code class="hljs properties"><span class="hljs-meta">jdbc.driver</span>=<span class="hljs-string">com.mysql.cj.jdbc.Driver</span>
+<h2 id="properties属性"><a href="#properties属性" class="headerlink" title="properties属性"></a>properties属性</h2><div class="hljs"><pre><code class="hljs properties"><span class="hljs-meta">jdbc.driver</span>=<span class="hljs-string">com.mysql.cj.jdbc.Driver</span>
 <span class="hljs-meta">jdbc.url</span>=<span class="hljs-string">jdbc:mysql://localhost:3306/mybatis?serverTimezone=Asia/Shanghai</span>
 <span class="hljs-meta">jdbc.username</span>=<span class="hljs-string">root</span>
-<span class="hljs-meta">jdbc.password</span>=<span class="hljs-string">2824199842</span></code></pre>
+<span class="hljs-meta">jdbc.password</span>=<span class="hljs-string">2824199842</span></code></pre></div>
 
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- properties标签引入properties配置文件</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- properties标签引入properties配置文件</span>
 <span class="hljs-comment">     resource 引入类路径下的资源</span>
 <span class="hljs-comment">     url 引入网络或磁盘路径下的文件--&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">properties</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">"dbConfig.properties"</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span></code></pre></div>
 
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dataSource</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"POOLED"</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dataSource</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"POOLED"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"driver"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;jdbc.driver&#125;"</span>/&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"url"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;jdbc.url&#125;"</span>/&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"username"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;jdbc.username&#125;"</span>/&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;jdbc.password&#125;"</span>/&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dataSource</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dataSource</span>&gt;</span></code></pre></div>
 
 <h2 id="setting属性"><a href="#setting属性" class="headerlink" title="setting属性"></a>setting属性</h2><p>setting包含一些重要的设置，会改变MyBatis运行时行为</p>
 <p><img src="/2020/05/25/MyBatis-02/3.jpg" srcset="/img/loading.gif" alt></p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--  settings标签包含很多重要的设置项  --&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--  settings标签包含很多重要的设置项  --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">settings</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">setting</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"mapUnderscoreToCamelCase"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"true"</span>/&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">settings</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">settings</span>&gt;</span></code></pre></div>
 
-<h2 id="typeAliases别名处理器"><a href="#typeAliases别名处理器" class="headerlink" title="typeAliases别名处理器"></a>typeAliases别名处理器</h2><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--typeAliases 别名处理器--&gt;</span>
+<h2 id="typeAliases别名处理器"><a href="#typeAliases别名处理器" class="headerlink" title="typeAliases别名处理器"></a>typeAliases别名处理器</h2><div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--typeAliases 别名处理器--&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">typeAliases</span>&gt;</span>
 <span class="hljs-comment">&lt;!-- &lt;typeAlias type="bean.Employee" alias="emp"/&gt;--&gt;</span>
 <span class="hljs-comment">&lt;!-- package 为某个包下的所有类批量起别名</span>
 <span class="hljs-comment">             name:指定包名 为当前包下的所有后代包的每一个类起一个默认别名--&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">package</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"bean"</span>/&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">typeAliases</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">typeAliases</span>&gt;</span></code></pre></div>
 
 <p><img src="/2020/05/25/MyBatis-02/4.jpg" srcset="/img/loading.gif" alt></p>
 <h2 id="typeHandlers类型处理器"><a href="#typeHandlers类型处理器" class="headerlink" title="typeHandlers类型处理器"></a>typeHandlers类型处理器</h2><p>无论是MyBatis 在预处理语句（PreparedStatement）中设置一个参数时，还是从结果集中取出一个值时，都会用类型处理器将获取的值以合适的方式转换成Java 类型。<br><img src="/2020/05/25/MyBatis-02/5.jpg" srcset="/img/loading.gif" alt></p>
 <h2 id="plugins插件"><a href="#plugins插件" class="headerlink" title="plugins插件"></a>plugins插件</h2><p>插件是MyBatis提供的一个非常强大的机制，我们可以通过插件来修改MyBatis的一些核心行为。插件通过动态代理机制，可以介入四大对象的任何一个方法的执行。<br><img src="/2020/05/25/MyBatis-02/6.jpg" srcset="/img/loading.gif" alt></p>
-<h2 id="environment环境配置"><a href="#environment环境配置" class="headerlink" title="environment环境配置"></a>environment环境配置</h2><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--  配置多个环境  default快速指定环境</span>
+<h2 id="environment环境配置"><a href="#environment环境配置" class="headerlink" title="environment环境配置"></a>environment环境配置</h2><div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--  配置多个环境  default快速指定环境</span>
 <span class="hljs-comment">      id  唯一标识环境</span>
 <span class="hljs-comment">      transactionManager  事务管理器</span>
 <span class="hljs-comment">      dataSource  数据源</span>
@@ -273,17 +273,17 @@
             <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;jdbc.password&#125;"</span>/&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">dataSource</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">environment</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">environments</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">environments</span>&gt;</span></code></pre></div>
 
 <p><strong>实际开发中我们使用Spring管理数据源，并进行事务控制的配置来覆盖上述配置</strong></p>
 <h2 id="databaseIdProvider环境"><a href="#databaseIdProvider环境" class="headerlink" title="databaseIdProvider环境"></a>databaseIdProvider环境</h2><p>MyBatis 可以根据不同的数据库厂商执行不同的语句。<br><img src="/2020/05/25/MyBatis-02/7.jpg" srcset="/img/loading.gif" alt></p>
 <p><img src="/2020/05/25/MyBatis-02/8.jpg" srcset="/img/loading.gif" alt></p>
-<h2 id="mapper映射"><a href="#mapper映射" class="headerlink" title="mapper映射"></a>mapper映射</h2><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 将写好的sql映射文件注册到全局配置文件中--&gt;</span>
+<h2 id="mapper映射"><a href="#mapper映射" class="headerlink" title="mapper映射"></a>mapper映射</h2><div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 将写好的sql映射文件注册到全局配置文件中--&gt;</span>
  <span class="hljs-tag">&lt;<span class="hljs-name">mappers</span>&gt;</span>
  <span class="hljs-comment">&lt;!-- &lt;mapper resource="EmployeeMapper.xml"/&gt;--&gt;</span>
 <span class="hljs-comment">&lt;!--  批量注册    xml文件必须与接口文件名相同且在同一个包下  --&gt;</span>
      <span class="hljs-tag">&lt;<span class="hljs-name">package</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"dao"</span>/&gt;</span>
- <span class="hljs-tag">&lt;/<span class="hljs-name">mappers</span>&gt;</span></code></pre>
+ <span class="hljs-tag">&lt;/<span class="hljs-name">mappers</span>&gt;</span></code></pre></div>
 
 
             </article>
@@ -671,7 +671,7 @@
         '  ',
         "MyBatis全局配置文件&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -687,8 +687,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

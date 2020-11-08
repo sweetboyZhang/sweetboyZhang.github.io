@@ -19,7 +19,7 @@
   <meta name="description" content="">
   <meta name="author" content="sweetboyZhang">
   <meta name="keywords" content="">
-  <title>归档 - sweetboyZhang&#39;s Blog</title>
+  <title>标签 - Vue Cli - sweetboyZhang&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -44,7 +44,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 80vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -162,49 +162,19 @@
                 
 
 <div class="list-group">
-  <p class="h4">共计 86 篇文章</p>
+  <p class="h4">共计 1 篇文章</p>
   <hr>
   
     
       
       <p class="h5">2020</p>
     
-    <a href="/2020/07/07/vue-02/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">双向数据绑定与传输</span>
-      <span style="float: right;">07-07</span>
-    </a>
-  
-    
-    <a href="/2020/07/06/vue-01/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Vue基础语法</span>
-      <span style="float: right;">07-06</span>
-    </a>
-  
-    
-    <a href="/2020/07/05/SpringMVC-04/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">SpringMVC核心技术</span>
-      <span style="float: right;">07-05</span>
-    </a>
-  
-    
-    <a href="/2020/07/04/SpringMVC-03/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">SSM整合开发</span>
-      <span style="float: right;">07-04</span>
+    <a href="/2020/10/30/vue_cli/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">Vue Cli的使用</span>
+      <span style="float: right;">10-30</span>
     </a>
   
 </div>
-
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/archives/2020/07/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/archives/2020/07/">1</a><span class="page-number current">2</span>
-    </span>
-  </nav>
-  
-  <script>
-    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
-      ele.href += '#board';
-    }
-  </script>
 
 
 
@@ -433,7 +403,7 @@
       if ('false' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/archives/2020/07/page/2/index.html');
+          var target = decodeURI('/tags/Vue-Cli/index.html');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -502,9 +472,9 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "归档&nbsp;",
+        "标签 - Vue Cli&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });

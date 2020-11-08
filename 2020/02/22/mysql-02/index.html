@@ -221,7 +221,7 @@
             
             <article class="markdown-body">
               <h2 id="基础查询"><a href="#基础查询" class="headerlink" title="基础查询"></a>基础查询</h2><p><strong>语法：</strong><br>        select 查询列表 from 表名<br><strong>特点：</strong><br>        1.查询列表可以是：表中的字段，常量值，表达式，函数；<br>        2.查询的结果是一个虚拟的表格。<a id="more"></a></p>
-<pre><code class="hljs sql"><span class="hljs-comment"># 1.查询表中的单个字段</span>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-comment"># 1.查询表中的单个字段</span>
 <span class="hljs-keyword">SELECT</span> first_name <span class="hljs-keyword">FROM</span> employees;
 
 <span class="hljs-comment"># 2.查询表中的多个字段</span>
@@ -260,10 +260,10 @@
 
 <span class="hljs-comment"># 10.使用IFNULL(expr,expr为null时需要返回的值)对结果为null的数据进行处理</span>
 <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">CONCAT</span>(salary,<span class="hljs-string">','</span>,<span class="hljs-keyword">IFNULL</span>(commission_pct,<span class="hljs-number">0</span>)) <span class="hljs-keyword">AS</span> <span class="hljs-string">'月薪,年奖金率'</span> <span class="hljs-keyword">FROM</span> employees;
-<span class="hljs-comment"># 11.ISNULL(expr) expr为null 返回0，否则返回1</span></code></pre>
+<span class="hljs-comment"># 11.ISNULL(expr) expr为null 返回0，否则返回1</span></code></pre></div>
 
 <h2 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h2><p><strong>语法：</strong><br>        select 查询列表 from 表名 where 筛选条件<br>        <strong>分类：</strong><br>        1.按条件表达式进行筛选<br>        条件运算符：&gt; &lt; != &lt;&gt; &gt;= &lt;=<br>        2.按逻辑表达式<br>        &amp;&amp; || ! and or not<br>        3.模糊查询<br>         <em>like：</em><br>                1.一般与通配符搭配使用<br>                2.通配符(使用\转义)：<br>                     %：表示0个或任意多个字符;<br>                     _ ：表示任意单个字符;<br>         <em>(not) between and：</em> 包含边界值<br>        <em>in：</em> 判断某字段的值是否属于in列表中的某一项<br>        in列表中的元素类型要相同或兼容<br>        <em>is null / is not null：</em>只能判断是否为null;<br>        &lt;=&gt; : 安全等于，既能判断是否为null也能判断数字;<br>        = 和 &lt;&gt;不能判断null</p>
-<pre><code class="hljs sql"><span class="hljs-comment"># 1.按条件表达式筛选</span>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-comment"># 1.按条件表达式筛选</span>
 <span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">WHERE</span> salary&gt;<span class="hljs-number">15000</span>;
 <span class="hljs-keyword">SELECT</span> last_name,first_name,salary <span class="hljs-keyword">FROM</span>  employees <span class="hljs-keyword">WHERE</span> department_id&lt;&gt;<span class="hljs-number">90</span>;
 
@@ -283,10 +283,10 @@
 <span class="hljs-keyword">SELECT</span> first_name,job_id <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">where</span> job_id <span class="hljs-keyword">IN</span> (<span class="hljs-string">'IT_PROG'</span>,<span class="hljs-string">'IT_VP'</span>,<span class="hljs-string">'AD_PRES'</span>);
 <span class="hljs-comment"># 查询没有奖金的员工信息</span>
 <span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">where</span> commission_pct = <span class="hljs-literal">NULL</span>; <span class="hljs-comment">-- 查询不到结果</span>
-<span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">WHERE</span> commission_pct <span class="hljs-keyword">IS</span> <span class="hljs-literal">NULL</span>;</code></pre>
+<span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">WHERE</span> commission_pct <span class="hljs-keyword">IS</span> <span class="hljs-literal">NULL</span>;</code></pre></div>
 
 <h2 id="排序查询"><a href="#排序查询" class="headerlink" title="排序查询"></a>排序查询</h2><p>语法：select 查询列表 from 表 where 查询条件  order by 排序列表 asc/desc;<br>特点：1.asc:升序；desc:降序；如果不写，默认为升序<br>            2.order by 子句支持单个字段，多个字段，表达式，函数，别名<br>            3.order by 子句一般放在查询语句的最后面，limit子句除外</p>
-<pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> salary <span class="hljs-keyword">ASC</span>; <span class="hljs-comment">-- 升序</span>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> salary <span class="hljs-keyword">ASC</span>; <span class="hljs-comment">-- 升序</span>
 <span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> salary; <span class="hljs-comment">-- 省略时默认为升序排列</span>
 <span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> salary <span class="hljs-keyword">DESC</span>; <span class="hljs-comment">-- 降序</span>
 <span class="hljs-comment"># 查询部门编号&gt;=90的员工信息，按入职时间的先后顺序进行排序</span>
@@ -298,10 +298,10 @@
 <span class="hljs-comment"># 按姓名的长度显示员工的姓名和工资（按函数值进行排序）</span>
 <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">CONCAT</span>(last_name,first_name) <span class="hljs-keyword">AS</span> <span class="hljs-string">'姓名'</span> ,<span class="hljs-keyword">LENGTH</span>(<span class="hljs-keyword">CONCAT</span>(last_name,first_name)),salary <span class="hljs-keyword">AS</span> <span class="hljs-string">'工资'</span> <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-keyword">LENGTH</span>(姓名);
 <span class="hljs-comment"># 查询员工信息，要求先按工资的升序，再按员工编号的降序（按多个字段排序）</span>
-<span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> salary <span class="hljs-keyword">ASC</span>,employee_id <span class="hljs-keyword">DESC</span>;</code></pre>
+<span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> salary <span class="hljs-keyword">ASC</span>,employee_id <span class="hljs-keyword">DESC</span>;</code></pre></div>
 
 <h2 id="常见函数"><a href="#常见函数" class="headerlink" title="常见函数"></a>常见函数</h2><p>概念：类似于java中的方法，将一组逻辑语句封装在方法体中，对外暴露方法名<br>好处：隐藏了实现细节；提高了代码的复用性<br>调用：select 函数名() from 表名;<br>分类： 1.单行函数：作用于单行数据，返回一个结果<br>            2.分组函数：作用于一组数据，并对一组数据返回一个值</p>
-<h3 id="单行函数"><a href="#单行函数" class="headerlink" title="单行函数"></a>单行函数</h3><h4 id="一、字符函数"><a href="#一、字符函数" class="headerlink" title="一、字符函数"></a>一、字符函数</h4><pre><code class="hljs sql"><span class="hljs-comment"># 1.LENGTH(str) 获取参数值的字节个数</span>
+<h3 id="单行函数"><a href="#单行函数" class="headerlink" title="单行函数"></a>单行函数</h3><h4 id="一、字符函数"><a href="#一、字符函数" class="headerlink" title="一、字符函数"></a>一、字符函数</h4><div class="hljs"><pre><code class="hljs sql"><span class="hljs-comment"># 1.LENGTH(str) 获取参数值的字节个数</span>
 <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">LENGTH</span>(<span class="hljs-string">'哈哈hh'</span>); <span class="hljs-comment">-- 8</span>
 
 <span class="hljs-comment"># 2.CONCAT(str1,str2,...) 拼接字符串</span>
@@ -318,9 +318,9 @@
 
 <span class="hljs-comment"># 6.TRIM([remstr FROM] str) 去掉首尾空格或指定字符串</span>
 <span class="hljs-comment"># 7.LPAD(str,len,padstr) /RPAD(str,len,padstr)用指定的字符实现左/右填充指定长度</span>
-<span class="hljs-comment"># REPLACE(str,from_str,to_str) 替换</span></code></pre>
+<span class="hljs-comment"># REPLACE(str,from_str,to_str) 替换</span></code></pre></div>
 
-<h4 id="二、数学函数"><a href="#二、数学函数" class="headerlink" title="二、数学函数"></a>二、数学函数</h4><pre><code class="hljs sql"><span class="hljs-comment"># 1.ROUND(X) 四舍五入</span>
+<h4 id="二、数学函数"><a href="#二、数学函数" class="headerlink" title="二、数学函数"></a>二、数学函数</h4><div class="hljs"><pre><code class="hljs sql"><span class="hljs-comment"># 1.ROUND(X) 四舍五入</span>
 <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">ROUND</span>(<span class="hljs-number">-1.55</span>); <span class="hljs-comment">-- -2</span>
 <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">ROUND</span>(<span class="hljs-number">-1.566</span>,<span class="hljs-number">2</span>); <span class="hljs-comment">-- -1.57</span>
 <span class="hljs-comment"># 2.CEIL(X) 向上取整，返回&gt;=该参数的最小整数</span>
@@ -329,9 +329,9 @@
 <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">TRUNCATE</span>(<span class="hljs-number">1.29</span>,<span class="hljs-number">1</span>); <span class="hljs-comment">-- 1.2</span>
 <span class="hljs-comment"># 5.MOD(N,M) 取余:符号与被除数相同</span>
 <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">MOD</span>(<span class="hljs-number">-10</span>,<span class="hljs-number">3</span>); <span class="hljs-comment">-- -1</span>
-<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">MOD</span>(<span class="hljs-number">10</span>,<span class="hljs-number">-3</span>); <span class="hljs-comment">-- 1</span></code></pre>
+<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">MOD</span>(<span class="hljs-number">10</span>,<span class="hljs-number">-3</span>); <span class="hljs-comment">-- 1</span></code></pre></div>
 
-<h4 id="三、日期函数"><a href="#三、日期函数" class="headerlink" title="三、日期函数"></a>三、日期函数</h4><pre><code class="hljs sql"><span class="hljs-comment"># NOW() 返回当前系统日期+时间</span>
+<h4 id="三、日期函数"><a href="#三、日期函数" class="headerlink" title="三、日期函数"></a>三、日期函数</h4><div class="hljs"><pre><code class="hljs sql"><span class="hljs-comment"># NOW() 返回当前系统日期+时间</span>
 <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">NOW</span>(); <span class="hljs-comment">-- 2020-02-23 11:27:48</span>
 <span class="hljs-comment"># CURDATE() 返回当前系统的日期</span>
 <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">CURDATE</span>(); <span class="hljs-comment">-- 2020-02-23</span>
@@ -355,13 +355,13 @@
 <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DATE_FORMAT</span>(<span class="hljs-keyword">now</span>(),<span class="hljs-string">'%Y年%m月%d日'</span>);<span class="hljs-comment">-- 2020年02月23日</span>
 <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DATE_FORMAT</span>(<span class="hljs-keyword">now</span>(),<span class="hljs-string">'%y年%c月%d日'</span>); <span class="hljs-comment">-- 20年2月23日</span>
 <span class="hljs-comment"># 查询有奖金的员工名和入职日期(xx月/xx日 xx年)</span>
-<span class="hljs-keyword">SELECT</span> last_name <span class="hljs-keyword">AS</span> 姓名,<span class="hljs-keyword">DATE_FORMAT</span>(hiredate,<span class="hljs-string">'%m月/%d日 %y年'</span>) <span class="hljs-keyword">AS</span> 入职日期 <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">WHERE</span> commission_pct <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>;</code></pre>
+<span class="hljs-keyword">SELECT</span> last_name <span class="hljs-keyword">AS</span> 姓名,<span class="hljs-keyword">DATE_FORMAT</span>(hiredate,<span class="hljs-string">'%m月/%d日 %y年'</span>) <span class="hljs-keyword">AS</span> 入职日期 <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">WHERE</span> commission_pct <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>;</code></pre></div>
 
-<h4 id="四、其他函数"><a href="#四、其他函数" class="headerlink" title="四、其他函数"></a>四、其他函数</h4><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">VERSION</span>();
+<h4 id="四、其他函数"><a href="#四、其他函数" class="headerlink" title="四、其他函数"></a>四、其他函数</h4><div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">VERSION</span>();
 <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DATABASE</span>();
-<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">USER</span>();</code></pre>
+<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">USER</span>();</code></pre></div>
 
-<h4 id="五、流程控制函数"><a href="#五、流程控制函数" class="headerlink" title="五、流程控制函数"></a>五、流程控制函数</h4><pre><code class="hljs sql"><span class="hljs-comment"># IF(expr1,expr2,expr3)</span>
+<h4 id="五、流程控制函数"><a href="#五、流程控制函数" class="headerlink" title="五、流程控制函数"></a>五、流程控制函数</h4><div class="hljs"><pre><code class="hljs sql"><span class="hljs-comment"># IF(expr1,expr2,expr3)</span>
 <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">IF</span>(<span class="hljs-number">2</span>&gt;<span class="hljs-number">1</span>,<span class="hljs-string">'true'</span>,<span class="hljs-string">'false'</span>);
 
 <span class="hljs-comment"># case 用法一：相当于java中的switch()</span>
@@ -411,10 +411,10 @@
 	<span class="hljs-keyword">WHEN</span> salary&gt;<span class="hljs-number">15000</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">'B'</span>
 	<span class="hljs-keyword">WHEN</span> salary&gt;<span class="hljs-number">10000</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">'C'</span>
 	<span class="hljs-keyword">ELSE</span> <span class="hljs-string">'D'</span>
-<span class="hljs-keyword">END</span> <span class="hljs-keyword">AS</span> <span class="hljs-string">'工资等级'</span> <span class="hljs-keyword">FROM</span> employees;</code></pre>
+<span class="hljs-keyword">END</span> <span class="hljs-keyword">AS</span> <span class="hljs-string">'工资等级'</span> <span class="hljs-keyword">FROM</span> employees;</code></pre></div>
 
 <h3 id="分组函数"><a href="#分组函数" class="headerlink" title="分组函数"></a>分组函数</h3><p><strong>作用：</strong>用作统计使用，又称聚合函数，统计函数，组函数<br>        <strong>特点：</strong><br>        1.sum，avg一般处理数值型数据；max，min，count可以处理任何类型<br>        2.以上分组函数都忽略null值<br>        3.可以和discount()搭配使用实现去重<br>        4.一般使用count(*)统计行数，没有记录返回0<br>        5.和分组函数一起查询的字段必须是group by后面的字段</p>
-<pre><code class="hljs sql"><span class="hljs-comment"># sum() 求和</span>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-comment"># sum() 求和</span>
 <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">sum</span>(salary) <span class="hljs-keyword">FROM</span> employees;
 <span class="hljs-comment"># avg() 求平均值</span>
 <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">AVG</span>(salary) <span class="hljs-keyword">FROM</span> employees;
@@ -428,10 +428,10 @@
 <span class="hljs-comment"># 查询员工表中最大入职时间和最小入职时间的相差天数</span>
 <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DATEDIFF</span>(<span class="hljs-keyword">MAX</span>(hiredate),<span class="hljs-keyword">MIN</span>(hiredate)) <span class="hljs-keyword">FROM</span> employees;
 <span class="hljs-comment"># 查询部门编号为60的员工个数</span>
-<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">WHERE</span> department_id = <span class="hljs-number">60</span>;</code></pre>
+<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">WHERE</span> department_id = <span class="hljs-number">60</span>;</code></pre></div>
 
 <h2 id="分组查询"><a href="#分组查询" class="headerlink" title="分组查询"></a>分组查询</h2><p><strong>语法：</strong><br>        select 分组函数,列(要求出现在group by的后面)<br>        from 表<br>        where 筛选条件<br>        group by 分组的列表<br>        order by 子句<br>        特点：分组查询中的筛选条件分为两类<br>            分组前筛选：数据源在原始表中，位于group by子句前面，使用where关键字；<br>            分组后筛选：数据源在分组后的结果集中，位于group by子句后面，使用having关键字<br>            1.分组函数作条件肯定放在having后<br>            2.能分组前筛选尽量放在group by前面</p>
-<pre><code class="hljs sql"><span class="hljs-comment"># 查询每个工种的最高工资</span>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-comment"># 查询每个工种的最高工资</span>
 <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">MAX</span>(salary),job_id <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> job_id;
 <span class="hljs-comment"># 查询每个位置上的部门个数</span>
 <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">COUNT</span>(*),location_id <span class="hljs-keyword">FROM</span> departments <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> location_id;
@@ -444,9 +444,9 @@
 <span class="hljs-comment"># 查询领导编号&gt;102的每个领导手下的最低工资&gt;5000的领导编号是哪一个，以及最低工资</span>
 <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">MIN</span>(salary),manager_id <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">WHERE</span> manager_id&gt;<span class="hljs-number">102</span> <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> manager_id <span class="hljs-keyword">HAVING</span> <span class="hljs-keyword">MIN</span>(salary)&gt;<span class="hljs-number">5000</span> 
 <span class="hljs-comment"># 查询每个部门每个工种的员工的平均工资，并按平均工资的高低显示 </span>
-<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">AVG</span>(salary),job_id,department_id <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> job_id,department_id <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-keyword">AVG</span>(salary) <span class="hljs-keyword">DESC</span>;</code></pre>
+<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">AVG</span>(salary),job_id,department_id <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> job_id,department_id <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-keyword">AVG</span>(salary) <span class="hljs-keyword">DESC</span>;</code></pre></div>
 
-<h2 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h2><pre><code class="hljs sql"><span class="hljs-comment"># 一、内连接</span>
+<h2 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h2><div class="hljs"><pre><code class="hljs sql"><span class="hljs-comment"># 一、内连接</span>
 <span class="hljs-comment">/*</span>
 <span class="hljs-comment">语法：</span>
 <span class="hljs-comment">select 查询列表</span>
@@ -476,9 +476,9 @@
 <span class="hljs-comment">#3.自连接</span>
 <span class="hljs-comment"># 查询员工名、上级的名字</span>
 <span class="hljs-keyword">SELECT</span> e.last_name,m.last_name <span class="hljs-keyword">FROM</span> employees e <span class="hljs-keyword">JOIN</span> employees m
-<span class="hljs-keyword">ON</span> e.manager_id = m.employee_id;</code></pre>
+<span class="hljs-keyword">ON</span> e.manager_id = m.employee_id;</code></pre></div>
 
-<pre><code class="hljs sql"><span class="hljs-comment"># 二、外连接</span>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-comment"># 二、外连接</span>
 <span class="hljs-comment">/*</span>
 <span class="hljs-comment">用于查询一个表中有，另一个表中没有的字段</span>
 <span class="hljs-comment">特点：</span>
@@ -492,9 +492,9 @@
 <span class="hljs-comment">*/</span>
 <span class="hljs-comment"># 查询没有员工的部门信息</span>
 <span class="hljs-keyword">SELECT</span> d.* <span class="hljs-keyword">FROM</span> departments d <span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">OUTER</span> <span class="hljs-keyword">JOIN</span> employees e
-<span class="hljs-keyword">ON</span> d.department_id=e.department_id <span class="hljs-keyword">WHERE</span> employee_id <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>;</code></pre>
+<span class="hljs-keyword">ON</span> d.department_id=e.department_id <span class="hljs-keyword">WHERE</span> employee_id <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>;</code></pre></div>
 
-<h2 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h2><pre><code class="hljs sql"><span class="hljs-comment"># 子查询</span>
+<h2 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h2><div class="hljs"><pre><code class="hljs sql"><span class="hljs-comment"># 子查询</span>
 <span class="hljs-comment">/*</span>
 <span class="hljs-comment">出现在其他语句内部的select语句，称为子查询</span>
 <span class="hljs-comment">*/</span>
@@ -539,9 +539,9 @@
 <span class="hljs-comment"># 查询每个部门的平均工资的等级</span>
 <span class="hljs-keyword">SELECT</span> ag_dep.*,g.grade_level <span class="hljs-keyword">FROM</span> 
 (<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">AVG</span>(salary) ag,department_id <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> department_id) ag_dep 
-<span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> job_grades g <span class="hljs-keyword">ON</span>  ag_dep.ag <span class="hljs-keyword">BETWEEN</span> lowest_sal <span class="hljs-keyword">AND</span> highest_sal;</code></pre>
+<span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> job_grades g <span class="hljs-keyword">ON</span>  ag_dep.ag <span class="hljs-keyword">BETWEEN</span> lowest_sal <span class="hljs-keyword">AND</span> highest_sal;</code></pre></div>
 
-<h2 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h2><pre><code class="hljs sql"><span class="hljs-comment"># 分页查询</span>
+<h2 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h2><div class="hljs"><pre><code class="hljs sql"><span class="hljs-comment"># 分页查询</span>
 <span class="hljs-comment">/*</span>
 <span class="hljs-comment">分页提交sql请求</span>
 <span class="hljs-comment">select 查询列表 from 表名 limit 起始索引(从0开始)，结果的数目</span>
@@ -555,7 +555,7 @@
 <span class="hljs-comment"># 查询第11条~第25条的信息</span>
 <span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">LIMIT</span> <span class="hljs-number">11</span>,<span class="hljs-number">15</span>;
 <span class="hljs-comment"># 查询有奖金的员工信息，并且工资较高的前10名显示出来</span>
-<span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">WHERE</span>	commission_pct <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> salary	<span class="hljs-keyword">DESC</span> <span class="hljs-keyword">LIMIT</span> <span class="hljs-number">0</span>,<span class="hljs-number">10</span>;</code></pre>
+<span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">WHERE</span>	commission_pct <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> salary	<span class="hljs-keyword">DESC</span> <span class="hljs-keyword">LIMIT</span> <span class="hljs-number">0</span>,<span class="hljs-number">10</span>;</code></pre></div>
 
 <h2 id="联合查询"><a href="#联合查询" class="headerlink" title="联合查询"></a>联合查询</h2><p>将多条查询语句的结果合并在一起<br>语法：<br>select 查询列表1 from 表名 union select 查询列表2 from 表名<br>特点：<br>1、要查询的结果来自多个表，且多个表之间没有联系<br>2、要求查询列表1与查询列表2的列数相等<br>3、要求多条查询语句的查询的每一列的类型和顺序最好一致<br>4、union关键字默认去重，使用union all 可以包含重复项</p>
 
@@ -944,7 +944,7 @@
         '  ',
         "DQL,常见函数&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -960,8 +960,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

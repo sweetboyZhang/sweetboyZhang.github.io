@@ -222,29 +222,29 @@
             <article class="markdown-body">
               <h2 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h2><a id="more"></a>
 
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-amqp<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre></div>
 
-<h2 id="编写连接信息"><a href="#编写连接信息" class="headerlink" title="编写连接信息"></a>编写连接信息</h2><pre><code class="hljs properties"><span class="hljs-meta">spring.rabbitmq.host</span>=<span class="hljs-string">127.0.0.1</span>
+<h2 id="编写连接信息"><a href="#编写连接信息" class="headerlink" title="编写连接信息"></a>编写连接信息</h2><div class="hljs"><pre><code class="hljs properties"><span class="hljs-meta">spring.rabbitmq.host</span>=<span class="hljs-string">127.0.0.1</span>
 <span class="hljs-meta">spring.rabbitmq.port</span>=<span class="hljs-string">5000</span>
 <span class="hljs-meta">spring.rabbitmq.virtual-host</span>=<span class="hljs-string">/rabbitmq_study</span>
 <span class="hljs-meta">spring.rabbitmq.username</span>=<span class="hljs-string">zyz</span>
-<span class="hljs-meta">spring.rabbitmq.password</span>=<span class="hljs-string">2824199842</span></code></pre>
+<span class="hljs-meta">spring.rabbitmq.password</span>=<span class="hljs-string">2824199842</span></code></pre></div>
 
 <h2 id="helloword模型"><a href="#helloword模型" class="headerlink" title="helloword模型"></a>helloword模型</h2><p><strong>生产者</strong></p>
-<pre><code class="hljs java"><span class="hljs-meta">@Autowired</span> <span class="hljs-comment">// 注入RabbitTemplate</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Autowired</span> <span class="hljs-comment">// 注入RabbitTemplate</span>
 <span class="hljs-keyword">private</span> RabbitTemplate rabbitTemplate;
 
 <span class="hljs-meta">@Test</span> <span class="hljs-comment">// hello world模型</span>
 <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">testHello</span><span class="hljs-params">()</span> </span>&#123;
     <span class="hljs-comment">// 发布消息</span>
     rabbitTemplate.convertAndSend(<span class="hljs-string">"hello"</span>,<span class="hljs-string">"hello,world"</span>);
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><strong>消费者</strong></p>
-<pre><code class="hljs java"><span class="hljs-meta">@Component</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Component</span>
 <span class="hljs-meta">@RabbitListener</span>(queuesToDeclare = <span class="hljs-meta">@Queue</span>(<span class="hljs-string">"hello"</span>)) <span class="hljs-comment">// 指定队列 默认持久化 非独占 非自动删除</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloConsumer</span> </span>&#123;
 
@@ -252,18 +252,18 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">receive</span><span class="hljs-params">(String message)</span></span>&#123;
         System.out.println(<span class="hljs-string">"Message："</span>+message);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <h2 id="work模型"><a href="#work模型" class="headerlink" title="work模型"></a>work模型</h2><p><strong>生产者：</strong></p>
-<pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">// work模型</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">// work模型</span>
 <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">testWork</span><span class="hljs-params">()</span></span>&#123;
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;
         rabbitTemplate.convertAndSend(<span class="hljs-string">"work"</span>,<span class="hljs-string">"hello,workQueue"</span>);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><strong>消费者：</strong></p>
-<pre><code class="hljs java"><span class="hljs-meta">@Component</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Component</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WorkConsumer</span> </span>&#123;
 
     <span class="hljs-meta">@RabbitListener</span>(queuesToDeclare = <span class="hljs-meta">@Queue</span>(<span class="hljs-string">"work"</span>))
@@ -275,16 +275,16 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">receive2</span><span class="hljs-params">(String message)</span></span>&#123;
         System.out.println(<span class="hljs-string">"WorkConsumer2接收消息："</span>+message);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <h2 id="Fanout模型"><a href="#Fanout模型" class="headerlink" title="Fanout模型"></a>Fanout模型</h2><p><strong>生产者：</strong></p>
-<pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">// 广播模型</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">// 广播模型</span>
 <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">testFanout</span><span class="hljs-params">()</span></span>&#123;
     rabbitTemplate.convertAndSend(<span class="hljs-string">"logs"</span>,<span class="hljs-string">""</span>,<span class="hljs-string">"hello,fanout"</span>);
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><strong>消费者：</strong></p>
-<pre><code class="hljs java"><span class="hljs-meta">@Component</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Component</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FanoutConsumer</span> </span>&#123;
 
     <span class="hljs-meta">@RabbitListener</span>(bindings = <span class="hljs-meta">@QueueBinding</span>(
@@ -302,16 +302,16 @@
     <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">receive2</span><span class="hljs-params">(String message)</span></span>&#123;
         System.out.println(<span class="hljs-string">"FanoutConsumer2接收消息："</span>+message);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <h2 id="Routing模型"><a href="#Routing模型" class="headerlink" title="Routing模型"></a>Routing模型</h2><p><strong>生产者：</strong></p>
-<pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">// 路由模型</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">// 路由模型</span>
 <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">testRouting</span><span class="hljs-params">()</span></span>&#123;
     rabbitTemplate.convertAndSend(<span class="hljs-string">"error_direct"</span>,<span class="hljs-string">"error"</span>,<span class="hljs-string">"error日志消息"</span>);
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><strong>消费者</strong></p>
-<pre><code class="hljs java"><span class="hljs-meta">@Component</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Component</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RoutingConsumer</span> </span>&#123;
 
     <span class="hljs-meta">@RabbitListener</span>(bindings = &#123;
@@ -324,16 +324,16 @@
     <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">receive</span><span class="hljs-params">(String message)</span></span>&#123;
         System.out.println(<span class="hljs-string">"RoutingConsumer接收error消息："</span>+message);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <h2 id="Topic模型"><a href="#Topic模型" class="headerlink" title="Topic模型"></a>Topic模型</h2><p><strong>生产者：</strong></p>
-<pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">// 动态路由模型</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">// 动态路由模型</span>
 <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">testTopic</span><span class="hljs-params">()</span></span>&#123;
     rabbitTemplate.convertAndSend(<span class="hljs-string">"topic"</span>,<span class="hljs-string">"user.save"</span>,<span class="hljs-string">"user.save消息"</span>);
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><strong>消费者：</strong></p>
-<pre><code class="hljs java"><span class="hljs-meta">@Component</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Component</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TopicConsumer</span> </span>&#123;
     <span class="hljs-meta">@RabbitListener</span>(bindings = &#123;
             <span class="hljs-meta">@QueueBinding</span>(
@@ -345,7 +345,7 @@
     <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">receive</span><span class="hljs-params">(String message)</span></span>&#123;
         System.out.println(<span class="hljs-string">"TopicConsumer接收user消息："</span>+message);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
             </article>
@@ -370,9 +370,9 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/10/31/shiro/">
+                      <a href="/2020/10/30/vue_cli/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Shiro</span>
+                        <span class="hidden-mobile">Vue Cli的使用</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -733,7 +733,7 @@
         '  ',
         "整合Springboot&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -749,8 +749,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

@@ -228,7 +228,7 @@
 <p>http默认端口号：80<br>https默认端口号：443(浏览器会自动补全)</p>
 <p>web容器是一种服务程序，在服务器一个端口就有一个提供相应服务的程序，而这个程序就是处理从客户端发出的请求，如JAVA中的Tomcat容器，ASP的IIS或PWS都是这样的容器。一个服务器可以多个容器。Web容器负责将HTTP请求转换为HttpServletRequest对象。</p>
 <h2 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h2><p>1、Servlet是JavaEE规范之一，规范就是接口。<br>2、Servlet是JavaWeb三大组件之一，三大组件为：Servlet程序、Filter过滤器、Listener监听器。<br>3、Servlet是运行在服务器上的一个java小程序，可以接受客户端发送过来的请求并发送响应数据给客户端。<br><strong>手动实现Servlet程序:</strong><br>1、编写一个类去实现Servlet 接口<br>2、实现service 方法，处理请求，并响应数据<br>3、到web.xml 中去配置servlet 程序的访问地址</p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">web-app</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee"</span></span>
 <span class="hljs-tag">         <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span></span>
 <span class="hljs-tag">         <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"</span></span>
@@ -249,7 +249,7 @@
 <span class="hljs-comment">        --&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/test<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">servlet-mapping</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre></div>
 
 <p><strong>Servlet的生命周期：</strong></p>
 <p>1、加载：容器通过类加载器使用Servlet类对应的文件来加载Servlet</p>
@@ -272,7 +272,7 @@
 <h2 id="MMIE类型说明"><a href="#MMIE类型说明" class="headerlink" title="MMIE类型说明"></a>MMIE类型说明</h2><p>MIME是HTTP协议中的数据类型<br><img src="/2020/04/05/javaweb-01/5.png" srcset="/img/loading.gif" alt></p>
 <h2 id="HttpServletRequest类"><a href="#HttpServletRequest类" class="headerlink" title="HttpServletRequest类"></a>HttpServletRequest类</h2><p>每次只要有请求进入Tomcat 服务器，Tomcat 服务器就会把请求过来的HTTP 协议信息解析好封装到Request 对象中。然后传递到service 方法（doGet 和doPost）中给我们使用。我们可以通过HttpServletRequest 对象，获取到有请求的信息。</p>
 <p><strong>HttpServletRequest常用方法：</strong><br>i. getRequestURI() 获取请求的资源路径<br>ii. getRequestURL() 获取请求的统一资源定位符（绝对路径）<br>iii. getRemoteHost() 获取客户端的ip 地址<br>iv. getHeader() 获取请求头<br>v. getParameter() 获取请求的参数<br>vi. getParameterValues() 获取请求的参数（多个值的时候使用）<br>vii. getMethod() 获取请求的方式GET 或POST<br>viii. setAttribute(key, value); 设置域数据<br>ix. getAttribute(key); 获取域数据<br>x. getRequestDispatcher() 获取请求转发对象</p>
-<pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
@@ -290,9 +290,9 @@
         <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span>/&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloServlet3</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloServlet3</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doPost</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
         System.out.println(<span class="hljs-string">"post请求"</span>);
         <span class="hljs-comment">// 设置请求体的字符集为UTF-8，从而解决post 请求的中文乱码问题</span>
@@ -305,10 +305,10 @@
         System.out.println(pwd);
         System.out.println(Arrays.asList(hobbies));
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <h2 id="请求的转发"><a href="#请求的转发" class="headerlink" title="请求的转发"></a>请求的转发</h2><p>服务器收到请求后，从一个资源跳转到另一个资源的操作。<br>特点：1、浏览器地址栏没有变化<br>            2、是一次请求<br>            3、共享Request域中的数据<br>            4、可以转发到WEB-INF目录下<br>            5、不可以访问工程外的资源<br>可能会造成表单的多次提交。</p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Servlet1</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Servlet1</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;
 <span class="hljs-meta">@Override</span>
 	<span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doGet</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException,IOException </span>&#123;
 	<span class="hljs-comment">// 获取请求的参数（办事的材料）查看</span>
@@ -325,10 +325,10 @@
 	<span class="hljs-comment">// 走向Sevlet2（柜台2）</span>
 	requestDispatcher.forward(req,resp);
 	&#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <h2 id="base标签"><a href="#base标签" class="headerlink" title="base标签"></a>base标签</h2><p>设置页面相对路径工作时参照的路径</p>
-<pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
@@ -342,10 +342,10 @@
     这是a/b/c.html
     <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"../../index.html"</span>&gt;</span>返回首页<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 
 <h2 id="HttpServletResponse类"><a href="#HttpServletResponse类" class="headerlink" title="HttpServletResponse类"></a>HttpServletResponse类</h2><p>HttpServletResponse 类和HttpServletRequest 类一样。<br>每次请求进来，Tomcat 服务器都会创建一个Response 对象传递给Servlet 程序去使用。<br>HttpServletRequest 表示请求过来的信息，HttpServletResponse 表示所有响应的信息。<br><strong>两个输出流：(同时只能使用一个)</strong><br>字节流：getOutputStream();  &nbsp;&nbsp;&nbsp;常用于下载，传递二进制数据<br>字符流：getWriter();&nbsp;&nbsp;&nbsp;常用于回传字符串</p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ResponseIOServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ResponseIOServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doGet</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
 <span class="hljs-comment">//        // 设置服务器字符集</span>
 <span class="hljs-comment">//        response.setCharacterEncoding("utf-8");</span>
@@ -358,10 +358,10 @@
         PrintWriter writer = response.getWriter();
         writer.write(<span class="hljs-string">"哈哈"</span>);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <h2 id="请求的重定向"><a href="#请求的重定向" class="headerlink" title="请求的重定向"></a>请求的重定向</h2><p>请求重定向，是指客户端给服务器发请求，然后服务器通过响应头告诉客户端，并提供一个新的地址，然后客户端去新地址访问，叫请求重定向（因为之前的地址可能已经被废弃）。可以解决表单的多次提交问题。<br><img src="/2020/04/05/javaweb-01/6.png" srcset="/img/loading.gif" alt></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ResponseIOServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ResponseIOServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doGet</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
 <span class="hljs-comment">//        // 方式一：</span>
 <span class="hljs-comment">//        // 设置响应码</span>
@@ -380,7 +380,7 @@
         PrintWriter writer = response.getWriter();
         writer.write(<span class="hljs-string">"哈哈哈"</span>);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <h2 id="JavaEE项目的三层架构"><a href="#JavaEE项目的三层架构" class="headerlink" title="JavaEE项目的三层架构"></a>JavaEE项目的三层架构</h2><p><img src="/2020/04/05/javaweb-01/7.png" srcset="/img/loading.gif" alt></p>
 <p>分层的目的是为了解耦。解耦是为了降低代码的耦合度，方便项目后期的维护和升级。</p>
@@ -771,7 +771,7 @@
         '  ',
         "Servlet&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -787,8 +787,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

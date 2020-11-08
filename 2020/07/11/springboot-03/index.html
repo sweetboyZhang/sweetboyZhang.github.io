@@ -224,23 +224,23 @@
 <h2 id="模板引擎Thymeleaf"><a href="#模板引擎Thymeleaf" class="headerlink" title="模板引擎Thymeleaf"></a>模板引擎Thymeleaf</h2><p>就是将后端的数据渲染到前端的页面上去显示，例如 jsp 就是一个模板引擎。<br><img src="/2020/07/11/springboot-03/2.png" srcset="/img/loading.gif" alt></p>
 <p><strong>thymeleaf 的使用</strong></p>
 <p>首先导入它的依赖，在springboot中要添加其他组件，没有什么是一个starter解决不了的！</p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--thymeleaf--&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--thymeleaf--&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-thymeleaf<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre></div>
 
 <p>将测试页面放在templates目录下，编写conntroller跳转页面</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Controller</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Controller</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestController</span> </span>&#123;
     <span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/test1"</span>)
     <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">test1</span><span class="hljs-params">()</span></span>&#123;
         <span class="hljs-keyword">return</span> <span class="hljs-string">"test1"</span>;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><strong>thmeleaf 语法</strong></p>
-<pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span> <span class="hljs-attr">xmlns:th</span>=<span class="hljs-string">"http://www.thymeleaf.org"</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
@@ -261,10 +261,10 @@
     <span class="hljs-comment">&lt;!--日期格式化--&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"$&#123;#dates.format(emp.getBirth(),'yyyy-MM-dd')&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 
 <h2 id="接管SpringMVC"><a href="#接管SpringMVC" class="headerlink" title="接管SpringMVC"></a>接管SpringMVC</h2><p>创建config目录，在config目录下编写类，用来接管、扩展SpringMVC</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyMvcConfig</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">WebMvcConfigurer</span> </span>&#123;
     <span class="hljs-meta">@Override</span> <span class="hljs-comment">// 配置页面映射关系</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addViewControllers</span><span class="hljs-params">(ViewControllerRegistry registry)</span> </span>&#123;
@@ -278,10 +278,10 @@
         registry.addInterceptor(<span class="hljs-keyword">new</span> LoginHandlerInterceptor()).addPathPatterns(<span class="hljs-string">"/*"</span>)
             .excludePathPatterns(<span class="hljs-string">"/index.html"</span>,<span class="hljs-string">"/"</span>,<span class="hljs-string">"/user/login"</span>,<span class="hljs-string">"/static/**"</span>);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>编写拦截器的实现类</p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LoginHandlerInterceptor</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">HandlerInterceptor</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LoginHandlerInterceptor</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">HandlerInterceptor</span> </span>&#123;
     <span class="hljs-meta">@Override</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">preHandle</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
         <span class="hljs-comment">// 登录成功后有user的session</span>
@@ -294,14 +294,14 @@
         &#125;
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<h2 id="处理器接收页面传参"><a href="#处理器接收页面传参" class="headerlink" title="处理器接收页面传参"></a>处理器接收页面传参</h2><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">th:href</span>=<span class="hljs-string">"@&#123;/delete/&#125;+$&#123;emp.getId()&#125;"</span>&gt;</span>删除<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></code></pre>
+<h2 id="处理器接收页面传参"><a href="#处理器接收页面传参" class="headerlink" title="处理器接收页面传参"></a>处理器接收页面传参</h2><div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">th:href</span>=<span class="hljs-string">"@&#123;/delete/&#125;+$&#123;emp.getId()&#125;"</span>&gt;</span>删除<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></code></pre></div>
 
-<pre><code class="hljs java"><span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/delete/&#123;id&#125;"</span>)<span class="hljs-comment">// @PathVarable 接收路径中占位符的值</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">delete</span><span class="hljs-params">(@PathVariable(<span class="hljs-string">"id"</span>)</span>Integer id)</span>&#123;&#125;</code></pre>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/delete/&#123;id&#125;"</span>)<span class="hljs-comment">// @PathVarable 接收路径中占位符的值</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">delete</span><span class="hljs-params">(@PathVariable(<span class="hljs-string">"id"</span>)</span>Integer id)</span>&#123;&#125;</code></pre></div>
 
-<h2 id="项目配置文件"><a href="#项目配置文件" class="headerlink" title="项目配置文件"></a>项目配置文件</h2><pre><code class="hljs properties"><span class="hljs-comment"># 关闭thymeleaf 缓存</span>
+<h2 id="项目配置文件"><a href="#项目配置文件" class="headerlink" title="项目配置文件"></a>项目配置文件</h2><div class="hljs"><pre><code class="hljs properties"><span class="hljs-comment"># 关闭thymeleaf 缓存</span>
 <span class="hljs-meta">spring.thymeleaf.cache</span>=<span class="hljs-string">false</span>
 
 <span class="hljs-comment"># 项目路径  localhost:8080/zyz</span>
@@ -311,7 +311,7 @@
 <span class="hljs-comment"># spring.messages.basename=i18n.login</span>
 
 <span class="hljs-comment"># 时间日期格式化</span>
-<span class="hljs-meta">spring.mvc.format.date</span>=<span class="hljs-string">yyyy-MM-dd</span></code></pre>
+<span class="hljs-meta">spring.mvc.format.date</span>=<span class="hljs-string">yyyy-MM-dd</span></code></pre></div>
             </article>
             <hr>
             <div>
@@ -697,7 +697,7 @@
         '  ',
         "Springboot Web开发&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -713,8 +713,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

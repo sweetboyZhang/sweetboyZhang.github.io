@@ -223,7 +223,7 @@
               <p>Jedis是Redis官方推荐的Java连接开发工具。是使用Java来操作Redis的中间件。<a id="more"></a></p>
 <h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>1、创建一个maven项目</p>
 <p>2、导入依赖</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>
         <span class="hljs-comment">&lt;!-- https://mvnrepository.com/artifact/redis.clients/jedis --&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
             <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>redis.clients<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
@@ -235,18 +235,18 @@
             <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>fastjson<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
             <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.2.56<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span></code></pre>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span></code></pre></div>
 
-<h2 id="编码测试"><a href="#编码测试" class="headerlink" title="编码测试"></a>编码测试</h2><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">JedisTest</span> </span>&#123;
+<h2 id="编码测试"><a href="#编码测试" class="headerlink" title="编码测试"></a>编码测试</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">JedisTest</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
         <span class="hljs-comment">// 1、创建Jedis对象</span>
         Jedis jedis = <span class="hljs-keyword">new</span> Jedis(<span class="hljs-string">"127.0.0.1"</span>,<span class="hljs-number">6379</span>);
         System.out.println(jedis.ping());<span class="hljs-comment">// 连接成功输出 PONG</span>
 		<span class="hljs-comment">// 所有的api与之前的学习的命令一致</span>
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<h2 id="测试事务"><a href="#测试事务" class="headerlink" title="测试事务"></a>测试事务</h2><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TxTest</span> </span>&#123;
+<h2 id="测试事务"><a href="#测试事务" class="headerlink" title="测试事务"></a>测试事务</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TxTest</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
         Jedis jedis = <span class="hljs-keyword">new</span> Jedis(<span class="hljs-string">"127.0.0.1"</span>, <span class="hljs-number">6379</span>);
         JSONObject jsonObject = <span class="hljs-keyword">new</span> JSONObject();
@@ -267,22 +267,22 @@
         &#125;
         jedis.close();
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <h2 id="Springboot整合"><a href="#Springboot整合" class="headerlink" title="Springboot整合"></a>Springboot整合</h2><p>1、创建springboot项目，并勾选如下依赖<br><img src="/2020/08/08/redis-05/1.png" srcset="/img/loading.gif" alt></p>
 <blockquote>
 <p>在springboot2.x之后，原来使用的jedi被替换成了lettuce。<br>jedis：采用直连，多个线程操作不安全。<br>lettuce：采用netty，实例可以在多个线程中共享，不存在线程不安全的情况。</p>
 </blockquote>
 <p>2、配置连接属性</p>
-<pre><code class="hljs yml"><span class="hljs-comment"># springboot所有的配置类都有一个自动配置类  RedisAutoConfiguration</span>
+<div class="hljs"><pre><code class="hljs yml"><span class="hljs-comment"># springboot所有的配置类都有一个自动配置类  RedisAutoConfiguration</span>
 <span class="hljs-comment"># 自动配置类都会绑定一个配置文件 RedisProperties  prefix = "spring.redis"</span>
 <span class="hljs-attr">spring:</span>
   <span class="hljs-attr">redis:</span>
     <span class="hljs-attr">host:</span> <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>
-    <span class="hljs-attr">port:</span> <span class="hljs-number">6379</span></code></pre>
+    <span class="hljs-attr">port:</span> <span class="hljs-number">6379</span></code></pre></div>
 
 <p>3、测试连接</p>
-<pre><code class="hljs java"><span class="hljs-meta">@SpringBootTest</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@SpringBootTest</span>
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Redis02SpringbootApplicationTests</span> </span>&#123;
 
    <span class="hljs-meta">@Autowired</span>
@@ -293,10 +293,10 @@
       System.out.println(redisTemplate.opsForValue().get(<span class="hljs-string">"name"</span>));<span class="hljs-comment">// zyz</span>
 
    &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <h2 id="自定义RedisTemplate"><a href="#自定义RedisTemplate" class="headerlink" title="自定义RedisTemplate"></a>自定义RedisTemplate</h2><p>使用统一使用jackson序列化，防止乱码问题</p>
-<pre><code class="hljs java"><span class="hljs-comment">// 自定义Template</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 自定义Template</span>
 <span class="hljs-meta">@Configuration</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RedisConfig</span> </span>&#123;
     <span class="hljs-meta">@Bean</span>
@@ -320,20 +320,20 @@
         <span class="hljs-keyword">return</span> template;
     &#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>测试，User实体类需要实现Serializable接口</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
        User user = <span class="hljs-keyword">new</span> User(<span class="hljs-string">"zyz"</span>,<span class="hljs-number">18</span>);
        <span class="hljs-comment">// 序列化</span>
        String jsonUser = <span class="hljs-keyword">new</span> ObjectMapper().writeValueAsString(user);
        redisTemplate.opsForValue().set(<span class="hljs-string">"user"</span>,jsonUser);
        System.out.println(redisTemplate.opsForValue().get(<span class="hljs-string">"user"</span>));
-   &#125;</code></pre>
+   &#125;</code></pre></div>
 
 <p>控制台获取：<br><img src="/2020/08/08/redis-05/2.png" srcset="/img/loading.gif" alt></p>
-<h2 id="封装工具类"><a href="#封装工具类" class="headerlink" title="封装工具类"></a>封装工具类</h2><pre><code class="hljs java"><span class="hljs-meta">@Component</span>
+<h2 id="封装工具类"><a href="#封装工具类" class="headerlink" title="封装工具类"></a>封装工具类</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Component</span>
 <span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RedisUtils</span> </span>&#123;
     <span class="hljs-meta">@Autowired</span>
     <span class="hljs-keyword">private</span> RedisTemplate&lt;String, Object&gt; redisTemplate;
@@ -896,16 +896,16 @@
             <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
         &#125;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>测试</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Autowired</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Autowired</span>
 <span class="hljs-keyword">private</span> RedisUtils redisUtils;
 <span class="hljs-meta">@Test</span>
    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testRedisUtils</span><span class="hljs-params">()</span></span>&#123;
     redisUtils.set(<span class="hljs-string">"name"</span>,<span class="hljs-string">"zyz"</span>);
        System.out.println(redisUtils.get(<span class="hljs-string">"name"</span>));
-   &#125;</code></pre>
+   &#125;</code></pre></div>
 
 
             </article>
@@ -1293,7 +1293,7 @@
         '  ',
         "Jedis,Springboot集成Redis&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -1309,8 +1309,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

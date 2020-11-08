@@ -222,7 +222,7 @@
             <article class="markdown-body">
               <p>对于数据访问层，无论是SQL还是NOSQL，Springboot底层都是采用Spring Data的方式进行统一处理。<a id="more"></a></p>
 <h2 id="整合jdbc"><a href="#整合jdbc" class="headerlink" title="整合jdbc"></a>整合jdbc</h2><h3 id="1、新建项目引入web模块和连接mysql必须的模块，JDBC-API，MySQL-Driver"><a href="#1、新建项目引入web模块和连接mysql必须的模块，JDBC-API，MySQL-Driver" class="headerlink" title="1、新建项目引入web模块和连接mysql必须的模块，JDBC API，MySQL Driver"></a>1、新建项目引入web模块和连接mysql必须的模块，JDBC API，MySQL Driver</h3><p><img src="/2020/07/25/springboot-04/1.png" srcset="/img/loading.gif" alt></p>
-<h3 id="2、项目建立完成后，发现已经替我们导入响应的启动器"><a href="#2、项目建立完成后，发现已经替我们导入响应的启动器" class="headerlink" title="2、项目建立完成后，发现已经替我们导入响应的启动器"></a>2、项目建立完成后，发现已经替我们导入响应的启动器</h3><pre><code class="hljs xml"> <span class="hljs-comment">&lt;!--web--&gt;</span>
+<h3 id="2、项目建立完成后，发现已经替我们导入响应的启动器"><a href="#2、项目建立完成后，发现已经替我们导入响应的启动器" class="headerlink" title="2、项目建立完成后，发现已经替我们导入响应的启动器"></a>2、项目建立完成后，发现已经替我们导入响应的启动器</h3><div class="hljs"><pre><code class="hljs xml"> <span class="hljs-comment">&lt;!--web--&gt;</span>
  <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
@@ -237,17 +237,17 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>mysql<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mysql-connector-java<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>runtime<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre></div>
 
-<h3 id="3、编写yaml配置文件连接数据库"><a href="#3、编写yaml配置文件连接数据库" class="headerlink" title="3、编写yaml配置文件连接数据库"></a>3、编写yaml配置文件连接数据库</h3><pre><code class="hljs yml"><span class="hljs-attr">spring:</span>
+<h3 id="3、编写yaml配置文件连接数据库"><a href="#3、编写yaml配置文件连接数据库" class="headerlink" title="3、编写yaml配置文件连接数据库"></a>3、编写yaml配置文件连接数据库</h3><div class="hljs"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span>
   <span class="hljs-attr">datasource:</span>
     <span class="hljs-attr">username:</span> <span class="hljs-string">root</span>
     <span class="hljs-attr">password:</span> <span class="hljs-number">2824199842</span>
     <span class="hljs-attr">url:</span> <span class="hljs-string">jdbc:mysql://localhost:3306/mybatis?serverTimezone=Asia/Shanghai</span>
-    <span class="hljs-attr">driver-class-name:</span> <span class="hljs-string">com.mysql.cj.jdbc.Driver</span></code></pre>
+    <span class="hljs-attr">driver-class-name:</span> <span class="hljs-string">com.mysql.cj.jdbc.Driver</span></code></pre></div>
 
 <h3 id="在测试类中测试连接是否成功"><a href="#在测试类中测试连接是否成功" class="headerlink" title="在测试类中测试连接是否成功"></a>在测试类中测试连接是否成功</h3><p>4、配置完这一些东西后，我们就可以直接去使用了，因为SpringBoot已经默认帮我们进行了自动配置</p>
-<pre><code class="hljs java"><span class="hljs-meta">@SpringBootTest</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@SpringBootTest</span>
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Springboot04DataApplicationTests</span> </span>&#123;
     <span class="hljs-meta">@Autowired</span>
     DataSource dataSource;
@@ -261,9 +261,9 @@
         <span class="hljs-comment">// 关闭连接</span>
         connection.close();
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<h3 id="5、编写一个Controller，注入-jdbcTemplate，编写测试方法进行访问测试；"><a href="#5、编写一个Controller，注入-jdbcTemplate，编写测试方法进行访问测试；" class="headerlink" title="5、编写一个Controller，注入 jdbcTemplate，编写测试方法进行访问测试；"></a>5、编写一个Controller，注入 jdbcTemplate，编写测试方法进行访问测试；</h3><pre><code class="hljs java"><span class="hljs-meta">@RestController</span> <span class="hljs-comment">// 返回json对象给浏览器</span>
+<h3 id="5、编写一个Controller，注入-jdbcTemplate，编写测试方法进行访问测试；"><a href="#5、编写一个Controller，注入-jdbcTemplate，编写测试方法进行访问测试；" class="headerlink" title="5、编写一个Controller，注入 jdbcTemplate，编写测试方法进行访问测试；"></a>5、编写一个Controller，注入 jdbcTemplate，编写测试方法进行访问测试；</h3><div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span> <span class="hljs-comment">// 返回json对象给浏览器</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">JDBCController</span> </span>&#123;
     <span class="hljs-comment">/**</span>
 <span class="hljs-comment">     * springboot对原生jdbc做了轻量级的封装</span>
@@ -311,25 +311,25 @@
         jdbcTemplate.update(sql,objects);
         <span class="hljs-keyword">return</span> <span class="hljs-string">"updateOK"</span>;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>至此，使用原生的jdbc完成了基本的crud操作，因为springboot对jdbc进行了轻量级的封装，在使用上也并不是很繁琐。</p>
-<h2 id="整合Druid"><a href="#整合Druid" class="headerlink" title="整合Druid"></a>整合Druid</h2><h3 id="1、添加Druid依赖"><a href="#1、添加Druid依赖" class="headerlink" title="1、添加Druid依赖"></a>1、添加Druid依赖</h3><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--druid--&gt;</span>
+<h2 id="整合Druid"><a href="#整合Druid" class="headerlink" title="整合Druid"></a>整合Druid</h2><h3 id="1、添加Druid依赖"><a href="#1、添加Druid依赖" class="headerlink" title="1、添加Druid依赖"></a>1、添加Druid依赖</h3><div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--druid--&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.alibaba<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>druid<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.1.23<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre></div>
 
-<h3 id="2、在配置文件中指定数据源"><a href="#2、在配置文件中指定数据源" class="headerlink" title="2、在配置文件中指定数据源"></a>2、在配置文件中指定数据源</h3><pre><code class="hljs yml"><span class="hljs-attr">spring:</span>
+<h3 id="2、在配置文件中指定数据源"><a href="#2、在配置文件中指定数据源" class="headerlink" title="2、在配置文件中指定数据源"></a>2、在配置文件中指定数据源</h3><div class="hljs"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span>
   <span class="hljs-attr">datasource:</span>
     <span class="hljs-attr">username:</span> <span class="hljs-string">root</span>
     <span class="hljs-attr">password:</span> <span class="hljs-number">2824199842</span>
     <span class="hljs-attr">url:</span> <span class="hljs-string">jdbc:mysql://localhost:3306/mybatis?serverTimezone=Asia/Shanghai</span>
     <span class="hljs-attr">driver-class-name:</span> <span class="hljs-string">com.mysql.cj.jdbc.Driver</span>
-    <span class="hljs-attr">type:</span> <span class="hljs-string">com.alibaba.druid.pool.DruidDataSource</span> <span class="hljs-comment"># 自定义数据源</span></code></pre>
+    <span class="hljs-attr">type:</span> <span class="hljs-string">com.alibaba.druid.pool.DruidDataSource</span> <span class="hljs-comment"># 自定义数据源</span></code></pre></div>
 
-<h3 id="3、测试并查看数据源"><a href="#3、测试并查看数据源" class="headerlink" title="3、测试并查看数据源"></a>3、测试并查看数据源</h3><pre><code class="hljs java"><span class="hljs-meta">@SpringBootTest</span>
+<h3 id="3、测试并查看数据源"><a href="#3、测试并查看数据源" class="headerlink" title="3、测试并查看数据源"></a>3、测试并查看数据源</h3><div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@SpringBootTest</span>
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Springboot04DataApplicationTests</span> </span>&#123;
 
     <span class="hljs-meta">@Autowired</span>
@@ -343,9 +343,9 @@
         <span class="hljs-comment">// 关闭连接</span>
         connection.close();
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<h3 id="4、获取连接成功后，可以设置数据源连接初始化大小、最大连接数、等待时间、最小连接数等设置项"><a href="#4、获取连接成功后，可以设置数据源连接初始化大小、最大连接数、等待时间、最小连接数等设置项" class="headerlink" title="4、获取连接成功后，可以设置数据源连接初始化大小、最大连接数、等待时间、最小连接数等设置项"></a>4、获取连接成功后，可以设置数据源连接初始化大小、最大连接数、等待时间、最小连接数等设置项</h3><pre><code class="hljs yml"><span class="hljs-attr">spring:</span>
+<h3 id="4、获取连接成功后，可以设置数据源连接初始化大小、最大连接数、等待时间、最小连接数等设置项"><a href="#4、获取连接成功后，可以设置数据源连接初始化大小、最大连接数、等待时间、最小连接数等设置项" class="headerlink" title="4、获取连接成功后，可以设置数据源连接初始化大小、最大连接数、等待时间、最小连接数等设置项"></a>4、获取连接成功后，可以设置数据源连接初始化大小、最大连接数、等待时间、最小连接数等设置项</h3><div class="hljs"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span>
   <span class="hljs-attr">datasource:</span>
     <span class="hljs-attr">username:</span> <span class="hljs-string">root</span>
     <span class="hljs-attr">password:</span> <span class="hljs-number">2824199842</span>
@@ -372,17 +372,17 @@
     <span class="hljs-attr">filters:</span> <span class="hljs-string">stat,wall,log4j</span>
     <span class="hljs-attr">maxPoolPreparedStatementPerConnectionSize:</span> <span class="hljs-number">20</span>
     <span class="hljs-attr">useGlobalDataSourceStat:</span> <span class="hljs-literal">true</span>
-    <span class="hljs-attr">connectionProperties:</span> <span class="hljs-string">druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500</span></code></pre>
+    <span class="hljs-attr">connectionProperties:</span> <span class="hljs-string">druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500</span></code></pre></div>
 
-<h3 id="5、导入log4j依赖"><a href="#5、导入log4j依赖" class="headerlink" title="5、导入log4j依赖"></a>5、导入log4j依赖</h3><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--log4j --&gt;</span>
+<h3 id="5、导入log4j依赖"><a href="#5、导入log4j依赖" class="headerlink" title="5、导入log4j依赖"></a>5、导入log4j依赖</h3><div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--log4j --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>log4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>log4j<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.2.17<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre></div>
 
 <h3 id="6、创建DruidConfig类，用于拓展配置druid"><a href="#6、创建DruidConfig类，用于拓展配置druid" class="headerlink" title="6、创建DruidConfig类，用于拓展配置druid"></a>6、创建DruidConfig类，用于拓展配置druid</h3><p>将数据源的配置文件绑定到容器中，无需springboot再创建容器</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DruidConfig</span> </span>&#123;
     <span class="hljs-comment">/**</span>
 <span class="hljs-comment">     *将自定义的Druid数据源添加到容器中，不再让Spring Boot自动创建</span>
@@ -394,10 +394,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> DruidDataSource <span class="hljs-title">druidDataSource</span><span class="hljs-params">()</span></span>&#123;
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> DruidDataSource();
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>配置后台监控功能：<br>Druid 数据源具有监控的功能，并提供了一个 web 界面方便用户查看，类似安装路由器 时，人家也提供了一个默认的 web 页面。</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Bean</span> <span class="hljs-comment">// 注入到容器中，就相当于web.xml文件</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Bean</span> <span class="hljs-comment">// 注入到容器中，就相当于web.xml文件</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> ServletRegistrationBean <span class="hljs-title">statViewServlet</span><span class="hljs-params">()</span></span>&#123;
     ServletRegistrationBean&lt;StatViewServlet&gt; bean = 
         <span class="hljs-keyword">new</span> ServletRegistrationBean&lt;&gt;(<span class="hljs-keyword">new</span> StatViewServlet(), <span class="hljs-string">"/druid/*"</span>);
@@ -411,12 +411,12 @@
     <span class="hljs-comment">// 设置初始化参数</span>
     bean.setInitParameters(initParameters);
     <span class="hljs-keyword">return</span> bean;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>访问<a href="http://localhost:8080/druid/" target="_blank" rel="noopener">http://localhost:8080/druid/</a><br><img src="/2020/07/25/springboot-04/2.png" srcset="/img/loading.gif" alt></p>
 <p>登录成功后<br><img src="/2020/07/25/springboot-04/3.png" srcset="/img/loading.gif" alt></p>
 <p>配置过滤器</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Bean</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Bean</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> FilterRegistrationBean <span class="hljs-title">webStatFilter</span><span class="hljs-params">()</span></span>&#123;
     FilterRegistrationBean bean = <span class="hljs-keyword">new</span> FilterRegistrationBean();
     bean.setFilter(<span class="hljs-keyword">new</span> WebStatFilter());
@@ -425,7 +425,7 @@
     initParameters.put(<span class="hljs-string">"exclusion"</span>,<span class="hljs-string">"*.js,*.css,/druid/*"</span>);<span class="hljs-comment">// 设置不进行过滤的资源</span>
     bean.setInitParameters(initParameters);
     <span class="hljs-keyword">return</span> bean;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
             </article>
@@ -813,7 +813,7 @@
         '  ',
         "整合jdbc，Druid&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -829,8 +829,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

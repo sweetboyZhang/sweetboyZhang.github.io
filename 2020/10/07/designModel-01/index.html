@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：October 29, 2020 pm
+                  本文最后更新于：November 6, 2020 pm
                 
               </p>
             
@@ -227,7 +227,7 @@
 <p>依赖关系的三种传递方式：</p>
 <ul>
 <li><p>接口传递</p>
-  <pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DependencyPass1</span> </span>&#123;
+  <div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DependencyPass1</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
         InternetTV internetTV = <span class="hljs-keyword">new</span> InternetTV();
         OpenAndClose openAndClose = <span class="hljs-keyword">new</span> OpenAndCloseImpl();
@@ -259,10 +259,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">open</span><span class="hljs-params">(TV tv)</span> </span>&#123;
         tv.play();
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p>构造器传递</p>
-  <pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DependencyPass2</span> </span>&#123;
+  <div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DependencyPass2</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
         InternetTV internetTV = <span class="hljs-keyword">new</span> InternetTV();
         OpenAndClose openAndClose = <span class="hljs-keyword">new</span> OpenAndCloseImpl(internetTV);
@@ -300,10 +300,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">open</span><span class="hljs-params">()</span> </span>&#123;
         tv.play();
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p>setter方式传递</p>
-  <pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DependencyPass3</span> </span>&#123;
+  <div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DependencyPass3</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
         InternetTV internetTV = <span class="hljs-keyword">new</span> InternetTV();
         OpenAndCloseImpl openAndClose = <span class="hljs-keyword">new</span> OpenAndCloseImpl();
@@ -343,16 +343,17 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">open</span><span class="hljs-params">()</span> </span>&#123;
         tv.play();
     &#125;
-&#125;</code></pre>
-<h3 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h3></li>
+&#125;</code></pre></div>
+
+</li>
 </ul>
-<p>让原来的子类和父类都继承一个通用的基类，原有的继承关系去掉，采用依赖，聚合，组合等关系代替。</p>
+<h3 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h3><p>让原来的子类和父类都继承一个通用的基类，原有的继承关系去掉，采用依赖，聚合，组合等关系代替。</p>
 <h3 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h3><p>对扩展开放，修改关闭。<br>使用抽象类提供模板，在进行拓展时，继承抽象类实现具体的方法即可。</p>
 <h3 id="迪米特法则"><a href="#迪米特法则" class="headerlink" title="迪米特法则"></a>迪米特法则</h3><p>一个对象应该对其他对象保持最少的了解，用来降低程序之间的耦合度。</p>
 <h3 id="合成复用原则"><a href="#合成复用原则" class="headerlink" title="合成复用原则"></a>合成复用原则</h3><p>尽量使用合成或聚合关系，少使用继承关系。</p>
 <h2 id="类的关系"><a href="#类的关系" class="headerlink" title="类的关系"></a>类的关系</h2><h3 id="依赖关系-Dependency"><a href="#依赖关系-Dependency" class="headerlink" title="依赖关系 Dependency"></a>依赖关系 Dependency</h3><p>只要是在类中使用到了对方，他们之间就存在依赖关系。<br><img src="/2020/10/07/designModel-01/1.png" srcset="/img/loading.gif" alt></p>
 <p>A依赖于B，A作为箭头的起点，即箭头从主语开始，指向宾语。所有的关系都是这样子的！</p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PersonServiceBean</span></span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PersonServiceBean</span></span>&#123;
     <span class="hljs-keyword">private</span> PersonDao personDao;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">save</span><span class="hljs-params">(Person person)</span></span>&#123;&#125;
     <span class="hljs-function"><span class="hljs-keyword">public</span> IDCard <span class="hljs-title">getIDCard</span><span class="hljs-params">(Integer personId)</span></span>&#123;&#125;
@@ -367,7 +368,7 @@
 
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">IDcard</span></span>&#123;&#125;
 
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Department</span></span>&#123;&#125;</code></pre>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Department</span></span>&#123;&#125;</code></pre></div>
 
 <h3 id="泛化关系-Generalization"><a href="#泛化关系-Generalization" class="headerlink" title="泛化关系 Generalization"></a>泛化关系 Generalization</h3><p>就是继承关系，它是依赖关系的特例。<br><img src="/2020/10/07/designModel-01/2.png" srcset="/img/loading.gif" alt></p>
 <h3 id="实现关系-Realization"><a href="#实现关系-Realization" class="headerlink" title="实现关系 Realization"></a>实现关系 Realization</h3><p>就是A类实现B类，也是依赖关系的特例<br><img src="/2020/10/07/designModel-01/3.png" srcset="/img/loading.gif" alt></p>
@@ -402,9 +403,9 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/10/09/designModel-02/">
+                      <a href="/2020/10/07/shiro/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">单例设计模式</span>
+                        <span class="hidden-mobile">Shiro</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -765,7 +766,7 @@
         '  ',
         "设计模式七大原则&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -781,8 +782,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

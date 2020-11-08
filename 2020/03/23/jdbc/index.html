@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：October 29, 2020 pm
+                  本文最后更新于：November 6, 2020 pm
                 
               </p>
             
@@ -234,7 +234,7 @@
 <p>格式(mysql6.0及以前)：<img src="/2020/03/23/jdbc/3.png" srcset="/img/loading.gif" alt></p>
 <p><strong>mysql6.0以后需要在后面加上时区：</strong><br><strong>”jdbc:mysql://localhost:3306/test?serverTimezone=Asia/Shanghai“</strong></p>
 <p><strong>条件3、用户名和密码</strong></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ConnectionTest</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ConnectionTest</span> </span>&#123;
 	<span class="hljs-meta">@Test</span>
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">connectionTest1</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> SQLException </span>&#123;
 			<span class="hljs-comment">// 获取Driver实现类对象</span>
@@ -314,12 +314,12 @@
 		Connection conn = DriverManager.getConnection(url,user,pwd);
 		System.out.println(conn);
 	&#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><img src="/2020/03/23/jdbc/7.png" srcset="/img/loading.gif" alt></p>
 <h2 id="三、使用PreparedStatement实现CRUD"><a href="#三、使用PreparedStatement实现CRUD" class="headerlink" title="三、使用PreparedStatement实现CRUD"></a>三、使用PreparedStatement实现CRUD</h2><p><strong>操作和访问数据库：</strong><br>数据库连接被用于向数据库发送命令和SQL语句，并接受数据库服务器返回的结果。其实一个数据库连接就是一个Socket连接。<br>在java.sql包中有三个接口分别定义了对数据库的不同调用方式：<br>1、Statement：用于执行静态SQL语句并返回它所生成结果的对象。<br>2、PreparedStatement：SQL语句被预编译并存储在此对象中，可以用此对象多次高效地执行该语句。<br>3、CallableStatement：用于执行SQL存储过程。</p>
 <p><strong>Statement的弊端：</strong>存在拼串操作，并且存在SQL注入问题<br>        <strong>PreparedStatement：</strong>是Statement的子接口；能最大可能提高性能；操作Blob类型数据；可以防止sql注入</p>
-<h3 id="增删改操作"><a href="#增删改操作" class="headerlink" title="增删改操作"></a>增删改操作</h3><pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">// 增加记录</span>
+<h3 id="增删改操作"><a href="#增删改操作" class="headerlink" title="增删改操作"></a>增删改操作</h3><div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">// 增加记录</span>
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testInsert</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
 		Connection conn = <span class="hljs-keyword">null</span>;
 		PreparedStatement ps = <span class="hljs-keyword">null</span>;
@@ -369,10 +369,10 @@
                 e.printStackTrace();
 			&#125;
 		&#125;
-	&#125;</code></pre>
+	&#125;</code></pre></div>
 
 <p>1、可将增加、删除、修改、查询中的共同操作（1.获取连接，2.释放资源）封装成一个工具类：</p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">JDBCUtils</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">JDBCUtils</span> </span>&#123;
 	<span class="hljs-comment">/**</span>
 <span class="hljs-comment">	 * </span>
 <span class="hljs-comment">	 * <span class="hljs-doctag">@Description</span> 获取数据库连接</span>
@@ -422,10 +422,10 @@
             e.printStackTrace();
 		&#125;
 	&#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>2、进一步可将增加、删除、修改中的共同操作（1.获取连接，2.预编译sql，3.填充sql，4.执行操作，5.关闭资源）封装到一个方法中。</p>
-<pre><code class="hljs java"><span class="hljs-comment">// 将增删改操作写成一个通用的方法</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 将增删改操作写成一个通用的方法</span>
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">(String sql, Object ... args)</span> </span>&#123;
 		<span class="hljs-comment">// 1.建立连接</span>
 		Connection conn = <span class="hljs-keyword">null</span>;
@@ -458,10 +458,10 @@
 			<span class="hljs-comment">// TODO Auto-generated catch block</span>
 			e.printStackTrace();
 		&#125;
-	&#125;</code></pre>
+	&#125;</code></pre></div>
 
 <h3 id="查询操作"><a href="#查询操作" class="headerlink" title="查询操作"></a>查询操作</h3><p>Java与SQL对应数据类型转换表：<br>       <img src="/2020/03/23/jdbc/4.png" srcset="/img/loading.gif" alt></p>
-<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testQuery1</span><span class="hljs-params">()</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testQuery1</span><span class="hljs-params">()</span> </span>&#123;
 	Connection conn = <span class="hljs-keyword">null</span>;
 	PreparedStatement ps = <span class="hljs-keyword">null</span>;
 	ResultSet resultset = <span class="hljs-keyword">null</span>;
@@ -490,10 +490,10 @@
 	&#125; <span class="hljs-keyword">finally</span> &#123;
 		JDBCUtils.closeResource(conn, ps, resultset);
 	&#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><strong>针对Customer表创建通用的查询方法：</strong></p>
-<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> Customer <span class="hljs-title">queryCustomers</span><span class="hljs-params">(String sql, Object... args)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> Customer <span class="hljs-title">queryCustomers</span><span class="hljs-params">(String sql, Object... args)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
 	Connection conn = <span class="hljs-keyword">null</span>;
 	PreparedStatement ps = <span class="hljs-keyword">null</span>;
 	<span class="hljs-keyword">try</span> &#123;
@@ -543,10 +543,10 @@
 		<span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> handle exception</span>
 		e.printStackTrace();
 	&#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><strong>针对Order表创建通用的查询方法：</strong></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OrderQuery</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OrderQuery</span> </span>&#123;
 	<span class="hljs-function"><span class="hljs-keyword">public</span> Order <span class="hljs-title">orderQuery</span><span class="hljs-params">(String sql, Object... args)</span> </span>&#123;
 		Connection conn = <span class="hljs-keyword">null</span>;
 		PreparedStatement ps = <span class="hljs-keyword">null</span>;
@@ -600,11 +600,11 @@
 			e.printStackTrace();
 		&#125;
 	&#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><img src="/2020/03/23/jdbc/5.png" srcset="/img/loading.gif" alt></p>
 <p><strong>通用的查询方法(针对所有的 表)：</strong></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Query</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Query</span> </span>&#123;
     <span class="hljs-comment">// 返回一条结果</span>
 	<span class="hljs-keyword">public</span> &lt;T&gt; <span class="hljs-function">T <span class="hljs-title">query</span><span class="hljs-params">(Class&lt;T&gt; clazz, String sql, Object... args)</span> </span>&#123;
 		Connection conn = <span class="hljs-keyword">null</span>;
@@ -710,10 +710,10 @@
 			e.printStackTrace();
 		&#125;
 	&#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <h2 id="四、操作BLOB类型字段"><a href="#四、操作BLOB类型字段" class="headerlink" title="四、操作BLOB类型字段"></a>四、操作BLOB类型字段</h2><p>TinyBlob：255字节<br>        Blob：65K<br>        MediumBlob：16M<br>        LongBlob：4G</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">// 向Customers表中添加一条Blob类型数据</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">// 向Customers表中添加一条Blob类型数据</span>
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testInsert</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
 		Connection conn = JDBCUtils.getConnection();
 		String sql = <span class="hljs-string">"insert into customers(name,email,birth,photo) value(?,?,?,?)"</span>;
@@ -779,7 +779,7 @@
 			&#125;
 			JDBCUtils.closeResource(conn, ps, rs);
 		&#125;
-	&#125;</code></pre>
+	&#125;</code></pre></div>
 
 <h2 id="五、数据库事务"><a href="#五、数据库事务" class="headerlink" title="五、数据库事务"></a>五、数据库事务</h2><p><strong>事务：</strong>一组逻辑操作单元，使数据由一种状态变换到另一种状态。</p>
 <p><strong>事务处理：</strong>要么所有的事务都被提交(commit)，那么这些修改就被永久的保存下来；要么放弃所作的全部修改，整个事务回滚(rollback)到最初的状态。</p>
@@ -795,7 +795,7 @@
 <h2 id="七、数据库连接池"><a href="#七、数据库连接池" class="headerlink" title="七、数据库连接池"></a>七、数据库连接池</h2><p><strong>数据库连接池基本思想：</strong>为数据库连接建立一个“缓冲池”，预先在缓冲池中放入一定数量的连接，当需要建立数据库连接时，只需从“缓冲池”中取出一个，使用完毕后再放回去。</p>
 <p>JDBC的数据库连接池使用javax.sql.DataSource 来表示，DataSource只是一个接口，该接口通常由服务器(Weblogic,WebSphere,Tomcat)提供实现，也有一些开源组织提供实现。<br><img src="/2020/03/23/jdbc/9.png" srcset="/img/loading.gif" alt></p>
 <p>Druid数据库连接池</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getConnection</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
 		Properties pros = <span class="hljs-keyword">new</span> Properties();
 		InputStream is = ClassLoader.getSystemClassLoader().getResourceAsStream(<span class="hljs-string">"druid.properties"</span>);
@@ -803,13 +803,13 @@
 		DataSource dataSource = DruidDataSourceFactory.createDataSource(pros);
 		Connection conn = dataSource.getConnection();
 		System.out.println(conn);
-	&#125;</code></pre>
+	&#125;</code></pre></div>
 
 
 <p><img src="/2020/03/23/jdbc/8.png" srcset="/img/loading.gif" alt></p>
 <p>配置属性：<br><img src="/2020/03/23/jdbc/10.png" srcset="/img/loading.gif" alt></p>
 <h2 id="八、Apache-DBUtils实现CRUD操作"><a href="#八、Apache-DBUtils实现CRUD操作" class="headerlink" title="八、Apache-DBUtils实现CRUD操作"></a>八、Apache-DBUtils实现CRUD操作</h2><p>commons-dbutils 是Apache 组织提供的一个开源JDBC工具类库，封装了增删改查操作。</p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">QueryRunnerTest</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">QueryRunnerTest</span> </span>&#123;
 	<span class="hljs-meta">@Test</span>
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testInsert</span><span class="hljs-params">()</span> </span>&#123;
 		Connection conn = <span class="hljs-keyword">null</span>;
@@ -885,7 +885,7 @@
 		&#125;
 	&#125;
 	
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
             </article>
@@ -897,7 +897,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/jdbc/">jdbc</a>
+                      <a class="hover-with-bg" href="/tags/JDBC/">JDBC</a>
                     
                   </div>
                 
@@ -1273,7 +1273,7 @@
         '  ',
         "Jdbc核心技术&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -1289,8 +1289,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

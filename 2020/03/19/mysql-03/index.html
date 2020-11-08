@@ -221,20 +221,20 @@
             
             <article class="markdown-body">
               <h1 id="数据库操作语言DML"><a href="#数据库操作语言DML" class="headerlink" title="数据库操作语言DML"></a>数据库操作语言DML</h1><h2 id="一、插入语句"><a href="#一、插入语句" class="headerlink" title="一、插入语句"></a>一、插入语句</h2><p>语法：<br>方式一：insert into 表名(列名,…) value(值1,…);<br>方式二：insert into 表名 set 列名=值,列名=值,…<a id="more"></a></p>
-<pre><code class="hljs sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> beauty(<span class="hljs-keyword">id</span>,<span class="hljs-keyword">name</span>,sex,borndate,phone,photo,boyfriend_id)
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> beauty(<span class="hljs-keyword">id</span>,<span class="hljs-keyword">name</span>,sex,borndate,phone,photo,boyfriend_id)
  <span class="hljs-keyword">VALUES</span>(<span class="hljs-number">13</span>,<span class="hljs-string">'Taylor'</span>,<span class="hljs-string">'女'</span>,<span class="hljs-string">'1990-1-1'</span>,<span class="hljs-string">'123456789'</span>,<span class="hljs-literal">NULL</span>,<span class="hljs-number">2</span>);
-<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> beauty <span class="hljs-keyword">SET</span> <span class="hljs-keyword">id</span> =<span class="hljs-number">14</span>,<span class="hljs-keyword">name</span>=<span class="hljs-string">'刘涛'</span>,phone=<span class="hljs-string">'987654321'</span>;</code></pre>
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> beauty <span class="hljs-keyword">SET</span> <span class="hljs-keyword">id</span> =<span class="hljs-number">14</span>,<span class="hljs-keyword">name</span>=<span class="hljs-string">'刘涛'</span>,phone=<span class="hljs-string">'987654321'</span>;</code></pre></div>
 
 <h2 id="二、修改语句"><a href="#二、修改语句" class="headerlink" title="二、修改语句"></a>二、修改语句</h2><p>修改单表：<br>语法：update 表名 set 列=新值,….where 筛选条件;<br>修改多表：<br>语法：update 表1 别名,表2 别名 set 列=值,…where 连接条件;<br>update 表1 别名inner join表2 别名 on 连接条件 set 列=值,…where 筛选条件;</p>
-<pre><code class="hljs sql"><span class="hljs-keyword">UPDATE</span> beauty <span class="hljs-keyword">SET</span> phone=<span class="hljs-string">'123456'</span> <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span><span class="hljs-string">"周%"</span>;</code></pre>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">UPDATE</span> beauty <span class="hljs-keyword">SET</span> phone=<span class="hljs-string">'123456'</span> <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span><span class="hljs-string">"周%"</span>;</code></pre></div>
 
 
 
 <h2 id="三、删除语句"><a href="#三、删除语句" class="headerlink" title="三、删除语句"></a>三、删除语句</h2><p>删除单表：<br>语法：delete from 表名 where 条件;<br>删除多表：<br>语法：delete 表1的别名,表2的别名 from 表1 别名，表2 别名where 连接条件 and 筛选条件;<br>            delete 表1的别名,表2的别名 from 表1 别名 inner join表2 别名 on 连接条件    where 筛选条件;</p>
 <p>删除整表：truncate table 表名;<br>1、如果要删除的表有自增长列，<br>用delete删除后再插入数据自增长值从断点开始<br>用truncate删除后再插入数据自增长的值从1开始<br>2、truncate没有返回值<br>3、truncate删除不能回滚，delete删除可以回滚</p>
-<pre><code class="hljs sql"><span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> beauty <span class="hljs-keyword">WHERE</span> phone <span class="hljs-keyword">LIKE</span> <span class="hljs-string">"%9"</span>;</code></pre>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> beauty <span class="hljs-keyword">WHERE</span> phone <span class="hljs-keyword">LIKE</span> <span class="hljs-string">"%9"</span>;</code></pre></div>
 
-<h1 id="数据定义语言DDL"><a href="#数据定义语言DDL" class="headerlink" title="数据定义语言DDL"></a>数据定义语言DDL</h1><h2 id="库的管理"><a href="#库的管理" class="headerlink" title="库的管理"></a>库的管理</h2><pre><code class="hljs sql"><span class="hljs-comment"># 1.库的创建</span>
+<h1 id="数据定义语言DDL"><a href="#数据定义语言DDL" class="headerlink" title="数据定义语言DDL"></a>数据定义语言DDL</h1><h2 id="库的管理"><a href="#库的管理" class="headerlink" title="库的管理"></a>库的管理</h2><div class="hljs"><pre><code class="hljs sql"><span class="hljs-comment"># 1.库的创建</span>
 <span class="hljs-comment">/*</span>
 <span class="hljs-comment">语法：create database [if not exists]库名;</span>
 <span class="hljs-comment">*/</span>
@@ -248,9 +248,9 @@
 <span class="hljs-comment">/*</span>
 <span class="hljs-comment">语法：drop [if exists]database 库名;</span>
 <span class="hljs-comment">*/</span>
-<span class="hljs-keyword">DROP</span> <span class="hljs-keyword">DATABASE</span> book;</code></pre>
+<span class="hljs-keyword">DROP</span> <span class="hljs-keyword">DATABASE</span> book;</code></pre></div>
 
-<h2 id="表的管理"><a href="#表的管理" class="headerlink" title="表的管理"></a>表的管理</h2><h3 id="创建：create"><a href="#创建：create" class="headerlink" title="创建：create"></a>创建：create</h3><pre><code class="hljs sql"><span class="hljs-comment">/*</span>
+<h2 id="表的管理"><a href="#表的管理" class="headerlink" title="表的管理"></a>表的管理</h2><h3 id="创建：create"><a href="#创建：create" class="headerlink" title="创建：create"></a>创建：create</h3><div class="hljs"><pre><code class="hljs sql"><span class="hljs-comment">/*</span>
 <span class="hljs-comment">语法：</span>
 <span class="hljs-comment">create table 表名(</span>
 <span class="hljs-comment">	列名 列的类型[(长度)约束],</span>
@@ -280,9 +280,9 @@ DESC author;
 <span class="hljs-comment"># 仅仅复制表的结构</span>
 <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> copy <span class="hljs-keyword">LIKE</span> book;
 <span class="hljs-comment"># 复制表的结构和数据</span>
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> copy1 <span class="hljs-keyword">select</span> * <span class="hljs-keyword">FROM</span> book;</code></pre>
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> copy1 <span class="hljs-keyword">select</span> * <span class="hljs-keyword">FROM</span> book;</code></pre></div>
 
-<h3 id="修改：alter"><a href="#修改：alter" class="headerlink" title="修改：alter"></a>修改：alter</h3><pre><code class="hljs sql"><span class="hljs-comment"># 修改列名</span>
+<h3 id="修改：alter"><a href="#修改：alter" class="headerlink" title="修改：alter"></a>修改：alter</h3><div class="hljs"><pre><code class="hljs sql"><span class="hljs-comment"># 修改列名</span>
 <span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span>	book <span class="hljs-keyword">CHANGE</span> <span class="hljs-keyword">COLUMN</span> publishDate pubdate DATETIME;
 <span class="hljs-comment"># 修改列的类型和约束</span>
 <span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> book <span class="hljs-keyword">MODIFY</span> <span class="hljs-keyword">COLUMN</span> pubDate <span class="hljs-built_in">TIMESTAMP</span>
@@ -291,9 +291,9 @@ DESC author;
 <span class="hljs-comment"># 删除列</span>
 <span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> author <span class="hljs-keyword">DROP</span> <span class="hljs-keyword">COLUMN</span> annual;
 <span class="hljs-comment"># 修改表名</span>
-<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> author <span class="hljs-keyword">RENAME</span> book_author;</code></pre>
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> author <span class="hljs-keyword">RENAME</span> book_author;</code></pre></div>
 
-<h3 id="删除：drop"><a href="#删除：drop" class="headerlink" title="删除：drop"></a>删除：drop</h3><pre><code class="hljs sql"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> book_author;</code></pre>
+<h3 id="删除：drop"><a href="#删除：drop" class="headerlink" title="删除：drop"></a>删除：drop</h3><div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> book_author;</code></pre></div>
 
 
             </article>
@@ -681,7 +681,7 @@ DESC author;
         '  ',
         "DML,DDL&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -697,8 +697,10 @@ DESC author;
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

@@ -19,7 +19,7 @@
   <meta name="description" content="">
   <meta name="author" content="sweetboyZhang">
   <meta name="keywords" content="">
-  <title>计算属性、内容分发、自定义事件 - sweetboyZhang&#39;s Blog</title>
+  <title>Shiro - sweetboyZhang&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -154,8 +154,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-07-07 15:37">
-      July 7, 2020 pm
+    <time datetime="2020-10-07 15:22">
+      October 7, 2020 pm
     </time>
   </div>
 
@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      976 字
+      1.4k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      15
+      14
        分钟
     </span>
   
@@ -215,152 +215,121 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：October 29, 2020 pm
+                  本文最后更新于：November 8, 2020 am
                 
               </p>
             
             <article class="markdown-body">
-              <h2 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h2><p>能够将计算结果缓存起来的属性，将行为转换为了属性。<a id="more"></a></p>
-<pre><code class="hljs js">&lt;body&gt;
-    &lt;div id=<span class="hljs-string">"vue"</span>&gt;
-        &lt;p&gt;当前时间：&#123;&#123;currentTime1()&#125;&#125;&lt;<span class="hljs-regexp">/p&gt;&lt;!-- 通过函数调用--&gt;</span>
-<span class="hljs-regexp">        &lt;p&gt;当前时间：&#123;&#123;currentTime2&#125;&#125;&lt;/</span>p&gt;&lt;!--通过属性调用--&gt;
-    &lt;<span class="hljs-regexp">/div&gt;</span>
-<span class="hljs-regexp">&lt;/</span>body&gt;
-&lt;script&gt;
-    <span class="hljs-keyword">var</span> vm = <span class="hljs-keyword">new</span> Vue(&#123;
-        el:vue,
-        methods:&#123;<span class="hljs-comment">// 函数</span>
-            currentTime1:<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-                <span class="hljs-keyword">return</span> <span class="hljs-built_in">Date</span>.now();
-            &#125;
-        &#125;,
-        computed:&#123;<span class="hljs-comment">// 计算属性  </span>
-            currentTime2:<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-                <span class="hljs-keyword">return</span> <span class="hljs-built_in">Date</span>.now();
-            &#125;
-        &#125;
-    &#125;)
-&lt;<span class="hljs-regexp">/script&gt;</span></code></pre>
+              <h2 id="权限管理"><a href="#权限管理" class="headerlink" title="权限管理"></a>权限管理</h2><p>权限的管理包含<strong>身份认证</strong>和<strong>授权</strong>两部分，对于需要访问控制资源的用户需要先通过身份认证，认证通过的用户并且具有该资源的访问权限方可访问。<a id="more"></a></p>
+<h2 id="Shiro"><a href="#Shiro" class="headerlink" title="Shiro"></a>Shiro</h2><p>Shiro是apache旗下一个开源框架，它将软件系统的安全认证相关的功能抽取出来，实现用户身份认证，权限授权、加密、会话管理等功能，组成了一个通用的安全认证框架。</p>
+<h2 id="Shiro核心架构"><a href="#Shiro核心架构" class="headerlink" title="Shiro核心架构"></a>Shiro核心架构</h2><p><img src="/2020/10/07/shiro/1.png" srcset="/img/loading.gif" alt></p>
+<blockquote>
+<p>Subject</p>
+</blockquote>
+<p><code>Subject即主体</code>，外部应用与subject进行交互，subject记录了当前操作用户，将用户的概念理解为当前操作的主体，可能是一个通过浏览器请求的用户，也可能是一个运行的程序。Subject在shiro中是一个接口，接口中定义了很多认证授权相关的方法，外部程序通过subject进行认证授权，而subject是通过SecurityManager安全管理器进行认证授权。</p>
+<blockquote>
+<p>SecurityManager</p>
+</blockquote>
+<p><code>SecurityManager即安全管理器</code>，对全部的subject进行安全管理，它是shiro的核心，负责对所有的subject进行安全管理。通过SecurityManager可以完成subject的认证、授权等，实质上SecurityManager是通过Authenticator进行认证，通过Authorizer进行授权，通过SessionManager进行会话管理等。</p>
+<p><code>SecurityManager是一个接口，继承了Authenticator, Authorizer, SessionManager这三个接口。</code></p>
+<blockquote>
+<p>Authenticator</p>
+</blockquote>
+<p><code>Authenticator即认证器</code>，对用户身份进行认证，Authenticator是一个接口，shiro提供ModularRealmAuthenticator实现类，通过ModularRealmAuthenticator基本上可以满足大多数需求，也可以自定义认证器。</p>
+<blockquote>
+<p>Authorizer</p>
+</blockquote>
+<p><code>Authorizer即授权器</code>，用户通过认证器认证通过，在访问功能时需要通过授权器判断用户是否有此功能的操作权限。</p>
+<blockquote>
+<p>Realm</p>
+</blockquote>
+<p><code>Realm即领域</code>，相当于datasource数据源，securityManager进行安全认证需要通过Realm获取用户权限数据，比如：如果用户身份数据在数据库那么realm就需要从数据库获取用户身份信息。</p>
+<ul>
+<li>注意：不要把realm理解成只是从数据源取数据，在realm中还有认证授权校验的相关的代码。</li>
+</ul>
+<blockquote>
+<p>SessionManager</p>
+</blockquote>
+<p><code>sessionManager即会话管理</code>，shiro框架定义了一套会话管理，它不依赖web容器的session，所以shiro可以使用在非web应用上，也可以将分布式应用的会话集中在一点管理，此特性可使它实现单点登录。</p>
+<blockquote>
+<p>SessionDAO</p>
+</blockquote>
+<p><code>SessionDAO即会话dao</code>，是对session会话操作的一套接口，比如要将session存储到数据库，可以通过jdbc将会话存储到数据库。</p>
+<blockquote>
+<p>CacheManager</p>
+</blockquote>
+<p><code>CacheManager即缓存管理</code>，将用户权限数据存储在缓存，这样可以提高性能。</p>
+<blockquote>
+<p>Cryptography</p>
+</blockquote>
+<p><code>Cryptography即密码管理</code>，shiro提供了一套加密/解密的组件，方便开发。比如提供常用的散列、加/解密等功能。</p>
+<h2 id="Shiro中的认证"><a href="#Shiro中的认证" class="headerlink" title="Shiro中的认证"></a>Shiro中的认证</h2><p>认证就是判断一个用户是否为合法用户的处理过程。最常用的简单身份认证方式是系统通过核对用户输入的<strong>用户名</strong>和<strong>口令</strong>，看其是否与系统中存储的该用户的用户名和口令一致，来判断用户身份是否正确。</p>
+<h3 id="shiro中认证的关键对象"><a href="#shiro中认证的关键对象" class="headerlink" title="shiro中认证的关键对象"></a>shiro中认证的关键对象</h3><ul>
+<li><strong>Subject：主体</strong></li>
+</ul>
+<p>访问系统的用户，主体可以是用户，程序等。</p>
+<ul>
+<li><strong>Princopal：身份信息</strong></li>
+</ul>
+<p>是主体（subject）进行身份认证的标识，标识必须具有<code>唯一性</code>，如用户名、手机号、邮箱地址等，一个主体可以有多个身份，但是必须有一个主身份（Primary Principal）。</p>
+<ul>
+<li><strong>credential：凭证信息</strong></li>
+</ul>
+<p>是只有主体自己知道的安全信息，如密码，证书等。</p>
+<h3 id="认证流程"><a href="#认证流程" class="headerlink" title="认证流程"></a>认证流程</h3><img src="/2020/10/07/shiro/2.png" srcset="/img/loading.gif" style="zoom:80%;">
 
-<p>调用方法时，每次都需要计算，如果这个结果不是经常变化的，此时就可以将这个值缓存起来，采用计算属性就可以方便的做到这一点，计算属性的值就是为了不经常变化的计算结果缓存起来，以节约系统开销。<br><img src="/2020/07/07/vue-03/4.png" srcset="/img/loading.gif" alt></p>
-<p>可以看见计算属性currentTime2并没有更新。</p>
-<h2 id="内容分发"><a href="#内容分发" class="headerlink" title="内容分发"></a>内容分发</h2><p>在Vue.js中我们使用<code>&lt;slot&gt;</code>元素作为承载分发内容的出口，即插槽，可以应用在组合组件的场景中。</p>
-<pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Title<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"vue"</span>&gt;</span>
-<span class="hljs-comment">&lt;!--</span>
-<span class="hljs-comment">    &lt;div&gt;</span>
-<span class="hljs-comment">        &lt;p&gt;&lt;/p&gt;</span>
-<span class="hljs-comment">        &lt;ul&gt;</span>
-<span class="hljs-comment">            &lt;li&gt;&lt;/li&gt;</span>
-<span class="hljs-comment">            &lt;li&gt;&lt;/li&gt;</span>
-<span class="hljs-comment">            &lt;li&gt;&lt;/li&gt;</span>
-<span class="hljs-comment">        &lt;/ul&gt;</span>
-<span class="hljs-comment">    &lt;/div&gt;</span>
-<span class="hljs-comment">--&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">demo</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">demo_01</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"demo_01"</span> <span class="hljs-attr">v-bind:p_value</span>=<span class="hljs-string">"p_value"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">demo_01</span>&gt;</span>  <span class="hljs-comment">&lt;!-- slot属性用于连接--&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">demo_02</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"demo_02"</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">" li in li_value"</span> <span class="hljs-attr">v-bind:li_value</span>=<span class="hljs-string">"li"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">demo_02</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">demo</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<blockquote>
+<p>用户名校验   </p>
+<p>调用的是 <code>SimpleAccountRealm</code> 类中的 <code>doGetAuthenticationInfo</code> 方法</p>
+</blockquote>
+<blockquote>
+<p>密码校验</p>
+<p>调用<code>AuthenticatingRealm</code> 类中的  <code>assertCredentialsMatch</code> 方法</p>
+</blockquote>
+<img src="/2020/10/07/shiro/3.png" srcset="/img/loading.gif" style="zoom: 40%;">
 
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://cdn.jsdelivr.net/npm/vue@2.6.11"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
-<span class="actionscript">    <span class="hljs-comment">// 组件1  相当于一个插排</span></span>
-<span class="actionscript">    Vue.component(<span class="hljs-string">"demo"</span>, &#123;</span>
-<span class="actionscript">        template: <span class="hljs-string">'&lt;div&gt;'</span> +</span>
-<span class="handlebars"><span class="xml">                       '<span class="hljs-tag">&lt;<span class="hljs-name">slot</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"demo_01"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span>'+  // 代替上面的<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span> name属性用于连接</span></span>
-<span class="actionscript">                        <span class="hljs-string">'&lt;ul&gt;'</span>+</span>
-<span class="handlebars"><span class="xml">                              '<span class="hljs-tag">&lt;<span class="hljs-name">slot</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"demo_02"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span>'+  // 代替上面的<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span></span></span>
-<span class="actionscript">                        <span class="hljs-string">'&lt;/ul&gt;'</span>+</span>
-<span class="actionscript">                  <span class="hljs-string">'&lt;/div&gt;'</span></span>
-    &#125;)
+<h2 id="Shiro中的授权"><a href="#Shiro中的授权" class="headerlink" title="Shiro中的授权"></a>Shiro中的授权</h2><p>授权，即访问控制，控制谁能访问哪些资源。主体进行身份认证后需要分配权限方可访问系统的资源，对于某些资源没有权限是无法访问的。</p>
+<h3 id="Shiro中的授权的关键对象"><a href="#Shiro中的授权的关键对象" class="headerlink" title="Shiro中的授权的关键对象"></a>Shiro中的授权的关键对象</h3><ul>
+<li><strong>Subject：主体</strong></li>
+</ul>
+<p>需要访问系统中的资源的用户、程序。</p>
+<ul>
+<li><strong>Resource：资源</strong></li>
+</ul>
+<p>如系统菜单、页面、按钮、类方法、系统商品信息等。资源包括<code>资源类型</code>和<code>资源实例</code>，比如<code>商品信息为资源类型</code>，如编号为001的商品信息属于资源实例。</p>
+<ul>
+<li><strong>Permission：权限许可</strong></li>
+</ul>
+<p>规定了主体对资源的操作许可，如用户查询权限、用户添加权限、修改权限、某个类方法的调用权限等。</p>
+<h3 id="授权流程"><a href="#授权流程" class="headerlink" title="授权流程"></a>授权流程</h3><p><img src="/2020/10/07/shiro/4.png" srcset="/img/loading.gif" alt></p>
+<h3 id="授权方式"><a href="#授权方式" class="headerlink" title="授权方式"></a>授权方式</h3><ul>
+<li><p>基于角色的访问控制</p>
+<ul>
+<li><p>RABC基于角色的访问控制（Role-Based Access Control）是以角色为中心进行访问控制。</p>
+<p>  角色就是一组权限的集合，给用户分授权就是给用户分配角色。</p>
+  <div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">if</span>(subject.hasRole(<span class="hljs-string">"admin"</span>))&#123;
+    <span class="hljs-comment">// 角色为admin能访问的资源</span>
+&#125;</code></pre></div>
+</li>
+</ul>
+</li>
+<li><p>基于资源的访问控制</p>
+<ul>
+<li><p>RABC基于资源的访问控制（Resource-Base Access Control）是以资源为中心进行访问控制</p>
+  <div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">if</span>(subject.isPermission(<span class="hljs-string">"user:update:001"</span>))&#123;
+    <span class="hljs-comment">// 用户具有修改资源实例001的权限</span>
+&#125;
+<span class="hljs-keyword">if</span>(subject.isPermission(<span class="hljs-string">"user:update:*"</span>))&#123;
+    <span class="hljs-comment">// 用户具有对所有资源进行修改的权力</span>
+&#125;</code></pre></div>
+</li>
+<li><p>权限字符串：<strong>资源标识符 : 操作 : 资源实例标识符</strong></p>
+<p>  对资源的哪个资源实例具有什么（增删改查）操作，权限字符串也可以使用 * 通配符</p>
+</li>
+</ul>
+</li>
+</ul>
 
-<span class="actionscript">    <span class="hljs-comment">// 组件2  相当于一个插头  记为插头1  对应插排中的第一个插槽</span></span>
-<span class="actionscript">    Vue.component(<span class="hljs-string">"demo_01"</span>,&#123;</span>
-<span class="actionscript">        props: [<span class="hljs-string">"p_value"</span>],  <span class="hljs-comment">// 接收vue实体对象中的数据</span></span>
-<span class="handlebars"><span class="xml">        template: '<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123;p_value&#125;&#125;</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>'</span></span>
-    &#125;)
-
-<span class="actionscript">    <span class="hljs-comment">// 组件3  相当于一个插头  记为插头2  对应插排中的第二个插槽</span></span>
-<span class="actionscript">    Vue.component(<span class="hljs-string">"demo_02"</span>,&#123;</span>
-<span class="actionscript">        props: [<span class="hljs-string">"li_value"</span>],</span>
-<span class="handlebars"><span class="xml">        template: '<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123;li_value&#125;&#125;</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>'</span></span>
-    &#125;)
-
-<span class="actionscript">    <span class="hljs-keyword">var</span> vm = <span class="hljs-keyword">new</span> Vue(&#123;</span>
-        el: vue,
-        data: &#123;
-<span class="actionscript">            p_value: <span class="hljs-string">"这是一个列表"</span>,</span>
-<span class="actionscript">            li_value:[<span class="hljs-string">"列表数据1"</span>,<span class="hljs-string">"列表数据2"</span>,<span class="hljs-string">"列表数据3"</span>]</span>
-        &#125;
-    &#125;)
-<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre>
-
-<p>自定义事件分发：<br><img src="/2020/07/07/vue-03/1.png" srcset="/img/loading.gif" alt></p>
-<p>​                 </p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"vue"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">demo</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">demo_01</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"demo_01"</span> <span class="hljs-attr">v-bind:p_value</span>=<span class="hljs-string">"p_value"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">demo_01</span>&gt;</span>  <span class="hljs-comment">&lt;!-- slot属性用于连接--&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">demo_02</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"demo_02"</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">" (li,index) in li_value"</span></span>
-<span class="hljs-tag">                 <span class="hljs-attr">v-bind:li_value</span>=<span class="hljs-string">"li"</span> <span class="hljs-attr">v-bind:index</span>=<span class="hljs-string">"index"</span></span>
-<span class="hljs-tag">                 <span class="hljs-attr">v-on:remove</span>=<span class="hljs-string">"removeItem(index)"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">demo_02</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">demo</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://cdn.jsdelivr.net/npm/vue@2.6.11"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
-<span class="actionscript">    <span class="hljs-comment">// 组件1  相当于一个插排</span></span>
-<span class="actionscript">    Vue.component(<span class="hljs-string">"demo"</span>, &#123;</span>
-<span class="actionscript">        template: <span class="hljs-string">'&lt;div&gt;'</span> +</span>
-<span class="handlebars"><span class="xml">                       '<span class="hljs-tag">&lt;<span class="hljs-name">slot</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"demo_01"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span>'+  // 代替上面的<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span> name属性用于连接</span></span>
-<span class="actionscript">                        <span class="hljs-string">'&lt;ul&gt;'</span>+</span>
-<span class="handlebars"><span class="xml">                              '<span class="hljs-tag">&lt;<span class="hljs-name">slot</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"demo_02"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span>'+  // 代替上面的<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span></span></span>
-<span class="actionscript">                        <span class="hljs-string">'&lt;/ul&gt;'</span>+</span>
-<span class="actionscript">                  <span class="hljs-string">'&lt;/div&gt;'</span></span>
-    &#125;)
-
-<span class="actionscript">    <span class="hljs-comment">// 组件2  相当于一个插头  记为插头1  对应插排中的第一个插槽</span></span>
-<span class="actionscript">    Vue.component(<span class="hljs-string">"demo_01"</span>,&#123;</span>
-<span class="actionscript">        props: [<span class="hljs-string">"p_value"</span>],  <span class="hljs-comment">// 接收vue实体对象中的数据</span></span>
-<span class="handlebars"><span class="xml">        template: '<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123;p_value&#125;&#125;</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>'</span></span>
-    &#125;)
-
-<span class="actionscript">    <span class="hljs-comment">// 组件3  相当于一个插头  记为插头2  对应插排中的第二个插槽</span></span>
-<span class="actionscript">    Vue.component(<span class="hljs-string">"demo_02"</span>,&#123;</span>
-<span class="actionscript">        props: [<span class="hljs-string">"li_value"</span>,<span class="hljs-string">"index"</span>],</span>
-<span class="handlebars"><span class="xml">        template: '<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123;li_value&#125;&#125;</span><span class="xml"><span class="hljs-symbol">&amp;nbsp;</span><span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"remove"</span>&gt;</span>删除<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>',</span></span>
-        methods:&#123;
-<span class="actionscript">            remove:<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(index)</span> </span>&#123;</span>
-<span class="actionscript">                <span class="hljs-comment">// alert("删除！！!");</span></span>
-<span class="actionscript">                <span class="hljs-keyword">this</span>.$emit(<span class="hljs-string">"remove"</span>,index);</span>
-            &#125;
-        &#125;
-    &#125;)
-    
-<span class="actionscript">    <span class="hljs-keyword">var</span> vm = <span class="hljs-keyword">new</span> Vue(&#123;</span>
-        el: vue,
-        data: &#123;
-<span class="actionscript">            p_value: <span class="hljs-string">"这是一个列表"</span>,</span>
-<span class="actionscript">            li_value:[<span class="hljs-string">"列表数据1"</span>,<span class="hljs-string">"列表数据2"</span>,<span class="hljs-string">"列表数据3"</span>]</span>
-        &#125;,
-        methods: &#123;
-<span class="actionscript">            removeItem:<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(index)</span> </span>&#123;</span>
-<span class="actionscript">                alert(<span class="hljs-string">"删除了"</span> + <span class="hljs-keyword">this</span>.li_value[index]);</span>
-<span class="actionscript">                <span class="hljs-keyword">this</span>.li_value.splice(index,<span class="hljs-number">1</span>);<span class="hljs-comment">// 从index开始删除一个元素</span></span>
-            &#125;
-        &#125;
-    &#125;)
-<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre>
             </article>
             <hr>
             <div>
@@ -370,7 +339,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/vue/">vue</a>
+                      <a class="hover-with-bg" href="/tags/Shiro/">Shiro</a>
                     
                   </div>
                 
@@ -383,9 +352,9 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/07/08/vue-04/">
+                      <a href="/2020/10/09/designModel-02/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Vue-Cli、webpack、vue-Router</span>
+                        <span class="hidden-mobile">单例设计模式</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -393,8 +362,8 @@
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/07/07/vue-02/">
-                        <span class="hidden-mobile">双向数据绑定与传输</span>
+                      <a href="/2020/10/07/designModel-01/">
+                        <span class="hidden-mobile">设计模式七大原则</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -650,7 +619,7 @@
       if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/2020/07/07/vue-03/');
+          var target = decodeURI('/2020/10/07/shiro/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -744,9 +713,9 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "计算属性、内容分发、自定义事件&nbsp;",
+        "Shiro&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -762,8 +731,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

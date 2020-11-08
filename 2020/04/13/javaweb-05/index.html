@@ -223,7 +223,7 @@
               <h2 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h2><p>文件上传的要求：<br>1、要有一个form标签，method=post<br>2、form标签的encType属性值必须为multipart/form-data(表示提交的数据以多段进行拼接(每个表单项分为一段)，然后以二进制流的形式提交给服务器)<br>3、在form标签中使用 input type=file 添加上传的文件<br>4、编写服务器代码接收，处理上传的数据<a id="more"></a><br><img src="/2020/04/13/javaweb-05/1.png" srcset="/img/loading.gif" alt></p>
 <p>导入两个第三方的jar包：<br><img src="/2020/04/13/javaweb-05/2.png" srcset="/img/loading.gif" alt></p>
 <p>处理文件上传的servlet程序：</p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> servlet;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> servlet;
 
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UploadServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;
     <span class="hljs-meta">@Override</span>
@@ -256,9 +256,9 @@
             &#125;
         &#125;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;
+<div class="hljs"><pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;
 &lt;html&gt;
 &lt;head&gt;
     &lt;title&gt;Title&lt;/title&gt;
@@ -270,9 +270,9 @@
         &lt;input type=<span class="hljs-string">"submit"</span> value=<span class="hljs-string">"上传"</span>&gt;
     &lt;/form&gt;
 &lt;/body&gt;
-&lt;/html&gt;</code></pre>
+&lt;/html&gt;</code></pre></div>
 
-<h2 id="文件下载"><a href="#文件下载" class="headerlink" title="文件下载"></a>文件下载</h2><pre><code class="hljs java"><span class="hljs-keyword">package</span> servlet;
+<h2 id="文件下载"><a href="#文件下载" class="headerlink" title="文件下载"></a>文件下载</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> servlet;
 
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DownloadServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;
     <span class="hljs-meta">@Override</span>
@@ -307,7 +307,7 @@
         <span class="hljs-comment">//  读取输入流中的全部数据，复制给输出流，输出给客户端</span>
         IOUtils.copy(resourceAsStream, outputStream);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
             </article>
             <hr>
             <div>
@@ -693,7 +693,7 @@
         '  ',
         "文件的上传和下载&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -709,8 +709,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

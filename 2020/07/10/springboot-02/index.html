@@ -230,7 +230,7 @@
 <p>3、属性和值的大小写都是十分敏感的。</p>
 <h2 id="yaml注入配置文件"><a href="#yaml注入配置文件" class="headerlink" title="yaml注入配置文件"></a>yaml注入配置文件</h2><p><img src="/2020/07/10/springboot-02/6.png" srcset="/img/loading.gif" alt></p>
 <p>测试：</p>
-<pre><code class="hljs java"><span class="hljs-meta">@SpringBootTest</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@SpringBootTest</span>
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Springboot02ConfigApplicationTests</span> </span>&#123;
     <span class="hljs-meta">@Autowired</span>
     <span class="hljs-keyword">private</span> Cat cat;
@@ -242,30 +242,30 @@
         System.out.println(person);
     &#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>结果：</p>
-<pre><code class="hljs routeros">Cat&#123;<span class="hljs-attribute">name</span>=<span class="hljs-string">'小白'</span>, <span class="hljs-attribute">age</span>=3&#125;
-Person&#123;<span class="hljs-attribute">name</span>=<span class="hljs-string">'zyz'</span>, <span class="hljs-attribute">age</span>=22, <span class="hljs-attribute">happy</span>=<span class="hljs-literal">true</span>, <span class="hljs-attribute">birth</span>=Fri Jul 10 00:00:00 CST 2020, maps=&#123;<span class="hljs-attribute">k1</span>=v1, <span class="hljs-attribute">k2</span>=v2&#125;, lists=[1, 2, 3], <span class="hljs-attribute">cat</span>=Cat&#123;<span class="hljs-attribute">name</span>=<span class="hljs-string">'小花'</span>, <span class="hljs-attribute">age</span>=2&#125;&#125;</code></pre>
+<div class="hljs"><pre><code class="hljs routeros">Cat&#123;<span class="hljs-attribute">name</span>=<span class="hljs-string">'小白'</span>, <span class="hljs-attribute">age</span>=3&#125;
+Person&#123;<span class="hljs-attribute">name</span>=<span class="hljs-string">'zyz'</span>, <span class="hljs-attribute">age</span>=22, <span class="hljs-attribute">happy</span>=<span class="hljs-literal">true</span>, <span class="hljs-attribute">birth</span>=Fri Jul 10 00:00:00 CST 2020, maps=&#123;<span class="hljs-attribute">k1</span>=v1, <span class="hljs-attribute">k2</span>=v2&#125;, lists=[1, 2, 3], <span class="hljs-attribute">cat</span>=Cat&#123;<span class="hljs-attribute">name</span>=<span class="hljs-string">'小花'</span>, <span class="hljs-attribute">age</span>=2&#125;&#125;</code></pre></div>
 
 <p>指定随机uuid:</p>
-<pre><code class="hljs yaml"><span class="hljs-attr">name:</span> <span class="hljs-string">zyz$&#123;random.uuid&#125;</span> <span class="hljs-comment"># 随机uuid</span></code></pre>
+<div class="hljs"><pre><code class="hljs yaml"><span class="hljs-attr">name:</span> <span class="hljs-string">zyz$&#123;random.uuid&#125;</span> <span class="hljs-comment"># 随机uuid</span></code></pre></div>
 
 <h2 id="properties注入"><a href="#properties注入" class="headerlink" title="properties注入"></a>properties注入</h2><p><img src="/2020/07/10/springboot-02/7.png" srcset="/img/loading.gif" alt></p>
 <h2 id="JSR303校验"><a href="#JSR303校验" class="headerlink" title="JSR303校验"></a>JSR303校验</h2><p>Springboot中可以用@validated来校验数据，如果数据异常则会统一抛出异常，方便异常中心统一处理。</p>
 <p>引入依赖</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-validation<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre></div>
 
-<pre><code class="hljs java"><span class="hljs-meta">@Component</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Component</span>
 <span class="hljs-meta">@ConfigurationProperties</span>(prefix = <span class="hljs-string">"person"</span>)
 <span class="hljs-meta">@Validated</span>  <span class="hljs-comment">// 数据校验</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> </span>&#123;
     <span class="hljs-meta">@Email</span>(message=<span class="hljs-string">"邮箱格式不合法"</span>)<span class="hljs-comment">// 使name只能支持Email格式</span>
     <span class="hljs-keyword">private</span> String name;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>运行结果：<br><img src="/2020/07/10/springboot-02/8.png" srcset="/img/loading.gif" alt></p>
 <p> <strong>常见参数</strong></p>
@@ -273,7 +273,7 @@ Person&#123;<span class="hljs-attribute">name</span>=<span class="hljs-string">'
 <p>Booelan检查<br>@AssertTrue     验证 Boolean 对象是否为 true<br>@AssertFalse    验证 Boolean 对象是否为 false </p>
 <p>长度检查<br>@Size(min=, max=) 验证对象（Array,Collection,Map,String）长度是否在给定的范围之内  @Length(min=, max=) string is between min and max included</p>
 <p>日期检查<br>@Past       验证 Date 和 Calendar 对象是否在当前时间之前<br>@Future     验证 Date 和 Calendar 对象是否在当前时间之后<br>@Pattern    验证 String 对象是否符合正则表达式的规则</p>
-<h2 id="多环境切换"><a href="#多环境切换" class="headerlink" title="多环境切换"></a>多环境切换</h2><pre><code class="hljs yaml"><span class="hljs-comment"># Springboot多环境配置</span>
+<h2 id="多环境切换"><a href="#多环境切换" class="headerlink" title="多环境切换"></a>多环境切换</h2><div class="hljs"><pre><code class="hljs yaml"><span class="hljs-comment"># Springboot多环境配置</span>
 <span class="hljs-attr">server:</span>
   <span class="hljs-attr">port:</span> <span class="hljs-number">8081</span> <span class="hljs-comment"># 默认环境</span>
 <span class="hljs-attr">spring:</span>
@@ -290,7 +290,7 @@ Person&#123;<span class="hljs-attribute">name</span>=<span class="hljs-string">'
 <span class="hljs-attr">server:</span>
   <span class="hljs-attr">port:</span> <span class="hljs-number">8083</span>
 <span class="hljs-attr">spring:</span>
-  <span class="hljs-attr">profiles:</span> <span class="hljs-string">dev</span></code></pre>
+  <span class="hljs-attr">profiles:</span> <span class="hljs-string">dev</span></code></pre></div>
 
 
             </article>
@@ -678,7 +678,7 @@ Person&#123;<span class="hljs-attribute">name</span>=<span class="hljs-string">'
         '  ',
         "Springboot配置&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -694,8 +694,10 @@ Person&#123;<span class="hljs-attribute">name</span>=<span class="hljs-string">'
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

@@ -221,13 +221,13 @@
             
             <article class="markdown-body">
               <h2 id="String（字符串）"><a href="#String（字符串）" class="headerlink" title="String（字符串）"></a>String（字符串）</h2><p>追加字符串，如果当前key不存在就相当于新建<a id="more"></a></p>
-<pre><code class="hljs shell">append name 666</code></pre>
+<div class="hljs"><pre><code class="hljs shell">append name 666</code></pre></div>
 
 <p>获取字符串长度</p>
-<pre><code class="hljs shell">strlen name</code></pre>
+<div class="hljs"><pre><code class="hljs shell">strlen name</code></pre></div>
 
 <p>增加减少</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; set views 1   
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; set views 1   
 OK                      
 127.0.0.1:6379&gt; incr views # 加1      
 (integer) 2                
@@ -244,30 +244,30 @@ OK
 127.0.0.1:6379&gt; decrby views 10   
 (integer) 1                     
 127.0.0.1:6379&gt; get views       
-"1"</code></pre>
+"1"</code></pre></div>
 
 <p>截取字符串</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; get demo
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; get demo
 "hello,world"
 127.0.0.1:6379&gt; getrange demo 0 4                                                                      
 "hello"   
 127.0.0.1:6379&gt; getrange demo 0 -1  # 获取全部字符串                                              
-"hello,world"</code></pre>
+"hello,world"</code></pre></div>
 
 <p>替换</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; get demo
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; get demo
 "hello,world"
 127.0.0.1:6379&gt; setrange demo 6 redis!   # 替换指定位置开始的字符串                                                              (integer) 12                                                                                           127.0.0.1:6379&gt; get demo                                                              
-"hello,redis!"</code></pre>
+"hello,redis!"</code></pre></div>
 
 <p>设置键值对的时候指定有效期</p>
-<pre><code class="hljs shell">setex key1 10 "hello" # 设置key1的值为hello,10秒后过期</code></pre>
+<div class="hljs"><pre><code class="hljs shell">setex key1 10 "hello" # 设置key1的值为hello,10秒后过期</code></pre></div>
 
 <p>如果key不存在就创建</p>
-<pre><code class="hljs shell">setnx key2 "hello2"</code></pre>
+<div class="hljs"><pre><code class="hljs shell">setnx key2 "hello2"</code></pre></div>
 
 <p>批量设置</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; mset k1 v1 k2 v1 k3 v3     
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; mset k1 v1 k2 v1 k3 v3     
 OK                             
 127.0.0.1:6379&gt; keys *     
 1) "k3"                
@@ -278,27 +278,27 @@ OK
 127.0.0.1:6379&gt; keys *   
 1) "k3"                  
 2) "k1"              
-3) "k2"</code></pre>
+3) "k2"</code></pre></div>
 
 <p>设置对象 user:{id}.{filed}</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; mset user:1:name zyz user:1:age 21
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; mset user:1:name zyz user:1:age 21
 OK
 127.0.0.1:6379&gt; mget user:1:name user:1:age
 "zyz"
-"21"</code></pre>
+"21"</code></pre></div>
 
 <p>先get后set</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; getset name zyz  # key值不存在，先返回nil,再设置
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; getset name zyz  # key值不存在，先返回nil,再设置
 (nil)                         
 127.0.0.1:6379&gt; get name     
 "zyz"                     
 127.0.0.1:6379&gt; getset name zyz666  # key存在，返回key值，再设置
 "zyz"                             
 127.0.0.1:6379&gt; get name     
-"zyz666"</code></pre>
+"zyz666"</code></pre></div>
 
 <h2 id="List（列表）"><a href="#List（列表）" class="headerlink" title="List（列表）"></a>List（列表）</h2><p>插入</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; lpush list 1   # 相当于压栈，操作第一个元素
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; lpush list 1   # 相当于压栈，操作第一个元素
 (integer) 1                    
 127.0.0.1:6379&gt; lpush list 2    
 (integer) 2               
@@ -314,10 +314,10 @@ OK
  1) "3"      
  2) "2"     
  3) "1"       
- 4) "4"</code></pre>
+ 4) "4"</code></pre></div>
 
 <p>删除</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; lrange list 0 -1      
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; lrange list 0 -1      
 1) "3"        
 2) "2"         
 3) "1"        
@@ -328,18 +328,18 @@ OK
 "4"  
 127.0.0.1:6379&gt; lrange list 0 -1     
 1) "2"                           
-2) "1"</code></pre>
+2) "1"</code></pre></div>
 
 <p>获取值</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; lindex list 0                           
-"2"</code></pre>
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; lindex list 0                           
+"2"</code></pre></div>
 
 <p>查询list长度</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; llen list   
-(integer) 4</code></pre>
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; llen list   
+(integer) 4</code></pre></div>
 
 <p>根据指定的值删除</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; lrange list 0 -1  
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; lrange list 0 -1  
 1) "4"                            
 2) "3"              
 3) "2"         
@@ -349,10 +349,10 @@ OK
 127.0.0.1:6379&gt; lrange list 0 -1   
 1) "3"                         
 2) "2"                                                                         
-3) "1"</code></pre>
+3) "1"</code></pre></div>
 
 <p>截取元素</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; lrange list 0 -1    
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; lrange list 0 -1    
 1) "3"                    
 2) "2"                
 3) "1"               
@@ -360,10 +360,10 @@ OK
 OK                     
 127.0.0.1:6379&gt; lrange list 0 -1     
 1) "3"                                                        
-2) "2"</code></pre>
+2) "2"</code></pre></div>
 
 <p>将原列表的最后一个元素移到新的列表中</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; lrange list 0 -1      
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; lrange list 0 -1      
 1) "3"                                
 2) "2"                            
 127.0.0.1:6379&gt; rpoplpush list list1  # 将list最后一个元素移到list1中    
@@ -371,18 +371,18 @@ OK
 127.0.0.1:6379&gt; lrange list1 0 -1   
 1) "2"                 
 127.0.0.1:6379&gt; lrange list 0 -1    
-1) "3"</code></pre>
+1) "3"</code></pre></div>
 
 <p>更新值，需要先判断list是否存在</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; exists list                                       
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; exists list                                       
 (integer) 0  
 127.0.0.1:6379&gt; lpush list value1                                           
 (integer) 1   
 127.0.0.1:6379&gt; lset list 0 value2                                                        
-OK</code></pre>
+OK</code></pre></div>
 
 <p>从指定元素值前面/后面插入</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; lrange list 0 -1  
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; lrange list 0 -1  
 1) "1"                           
 2) "2"             
 127.0.0.1:6379&gt; linsert list after 2 3   # 在值为2的元素后面插入一个值为3的元素
@@ -397,13 +397,13 @@ OK</code></pre>
 1) "0"                            
 2) "1"                         
 3) "2"                                                           
-4) "3"</code></pre>
+4) "3"</code></pre></div>
 
 <p>List实际上是一个双向链表，前后都可以插入值；key不存在创建新的节点，key存在，新增内容；两边插入或改动效率最高。</p>
 <p>消息队列（Lpush，Rpop），栈（Lpush，Lpop）</p>
 <h2 id="Set（集合）"><a href="#Set（集合）" class="headerlink" title="Set（集合）"></a>Set（集合）</h2><p><strong>值不可重复</strong>，值则相同添加失败。</p>
 <p>添加值、查看所有值、判断值是否存在</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; sadd myset aaa   
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; sadd myset aaa   
 (integer) 1                     
 127.0.0.1:6379&gt; sadd myset bbb     
 (integer) 1                     
@@ -413,19 +413,19 @@ OK</code></pre>
 127.0.0.1:6379&gt; sismember myset aaa  
 (integer) 1                  
 127.0.0.1:6379&gt; sismember myset ccc                              
-(integer) 0</code></pre>
+(integer) 0</code></pre></div>
 
 <p>移除指定值的元素</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; smembers myset    
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; smembers myset    
 1) "bbb"              
 2) "aaa"    
 127.0.0.1:6379&gt; srem myset bbb      
 (integer) 1                                                                                        
 127.0.0.1:6379&gt; smembers myset   
-1) "aaa"</code></pre>
+1) "aaa"</code></pre></div>
 
 <p>随机挑选元素</p>
-<pre><code class="hljs shel">127.0.0.1:6379&gt; smembers myset    
+<div class="hljs"><pre><code class="hljs shel">127.0.0.1:6379&gt; smembers myset    
 1) &quot;bbb&quot;                         
 2) &quot;aaa&quot;                    
 3) &quot;ccc&quot;               
@@ -434,13 +434,13 @@ OK</code></pre>
 127.0.0.1:6379&gt; srandmember myset        
 &quot;bbb&quot;                        
 127.0.0.1:6379&gt; srandmember myset                                                         
-&quot;ccc&quot;</code></pre>
+&quot;ccc&quot;</code></pre></div>
 
 <p>随机删除</p>
-<pre><code class="hljs shell">spop myset</code></pre>
+<div class="hljs"><pre><code class="hljs shell">spop myset</code></pre></div>
 
 <p>移动指定元素</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; smembers myset    
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; smembers myset    
 1) "bbb"                         
 2) "aaa"                    
 3) "ccc"  
@@ -450,10 +450,10 @@ OK</code></pre>
 1) "bbb"
 2) "ccc"
 127.0.0.1:6379&gt; smembers myset2
-1) "aaa"</code></pre>
+1) "aaa"</code></pre></div>
 
 <p>差集，交集，并集==&gt;应用场景：B站，微博的共同关注等等</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; sadd myset a
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; sadd myset a
 (integer) 1
 127.0.0.1:6379&gt; sadd myset b
 (integer) 1
@@ -475,10 +475,10 @@ OK</code></pre>
 2) "c"
 3) "b"
 4) "a"
-5) "e"</code></pre>
+5) "e"</code></pre></div>
 
 <h2 id="Hash（哈希）"><a href="#Hash（哈希）" class="headerlink" title="Hash（哈希）"></a>Hash（哈希）</h2><p>Map集合，key-map，值是一个Map集合</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; hset myhash field1 aaa # 添加一个值
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; hset myhash field1 aaa # 添加一个值
 (integer) 1
 127.0.0.1:6379&gt; hget myhash field1 # 获取一个指定字段的值
 "aaa"
@@ -493,60 +493,60 @@ OK
 3) "field2"
 4) "bbb"
 5) "field3"
-6) "ccc"</code></pre>
+6) "ccc"</code></pre></div>
 
 <p>获取长度</p>
-<pre><code class="hljs shell">hlen myhash</code></pre>
+<div class="hljs"><pre><code class="hljs shell">hlen myhash</code></pre></div>
 
 <p>判断字段是否存在</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; hexists myhash field1
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; hexists myhash field1
 (integer) 1
 127.0.0.1:6379&gt; hexists myhash aaaa
-(integer) 0</code></pre>
+(integer) 0</code></pre></div>
 
 <p>获取所有字段/值</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; hkeys myhash
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; hkeys myhash
 1) "field1"
 2) "field2"
 3) "field3"
 127.0.0.1:6379&gt; hvals myhash
 1) "aaa"
 2) "bbb"
-3) "ccc"</code></pre>
+3) "ccc"</code></pre></div>
 
 <p>自增，自减</p>
-<pre><code class="hljs shell">hincrby myhash field1 1
-hincrby myhash field1 -1</code></pre>
+<div class="hljs"><pre><code class="hljs shell">hincrby myhash field1 1
+hincrby myhash field1 -1</code></pre></div>
 
 <p>hash用于存放经常变动的相信，例如用户信息</p>
 <h2 id="Zset（有序集合）"><a href="#Zset（有序集合）" class="headerlink" title="Zset（有序集合）"></a>Zset（有序集合）</h2><p>添加</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; zadd myzset 1 value1
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; zadd myzset 1 value1
 (integer) 1
 127.0.0.1:6379&gt; zadd myzset 2 value2 3 value3
 (integer) 2
 127.0.0.1:6379&gt; zrange myzset 0 -1
 1) "value1"
 2) "value2"
-3) "value3"</code></pre>
+3) "value3"</code></pre></div>
 
 <p>排序</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; zrangebyscore myzset -inf +inf # 最小值到最大值排序
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; zrangebyscore myzset -inf +inf # 最小值到最大值排序
 1) "value1"
 2) "value2"
 3) "value3"
 127.0.0.1:6379&gt; zrevrange myzset 0 -1 # 从大到小
 1) "value3"
 2) "value2"
-1) "value1"</code></pre>
+1) "value1"</code></pre></div>
 
 <p>移除元素</p>
-<pre><code class="hljs shell">zrem myzset value1</code></pre>
+<div class="hljs"><pre><code class="hljs shell">zrem myzset value1</code></pre></div>
 
 <p>获取个数</p>
-<pre><code class="hljs shell">zcard myzset</code></pre>
+<div class="hljs"><pre><code class="hljs shell">zcard myzset</code></pre></div>
 
 <p>获取指定区间的成员数量</p>
-<pre><code class="hljs shell">zcount myzset 1 3</code></pre>
+<div class="hljs"><pre><code class="hljs shell">zcount myzset 1 3</code></pre></div>
 
 
             </article>
@@ -934,7 +934,7 @@ hincrby myhash field1 -1</code></pre>
         '  ',
         "五大数据类型&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -950,8 +950,10 @@ hincrby myhash field1 -1</code></pre>
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

@@ -225,7 +225,7 @@
 <p>2、修改项目名称后添加web依赖<br><img src="/2020/07/09/springboot-01/2.png" srcset="/img/loading.gif" alt></p>
 <p>3、整理项目结构<br><img src="/2020/07/09/springboot-01/3.png" srcset="/img/loading.gif" alt></p>
 <p>4、在controller包下添加处理请求的程序</p>
-<pre><code class="hljs java"><span class="hljs-comment">// 原理：自动装配</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 原理：自动装配</span>
 <span class="hljs-meta">@RestController</span>  <span class="hljs-comment">// 无法返回视图 相当于@Controller + @ResponseBody</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloController</span> </span>&#123;
     <span class="hljs-comment">// 接口  http://localhost:8080/hello</span>
@@ -233,38 +233,38 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">doHello</span><span class="hljs-params">()</span></span>&#123;
         <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello,world!"</span>;<span class="hljs-comment">// 在当前页面打印字符串</span>
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>整个过程非常的简单，无需像SpringMVC那样进行过多的配置，只需编写处理业务逻辑的代码，即向前端提供接口。</p>
 <p>当然，这都源自springboot的自动装配原理。我们所编写的一个个controller不过是一个个组件，springboot已经帮我们装配好了。</p>
 <p><strong>在application.properties中可以修改项目的端口号</strong></p>
-<pre><code class="hljs properties"><span class="hljs-comment"># 更改项目端口号</span>
-<span class="hljs-meta">server.port</span>=<span class="hljs-string">8081</span></code></pre>
+<div class="hljs"><pre><code class="hljs properties"><span class="hljs-comment"># 更改项目端口号</span>
+<span class="hljs-meta">server.port</span>=<span class="hljs-string">8081</span></code></pre></div>
 
 <p>修改banner，在resource中添加banner.txt添加ASCII艺术字，重新启动项目即可！</p>
 <p>康康我的○( ＾皿＾)っHiahiahia…<br><img src="/2020/07/09/springboot-01/4.png" srcset="/img/loading.gif" alt></p>
 <h2 id="自动装配原理"><a href="#自动装配原理" class="headerlink" title="自动装配原理"></a>自动装配原理</h2><h3 id="pom-xml"><a href="#pom-xml" class="headerlink" title="pom.xml"></a>pom.xml</h3><p><strong>父项目依赖，管理项目的资源过滤及插件</strong></p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">parent</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">parent</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.3.1.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">relativePath</span>/&gt;</span> <span class="hljs-comment">&lt;!-- lookup parent from repository --&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">parent</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">parent</span>&gt;</span></code></pre></div>
 
 <p><strong>web模块正常运行所依赖的组件</strong>：tomcat，springmvc等等</p>
-<pre><code class="hljs java">&lt;dependency&gt;
+<div class="hljs"><pre><code class="hljs java">&lt;dependency&gt;
     &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
     &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
-&lt;/dependency&gt;</code></pre>
+&lt;/dependency&gt;</code></pre></div>
 
-<h3 id="主启动类"><a href="#主启动类" class="headerlink" title="主启动类"></a>主启动类</h3><pre><code class="hljs java"><span class="hljs-comment">// 标注这是一个springboot的应用</span>
+<h3 id="主启动类"><a href="#主启动类" class="headerlink" title="主启动类"></a>主启动类</h3><div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 标注这是一个springboot的应用</span>
 <span class="hljs-meta">@SpringBootApplication</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloworldApplication</span> </span>&#123;
 
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
         SpringApplication.run(HelloworldApplication<span class="hljs-class">.<span class="hljs-keyword">class</span>, <span class="hljs-title">args</span>)</span>;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>SpringBoot的主配置类 ， SpringBoot就应该运行这个类的main方法来启动SpringBoot应用；</p>
 <p>Springboot的所有自动配置都是在启动的时候扫描并加载：<br><img src="/2020/07/09/springboot-01/5.png" srcset="/img/loading.gif" alt></p>
@@ -318,8 +318,8 @@
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/07/08/vue-05/">
-                        <span class="hidden-mobile">Vue-elementUI</span>
+                      <a href="/2020/07/05/SpringMVC-04/">
+                        <span class="hidden-mobile">SpringMVC核心技术</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -671,7 +671,7 @@
         '  ',
         "Springboot简介、自动装配原理&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -687,8 +687,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

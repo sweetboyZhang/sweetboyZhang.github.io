@@ -225,7 +225,7 @@
 <li>有效的经度从-180度到180度。</li>
 <li>有效的纬度从-85.05112878度到85.05112878度。<a id="more"></a></li>
 </ul>
-<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 可通过java程序一次性道路</span>
+<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 可通过java程序一次性道路</span>
 127.0.0.1:6379&gt; geoadd china:city 113.16 30.65 tianmen
 (integer) 1
 127.0.0.1:6379&gt; geoadd china:city 112.19 30.35 jinzhou
@@ -233,18 +233,18 @@
 127.0.0.1:6379&gt; geoadd china:city 116.40 39.90 beijing
 (integer) 1
 127.0.0.1:6379&gt; geoadd china:city 112.19 31.23 shanghai
-(integer) 1</code></pre>
+(integer) 1</code></pre></div>
 
 <p>获取指定的经纬度</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; geopos china:city beijing
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; geopos china:city beijing
 1) 1) "116.39999896287918"
-   2) "39.900000091670925"</code></pre>
+   2) "39.900000091670925"</code></pre></div>
 
 <p>返回两个给定位置之间的距离</p>
-<pre><code class="hljs shell">geodist china:city beijing shanghai km # 两地的直线距离</code></pre>
+<div class="hljs"><pre><code class="hljs shell">geodist china:city beijing shanghai km # 两地的直线距离</code></pre></div>
 
 <p>以给定的经纬度为中心， 找出某一半径内的元素</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; georadius china:city 110 30 1000 km
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; georadius china:city 110 30 1000 km
 1) "jinzhou"
 2) "shanghai"
 3) "tianmen"
@@ -267,10 +267,10 @@
       2) "30.649999074635581"
 127.0.0.1:6379&gt; georadius china:city 110 30 1000 km count 2
 1) "jinzhou"
-2) "shanghai"</code></pre>
+2) "shanghai"</code></pre></div>
 
 <p>底层是zset，可以使用zset的一些操作</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; zrange china:city 0 -1
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; zrange china:city 0 -1
 1) "jinzhou"
 2) "shanghai"
 3) "tianmen"
@@ -280,17 +280,17 @@
 127.0.0.1:6379&gt; zrange china:city 0 -1
 1) "jinzhou"
 2) "shanghai"
-3) "beijing"</code></pre>
+3) "beijing"</code></pre></div>
 
 <h2 id="hyperloglog"><a href="#hyperloglog" class="headerlink" title="hyperloglog"></a>hyperloglog</h2><p> 主要用于基数统计</p>
-<pre><code class="hljs shell">pfadd mykey q w e r t y
+<div class="hljs"><pre><code class="hljs shell">pfadd mykey q w e r t y
 (integer) 1
 127.0.0.1:6379&gt; pfcount mykey
-(integer) 6</code></pre>
+(integer) 6</code></pre></div>
 
 <h2 id="Bitmap"><a href="#Bitmap" class="headerlink" title="Bitmap"></a>Bitmap</h2><p>位存储，一般用于用户是否登录，统计用户是否活跃，统计打卡</p>
 <p>使用bitmap记录一周的打卡：周一：1 周二：0 ……</p>
- <pre><code class="hljs shell">127.0.0.1:6379&gt; setbit sign 0 1
+ <div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; setbit sign 0 1
 (integer) 0
 127.0.0.1:6379&gt; setbit sign 1 0
 (integer) 0
@@ -303,15 +303,15 @@
 127.0.0.1:6379&gt; setbit sign 5 1
 (integer) 0
 127.0.0.1:6379&gt; setbit sign 6 0
-(integer) 0</code></pre>
+(integer) 0</code></pre></div>
 
 <p>查看是否打卡</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; getbit sign 0 # 查看星期一是否打卡
-(integer) 1</code></pre>
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; getbit sign 0 # 查看星期一是否打卡
+(integer) 1</code></pre></div>
 
 <p>统计打卡天数</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; bitcount sign  # 统计一周的打卡次数
-(integer) 4</code></pre>
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; bitcount sign  # 统计一周的打卡次数
+(integer) 4</code></pre></div>
 
 
 
@@ -701,7 +701,7 @@
         '  ',
         "三种特殊类型&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -717,8 +717,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

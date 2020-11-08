@@ -221,8 +221,8 @@
             
             <article class="markdown-body">
               <h2 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h2><p>查看所有引擎以及当前使用的引擎：<a id="more"></a></p>
-<pre><code class="hljs sql"><span class="hljs-keyword">show</span> <span class="hljs-keyword">engines</span>;
-<span class="hljs-keyword">show</span> <span class="hljs-keyword">variables</span> <span class="hljs-keyword">like</span> <span class="hljs-string">'%storage_engine%'</span>;</code></pre>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">show</span> <span class="hljs-keyword">engines</span>;
+<span class="hljs-keyword">show</span> <span class="hljs-keyword">variables</span> <span class="hljs-keyword">like</span> <span class="hljs-string">'%storage_engine%'</span>;</code></pre></div>
 
 <p>主要分为MyISAM与InnoDB<br><img src="/2020/09/09/mysql-senior/1.png" srcset="/img/loading.gif" style="zoom:70%;"></p>
 <h2 id="性能下降的原因"><a href="#性能下降的原因" class="headerlink" title="性能下降的原因"></a>性能下降的原因</h2><p>1、查询语句写的烂</p>
@@ -233,7 +233,7 @@
 <p>机读：<br><img src="/2020/09/09/mysql-senior/3.png" srcset="/img/loading.gif" alt></p>
 <p><img src="/2020/09/09/mysql-senior/4.png" srcset="/img/loading.gif" alt></p>
 <p>七种连接的情况：<br><img src="/2020/09/09/mysql-senior/5.png" srcset="/img/loading.gif" style="zoom:80%;"></p>
-<pre><code class="hljs sql"><span class="hljs-comment"># 内连接 左、右表共有</span>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-comment"># 内连接 左、右表共有</span>
 <span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> t_emp e <span class="hljs-keyword">inner</span> <span class="hljs-keyword">join</span> t_dept d <span class="hljs-keyword">on</span> e.deptid=d.id;
 
 <span class="hljs-comment"># 左外 左表独有+左、右表共有</span>
@@ -255,7 +255,7 @@
 <span class="hljs-keyword">where</span> d.id <span class="hljs-keyword">is</span> <span class="hljs-literal">null</span>
 <span class="hljs-keyword">union</span>
 <span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span>  t_emp e <span class="hljs-keyword">right</span> <span class="hljs-keyword">join</span> t_dept d <span class="hljs-keyword">on</span> e.deptid=d.id
-<span class="hljs-keyword">where</span> e.deptid <span class="hljs-keyword">is</span> <span class="hljs-literal">null</span>;</code></pre>
+<span class="hljs-keyword">where</span> e.deptid <span class="hljs-keyword">is</span> <span class="hljs-literal">null</span>;</code></pre></div>
 
 <h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><h3 id="索引简介"><a href="#索引简介" class="headerlink" title="索引简介"></a>索引简介</h3><p>索引就是帮助mysql高速获取数据的一种<strong>数据结构</strong>，目的在于提高查找效率，类比字典，如果查询mysql这个词，首先定位到m字母，然后依次定位到之后的字母，直到找到为止。</p>
 <p><font color="red"><strong>简单的理解为 ” 排好序的快速查找数据结构 “ 。</strong></font><br><img src="/2020/09/09/mysql-senior/6.png" srcset="/img/loading.gif" alt></p>
@@ -276,19 +276,19 @@
 <h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><blockquote>
 <p>创建</p>
 </blockquote>
-<pre><code class="hljs sql"><span class="hljs-keyword">create</span> [<span class="hljs-keyword">unique</span>] <span class="hljs-keyword">index</span> indexname <span class="hljs-keyword">on</span> <span class="hljs-keyword">table</span>(cloumnname(<span class="hljs-keyword">length</span>));</code></pre>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> [<span class="hljs-keyword">unique</span>] <span class="hljs-keyword">index</span> indexname <span class="hljs-keyword">on</span> <span class="hljs-keyword">table</span>(cloumnname(<span class="hljs-keyword">length</span>));</code></pre></div>
 
-<pre><code class="hljs sql"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> <span class="hljs-keyword">add</span> [<span class="hljs-keyword">unique</span>] <span class="hljs-keyword">index</span> [indexname] <span class="hljs-keyword">on</span> (columnname(<span class="hljs-keyword">length</span>));</code></pre>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> <span class="hljs-keyword">add</span> [<span class="hljs-keyword">unique</span>] <span class="hljs-keyword">index</span> [indexname] <span class="hljs-keyword">on</span> (columnname(<span class="hljs-keyword">length</span>));</code></pre></div>
 
 <blockquote>
 <p>删除</p>
 </blockquote>
-<pre><code class="hljs sql"><span class="hljs-keyword">drop</span> <span class="hljs-keyword">index</span> [indexname] <span class="hljs-keyword">on</span> <span class="hljs-keyword">table</span>;</code></pre>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">drop</span> <span class="hljs-keyword">index</span> [indexname] <span class="hljs-keyword">on</span> <span class="hljs-keyword">table</span>;</code></pre></div>
 
 <blockquote>
 <p>查看</p>
 </blockquote>
-<pre><code class="hljs sql"><span class="hljs-keyword">show</span> <span class="hljs-keyword">index</span> <span class="hljs-keyword">from</span> <span class="hljs-keyword">table</span></code></pre>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">show</span> <span class="hljs-keyword">index</span> <span class="hljs-keyword">from</span> <span class="hljs-keyword">table</span></code></pre></div>
 
 <h3 id="索引适用的条件"><a href="#索引适用的条件" class="headerlink" title="索引适用的条件"></a>索引适用的条件</h3><ul>
 <li>主键自动建立唯一索引；</li>
@@ -694,7 +694,7 @@
         '  ',
         "连接查询和索引&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -710,8 +710,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

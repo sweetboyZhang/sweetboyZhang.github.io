@@ -230,7 +230,7 @@
 <li>命令入队</li>
 <li>执行事务（exec）</li>
 </ul>
-<pre><code class="hljs bash">127.0.0.1:6379&gt; multi
+<div class="hljs"><pre><code class="hljs bash">127.0.0.1:6379&gt; multi
 OK
 127.0.0.1:6379&gt; <span class="hljs-built_in">set</span> k1 v1
 QUEUED
@@ -247,11 +247,11 @@ QUEUED
 2) OK
 3) OK
 4) <span class="hljs-string">"v2"</span>
-5) OK</code></pre>
+5) OK</code></pre></div>
 
 <p>放弃事务</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; discard
-OK</code></pre>
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; discard
+OK</code></pre></div>
 
 <p>编译型异常，事务中的所用命令都不会执行。</p>
 <p>运行时异常，其他命令正常执行，异常命令抛出异常。</p>
@@ -272,7 +272,7 @@ OK</code></pre>
 </li>
 </ul>
 <p>测试监视功能</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; set money 100  
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; set money 100  
 OK
 127.0.0.1:6379&gt; set out 0
 OK
@@ -286,34 +286,34 @@ QUEUED
 QUEUED
 127.0.0.1:6379&gt; exec
 1) (integer) 80
-2) (integer) 20</code></pre>
+2) (integer) 20</code></pre></div>
 
 <p>测试多线程修改值，使用watch可以当作redis的乐观锁操作</p>
 <p>客户端1：对money对象进行监视，并开启事务，先不执行事务</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; watch money
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; watch money
 OK
 127.0.0.1:6379&gt; multi
 OK
 127.0.0.1:6379&gt; decrby money 20
 QUEUED
 127.0.0.1:6379&gt; incrby out 20
-QUEUED</code></pre>
+QUEUED</code></pre></div>
 
 <p>再打开一个客户端2，对money对象的值进行修改</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; get money
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; get money
 "80"
 127.0.0.1:6379&gt; set money 100
-OK</code></pre>
+OK</code></pre></div>
 
 <p>在客户端1中执行事务，因为监视的值发生了改变，所以事务执行失败！</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; exec
-(nil)</code></pre>
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; exec
+(nil)</code></pre></div>
 
 <blockquote>
 <p>自旋锁</p>
 </blockquote>
 <p>执行失败后，放弃监视（解锁），再重新监视（加锁），获取监视对象的最新值，再执行事务，即可成功</p>
-<pre><code class="hljs shell">127.0.0.1:6379&gt; unwatch
+<div class="hljs"><pre><code class="hljs shell">127.0.0.1:6379&gt; unwatch
 OK
 127.0.0.1:6379&gt; watch money
 OK
@@ -325,7 +325,7 @@ QUEUED
 QUEUED
 127.0.0.1:6379&gt; exec
 1) (integer) 80
-2) (integer) 40</code></pre>
+2) (integer) 40</code></pre></div>
 
 
             </article>
@@ -713,7 +713,7 @@ QUEUED
         '  ',
         "事务&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -729,8 +729,10 @@ QUEUED
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

@@ -242,40 +242,40 @@
 <h2 id="Window下安装"><a href="#Window下安装" class="headerlink" title="Window下安装"></a>Window下安装</h2><p>1、下载压缩包解压即可：<br><a href="https://github.com/microsoftarchive/redis/releases/tag/win-3.2.100" target="_blank" rel="noopener">https://github.com/microsoftarchive/redis/releases/tag/win-3.2.100</a><br>2、运行服务redis-server.exe<br><img src="/2020/08/04/redis-01/1.png" srcset="/img/loading.gif" alt></p>
 <p>3、运行客户端redis-cli.exe来连接redis，使用ping命令测试是否连接成功<br><img src="/2020/08/04/redis-01/2.png" srcset="/img/loading.gif" alt></p>
 <h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><p>选择数据库，默认数据库是0</p>
-<pre><code class="hljs shell">select [0~15]</code></pre>
+<div class="hljs"><pre><code class="hljs shell">select [0~15]</code></pre></div>
 
 <p>查看当前数据库的大小</p>
-<pre><code class="hljs shell">dbsize</code></pre>
+<div class="hljs"><pre><code class="hljs shell">dbsize</code></pre></div>
 
 <p>设置键值对，name为key的值，zyz为value的值</p>
-<pre><code class="hljs shell">set name zyz</code></pre>
+<div class="hljs"><pre><code class="hljs shell">set name zyz</code></pre></div>
 
 <p>获取指定key的value</p>
-<pre><code class="hljs shell">get name</code></pre>
+<div class="hljs"><pre><code class="hljs shell">get name</code></pre></div>
 
 <p>移除key，1表示当前数据库</p>
-<pre><code class="hljs shell">move name 1</code></pre>
+<div class="hljs"><pre><code class="hljs shell">move name 1</code></pre></div>
 
 <p>查看数据库的所有key</p>
-<pre><code class="hljs shell">keys *</code></pre>
+<div class="hljs"><pre><code class="hljs shell">keys *</code></pre></div>
 
 <p>判断指定的key是否存在</p>
-<pre><code class="hljs shell">exists name</code></pre>
+<div class="hljs"><pre><code class="hljs shell">exists name</code></pre></div>
 
 <p>设置key的有效期</p>
-<pre><code class="hljs shell">expire name [秒数]</code></pre>
+<div class="hljs"><pre><code class="hljs shell">expire name [秒数]</code></pre></div>
 
 <p>查看剩余多少秒过期</p>
-<pre><code class="hljs shell">ttl name</code></pre>
+<div class="hljs"><pre><code class="hljs shell">ttl name</code></pre></div>
 
 <p>查看key的类型</p>
-<pre><code class="hljs shell">type name</code></pre>
+<div class="hljs"><pre><code class="hljs shell">type name</code></pre></div>
 
 <p>清空当前数据库</p>
-<pre><code class="hljs shell">flushdb</code></pre>
+<div class="hljs"><pre><code class="hljs shell">flushdb</code></pre></div>
 
 <p>清空全部数据库</p>
-<pre><code class="hljs shell">flushall</code></pre>
+<div class="hljs"><pre><code class="hljs shell">flushall</code></pre></div>
 
 <p><strong>Redis是单线程的，基于内存操作，CPU不是Redis的性能瓶颈，Redis的性能是根据机器的内存和网络带宽决定的。</strong></p>
 <p>Redis将全部数据存放于内存，所以说使用单线程效率最高，多线程cpu上下文切换耗时，对于内存系统来说，如果没有上下文切换，效率就是最高的。</p>
@@ -665,7 +665,7 @@
         '  ',
         "Redis入门&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -681,8 +681,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.8k 字
+      1.9k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      21
+      23
        分钟
     </span>
   
@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：October 29, 2020 pm
+                  本文最后更新于：November 6, 2020 pm
                 
               </p>
             
@@ -252,8 +252,8 @@
 <li>实现Callable接口，重写call()方法</li>
 <li>使用线程池</li>
 </ul>
-<p>实现Runnable接口</p>
-<pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyThread2</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span></span>&#123;
+<p><strong>实现Runnable接口</strong></p>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyThread2</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span></span>&#123;
     <span class="hljs-comment">// 1、实现Runnable接口中的run()方法</span>
     <span class="hljs-meta">@Override</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;
@@ -273,10 +273,10 @@
        <span class="hljs-comment">// 再启动一个线程 不需要再造实现类对象</span>
        Thread t3 = <span class="hljs-keyword">new</span> Thread(mThread);
        t3.start();
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<p>实现Callable接口：</p>
-<pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyThread3</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Callable</span></span>&#123;
+<p><strong>实现Callable接口：</strong></p>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyThread3</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Callable</span></span>&#123;
     <span class="hljs-meta">@Override</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">call</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
         <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">100</span>; i++) &#123;
@@ -305,10 +305,15 @@
         th4.setName(<span class="hljs-string">"子线程2："</span>);
         th4.start();     
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<p>使用线程池</p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ThreadTest4</span> </span>&#123;
+<blockquote>
+<p>Callable与Runnable 两点不同：</p>
+<p>第一，可以通过 call()获得返回值。前两种方式都有一个共同的缺陷，即在任务执行完成后 ，无法直接获取执行结果需要借助共享变量等获取 ，而 Callable和Future则很好地解决了这个问题；</p>
+<p> 第二， call()可以抛出异常。而 Runnable 要通过 setDefaultUncaughtExceptionHandler() 的方式才能在主线程中捕捉到子线程异常。</p>
+</blockquote>
+<p><strong>使用线程池</strong></p>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ThreadTest4</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
         <span class="hljs-comment">// 创建线程池 提供指定线程数量</span>
         ExecutorService service = Executors.newFixedThreadPool(<span class="hljs-number">10</span>);
@@ -326,7 +331,7 @@
             System.out.println(Thread.currentThread().getName()+<span class="hljs-string">":"</span>+i);
         &#125;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <h2 id="Java实现多线程要注意的细节"><a href="#Java实现多线程要注意的细节" class="headerlink" title="Java实现多线程要注意的细节"></a>Java实现多线程要注意的细节</h2><p><strong>run()与start()的区别：</strong></p>
 <ul>
@@ -398,7 +403,7 @@
 <li>interrupt不会真正停止一个线程，仅仅是发出一个中断信号，告诉他应该要结束了</li>
 <li>让线程自己处理，到底是中断还是继续执行</li>
 </ul>
-<pre><code class="hljs java">Thread t1 = <span class="hljs-keyword">new</span> Thread( <span class="hljs-keyword">new</span> Runnable()&#123;
+<div class="hljs"><pre><code class="hljs java">Thread t1 = <span class="hljs-keyword">new</span> Thread( <span class="hljs-keyword">new</span> Runnable()&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span></span>&#123;
         <span class="hljs-comment">// 若未发生中断，就正常执行任务</span>
         <span class="hljs-keyword">while</span>(!Thread.currentThread.isInterrupted())&#123;
@@ -407,7 +412,7 @@
         <span class="hljs-comment">// 中断的处理代码……</span>
         doSomething();
     &#125;
-&#125; ).start();</code></pre>
+&#125; ).start();</code></pre></div>
 
 <p>如果阻塞线程调用了interrupt()方法，那么会<strong>抛出异常，设置标志位为false，同时该线程会退出阻塞</strong>。</p>
 <h2 id="Synchronized锁与Lock锁"><a href="#Synchronized锁与Lock锁" class="headerlink" title="Synchronized锁与Lock锁"></a>Synchronized锁与Lock锁</h2><p><strong>Synchronized锁使用：</strong></p>
@@ -415,21 +420,21 @@
 <p>方式一：同步代码块</p>
 </blockquote>
 <p>将可能出现线程安全问题的代码使用<code>synchronized</code>关键字包裹</p>
-<pre><code class="hljs java"><span class="hljs-keyword">synchronized</span>(<span class="hljs-comment">/*锁*/</span>)&#123;<span class="hljs-comment">// 要保证是同一把锁</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">synchronized</span>(<span class="hljs-comment">/*锁*/</span>)&#123;<span class="hljs-comment">// 要保证是同一把锁</span>
     <span class="hljs-comment">// 需要同步的代码</span>
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <blockquote>
 <p>方式二：同步方法</p>
 </blockquote>
 <p> 将可能出现线程安全问题的代码块封装成一个同步方法</p>
-<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-title">func</span><span class="hljs-params">()</span></span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-title">func</span><span class="hljs-params">()</span></span>&#123;
     <span class="hljs-comment">// 方法体</span>
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><strong>Lock锁</strong></p>
 <p>通过显式定义同步锁对象，即Lock对象，来实现同步。</p>
-<pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">buyTicket</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span></span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">buyTicket</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span></span>&#123;
     <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> ticketNum = <span class="hljs-number">100</span>;
     <span class="hljs-comment">// 1.实例化ReentrantLock</span>
     <span class="hljs-comment">// ReentrantLock类实现了Lock，以及创建锁的lock()方法，释放锁的unlock()方法。</span>
@@ -451,7 +456,7 @@
             &#125;
         &#125;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 
@@ -887,7 +892,7 @@
         '  ',
         "多线程总结&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -903,8 +908,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

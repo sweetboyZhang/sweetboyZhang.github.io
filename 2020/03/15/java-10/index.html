@@ -221,7 +221,7 @@
             
             <article class="markdown-body">
               <h2 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h2><p>反射机制允许程序在执行期借助于Reflection API取得任何类的内部信息，并能直接操作任意对象的内部属性及方法。<a id="more"></a><br><strong>类的加载过程：</strong><br>程序经过javac.exe命令后，会生成一个或多个字节码文件(.class)，接着使用java.exe命令对某个字节码文件进行解释运行。相当于将某个字节码文件加载到内存中，即类的加载。加载到内存中的类，我们就成为运行时类，此运行时类就作为Class的一个实例。<br>加载到内存中的运行时类，会缓存一段时间。在此时间内，我们可以通过不同的方式来获取此运行时类。</p>
-<h2 id="获取Class实例"><a href="#获取Class实例" class="headerlink" title="获取Class实例"></a>获取Class实例</h2><pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">// 获取Class实例</span>
+<h2 id="获取Class实例"><a href="#获取Class实例" class="headerlink" title="获取Class实例"></a>获取Class实例</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span> <span class="hljs-comment">// 获取Class实例</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> ClassNotFoundException </span>&#123;
     <span class="hljs-comment">// 方式一:调用运行类属性：.class</span>
     Class class0 = Person<span class="hljs-class">.<span class="hljs-keyword">class</span></span>;
@@ -237,9 +237,9 @@
     ClassLoader classLoader = ClassTest<span class="hljs-class">.<span class="hljs-keyword">class</span>.<span class="hljs-title">getClassLoader</span>()</span>;
     Class class3 = classLoader.loadClass(<span class="hljs-string">"reflection.Person"</span>);
     System.out.println(class3);
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<h2 id="调用运行时类指定结构"><a href="#调用运行时类指定结构" class="headerlink" title="调用运行时类指定结构"></a>调用运行时类指定结构</h2><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<h2 id="调用运行时类指定结构"><a href="#调用运行时类指定结构" class="headerlink" title="调用运行时类指定结构"></a>调用运行时类指定结构</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test2</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
     <span class="hljs-comment">// 通过反射创建对应的运行时类</span>
     Class&lt;Person&gt; class1 = Person<span class="hljs-class">.<span class="hljs-keyword">class</span></span>;
@@ -274,7 +274,7 @@
     con.setAccessible(<span class="hljs-keyword">true</span>);
     Person p2 = (Person) con.newInstance(<span class="hljs-number">1002</span>,<span class="hljs-string">"Taylor"</span>,<span class="hljs-number">18</span>);
     System.out.println(p2);<span class="hljs-comment">// Person&#123;id=1002, name='Taylor', age=18&#125;</span>
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
             </article>
@@ -662,7 +662,7 @@
         '  ',
         "反射&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -678,8 +678,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

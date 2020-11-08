@@ -270,17 +270,17 @@
 </li>
 </ul>
 <h2 id="JWT的结构"><a href="#JWT的结构" class="headerlink" title="JWT的结构"></a>JWT的结构</h2><h3 id="1、标头Header"><a href="#1、标头Header" class="headerlink" title="1、标头Header"></a>1、标头Header</h3><p>通常由两部分组成：令牌的类型（即JWT）和所使用的签名算法，例如HMAC、SHA256或RSA。它会使用Base64编码组成JWT结构的一部分(aaa.)。</p>
-<pre><code class="hljs json">&#123;
+<div class="hljs"><pre><code class="hljs json">&#123;
   <span class="hljs-attr">"alg"</span>: <span class="hljs-string">"HS256"</span>,
   <span class="hljs-attr">"typ"</span>: <span class="hljs-string">"JWT"</span>
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <h3 id="2、有效载荷Payload"><a href="#2、有效载荷Payload" class="headerlink" title="2、有效载荷Payload"></a>2、有效载荷Payload</h3><p>包含有关实体的声明（通常是用户）或其他数据（对用户不敏感的信息）的声明。同样使用Base64编码组成JWT的第二部分（bbb.）</p>
-<pre><code class="hljs json">&#123;
+<div class="hljs"><pre><code class="hljs json">&#123;
   <span class="hljs-attr">"sub"</span>: <span class="hljs-string">"1234567890"</span>,
   <span class="hljs-attr">"name"</span>: <span class="hljs-string">"John Doe"</span>,
   <span class="hljs-attr">"admin"</span>: <span class="hljs-literal">true</span>
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <h3 id="3、签名Signature"><a href="#3、签名Signature" class="headerlink" title="3、签名Signature"></a>3、签名Signature</h3><p>前面两部分都是使用Base64进行编码的，即在前端可以Base64解码解开里面的信息。Signature 需要使用<br>编码后的header和payload以及我们提供的一个密钥，然后使用header中指明的签名算法（HS256）进行签名，保证JWT没有被篡改过。</p>
 <p>例如：<code>HMACSHA256(base64UrlEncode(header) + &quot;.&quot; + base64UrlEncode(payload),secret);</code></p>
@@ -291,7 +291,7 @@
 <li>简洁(Compact)<br>  可以通过URL, POST 参数或者在 HTTP header 发送，因为数据量小，传输速度快</li>
 <li>自包含(Self-contained)<br>  负载中包含了所有用户所需要的信息，避免了多次查询数据库</li>
 </ul>
-<h2 id="整合Springboot"><a href="#整合Springboot" class="headerlink" title="整合Springboot"></a>整合Springboot</h2><h3 id="1、创建数据库"><a href="#1、创建数据库" class="headerlink" title="1、创建数据库"></a>1、创建数据库</h3><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span> jwt_test;
+<h2 id="整合Springboot"><a href="#整合Springboot" class="headerlink" title="整合Springboot"></a>整合Springboot</h2><h3 id="1、创建数据库"><a href="#1、创建数据库" class="headerlink" title="1、创建数据库"></a>1、创建数据库</h3><div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span> jwt_test;
 
 <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">table</span> t_user(
 <span class="hljs-keyword">id</span> <span class="hljs-built_in">int</span> PRIMARY <span class="hljs-keyword">KEY</span> auto_increment,
@@ -301,10 +301,10 @@
 
 <span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> t_user(<span class="hljs-keyword">id</span>,<span class="hljs-keyword">name</span>,<span class="hljs-keyword">password</span>) <span class="hljs-keyword">values</span>
 (<span class="hljs-number">1</span>,<span class="hljs-string">'zhangyuzhen'</span>,<span class="hljs-string">'123456'</span>),
-(<span class="hljs-number">2</span>,<span class="hljs-string">'zhangsan'</span>,<span class="hljs-string">'123456'</span>);</code></pre>
+(<span class="hljs-number">2</span>,<span class="hljs-string">'zhangsan'</span>,<span class="hljs-string">'123456'</span>);</code></pre></div>
 
 <h3 id="2、创建Springboot项目"><a href="#2、创建Springboot项目" class="headerlink" title="2、创建Springboot项目"></a>2、创建Springboot项目</h3><p>导入如下依赖：</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
@@ -337,9 +337,9 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>mysql<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mysql-connector-java<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>8.0.19<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre></div>
 
-<h3 id="3、编写配置文件"><a href="#3、编写配置文件" class="headerlink" title="3、编写配置文件"></a>3、编写配置文件</h3><pre><code class="hljs properties"><span class="hljs-meta">server.port</span>=<span class="hljs-string">8989</span>
+<h3 id="3、编写配置文件"><a href="#3、编写配置文件" class="headerlink" title="3、编写配置文件"></a>3、编写配置文件</h3><div class="hljs"><pre><code class="hljs properties"><span class="hljs-meta">server.port</span>=<span class="hljs-string">8989</span>
 
 
 <span class="hljs-meta">spring.datasource.type</span>=<span class="hljs-string">com.alibaba.druid.pool.DruidDataSource</span>
@@ -351,10 +351,10 @@
 <span class="hljs-meta">mybatis.type-aliases-package</span>=<span class="hljs-string">com.zyz.po</span>
 <span class="hljs-meta">mybatis.mapper-locations</span>=<span class="hljs-string">classpath:com/zyz/mapper/*.xml</span>
 
-<span class="hljs-meta">logging.level.com.zyz.dao</span>=<span class="hljs-string">debug</span></code></pre>
+<span class="hljs-meta">logging.level.com.zyz.dao</span>=<span class="hljs-string">debug</span></code></pre></div>
 
 <p>先测试数据库是否能连接成功</p>
-<pre><code class="hljs java"><span class="hljs-meta">@SpringBootTest</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@SpringBootTest</span>
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SpringbootJwtApplicationTests</span> </span>&#123;
 
     <span class="hljs-meta">@Autowired</span>
@@ -365,32 +365,32 @@
         System.out.println(connection);
         System.out.println(connection.getClass());
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <h3 id="4、创建项目的包结构"><a href="#4、创建项目的包结构" class="headerlink" title="4、创建项目的包结构"></a>4、创建项目的包结构</h3><p><img src="/2020/10/18/jwt/10.png" srcset="/img/loading.gif" alt></p>
 <p>编写各层的代码：</p>
 <blockquote>
 <p>po</p>
 </blockquote>
-<pre><code class="hljs java"><span class="hljs-meta">@Data</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Data</span>
 <span class="hljs-meta">@NoArgsConstructor</span>
 <span class="hljs-meta">@AllArgsConstructor</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;
     <span class="hljs-keyword">private</span> Integer id;
     <span class="hljs-keyword">private</span> String name;
     <span class="hljs-keyword">private</span> String password;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <blockquote>
 <p>dao       @Repository可以省略，因为其接口对应的mapper文件通过namespace与之相关联，生成的实现类总是在容器中</p>
 </blockquote>
-<pre><code class="hljs java"><span class="hljs-meta">@Repository</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Repository</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">UserDao</span> </span>&#123;
     <span class="hljs-function">User <span class="hljs-title">login</span><span class="hljs-params">(User user)</span></span>;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="utf-8" ?&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="utf-8" ?&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">mapper</span></span>
 <span class="hljs-meta">        <span class="hljs-meta-keyword">PUBLIC</span> <span class="hljs-meta-string">"-//mybatis.org//DTD Mapper 3.0//EN"</span></span>
 <span class="hljs-meta">        <span class="hljs-meta-string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span> &gt;</span>
@@ -400,16 +400,16 @@
         select id,name from t_user where name=#&#123;name&#125; and password=#&#123;password&#125;
     <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
 
-<span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span></code></pre></div>
 <p>在Springboot启动类上中添加dao接口包扫描的注解@MapperScan(“com.zyz.dao”)或者在每个dao接口中添加@Mapper注解</p>
 <blockquote>
 <p>service</p>
 </blockquote>
-<pre><code class="hljs routeros">public<span class="hljs-built_in"> interface </span>UserService &#123;
+<div class="hljs"><pre><code class="hljs routeros">public<span class="hljs-built_in"> interface </span>UserService &#123;
    <span class="hljs-built_in"> User </span>login(User user);
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<pre><code class="hljs java"><span class="hljs-meta">@Service</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Service</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">UserService</span> </span>&#123;
 
     <span class="hljs-meta">@Autowired</span>
@@ -423,12 +423,12 @@
         &#125;
         <span class="hljs-keyword">return</span> user1;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <blockquote>
 <p>utils</p>
 </blockquote>
-<pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * 创建 Token</span>
 <span class="hljs-comment"> */</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">JWTUtils</span> </span>&#123;
@@ -465,12 +465,12 @@
        <span class="hljs-keyword">return</span> JWT.require(Algorithm.HMAC256(SIGNATURE)).build().verify(token);
     &#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <blockquote>
 <p>controller</p>
 </blockquote>
-<pre><code class="hljs java"><span class="hljs-meta">@RestController</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserController</span> </span>&#123;
     <span class="hljs-meta">@Autowired</span>
     <span class="hljs-keyword">private</span> UserService userService;
@@ -499,12 +499,12 @@
         <span class="hljs-keyword">return</span> <span class="hljs-string">"hello!"</span>;
     &#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <blockquote>
 <p>interceptor  编写用于token验证的拦截器</p>
 </blockquote>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">JWTInterceptor</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">HandlerInterceptor</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">JWTInterceptor</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">HandlerInterceptor</span> </span>&#123;
     <span class="hljs-meta">@Override</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">preHandle</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
         String token = request.getHeader(<span class="hljs-string">"token"</span>);
@@ -532,12 +532,12 @@
         response.getWriter().println(json);
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <blockquote>
 <p>config  使编写的拦截器生效</p>
 </blockquote>
-<pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">InterceptorConfig</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">WebMvcConfigurer</span> </span>&#123;
     <span class="hljs-meta">@Override</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addInterceptors</span><span class="hljs-params">(InterceptorRegistry registry)</span> </span>&#123;
@@ -545,7 +545,7 @@
                 .addPathPatterns(<span class="hljs-string">"/**"</span>) <span class="hljs-comment">// 拦截所有请求</span>
                 .excludePathPatterns(<span class="hljs-string">"/user/**"</span>);<span class="hljs-comment">// 与用户相关的请求除外</span>
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <h2 id="使用Postman测试"><a href="#使用Postman测试" class="headerlink" title="使用Postman测试"></a>使用Postman测试</h2><p>认证成功时：<br><img src="/2020/10/18/jwt/6.png" srcset="/img/loading.gif"></p>
 <p>认证失败时：<br><img src="/2020/10/18/jwt/7.png" srcset="/img/loading.gif"></p>
@@ -937,7 +937,7 @@
         '  ',
         "JWT原理及使用&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -953,8 +953,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

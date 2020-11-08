@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      759 字
+      1.1k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      9
+      13
        分钟
     </span>
   
@@ -215,16 +215,16 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：October 29, 2020 pm
+                  本文最后更新于：November 6, 2020 pm
                 
               </p>
             
             <article class="markdown-body">
-              <h2 id="异常概述与异常体系结构"><a href="#异常概述与异常体系结构" class="headerlink" title="异常概述与异常体系结构"></a>异常概述与异常体系结构</h2><p><strong>Error：</strong>Java虚拟机无法解决的严重问题。如：JVM系统内部错误、资源耗尽等严重情况。<br>比如 ：StackOverflowError栈内存溢出和OutOfMemory堆内存溢出。一般不编写针对性的代码进行处理。<br><strong>Exception:</strong> 其它因编程错误或偶然的外在因素导致的一般性问题，可以使用针对性的代码进行处理。<br>例如：空指针访问，试图读取不存在的文件，网络连接中断，数组角标越界。</p>
+              <h2 id="异常概述与异常体系结构"><a href="#异常概述与异常体系结构" class="headerlink" title="异常概述与异常体系结构"></a>异常概述与异常体系结构</h2><p><strong>Throwable：</strong>所有异常都继承与Throwable，分为Exception和Error。<br><strong>Error：</strong>Java虚拟机无法解决的严重问题。如：JVM系统内部错误、资源耗尽等严重情况。<br>比如 ：StackOverflowError栈内存溢出和OutOfMemory堆内存溢出。一般不编写针对性的代码进行处理。<br><strong>Exception:</strong> 其它因编程错误或偶然的外在因素导致的一般性问题，可以使用针对性的代码进行处理。<br>例如：空指针访问，试图读取不存在的文件，网络连接中断，数组角标越界。</p>
 <a id="more"></a>
-<p>异常分类：<br>编译时异常，CheckException及它的子类，例如IOException，FileNotFoundexception,SQLException等；<br>运行时异常，RuntimeException类及它的子类,，例如NullPointerException，ClassCastException，IndexOutOfBoundException等。</p>
+<p>异常分类：<br>编译时异常，CheckException及它的子类，例如IOException，FileNotFoundexception,SQLException等；<br>运行时异常，RuntimeException类及它的子类,，例如NullPointerException，ClassCastException，IndexOutOfBoundException等。<br><img src="/2020/02/11/java-03/1.jpg" srcset="/img/loading.gif" alt></p>
 <h2 id="异常处理机制一"><a href="#异常处理机制一" class="headerlink" title="异常处理机制一"></a>异常处理机制一</h2><p>异常的处理：抓抛模型<br><strong>抛出异常：</strong>程序在正常执行的过程中，如果出现异常，就会生成一个异常类的对象，并将此对象提交给java运行时系统。<br><strong>捕获异常：</strong>如果一个方法抛出异常，该异常就会抛出给调用者方法中处理。如果异常没有在调用者方法中处理，继续抛给上层方法，直到<font color="red">异常被处理</font>。</p>
-<pre><code class="hljs angelscript"><span class="hljs-keyword">try</span>&#123;
+<div class="hljs"><pre><code class="hljs angelscript"><span class="hljs-keyword">try</span>&#123;
     <span class="hljs-comment">// 可能出现异常的代码    </span>
 &#125;<span class="hljs-keyword">catch</span>(异常类型<span class="hljs-number">1</span> 变量名<span class="hljs-number">1</span>)&#123;
     <span class="hljs-comment">// 处理异常的方式1</span>
@@ -235,11 +235,36 @@
 finally&#123;
     <span class="hljs-comment">// 不论在try代码块中是否发生了异常事件，catch语句是否执行，是否有异常，是否有return，</span>
     <span class="hljs-comment">// finally块中的语句都会被执行。</span>
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<h2 id="异常处理机制二"><a href="#异常处理机制二" class="headerlink" title="异常处理机制二"></a>异常处理机制二</h2><p>throws + 异常类型<br>1.写在方法的声明处，指明可能抛出的异常类型。一旦方法体执行出现异常时，就会将生成的异常类对象抛给调用者。异常代码后续的代码不再执行。<br>2.只是将异常抛给了调用者，并<font color="red">没有将异常处理掉</font>。</p>
+<p>( I ) try 代码块：监视代码执行过程 </p>
+<p>旦发现异常则直接跳转至 catch ，如果没有 catch ，则直接跳转至 finally</p>
+<p>( 2 ) catch 代码块：可选执行的代码块，如果没有任何异常发生则不会执行，如果发现异常则进行处理或向上抛出。这一切都在 catch 代码块中执行。</p>
+<p>( 3 ) finally 代码块：必选执行的代码块，不 管是否有异常产 生，即使发生OOM也会执行，通常用于处理善后清理工作。如果 finally 代码块没有执行，那么有三种可能：</p>
+<ul>
+<li><p>没有进入try 代码块。</p>
+</li>
+<li><p>进入try代码块，但是代码运行中出现了死循环或死锁状态。</p>
+</li>
+<li><p>进入 try 代码块，但是执行了<code>System.exit()</code>操作。</p>
+</li>
+</ul>
+<blockquote>
+<p>注意， finally 是在 return 表达式运行后执行的，此时将要return 的结果已经被暂存起来，finally 代码块执行结束后再将<strong>之前暂存的结果</strong>返回。</p>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">finallyNotWork</span> <span class="hljs-params">()</span> </span>&#123; 
+<span class="hljs-keyword">int</span> temp = <span class="hljs-number">10000</span> ; 
+<span class="hljs-keyword">try</span> &#123; 
+	<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-function">Excepti <span class="hljs-title">on</span> <span class="hljs-params">()</span></span>; 
+&#125; <span class="hljs-keyword">catch</span> (Exception e ) &#123; 
+	<span class="hljs-keyword">return</span> ++temp ;
+&#125;<span class="hljs-keyword">finally</span>&#123;
+   	temp = <span class="hljs-number">99999</span>;
+&#125;</code></pre></div>
+<p>此方法的结果返回10001，而不是99999！<br>不要在finally 代码块中使用 return 语句，否则会覆盖掉 try 或 catch 代码块中return的结果。</p>
+</blockquote>
+<h2 id="异常处理机制二"><a href="#异常处理机制二" class="headerlink" title="异常处理机制二"></a>异常处理机制二</h2><p>throws + 异常类型<br>1.写在<strong>方法的声明处</strong>，指明可能抛出的异常类型。一旦方法体执行出现异常时，就会将生成的异常类对象抛给调用者。异常代码后续的代码不再执行。<br>2.只是将异常抛给了调用者，并<font color="red">没有将异常处理掉</font>。</p>
 <h2 id="手动抛出异常"><a href="#手动抛出异常" class="headerlink" title="手动抛出异常"></a>手动抛出异常</h2><p>throw + new Exception(“提示信息”)，必须在方法声明时用throws出指明可能抛出的异常。<br>throw : 生成一个异常对象。声明在方法体内。<br>throws : 处理异常。声明在方法的声明处。</p>
-<h2 id="用户自定义异常类"><a href="#用户自定义异常类" class="headerlink" title="用户自定义异常类"></a>用户自定义异常类</h2><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<h2 id="用户自定义异常类"><a href="#用户自定义异常类" class="headerlink" title="用户自定义异常类"></a>用户自定义异常类</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@Description</span> 用户自定义异常类MyException，用于描述数据取值范围错误信息。</span>
 <span class="hljs-comment"> *              用户自己的异常类必须继承现有的异常类。 </span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@author</span> sweetboyZhang</span>
@@ -286,9 +311,10 @@ finally&#123;
 		MyExceptionTest my1 = <span class="hljs-keyword">new</span> MyExceptionTest();
 		my1.manager();
 	&#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-
+<div class="hljs"><pre><code class="hljs plain">
+</code></pre></div>
             </article>
             <hr>
             <div>
@@ -674,7 +700,7 @@ finally&#123;
         '  ',
         "异常处理&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -690,8 +716,10 @@ finally&#123;
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

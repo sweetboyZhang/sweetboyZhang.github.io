@@ -222,7 +222,7 @@
             <article class="markdown-body">
               <h2 id="请求转发与重定向"><a href="#请求转发与重定向" class="headerlink" title="请求转发与重定向"></a>请求转发与重定向</h2><p>SpringMVC 框架把原来Servlet 中的请求转发和重定向操作进行了封装。<br>现在可以使用简单的方式实现转发和重定向。<a id="more"></a><br>forward:表示转发，实现request.getRequestDispatcher(“xx.jsp”).forward()<br>redirect:表示重定向，实现response.sendRedirect(“xxx.jsp”)</p>
 <h3 id="1、请求转发"><a href="#1、请求转发" class="headerlink" title="1、请求转发"></a>1、请求转发</h3><p>在框架中，使用forward，redirect，与视图解析器无关。</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Controller</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Controller</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyController</span> </span>&#123;
     <span class="hljs-comment">/**</span>
 <span class="hljs-comment">     * 框架的 forward请求转发</span>
@@ -241,10 +241,10 @@
         modelAndView.setViewName(<span class="hljs-string">"forward:/WEB-INF/view/show.jsp"</span>);
         <span class="hljs-keyword">return</span> modelAndView;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>请求页面：</p>
-<pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;
+<div class="hljs"><pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;
 &lt;% String basePath = request.getContextPath()+<span class="hljs-string">"/"</span>;%&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -258,10 +258,10 @@
         &lt;input type=<span class="hljs-string">"submit"</span> value=<span class="hljs-string">"请求转发"</span>&gt;
     &lt;/form&gt;
 &lt;/body&gt;
-&lt;/html&gt;</code></pre>
+&lt;/html&gt;</code></pre></div>
 
 <p>转发页面：</p>
-<pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;
+<div class="hljs"><pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;
 &lt;html&gt;
 &lt;head&gt;
     &lt;title&gt;show.jsp&lt;/title&gt;
@@ -271,9 +271,9 @@
     &lt;p&gt;name：$&#123;name&#125;&lt;/p&gt;
     &lt;p&gt;age：$&#123;age&#125;&lt;/p&gt;
 &lt;/body&gt;
-&lt;/html&gt;</code></pre>
+&lt;/html&gt;</code></pre></div>
 
-<h3 id="2、重定向"><a href="#2、重定向" class="headerlink" title="2、重定向"></a>2、重定向</h3><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<h3 id="2、重定向"><a href="#2、重定向" class="headerlink" title="2、重定向"></a>2、重定向</h3><div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * 框架的 redirect 重定向</span>
 <span class="hljs-comment"> * 1、框架会把 Model中的简单数据类型的数据，转换为String使用，作为hello.jsp的get请求参数</span>
 <span class="hljs-comment"> * 目的是在 doRedirect 和 hello.jsp 两次请求之间传递数据</span>
@@ -291,10 +291,10 @@
     <span class="hljs-comment">// 使用redirect重定向</span>
     modelAndView.setViewName(<span class="hljs-string">"redirect:/hello.jsp"</span>);
     <span class="hljs-keyword">return</span> modelAndView;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>请求页面：</p>
-<pre><code class="hljs java">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;
+<div class="hljs"><pre><code class="hljs java">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;
 &lt;% String basePath = request.getContextPath()+<span class="hljs-string">"/"</span>;%&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -308,10 +308,10 @@
         &lt;input type=<span class="hljs-string">"submit"</span> value=<span class="hljs-string">"重定向"</span>&gt;
     &lt;/form&gt;
 &lt;/body&gt;
-&lt;/html&gt;</code></pre>
+&lt;/html&gt;</code></pre></div>
 
 <p>重定向页面：</p>
-<pre><code class="hljs java">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;
+<div class="hljs"><pre><code class="hljs java">&lt;%@ page contentType=<span class="hljs-string">"text/html;charset=UTF-8"</span> language=<span class="hljs-string">"java"</span> %&gt;
 &lt;html&gt;
 &lt;head&gt;
     &lt;title&gt;hello.jsp&lt;/title&gt;
@@ -321,12 +321,12 @@
     &lt;p&gt;name：$&#123;param.name&#125;&lt;/p&gt;
     &lt;p&gt;age：$&#123;param.age&#125;&lt;/p&gt;
 &lt;/body&gt;
-&lt;/html&gt;</code></pre>
+&lt;/html&gt;</code></pre></div>
 
 <h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><p>springmvc采用全局异常处理，把controller中的异常处理集中到一个地方。采用aop的思想，将业务处理与异常处理分开，解耦合。</p>
 <p>1、为了方便演示，自定义了几个异常类</p>
 <p>自定义用户异常类</p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyUserException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Exception</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyUserException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Exception</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyUserException</span><span class="hljs-params">()</span> </span>&#123;
         <span class="hljs-keyword">super</span>();
     &#125;
@@ -334,10 +334,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyUserException</span><span class="hljs-params">(String message)</span> </span>&#123;
         <span class="hljs-keyword">super</span>(message);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>再定义两个子类继承用户异常类</p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AgeException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">MyUserException</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AgeException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">MyUserException</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">AgeException</span><span class="hljs-params">()</span> </span>&#123;
         <span class="hljs-keyword">super</span>();
     &#125;
@@ -345,9 +345,9 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">AgeException</span><span class="hljs-params">(String message)</span> </span>&#123;
         <span class="hljs-keyword">super</span>(message);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NameException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">MyUserException</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NameException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">MyUserException</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">NameException</span><span class="hljs-params">()</span> </span>&#123;
         <span class="hljs-keyword">super</span>();
     &#125;
@@ -355,10 +355,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">NameException</span><span class="hljs-params">(String message)</span> </span>&#123;
         <span class="hljs-keyword">super</span>(message);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>2、编写专门处理异常的controller类</p>
-<pre><code class="hljs java"><span class="hljs-meta">@ControllerAdvice</span><span class="hljs-comment">// 控制器增强，增加异常处理功能 需要配置组件扫描器，声明此类所在的包名</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@ControllerAdvice</span><span class="hljs-comment">// 控制器增强，增加异常处理功能 需要配置组件扫描器，声明此类所在的包名</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GlobalExceptionHandler</span> </span>&#123;
     <span class="hljs-comment">// 定义方法处理异常</span>
     <span class="hljs-comment">/**</span>
@@ -397,20 +397,20 @@
         modelAndView.setViewName(<span class="hljs-string">"defaultError"</span>);
         <span class="hljs-keyword">return</span> modelAndView;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>3、添加组件扫描器，声明处理异常的方法所在的包</p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 注解驱动--&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 注解驱动--&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">mvc:annotation-driven</span>/&gt;</span>
 <span class="hljs-comment">&lt;!-- 处理异常--&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">context:component-scan</span> <span class="hljs-attr">base-package</span>=<span class="hljs-string">"com.zyz.handler"</span>/&gt;</span></code></pre>
+<span class="hljs-tag">&lt;<span class="hljs-name">context:component-scan</span> <span class="hljs-attr">base-package</span>=<span class="hljs-string">"com.zyz.handler"</span>/&gt;</span></code></pre></div>
 
 <p>4、编写异常跳转的页面</p>
 <h2 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h2><p>拦截器（interceptor），是一种面向切面编程的实现，将多个模块的通用服务进行分离，如权限管理、日志服务，就可以将其各自封装为一个可重用模块。而这些通用服务的具体实现是通过拦截器来完成，比如用户客户端访问一些保密模块都应先通过权限审查的拦截器来进行权限审查，确定用户是否具有该项操作的权限后方能向下执行。在面向切面编程中就是在调用业务方法前调用一个方法，或者在调用业务方法后调用一个方法。</p>
 <p><strong>拦截器的执行时间：</strong></p>
 <p>1、在请求处理之前，也就是controller类中的方法执行之前先被拦截。<br>2、在控制器方法执行之后也会执行拦截器。<br>3、在请求处理完成后也会执行拦截器。</p>
 <p><strong>拦截器类</strong></p>
-<pre><code class="hljs java"><span class="hljs-comment">// 拦截器类，拦截用户请求</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 拦截器类，拦截用户请求</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyInterceptor</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">HandlerInterceptor</span> </span>&#123;
     <span class="hljs-comment">/**</span>
 <span class="hljs-comment">     * 预处理方法</span>
@@ -465,10 +465,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">afterCompletion</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
         System.out.println(<span class="hljs-string">"拦截器MyInterceptor的afterCompletion()"</span>);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><strong>声明拦截器</strong></p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 声明拦截器  可以有多个--&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 声明拦截器  可以有多个--&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">mvc:interceptors</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">mvc:interceptor</span>&gt;</span>
         <span class="hljs-comment">&lt;!-- 指定拦截器的url--&gt;</span>
@@ -476,7 +476,7 @@
         <span class="hljs-comment">&lt;!--声明拦截器对象--&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.zyz.handler.MyInterceptor"</span> /&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">mvc:interceptor</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">mvc:interceptors</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">mvc:interceptors</span>&gt;</span></code></pre></div>
 
 <p>preHandle()返回true时：<br><img src="/2020/07/05/SpringMVC-04/1.png" srcset="/img/loading.gif" alt></p>
 <p><img src="/2020/07/05/SpringMVC-04/2.png" srcset="/img/loading.gif" alt><br>返回false，跳转到提示页面，请求被终止，不会执行preHandle()以后的方法</p>
@@ -509,9 +509,9 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/07/06/vue-01/">
+                      <a href="/2020/07/09/springboot-01/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Vue基础语法</span>
+                        <span class="hidden-mobile">Springboot简介、自动装配原理</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -872,7 +872,7 @@
         '  ',
         "SpringMVC核心技术&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -888,8 +888,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

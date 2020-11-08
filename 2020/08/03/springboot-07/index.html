@@ -222,7 +222,7 @@
             <article class="markdown-body">
               <h2 id="异步任务"><a href="#异步任务" class="headerlink" title="异步任务"></a>异步任务</h2><p>1、在启动类添加<code>@EnableAsync</code> ，表示 开启异步注解功能</p>
 <p>2、在方法上添加<code>@Async</code>，表示异步方法</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Service</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Service</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AsyncService</span> </span>&#123;
     <span class="hljs-comment">// 使用注解表示异步任务</span>
     <span class="hljs-meta">@Async</span>
@@ -234,19 +234,19 @@
         &#125;
         System.out.println(<span class="hljs-string">"数据正在处理......"</span>);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p>3、在Controller中直接调用即可</p>
 <h2 id="邮件发送"><a href="#邮件发送" class="headerlink" title="邮件发送"></a>邮件发送</h2><p>1、导入依赖</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-mail<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre></div>
 
 <p>2、打开邮箱的POP3/SMTP服务获取授权码，设置-&gt;账户-&gt;开启pop3和smtp服务</p>
 <p><img src="/2020/08/03/springboot-07/1.png" srcset="/img/loading.gif" alt></p>
 <p>3、编写配置文件</p>
-<pre><code class="hljs java"><span class="hljs-meta">@RestController</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EmailController</span> </span>&#123;
     <span class="hljs-meta">@Autowired</span>
     <span class="hljs-keyword">private</span> JavaMailSenderImpl mailSender;
@@ -274,7 +274,7 @@
         mailSender.send(mimeMessage);
         <span class="hljs-keyword">return</span> <span class="hljs-string">"send ok"</span>;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
             </article>
@@ -662,7 +662,7 @@
         '  ',
         "异步任务，邮件发送&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -678,8 +678,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

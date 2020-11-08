@@ -227,7 +227,7 @@
 <h2 id="二叉树的遍历"><a href="#二叉树的遍历" class="headerlink" title="二叉树的遍历"></a>二叉树的遍历</h2><p>前序遍历: <strong>先输出父节点</strong>，再遍历左子树和右子树</p>
 <p>中序遍历: 先遍历左子树，<strong>再输出父节点</strong>，再遍历右子树</p>
 <p>后序遍历: 先遍历左子树，再遍历右子树，<strong>最后输出父节点</strong></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BinaryTreeDemo</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BinaryTreeDemo</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
         <span class="hljs-comment">// 创建二叉树</span>
         BinaryTree tree = <span class="hljs-keyword">new</span> BinaryTree();
@@ -378,9 +378,9 @@
         <span class="hljs-comment">// 打印根节点</span>
         System.out.println(<span class="hljs-keyword">this</span>);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<h2 id="二叉树查找指定节点"><a href="#二叉树查找指定节点" class="headerlink" title="二叉树查找指定节点"></a>二叉树查找指定节点</h2><pre><code class="hljs java"><span class="hljs-comment">// 前序遍历查找节点</span>
+<h2 id="二叉树查找指定节点"><a href="#二叉树查找指定节点" class="headerlink" title="二叉树查找指定节点"></a>二叉树查找指定节点</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 前序遍历查找节点</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> Node <span class="hljs-title">preOrderSearch</span><span class="hljs-params">(<span class="hljs-keyword">int</span> no)</span> </span>&#123;
     Node node = <span class="hljs-keyword">null</span>;
     <span class="hljs-comment">// 判断是否是当前节点</span>
@@ -400,9 +400,9 @@
         <span class="hljs-keyword">this</span>.right.preOrderSearch(no);
     &#125;
     <span class="hljs-keyword">return</span> node;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<pre><code class="hljs java"><span class="hljs-comment">// 前序遍历查找节点</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 前序遍历查找节点</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> Node <span class="hljs-title">preOrderSearch</span><span class="hljs-params">(<span class="hljs-keyword">int</span> no)</span> </span>&#123;
     <span class="hljs-keyword">if</span> (root != <span class="hljs-keyword">null</span>) &#123;
         <span class="hljs-keyword">return</span> root.preOrderSearch(no);
@@ -410,9 +410,9 @@
         System.out.println(<span class="hljs-string">"当前二叉树为空！"</span>);
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<h2 id="删除指定节点"><a href="#删除指定节点" class="headerlink" title="删除指定节点"></a>删除指定节点</h2><pre><code class="hljs java"><span class="hljs-comment">// 删除指定节点</span>
+<h2 id="删除指定节点"><a href="#删除指定节点" class="headerlink" title="删除指定节点"></a>删除指定节点</h2><div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 删除指定节点</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">delete</span><span class="hljs-params">(<span class="hljs-keyword">int</span> no)</span> </span>&#123;
     <span class="hljs-comment">// 判断左子节点是否为该节点</span>
     <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.left != <span class="hljs-keyword">null</span> &amp;&amp; <span class="hljs-keyword">this</span>.left.no == no) &#123;
@@ -431,9 +431,9 @@
     <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.right!=<span class="hljs-keyword">null</span>)&#123;
         <span class="hljs-keyword">this</span>.right.delete(no);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<pre><code class="hljs java"><span class="hljs-comment">// 删除指定节点</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 删除指定节点</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">delete</span><span class="hljs-params">(<span class="hljs-keyword">int</span> no)</span> </span>&#123;
     <span class="hljs-keyword">if</span> (root != <span class="hljs-keyword">null</span>) &#123;
         <span class="hljs-keyword">if</span> (root.getNo() == no) &#123;
@@ -444,7 +444,7 @@
     &#125; <span class="hljs-keyword">else</span> &#123;
         System.out.println(<span class="hljs-string">"当前二叉树为空！"</span>);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
             </article>
             <hr>
             <div>
@@ -830,7 +830,7 @@
         '  ',
         "二叉树&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -846,8 +846,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");

@@ -223,7 +223,7 @@
               <p>栈是一个<strong>先进后出</strong>的有序列表，是限制表中元素的插入和删除<strong>只能在线性表的同一端</strong>进行的一种特殊线性表。<a id="more"></a></p>
 <h2 id="栈的实现"><a href="#栈的实现" class="headerlink" title="栈的实现"></a>栈的实现</h2><p>数组模拟栈思路分析图：<br><img src="/2020/05/07/dataStructure-04/1.png" srcset="/img/loading.gif" alt></p>
 <p>1、定义一个top表示栈顶，初始化top=-1;<br>2、入栈，top++;stack[top]=data;<br>3、出栈，int value=stack[top];top–;return value;</p>
-<pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.Scanner;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.Scanner;
 
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArrayStackDemo</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
@@ -319,7 +319,7 @@
             System.out.println(stack[i]);
         &#125;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
             </article>
@@ -707,7 +707,7 @@
         '  ',
         "栈&nbsp;",
       ],
-      cursorChar: "(*＾_＾*)",
+      cursorChar: "🐱‍🏍",
       typeSpeed: 70,
       loop: false,
     });
@@ -723,8 +723,10 @@
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "right",
+      placement: "left",
       visible: "hover",
+      
+      icon: "§"
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");
