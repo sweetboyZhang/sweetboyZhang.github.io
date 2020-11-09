@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      162 字
+      247 字
     </span>
   
 
@@ -215,7 +215,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：November 8, 2020 pm
+                  本文最后更新于：November 9, 2020 pm
                 
               </p>
             
@@ -243,6 +243,16 @@ Vue.use(ElementUI); <span class="hljs-comment">// 在项目中使用 elementui</
 <ul>
 <li>当属性值是字符串时，直接使用<code>属性=&quot;属性值&quot;</code>  的方式给属性赋值</li>
 <li>当属性值是表达式（例如 false,true，数字等等）时，使用<code>:属性=&quot;属性值&quot;</code>的方式给属性赋值</li>
+</ul>
+<p><strong>事件的绑定：</strong></p>
+<ul>
+<li>在组件标签中添加<code>@事件名=vue中事件处理函数</code></li>
+<li>在 <code>methods:{}</code>内编写处理函数的实现</li>
+</ul>
+<p><strong>组件方法的调用：</strong></p>
+<ul>
+<li>使用组件的方法时，需要在组件中加入<code>ref=&quot;组件别名&quot;</code></li>
+<li>在调用方法时直接使用<code>this,$refs.组件别名.方法名()</code></li>
 </ul>
 
             </article>
