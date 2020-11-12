@@ -352,14 +352,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-05-25
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-11-13
                 </div>
                 
 
@@ -388,8 +388,8 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>便于在编写xml文件时有提示信息<br><img src="/2020/11/12/MyBatis-02/1.jpg" alt><a id="more"></a></p>
-<p><img src="/2020/11/12/MyBatis-02/2.jpg" alt></p>
+                <p>便于在编写xml文件时有提示信息<br><img src="/2020/05/25/MyBatis-02/1.jpg" alt><a id="more"></a></p>
+<p><img src="/2020/05/25/MyBatis-02/2.jpg" alt></p>
 <h2 id="properties属性"><a href="#properties属性" class="headerlink" title="properties属性"></a>properties属性</h2><pre class=" language-properties"><code class="language-properties"><span class="token attr-name">jdbc.driver</span><span class="token punctuation">=</span><span class="token attr-value">com.mysql.cj.jdbc.Driver</span>
 <span class="token attr-name">jdbc.url</span><span class="token punctuation">=</span><span class="token attr-value">jdbc:mysql://localhost:3306/mybatis?serverTimezone=Asia/Shanghai</span>
 <span class="token attr-name">jdbc.username</span><span class="token punctuation">=</span><span class="token attr-value">root</span>
@@ -406,7 +406,7 @@
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>${jdbc.password}<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dataSource</span><span class="token punctuation">></span></span></code></pre>
 <h2 id="setting属性"><a href="#setting属性" class="headerlink" title="setting属性"></a>setting属性</h2><p>setting包含一些重要的设置，会改变MyBatis运行时行为</p>
-<p><img src="/2020/11/12/MyBatis-02/3.jpg" alt></p>
+<p><img src="/2020/05/25/MyBatis-02/3.jpg" alt></p>
 <pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!--  settings标签包含很多重要的设置项  --></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>settings</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>setting</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>mapUnderscoreToCamelCase<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
@@ -418,9 +418,9 @@
              name:指定包名 为当前包下的所有后代包的每一个类起一个默认别名--></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>package</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>bean<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>typeAliases</span><span class="token punctuation">></span></span></code></pre>
-<p><img src="/2020/11/12/MyBatis-02/4.jpg" alt></p>
-<h2 id="typeHandlers类型处理器"><a href="#typeHandlers类型处理器" class="headerlink" title="typeHandlers类型处理器"></a>typeHandlers类型处理器</h2><p>无论是MyBatis 在预处理语句（PreparedStatement）中设置一个参数时，还是从结果集中取出一个值时，都会用类型处理器将获取的值以合适的方式转换成Java 类型。<br><img src="/2020/11/12/MyBatis-02/5.jpg" alt></p>
-<h2 id="plugins插件"><a href="#plugins插件" class="headerlink" title="plugins插件"></a>plugins插件</h2><p>插件是MyBatis提供的一个非常强大的机制，我们可以通过插件来修改MyBatis的一些核心行为。插件通过动态代理机制，可以介入四大对象的任何一个方法的执行。<br><img src="/2020/11/12/MyBatis-02/6.jpg" alt></p>
+<p><img src="/2020/05/25/MyBatis-02/4.jpg" alt></p>
+<h2 id="typeHandlers类型处理器"><a href="#typeHandlers类型处理器" class="headerlink" title="typeHandlers类型处理器"></a>typeHandlers类型处理器</h2><p>无论是MyBatis 在预处理语句（PreparedStatement）中设置一个参数时，还是从结果集中取出一个值时，都会用类型处理器将获取的值以合适的方式转换成Java 类型。<br><img src="/2020/05/25/MyBatis-02/5.jpg" alt></p>
+<h2 id="plugins插件"><a href="#plugins插件" class="headerlink" title="plugins插件"></a>plugins插件</h2><p>插件是MyBatis提供的一个非常强大的机制，我们可以通过插件来修改MyBatis的一些核心行为。插件通过动态代理机制，可以介入四大对象的任何一个方法的执行。<br><img src="/2020/05/25/MyBatis-02/6.jpg" alt></p>
 <h2 id="environment环境配置"><a href="#environment环境配置" class="headerlink" title="environment环境配置"></a>environment环境配置</h2><pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!--  配置多个环境  default快速指定环境
       id  唯一标识环境
       transactionManager  事务管理器
@@ -438,8 +438,8 @@
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>environment</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>environments</span><span class="token punctuation">></span></span></code></pre>
 <p><strong>实际开发中我们使用Spring管理数据源，并进行事务控制的配置来覆盖上述配置</strong></p>
-<h2 id="databaseIdProvider环境"><a href="#databaseIdProvider环境" class="headerlink" title="databaseIdProvider环境"></a>databaseIdProvider环境</h2><p>MyBatis 可以根据不同的数据库厂商执行不同的语句。<br><img src="/2020/11/12/MyBatis-02/7.jpg" alt></p>
-<p><img src="/2020/11/12/MyBatis-02/8.jpg" alt></p>
+<h2 id="databaseIdProvider环境"><a href="#databaseIdProvider环境" class="headerlink" title="databaseIdProvider环境"></a>databaseIdProvider环境</h2><p>MyBatis 可以根据不同的数据库厂商执行不同的语句。<br><img src="/2020/05/25/MyBatis-02/7.jpg" alt></p>
+<p><img src="/2020/05/25/MyBatis-02/8.jpg" alt></p>
 <h2 id="mapper映射"><a href="#mapper映射" class="headerlink" title="mapper映射"></a>mapper映射</h2><pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!-- 将写好的sql映射文件注册到全局配置文件中--></span>
  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>mappers</span><span class="token punctuation">></span></span>
  <span class="token comment" spellcheck="true">&lt;!-- &lt;mapper resource="EmployeeMapper.xml"/>--></span>
@@ -506,33 +506,34 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/11/12/MyBatis-02/">
+                <a href="/2020/05/25/MyBatis-03/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="MyBatis全局配置文件">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="MyBatis映射文件">
                         
-                        <span class="card-title">MyBatis全局配置文件</span>
+                        <span class="card-title">MyBatis映射文件</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            便于在编写xml文件时有提示信息
+                            实现增删改查功能映射文件指导着MyBatis如何进行数据库增删改查在EmployeeMapper接口中添加增删改查的方法:
+package dao;
 
-properties属性jdbc.driver=com.mysql.cj.jdbc.Driver
-jdbc.url=jdbc:mysql://localhost:3306/mybatis?serverTi
+public interface EmployeeMapper {
+
+    publi
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-12
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-25
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -545,7 +546,6 @@ jdbc.url=jdbc:mysql://localhost:3306/mybatis?serverTi
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -568,43 +568,27 @@ jdbc.url=jdbc:mysql://localhost:3306/mybatis?serverTi
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/11/08/shrio-02/">
+                <a href="/2020/05/24/MyBatis-01/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Shrio整合springboot">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="MyBatis简介及测试">
                         
-                        <span class="card-title">Shrio整合springboot</span>
+                        <span class="card-title">MyBatis简介及测试</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-shrio中提供的过滤器
+                            MyBatis简介MyBatis是一个半自动化的持久层框架。sql与java编码分开，功能边界清晰，一个专注业务，一个专注数据。
+MyBatis的使用创建测试的数据库mybatis，再创建一个student表
 
-
-
-
-配置缩写
-对应的过滤器
-功能
-
-
-
-anon
-AnonymousFilter
-指定url可以匿名访问
-
-
-authc
-FormAuthenticationFilter
-指定url需要form表单登录，默认
+1、导入MyBatis.ja
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-24
                             </span>
                         <span class="publish-author">
                             
@@ -621,12 +605,12 @@ FormAuthenticationFilter
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/JavaEE/">
-                        <span class="chip bg-color">JavaEE</span>
+                    <a href="/tags/MyBatis/">
+                        <span class="chip bg-color">MyBatis</span>
                     </a>
                     
-                    <a href="/tags/Shiro/">
-                        <span class="chip bg-color">Shiro</span>
+                    <a href="/tags/JavaEE/">
+                        <span class="chip bg-color">JavaEE</span>
                     </a>
                     
                 </div>
