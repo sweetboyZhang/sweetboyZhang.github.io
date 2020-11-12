@@ -1,990 +1,1009 @@
-<!DOCTYPE html>
-<html lang="cn">
-
-
-
+<!DOCTYPE HTML>
+<html lang="zh-CN">
 
 
 <head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
-  <link rel="icon" type="image/png" href="/img/icon.png">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
-  <meta name="author" content="sweetboyZhang">
-  <meta name="keywords" content="">
-  <title>Java8新特性 - sweetboyZhang&#39;s Blog</title>
-
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+    <meta charset="utf-8">
+    <meta name="keywords" content="Java8新特性, sweetboyZhang&#39;s Blog">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+    <title>Java8新特性 | sweetboyZhang&#39;s Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
 
-  
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs.min.css" />
-  
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
 
-  
+    <script src="/libs/jquery/jquery.min.js"></script>
 
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-<!-- 自定义样式保持在最底部 -->
-
-
-  <script  src="/js/utils.js" ></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
-  <header style="height: 70vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>sweetboyZhang's Blog</strong>&nbsp;</a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                home
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                archive
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                tag
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                about
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/links/">
-                <i class="iconfont icon-link-fill"></i>
-                links
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-    <div class="view intro-2" id="background" parallax=true
-         style="background: url('/img/default.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container text-center white-text fadeInUp">
-            <span class="h2" id="subtitle">
-              
-            </span>
-
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">sweetboyZhang&#39;s Blog</span>
+                </a>
+            </div>
             
-              
-  <div class="mt-3 post-meta">
-    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-03-24 10:47">
-      March 24, 2020 am
-    </time>
-  </div>
 
-
-<div class="mt-1">
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
   
+  <li class="hide-on-med-and-down nav-item">
     
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      2.3k 字
-    </span>
-  
-
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
+    <a href="/" class="waves-effect waves-light">
       
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
       
-      34
-       分钟
-    </span>
+      <span>首页</span>
+    </a>
+    
+  </li>
   
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
 
-  
-  
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">sweetboyZhang&#39;s Blog</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
     
-      <!-- LeanCloud 统计文章PV -->
-      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="leancloud-post-views"></span> 次
-      </span>
-    
-  
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
 </div>
 
-            
-          </div>
 
-          
         </div>
-      </div>
-    </div>
-  </header>
 
-  <main>
+        
+    </nav>
+
+</header>
+
     
-      
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <div class="post-content mx-auto" id="post">
-            
-              <p class="note note-info">
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Java8新特性</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/JavaSE/">
+                                <span class="chip bg-color">JavaSE</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/JavaSE/" class="post-category">
+                                JavaSE
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
                 
-                  本文最后更新于：October 29, 2020 pm
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-03-24
+                </div>
                 
-              </p>
-            
-            <article class="markdown-body">
-              <h2 id="Lambda表达式"><a href="#Lambda表达式" class="headerlink" title="Lambda表达式"></a>Lambda表达式</h2><p>Lambda是一个匿名函数，可以理解为一段可传递的代码，将代码将数据一样进行传递。<a id="more"></a></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
-<span class="hljs-comment"> * <span class="hljs-doctag">@author</span> zyz</span>
-<span class="hljs-comment"> * <span class="hljs-doctag">@description</span> lambda表达式的写法</span>
-<span class="hljs-comment"> * 格式：lambda参数列表(接口中的抽象方法的形参列表)-&gt;lambda体(重写的抽象方法的方法体)</span>
-<span class="hljs-comment"> * lambda表达式的本质：作为函数式接口的一个实例</span>
-<span class="hljs-comment"> * 函数式接口：<span class="hljs-doctag">@FunctionalInterface</span> 只声明了一个抽象方法的接口</span>
-<span class="hljs-comment"> * <span class="hljs-doctag">@create</span> 2020-03-24 11:09</span>
-<span class="hljs-comment"> */</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LambdaTest1</span> </span>&#123;
-    <span class="hljs-meta">@Test</span> <span class="hljs-comment">// 方式一：无参，无返回值，一条执行语句 (可以省略return)</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span></span>&#123;
-        Runnable r1 = ()-&gt; System.out.println(<span class="hljs-string">"歪比巴卜"</span>);
-        r1.run();
-    &#125;
 
-    <span class="hljs-meta">@Test</span> <span class="hljs-comment">// 方式二：一个参数，无返回值   参数数据类型可以省略(编译器类型推断)</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test2</span><span class="hljs-params">()</span></span>&#123;
-        Consumer&lt;String&gt; c1 = (String s)-&gt; &#123;
-            System.out.println(s);
-        &#125;;
-        c1.accept(<span class="hljs-string">"茉莉~"</span>);
-    &#125;
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2020-11-12
+                </div>
+                
 
-    <span class="hljs-meta">@Test</span> <span class="hljs-comment">// 方式三：一个参数，参数的小括号可以省略</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test3</span><span class="hljs-params">()</span></span>&#123;
-        Consumer&lt;String&gt; c1 = s -&gt; &#123;
-            System.out.println(s);
-        &#125;;
-        <span class="hljs-comment">//方法引用   使用操作符“::” 将类(或对象) 与方法名分隔开来。</span>
-        <span class="hljs-comment">// Consumer&lt;String&gt; c1 = System.out::println;</span>
-        c1.accept(<span class="hljs-string">"起   飞"</span>);
-    &#125;
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2.2k
+                </div>
+                
 
-    <span class="hljs-meta">@Test</span> <span class="hljs-comment">// 方式四：两个或以上的参数，多条执行语句</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test4</span><span class="hljs-params">()</span></span>&#123;
-        Comparator&lt;Integer&gt; com1 = (o1,o2)-&gt;&#123;
-            System.out.println(o1);
-            System.out.println(o2);
-            <span class="hljs-keyword">return</span> o1.compareTo(o2);
-        &#125;;
-        System.out.println(com1.compare(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>));
-    &#125;
-&#125;</code></pre></div>
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    10 分
+                </div>
+                
 
-<h2 id="Lambda表达式的应用"><a href="#Lambda表达式的应用" class="headerlink" title="Lambda表达式的应用"></a>Lambda表达式的应用</h2><h3 id="forEach-遍历Map"><a href="#forEach-遍历Map" class="headerlink" title="forEach 遍历Map"></a>forEach 遍历Map</h3><div class="hljs"><pre><code class="hljs java">Map&lt;String,Object&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;String,Object&gt;();
-map.put(<span class="hljs-string">"key1"</span>, <span class="hljs-number">1</span>);
-map.put(<span class="hljs-string">"key2"</span>, <span class="hljs-number">2</span>);
-map.put(<span class="hljs-string">"key3"</span>, <span class="hljs-number">3</span>);
-map.put(<span class="hljs-string">"key4"</span>, <span class="hljs-number">4</span>);
-map.forEach((key,value) -&gt; &#123;
-    System.out.println(<span class="hljs-string">"key:"</span> + key + <span class="hljs-string">",value:"</span> + value);
-&#125;)</code></pre></div>
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="Lambda表达式"><a href="#Lambda表达式" class="headerlink" title="Lambda表达式"></a>Lambda表达式</h2><p>Lambda是一个匿名函数，可以理解为一段可传递的代码，将代码将数据一样进行传递。<a id="more"></a></p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+ * @author zyz
+ * @description lambda表达式的写法
+ * 格式：lambda参数列表(接口中的抽象方法的形参列表)->lambda体(重写的抽象方法的方法体)
+ * lambda表达式的本质：作为函数式接口的一个实例
+ * 函数式接口：@FunctionalInterface 只声明了一个抽象方法的接口
+ * @create 2020-03-24 11:09
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LambdaTest1</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Test</span> <span class="token comment" spellcheck="true">// 方式一：无参，无返回值，一条执行语句 (可以省略return)</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        Runnable r1 <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span> System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"歪比巴卜"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        r1<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-<h3 id="forEach-遍历List"><a href="#forEach-遍历List" class="headerlink" title="forEach 遍历List"></a>forEach 遍历List</h3><div class="hljs"><pre><code class="hljs java">List&lt;Integer&gt; list = <span class="hljs-keyword">new</span> ArrayList&lt;Integer&gt;();
-list.add(<span class="hljs-number">1</span>);
-list.add(<span class="hljs-number">2</span>);
-list.add(<span class="hljs-number">3</span>);
-list.forEach(value -&gt; &#123;
-    System.out.println(<span class="hljs-string">"value:"</span> + value);
-&#125;)</code></pre></div>
+    <span class="token annotation punctuation">@Test</span> <span class="token comment" spellcheck="true">// 方式二：一个参数，无返回值   参数数据类型可以省略(编译器类型推断)</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        Consumer<span class="token operator">&lt;</span>String<span class="token operator">></span> c1 <span class="token operator">=</span> <span class="token punctuation">(</span>String s<span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        c1<span class="token punctuation">.</span><span class="token function">accept</span><span class="token punctuation">(</span><span class="token string">"茉莉~"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-<h3 id="创建并开启线程"><a href="#创建并开启线程" class="headerlink" title="创建并开启线程"></a>创建并开启线程</h3><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">new</span> Thread(()-&gt;System.out.println(<span class="hljs-string">"new Thread start"</span>)).start();</code></pre></div>
+    <span class="token annotation punctuation">@Test</span> <span class="token comment" spellcheck="true">// 方式三：一个参数，参数的小括号可以省略</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test3</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        Consumer<span class="token operator">&lt;</span>String<span class="token operator">></span> c1 <span class="token operator">=</span> s <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//方法引用   使用操作符“::” 将类(或对象) 与方法名分隔开来。</span>
+        <span class="token comment" spellcheck="true">// Consumer&lt;String> c1 = System.out::println;</span>
+        c1<span class="token punctuation">.</span><span class="token function">accept</span><span class="token punctuation">(</span><span class="token string">"起   飞"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-<h2 id="Stream-流"><a href="#Stream-流" class="headerlink" title="Stream 流"></a>Stream 流</h2><p>以集合为例，一个流式处理的操作我们首先需要调用<code>stream()</code>函数将其<strong>转换成流</strong>，然后再调用相应的<strong>中间操作</strong>达到我们需要对集合进行的操作，比如筛选、转换等，最后通过<strong>终端操作</strong>对前面的结果进行封装，返回我们需要的形式。<br><img src="/2020/03/24/java-11/myBlog\source\_posts\java-11\1.jpg" srcset="/img/loading.gif" style="zoom:80%;"></p>
+    <span class="token annotation punctuation">@Test</span> <span class="token comment" spellcheck="true">// 方式四：两个或以上的参数，多条执行语句</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test4</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        Comparator<span class="token operator">&lt;</span>Integer<span class="token operator">></span> com1 <span class="token operator">=</span> <span class="token punctuation">(</span>o1<span class="token punctuation">,</span>o2<span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>o1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>o2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> o1<span class="token punctuation">.</span><span class="token function">compareTo</span><span class="token punctuation">(</span>o2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>com1<span class="token punctuation">.</span><span class="token function">compare</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="Lambda表达式的应用"><a href="#Lambda表达式的应用" class="headerlink" title="Lambda表达式的应用"></a>Lambda表达式的应用</h2><h3 id="forEach-遍历Map"><a href="#forEach-遍历Map" class="headerlink" title="forEach 遍历Map"></a>forEach 遍历Map</h3><pre class=" language-java"><code class="language-java">Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span>Object<span class="token operator">></span> map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token operator">&lt;</span>String<span class="token punctuation">,</span>Object<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"key1"</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"key2"</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"key3"</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"key4"</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+map<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span>value<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"key:"</span> <span class="token operator">+</span> key <span class="token operator">+</span> <span class="token string">",value:"</span> <span class="token operator">+</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<h3 id="forEach-遍历List"><a href="#forEach-遍历List" class="headerlink" title="forEach 遍历List"></a>forEach 遍历List</h3><pre class=" language-java"><code class="language-java">List<span class="token operator">&lt;</span>Integer<span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>Integer<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+list<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>value <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"value:"</span> <span class="token operator">+</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<h3 id="创建并开启线程"><a href="#创建并开启线程" class="headerlink" title="创建并开启线程"></a>创建并开启线程</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span>System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"new Thread start"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> </code></pre>
+<h2 id="Stream-流"><a href="#Stream-流" class="headerlink" title="Stream 流"></a>Stream 流</h2><p>以集合为例，一个流式处理的操作我们首先需要调用<code>stream()</code>函数将其<strong>转换成流</strong>，然后再调用相应的<strong>中间操作</strong>达到我们需要对集合进行的操作，比如筛选、转换等，最后通过<strong>终端操作</strong>对前面的结果进行封装，返回我们需要的形式。<br><img src="/2020/03/24/java-11/myBlog\source\_posts\java-11\1.jpg" style="zoom:80%;"></p>
 <h3 id="常用api的使用"><a href="#常用api的使用" class="headerlink" title="常用api的使用"></a>常用api的使用</h3><p>创建实体类</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Data</span>
-<span class="hljs-meta">@NoArgsConstructor</span>
-<span class="hljs-meta">@AllArgsConstructor</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span></span>&#123;
-<span class="hljs-keyword">private</span> Long id;       
-<span class="hljs-keyword">private</span> String name;   
-<span class="hljs-keyword">private</span> Integer age;   
-<span class="hljs-keyword">private</span> String school;</code></pre></div>
-
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Data</span>
+<span class="token annotation punctuation">@NoArgsConstructor</span>
+<span class="token annotation punctuation">@AllArgsConstructor</span>
+<span class="token keyword">class</span> <span class="token class-name">User</span><span class="token punctuation">{</span>
+<span class="token keyword">private</span> Long id<span class="token punctuation">;</span>       
+<span class="token keyword">private</span> String name<span class="token punctuation">;</span>   
+<span class="token keyword">private</span> Integer age<span class="token punctuation">;</span>   
+<span class="token keyword">private</span> String school<span class="token punctuation">;</span> </code></pre>
 <p>初始化</p>
-<div class="hljs"><pre><code class="hljs java">List&lt;User&gt; list = <span class="hljs-keyword">new</span> ArrayList&lt;User&gt;()&#123;
-            &#123;
-                add(<span class="hljs-keyword">new</span> User(<span class="hljs-number">1L</span>,<span class="hljs-string">"张三"</span>,<span class="hljs-number">10</span>, <span class="hljs-string">"清华大学"</span>));
-                add(<span class="hljs-keyword">new</span> User(<span class="hljs-number">2L</span>,<span class="hljs-string">"李四"</span>,<span class="hljs-number">12</span>, <span class="hljs-string">"清华大学"</span>));
-                add(<span class="hljs-keyword">new</span> User(<span class="hljs-number">3L</span>,<span class="hljs-string">"王五"</span>,<span class="hljs-number">15</span>, <span class="hljs-string">"清华大学"</span>));
-                add(<span class="hljs-keyword">new</span> User(<span class="hljs-number">4L</span>,<span class="hljs-string">"赵六"</span>,<span class="hljs-number">12</span>, <span class="hljs-string">"清华大学"</span>));
-                add(<span class="hljs-keyword">new</span> User(<span class="hljs-number">5L</span>,<span class="hljs-string">"田七"</span>,<span class="hljs-number">25</span>, <span class="hljs-string">"北京大学"</span>));
-                add(<span class="hljs-keyword">new</span> User(<span class="hljs-number">6L</span>,<span class="hljs-string">"小明"</span>,<span class="hljs-number">16</span>, <span class="hljs-string">"北京大学"</span>));
-                add(<span class="hljs-keyword">new</span> User(<span class="hljs-number">7L</span>,<span class="hljs-string">"小红"</span>,<span class="hljs-number">14</span>, <span class="hljs-string">"北京大学"</span>));
-                add(<span class="hljs-keyword">new</span> User(<span class="hljs-number">8L</span>,<span class="hljs-string">"小华"</span>,<span class="hljs-number">14</span>, <span class="hljs-string">"浙江大学"</span>));
-                add(<span class="hljs-keyword">new</span> User(<span class="hljs-number">9L</span>,<span class="hljs-string">"小丽"</span>,<span class="hljs-number">17</span>, <span class="hljs-string">"浙江大学"</span>));
-                add(<span class="hljs-keyword">new</span> User(<span class="hljs-number">10L</span>,<span class="hljs-string">"小何"</span>,<span class="hljs-number">10</span>, <span class="hljs-string">"浙江大学"</span>));
-            &#125;
-        &#125;;</code></pre></div>
-
+<pre class=" language-java"><code class="language-java">List<span class="token operator">&lt;</span>User<span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>User<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token punctuation">{</span>
+                <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span>1L<span class="token punctuation">,</span><span class="token string">"张三"</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token string">"清华大学"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span>2L<span class="token punctuation">,</span><span class="token string">"李四"</span><span class="token punctuation">,</span><span class="token number">12</span><span class="token punctuation">,</span> <span class="token string">"清华大学"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span>3L<span class="token punctuation">,</span><span class="token string">"王五"</span><span class="token punctuation">,</span><span class="token number">15</span><span class="token punctuation">,</span> <span class="token string">"清华大学"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span>4L<span class="token punctuation">,</span><span class="token string">"赵六"</span><span class="token punctuation">,</span><span class="token number">12</span><span class="token punctuation">,</span> <span class="token string">"清华大学"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span>5L<span class="token punctuation">,</span><span class="token string">"田七"</span><span class="token punctuation">,</span><span class="token number">25</span><span class="token punctuation">,</span> <span class="token string">"北京大学"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span>6L<span class="token punctuation">,</span><span class="token string">"小明"</span><span class="token punctuation">,</span><span class="token number">16</span><span class="token punctuation">,</span> <span class="token string">"北京大学"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span>7L<span class="token punctuation">,</span><span class="token string">"小红"</span><span class="token punctuation">,</span><span class="token number">14</span><span class="token punctuation">,</span> <span class="token string">"北京大学"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span>8L<span class="token punctuation">,</span><span class="token string">"小华"</span><span class="token punctuation">,</span><span class="token number">14</span><span class="token punctuation">,</span> <span class="token string">"浙江大学"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span>9L<span class="token punctuation">,</span><span class="token string">"小丽"</span><span class="token punctuation">,</span><span class="token number">17</span><span class="token punctuation">,</span> <span class="token string">"浙江大学"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span>10L<span class="token punctuation">,</span><span class="token string">"小何"</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token string">"浙江大学"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 <blockquote>
 <p>filter 过滤</p>
 </blockquote>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 筛选出学校是清华大学的所有用户并打印输出他们的姓名</span>
-List&lt;User&gt; userList = list.stream()
-                .filter(user -&gt; <span class="hljs-string">"清华大学"</span>.equals(user.getSchool()))
-                .collect(Collectors.toList());
-        userList.forEach(user -&gt; &#123;
-            System.out.print(user.getName() + <span class="hljs-string">" "</span>);
-        &#125;);</code></pre></div>
-
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 筛选出学校是清华大学的所有用户并打印输出他们的姓名</span>
+List<span class="token operator">&lt;</span>User<span class="token operator">></span> userList <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>user <span class="token operator">-</span><span class="token operator">></span> <span class="token string">"清华大学"</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>user<span class="token punctuation">.</span><span class="token function">getSchool</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">toList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        userList<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>user <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>user<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>输出结果：</p>
-<div class="hljs"><pre><code class="hljs shell">张三 李四 王五 赵六</code></pre></div>
-
+<pre class=" language-shell"><code class="language-shell">张三 李四 王五 赵六</code></pre>
 <blockquote>
 <p>distinct</p>
 </blockquote>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// distinct 获取所有user的年龄（年龄不重复）</span>
-<span class="hljs-comment">// map 方法用于映射每个元素到对应的结果</span>
-<span class="hljs-comment">// List&lt;Integer&gt; userAgeList = list.stream().map(User::getAge)</span>
-List&lt;Integer&gt; userAgeList = list.stream()
-        .map(user -&gt; user.getAge())
-        .distinct()
-        .collect(Collectors.toList());
-userAgeList.forEach(age -&gt; &#123;
-    System.out.print(age + <span class="hljs-string">" "</span>);
-&#125;);</code></pre></div>
-
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// distinct 获取所有user的年龄（年龄不重复）</span>
+<span class="token comment" spellcheck="true">// map 方法用于映射每个元素到对应的结果</span>
+<span class="token comment" spellcheck="true">// List&lt;Integer> userAgeList = list.stream().map(User::getAge)</span>
+List<span class="token operator">&lt;</span>Integer<span class="token operator">></span> userAgeList <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>user <span class="token operator">-</span><span class="token operator">></span> user<span class="token punctuation">.</span><span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">distinct</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">toList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+userAgeList<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>age <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>age <span class="token operator">+</span> <span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>输出结果：</p>
-<div class="hljs"><pre><code class="hljs shell">18 20 16 19 25 22 21</code></pre></div>
-
+<pre class=" language-shell"><code class="language-shell">18 20 16 19 25 22 21 </code></pre>
 <blockquote>
 <p>limit  返回前n个元素的流，当集合长度小于n时，则返回所有集合</p>
 </blockquote>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 获取年龄是偶数的前2名user</span>
-List&lt;User&gt; userList2 = list.stream()
-        .filter(user -&gt; user.getAge() % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>)
-        .limit(<span class="hljs-number">2</span>)
-        .collect(Collectors.toList());
-userList2.forEach(user -&gt; &#123;
-    System.out.print(user.getName() + <span class="hljs-string">" "</span>);
-&#125;);</code></pre></div>
-
-<div class="hljs"><pre><code class="hljs shell">张三 李四</code></pre></div>
-
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 获取年龄是偶数的前2名user</span>
+List<span class="token operator">&lt;</span>User<span class="token operator">></span> userList2 <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>user <span class="token operator">-</span><span class="token operator">></span> user<span class="token punctuation">.</span><span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">limit</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">toList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+userList2<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>user <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>user<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre class=" language-shell"><code class="language-shell">张三 李四</code></pre>
 <blockquote>
 <p>sorted</p>
 </blockquote>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 将所有user按年龄从大到小排序</span>
-List&lt;User&gt; userList3 = list.stream()
-        .sorted((user1, user2) -&gt; user2.getAge() - user1.getAge())
-        .collect(Collectors.toList());
-System.out.println(userList3);</code></pre></div>
-
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 将所有user按年龄从大到小排序</span>
+List<span class="token operator">&lt;</span>User<span class="token operator">></span> userList3 <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">sorted</span><span class="token punctuation">(</span><span class="token punctuation">(</span>user1<span class="token punctuation">,</span> user2<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> user2<span class="token punctuation">.</span><span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> user1<span class="token punctuation">.</span><span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">toList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>userList3<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>输出结果：</p>
-<div class="hljs"><pre><code class="hljs shell">[User&#123;id=5, name='田七', age=25, school='北京大学'&#125;, User&#123;id=8, name='小华', age=22, school='浙江大学'&#125;, User&#123;id=9, name='小丽', age=21, school='浙江大学'&#125;, User&#123;id=2, name='李四', age=20, school='清华大学'&#125;, User&#123;id=7, name='小红', age=20, school='北京大学'&#125;, User&#123;id=4, name='赵六', age=19, school='清华大学'&#125;, User&#123;id=1, name='张三', age=18, school='清华大学'&#125;, User&#123;id=10, name='小何', age=18, school='浙江大学'&#125;, User&#123;id=3, name='王五', age=16, school='清华大学'&#125;, User&#123;id=6, name='小明', age=16, school='北京大学'&#125;]</code></pre></div>
-
+<pre class=" language-shell"><code class="language-shell">[User{id=5, name='田七', age=25, school='北京大学'}, User{id=8, name='小华', age=22, school='浙江大学'}, User{id=9, name='小丽', age=21, school='浙江大学'}, User{id=2, name='李四', age=20, school='清华大学'}, User{id=7, name='小红', age=20, school='北京大学'}, User{id=4, name='赵六', age=19, school='清华大学'}, User{id=1, name='张三', age=18, school='清华大学'}, User{id=10, name='小何', age=18, school='浙江大学'}, User{id=3, name='王五', age=16, school='清华大学'}, User{id=6, name='小明', age=16, school='北京大学'}]</code></pre>
 <blockquote>
 <p>skip  跳过几个元素再输出</p>
 </blockquote>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 跳过前两个user,输出之后的user</span>
-    List&lt;User&gt; userList4 = list
-        .stream()
-        .skip(<span class="hljs-number">2</span>)
-        .collect(Collectors.toList());
-    System.out.println(userList4);</code></pre></div>
-
+<pre class=" language-java"><code class="language-java">    <span class="token comment" spellcheck="true">// 跳过前两个user,输出之后的user</span>
+        List<span class="token operator">&lt;</span>User<span class="token operator">></span> userList4 <span class="token operator">=</span> list
+            <span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">skip</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">toList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>userList4<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>输出结果：</p>
-<div class="hljs"><pre><code class="hljs shell">[User&#123;id=3, name='王五', age=16, school='清华大学'&#125;, User&#123;id=4, name='赵六', age=19, school='清华大学'&#125;, User&#123;id=5, name='田七', age=25, school='北京大学'&#125;, User&#123;id=6, name='小明', age=16, school='北京大学'&#125;, User&#123;id=7, name='小红', age=20, school='北京大学'&#125;, User&#123;id=8, name='小华', age=22, school='浙江大学'&#125;, User&#123;id=9, name='小丽', age=21, school='浙江大学'&#125;, User&#123;id=10, name='小何', age=18, school='浙江大学'&#125;]</code></pre></div>
-
+<pre class=" language-shell"><code class="language-shell">[User{id=3, name='王五', age=16, school='清华大学'}, User{id=4, name='赵六', age=19, school='清华大学'}, User{id=5, name='田七', age=25, school='北京大学'}, User{id=6, name='小明', age=16, school='北京大学'}, User{id=7, name='小红', age=20, school='北京大学'}, User{id=8, name='小华', age=22, school='浙江大学'}, User{id=9, name='小丽', age=21, school='浙江大学'}, User{id=10, name='小何', age=18, school='浙江大学'}]</code></pre>
 <blockquote>
 <p>map 映射元素结果</p>
 </blockquote>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 筛选出学校是清华大学的所有学生</span>
-List&lt;String&gt; nameList = list.stream()
-        .filter(user -&gt; <span class="hljs-string">"清华大学"</span>.equals(user.getSchool()))
-        .map(user -&gt; user.getName())
-        .collect(Collectors.toList());
-System.out.println(nameList);
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 筛选出学校是清华大学的所有学生</span>
+List<span class="token operator">&lt;</span>String<span class="token operator">></span> nameList <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>user <span class="token operator">-</span><span class="token operator">></span> <span class="token string">"清华大学"</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>user<span class="token punctuation">.</span><span class="token function">getSchool</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>user <span class="token operator">-</span><span class="token operator">></span> user<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">toList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>nameList<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<span class="hljs-comment">/**</span>
-<span class="hljs-comment"> * 除了上面这类基础的map，java8还提供了mapToDouble(ToDoubleFunction&lt;? super T&gt; mapper)，</span>
-<span class="hljs-comment"> * mapToInt(ToIntFunction&lt;? super T&gt; mapper)，</span>
-<span class="hljs-comment"> * mapToLong(ToLongFunction&lt;? super T&gt; mapper)，</span>
-<span class="hljs-comment"> * java8为这些流设定了一些特殊的操作</span>
-<span class="hljs-comment"> */</span>
-<span class="hljs-comment">// 统计学校为北京大学的所有用户的人数</span>
-<span class="hljs-keyword">long</span> count = list.stream()
-        .filter(user -&gt; <span class="hljs-string">"北京大学"</span>.equals(user.getSchool()))
-        .mapToInt(user -&gt; user.getAge()).count();
-System.out.println(<span class="hljs-string">"北京大学用户的人数："</span> + count);</code></pre></div>
-
+<span class="token comment" spellcheck="true">/**
+ * 除了上面这类基础的map，java8还提供了mapToDouble(ToDoubleFunction&lt;? super T> mapper)，
+ * mapToInt(ToIntFunction&lt;? super T> mapper)，
+ * mapToLong(ToLongFunction&lt;? super T> mapper)，
+ * java8为这些流设定了一些特殊的操作
+ */</span>
+<span class="token comment" spellcheck="true">// 统计学校为北京大学的所有用户的人数</span>
+<span class="token keyword">long</span> count <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>user <span class="token operator">-</span><span class="token operator">></span> <span class="token string">"北京大学"</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>user<span class="token punctuation">.</span><span class="token function">getSchool</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">mapToInt</span><span class="token punctuation">(</span>user <span class="token operator">-</span><span class="token operator">></span> user<span class="token punctuation">.</span><span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"北京大学用户的人数："</span> <span class="token operator">+</span> count<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>输出结果：</p>
-<div class="hljs"><pre><code class="hljs shell">[张三, 李四, 王五, 赵六]
-北京大学用户的人数：3</code></pre></div>
-
+<pre class=" language-shell"><code class="language-shell">[张三, 李四, 王五, 赵六]
+北京大学用户的人数：3</code></pre>
 <blockquote>
 <p>匹配</p>
 </blockquote>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// allMatch</span>
-<span class="hljs-comment">// 用于检测是否全部都满足指定的参数行为，如果全部满足则返回true</span>
-<span class="hljs-comment">// 判断所有用户的年龄是否都大于18岁</span>
-<span class="hljs-keyword">boolean</span> isAllAdult = list.stream().allMatch(user -&gt; user.getAge() &gt; <span class="hljs-number">18</span>);
-System.out.println(isAllAdult);
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// allMatch</span>
+<span class="token comment" spellcheck="true">// 用于检测是否全部都满足指定的参数行为，如果全部满足则返回true</span>
+<span class="token comment" spellcheck="true">// 判断所有用户的年龄是否都大于18岁</span>
+<span class="token keyword">boolean</span> isAllAdult <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">allMatch</span><span class="token punctuation">(</span>user <span class="token operator">-</span><span class="token operator">></span> user<span class="token punctuation">.</span><span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">18</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>isAllAdult<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<span class="hljs-comment">// anyMatch</span>
-<span class="hljs-comment">// 检测是否存在一个或多个满足指定的参数行为，如果满足则返回true</span>
-<span class="hljs-comment">// 判断是否有大于18岁的用户</span>
-<span class="hljs-keyword">boolean</span> isAnyAdult = list.stream().anyMatch(user -&gt; user.getAge() &gt; <span class="hljs-number">18</span>);
-System.out.println(isAnyAdult);
+<span class="token comment" spellcheck="true">// anyMatch</span>
+<span class="token comment" spellcheck="true">// 检测是否存在一个或多个满足指定的参数行为，如果满足则返回true</span>
+<span class="token comment" spellcheck="true">// 判断是否有大于18岁的用户</span>
+<span class="token keyword">boolean</span> isAnyAdult <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">anyMatch</span><span class="token punctuation">(</span>user <span class="token operator">-</span><span class="token operator">></span> user<span class="token punctuation">.</span><span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">18</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>isAnyAdult<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<span class="hljs-comment">// noneMatch　　</span>
-<span class="hljs-comment">// 检测是否不存在满足指定行为的元素，如果不存在则返回true</span></code></pre></div>
-
+<span class="token comment" spellcheck="true">// noneMatch　　</span>
+<span class="token comment" spellcheck="true">// 检测是否不存在满足指定行为的元素，如果不存在则返回true</span></code></pre>
 <p>输出结果：</p>
-<div class="hljs"><pre><code class="hljs shell">false
-true</code></pre></div>
-
+<pre class=" language-shell"><code class="language-shell">false
+true</code></pre>
 <blockquote>
 <p>findFirst  用于返回满足条件的第一个元素</p>
 </blockquote>
-<div class="hljs"><pre><code class="hljs java">Optional&lt;User&gt; first = list.stream()
-        .filter(user -&gt; user.getAge() == <span class="hljs-number">18</span>)
-        .findFirst();
-User user = first.get();
-System.out.println(user);</code></pre></div>
-
+<pre class=" language-java"><code class="language-java">Optional<span class="token operator">&lt;</span>User<span class="token operator">></span> first <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>user <span class="token operator">-</span><span class="token operator">></span> user<span class="token punctuation">.</span><span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">18</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">findFirst</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+User user <span class="token operator">=</span> first<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>输出结果：</p>
-<div class="hljs"><pre><code class="hljs shell">User&#123;id=1, name='张三', age=18, school='清华大学'&#125;</code></pre></div>
-
+<pre class=" language-shell"><code class="language-shell">User{id=1, name='张三', age=18, school='清华大学'}</code></pre>
 <blockquote>
 <p>counting  计算个数</p>
 </blockquote>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// Long counting = list.stream().collect(Collectors.counting());</span>
-<span class="hljs-keyword">long</span> counting = list.stream().count();
-System.out.println(<span class="hljs-string">"总人数："</span>+counting);</code></pre></div>
-
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// Long counting = list.stream().collect(Collectors.counting());</span>
+<span class="token keyword">long</span> counting <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"总人数："</span><span class="token operator">+</span>counting<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>输出结果：</p>
-<div class="hljs"><pre><code class="hljs shell">总人数：10</code></pre></div>
-
+<pre class=" language-shell"><code class="language-shell">总人数：10</code></pre>
 <blockquote>
 <p>maxBy  minBy  计算最大值 最小值</p>
 </blockquote>
-<div class="hljs"><pre><code class="hljs java">Integer maxAge = list.stream()
-        .collect(Collectors.maxBy((user1, user2) -&gt; user1.getAge() - user2.getAge()))
-        .get().getAge();
-Integer minAge = list.stream()
-        .collect(Collectors.minBy((user1, user2) -&gt; user1.getAge() - user2.getAge()))
-        .get().getAge();
-System.out.println(<span class="hljs-string">"最大年龄："</span> + maxAge);
-System.out.println(<span class="hljs-string">"最小年龄："</span> + minAge);
-<span class="hljs-comment">// 方式二： 使用比较器</span>
-Integer maxAge2 = list.stream()
-        .collect(Collectors.maxBy(Comparator.comparing(User::getAge)))
-        .get()
-        .getAge();
-Integer minAge2 = list.stream()
-        .collect(Collectors.minBy(Comparator.comparing(User::getAge)))
-        .get()
-        .getAge();
-System.out.println(<span class="hljs-string">"最大年龄："</span> + maxAge2);
-System.out.println(<span class="hljs-string">"最小年龄："</span> + minAge2);</code></pre></div>
-
+<pre class=" language-java"><code class="language-java">Integer maxAge <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">maxBy</span><span class="token punctuation">(</span><span class="token punctuation">(</span>user1<span class="token punctuation">,</span> user2<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> user1<span class="token punctuation">.</span><span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> user2<span class="token punctuation">.</span><span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Integer minAge <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">minBy</span><span class="token punctuation">(</span><span class="token punctuation">(</span>user1<span class="token punctuation">,</span> user2<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> user1<span class="token punctuation">.</span><span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> user2<span class="token punctuation">.</span><span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"最大年龄："</span> <span class="token operator">+</span> maxAge<span class="token punctuation">)</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"最小年龄："</span> <span class="token operator">+</span> minAge<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 方式二： 使用比较器</span>
+Integer maxAge2 <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">maxBy</span><span class="token punctuation">(</span>Comparator<span class="token punctuation">.</span><span class="token function">comparing</span><span class="token punctuation">(</span>User<span class="token operator">:</span><span class="token operator">:</span>getAge<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Integer minAge2 <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">minBy</span><span class="token punctuation">(</span>Comparator<span class="token punctuation">.</span><span class="token function">comparing</span><span class="token punctuation">(</span>User<span class="token operator">:</span><span class="token operator">:</span>getAge<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"最大年龄："</span> <span class="token operator">+</span> maxAge2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"最小年龄："</span> <span class="token operator">+</span> minAge2<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>输出结果：</p>
-<div class="hljs"><pre><code class="hljs shell">最大年龄：25
+<pre class=" language-shell"><code class="language-shell">最大年龄：25
 最小年龄：16
 最大年龄：25
-最小年龄：16</code></pre></div>
-
+最小年龄：16</code></pre>
 <blockquote>
 <p>summingInt、summingLong、summingDouble 计算总和</p>
 </blockquote>
-<div class="hljs"><pre><code class="hljs java">Integer ageSum = list.stream().collect(Collectors.summingInt(User::getAge));
-System.out.println(<span class="hljs-string">"年龄总合为："</span> + ageSum);</code></pre></div>
-
+<pre class=" language-java"><code class="language-java">Integer ageSum <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">summingInt</span><span class="token punctuation">(</span>User<span class="token operator">:</span><span class="token operator">:</span>getAge<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"年龄总合为："</span> <span class="token operator">+</span> ageSum<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>输出结果：</p>
-<div class="hljs"><pre><code class="hljs shell">年龄总合为：195</code></pre></div>
-
+<pre class=" language-shell"><code class="language-shell">年龄总合为：195</code></pre>
 <blockquote>
 <p>averageInt、averageLong、averageDouble 计算平均值</p>
 </blockquote>
-<div class="hljs"><pre><code class="hljs java">Double ageAverage = list.stream().collect(Collectors.averagingInt(User::getAge));
-System.out.println(<span class="hljs-string">"年龄平均值："</span> + ageAverage);</code></pre></div>
-
+<pre class=" language-java"><code class="language-java">Double ageAverage <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">averagingInt</span><span class="token punctuation">(</span>User<span class="token operator">:</span><span class="token operator">:</span>getAge<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"年龄平均值："</span> <span class="token operator">+</span> ageAverage<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>输出结果：</p>
-<div class="hljs"><pre><code class="hljs shell">年龄平均值：19.5</code></pre></div>
-
+<pre class=" language-shell"><code class="language-shell">年龄平均值：19.5</code></pre>
 <blockquote>
 <p>summarizingInt、summarizingLong、summarizingDouble  </p>
 <p>一次性查询元素个数、总和、最大值、最小值和平均值</p>
 </blockquote>
-<div class="hljs"><pre><code class="hljs java">IntSummaryStatistics collect = list.stream()
-    .collect(Collectors.summarizingInt(User::getAge));
-System.out.println(collect);</code></pre></div>
-
+<pre class=" language-java"><code class="language-java">IntSummaryStatistics collect <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">summarizingInt</span><span class="token punctuation">(</span>User<span class="token operator">:</span><span class="token operator">:</span>getAge<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>collect<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>输出结果：</p>
-<div class="hljs"><pre><code class="hljs shell">IntSummaryStatistics&#123;count=10, sum=195, min=16, average=19.500000, max=25&#125;</code></pre></div>
-
+<pre class=" language-shell"><code class="language-shell">IntSummaryStatistics{count=10, sum=195, min=16, average=19.500000, max=25}</code></pre>
 <blockquote>
 <p>joining 字符串拼接</p>
 </blockquote>
-<div class="hljs"><pre><code class="hljs java">String names = list.stream()
-    .map(User::getName)
-    .collect(Collectors.joining(<span class="hljs-string">","</span>));
-System.out.println(names);</code></pre></div>
-
+<pre class=" language-java"><code class="language-java">String names <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>User<span class="token operator">:</span><span class="token operator">:</span>getName<span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">joining</span><span class="token punctuation">(</span><span class="token string">","</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>names<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>输出结果：</p>
-<div class="hljs"><pre><code class="hljs shell">张三,李四,王五,赵六,田七,小明,小红,小华,小丽,小何</code></pre></div>
-
+<pre class=" language-shell"><code class="language-shell">张三,李四,王五,赵六,田七,小明,小红,小华,小丽,小何</code></pre>
 <blockquote>
 <p>groupingBy 分组</p>
 </blockquote>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 根据大学划分用户</span>
-Map&lt;String, List&lt;User&gt;&gt; userBySchool = list.stream()
-    .collect(Collectors.groupingBy(User::getSchool));
-System.out.println(userBySchool);</code></pre></div>
-
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 根据大学划分用户</span>
+Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> List<span class="token operator">&lt;</span>User<span class="token operator">>></span> userBySchool <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">groupingBy</span><span class="token punctuation">(</span>User<span class="token operator">:</span><span class="token operator">:</span>getSchool<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>userBySchool<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>输出结果：</p>
-<div class="hljs"><pre><code class="hljs shell">&#123;浙江大学=[User&#123;id=8, name='小华', age=22, school='浙江大学'&#125;, User&#123;id=9, name='小丽', age=21, school='浙江大学'&#125;, User&#123;id=10, name='小何', age=18, school='浙江大学'&#125;], 北京大学=[User&#123;id=5, name='田七', age=25, school='北京大学'&#125;, User&#123;id=6, name='小明', age=16, school='北京大学'&#125;, User&#123;id=7, name='小红', age=20, school='北京大学'&#125;], 清华大学=[User&#123;id=1, name='张三', age=18, school='清华大学'&#125;, User&#123;id=2, name='李四', age=20, school=</code></pre></div>
-
+<pre class=" language-shell"><code class="language-shell">{浙江大学=[User{id=8, name='小华', age=22, school='浙江大学'}, User{id=9, name='小丽', age=21, school='浙江大学'}, User{id=10, name='小何', age=18, school='浙江大学'}], 北京大学=[User{id=5, name='田七', age=25, school='北京大学'}, User{id=6, name='小明', age=16, school='北京大学'}, User{id=7, name='小红', age=20, school='北京大学'}], 清华大学=[User{id=1, name='张三', age=18, school='清华大学'}, User{id=2, name='李四', age=20, school=</code></pre>
 <blockquote>
 <p>partitioningBy  分区</p>
 </blockquote>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 按照是否是清华大学的user将所有user分为两个部分</span>
-Map&lt;Boolean, List&lt;User&gt;&gt; userByQinghua = list.stream()
-    .collect(Collectors.partitioningBy(user1 -&gt; <span class="hljs-string">"清华大学"</span>.equals(user1.getSchool())));
-System.out.println(userByQinghua);</code></pre></div>
-
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 按照是否是清华大学的user将所有user分为两个部分</span>
+Map<span class="token operator">&lt;</span>Boolean<span class="token punctuation">,</span> List<span class="token operator">&lt;</span>User<span class="token operator">>></span> userByQinghua <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">partitioningBy</span><span class="token punctuation">(</span>user1 <span class="token operator">-</span><span class="token operator">></span> <span class="token string">"清华大学"</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>user1<span class="token punctuation">.</span><span class="token function">getSchool</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>userByQinghua<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>输出结果：</p>
-<div class="hljs"><pre><code class="hljs shell">&#123;false=[User&#123;id=5, name='田七', age=25, school='北京大学'&#125;, User&#123;id=6, name='小明', age=16, school='北京大学'&#125;, User&#123;id=7, name='小红', age=20, school='北京大学'&#125;, User&#123;id=8, name='小华', age=22, school='浙江大学'&#125;, User&#123;id=9, name='小丽', age=21, school='浙江大学'&#125;, User&#123;id=10, name='小何', age=18, school='浙江大学'&#125;], true=[User&#123;id=1, name='张三', age=18, school='清华大学'&#125;, User&#123;id=2, name='李四', age=20, school='清华大学'&#125;, User&#123;id=3, name='王五', age=16, school='清华大学'&#125;, User&#123;id=4, name='赵六', age=19, school='清华大学'&#125;]&#125;</code></pre></div>
+<pre class=" language-shell"><code class="language-shell">{false=[User{id=5, name='田七', age=25, school='北京大学'}, User{id=6, name='小明', age=16, school='北京大学'}, User{id=7, name='小红', age=20, school='北京大学'}, User{id=8, name='小华', age=22, school='浙江大学'}, User{id=9, name='小丽', age=21, school='浙江大学'}, User{id=10, name='小何', age=18, school='浙江大学'}], true=[User{id=1, name='张三', age=18, school='清华大学'}, User{id=2, name='李四', age=20, school='清华大学'}, User{id=3, name='王五', age=16, school='清华大学'}, User{id=4, name='赵六', age=19, school='清华大学'}]}</code></pre>
 
-
-            </article>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/Java%E5%9F%BA%E7%A1%80/">Java基础</a>
-                    
-                  </div>
-                
-              </div>
-              
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
-              
-              
-                <div class="post-prevnext row">
-                  <div class="post-prev col-6">
-                    
-                    
-                      <a href="/2020/04/05/javaweb-01/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Servlet</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </div>
-                  <div class="post-next col-6">
-                    
-                    
-                      <a href="/2020/03/23/jdbc/">
-                        <span class="hidden-mobile">Jdbc核心技术</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </div>
-                </div>
-              
             </div>
+            <hr/>
 
             
-          </div>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/JavaSE/">
+                                    <span class="chip bg-color">JavaSE</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
         </div>
-      </div>
     </div>
+
     
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div id="tocbot"></div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/04/05/javaweb-01/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="Servlet">
+                        
+                        <span class="card-title">Servlet</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            JavaWeb概念javaweb：所有由java编写的可以通过浏览器访问的程序的总称。javaweb是基于请求和响应来开发的。
+请求：Request，是指客户端(浏览器)给服务器(Tomcat)发送数据。响应：Response，服务器给客户
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-05
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/JavaWeb/" class="post-category">
+                                    JavaWeb
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/JavaWeb/">
+                        <span class="chip bg-color">JavaWeb</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/03/23/jdbc/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Jdbc核心技术">
+                        
+                        <span class="card-title">Jdbc核心技术</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            一、JDBC概述JDBC(Java Database Connectivity)是一个独立于特定数据库管理系统、通用的SQL数据库存取和操作的公共接口(一组API)。                  
+JDBC接口(API)包括两个层次：
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-23
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/JAVASE/" class="post-category">
+                                    JAVASE
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/JavaSE/">
+                        <span class="chip bg-color">JavaSE</span>
+                    </a>
+                    
+                    <a href="/tags/JDBC/">
+                        <span class="chip bg-color">JDBC</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
 </div>
 
-      </div>
-    
-  </div>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
 </div>
 
-<!-- Custom -->
+<!-- TOC 悬浮按钮. -->
 
-  <div class="col-lg-7 mx-auto nopadding-md">
-    <div class="container custom post-content mx-auto">
-      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
-    </div>
-  </div>
-
-
-    
-  </main>
-
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
     </a>
-  
-
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
 </div>
-  
-
-  
-
-  
-
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
-    </div>
-    
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- LeanCloud 统计PV -->
-        <span id="leancloud-site-pv-container" style="display: none">
-            总访问量 
-            <span id="leancloud-site-pv"></span>
-             次
-          </span>
-      
-      
-        <!-- LeanCloud 统计UV -->
-        <span id="leancloud-site-uv-container" style="display: none">
-            总访客数 
-            <span id="leancloud-site-uv"></span>
-             人
-          </span>
-      
-
-    
-  </div>
 
 
-    
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
 
-    
-  </div>
-</footer>
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
 
-<!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
 
-<!-- Plugins -->
-
-
-  
-    <script  src="/js/lazyload.js" ></script>
-  
-
-
-
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
-
-
-
-  <script defer>
-  (function () {
-    // 查询存储的记录
-    function getRecord(Counter, target) {
-      return new Promise(function (resolve, reject) {
-        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({target})))
-          .then(resp => resp.json())
-          .then(({results, code, error}) => {
-            if (code === 401) {
-              throw error;
-            }
-            if (results && results.length > 0) {
-              var record = results[0];
-              resolve(record);
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
             } else {
-              Counter('post', '/classes/Counter', {target, time: 0})
-                .then(resp => resp.json())
-                .then((record, error) => {
-                  if (error) {
-                    throw error;
-                  }
-                  resolve(record);
-                }).catch(error => {
-                console.error('Failed to create', error);
-                reject(error);
-              });
+                $tocWidget.removeClass('toc-fixed');
             }
-          }).catch((error) => {
-          console.error('LeanCloud Counter Error:', error);
-          reject(error);
         });
-      })
-    }
 
-    // 发起自增请求
-    function increment(Counter, incrArr) {
-      return new Promise(function (resolve, reject) {
-        Counter('post', '/batch', {
-          "requests": incrArr
-        }).then((res) => {
-          res = res.json();
-          if (res.error) {
-            throw res.error;
-          }
-          resolve(res);
-        }).catch((error) => {
-          console.error('Failed to save visitor count', error);
-          reject(error);
-        });
-      });
-    }
-
-    // 构建自增请求体
-    function buildIncrement(objectId) {
-      return {
-        "method": "PUT",
-        "path": `/1.1/classes/Counter/${ objectId }`,
-        "body": {
-          "time": {
-            '__op': 'Increment',
-            'amount': 1
-          }
-        }
-      }
-    }
-
-    // 校验是否为有效的 UV
-    function validUV() {
-      var key = 'LeanCloud_UV_Flag';
-      var flag = localStorage.getItem(key);
-      if (flag) {
-        // 距离标记小于 24 小时则不计为 UV
-        if (new Date().getTime() - parseInt(flag) <= 86400000) {
-          return false;
-        }
-      }
-      localStorage.setItem(key, new Date().getTime().toString());
-      return true;
-    }
-
-    function addCount(Counter) {
-      var enableIncr = 'true' === 'true' && window.location.hostname !== 'localhost';
-      var getterArr = [];
-      var incrArr = [];
-
-      // 请求 PV 并自增
-      var pvCtn = document.querySelector('#leancloud-site-pv-container');
-      if (pvCtn || enableIncr) {
-        var pvGetter = getRecord(Counter, 'site-pv').then((record) => {
-          incrArr.push(buildIncrement(record.objectId))
-          var ele = document.querySelector('#leancloud-site-pv');
-          if (ele) {
-            ele.innerText = record.time + 1;
-            if (pvCtn) {
-              pvCtn.style.display = 'inline';
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
             }
-          }
-        });
-        getterArr.push(pvGetter);
-      }
 
-      // 请求 UV 并自增
-      var uvCtn = document.querySelector('#leancloud-site-uv-container');
-      if (uvCtn || enableIncr) {
-        var uvGetter = getRecord(Counter, 'site-uv').then((record) => {
-          var vuv = validUV();
-          vuv && incrArr.push(buildIncrement(record.objectId))
-          var ele = document.querySelector('#leancloud-site-uv');
-          if (ele) {
-            ele.innerText = record.time + (vuv ? 1 : 0);
-            if (uvCtn) {
-              uvCtn.style.display = 'inline';
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
             }
-          }
-        });
-        getterArr.push(uvGetter);
-      }
+            $('#' + targetId).width(w);
+        };
 
-      // 如果是文章，请求文章的浏览数，并自增
-      if ('true' === 'true') {
-        var viewCtn = document.querySelector('#leancloud-post-views-container');
-        if (viewCtn || enableIncr) {
-          var target = decodeURI('/2020/03/24/java-11/');
-          var viewGetter = getRecord(Counter, target).then((record) => {
-            incrArr.push(buildIncrement(record.objectId))
-            if (viewCtn) {
-              var ele = document.querySelector('#leancloud-post-views');
-              if (ele) {
-                ele.innerText = (record.time || 0) + 1;
-                viewCtn.style.display = 'inline';
-              }
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
             }
-          });
-          getterArr.push(viewGetter);
-        }
-      }
-
-      // 如果启动计数自增，批量发起自增请求
-      if (enableIncr) {
-        Promise.all(getterArr).then(() => {
-          incrArr.length > 0 && increment(Counter, incrArr);
-        })
-      }
-    }
-
-    var app_id = 'awAgpHKTXy0KFtO9IBmqF17L-gzGzoHsz'
-    var app_key = 'ns0AJvkYmAL5yQG6uPGKCwN6'
-    var server_url = ''
-
-    function fetchData(api_server) {
-      var Counter = (method, url, data) => {
-        return fetch(`${ api_server }/1.1${ url }`, {
-          method,
-          headers: {
-            'X-LC-Id': app_id,
-            'X-LC-Key': app_key,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data)
+            fixPostCardWidth('artDetail', 'prenext-posts');
         });
-      };
-
-      addCount(Counter);
-    }
-
-    var api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${ app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
-
-    if (api_server) {
-      fetchData(api_server);
-    } else {
-      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
-        .then(resp => resp.json())
-        .then(({api_server}) => {
-          fetchData('https://' + api_server);
-        });
-    }
-  })();
+        
+    });
 </script>
 
+    
+
+</main>
 
 
 
 
-
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
-  <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: 'article.markdown-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "Java8新特性&nbsp;",
-      ],
-      cursorChar: "✨",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">sweetboyZhang</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">129.1k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/sweetboyZhang" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
 
 
 
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "left",
-      visible: "hover",
-      
-      icon: "§"
-      
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
-  </script>
-
-
-
-  <script  src="/js/local-search.js" ></script>
-  <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
-      }
-    );
-  </script>
+    <a href="mailto:2824199482@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
 
 
 
@@ -992,55 +1011,9 @@ System.out.println(userByQinghua);</code></pre></div>
 
 
 
-  
-  
-    <script type="text/javascript">
-      //定义获取词语下标
-      var a_idx = 0;
-      jQuery(document).ready(function ($) {
-        //点击body时触发事件
-        $("body").click(function (e) {
-          //需要显示的词语
-          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
-          //设置词语给span标签
-          var $i = $("<span/>").text(a[a_idx]);
-          //下标等于原来下标+1  余 词语总数
-          a_idx = (a_idx + 1) % a.length;
-          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
-          //获取x和y的指针坐标
-          var x = e.pageX, y = e.pageY;
-          //在鼠标的指针的位置给$i定义的span标签添加css样式
-          $i.css({
-            "z-index": 999,
-            "top": y - 20,
-            "left": x,
-            "position": "absolute",
-            "font-weight": "bold",
-            "color": rand_color()
-          });
-          // 随机颜色
-          function rand_color() {
-            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
-          }
-          //在body添加这个标签
-          $("body").append($i);
-          //animate() 方法执行 CSS 属性集的自定义动画。
-          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
-          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
-          $i.animate({
-            //将原来的位置向上移动180
-            "top": y - 180,
-            "opacity": 0
-            //1500动画的速度
-          }, 1500, function () {
-            //时间到了自动删除
-            $i.remove();
-          });
-        });
-      })
-      ;
-    </script>
-  
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2824199842" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2824199842" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
 
 
 
@@ -1048,25 +1021,86 @@ System.out.println(userByQinghua);</code></pre></div>
 
 
 
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
 
 
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
 
 
-  
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
 
-  
+    <!-- Baidu Analytics -->
 
-  
+    <!-- Baidu Push -->
 
-  
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
 
-  
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
 
-  
+    
 
+    
 
+    
 
+    
 
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
 
 </body>
+
 </html>
