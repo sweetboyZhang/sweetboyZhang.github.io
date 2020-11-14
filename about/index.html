@@ -238,7 +238,7 @@
 
 <script>
     // 每天切换 banner 图.  Switch banner image every day.
-    var bannerUrl = "/medias/banner/" + new Date().getDay() + '.jpg';
+    var bannerUrl = "/medias/banner/" + parseInt(Math.random()*14,10) + '.jpg';
     $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
 </script>
 
@@ -260,17 +260,7 @@
 
 
 
-<div class="statis">
-    <span class="count"><a href="/categories">16</a></span>
-    <span class="name">分类</span>
-</div>
 
-
-
-<div class="statis">
-    <span class="count"><a href="/tags">26</a></span>
-    <span class="name">标签</span>
-</div>
 
 
                     </div>
@@ -290,17 +280,7 @@
 
 
 
-<div class="statis">
-    <span class="count"><a href="/categories">16</a></span>
-    <span class="name">分类</span>
-</div>
 
-
-
-<div class="statis">
-    <span class="count"><a href="/tags">26</a></span>
-    <span class="name">标签</span>
-</div>
 
 
                                 </div>
@@ -476,7 +456,7 @@
                 type: 'pie',
                 radius: '50%',
                 color: ['#6772e5', '#ff9e0f', '#fa755a', '#3ecf8e', '#82d3f4', '#ab47bc', '#525f7f', '#f51c47', '#26A69A'],
-                data: [{"name":"JavaEE","value":18},{"name":"编程工具","value":2},{"name":"算法","value":1},{"name":"数据结构","value":7},{"name":"JavaSE","value":14},{"name":"设计模式","value":2},{"name":"分布式","value":1},{"name":"前端","value":3},{"name":"JavaWeb","value":6},{"name":"JAVASE","value":1},{"name":"Linux","value":2},{"name":"JVM","value":1},{"name":"数据库","value":13},{"name":"小项目","value":4},{"name":"RabbitMQ","value":1},{"name":"微服务","value":7}],
+                data: [],
                 itemStyle: {
                     emphasis: {
                         shadowBlur: 10,
@@ -500,7 +480,7 @@
         xAxis: [
             {
                 type: 'category',
-                data: ["JavaEE","JavaSE","JavaWeb","SpringBoot","MyBatis","Spring","数据结构","MySQL","Redis","SpringMVC"]
+                data: []
             }
         ],
         yAxis: [
@@ -513,7 +493,7 @@
                 type: 'bar',
                 color: ['#82d3f4'],
                 barWidth : 18,
-                data: [23,15,8,8,7,7,7,7,6,5],
+                data: [],
                 markPoint: {
                     symbolSize: 45,
                     data: [{
@@ -546,48 +526,6 @@
                 
 
                 
-
-                
-                
-<div id="myGallery" class="my-gallery">
-    <div class="title center-align" data-aos="zoom-in-up">
-        <i class="far fa-image"></i>&nbsp;&nbsp;相册
-    </div>
-    <div class="row">
-        
-        
-        <div class="photo col s12 m6 l4" data-aos="fade-up">
-            <div class="img-item" data-src="/medias/featureimages/0.jpg">
-                <img src="/medias/featureimages/0.jpg" class="responsive-img">
-            </div>
-        </div>
-        
-        <div class="photo col s12 m6 l4" data-aos="fade-up">
-            <div class="img-item" data-src="/medias/featureimages/1.jpg">
-                <img src="/medias/featureimages/1.jpg" class="responsive-img">
-            </div>
-        </div>
-        
-        <div class="photo col s12 m6 l4" data-aos="fade-up">
-            <div class="img-item" data-src="/medias/featureimages/2.jpg">
-                <img src="/medias/featureimages/2.jpg" class="responsive-img">
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-<script>
-    $(function () {
-        let animateClass = 'animated pulse';
-        $('#myGallery .photo').hover(function () {
-            $(this).addClass(animateClass);
-        }, function () {
-            $(this).removeClass(animateClass);
-        });
-    });
-</script>
 
                 
 
