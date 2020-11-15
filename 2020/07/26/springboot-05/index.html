@@ -201,7 +201,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -323,10 +323,6 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/JavaEE/">
-                                <span class="chip bg-color">JavaEE</span>
-                            </a>
-                        
                             <a href="/tags/SpringBoot/">
                                 <span class="chip bg-color">SpringBoot</span>
                             </a>
@@ -359,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-11-15
                 </div>
                 
 
@@ -388,7 +384,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>首先创建一个sprinboot项目，并引入web,jbdc,mysql驱动依赖。<a id="more"></a></p>
+                <p>首先创建一个sprinboot项目，并引入web,jbdc,mysql驱动依赖。</p>
 <h2 id="1、添加springboot整合myBatis的依赖"><a href="#1、添加springboot整合myBatis的依赖" class="headerlink" title="1、添加springboot整合myBatis的依赖"></a>1、添加springboot整合myBatis的依赖</h2><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.mybatis.spring.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>mybatis-spring-boot-starter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
@@ -528,10 +524,6 @@ mybatis:
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/JavaEE/">
-                                    <span class="chip bg-color">JavaEE</span>
-                                </a>
-                            
                                 <a href="/tags/SpringBoot/">
                                     <span class="chip bg-color">SpringBoot</span>
                                 </a>
@@ -583,7 +575,7 @@ mybatis:
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="SpringSecurity">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="SpringSecurity">
                         
                         <span class="card-title">SpringSecurity</span>
                     </div>
@@ -592,8 +584,6 @@ mybatis:
                     <div class="summary block-with-text">
                         
                             SpringSecurity是一个针对于Spring项目的安全框架，侧重于为Spring项目提供身份验证和授权。
-将我们之前使用拦截器，过滤器进行权限检查，和身份验证的操作进行了简化，并提供了一套 Web 应用安全性的完整解决方案。
-环境搭
                         
                     </div>
                     <div class="publish-info">
@@ -615,10 +605,6 @@ mybatis:
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/JavaEE/">
-                        <span class="chip bg-color">JavaEE</span>
-                    </a>
-                    
                     <a href="/tags/SpringBoot/">
                         <span class="chip bg-color">SpringBoot</span>
                     </a>
@@ -638,7 +624,7 @@ mybatis:
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="整合jdbc，Druid">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="整合jdbc，Druid">
                         
                         <span class="card-title">整合jdbc，Druid</span>
                     </div>
@@ -646,9 +632,7 @@ mybatis:
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            对于数据访问层，无论是SQL还是NOSQL，Springboot底层都是采用Spring Data的方式进行统一处理。
-整合jdbc1、新建项目引入web模块和连接mysql必须的模块，JDBC API，MySQL Driver
-2、项目建
+                            Springboot整合jdbc对数据库进行操作
                         
                     </div>
                     <div class="publish-info">
@@ -669,10 +653,6 @@ mybatis:
                 </div>
                 
                 <div class="card-action article-tags">
-                    
-                    <a href="/tags/JavaEE/">
-                        <span class="chip bg-color">JavaEE</span>
-                    </a>
                     
                     <a href="/tags/SpringBoot/">
                         <span class="chip bg-color">SpringBoot</span>
@@ -741,7 +721,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -753,7 +733,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -828,7 +808,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">129.1k</span>&nbsp;字
+                class="white-color">135.7k</span>&nbsp;字
             
             
             

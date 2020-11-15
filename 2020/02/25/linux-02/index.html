@@ -201,7 +201,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -355,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-11-15
                 </div>
                 
 
@@ -384,9 +384,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="关机-amp-重启命令"><a href="#关机-amp-重启命令" class="headerlink" title="关机&amp;重启命令"></a>关机&amp;重启命令</h2><p><strong>shutdown</strong>(默认1分钟后关机)<br>        shutdown -h now : 立即关机<br>        shutdown -h 1 : 1分钟后关机<br>        shutdown -r now : 立即重启</p>
-<a id="more"></a>
-<p><strong>halt:</strong>禁用cpu，相当于直接关机<br><strong>reboot:</strong>立即重启<br><strong>sync:</strong>把内存上的数据同步到磁盘上(关机或重启前应该先执行此指令，防止数据丢失)</p>
+                <h2 id="关机-amp-重启命令"><a href="#关机-amp-重启命令" class="headerlink" title="关机&amp;重启命令"></a>关机&amp;重启命令</h2><p><strong>shutdown</strong>(默认1分钟后关机)<br>        shutdown -h now : 立即关机<br>        shutdown -h 1 : 1分钟后关机<br>        shutdown -r now : 立即重启<br><strong>halt:</strong>禁用cpu，相当于直接关机<br><strong>reboot:</strong>立即重启<br><strong>sync:</strong>把内存上的数据同步到磁盘上(关机或重启前应该先执行此指令，防止数据丢失)</p>
 <h2 id="用户登录和注销"><a href="#用户登录和注销" class="headerlink" title="用户登录和注销"></a>用户登录和注销</h2><p><strong>su 用户名：</strong>切换用户<br><strong>logout：</strong>注销用户，在图形运行级别无效</p>
 <h2 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h2><p>Linux是一个多用户多任务的操作系统，任何一个要使用系统资源的用户，都必须向系统管理员申请一个账号，然后以这个账号的身份进入系统。<br>每个用户至少属于一个组。<br><strong>添加用户：</strong> useradd -r -m -s /bin/bash 用户名<br>-r：建立系统账号<br>-m：自动建立用户的登入目录<br>-s：指定用户登入后所使用的shell<br><strong>指定密码：</strong>passwd 用户名<br><strong>删除用户：</strong><br>userdel 用户名(删除用户保留家目录)<br>userdel -r 用户名 (删除用户及用户主目录)<br><strong>查询用户：</strong>id 用户名<br><strong>查看当前用户：</strong>whoami  /who am I<br><strong>用户组：</strong>系统对有共性的多个用户进行统一的管理<br>添加组：groupadd  组名<br>查看组id：grep 组名 /etc/group<br>修改组账户：groupmod -g[新id] -n[新组名] 组名<br>删除组：groupdel 组名<br>增加用户时直接加上组：useradd -g 用户组 用户<br>修改用户组：usermod -g 用户组 用户<br>相关文件：<br>/etc/passwd：用户的配置文件，记录用户的各种信息<br>用户名：口令：用户标识号：组标识号：注释性描述：登录shell<br>/etc/shadow：口令配置文件<br>登录名：加密口令：最后一次修改时间：最小时间间隔：最大时间间隔：不活动时间：失效时间：标志<br>/etc/group：组配置文件<br>组名：口令：组标识符</p>
 <h2 id="运行级别"><a href="#运行级别" class="headerlink" title="运行级别"></a>运行级别</h2><p>0：关机<br>        1：单用户（找回丢失密码）<br>        2：多用户状态没有网络服务<br>        3：多用户状态有网络<br>        4：系统未使用保留给用户<br>        5：图形界面<br>        6：系统重启<br>                /etc/inittab文件查看运行级别（ubuntu没有此文件）<br>                修改默认运行级别：init [012356] (然后按ctrl+alt+F1，Ubuntu进入命令界面 )<br><img src="/2020/02/25/linux-02/4.png" alt></p>
@@ -506,7 +504,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Java常用类">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Java常用类">
                         
                         <span class="card-title">Java常用类</span>
                     </div>
@@ -514,7 +512,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            字符串相关类：String1.String声明为final，不可被继承。2.实现了Serializable接口：表示字符串是支持序列化的;   实现了Comparable接口：表示String是可以比较大小的；3.String内部定义了fi
+                            jave基础之字符串、日期类、比较器、枚举类的使用
                         
                     </div>
                     <div class="publish-info">
@@ -555,7 +553,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="Linux目录结构,Xshell,Xftp，vim">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Linux目录结构,Xshell,Xftp，vim">
                         
                         <span class="card-title">Linux目录结构,Xshell,Xftp，vim</span>
                     </div>
@@ -563,9 +561,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Linux目录结构linux的文件系统采用级层式的树状目录结构，最上层是根目录  /  ，然后在此基础上创建其他目录。                  
-
-/bin：Binary的缩写，用于存放最经常使用的命令。/sbin：s就是Supe
+                            Linux的简要介绍
                         
                     </div>
                     <div class="publish-info">
@@ -654,7 +650,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -666,7 +662,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -741,7 +737,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">129.1k</span>&nbsp;字
+                class="white-color">135.7k</span>&nbsp;字
             
             
             

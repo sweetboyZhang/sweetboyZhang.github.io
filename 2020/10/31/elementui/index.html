@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="ElementUI, sweetboyZhang&#39;s Blog">
+    <meta name="keywords" content="ElementUI整合SpringBoot, sweetboyZhang&#39;s Blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>ElementUI | sweetboyZhang&#39;s Blog</title>
+    <title>ElementUI整合SpringBoot | sweetboyZhang&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -201,12 +201,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/element.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">ElementUI</h1>
+                    <h1 class="description center-align post-title">ElementUI整合SpringBoot</h1>
                 </div>
             </div>
         </div>
@@ -323,12 +323,16 @@
                     
                     <div class="article-tag">
                         
+                            <a href="/tags/Vue/">
+                                <span class="chip bg-color">Vue</span>
+                            </a>
+                        
                             <a href="/tags/ElementUI/">
                                 <span class="chip bg-color">ElementUI</span>
                             </a>
                         
-                            <a href="/tags/vue/">
-                                <span class="chip bg-color">vue</span>
+                            <a href="/tags/SpringBoot/">
+                                <span class="chip bg-color">SpringBoot</span>
                             </a>
                         
                     </div>
@@ -339,8 +343,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-category">
-                                前端
+                            <a href="/categories/%E5%B0%8F%E9%A1%B9%E7%9B%AE/" class="post-category">
+                                小项目
                             </a>
                         
                     </div>
@@ -359,21 +363,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-11-15
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    247
+                    925
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    4 分
                 </div>
                 
 
@@ -388,22 +392,24 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>elementUI是基于vue的一个ui框架，并提供了很多相关组件，方便我们快速构建页面。<a id="more"></a></p>
-<h2 id="安装Element-UI"><a href="#安装Element-UI" class="headerlink" title="安装Element UI"></a>安装Element UI</h2><ul>
-<li>使用vue cli创建一个名为element_front的vue项目</li>
+                <h2 id="创建前端项目"><a href="#创建前端项目" class="headerlink" title="创建前端项目"></a>创建前端项目</h2><ul>
+<li>使用vue cli创建一个名为element_user的vue项目</li>
 </ul>
-<pre class=" language-powershell"><code class="language-powershell">vue init webpack element_front</code></pre>
+<pre class=" language-bash"><code class="language-bash">vue init webpack element_user</code></pre>
 <ul>
 <li>在当前项目下安装elementui </li>
 </ul>
-<pre class=" language-powershell"><code class="language-powershell">npm i element<span class="token operator">-</span>ui <span class="token operator">-</span>S</code></pre>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">npm</span> i element-ui -S</code></pre>
 <ul>
-<li>在项目中引入elementui</li>
+<li>在项目中的main.js中引入elementui</li>
 </ul>
 <pre class=" language-js"><code class="language-js"><span class="token keyword">import</span> ElementUI <span class="token keyword">from</span> <span class="token string">'element-ui'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token string">'element-ui/lib/theme-chalk/index.css'</span><span class="token punctuation">;</span>
 
 Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>ElementUI<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 在项目中使用 elementui</span></code></pre>
+<blockquote>
+<p>ElementUI的一些基础知识：</p>
+<p>ElementUI是基于vue的一个ui框架，并提供了很多相关组件，方便我们快速构建页面。</p>
 <p><strong>属性值的设置</strong>：</p>
 <ul>
 <li>当属性值是字符串时，直接使用<code>属性=&quot;属性值&quot;</code>  的方式给属性赋值</li>
@@ -419,7 +425,185 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
 <li>使用组件的方法时，需要在组件中加入<code>ref=&quot;组件别名&quot;</code></li>
 <li>在调用方法时直接使用<code>this,$refs.组件别名.方法名()</code></li>
 </ul>
+</blockquote>
+<p><strong>vue项目的基本结构：</strong><br><img src="/2020/10/31/elementui/1.png" style="zoom:85%;"></p>
+<h3 id="在App-vue中创建头部导航栏"><a href="#在App-vue中创建头部导航栏" class="headerlink" title="在App.vue中创建头部导航栏"></a>在App.vue中创建头部导航栏</h3><pre class=" language-js"><code class="language-js"><span class="token operator">&lt;</span>template<span class="token operator">></span>
+  <span class="token operator">&lt;</span>div<span class="token operator">></span>
+    <span class="token operator">&lt;</span>el<span class="token operator">-</span>container<span class="token operator">></span>
+      <span class="token operator">&lt;</span>el<span class="token operator">-</span>header<span class="token operator">></span>
+        <span class="token operator">&lt;</span>el<span class="token operator">-</span>menu
+          <span class="token punctuation">:</span><span class="token keyword">default</span><span class="token operator">-</span>active<span class="token operator">=</span><span class="token string">"activeIndex"</span>
+          <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"el-menu-demo"</span>
+          mode<span class="token operator">=</span><span class="token string">"horizontal"</span>
+          @select<span class="token operator">=</span><span class="token string">"handleSelect"</span>
+        <span class="token operator">></span>
+          <span class="token operator">&lt;</span>el<span class="token operator">-</span>menu<span class="token operator">-</span>item index<span class="token operator">=</span><span class="token string">"/"</span><span class="token operator">></span>主页<span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>menu<span class="token operator">-</span>item<span class="token operator">></span>
+          <span class="token operator">&lt;</span>el<span class="token operator">-</span>menu<span class="token operator">-</span>item index<span class="token operator">=</span><span class="token string">"/userlist"</span><span class="token operator">></span>用户管理<span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>menu<span class="token operator">-</span>item<span class="token operator">></span>
+          <span class="token operator">&lt;</span>el<span class="token operator">-</span>menu<span class="token operator">-</span>item index<span class="token operator">=</span><span class="token string">"/orderlist"</span><span class="token operator">></span>订单管理<span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>menu<span class="token operator">-</span>item<span class="token operator">></span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>menu<span class="token operator">></span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>header<span class="token operator">></span>
+      <span class="token operator">&lt;</span>el<span class="token operator">-</span>main<span class="token operator">></span>
+        <span class="token operator">&lt;</span>router<span class="token operator">-</span>view <span class="token operator">/</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>main<span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>container<span class="token operator">></span>
+  <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">></span>
 
+<span class="token operator">&lt;</span>script<span class="token operator">></span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  name<span class="token punctuation">:</span> <span class="token string">"App"</span><span class="token punctuation">,</span>
+  <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      activeIndex<span class="token punctuation">:</span><span class="token string">"/"</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  methods<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token function">handleSelect</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> keyPath<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>$router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+
+<span class="token operator">&lt;</span>style<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>style<span class="token operator">></span></code></pre>
+<h3 id="编写主页的组件Index-vue"><a href="#编写主页的组件Index-vue" class="headerlink" title="编写主页的组件Index.vue"></a>编写主页的组件Index.vue</h3><p>就简单地实现了一个轮播图的效果。</p>
+<pre class=" language-js"><code class="language-js"><span class="token operator">&lt;</span>template<span class="token operator">></span>
+  <span class="token operator">&lt;</span>div<span class="token operator">></span>
+    <span class="token operator">&lt;</span>el<span class="token operator">-</span>carousel <span class="token punctuation">:</span>interval<span class="token operator">=</span><span class="token string">"3000"</span> type<span class="token operator">=</span><span class="token string">"card"</span> height<span class="token operator">=</span><span class="token string">"250px"</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span>el<span class="token operator">-</span>carousel<span class="token operator">-</span>item v<span class="token operator">-</span><span class="token keyword">for</span><span class="token operator">=</span><span class="token string">"item in imgs"</span> <span class="token punctuation">:</span>key<span class="token operator">=</span><span class="token string">"item"</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>el<span class="token operator">-</span>image
+          style<span class="token operator">=</span><span class="token string">"width: 500px; height: 250px"</span>
+          <span class="token punctuation">:</span>src<span class="token operator">=</span><span class="token string">"item"</span>
+          fit<span class="token operator">=</span><span class="token string">"contain"</span>
+        <span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>image<span class="token operator">></span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>carousel<span class="token operator">-</span>item<span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>carousel<span class="token operator">></span>
+  <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">></span>
+
+<span class="token operator">&lt;</span>script<span class="token operator">></span>
+<span class="token keyword">import</span> homeImg1 <span class="token keyword">from</span> <span class="token string">"../assets/indexImgs/1.jpg"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> homeImg2 <span class="token keyword">from</span> <span class="token string">"../assets/indexImgs/2.jpg"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> homeImg3 <span class="token keyword">from</span> <span class="token string">"../assets/indexImgs/3.jpg"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> homeImg4 <span class="token keyword">from</span> <span class="token string">"../assets/indexImgs/4.jpg"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  name<span class="token punctuation">:</span> <span class="token string">"Index"</span><span class="token punctuation">,</span>
+  <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      imgs<span class="token punctuation">:</span> <span class="token punctuation">[</span>homeImg1<span class="token punctuation">,</span> homeImg2<span class="token punctuation">,</span> homeImg3<span class="token punctuation">,</span> homeImg4<span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+
+<span class="token operator">&lt;</span>style<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>style<span class="token operator">></span></code></pre>
+<h3 id="在index-js中引入组件和访问路径"><a href="#在index-js中引入组件和访问路径" class="headerlink" title="在index.js中引入组件和访问路径"></a>在index.js中引入组件和访问路径</h3><pre class=" language-js"><code class="language-js"><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
+<span class="token keyword">import</span> Router <span class="token keyword">from</span> <span class="token string">'vue-router'</span>
+<span class="token keyword">import</span> Index <span class="token keyword">from</span> <span class="token string">'../components/Index'</span>
+<span class="token keyword">import</span> UserList <span class="token keyword">from</span> <span class="token string">'../components/User/UserList'</span>
+
+Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>Router<span class="token punctuation">)</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">new</span> <span class="token class-name">Router</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  routes<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span> path<span class="token punctuation">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span> redirect<span class="token punctuation">:</span><span class="token string">'/index'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> path<span class="token punctuation">:</span> <span class="token string">'/index'</span><span class="token punctuation">,</span> component<span class="token punctuation">:</span> Index <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> path<span class="token punctuation">:</span> <span class="token string">'/userlist'</span><span class="token punctuation">,</span> component<span class="token punctuation">:</span> UserList <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<h2 id="编写用户管理的组件UserList-vue"><a href="#编写用户管理的组件UserList-vue" class="headerlink" title="编写用户管理的组件UserList.vue"></a>编写用户管理的组件UserList.vue</h2><h3 id="在当前工程下安装axios"><a href="#在当前工程下安装axios" class="headerlink" title="在当前工程下安装axios"></a>在当前工程下安装axios</h3><pre class=" language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> axios --save-dev</code></pre>
+<h3 id="在main-js-中引入axios"><a href="#在main-js-中引入axios" class="headerlink" title="在main.js  中引入axios"></a>在main.js  中引入axios</h3><pre class=" language-js"><code class="language-js"><span class="token keyword">import</span> axios <span class="token keyword">from</span> <span class="token string">'axios'</span><span class="token punctuation">;</span>
+
+Vue<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>$http<span class="token operator">=</span>axios<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 修改 vue内部 $http为 axios</span></code></pre>
+<h3 id="编写UserList-vue"><a href="#编写UserList-vue" class="headerlink" title="编写UserList.vue"></a>编写UserList.vue</h3><pre class=" language-js"><code class="language-js"><span class="token operator">&lt;</span>template<span class="token operator">></span>
+  <span class="token operator">&lt;</span>div<span class="token operator">></span>
+    <span class="token operator">&lt;</span>el<span class="token operator">-</span>button type<span class="token operator">=</span><span class="token string">"primary"</span> size<span class="token operator">=</span><span class="token string">"medium"</span> <span class="token operator">></span>添加<span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>button<span class="token operator">></span>
+    <span class="token operator">&lt;</span>el<span class="token operator">-</span>table
+      <span class="token punctuation">:</span>data<span class="token operator">=</span>"
+        tableData<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>
+          <span class="token punctuation">(</span>data<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span>
+            <span class="token operator">!</span>search <span class="token operator">||</span> data<span class="token punctuation">.</span>name<span class="token punctuation">.</span><span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>search<span class="token punctuation">.</span><span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">)</span>
+      "
+      style<span class="token operator">=</span><span class="token string">"width: 100%"</span>
+    <span class="token operator">></span>
+      <span class="token operator">&lt;</span>el<span class="token operator">-</span>table<span class="token operator">-</span>column label<span class="token operator">=</span><span class="token string">"编号"</span> width<span class="token operator">=</span><span class="token string">"180"</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>template slot<span class="token operator">-</span>scope<span class="token operator">=</span><span class="token string">"scope"</span><span class="token operator">></span>
+          <span class="token operator">&lt;</span>span style<span class="token operator">=</span><span class="token string">"margin-left: 10px"</span><span class="token operator">></span><span class="token punctuation">{</span><span class="token punctuation">{</span> scope<span class="token punctuation">.</span>row<span class="token punctuation">.</span>id <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">></span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">></span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>table<span class="token operator">-</span>column<span class="token operator">></span>
+      <span class="token operator">&lt;</span>el<span class="token operator">-</span>table<span class="token operator">-</span>column label<span class="token operator">=</span><span class="token string">"姓名"</span> width<span class="token operator">=</span><span class="token string">"180"</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>template slot<span class="token operator">-</span>scope<span class="token operator">=</span><span class="token string">"scope"</span><span class="token operator">></span>
+          <span class="token operator">&lt;</span>el<span class="token operator">-</span>popover trigger<span class="token operator">=</span><span class="token string">"hover"</span> placement<span class="token operator">=</span><span class="token string">"top"</span><span class="token operator">></span>
+            <span class="token operator">&lt;</span>p<span class="token operator">></span>姓名<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">{</span> scope<span class="token punctuation">.</span>row<span class="token punctuation">.</span>name <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">></span>
+            <span class="token operator">&lt;</span>p<span class="token operator">></span>住址<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">{</span> scope<span class="token punctuation">.</span>row<span class="token punctuation">.</span>address <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">></span>
+            <span class="token operator">&lt;</span>div slot<span class="token operator">=</span><span class="token string">"reference"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"name-wrapper"</span><span class="token operator">></span>
+              <span class="token operator">&lt;</span>el<span class="token operator">-</span>tag size<span class="token operator">=</span><span class="token string">"medium"</span><span class="token operator">></span><span class="token punctuation">{</span><span class="token punctuation">{</span> scope<span class="token punctuation">.</span>row<span class="token punctuation">.</span>name <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>tag<span class="token operator">></span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+          <span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>popover<span class="token operator">></span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">></span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>table<span class="token operator">-</span>column<span class="token operator">></span>
+      <span class="token operator">&lt;</span>el<span class="token operator">-</span>table<span class="token operator">-</span>column prop<span class="token operator">=</span><span class="token string">"gender"</span> label<span class="token operator">=</span><span class="token string">"性别"</span> width<span class="token operator">=</span><span class="token string">"180"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>table<span class="token operator">-</span>column<span class="token operator">></span>
+      <span class="token operator">&lt;</span>el<span class="token operator">-</span>table<span class="token operator">-</span>column prop<span class="token operator">=</span><span class="token string">"birth"</span> label<span class="token operator">=</span><span class="token string">"生日"</span> width<span class="token operator">=</span><span class="token string">"180"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>table<span class="token operator">-</span>column<span class="token operator">></span>
+      <span class="token operator">&lt;</span>el<span class="token operator">-</span>table<span class="token operator">-</span>column
+        prop<span class="token operator">=</span><span class="token string">"address"</span>
+        label<span class="token operator">=</span><span class="token string">"地址"</span>
+        width<span class="token operator">=</span><span class="token string">"180"</span>
+      <span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>table<span class="token operator">-</span>column<span class="token operator">></span>
+      <span class="token operator">&lt;</span>el<span class="token operator">-</span>table<span class="token operator">-</span>column align<span class="token operator">=</span><span class="token string">"right"</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>template slot<span class="token operator">=</span><span class="token string">"header"</span> slot<span class="token operator">-</span>scope<span class="token operator">=</span><span class="token string">"scope"</span><span class="token operator">></span>
+          <span class="token operator">&lt;</span>el<span class="token operator">-</span>input v<span class="token operator">-</span>model<span class="token operator">=</span><span class="token string">"search"</span> size<span class="token operator">=</span><span class="token string">"mini"</span> placeholder<span class="token operator">=</span><span class="token string">"输入姓名关键字搜索"</span> <span class="token operator">/</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">></span>
+        <span class="token operator">&lt;</span>template slot<span class="token operator">-</span>scope<span class="token operator">=</span><span class="token string">"scope"</span><span class="token operator">></span>
+          <span class="token operator">&lt;</span>el<span class="token operator">-</span>button
+            size<span class="token operator">=</span><span class="token string">"medium"</span>
+            @click<span class="token operator">=</span><span class="token string">"handleEdit(scope.$index, scope.row)"</span>
+            <span class="token operator">></span>编辑<span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>button
+          <span class="token operator">></span>
+          <span class="token operator">&lt;</span>el<span class="token operator">-</span>button
+            size<span class="token operator">=</span><span class="token string">"medium"</span>
+            type<span class="token operator">=</span><span class="token string">"danger"</span>
+            @click<span class="token operator">=</span><span class="token string">"handleDelete(scope.$index, scope.row)"</span>
+            <span class="token operator">></span>删除<span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>button
+          <span class="token operator">></span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">></span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>table<span class="token operator">-</span>column<span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>table<span class="token operator">></span>
+  <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">></span>
+
+<span class="token operator">&lt;</span>script<span class="token operator">></span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  name<span class="token punctuation">:</span> <span class="token string">"UserList"</span><span class="token punctuation">,</span>
+  <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      search<span class="token punctuation">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
+      tableData<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  methods<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token function">handleEdit</span><span class="token punctuation">(</span>index<span class="token punctuation">,</span> row<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>index<span class="token punctuation">,</span> row<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token function">handleDelete</span><span class="token punctuation">(</span>index<span class="token punctuation">,</span> row<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>index<span class="token punctuation">,</span> row<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">created</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>$http<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">"http://localhost:8989/user/listAll"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>res<span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// console.log(res);</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>tableData<span class="token operator">=</span>res<span class="token punctuation">.</span>data<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+
+<span class="token operator">&lt;</span>style<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>style<span class="token operator">></span></code></pre>
+<h2 id="创建后端项目"><a href="#创建后端项目" class="headerlink" title="创建后端项目"></a>创建后端项目</h2>
             </div>
             <hr/>
 
@@ -432,12 +616,16 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
                     
                         <div class="article-tag">
                             
+                                <a href="/tags/Vue/">
+                                    <span class="chip bg-color">Vue</span>
+                                </a>
+                            
                                 <a href="/tags/ElementUI/">
                                     <span class="chip bg-color">ElementUI</span>
                                 </a>
                             
-                                <a href="/tags/vue/">
-                                    <span class="chip bg-color">vue</span>
+                                <a href="/tags/SpringBoot/">
+                                    <span class="chip bg-color">SpringBoot</span>
                                 </a>
                             
                         </div>
@@ -487,16 +675,15 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Shiro">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Shiro中的权限管理">
                         
-                        <span class="card-title">Shiro</span>
+                        <span class="card-title">Shiro中的权限管理</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            权限管理权限的管理包含身份认证和授权两部分，对于需要访问控制资源的用户需要先通过身份认证，认证通过的用户并且具有该资源的访问权限方可访问。
-ShiroShiro是apache旗下一个开源框架，它将软件系统的安全认证相关的功能抽取出来，实现用
+                            Shiro是一个将软件系统的安全认证相关的功能抽取出来，实现用户身份认证，权限授权、加密、会话管理等功能的安全认证框架。
                         
                     </div>
                     <div class="publish-info">
@@ -518,10 +705,6 @@ ShiroShiro是apache旗下一个开源框架，它将软件系统的安全认证�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/JavaEE/">
-                        <span class="chip bg-color">JavaEE</span>
-                    </a>
-                    
                     <a href="/tags/Shiro/">
                         <span class="chip bg-color">Shiro</span>
                     </a>
@@ -541,7 +724,7 @@ ShiroShiro是apache旗下一个开源框架，它将软件系统的安全认证�
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Vue Cli的使用">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Vue Cli的使用">
                         
                         <span class="card-title">Vue Cli的使用</span>
                     </div>
@@ -549,13 +732,7 @@ ShiroShiro是apache旗下一个开源框架，它将软件系统的安全认证�
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            vue cli用于构建一个基于vue.js进行快速开发的完整系统，类似于java后端像maven那样的构建工具。
-环境准备
-安装node.js
-
-配置 npm（类似于maven中的仓库）
-# 切换为淘宝镜像源
-npm config set 
+                            vue cli是一个用于构建基于vue.js项目（类似于java后端像maven那样）的构建工具。
                         
                     </div>
                     <div class="publish-info">
@@ -644,7 +821,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -656,7 +833,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -731,7 +908,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">129.1k</span>&nbsp;字
+                class="white-color">135.7k</span>&nbsp;字
             
             
             

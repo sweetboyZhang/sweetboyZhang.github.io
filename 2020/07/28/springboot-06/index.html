@@ -201,7 +201,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -323,10 +323,6 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/JavaEE/">
-                                <span class="chip bg-color">JavaEE</span>
-                            </a>
-                        
                             <a href="/tags/SpringBoot/">
                                 <span class="chip bg-color">SpringBoot</span>
                             </a>
@@ -359,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-11-15
                 </div>
                 
 
@@ -388,7 +384,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>SpringSecurity是一个针对于Spring项目的安全框架，侧重于为Spring项目提供身份验证和授权。<a id="more"></a></p>
+                <p>SpringSecurity是一个针对于Spring项目的安全框架，侧重于为Spring项目提供身份验证和授权。</p>
 <p>将我们之前使用拦截器，过滤器进行权限检查，和身份验证的操作进行了简化，并提供了一套 Web 应用安全性的完整解决方案。</p>
 <h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><h3 id="1、创建springboot工程，并导入相应的依赖"><a href="#1、创建springboot工程，并导入相应的依赖" class="headerlink" title="1、创建springboot工程，并导入相应的依赖"></a>1、创建springboot工程，并导入相应的依赖</h3><p><img src="/2020/07/28/springboot-06/1.png" alt></p>
 <h3 id="2、导入静态工程"><a href="#2、导入静态工程" class="headerlink" title="2、导入静态工程"></a>2、导入静态工程</h3><p><img src="/2020/07/28/springboot-06/2.png" alt></p>
@@ -528,10 +524,6 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/JavaEE/">
-                                    <span class="chip bg-color">JavaEE</span>
-                                </a>
-                            
                                 <a href="/tags/SpringBoot/">
                                     <span class="chip bg-color">SpringBoot</span>
                                 </a>
@@ -583,7 +575,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Swagger简介与使用">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Swagger简介与使用">
                         
                         <span class="card-title">Swagger简介与使用</span>
                     </div>
@@ -591,13 +583,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            背景：前后端分离时代的来临  Vue+Springboot
-后端时代：前端至负责管理静态页面；html==&gt;后端。模板引擎jsp=&gt;后端是主力
-前后端分离时代：
-
-后端：后端控制层，服务层，数据访问层
-前端：前端控制层，视图层
-
+                            号称世界上最流行的API框架，ReatFul API 文档在线自动生成工具。
                         
                     </div>
                     <div class="publish-info">
@@ -619,8 +605,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/SpringBoot/">
-                        <span class="chip bg-color">SpringBoot</span>
+                    <a href="/tags/Swagger/">
+                        <span class="chip bg-color">Swagger</span>
                     </a>
                     
                 </div>
@@ -638,7 +624,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="整合MyBatis">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="整合MyBatis">
                         
                         <span class="card-title">整合MyBatis</span>
                     </div>
@@ -646,9 +632,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            首先创建一个sprinboot项目，并引入web,jbdc,mysql驱动依赖。
-1、添加springboot整合myBatis的依赖&lt;dependency>
-    &lt;groupId>org.mybatis.spring.bo
+                            Springboot整合MyBatis对数据库进行操作
                         
                     </div>
                     <div class="publish-info">
@@ -669,10 +653,6 @@
                 </div>
                 
                 <div class="card-action article-tags">
-                    
-                    <a href="/tags/JavaEE/">
-                        <span class="chip bg-color">JavaEE</span>
-                    </a>
                     
                     <a href="/tags/SpringBoot/">
                         <span class="chip bg-color">SpringBoot</span>
@@ -741,7 +721,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -753,7 +733,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -828,7 +808,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">129.1k</span>&nbsp;字
+                class="white-color">135.7k</span>&nbsp;字
             
             
             

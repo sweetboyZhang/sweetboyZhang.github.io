@@ -201,7 +201,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -355,21 +355,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-11-15
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    620
+                    780
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    3 分
                 </div>
                 
 
@@ -384,32 +384,32 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>vue cli用于构建一个基于vue.js进行快速开发的完整系统，类似于java后端像maven那样的构建工具。<a id="more"></a></p>
+                <p>vue cli是一个用于构建基于vue.js项目（类似于java后端像maven那样）的构建工具。</p>
 <h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><ul>
 <li><p>安装node.js</p>
 </li>
 <li><p>配置 npm（类似于maven中的仓库）</p>
-<pre class=" language-powershell"><code class="language-powershell"><span class="token comment" spellcheck="true"># 切换为淘宝镜像源</span>
-npm config <span class="token function">set</span> registry https:<span class="token operator">/</span><span class="token operator">/</span>registry<span class="token punctuation">.</span>npm<span class="token punctuation">.</span>taobao<span class="token punctuation">.</span>org
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 切换为淘宝镜像源</span>
+<span class="token function">npm</span> config <span class="token keyword">set</span> registry https://registry.npm.taobao.org
 <span class="token comment" spellcheck="true"># 验证是否切换成功</span>
-npm config get registry
+<span class="token function">npm</span> config get registry
 <span class="token comment" spellcheck="true"># 配置npm依赖下载位置</span>
-npm config <span class="token function">set</span> cache <span class="token string">"d:\nodejs\npm_cache"</span>
-npm config <span class="token function">set</span> prefix <span class="token string">"d:\nodejs\npm_global"</span>
+<span class="token function">npm</span> config <span class="token keyword">set</span> cache <span class="token string">"d:\nodejs\npm_cache"</span>
+<span class="token function">npm</span> config <span class="token keyword">set</span> prefix <span class="token string">"d:\nodejs\npm_global"</span>
 <span class="token comment" spellcheck="true"># 查看配置 </span>
-npm config <span class="token function">ls</span></code></pre>
+<span class="token function">npm</span> config <span class="token function">ls</span></code></pre>
 </li>
 <li><p>安装 vue cli</p>
-<pre class=" language-powershell"><code class="language-powershell"><span class="token comment" spellcheck="true"># 全局安装 安装在之前配置好的D:\nodejs\npm_global\node_modules目录下</span>
-npm install <span class="token operator">-</span>g vue<span class="token operator">-</span><span class="token function">cli</span></code></pre>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 全局安装 安装在之前配置好的D:\nodejs\npm_global\node_modules目录下</span>
+<span class="token function">npm</span> <span class="token function">install</span> -g vue-cli</code></pre>
 </li>
 </ul>
 <h2 id="使用vue-cli创建一个vue项目"><a href="#使用vue-cli创建一个vue项目" class="headerlink" title="使用vue cli创建一个vue项目"></a>使用vue cli创建一个vue项目</h2><p><strong>创建一个项目名为hello的vue项目</strong></p>
 <pre class=" language-powershell"><code class="language-powershell">vue init webpack hello</code></pre>
 <p><strong>启动项目</strong></p>
-<pre class=" language-powershell"><code class="language-powershell">cd hello
+<pre class=" language-bash"><code class="language-bash"><span class="token function">cd</span> hello
 
-npm run dev
+<span class="token function">npm</span> run dev
 <span class="token comment" spellcheck="true"># npm start</span></code></pre>
 <p><strong>本地访问</strong></p>
 <p><a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a></p>
@@ -434,20 +434,20 @@ npm run dev
 <span class="token code keyword">    -package-lock.json ----> 对package.json加锁</span>
 <span class="token code keyword">    -README.md         ----> 项目说明文件</span></code></pre>
 <h2 id="开发步骤"><a href="#开发步骤" class="headerlink" title="开发步骤"></a>开发步骤</h2><p>1、编写各个组件：主页、用户、商品等等功能模块，并导出</p>
-<pre class=" language-vue"><code class="language-vue"><template>
-  <div>
-    <h1>网站主页</h1>
-  </div>
-</template>
+<pre class=" language-js"><code class="language-js"><span class="token operator">&lt;</span>template<span class="token operator">></span>
+  <span class="token operator">&lt;</span>div<span class="token operator">></span>
+    <span class="token operator">&lt;</span>h1<span class="token operator">></span>网站主页<span class="token operator">&lt;</span><span class="token operator">/</span>h1<span class="token operator">></span>
+  <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">></span>
 
-<script>
-export default {// 导出组件，向外暴露
-  name: "Home",
-};
-</script>
+<span class="token operator">&lt;</span>script<span class="token operator">></span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span><span class="token comment" spellcheck="true">// 导出组件，向外暴露</span>
+  name<span class="token punctuation">:</span> <span class="token string">"Home"</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
 
-<style>
-</style></code></pre>
+<span class="token operator">&lt;</span>style<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>style<span class="token operator">></span></code></pre>
 <p>2、在index.js中引入并注册组件</p>
 <pre class=" language-js"><code class="language-js"><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
 <span class="token keyword">import</span> Router <span class="token keyword">from</span> <span class="token string">'vue-router'</span>
@@ -466,27 +466,27 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
   <span class="token punctuation">]</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
 <p>3、在App.vue中添加访问路径</p>
-<pre class=" language-vue"><code class="language-vue"><template>
-    <div>
-        <a href="#/home">主页</a>
-        <a href="#/user">用户管理</a>
-        <a href="#/student">学生管理</a>
+<pre class=" language-js"><code class="language-js"><span class="token operator">&lt;</span>template<span class="token operator">></span>
+    <span class="token operator">&lt;</span>div<span class="token operator">></span>
+        <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#/home"</span><span class="token operator">></span>主页<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">></span>
+        <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#/user"</span><span class="token operator">></span>用户管理<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">></span>
+        <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#/student"</span><span class="token operator">></span>学生管理<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">></span>
 
-        <router-view/>
-    </div>
-</template>
+        <span class="token operator">&lt;</span>router<span class="token operator">-</span>view<span class="token operator">/</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">></span>
 
-<script>
-export default {
-  name: 'App' 
-}
-</script>
+<span class="token operator">&lt;</span>script<span class="token operator">></span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  name<span class="token punctuation">:</span> <span class="token string">'App'</span> 
+<span class="token punctuation">}</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
 
-<style>
-</style></code></pre>
+<span class="token operator">&lt;</span>style<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>style<span class="token operator">></span></code></pre>
 <h2 id="在vue-cli中使用axios"><a href="#在vue-cli中使用axios" class="headerlink" title="在vue cli中使用axios"></a>在vue cli中使用axios</h2><ul>
 <li><p>在当前工程下安装axios</p>
-<pre class=" language-powershell"><code class="language-powershell">npm install axios <span class="token operator">--</span>save<span class="token operator">-</span>dev</code></pre>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> axios --save-dev</code></pre>
 </li>
 <li><p>在main.js  中引入axios</p>
 <pre class=" language-js"><code class="language-js"><span class="token keyword">import</span> axios <span class="token keyword">from</span> <span class="token string">'axios'</span><span class="token punctuation">;</span>
@@ -516,36 +516,34 @@ Vue<span class="token punctuation">.</span>prototype<span class="token punctuati
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span></code></pre>
 </li>
-</ul>
-<ul>
 <li><p>数据渲染</p>
-<pre class=" language-vue"><code class="language-vue"><template>
-  <div>
-    <h1>用户管理</h1>
-    <a href="">添加用户</a>
-    <table border="1" cellspacing="0" width="600px">
-      <tr>
-        <th>编号</th>
-        <th>姓名</th>
-        <th>年龄</th>
-        <th>生日</th>
-        <th align="center">操作</th>
-      </tr>
-      <tr v-for="user in users">
-        <td v-text="user.id"></td>
-        <td v-text="user.name"></td>
-        <td v-text="user.age"></td>
-        <td v-text="user.birth"></td>
-        <td align="center"><a href="">修改</a>&nbsp; 
-        <a href="">删除</a></td>
-      </tr>
-    </table>
-  </div>
-</template></code></pre>
-<img src="/2020/10/30/vue_cli/1.gif" style="zoom:80%;">
-
+<pre class=" language-js"><code class="language-js"><span class="token operator">&lt;</span>template<span class="token operator">></span>
+  <span class="token operator">&lt;</span>div<span class="token operator">></span>
+    <span class="token operator">&lt;</span>h1<span class="token operator">></span>用户管理<span class="token operator">&lt;</span><span class="token operator">/</span>h1<span class="token operator">></span>
+    <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">""</span><span class="token operator">></span>添加用户<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">></span>
+    <span class="token operator">&lt;</span>table border<span class="token operator">=</span><span class="token string">"1"</span> cellspacing<span class="token operator">=</span><span class="token string">"0"</span> width<span class="token operator">=</span><span class="token string">"600px"</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span>tr<span class="token operator">></span>
+        <span class="token operator">&lt;</span>th<span class="token operator">></span>编号<span class="token operator">&lt;</span><span class="token operator">/</span>th<span class="token operator">></span>
+        <span class="token operator">&lt;</span>th<span class="token operator">></span>姓名<span class="token operator">&lt;</span><span class="token operator">/</span>th<span class="token operator">></span>
+        <span class="token operator">&lt;</span>th<span class="token operator">></span>年龄<span class="token operator">&lt;</span><span class="token operator">/</span>th<span class="token operator">></span>
+        <span class="token operator">&lt;</span>th<span class="token operator">></span>生日<span class="token operator">&lt;</span><span class="token operator">/</span>th<span class="token operator">></span>
+        <span class="token operator">&lt;</span>th align<span class="token operator">=</span><span class="token string">"center"</span><span class="token operator">></span>操作<span class="token operator">&lt;</span><span class="token operator">/</span>th<span class="token operator">></span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>tr<span class="token operator">></span>
+      <span class="token operator">&lt;</span>tr v<span class="token operator">-</span><span class="token keyword">for</span><span class="token operator">=</span><span class="token string">"user in users"</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>td v<span class="token operator">-</span>text<span class="token operator">=</span><span class="token string">"user.id"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">></span>
+        <span class="token operator">&lt;</span>td v<span class="token operator">-</span>text<span class="token operator">=</span><span class="token string">"user.name"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">></span>
+        <span class="token operator">&lt;</span>td v<span class="token operator">-</span>text<span class="token operator">=</span><span class="token string">"user.age"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">></span>
+        <span class="token operator">&lt;</span>td v<span class="token operator">-</span>text<span class="token operator">=</span><span class="token string">"user.birth"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">></span>
+        <span class="token operator">&lt;</span>td align<span class="token operator">=</span><span class="token string">"center"</span><span class="token operator">></span><span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">""</span><span class="token operator">></span>修改<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">></span><span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> 
+        <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">""</span><span class="token operator">></span>删除<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">></span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>tr<span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>table<span class="token operator">></span>
+  <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">></span></code></pre>
 </li>
 </ul>
+  <img src="/2020/10/30/vue_cli/1.gif" style="zoom:80%;">
+
 
             </div>
             <hr/>
@@ -609,20 +607,15 @@ Vue<span class="token punctuation">.</span>prototype<span class="token punctuati
                 <a href="/2020/10/31/elementui/">
                     <div class="card-image">
                         
+                        <img src="/medias/featureimages/element.jpg" class="responsive-img" alt="ElementUI整合SpringBoot">
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="ElementUI">
-                        
-                        <span class="card-title">ElementUI</span>
+                        <span class="card-title">ElementUI整合SpringBoot</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            elementUI是基于vue的一个ui框架，并提供了很多相关组件，方便我们快速构建页面。
-安装Element UI
-使用vue cli创建一个名为element_front的vue项目
-
-vue init webpack element_
+                            使用elementui快速搭建前端页面，springboot创建后端接口，实现对用户的简单增删改查功能。
                         
                     </div>
                     <div class="publish-info">
@@ -633,8 +626,8 @@ vue init webpack element_
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-category">
-                                    前端
+                            <a href="/categories/%E5%B0%8F%E9%A1%B9%E7%9B%AE/" class="post-category">
+                                    小项目
                                 </a>
                             
                             
@@ -644,12 +637,16 @@ vue init webpack element_
                 
                 <div class="card-action article-tags">
                     
+                    <a href="/tags/Vue/">
+                        <span class="chip bg-color">Vue</span>
+                    </a>
+                    
                     <a href="/tags/ElementUI/">
                         <span class="chip bg-color">ElementUI</span>
                     </a>
                     
-                    <a href="/tags/vue/">
-                        <span class="chip bg-color">vue</span>
+                    <a href="/tags/SpringBoot/">
+                        <span class="chip bg-color">SpringBoot</span>
                     </a>
                     
                 </div>
@@ -667,7 +664,7 @@ vue init webpack element_
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="RabbitMQ整合springboot">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="RabbitMQ整合springboot">
                         
                         <span class="card-title">RabbitMQ整合springboot</span>
                     </div>
@@ -675,11 +672,7 @@ vue init webpack element_
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            引入依赖
-
-&lt;dependency>
-  &lt;groupId>org.springframework.boot&lt;/groupId>
-  &lt;artifactId>spring-boot-starter-amqp&lt;/
+                            在springboot中使用RabbitMQ
                         
                     </div>
                     <div class="publish-info">
@@ -688,8 +681,12 @@ vue init webpack element_
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            sweetboyZhang
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" class="post-category">
+                                    消息队列
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -764,7 +761,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -776,7 +773,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -851,7 +848,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">129.1k</span>&nbsp;字
+                class="white-color">135.7k</span>&nbsp;字
             
             
             

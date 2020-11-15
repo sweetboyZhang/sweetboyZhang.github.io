@@ -201,7 +201,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -355,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-11-15
                 </div>
                 
 
@@ -384,7 +384,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="字符串相关类：String"><a href="#字符串相关类：String" class="headerlink" title="字符串相关类：String"></a>字符串相关类：String</h2><p>1.String声明为final，不可被继承。<br>2.实现了Serializable接口：表示字符串是支持序列化的;<br>   实现了Comparable接口：表示String是可以比较大小的；<a id="more"></a><br>3.String内部定义了final char[]    value[]用于存储字符串数据；<br>4.String代表不可变的字符序列。</p>
+                <h2 id="字符串相关类：String"><a href="#字符串相关类：String" class="headerlink" title="字符串相关类：String"></a>字符串相关类：String</h2><p>1.String声明为final，不可被继承。<br>2.实现了Serializable接口：表示字符串是支持序列化的;<br>   实现了Comparable接口：表示String是可以比较大小的；<br>3.String内部定义了final char[]    value[]用于存储字符串数据；<br>4.String代表不可变的字符序列。</p>
 <ul>
 <li><p>当对字符串重新赋值；</p>
 </li>
@@ -699,7 +699,7 @@ String st2 <span class="token operator">=</span> <span class="token keyword">new
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            集合与数组数组：1.一旦初始化，长度就不可修改了；2.一旦定义后，就只能操作指定类型的数据了；3.数组提供的方法非常有限，且效率不高；4.获取数组中实际元素的个数，没有现成的属性和方法可调用；5.存储特点：有序，可重复。集合：Java集合分
+                            jave基础之集合框架
                         
                     </div>
                     <div class="publish-info">
@@ -740,7 +740,7 @@ String st2 <span class="token operator">=</span> <span class="token keyword">new
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Linux 常用命令">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Linux 常用命令">
                         
                         <span class="card-title">Linux 常用命令</span>
                     </div>
@@ -748,8 +748,7 @@ String st2 <span class="token operator">=</span> <span class="token keyword">new
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            关机&amp;重启命令shutdown(默认1分钟后关机)        shutdown -h now : 立即关机        shutdown -h 1 : 1分钟后关机        shutdown -r now : 立即重启
-
+                            Linux中的一些常用命令的使用
                         
                     </div>
                     <div class="publish-info">
@@ -838,7 +837,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -850,7 +849,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -925,7 +924,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">129.1k</span>&nbsp;字
+                class="white-color">135.7k</span>&nbsp;字
             
             
             

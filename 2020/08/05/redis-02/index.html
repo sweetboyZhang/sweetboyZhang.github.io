@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="五大数据类型, sweetboyZhang&#39;s Blog">
+    <meta name="keywords" content="Redis五大数据类型, sweetboyZhang&#39;s Blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>五大数据类型 | sweetboyZhang&#39;s Blog</title>
+    <title>Redis五大数据类型 | sweetboyZhang&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -201,12 +201,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">五大数据类型</h1>
+                    <h1 class="description center-align post-title">Redis五大数据类型</h1>
                 </div>
             </div>
         </div>
@@ -355,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-11-15
                 </div>
                 
 
@@ -384,91 +384,91 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="String（字符串）"><a href="#String（字符串）" class="headerlink" title="String（字符串）"></a>String（字符串）</h2><p>追加字符串，如果当前key不存在就相当于新建<a id="more"></a></p>
-<pre class=" language-shell"><code class="language-shell">append name 666</code></pre>
+                <h2 id="String（字符串）"><a href="#String（字符串）" class="headerlink" title="String（字符串）"></a>String（字符串）</h2><p>追加字符串，如果当前key不存在就相当于新建</p>
+<pre class=" language-bash"><code class="language-bash">append name 666</code></pre>
 <p>获取字符串长度</p>
-<pre class=" language-shell"><code class="language-shell">strlen name</code></pre>
+<pre class=" language-bash"><code class="language-bash">strlen name</code></pre>
 <p>增加减少</p>
-<pre class=" language-shell"><code class="language-shell">127.0.0.1:6379> set views 1   
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> <span class="token keyword">set</span> views 1   
 OK                      
-127.0.0.1:6379> incr views # 加1      
-(integer) 2                
-127.0.0.1:6379> get views   
-"2"                            
-127.0.0.1:6379> decr views   # 减1
-(integer) 1      
-127.0.0.1:6379> get views   
-"1"                         
-127.0.0.1:6379> incrby views 10   # 设置步长，加10
-(integer) 11    
-127.0.0.1:6379> get views    
-"11"                         
-127.0.0.1:6379> decrby views 10   
-(integer) 1                     
-127.0.0.1:6379> get views       
-"1"      </code></pre>
+127.0.0.1:6379<span class="token operator">></span> incr views <span class="token comment" spellcheck="true"># 加1      </span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 2                
+127.0.0.1:6379<span class="token operator">></span> get views   
+<span class="token string">"2"</span>                            
+127.0.0.1:6379<span class="token operator">></span> decr views   <span class="token comment" spellcheck="true"># 减1</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1      
+127.0.0.1:6379<span class="token operator">></span> get views   
+<span class="token string">"1"</span>                         
+127.0.0.1:6379<span class="token operator">></span> incrby views 10   <span class="token comment" spellcheck="true"># 设置步长，加10</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 11    
+127.0.0.1:6379<span class="token operator">></span> get views    
+<span class="token string">"11"</span>                         
+127.0.0.1:6379<span class="token operator">></span> decrby views 10   
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1                     
+127.0.0.1:6379<span class="token operator">></span> get views       
+<span class="token string">"1"</span>      </code></pre>
 <p>截取字符串</p>
-<pre class=" language-shell"><code class="language-shell">127.0.0.1:6379> get demo
-"hello,world"
-127.0.0.1:6379> getrange demo 0 4                                                                      
-"hello"   
-127.0.0.1:6379> getrange demo 0 -1  # 获取全部字符串                                              
-"hello,world"   </code></pre>
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> get demo
+<span class="token string">"hello,world"</span>
+127.0.0.1:6379<span class="token operator">></span> getrange demo 0 4                                                                      
+<span class="token string">"hello"</span>   
+127.0.0.1:6379<span class="token operator">></span> getrange demo 0 -1  <span class="token comment" spellcheck="true"># 获取全部字符串                                              </span>
+<span class="token string">"hello,world"</span>   </code></pre>
 <p>替换</p>
-<pre class=" language-shell"><code class="language-shell">127.0.0.1:6379> get demo
-"hello,world"
-127.0.0.1:6379> setrange demo 6 redis!   # 替换指定位置开始的字符串                                                              (integer) 12                                                                                           127.0.0.1:6379> get demo                                                              
-"hello,redis!"   </code></pre>
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> get demo
+<span class="token string">"hello,world"</span>
+127.0.0.1:6379<span class="token operator">></span> setrange demo 6 redis<span class="token operator">!</span>   <span class="token comment" spellcheck="true"># 替换指定位置开始的字符串                                                              (integer) 12                                                                                           127.0.0.1:6379> get demo                                                              </span>
+<span class="token string">"hello,redis!"</span>   </code></pre>
 <p>设置键值对的时候指定有效期</p>
-<pre class=" language-shell"><code class="language-shell">setex key1 10 "hello" # 设置key1的值为hello,10秒后过期</code></pre>
+<pre class=" language-bash"><code class="language-bash">setex key1 10 <span class="token string">"hello"</span> <span class="token comment" spellcheck="true"># 设置key1的值为hello,10秒后过期</span></code></pre>
 <p>如果key不存在就创建</p>
-<pre class=" language-shell"><code class="language-shell">setnx key2 "hello2"</code></pre>
+<pre class=" language-bash"><code class="language-bash">setnx key2 <span class="token string">"hello2"</span></code></pre>
 <p>批量设置</p>
-<pre class=" language-shell"><code class="language-shell">127.0.0.1:6379> mset k1 v1 k2 v1 k3 v3     
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> mset k1 v1 k2 v1 k3 v3     
 OK                             
-127.0.0.1:6379> keys *     
-1) "k3"                
-2) "k1"                 
-3) "k2"                
-127.0.0.1:6379> msetnx k1 v1 k4 v4   # 原子操作
-(integer) 0         
-127.0.0.1:6379> keys *   
-1) "k3"                  
-2) "k1"              
-3) "k2"         </code></pre>
+127.0.0.1:6379<span class="token operator">></span> keys *     
+1<span class="token punctuation">)</span> <span class="token string">"k3"</span>                
+2<span class="token punctuation">)</span> <span class="token string">"k1"</span>                 
+3<span class="token punctuation">)</span> <span class="token string">"k2"</span>                
+127.0.0.1:6379<span class="token operator">></span> msetnx k1 v1 k4 v4   <span class="token comment" spellcheck="true"># 原子操作</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0         
+127.0.0.1:6379<span class="token operator">></span> keys *   
+1<span class="token punctuation">)</span> <span class="token string">"k3"</span>                  
+2<span class="token punctuation">)</span> <span class="token string">"k1"</span>              
+3<span class="token punctuation">)</span> <span class="token string">"k2"</span>         </code></pre>
 <p>设置对象 user:{id}.{filed}</p>
-<pre class=" language-shell"><code class="language-shell">127.0.0.1:6379> mset user:1:name zyz user:1:age 21
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> mset user:1:name zyz user:1:age 21
 OK
-127.0.0.1:6379> mget user:1:name user:1:age
-"zyz"
-"21"</code></pre>
+127.0.0.1:6379<span class="token operator">></span> mget user:1:name user:1:age
+<span class="token string">"zyz"</span>
+<span class="token string">"21"</span></code></pre>
 <p>先get后set</p>
-<pre class=" language-shell"><code class="language-shell">127.0.0.1:6379> getset name zyz  # key值不存在，先返回nil,再设置
-(nil)                         
-127.0.0.1:6379> get name     
-"zyz"                     
-127.0.0.1:6379> getset name zyz666  # key存在，返回key值，再设置
-"zyz"                             
-127.0.0.1:6379> get name     
-"zyz666"  </code></pre>
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> getset name zyz  <span class="token comment" spellcheck="true"># key值不存在，先返回nil,再设置</span>
+<span class="token punctuation">(</span>nil<span class="token punctuation">)</span>                         
+127.0.0.1:6379<span class="token operator">></span> get name     
+<span class="token string">"zyz"</span>                     
+127.0.0.1:6379<span class="token operator">></span> getset name zyz666  <span class="token comment" spellcheck="true"># key存在，返回key值，再设置</span>
+<span class="token string">"zyz"</span>                             
+127.0.0.1:6379<span class="token operator">></span> get name     
+<span class="token string">"zyz666"</span>  </code></pre>
 <h2 id="List（列表）"><a href="#List（列表）" class="headerlink" title="List（列表）"></a>List（列表）</h2><p>插入</p>
-<pre class=" language-shell"><code class="language-shell">127.0.0.1:6379> lpush list 1   # 相当于压栈，操作第一个元素
-(integer) 1                    
-127.0.0.1:6379> lpush list 2    
-(integer) 2               
-127.0.0.1:6379> lpush list 3       
-(integer) 3              
-127.0.0.1:6379> lrange list 0 2         
-1) "3"                
-2) "2"               
-3) "1"             
-127.0.0.1:6379> rpush list 4   # 相当于从队列的尾部插入 ，操作最后一个元素  
-(integer) 4                
-127.0.0.1:6379> lrange list 0 -1   
- 1) "3"      
- 2) "2"     
- 3) "1"       
- 4) "4"         </code></pre>
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> lpush list 1   <span class="token comment" spellcheck="true"># 相当于压栈，操作第一个元素</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1                    
+127.0.0.1:6379<span class="token operator">></span> lpush list 2    
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 2               
+127.0.0.1:6379<span class="token operator">></span> lpush list 3       
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 3              
+127.0.0.1:6379<span class="token operator">></span> lrange list 0 2         
+1<span class="token punctuation">)</span> <span class="token string">"3"</span>                
+2<span class="token punctuation">)</span> <span class="token string">"2"</span>               
+3<span class="token punctuation">)</span> <span class="token string">"1"</span>             
+127.0.0.1:6379<span class="token operator">></span> rpush list 4   <span class="token comment" spellcheck="true"># 相当于从队列的尾部插入 ，操作最后一个元素  </span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 4                
+127.0.0.1:6379<span class="token operator">></span> lrange list 0 -1   
+ 1<span class="token punctuation">)</span> <span class="token string">"3"</span>      
+ 2<span class="token punctuation">)</span> <span class="token string">"2"</span>     
+ 3<span class="token punctuation">)</span> <span class="token string">"1"</span>       
+ 4<span class="token punctuation">)</span> <span class="token string">"4"</span>         </code></pre>
 <p>删除</p>
 <pre class=" language-shell"><code class="language-shell">127.0.0.1:6379> lrange list 0 -1      
 1) "3"        
@@ -483,200 +483,200 @@ OK
 1) "2"                           
 2) "1"  </code></pre>
 <p>获取值</p>
-<pre class=" language-shell"><code class="language-shell">127.0.0.1:6379> lindex list 0                           
-"2" </code></pre>
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> lindex list 0                           
+<span class="token string">"2"</span> </code></pre>
 <p>查询list长度</p>
-<pre class=" language-shell"><code class="language-shell">127.0.0.1:6379> llen list   
-(integer) 4   </code></pre>
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> llen list   
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 4   </code></pre>
 <p>根据指定的值删除</p>
-<pre class=" language-shell"><code class="language-shell">127.0.0.1:6379> lrange list 0 -1  
-1) "4"                            
-2) "3"              
-3) "2"         
-4) "1"        
-127.0.0.1:6379> lrem list  1 4  # 移除value为4的从头开始的第一个值   
-(integer) 1              
-127.0.0.1:6379> lrange list 0 -1   
-1) "3"                         
-2) "2"                                                                         
-3) "1"  </code></pre>
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> lrange list 0 -1  
+1<span class="token punctuation">)</span> <span class="token string">"4"</span>                            
+2<span class="token punctuation">)</span> <span class="token string">"3"</span>              
+3<span class="token punctuation">)</span> <span class="token string">"2"</span>         
+4<span class="token punctuation">)</span> <span class="token string">"1"</span>        
+127.0.0.1:6379<span class="token operator">></span> lrem list  1 4  <span class="token comment" spellcheck="true"># 移除value为4的从头开始的第一个值   </span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1              
+127.0.0.1:6379<span class="token operator">></span> lrange list 0 -1   
+1<span class="token punctuation">)</span> <span class="token string">"3"</span>                         
+2<span class="token punctuation">)</span> <span class="token string">"2"</span>                                                                         
+3<span class="token punctuation">)</span> <span class="token string">"1"</span>  </code></pre>
 <p>截取元素</p>
-<pre class=" language-shell"><code class="language-shell">127.0.0.1:6379> lrange list 0 -1    
-1) "3"                    
-2) "2"                
-3) "1"               
-127.0.0.1:6379> ltrim list 0 1   # 通下标[0]截取指定长度[1] 
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> lrange list 0 -1    
+1<span class="token punctuation">)</span> <span class="token string">"3"</span>                    
+2<span class="token punctuation">)</span> <span class="token string">"2"</span>                
+3<span class="token punctuation">)</span> <span class="token string">"1"</span>               
+127.0.0.1:6379<span class="token operator">></span> ltrim list 0 1   <span class="token comment" spellcheck="true"># 通下标[0]截取指定长度[1] </span>
 OK                     
-127.0.0.1:6379> lrange list 0 -1     
-1) "3"                                                        
-2) "2" </code></pre>
+127.0.0.1:6379<span class="token operator">></span> lrange list 0 -1     
+1<span class="token punctuation">)</span> <span class="token string">"3"</span>                                                        
+2<span class="token punctuation">)</span> <span class="token string">"2"</span> </code></pre>
 <p>将原列表的最后一个元素移到新的列表中</p>
-<pre class=" language-shell"><code class="language-shell">127.0.0.1:6379> lrange list 0 -1      
-1) "3"                                
-2) "2"                            
-127.0.0.1:6379> rpoplpush list list1  # 将list最后一个元素移到list1中    
-"2"                      
-127.0.0.1:6379> lrange list1 0 -1   
-1) "2"                 
-127.0.0.1:6379> lrange list 0 -1    
-1) "3"                                                                          </code></pre>
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> lrange list 0 -1      
+1<span class="token punctuation">)</span> <span class="token string">"3"</span>                                
+2<span class="token punctuation">)</span> <span class="token string">"2"</span>                            
+127.0.0.1:6379<span class="token operator">></span> rpoplpush list list1  <span class="token comment" spellcheck="true"># 将list最后一个元素移到list1中    </span>
+<span class="token string">"2"</span>                      
+127.0.0.1:6379<span class="token operator">></span> lrange list1 0 -1   
+1<span class="token punctuation">)</span> <span class="token string">"2"</span>                 
+127.0.0.1:6379<span class="token operator">></span> lrange list 0 -1    
+1<span class="token punctuation">)</span> <span class="token string">"3"</span>                                                                          </code></pre>
 <p>更新值，需要先判断list是否存在</p>
-<pre class=" language-shell"><code class="language-shell">127.0.0.1:6379> exists list                                       
-(integer) 0  
-127.0.0.1:6379> lpush list value1                                           
-(integer) 1   
-127.0.0.1:6379> lset list 0 value2                                                        
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> exists list                                       
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0  
+127.0.0.1:6379<span class="token operator">></span> lpush list value1                                           
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1   
+127.0.0.1:6379<span class="token operator">></span> lset list 0 value2                                                        
 OK   </code></pre>
 <p>从指定元素值前面/后面插入</p>
-<pre class=" language-shell"><code class="language-shell">127.0.0.1:6379> lrange list 0 -1  
-1) "1"                           
-2) "2"             
-127.0.0.1:6379> linsert list after 2 3   # 在值为2的元素后面插入一个值为3的元素
-(integer) 3                         
-127.0.0.1:6379> lrange list 0 -1    
-1) "1"                            
-2) "2"             
-3) "3"                
-127.0.0.1:6379> linsert list before 1 0    # 在值为1的元素前面插入一个值为0的元素  
-(integer) 4                         
-127.0.0.1:6379> lrange list 0 -1      
-1) "0"                            
-2) "1"                         
-3) "2"                                                           
-4) "3"  </code></pre>
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> lrange list 0 -1  
+1<span class="token punctuation">)</span> <span class="token string">"1"</span>                           
+2<span class="token punctuation">)</span> <span class="token string">"2"</span>             
+127.0.0.1:6379<span class="token operator">></span> linsert list after 2 3   <span class="token comment" spellcheck="true"># 在值为2的元素后面插入一个值为3的元素</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 3                         
+127.0.0.1:6379<span class="token operator">></span> lrange list 0 -1    
+1<span class="token punctuation">)</span> <span class="token string">"1"</span>                            
+2<span class="token punctuation">)</span> <span class="token string">"2"</span>             
+3<span class="token punctuation">)</span> <span class="token string">"3"</span>                
+127.0.0.1:6379<span class="token operator">></span> linsert list before 1 0    <span class="token comment" spellcheck="true"># 在值为1的元素前面插入一个值为0的元素  </span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 4                         
+127.0.0.1:6379<span class="token operator">></span> lrange list 0 -1      
+1<span class="token punctuation">)</span> <span class="token string">"0"</span>                            
+2<span class="token punctuation">)</span> <span class="token string">"1"</span>                         
+3<span class="token punctuation">)</span> <span class="token string">"2"</span>                                                           
+4<span class="token punctuation">)</span> <span class="token string">"3"</span>  </code></pre>
 <p>List实际上是一个双向链表，前后都可以插入值；key不存在创建新的节点，key存在，新增内容；两边插入或改动效率最高。</p>
 <p>消息队列（Lpush，Rpop），栈（Lpush，Lpop）</p>
 <h2 id="Set（集合）"><a href="#Set（集合）" class="headerlink" title="Set（集合）"></a>Set（集合）</h2><p><strong>值不可重复</strong>，值则相同添加失败。</p>
 <p>添加值、查看所有值、判断值是否存在</p>
-<pre class=" language-shell"><code class="language-shell">127.0.0.1:6379> sadd myset aaa   
-(integer) 1                     
-127.0.0.1:6379> sadd myset bbb     
-(integer) 1                     
-127.0.0.1:6379> smembers myset    
-1) "bbb"              
-2) "aaa"              
-127.0.0.1:6379> sismember myset aaa  
-(integer) 1                  
-127.0.0.1:6379> sismember myset ccc                              
-(integer) 0  </code></pre>
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> sadd myset aaa   
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1                     
+127.0.0.1:6379<span class="token operator">></span> sadd myset bbb     
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1                     
+127.0.0.1:6379<span class="token operator">></span> smembers myset    
+1<span class="token punctuation">)</span> <span class="token string">"bbb"</span>              
+2<span class="token punctuation">)</span> <span class="token string">"aaa"</span>              
+127.0.0.1:6379<span class="token operator">></span> sismember myset aaa  
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1                  
+127.0.0.1:6379<span class="token operator">></span> sismember myset ccc                              
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0  </code></pre>
 <p>移除指定值的元素</p>
-<pre class=" language-shell"><code class="language-shell">127.0.0.1:6379> smembers myset    
-1) "bbb"              
-2) "aaa"    
-127.0.0.1:6379> srem myset bbb      
-(integer) 1                                                                                        
-127.0.0.1:6379> smembers myset   
-1) "aaa"  </code></pre>
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> smembers myset    
+1<span class="token punctuation">)</span> <span class="token string">"bbb"</span>              
+2<span class="token punctuation">)</span> <span class="token string">"aaa"</span>    
+127.0.0.1:6379<span class="token operator">></span> srem myset bbb      
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1                                                                                        
+127.0.0.1:6379<span class="token operator">></span> smembers myset   
+1<span class="token punctuation">)</span> <span class="token string">"aaa"</span>  </code></pre>
 <p>随机挑选元素</p>
-<pre class=" language-shel"><code class="language-shel">127.0.0.1:6379> smembers myset    
-1) "bbb"                         
-2) "aaa"                    
-3) "ccc"               
-127.0.0.1:6379> srandmember myset    
-"ccc"                    
-127.0.0.1:6379> srandmember myset        
-"bbb"                        
-127.0.0.1:6379> srandmember myset                                                         
-"ccc"    </code></pre>
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> smembers myset    
+1<span class="token punctuation">)</span> <span class="token string">"bbb"</span>                         
+2<span class="token punctuation">)</span> <span class="token string">"aaa"</span>                    
+3<span class="token punctuation">)</span> <span class="token string">"ccc"</span>               
+127.0.0.1:6379<span class="token operator">></span> srandmember myset    
+<span class="token string">"ccc"</span>                    
+127.0.0.1:6379<span class="token operator">></span> srandmember myset        
+<span class="token string">"bbb"</span>                        
+127.0.0.1:6379<span class="token operator">></span> srandmember myset                                                         
+<span class="token string">"ccc"</span>    </code></pre>
 <p>随机删除</p>
 <pre class=" language-shell"><code class="language-shell">spop myset</code></pre>
 <p>移动指定元素</p>
-<pre class=" language-shell"><code class="language-shell">127.0.0.1:6379> smembers myset    
-1) "bbb"                         
-2) "aaa"                    
-3) "ccc"  
-127.0.0.1:6379> smove myset myset2 aaa
-(integer) 1
-127.0.0.1:6379> smembers myset
-1) "bbb"
-2) "ccc"
-127.0.0.1:6379> smembers myset2
-1) "aaa"</code></pre>
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> smembers myset    
+1<span class="token punctuation">)</span> <span class="token string">"bbb"</span>                         
+2<span class="token punctuation">)</span> <span class="token string">"aaa"</span>                    
+3<span class="token punctuation">)</span> <span class="token string">"ccc"</span>  
+127.0.0.1:6379<span class="token operator">></span> smove myset myset2 aaa
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+127.0.0.1:6379<span class="token operator">></span> smembers myset
+1<span class="token punctuation">)</span> <span class="token string">"bbb"</span>
+2<span class="token punctuation">)</span> <span class="token string">"ccc"</span>
+127.0.0.1:6379<span class="token operator">></span> smembers myset2
+1<span class="token punctuation">)</span> <span class="token string">"aaa"</span></code></pre>
 <p>差集，交集，并集==&gt;应用场景：B站，微博的共同关注等等</p>
-<pre class=" language-shell"><code class="language-shell">127.0.0.1:6379> sadd myset a
-(integer) 1
-127.0.0.1:6379> sadd myset b
-(integer) 1
-127.0.0.1:6379> sadd myset c
-(integer) 1
-127.0.0.1:6379> sadd myset2 c
-(integer) 1
-127.0.0.1:6379> sadd myset2 d
-(integer) 1
-127.0.0.1:6379> sadd myset2 e
-(integer) 1
-127.0.0.1:6379> sdiff myset myset2
-1) "a"
-2) "b"
-127.0.0.1:6379> sinter myset myset2
-1) "c"
-127.0.0.1:6379> sunion myset myset2
-1) "d"
-2) "c"
-3) "b"
-4) "a"
-5) "e"</code></pre>
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> sadd myset a
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+127.0.0.1:6379<span class="token operator">></span> sadd myset b
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+127.0.0.1:6379<span class="token operator">></span> sadd myset c
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+127.0.0.1:6379<span class="token operator">></span> sadd myset2 c
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+127.0.0.1:6379<span class="token operator">></span> sadd myset2 d
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+127.0.0.1:6379<span class="token operator">></span> sadd myset2 e
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+127.0.0.1:6379<span class="token operator">></span> <span class="token function">sdiff</span> myset myset2
+1<span class="token punctuation">)</span> <span class="token string">"a"</span>
+2<span class="token punctuation">)</span> <span class="token string">"b"</span>
+127.0.0.1:6379<span class="token operator">></span> sinter myset myset2
+1<span class="token punctuation">)</span> <span class="token string">"c"</span>
+127.0.0.1:6379<span class="token operator">></span> sunion myset myset2
+1<span class="token punctuation">)</span> <span class="token string">"d"</span>
+2<span class="token punctuation">)</span> <span class="token string">"c"</span>
+3<span class="token punctuation">)</span> <span class="token string">"b"</span>
+4<span class="token punctuation">)</span> <span class="token string">"a"</span>
+5<span class="token punctuation">)</span> <span class="token string">"e"</span></code></pre>
 <h2 id="Hash（哈希）"><a href="#Hash（哈希）" class="headerlink" title="Hash（哈希）"></a>Hash（哈希）</h2><p>Map集合，key-map，值是一个Map集合</p>
-<pre class=" language-shell"><code class="language-shell">127.0.0.1:6379> hset myhash field1 aaa # 添加一个值
-(integer) 1
-127.0.0.1:6379> hget myhash field1 # 获取一个指定字段的值
-"aaa"
-127.0.0.1:6379> hmset myhash field2 bbb field3 ccc # 添加多个键值对
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> hset myhash field1 aaa <span class="token comment" spellcheck="true"># 添加一个值</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+127.0.0.1:6379<span class="token operator">></span> hget myhash field1 <span class="token comment" spellcheck="true"># 获取一个指定字段的值</span>
+<span class="token string">"aaa"</span>
+127.0.0.1:6379<span class="token operator">></span> hmset myhash field2 bbb field3 ccc <span class="token comment" spellcheck="true"># 添加多个键值对</span>
 OK
-127.0.0.1:6379> hmget myhash field1 field2 # 获取多个字段值
-1) "aaa"
-2) "bbb"
-127.0.0.1:6379> hgetall myhash # 获取全部数据
-1) "field1"
-2) "aaa"
-3) "field2"
-4) "bbb"
-5) "field3"
-6) "ccc"</code></pre>
+127.0.0.1:6379<span class="token operator">></span> hmget myhash field1 field2 <span class="token comment" spellcheck="true"># 获取多个字段值</span>
+1<span class="token punctuation">)</span> <span class="token string">"aaa"</span>
+2<span class="token punctuation">)</span> <span class="token string">"bbb"</span>
+127.0.0.1:6379<span class="token operator">></span> hgetall myhash <span class="token comment" spellcheck="true"># 获取全部数据</span>
+1<span class="token punctuation">)</span> <span class="token string">"field1"</span>
+2<span class="token punctuation">)</span> <span class="token string">"aaa"</span>
+3<span class="token punctuation">)</span> <span class="token string">"field2"</span>
+4<span class="token punctuation">)</span> <span class="token string">"bbb"</span>
+5<span class="token punctuation">)</span> <span class="token string">"field3"</span>
+6<span class="token punctuation">)</span> <span class="token string">"ccc"</span></code></pre>
 <p>获取长度</p>
-<pre class=" language-shell"><code class="language-shell">hlen myhash</code></pre>
+<pre class=" language-bash"><code class="language-bash">hlen myhash</code></pre>
 <p>判断字段是否存在</p>
-<pre class=" language-shell"><code class="language-shell">127.0.0.1:6379> hexists myhash field1
-(integer) 1
-127.0.0.1:6379> hexists myhash aaaa
-(integer) 0</code></pre>
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> hexists myhash field1
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+127.0.0.1:6379<span class="token operator">></span> hexists myhash aaaa
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0</code></pre>
 <p>获取所有字段/值</p>
-<pre class=" language-shell"><code class="language-shell">127.0.0.1:6379> hkeys myhash
-1) "field1"
-2) "field2"
-3) "field3"
-127.0.0.1:6379> hvals myhash
-1) "aaa"
-2) "bbb"
-3) "ccc"</code></pre>
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> hkeys myhash
+1<span class="token punctuation">)</span> <span class="token string">"field1"</span>
+2<span class="token punctuation">)</span> <span class="token string">"field2"</span>
+3<span class="token punctuation">)</span> <span class="token string">"field3"</span>
+127.0.0.1:6379<span class="token operator">></span> hvals myhash
+1<span class="token punctuation">)</span> <span class="token string">"aaa"</span>
+2<span class="token punctuation">)</span> <span class="token string">"bbb"</span>
+3<span class="token punctuation">)</span> <span class="token string">"ccc"</span></code></pre>
 <p>自增，自减</p>
-<pre class=" language-shell"><code class="language-shell">hincrby myhash field1 1
+<pre class=" language-bash"><code class="language-bash">hincrby myhash field1 1
 hincrby myhash field1 -1</code></pre>
 <p>hash用于存放经常变动的相信，例如用户信息</p>
 <h2 id="Zset（有序集合）"><a href="#Zset（有序集合）" class="headerlink" title="Zset（有序集合）"></a>Zset（有序集合）</h2><p>添加</p>
-<pre class=" language-shell"><code class="language-shell">127.0.0.1:6379> zadd myzset 1 value1
-(integer) 1
-127.0.0.1:6379> zadd myzset 2 value2 3 value3
-(integer) 2
-127.0.0.1:6379> zrange myzset 0 -1
-1) "value1"
-2) "value2"
-3) "value3"</code></pre>
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> zadd myzset 1 value1
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+127.0.0.1:6379<span class="token operator">></span> zadd myzset 2 value2 3 value3
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 2
+127.0.0.1:6379<span class="token operator">></span> zrange myzset 0 -1
+1<span class="token punctuation">)</span> <span class="token string">"value1"</span>
+2<span class="token punctuation">)</span> <span class="token string">"value2"</span>
+3<span class="token punctuation">)</span> <span class="token string">"value3"</span></code></pre>
 <p>排序</p>
-<pre class=" language-shell"><code class="language-shell">127.0.0.1:6379> zrangebyscore myzset -inf +inf # 最小值到最大值排序
-1) "value1"
-2) "value2"
-3) "value3"
-127.0.0.1:6379> zrevrange myzset 0 -1 # 从大到小
-1) "value3"
-2) "value2"
-1) "value1"</code></pre>
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> zrangebyscore myzset -inf +inf <span class="token comment" spellcheck="true"># 最小值到最大值排序</span>
+1<span class="token punctuation">)</span> <span class="token string">"value1"</span>
+2<span class="token punctuation">)</span> <span class="token string">"value2"</span>
+3<span class="token punctuation">)</span> <span class="token string">"value3"</span>
+127.0.0.1:6379<span class="token operator">></span> zrevrange myzset 0 -1 <span class="token comment" spellcheck="true"># 从大到小</span>
+1<span class="token punctuation">)</span> <span class="token string">"value3"</span>
+2<span class="token punctuation">)</span> <span class="token string">"value2"</span>
+1<span class="token punctuation">)</span> <span class="token string">"value1"</span></code></pre>
 <p>移除元素</p>
-<pre class=" language-shell"><code class="language-shell"> zrem myzset value1</code></pre>
+<pre class=" language-bash"><code class="language-bash"> zrem myzset value1</code></pre>
 <p>获取个数</p>
-<pre class=" language-shell"><code class="language-shell">zcard myzset</code></pre>
+<pre class=" language-bash"><code class="language-bash">zcard myzset</code></pre>
 <p>获取指定区间的成员数量</p>
-<pre class=" language-shell"><code class="language-shell">zcount myzset 1 3</code></pre>
+<pre class=" language-bash"><code class="language-bash">zcount myzset 1 3</code></pre>
 
             </div>
             <hr/>
@@ -741,21 +741,15 @@ hincrby myhash field1 -1</code></pre>
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="三种特殊类型">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Redis三种特殊类型">
                         
-                        <span class="card-title">三种特殊类型</span>
+                        <span class="card-title">Redis三种特殊类型</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            geospatial地理位置添加地理数据
-
-有效的经度从-180度到180度。
-有效的纬度从-85.05112878度到85.05112878度。
-
-# 可通过java程序一次性道路
-127.0.0.1:6379> geoadd china
+                            Redis中三种特殊类型的介绍
                         
                     </div>
                     <div class="publish-info">
@@ -796,7 +790,7 @@ hincrby myhash field1 -1</code></pre>
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="Redis入门">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Redis入门">
                         
                         <span class="card-title">Redis入门</span>
                     </div>
@@ -804,13 +798,7 @@ hincrby myhash field1 -1</code></pre>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            随着数据量的爆发式增加，数据变化率的急剧增加，MySQL等关系型数据库不够用了，就需要使用NoSQL了。
-什么是NosqlNoSQL=Not Only SQL
-关系型数据库：表格，行，列
-非关系型数据库：
-解耦！
-
-方便拓展，数据之间没有关
+                            Npsql数据库的介绍以及redis在windows中的安装启动
                         
                     </div>
                     <div class="publish-info">
@@ -899,7 +887,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -911,7 +899,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -986,7 +974,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">129.1k</span>&nbsp;字
+                class="white-color">135.7k</span>&nbsp;字
             
             
             

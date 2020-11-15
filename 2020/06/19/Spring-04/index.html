@@ -201,7 +201,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -323,10 +323,6 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/JavaEE/">
-                                <span class="chip bg-color">JavaEE</span>
-                            </a>
-                        
                             <a href="/tags/Spring/">
                                 <span class="chip bg-color">Spring</span>
                             </a>
@@ -359,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-11-15
                 </div>
                 
 
@@ -388,7 +384,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>spring提供一种处理事务的统一模型，能使用统一的步骤，完成多种不同数据库访问技术的事务处理。<a id="more"></a><br><img src="/2020/06/19/Spring-04/1.png" alt></p>
+                <p>spring提供一种处理事务的统一模型，能使用统一的步骤，完成多种不同数据库访问技术的事务处理。<br><img src="/2020/06/19/Spring-04/1.png" alt></p>
 <h2 id="spring管理事务的三个方面"><a href="#spring管理事务的三个方面" class="headerlink" title="spring管理事务的三个方面"></a>spring管理事务的三个方面</h2><p>1、事务管理器<br>事务管理器是一个接口和它的众多实现类，由事务管理器对象完成事务的提交和回滚。<br>实现类：spring将每一种数据库访问技术对应的事务处理类都创建好了<br>mybatis访问数据库——-DateSourceTransactionManager<br>hibernate访问数据库———HibernateTransactionManager<br>使用方法：告诉spring你使用的那种数据库的访问方式</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>  <span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>  ...DateSourceTransaction<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span></code></pre>
 <p>2、事务的类型<br>（1）事务的隔离级别<br><img src="/2020/06/19/Spring-04/2.jpg" alt><br>(2)事务的超时时间<br>表示一个方法的最长执行时间，如果方法执行超过了该时间，事务就回滚<br>(3)事务的传播行为<br>PROPAGATION_REQUIRED：指定的方法必须在事务内执行。若当前存在事务，就加入到当前事务中；若当前没有事务，则创建一个新事务。这种传播行为是最常见的选择，也是Spring 默认的事务传播行为。<br>PROPAGATION_REQUIRES_NEW：总是新建一个事务，若当前存在事务，就将当前事务挂起，直到新事务执行完毕。<br>PROPAGATION_SUPPORTS：指定的方法支持当前事务，但若当前没有事务，也可以以非事务方式执行。</p>
@@ -496,10 +492,6 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/JavaEE/">
-                                    <span class="chip bg-color">JavaEE</span>
-                                </a>
-                            
                                 <a href="/tags/Spring/">
                                     <span class="chip bg-color">Spring</span>
                                 </a>
@@ -551,7 +543,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Web项目环境搭建">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Web项目环境搭建">
                         
                         <span class="card-title">Web项目环境搭建</span>
                     </div>
@@ -559,11 +551,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            实现一个简单的注册功能项目整体结构：
-1、使用maven创建web项目
-2、添加依赖和插件&lt;dependencies>
-    &lt;dependency>
-        &lt;groupId>junit&lt;/groupId
+                            使用Spring搭建Web项目环境
                         
                     </div>
                     <div class="publish-info">
@@ -585,10 +573,6 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/JavaEE/">
-                        <span class="chip bg-color">JavaEE</span>
-                    </a>
-                    
                     <a href="/tags/Spring/">
                         <span class="chip bg-color">Spring</span>
                     </a>
@@ -608,7 +592,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Spring集成MyBatis">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Spring集成MyBatis">
                         
                         <span class="card-title">Spring集成MyBatis</span>
                     </div>
@@ -616,9 +600,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            整合的想法：使用spring的ioc核心技术， 把mybatis中使用的对象交给spring统一创建和管理。spring是容器，存放项目中使用的各种对象，例如Service对象，Dao对象，工具类对象等等
-项目结构：
-1、在pom.xml文
+                            Spring整合MyBatis
                         
                     </div>
                     <div class="publish-info">
@@ -639,10 +621,6 @@
                 </div>
                 
                 <div class="card-action article-tags">
-                    
-                    <a href="/tags/JavaEE/">
-                        <span class="chip bg-color">JavaEE</span>
-                    </a>
                     
                     <a href="/tags/Spring/">
                         <span class="chip bg-color">Spring</span>
@@ -711,7 +689,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -723,7 +701,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -798,7 +776,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">129.1k</span>&nbsp;字
+                class="white-color">135.7k</span>&nbsp;字
             
             
             

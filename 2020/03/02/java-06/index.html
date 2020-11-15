@@ -355,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-11-15
                 </div>
                 
 
@@ -384,7 +384,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="集合与数组"><a href="#集合与数组" class="headerlink" title="集合与数组"></a>集合与数组</h1><p><strong>数组：</strong><br>1.一旦初始化，长度就不可修改了；<br>2.一旦定义后，就只能操作指定类型的数据了；<br>3.数组提供的方法非常有限，且效率不高；<a id="more"></a><br>4.获取数组中实际元素的个数，没有现成的属性和方法可调用；<br>5.存储特点：有序，可重复。<br><strong>集合：</strong>Java集合分为Collection和Map两种体系<br><img src="/2020/03/02/java-06/1.jpg" alt><br><strong>Collection接口：</strong>单列数据，存储一个一个的对象<br>&lt;1&gt; List接口：元素有序，可重复<br>实现类：<br>ArrayList，作为List接口的主要实现类；线程不安全，效率高；底层使用Object[] elementData存储<br>LinkedList，对于频繁插入，删除效率较高；底层使用双向链表储存<br>Vector，作为List接口的古老实现类；线程安全，效率低；底层使用Object[] elementData存储<br>&lt;2&gt; Set接口：元素无序，不可重复<br>实现类：<br>HashSet，作为Set接口的主要实现类；线程不安全；可以存储null<br>LinkedHashSet，HashSet的子类；遍历时可以按照添加的顺序遍历；对于频繁遍历效率较高<br>TreeSet，要求数据是同一个类型，可按照对象的指定属性进行排序<br><strong>Map接口：</strong>双列数据，存储具有映射关系”key - value对“<br>实现类：<br>HashMap，作为Map的主要实现类；线程不安全，效率高；能存储null的键值对<br>        -&gt; LinkedHashMap，保证在遍历元素时，可以按照添加顺序进行遍历；对于频繁遍历效率较高<br>        -&gt;原因：在原有的HashMap底层结构基础上，添加了一对指针，指向前、后的元素。<br>TreeMap，按照添加的key-value进行排序；底层采用红黑树<br>Hashtable，作为Map的古老实现类；线程安全，效率低；不能存存储null的键值对<br>       -&gt; Properties，常用来处理配置文件。key和value都是String类型</p>
+                <h1 id="集合与数组"><a href="#集合与数组" class="headerlink" title="集合与数组"></a>集合与数组</h1><p><strong>数组：</strong><br>1.一旦初始化，长度就不可修改了；<br>2.一旦定义后，就只能操作指定类型的数据了；<br>3.数组提供的方法非常有限，且效率不高；<br>4.获取数组中实际元素的个数，没有现成的属性和方法可调用；<br>5.存储特点：有序，可重复。<br><strong>集合：</strong>Java集合分为Collection和Map两种体系<br><img src="/2020/03/02/java-06/1.jpg" alt><br><strong>Collection接口：</strong>单列数据，存储一个一个的对象<br>&lt;1&gt; List接口：元素有序，可重复<br>实现类：<br>ArrayList，作为List接口的主要实现类；线程不安全，效率高；底层使用Object[] elementData存储<br>LinkedList，对于频繁插入，删除效率较高；底层使用双向链表储存<br>Vector，作为List接口的古老实现类；线程安全，效率低；底层使用Object[] elementData存储<br>&lt;2&gt; Set接口：元素无序，不可重复<br>实现类：<br>HashSet，作为Set接口的主要实现类；线程不安全；可以存储null<br>LinkedHashSet，HashSet的子类；遍历时可以按照添加的顺序遍历；对于频繁遍历效率较高<br>TreeSet，要求数据是同一个类型，可按照对象的指定属性进行排序<br><strong>Map接口：</strong>双列数据，存储具有映射关系”key - value对“<br>实现类：<br>HashMap，作为Map的主要实现类；线程不安全，效率高；能存储null的键值对<br>        -&gt; LinkedHashMap，保证在遍历元素时，可以按照添加顺序进行遍历；对于频繁遍历效率较高<br>        -&gt;原因：在原有的HashMap底层结构基础上，添加了一对指针，指向前、后的元素。<br>TreeMap，按照添加的key-value进行排序；底层采用红黑树<br>Hashtable，作为Map的古老实现类；线程安全，效率低；不能存存储null的键值对<br>       -&gt; Properties，常用来处理配置文件。key和value都是String类型</p>
 <h2 id="Collection接口中的方法"><a href="#Collection接口中的方法" class="headerlink" title="Collection接口中的方法"></a>Collection接口中的方法</h2><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         Collection coll1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -823,7 +823,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="泛型">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="泛型">
                         
                         <span class="card-title">泛型</span>
                     </div>
@@ -831,10 +831,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            泛型的概念允许在定义类、接口时通过一个标识表示类中某个属性的类型或者是某个方法的返回值及参数类型。
-
-类型的参数化，就是可以把类型像方法的参数那样传递。
-泛型使编译器可以在编译期间对类型进行检查以提高类型安全，减少运行时由于对象类型不匹配引
+                            jave基础之泛型的使用
                         
                     </div>
                     <div class="publish-info">
@@ -875,7 +872,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Java常用类">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Java常用类">
                         
                         <span class="card-title">Java常用类</span>
                     </div>
@@ -883,7 +880,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            字符串相关类：String1.String声明为final，不可被继承。2.实现了Serializable接口：表示字符串是支持序列化的;   实现了Comparable接口：表示String是可以比较大小的；3.String内部定义了fi
+                            jave基础之字符串、日期类、比较器、枚举类的使用
                         
                     </div>
                     <div class="publish-info">
@@ -972,7 +969,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -984,7 +981,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -1059,7 +1056,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">129.1k</span>&nbsp;字
+                class="white-color">135.7k</span>&nbsp;字
             
             
             

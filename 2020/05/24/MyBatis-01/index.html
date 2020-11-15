@@ -327,10 +327,6 @@
                                 <span class="chip bg-color">MyBatis</span>
                             </a>
                         
-                            <a href="/tags/JavaEE/">
-                                <span class="chip bg-color">JavaEE</span>
-                            </a>
-                        
                     </div>
                     
                 </div>
@@ -359,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-11-15
                 </div>
                 
 
@@ -388,7 +384,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="MyBatis简介"><a href="#MyBatis简介" class="headerlink" title="MyBatis简介"></a>MyBatis简介</h2><p>MyBatis是一个半自动化的持久层框架。<br>sql与java编码分开，功能边界清晰，一个专注业务，一个专注数据。<a id="more"></a><br><img src="/2020/05/24/MyBatis-01/1.jpg" alt></p>
+                <h2 id="MyBatis简介"><a href="#MyBatis简介" class="headerlink" title="MyBatis简介"></a>MyBatis简介</h2><p>MyBatis是一个半自动化的持久层框架。<br>sql与java编码分开，功能边界清晰，一个专注业务，一个专注数据。<br><img src="/2020/05/24/MyBatis-01/1.jpg" alt></p>
 <h2 id="MyBatis的使用"><a href="#MyBatis的使用" class="headerlink" title="MyBatis的使用"></a>MyBatis的使用</h2><p><strong>创建测试的数据库mybatis，再创建一个student表</strong></p>
 <p><img src="/2020/05/24/MyBatis-01/1.png" alt></p>
 <h3 id="1、导入MyBatis-jar等相应的数据库连接驱动等相应的包"><a href="#1、导入MyBatis-jar等相应的数据库连接驱动等相应的包" class="headerlink" title="1、导入MyBatis.jar等相应的数据库连接驱动等相应的包"></a>1、导入MyBatis.jar等相应的数据库连接驱动等相应的包</h3><p>log4j.jar用于打印数据库日志（需要编写相应的.xml配置文件）<br><img src="/2020/05/24/MyBatis-01/2.jpg" alt></p>
@@ -552,10 +548,6 @@
                                     <span class="chip bg-color">MyBatis</span>
                                 </a>
                             
-                                <a href="/tags/JavaEE/">
-                                    <span class="chip bg-color">JavaEE</span>
-                                </a>
-                            
                         </div>
                     
                 </div>
@@ -603,7 +595,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="MyBatis全局配置文件">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="MyBatis全局配置文件">
                         
                         <span class="card-title">MyBatis全局配置文件</span>
                     </div>
@@ -611,10 +603,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            便于在编写xml文件时有提示信息
-
-properties属性jdbc.driver=com.mysql.cj.jdbc.Driver
-jdbc.url=jdbc:mysql://localhost:3306/mybatis?serverTi
+                            MyBatis全局配置文件的介绍
                         
                     </div>
                     <div class="publish-info">
@@ -640,10 +629,6 @@ jdbc.url=jdbc:mysql://localhost:3306/mybatis?serverTi
                         <span class="chip bg-color">MyBatis</span>
                     </a>
                     
-                    <a href="/tags/JavaEE/">
-                        <span class="chip bg-color">JavaEE</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -659,7 +644,7 @@ jdbc.url=jdbc:mysql://localhost:3306/mybatis?serverTi
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Json,AJAX">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Json,AJAX">
                         
                         <span class="card-title">Json,AJAX</span>
                     </div>
@@ -667,10 +652,7 @@ jdbc.url=jdbc:mysql://localhost:3306/mybatis?serverTi
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            json概念json是一种轻量级的数据交换格式。1、比xml更为轻量，解析速度更快。2、数据交换指的是客户端和服务器之间业务数据的传递格式。
-json在javaScipt中的使用// json的定义
-var jsonObj = {
-    
+                            JaveWeb中json的使用以及ajax的使用
                         
                     </div>
                     <div class="publish-info">
@@ -759,7 +741,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -771,7 +753,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -846,7 +828,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">129.1k</span>&nbsp;字
+                class="white-color">135.7k</span>&nbsp;字
             
             
             

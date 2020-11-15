@@ -201,7 +201,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/24.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -323,10 +323,6 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/JavaEE/">
-                                <span class="chip bg-color">JavaEE</span>
-                            </a>
-                        
                             <a href="/tags/Spring/">
                                 <span class="chip bg-color">Spring</span>
                             </a>
@@ -359,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-11-15
                 </div>
                 
 
@@ -388,10 +384,10 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Spring简介"><a href="#Spring简介" class="headerlink" title="Spring简介"></a>Spring简介</h2><p>Spring用于减轻项目模块之间的管理，类与类之间的管理，帮助开发人员创建对象，管理对象之间的关系。<br>Spring核心技术是IOC，AOP。能实现模块之间的，类之间的解耦合。<a id="more"></a><br>优点：<br>1、轻量<br>2、针对接口编程，IOC解耦合<br>3、AOP面向切面编程<br>4、方便集成其他各种框架</p>
+                <h2 id="Spring简介"><a href="#Spring简介" class="headerlink" title="Spring简介"></a>Spring简介</h2><p>Spring用于减轻项目模块之间的管理，类与类之间的管理，帮助开发人员创建对象，管理对象之间的关系。<br>Spring核心技术是IOC，AOP。能实现模块之间的，类之间的解耦合。<br>优点：<br>1、轻量<br>2、针对接口编程，IOC解耦合<br>3、AOP面向切面编程<br>4、方便集成其他各种框架</p>
 <h2 id="Spring体系结构"><a href="#Spring体系结构" class="headerlink" title="Spring体系结构"></a>Spring体系结构</h2><p><img src="/2020/06/01/Spring-01/1.jpg" alt></p>
 <p>Spring 框架是一个分层架构，由 7 个定义良好的模块组成。</p>
-<p> Spring DAO，  Spring Web，SpringMVC，Spring AOP，Spring上下文，Spring ORM，核心容器。所以，Spring是一系列轻量级Java EE框架的集合</p>
+<p> Spring DAO，  Spring Web，SpringMVC，Spring AOP，Spring上下文，Spring ORM，核心容器。所以，Spring是一系列轻量级Java EE框架的集合。</p>
 <h2 id="IOC控制反转"><a href="#IOC控制反转" class="headerlink" title="IOC控制反转"></a>IOC控制反转</h2><p>Inversion of control：控制反转，是一个概念，一种思想。<br>是指把对象的创建、赋值、管理工作都交给代码以外的容器实现，控制反转就是对对象控制权的转移，由程序代码本身反转到了程序外部容器。<br><strong>控制：</strong>创建对象，对象属性的赋值，对象之间关系的管理。<br><strong>反转：</strong>把原来开发人员管理，创建对象的权力交给代码之外的容器。由容器代替开发人员管理对象。<br>正转：由开发人员在代码中，使用new 构造方法 创建对象，开发人员主动管理对象。<br>容器：一个服务器软件，一个框架(Spring)。<br>IOC的好处：减少对代码的改动，也能实现不同的功能。实现解耦合。<br>IOC的体现：Servlet ,Tomcat作为容器创建Servlet对象。<br>IOC的技术实现：<br>DI(Dependency Injection) 依赖注入，只需要在程序中提供对象的名称，至于对象是如何在容器中创建，赋值，查找都是由容器内部实现的。<br>Spring使用DI实现了IOC的功能，Spring底层创建对象使用的是反射机制。<br>Spring是一个容器。</p>
 <h2 id="使用Spring"><a href="#使用Spring" class="headerlink" title="使用Spring"></a>使用Spring</h2><h3 id="1、使用Maven创建一个普通的java项目"><a href="#1、使用Maven创建一个普通的java项目" class="headerlink" title="1、使用Maven创建一个普通的java项目"></a>1、使用Maven创建一个普通的java项目</h3><p><img src="/2020/06/01/Spring-01/2.jpg" alt></p>
 <h3 id="2、引入Spring依赖"><a href="#2、引入Spring依赖" class="headerlink" title="2、引入Spring依赖"></a>2、引入Spring依赖</h3><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
@@ -530,10 +526,6 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/JavaEE/">
-                                    <span class="chip bg-color">JavaEE</span>
-                                </a>
-                            
                                 <a href="/tags/Spring/">
                                     <span class="chip bg-color">Spring</span>
                                 </a>
@@ -593,7 +585,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Maven简介Maven是一款自动化构建工具，专注服务于java平台的项目构建和依赖管理。1、maven可以管理jar包及其各个版本，并且可以自动下载和引入项目中2、maven可以把jar包依赖的包自动下载并引入项目中3、maven可以编译
+                            Maven是一款自动化构建工具，专注服务于java平台的项目构建和依赖管理。
                         
                     </div>
                     <div class="publish-info">
@@ -634,7 +626,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="MyBatis缓存机制">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="MyBatis缓存机制">
                         
                         <span class="card-title">MyBatis缓存机制</span>
                     </div>
@@ -642,7 +634,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            MyBatis系统中默认定义了两级缓存。一级缓存和二级缓存：1、默认情况下，只有一级缓存开启。(SqlSession级别的缓存，也称本地缓存)2、二级缓存需要手动开启和配置。(namespace级别全局缓存)3、MyBatis定义了缓存接口
+                            MyBatis中的缓冲的使用
                         
                     </div>
                     <div class="publish-info">
@@ -666,10 +658,6 @@
                     
                     <a href="/tags/MyBatis/">
                         <span class="chip bg-color">MyBatis</span>
-                    </a>
-                    
-                    <a href="/tags/JavaEE/">
-                        <span class="chip bg-color">JavaEE</span>
                     </a>
                     
                 </div>
@@ -735,7 +723,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -747,7 +735,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -822,7 +810,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">129.1k</span>&nbsp;字
+                class="white-color">135.7k</span>&nbsp;字
             
             
             

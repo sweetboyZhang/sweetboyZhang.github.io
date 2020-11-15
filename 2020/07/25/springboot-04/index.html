@@ -201,7 +201,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -323,10 +323,6 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/JavaEE/">
-                                <span class="chip bg-color">JavaEE</span>
-                            </a>
-                        
                             <a href="/tags/SpringBoot/">
                                 <span class="chip bg-color">SpringBoot</span>
                             </a>
@@ -359,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-11-15
                 </div>
                 
 
@@ -388,7 +384,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>对于数据访问层，无论是SQL还是NOSQL，Springboot底层都是采用Spring Data的方式进行统一处理。<a id="more"></a></p>
+                <p>对于数据访问层，无论是SQL还是NOSQL，Springboot底层都是采用Spring Data的方式进行统一处理。</p>
 <h2 id="整合jdbc"><a href="#整合jdbc" class="headerlink" title="整合jdbc"></a>整合jdbc</h2><h3 id="1、新建项目引入web模块和连接mysql必须的模块，JDBC-API，MySQL-Driver"><a href="#1、新建项目引入web模块和连接mysql必须的模块，JDBC-API，MySQL-Driver" class="headerlink" title="1、新建项目引入web模块和连接mysql必须的模块，JDBC API，MySQL Driver"></a>1、新建项目引入web模块和连接mysql必须的模块，JDBC API，MySQL Driver</h3><p><img src="/2020/07/25/springboot-04/1.png" alt></p>
 <h3 id="2、项目建立完成后，发现已经替我们导入响应的启动器"><a href="#2、项目建立完成后，发现已经替我们导入响应的启动器" class="headerlink" title="2、项目建立完成后，发现已经替我们导入响应的启动器"></a>2、项目建立完成后，发现已经替我们导入响应的启动器</h3><pre class=" language-xml"><code class="language-xml"> <span class="token comment" spellcheck="true">&lt;!--web--></span>
  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
@@ -596,10 +592,6 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/JavaEE/">
-                                    <span class="chip bg-color">JavaEE</span>
-                                </a>
-                            
                                 <a href="/tags/SpringBoot/">
                                     <span class="chip bg-color">SpringBoot</span>
                                 </a>
@@ -651,7 +643,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="整合MyBatis">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="整合MyBatis">
                         
                         <span class="card-title">整合MyBatis</span>
                     </div>
@@ -659,9 +651,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            首先创建一个sprinboot项目，并引入web,jbdc,mysql驱动依赖。
-1、添加springboot整合myBatis的依赖&lt;dependency>
-    &lt;groupId>org.mybatis.spring.bo
+                            Springboot整合MyBatis对数据库进行操作
                         
                     </div>
                     <div class="publish-info">
@@ -683,10 +673,6 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/JavaEE/">
-                        <span class="chip bg-color">JavaEE</span>
-                    </a>
-                    
                     <a href="/tags/SpringBoot/">
                         <span class="chip bg-color">SpringBoot</span>
                     </a>
@@ -706,7 +692,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="图书Crud项目">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="图书Crud项目">
                         
                         <span class="card-title">图书Crud项目</span>
                     </div>
@@ -714,8 +700,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            ​       此项目用于回顾ssm整合的过程，加深自己对ssm三大框架的理解以及提高使用框架的能力，同时也是对前端，web，mysql等知识的复习。
-一、设计数据库创建一个名为ssm的数据库，由于只是一个图书的crud项目，这里只创建一个
+                            一个基于ssm+jsp+boostrap的简单crud案例
                         
                     </div>
                     <div class="publish-info">
@@ -812,7 +797,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -824,7 +809,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -899,7 +884,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">129.1k</span>&nbsp;字
+                class="white-color">135.7k</span>&nbsp;字
             
             
             

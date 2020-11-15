@@ -201,7 +201,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -355,21 +355,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-11-15
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    300
+                    845
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    4 分
                 </div>
                 
 
@@ -384,145 +384,145 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="EL表达式"><a href="#EL表达式" class="headerlink" title="EL表达式"></a>EL表达式</h2><p>Express Language：表达式语言。<br>作用：代替jsp页面中的表达式脚本在jsp页面中进行数据的输出。<a id="more"></a></p>
-<pre class=" language-jsp"><code class="language-jsp"><body>
-    <%
-        request.setAttribute("key","value");
-    %>
-    jsp表达式输出key的值：<%=
+                <h2 id="EL表达式"><a href="#EL表达式" class="headerlink" title="EL表达式"></a>EL表达式</h2><p>Express Language：表达式语言。<br>作用：代替jsp页面中的表达式脚本在jsp页面中进行数据的输出。</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%</span>
+        <span class="token attr-name">request.setAttribute("key","value");</span>
+    <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+    jsp表达式输出key的值：&lt;%=
     request.getAttribute("key")==null?"":request.getAttribute("key")
-    %><br/>
+    %><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">/></span></span>
     EL表达式输出key的值：${key}
-</body></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span></code></pre>
 <p>格式：<code>${表达式}</code><br>EL表达式在输出空值的时候，输出的是空串，而jsp表达式输出的是null字符串。</p>
 <h2 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h2><p>关系运算</p>
 <p>逻辑运算</p>
 <p>算数运算<br>empty运算：判断一个数据是否为空，为空输出truem，否则输出false<br>三元运算<br>“.”点运算和[] 中括号运算符</p>
 <h2 id="EL表达式中的11个隐含对象"><a href="#EL表达式中的11个隐含对象" class="headerlink" title="EL表达式中的11个隐含对象"></a>EL表达式中的11个隐含对象</h2><p><img src="/2020/04/12/javaweb-04/1.png" alt></p>
 <p>pageContext对象的使用：</p>
-<pre class=" language-jsp"><code class="language-jsp"><%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
-<body>
-<%-- jsp表达式
-request.getScheme() 它可以获取请求的协议
-request.getServerName() 获取请求的服务器ip 或域名
-request.getServerPort() 获取请求的服务器端口号
-request.getContextPath() 获取当前工程路径
-request.getMethod() 获取请求的方式（GET 或POST）
-request.getRemoteHost() 获取客户端的ip 地址
-session.getId() 获取会话的唯一标识
---%>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%@</span> <span class="token attr-name">page</span> <span class="token attr-name">contentType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/html;charset<span class="token punctuation">=</span>UTF-8<span class="token punctuation">"</span></span> <span class="token attr-name">language</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>java<span class="token punctuation">"</span></span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>Title<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%--</span> <span class="token attr-name">jsp表达式</span>
+<span class="token attr-name">request.getScheme()</span> <span class="token attr-name">它可以获取请求的协议</span>
+<span class="token attr-name">request.getServerName()</span> <span class="token attr-name">获取请求的服务器ip</span> <span class="token attr-name">或域名</span>
+<span class="token attr-name">request.getServerPort()</span> <span class="token attr-name">获取请求的服务器端口号</span>
+<span class="token attr-name">request.getContextPath()</span> <span class="token attr-name">获取当前工程路径</span>
+<span class="token attr-name">request.getMethod()</span> <span class="token attr-name">获取请求的方式（GET</span> <span class="token attr-name">或POST）</span>
+<span class="token attr-name">request.getRemoteHost()</span> <span class="token attr-name">获取客户端的ip</span> <span class="token attr-name">地址</span>
+<span class="token attr-name">session.getId()</span> <span class="token attr-name">获取会话的唯一标识</span>
+<span class="token attr-name">--%</span><span class="token punctuation">></span></span>
 
 
-<%-- EL表达式--%>
-<%
-    pageContext.setAttribute("req", request);
-%>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%--</span> <span class="token attr-name">EL表达式--%</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%</span>
+    <span class="token attr-name">pageContext.setAttribute("req",</span> <span class="token attr-name">request);</span>
+<span class="token attr-name">%</span><span class="token punctuation">></span></span>
 
-1. 协议：${req.scheme}<br/>
-2. 服务器ip：${pageContext.request.serverName}<br/>
-3. 服务器端口：${pageContext.request.serverPort}<br/>
-4. 获取工程路径：${pageContext.request.contextPath}<br/>
-5. 获取请求方法：${pageContext.request.method}<br/>
-6. 获取客户端ip 地址：${pageContext.request.remoteHost}<br/>
+1. 协议：${req.scheme}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">/></span></span>
+2. 服务器ip：${pageContext.request.serverName}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">/></span></span>
+3. 服务器端口：${pageContext.request.serverPort}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">/></span></span>
+4. 获取工程路径：${pageContext.request.contextPath}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">/></span></span>
+5. 获取请求方法：${pageContext.request.method}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">/></span></span>
+6. 获取客户端ip 地址：${pageContext.request.remoteHost}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">/></span></span>
 7. 获取会话的id 编号：${pageContext.session.id}
-</body>
-</html></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></code></pre>
 <h2 id="JSTL标签库"><a href="#JSTL标签库" class="headerlink" title="JSTL标签库"></a>JSTL标签库</h2><p>EL表达式是为了替换jsp中的表达式，而标签库是为了替换jsp中的代码脚本。<br><img src="/2020/04/12/javaweb-04/2.png" alt></p>
 <p>在jsp 标签库中使用taglib 指令引入标签库</p>
-<pre class=" language-jsp"><code class="language-jsp">CORE 标签库
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<pre class=" language-html"><code class="language-html">CORE 标签库
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%@</span> <span class="token attr-name">taglib</span> <span class="token attr-name">prefix</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>c<span class="token punctuation">"</span></span> <span class="token attr-name">uri</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://java.sun.com/jsp/jstl/core<span class="token punctuation">"</span></span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
 FMT 标签库
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%@</span> <span class="token attr-name">taglib</span> <span class="token attr-name">prefix</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>fmt<span class="token punctuation">"</span></span> <span class="token attr-name">uri</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://java.sun.com/jsp/jstl/fmt<span class="token punctuation">"</span></span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
 FUNCTIONS 标签库
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %></code></pre>
-<h3 id="core核心库使用"><a href="#core核心库使用" class="headerlink" title="core核心库使用"></a>core核心库使用</h3><pre class=" language-jsp"><code class="language-jsp"><%@ page import="java.util.HashMap" %>
-<%@ page import="java.util.Map" %>
-<%@ page import="bean.Student" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.lang.reflect.Array" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%@</span> <span class="token attr-name">taglib</span> <span class="token attr-name">prefix</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>fn<span class="token punctuation">"</span></span> <span class="token attr-name">uri</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://java.sun.com/jsp/jstl/functions<span class="token punctuation">"</span></span> <span class="token attr-name">%</span><span class="token punctuation">></span></span></code></pre>
+<h3 id="core核心库使用"><a href="#core核心库使用" class="headerlink" title="core核心库使用"></a>core核心库使用</h3><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%@</span> <span class="token attr-name">page</span> <span class="token attr-name">import</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>java.util.HashMap<span class="token punctuation">"</span></span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%@</span> <span class="token attr-name">page</span> <span class="token attr-name">import</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>java.util.Map<span class="token punctuation">"</span></span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%@</span> <span class="token attr-name">page</span> <span class="token attr-name">import</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>bean.Student<span class="token punctuation">"</span></span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%@</span> <span class="token attr-name">page</span> <span class="token attr-name">import</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>java.util.List<span class="token punctuation">"</span></span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%@</span> <span class="token attr-name">page</span> <span class="token attr-name">import</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>java.lang.reflect.Array<span class="token punctuation">"</span></span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%@</span> <span class="token attr-name">page</span> <span class="token attr-name">import</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>java.util.ArrayList<span class="token punctuation">"</span></span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%@</span> <span class="token attr-name">taglib</span> <span class="token attr-name">prefix</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>c<span class="token punctuation">"</span></span> <span class="token attr-name">uri</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://java.sun.com/jsp/jstl/core<span class="token punctuation">"</span></span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
 
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
-<%-- if判断 --%>
-<c:if test="${1==1}">
-    <h1>1==1</h1>
-</c:if>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%@</span> <span class="token attr-name">page</span> <span class="token attr-name">contentType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/html;charset<span class="token punctuation">=</span>UTF-8<span class="token punctuation">"</span></span> <span class="token attr-name">language</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>java<span class="token punctuation">"</span></span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>Title<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%--</span> <span class="token attr-name">if判断</span> <span class="token attr-name">--%</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">c:</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>${1<span class="token punctuation">=</span><span class="token punctuation">=</span>1}<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>1==1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">c:</span>if</span><span class="token punctuation">></span></span>
 
-<%-- 多路判断--%>
-<c:choose>
-    <c:when test=""></c:when>
-    <c:when test=""></c:when>
-    <c:otherwise></c:otherwise>
-</c:choose>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%--</span> <span class="token attr-name">多路判断--%</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">c:</span>choose</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">c:</span>when</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">c:</span>when</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">c:</span>when</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">c:</span>when</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">c:</span>otherwise</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">c:</span>otherwise</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">c:</span>choose</span><span class="token punctuation">></span></span>
 
-<%-- foreach遍历输出--%>
-<c:forEach begin="1" end="10" var="i">
-    ${i}<br/>
-</c:forEach>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%--</span> <span class="token attr-name">foreach遍历输出--%</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">c:</span>forEach</span> <span class="token attr-name">begin</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span> <span class="token attr-name">end</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>10<span class="token punctuation">"</span></span> <span class="token attr-name">var</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>i<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    ${i}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">c:</span>forEach</span><span class="token punctuation">></span></span>
 
-<%--遍历数组--%>
-<%
-    request.setAttribute("arr",new String[]{"Tom","Taylor","Troye"});
-%>
-<c:forEach items="${requestScope.arr}" var="item">
-    ${item}<br/>
-</c:forEach>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%--遍历数组--%</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%</span>
+    <span class="token attr-name">request.setAttribute("arr",new</span> <span class="token attr-name">String[]{"Tom","Taylor","Troye"});</span>
+<span class="token attr-name">%</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">c:</span>forEach</span> <span class="token attr-name">items</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>${requestScope.arr}<span class="token punctuation">"</span></span> <span class="token attr-name">var</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>item<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    ${item}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">c:</span>forEach</span><span class="token punctuation">></span></span>
 
-<%-- 遍历Map--%>
-<%
-    Map<String,String> map = new HashMap<String,String>();
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%--</span> <span class="token attr-name">遍历Map--%</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%</span>
+    <span class="token attr-name">Map&lt;String,String</span><span class="token punctuation">></span></span> map = new HashMap<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>String,String</span><span class="token punctuation">></span></span>();
     map.put("key1","value1");
     map.put("key2","value2");
     map.put("key3","value3");
-//    for(Map.Entry<String,String> entry:map.entrySet()){
+//    for(Map.Entry<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>String,String</span><span class="token punctuation">></span></span> entry:map.entrySet()){
 //
 //    }
     request.setAttribute("map",map);
 %>
-<c:forEach items="${requestScope.map}" var="entry">
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">c:</span>forEach</span> <span class="token attr-name">items</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>${requestScope.map}<span class="token punctuation">"</span></span> <span class="token attr-name">var</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>entry<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     键：${entry.key}
     值：${entry.value}
-    <br/>
-</c:forEach>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">c:</span>forEach</span><span class="token punctuation">></span></span>
 
-<%-- 遍历List--%>
-<%
-    List<Student> stuList = new ArrayList<Student>();
-    for (int i = 0; i < 5; i++) {
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%--</span> <span class="token attr-name">遍历List--%</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%</span>
+    <span class="token attr-name">List&lt;Student</span><span class="token punctuation">></span></span> stuList = new ArrayList<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Student</span><span class="token punctuation">></span></span>();
+    for (int i = 0; i &lt; 5; i++) {
         stuList.add(new Student(i,"username"+i,"password"+i, 18+i));
     }
     request.setAttribute("students",stuList);
 %>
-<table width="500px" border="1px solid black" cellspacing="0">
-    <tr>
-        <th>编号</th>
-        <th>用户名</th>
-        <th>密码</th>
-        <th>年龄</th>
-        <th>状态信息</th>
-    </tr>
-<c:forEach items="${requestScope.students}" var="stu" varStatus="status">
-    <tr>
-        <td>${stu.id}</td>
-        <td>${stu.username}</td>
-        <td>${stu.password}</td>
-        <td>${stu.age}</td>
-        <td>${status.count}</td>
-    </tr>
-</c:forEach>
-</table>
-</body>
-</html></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>table</span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>500px<span class="token punctuation">"</span></span> <span class="token attr-name">border</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1px solid black<span class="token punctuation">"</span></span> <span class="token attr-name">cellspacing</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span><span class="token punctuation">></span></span>编号<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span><span class="token punctuation">></span></span>用户名<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span><span class="token punctuation">></span></span>密码<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span><span class="token punctuation">></span></span>年龄<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span><span class="token punctuation">></span></span>状态信息<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">c:</span>forEach</span> <span class="token attr-name">items</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>${requestScope.students}<span class="token punctuation">"</span></span> <span class="token attr-name">var</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stu<span class="token punctuation">"</span></span> <span class="token attr-name">varStatus</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>status<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>${stu.id}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>${stu.username}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>${stu.password}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>${stu.age}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>${status.count}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">c:</span>forEach</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>table</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></code></pre>
 
             </div>
             <hr/>
@@ -587,7 +587,7 @@ FUNCTIONS 标签库
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="文件的上传和下载">
+                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="文件的上传和下载">
                         
                         <span class="card-title">文件的上传和下载</span>
                     </div>
@@ -595,7 +595,7 @@ FUNCTIONS 标签库
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            文件上传文件上传的要求：1、要有一个form标签，method=post2、form标签的encType属性值必须为multipart/form-data(表示提交的数据以多段进行拼接(每个表单项分为一段)，然后以二进制流的形式提交给服务器
+                            JavaWeb中简单的文件上传功能的实现
                         
                     </div>
                     <div class="publish-info">
@@ -636,7 +636,7 @@ FUNCTIONS 标签库
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="jsp,Listener监听器">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="jsp,Listener监听器">
                         
                         <span class="card-title">jsp,Listener监听器</span>
                     </div>
@@ -644,8 +644,7 @@ FUNCTIONS 标签库
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            jsp定义jsp全称为 java server page，用来代替servlet程序回传html页面的数据。
-jsp页面的本质就是一个Servlet程序，在第一次访问jsp页面时，Tomcat服务器就会把jsp页面翻译成一个java源程序，
+                            jsp的相关知识
                         
                     </div>
                     <div class="publish-info">
@@ -734,7 +733,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -746,7 +745,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -821,7 +820,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">129.1k</span>&nbsp;字
+                class="white-color">135.7k</span>&nbsp;字
             
             
             

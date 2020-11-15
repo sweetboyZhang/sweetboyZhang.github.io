@@ -201,7 +201,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -355,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-11-15
                 </div>
                 
 
@@ -384,7 +384,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Filter过滤器的作用"><a href="#Filter过滤器的作用" class="headerlink" title="Filter过滤器的作用"></a>Filter过滤器的作用</h2><p>作用：拦截请求，过滤响应<br>拦截请求常见的应用场景：1、权限检查 ；2、日志操作；3、事务管理 ……<a id="more"></a><br><img src="/2020/05/13/javaweb-07/1.png" alt></p>
+                <h2 id="Filter过滤器的作用"><a href="#Filter过滤器的作用" class="headerlink" title="Filter过滤器的作用"></a>Filter过滤器的作用</h2><p>作用：拦截请求，过滤响应<br>拦截请求常见的应用场景：1、权限检查 ；2、日志操作；3、事务管理 ……<br><img src="/2020/05/13/javaweb-07/1.png" alt></p>
 <h3 id="Filter过滤器的使用"><a href="#Filter过滤器的使用" class="headerlink" title="Filter过滤器的使用"></a>Filter过滤器的使用</h3><p>1.编写一个类去实现Filter接口<br>2.实现过滤  方法doFilter()<br>3.到web.xml中配置Filter的拦截路径</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doFilter</span><span class="token punctuation">(</span>ServletRequest request<span class="token punctuation">,</span> ServletResponse response<span class="token punctuation">,</span> FilterChain chain<span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException<span class="token punctuation">,</span> ServletException <span class="token punctuation">{</span>
@@ -493,7 +493,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Json,AJAX">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Json,AJAX">
                         
                         <span class="card-title">Json,AJAX</span>
                     </div>
@@ -501,10 +501,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            json概念json是一种轻量级的数据交换格式。1、比xml更为轻量，解析速度更快。2、数据交换指的是客户端和服务器之间业务数据的传递格式。
-json在javaScipt中的使用// json的定义
-var jsonObj = {
-    
+                            JaveWeb中json的使用以及ajax的使用
                         
                     </div>
                     <div class="publish-info">
@@ -553,10 +550,7 @@ var jsonObj = {
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            常见排序算法的特点：
-冒泡排序public class BubbleSort {
-    public static void main(String[] args) {
-        int[] arr = {1, 2, 3, 4, 6
+                            常见排序算法
                         
                     </div>
                     <div class="publish-info">
@@ -645,7 +639,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -657,7 +651,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -732,7 +726,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">129.1k</span>&nbsp;字
+                class="white-color">135.7k</span>&nbsp;字
             
             
             

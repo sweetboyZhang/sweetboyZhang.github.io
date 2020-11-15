@@ -201,7 +201,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -355,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-11-15
                 </div>
                 
 
@@ -384,7 +384,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>栈是一个<strong>先进后出</strong>的有序列表，是限制表中元素的插入和删除<strong>只能在线性表的同一端</strong>进行的一种特殊线性表。<a id="more"></a></p>
+                <p>栈是一个<strong>先进后出</strong>的有序列表，是限制表中元素的插入和删除<strong>只能在线性表的同一端</strong>进行的一种特殊线性表。</p>
 <h2 id="栈的实现"><a href="#栈的实现" class="headerlink" title="栈的实现"></a>栈的实现</h2><p>数组模拟栈思路分析图：<br><img src="/2020/05/07/dataStructure-04/1.png" alt></p>
 <p>1、定义一个top表示栈顶，初始化top=-1;<br>2、入栈，top++;stack[top]=data;<br>3、出栈，int value=stack[top];top–;return value;</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Scanner<span class="token punctuation">;</span>
@@ -548,7 +548,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="递归">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="递归">
                         
                         <span class="card-title">递归</span>
                     </div>
@@ -556,8 +556,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            递归就是方法自己调用自己，每次调用时传入不同的变量。
-递归调用规则：1、当程序执行到一个方法时，就会开辟一个独立的空间(栈)2、每个空间的数据(局部变量)，是独立的。3、如果方法中使用的是引用数据类型的变量，就会共享该变量。4、递归必须向退
+                            递归的简单使用
                         
                     </div>
                     <div class="publish-info">
@@ -598,7 +597,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="双向链表">
+                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="双向链表">
                         
                         <span class="card-title">双向链表</span>
                     </div>
@@ -606,8 +605,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            1.单向链表与双向链表的区别1、单向链表查找方向只能是一个方向，而双向链表可以向前或向后查找。2、单向链表不能自我删除，需要靠赋辅助节点，而双向链表则可以自我删除。
-2.双向链表的创建、插入、删除和显示package linkedlist;
+                            单向链表和双向链表的介绍
                         
                     </div>
                     <div class="publish-info">
@@ -696,7 +694,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -708,7 +706,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -783,7 +781,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">129.1k</span>&nbsp;字
+                class="white-color">135.7k</span>&nbsp;字
             
             
             

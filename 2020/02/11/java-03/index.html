@@ -201,7 +201,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -355,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-11-15
                 </div>
                 
 
@@ -384,9 +384,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="异常概述与异常体系结构"><a href="#异常概述与异常体系结构" class="headerlink" title="异常概述与异常体系结构"></a>异常概述与异常体系结构</h2><p><strong>Throwable：</strong>所有异常都继承与Throwable，分为Exception和Error。<br><strong>Error：</strong>Java虚拟机无法解决的严重问题。如：JVM系统内部错误、资源耗尽等严重情况。<br>比如 ：StackOverflowError栈内存溢出和OutOfMemory堆内存溢出。一般不编写针对性的代码进行处理。<br><strong>Exception:</strong> 其它因编程错误或偶然的外在因素导致的一般性问题，可以使用针对性的代码进行处理。<br>例如：空指针访问，试图读取不存在的文件，网络连接中断，数组角标越界。</p>
-<a id="more"></a>
-<p>异常分类：<br>编译时异常，CheckException及它的子类，例如IOException，FileNotFoundexception,SQLException等；<br>运行时异常，RuntimeException类及它的子类,，例如NullPointerException，ClassCastException，IndexOutOfBoundException等。<br><img src="/2020/02/11/java-03/1.jpg" alt></p>
+                <h2 id="异常概述与异常体系结构"><a href="#异常概述与异常体系结构" class="headerlink" title="异常概述与异常体系结构"></a>异常概述与异常体系结构</h2><p><strong>Throwable：</strong>所有异常都继承与Throwable，分为Exception和Error。<br><strong>Error：</strong>Java虚拟机无法解决的严重问题。如：JVM系统内部错误、资源耗尽等严重情况。<br>比如 ：StackOverflowError栈内存溢出和OutOfMemory堆内存溢出。一般不编写针对性的代码进行处理。<br><strong>Exception:</strong> 其它因编程错误或偶然的外在因素导致的一般性问题，可以使用针对性的代码进行处理。<br>例如：空指针访问，试图读取不存在的文件，网络连接中断，数组角标越界。<br>异常分类：<br>编译时异常，CheckException及它的子类，例如IOException，FileNotFoundexception,SQLException等；<br>运行时异常，RuntimeException类及它的子类,，例如NullPointerException，ClassCastException，IndexOutOfBoundException等。<br><img src="/2020/02/11/java-03/1.jpg" alt></p>
 <h2 id="异常处理机制一"><a href="#异常处理机制一" class="headerlink" title="异常处理机制一"></a>异常处理机制一</h2><p>异常的处理：抓抛模型<br><strong>抛出异常：</strong>程序在正常执行的过程中，如果出现异常，就会生成一个异常类的对象，并将此对象提交给java运行时系统。<br><strong>捕获异常：</strong>如果一个方法抛出异常，该异常就会抛出给调用者方法中处理。如果异常没有在调用者方法中处理，继续抛给上层方法，直到<font color="red">异常被处理</font>。</p>
 <pre><code>try{
     // 可能出现异常的代码    
@@ -538,7 +536,7 @@ finally{
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="多线程">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="多线程">
                         
                         <span class="card-title">多线程</span>
                     </div>
@@ -546,10 +544,7 @@ finally{
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            程序、进程、线程的概念        并行：多个CPU同时执行多个任务。        并发：一个CPU(采用时间片)”同时“执行多个任务。
-线程的创建和使用创建方式一：继承Thread类
-// 1.创建一个继承于Thread类的子类
-cl
+                            jave基础之进程的使用
                         
                     </div>
                     <div class="publish-info">
@@ -590,7 +585,7 @@ cl
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="面向对象">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="面向对象">
                         
                         <span class="card-title">面向对象</span>
                     </div>
@@ -598,7 +593,7 @@ cl
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Java面向对象学习的三条主线：1.Java类的成员：属性、方法、构造器；代码块，内部类2.面向对象的三大特征：封装性、继承性、多态性、（抽象性）3.关键字：this , super , static , final , abstract 
+                            jave基础之面向对象
                         
                     </div>
                     <div class="publish-info">
@@ -687,7 +682,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -699,7 +694,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -774,7 +769,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">129.1k</span>&nbsp;字
+                class="white-color">135.7k</span>&nbsp;字
             
             
             

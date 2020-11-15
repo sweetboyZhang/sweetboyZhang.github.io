@@ -201,7 +201,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -355,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-11-15
                 </div>
                 
 
@@ -385,7 +385,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>递归就是方法自己调用自己，每次调用时传入不同的变量。</p>
-<p>递归调用规则：<br>1、当程序执行到一个方法时，就会开辟一个独立的空间(栈)<br>2、每个空间的数据(局部变量)，是独立的。<a id="more"></a><br>3、如果方法中使用的是引用数据类型的变量，就会共享该变量。<br>4、递归必须向退出递归的条件逼近<br>5、当一个方法执行完毕，或者遇到return，就会返回到调用它的那个方法中，继续执行该方法。</p>
+<p>递归调用规则：<br>1、当程序执行到一个方法时，就会开辟一个独立的空间(栈)<br>2、每个空间的数据(局部变量)，是独立的。<br>3、如果方法中使用的是引用数据类型的变量，就会共享该变量。<br>4、递归必须向退出递归的条件逼近<br>5、当一个方法执行完毕，或者遇到return，就会返回到调用它的那个方法中，继续执行该方法。</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RecursionTest</span> <span class="token punctuation">{</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token function">test</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -491,7 +491,7 @@ n=4</code></pre><p>加入else后输出n=2</p>
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="二叉树">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="二叉树">
                         
                         <span class="card-title">二叉树</span>
                     </div>
@@ -499,10 +499,7 @@ n=4</code></pre><p>加入else后输出n=2</p>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            树结构提高了数据的存储、读取速度。
-二叉树基本概念每个节点最多只能有两个子节点，分别为左节点，右节点。
-满二叉树：节点数=2^n-1，n为层数。
-完全二叉树：如果该二叉树的所有叶子节点都在最后一层或者倒数第二层，而且最后一层的叶子节点在左边
+                            数据结构之二叉树
                         
                     </div>
                     <div class="publish-info">
@@ -543,7 +540,7 @@ n=4</code></pre><p>加入else后输出n=2</p>
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="栈">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="栈">
                         
                         <span class="card-title">栈</span>
                     </div>
@@ -551,9 +548,7 @@ n=4</code></pre><p>加入else后输出n=2</p>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            栈是一个先进后出的有序列表，是限制表中元素的插入和删除只能在线性表的同一端进行的一种特殊线性表。
-栈的实现数组模拟栈思路分析图：
-1、定义一个top表示栈顶，初始化top=-1;2、入栈，top++;stack[top]=data;3、出栈
+                            数据结构之栈
                         
                     </div>
                     <div class="publish-info">
@@ -642,7 +637,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -654,7 +649,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -729,7 +724,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">129.1k</span>&nbsp;字
+                class="white-color">135.7k</span>&nbsp;字
             
             
             

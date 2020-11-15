@@ -201,7 +201,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -327,10 +327,6 @@
                                 <span class="chip bg-color">MyBatis</span>
                             </a>
                         
-                            <a href="/tags/JavaEE/">
-                                <span class="chip bg-color">JavaEE</span>
-                            </a>
-                        
                     </div>
                     
                 </div>
@@ -359,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-11-15
                 </div>
                 
 
@@ -388,7 +384,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>MyBatis系统中默认定义了两级缓存。<br>一级缓存和二级缓存：<br>1、默认情况下，只有一级缓存开启。(SqlSession级别的缓存，也称本地缓存)<br>2、二级缓存需要手动开启和配置。(namespace级别全局缓存)<br>3、MyBatis定义了缓存接口Cache，可以通过实现Cache接口自定义二级缓存<a id="more"></a></p>
+                <p>MyBatis系统中默认定义了两级缓存。<br>一级缓存和二级缓存：<br>1、默认情况下，只有一级缓存开启。(SqlSession级别的缓存，也称本地缓存)<br>2、二级缓存需要手动开启和配置。(namespace级别全局缓存)<br>3、MyBatis定义了缓存接口Cache，可以通过实现Cache接口自定义二级缓存</p>
 <h2 id="一级缓存"><a href="#一级缓存" class="headerlink" title="一级缓存"></a>一级缓存</h2><p>与数据库<font color="red">同一次会话期间</font>查询到的数据会存放在本地缓存中；<br>以后如果需要获取相同的数据，会从缓存中查找，不会访问数据库。</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testFirstLevelCache</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token keyword">throws</span> IOException<span class="token punctuation">{</span>
@@ -470,10 +466,6 @@
                                     <span class="chip bg-color">MyBatis</span>
                                 </a>
                             
-                                <a href="/tags/JavaEE/">
-                                    <span class="chip bg-color">JavaEE</span>
-                                </a>
-                            
                         </div>
                     
                 </div>
@@ -521,7 +513,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="Spring简介、IOC控制反转">
+                        <img src="/medias/featureimages/24.jpg" class="responsive-img" alt="Spring简介、IOC控制反转">
                         
                         <span class="card-title">Spring简介、IOC控制反转</span>
                     </div>
@@ -529,7 +521,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Spring简介Spring用于减轻项目模块之间的管理，类与类之间的管理，帮助开发人员创建对象，管理对象之间的关系。Spring核心技术是IOC，AOP。能实现模块之间的，类之间的解耦合。优点：1、轻量2、针对接口编程，IOC解耦合3、AO
+                            Spring用于减轻项目模块之间的管理，类与类之间的管理，帮助开发人员创建对象，管理对象之间的关系。Spring是一系列轻量级Java EE框架的集合
                         
                     </div>
                     <div class="publish-info">
@@ -550,10 +542,6 @@
                 </div>
                 
                 <div class="card-action article-tags">
-                    
-                    <a href="/tags/JavaEE/">
-                        <span class="chip bg-color">JavaEE</span>
-                    </a>
                     
                     <a href="/tags/Spring/">
                         <span class="chip bg-color">Spring</span>
@@ -582,10 +570,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            动态SQL可以极大的简化拼装SQL的操作。类似于JSTL。
-if标签动态传入查询所需要的条件。
-public interface EmployeeMapperDynamicSQL {
-    public List&lt;Employee>
+                            MyBatis中的动态sql的使用
                         
                     </div>
                     <div class="publish-info">
@@ -609,10 +594,6 @@ public interface EmployeeMapperDynamicSQL {
                     
                     <a href="/tags/MyBatis/">
                         <span class="chip bg-color">MyBatis</span>
-                    </a>
-                    
-                    <a href="/tags/JavaEE/">
-                        <span class="chip bg-color">JavaEE</span>
                     </a>
                     
                 </div>
@@ -678,7 +659,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -690,7 +671,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -765,7 +746,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">129.1k</span>&nbsp;字
+                class="white-color">135.7k</span>&nbsp;字
             
             
             

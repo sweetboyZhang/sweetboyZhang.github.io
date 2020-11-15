@@ -323,10 +323,6 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/JavaEE/">
-                                <span class="chip bg-color">JavaEE</span>
-                            </a>
-                        
                             <a href="/tags/Shiro/">
                                 <span class="chip bg-color">Shiro</span>
                             </a>
@@ -359,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-11-15
                 </div>
                 
 
@@ -468,10 +464,6 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/JavaEE/">
-                                    <span class="chip bg-color">JavaEE</span>
-                                </a>
-                            
                                 <a href="/tags/Shiro/">
                                     <span class="chip bg-color">Shiro</span>
                                 </a>
@@ -532,26 +524,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-shrio中提供的过滤器
-
-
-
-
-配置缩写
-对应的过滤器
-功能
-
-
-
-anon
-AnonymousFilter
-指定url可以匿名访问
-
-
-authc
-FormAuthenticationFilter
-指定url需要form表单登录，默认
+                            在Springboot项目中使用Shiro进行权限管理。
                         
                     </div>
                     <div class="publish-info">
@@ -574,10 +547,6 @@ FormAuthenticationFilter
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/JavaEE/">
-                        <span class="chip bg-color">JavaEE</span>
-                    </a>
-                    
                     <a href="/tags/Shiro/">
                         <span class="chip bg-color">Shiro</span>
                     </a>
@@ -597,16 +566,15 @@ FormAuthenticationFilter
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Shiro">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Shiro中的权限管理">
                         
-                        <span class="card-title">Shiro</span>
+                        <span class="card-title">Shiro中的权限管理</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            权限管理权限的管理包含身份认证和授权两部分，对于需要访问控制资源的用户需要先通过身份认证，认证通过的用户并且具有该资源的访问权限方可访问。
-ShiroShiro是apache旗下一个开源框架，它将软件系统的安全认证相关的功能抽取出来，实现用
+                            Shiro是一个将软件系统的安全认证相关的功能抽取出来，实现用户身份认证，权限授权、加密、会话管理等功能的安全认证框架。
                         
                     </div>
                     <div class="publish-info">
@@ -627,10 +595,6 @@ ShiroShiro是apache旗下一个开源框架，它将软件系统的安全认证�
                 </div>
                 
                 <div class="card-action article-tags">
-                    
-                    <a href="/tags/JavaEE/">
-                        <span class="chip bg-color">JavaEE</span>
-                    </a>
                     
                     <a href="/tags/Shiro/">
                         <span class="chip bg-color">Shiro</span>
@@ -699,7 +663,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -711,7 +675,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -786,7 +750,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">129.1k</span>&nbsp;字
+                class="white-color">135.7k</span>&nbsp;字
             
             
             

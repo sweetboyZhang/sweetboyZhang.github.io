@@ -201,7 +201,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -327,10 +327,6 @@
                                 <span class="chip bg-color">MyBatis</span>
                             </a>
                         
-                            <a href="/tags/JavaEE/">
-                                <span class="chip bg-color">JavaEE</span>
-                            </a>
-                        
                     </div>
                     
                 </div>
@@ -359,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-13
+                    2020-11-15
                 </div>
                 
 
@@ -388,7 +384,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>便于在编写xml文件时有提示信息<br><img src="/2020/05/25/MyBatis-02/1.jpg" alt><a id="more"></a></p>
+                <p>便于在编写xml文件时有提示信息<br><img src="/2020/05/25/MyBatis-02/1.jpg" alt></p>
 <p><img src="/2020/05/25/MyBatis-02/2.jpg" alt></p>
 <h2 id="properties属性"><a href="#properties属性" class="headerlink" title="properties属性"></a>properties属性</h2><pre class=" language-properties"><code class="language-properties"><span class="token attr-name">jdbc.driver</span><span class="token punctuation">=</span><span class="token attr-value">com.mysql.cj.jdbc.Driver</span>
 <span class="token attr-name">jdbc.url</span><span class="token punctuation">=</span><span class="token attr-value">jdbc:mysql://localhost:3306/mybatis?serverTimezone=Asia/Shanghai</span>
@@ -463,10 +459,6 @@
                                     <span class="chip bg-color">MyBatis</span>
                                 </a>
                             
-                                <a href="/tags/JavaEE/">
-                                    <span class="chip bg-color">JavaEE</span>
-                                </a>
-                            
                         </div>
                     
                 </div>
@@ -514,7 +506,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="MyBatis映射文件">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="MyBatis映射文件">
                         
                         <span class="card-title">MyBatis映射文件</span>
                     </div>
@@ -522,12 +514,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            实现增删改查功能映射文件指导着MyBatis如何进行数据库增删改查在EmployeeMapper接口中添加增删改查的方法:
-package dao;
-
-public interface EmployeeMapper {
-
-    publi
+                            使用MyBatis实现简单的增删改查
                         
                     </div>
                     <div class="publish-info">
@@ -553,10 +540,6 @@ public interface EmployeeMapper {
                         <span class="chip bg-color">MyBatis</span>
                     </a>
                     
-                    <a href="/tags/JavaEE/">
-                        <span class="chip bg-color">JavaEE</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -580,10 +563,7 @@ public interface EmployeeMapper {
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            MyBatis简介MyBatis是一个半自动化的持久层框架。sql与java编码分开，功能边界清晰，一个专注业务，一个专注数据。
-MyBatis的使用创建测试的数据库mybatis，再创建一个student表
-
-1、导入MyBatis.ja
+                            MyBatis是一个半自动化的轻量级持久层框架
                         
                     </div>
                     <div class="publish-info">
@@ -607,10 +587,6 @@ MyBatis的使用创建测试的数据库mybatis，再创建一个student表
                     
                     <a href="/tags/MyBatis/">
                         <span class="chip bg-color">MyBatis</span>
-                    </a>
-                    
-                    <a href="/tags/JavaEE/">
-                        <span class="chip bg-color">JavaEE</span>
                     </a>
                     
                 </div>
@@ -676,7 +652,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -688,7 +664,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -763,7 +739,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">129.1k</span>&nbsp;字
+                class="white-color">135.7k</span>&nbsp;字
             
             
             

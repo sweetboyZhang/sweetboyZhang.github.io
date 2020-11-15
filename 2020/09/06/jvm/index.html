@@ -201,7 +201,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -355,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-11-15
                 </div>
                 
 
@@ -384,7 +384,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="jvm生命周期"><a href="#jvm生命周期" class="headerlink" title="jvm生命周期"></a>jvm生命周期</h2><p>1、jvm启动<br>由引导类加载器bootstrap class loader通过创建一个初始类来完成的，这个类是由虚拟机具体的实现指定的。<a id="more"></a></p>
+                <h2 id="jvm生命周期"><a href="#jvm生命周期" class="headerlink" title="jvm生命周期"></a>jvm生命周期</h2><p>1、jvm启动<br>由引导类加载器bootstrap class loader通过创建一个初始类来完成的，这个类是由虚拟机具体的实现指定的。</p>
 <p>2、jvm执行<br>执行java程序</p>
 <p>3、jvm退出</p>
 <p>程序正常执行结束；<br>程序在执行过程中出现异常或错误；<br>操作系统出现错误；<br>某线程调用Runtime类中halt()或System类中exit()</p>
@@ -494,7 +494,7 @@ DriverManager<span class="token punctuation">.</span><span class="token function
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="连接查询和索引">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="连接查询和索引">
                         
                         <span class="card-title">连接查询和索引</span>
                     </div>
@@ -502,13 +502,7 @@ DriverManager<span class="token punctuation">.</span><span class="token function
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            存储引擎查看所有引擎以及当前使用的引擎：
-show engines;
-show variables like '%storage_engine%';
-主要分为MyISAM与InnoDB
-性能下降的原因1、查询语句写的烂
-2、索引失效
-3、关
+                            MySQL中的一些重要知识
                         
                     </div>
                     <div class="publish-info">
@@ -549,7 +543,7 @@ show variables like '%storage_engine%';
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="旅游信息管理系统">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="旅游信息管理系统">
                         
                         <span class="card-title">旅游信息管理系统</span>
                     </div>
@@ -557,25 +551,7 @@ show variables like '%storage_engine%';
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            需求分析分析各个模块和确定技术选型
-
-用户模块
-登录和注册
-
-
-省份模块
-增删改查
-使用redis作为mybatis的缓存
-
-
-景点模块
-增删改查
-使用redis作为mybatis的缓存
-
-
-技术选型
-前端：vue+axios
-后端：spr
+                            一个基于springboot+mybatis+mysql+redis,vue的简单web项目
                         
                     </div>
                     <div class="publish-info">
@@ -597,8 +573,12 @@ show variables like '%storage_engine%';
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/SpringBoot-Vue/">
-                        <span class="chip bg-color">SpringBoot - Vue</span>
+                    <a href="/tags/Vue/">
+                        <span class="chip bg-color">Vue</span>
+                    </a>
+                    
+                    <a href="/tags/SpringBoot/">
+                        <span class="chip bg-color">SpringBoot</span>
                     </a>
                     
                 </div>
@@ -664,7 +644,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -676,7 +656,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -751,7 +731,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">129.1k</span>&nbsp;字
+                class="white-color">135.7k</span>&nbsp;字
             
             
             

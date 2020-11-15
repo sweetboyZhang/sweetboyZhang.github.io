@@ -201,7 +201,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -355,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-11-15
                 </div>
                 
 
@@ -384,7 +384,10 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="程序、进程、线程的概念"><a href="#程序、进程、线程的概念" class="headerlink" title="程序、进程、线程的概念"></a>程序、进程、线程的概念</h2><p><img src="/2020/02/17/java-04/program,process,thread.png" style="zoom:70%;"><a id="more"></a><br>        <strong>并行：</strong>多个CPU同时执行多个任务。<br>        <strong>并发：</strong>一个CPU(采用时间片)”同时“执行多个任务。</p>
+                <h2 id="程序、进程、线程的概念"><a href="#程序、进程、线程的概念" class="headerlink" title="程序、进程、线程的概念"></a>程序、进程、线程的概念</h2><img src="/2020/02/17/java-04/program,process,thread.png" style="zoom:70%;">
+        __并行：__多个CPU同时执行多个任务。
+        __并发：__一个CPU(采用时间片)”同时“执行多个任务。
+
 <h2 id="线程的创建和使用"><a href="#线程的创建和使用" class="headerlink" title="线程的创建和使用"></a>线程的创建和使用</h2><p><strong>创建方式一：继承Thread类</strong></p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 1.创建一个继承于Thread类的子类</span>
 <span class="token keyword">class</span> <span class="token class-name">MyThread</span> <span class="token keyword">extends</span> <span class="token class-name">Thread</span><span class="token punctuation">{</span>
@@ -758,7 +761,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="MySQL概述">
+                        <img src="/medias/featureimages/24.jpg" class="responsive-img" alt="MySQL概述">
                         
                         <span class="card-title">MySQL概述</span>
                     </div>
@@ -766,10 +769,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            数据库的好处1.实现数据是持久化2.可以实现结构化查询，方便管理
-
-
-数据库相关概念1.DB : 数据库，用于保存一组有组织的数据的容器；2.DBMS : 数据库管理系统，用于管理DB中的数据；3.SQL : 结构化查询语言，用来与数据库通
+                            MySQL的简要介绍
                         
                     </div>
                     <div class="publish-info">
@@ -810,7 +810,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="异常处理">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="异常处理">
                         
                         <span class="card-title">异常处理</span>
                     </div>
@@ -818,7 +818,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            异常概述与异常体系结构Throwable：所有异常都继承与Throwable，分为Exception和Error。Error：Java虚拟机无法解决的严重问题。如：JVM系统内部错误、资源耗尽等严重情况。比如 ：StackOverflowE
+                            jave基础之异常处理
                         
                     </div>
                     <div class="publish-info">
@@ -907,7 +907,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -919,7 +919,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -994,7 +994,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">129.1k</span>&nbsp;字
+                class="white-color">135.7k</span>&nbsp;字
             
             
             

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="三种特殊类型, sweetboyZhang&#39;s Blog">
+    <meta name="keywords" content="Redis三种特殊类型, sweetboyZhang&#39;s Blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>三种特殊类型 | sweetboyZhang&#39;s Blog</title>
+    <title>Redis三种特殊类型 | sweetboyZhang&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -201,12 +201,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">三种特殊类型</h1>
+                    <h1 class="description center-align post-title">Redis三种特殊类型</h1>
                 </div>
             </div>
         </div>
@@ -355,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-11-15
                 </div>
                 
 
@@ -387,87 +387,87 @@
                 <h2 id="geospatial地理位置"><a href="#geospatial地理位置" class="headerlink" title="geospatial地理位置"></a>geospatial地理位置</h2><p>添加地理数据</p>
 <ul>
 <li>有效的经度从-180度到180度。</li>
-<li>有效的纬度从-85.05112878度到85.05112878度。<a id="more"></a></li>
+<li>有效的纬度从-85.05112878度到85.05112878度。</li>
 </ul>
-<pre class=" language-shell"><code class="language-shell"># 可通过java程序一次性道路
-127.0.0.1:6379> geoadd china:city 113.16 30.65 tianmen
-(integer) 1
-127.0.0.1:6379> geoadd china:city 112.19 30.35 jinzhou
-(integer) 1
-127.0.0.1:6379> geoadd china:city 116.40 39.90 beijing
-(integer) 1
-127.0.0.1:6379> geoadd china:city 112.19 31.23 shanghai
-(integer) 1</code></pre>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 可通过java程序一次性道路</span>
+127.0.0.1:6379<span class="token operator">></span> geoadd china:city 113.16 30.65 tianmen
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+127.0.0.1:6379<span class="token operator">></span> geoadd china:city 112.19 30.35 jinzhou
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+127.0.0.1:6379<span class="token operator">></span> geoadd china:city 116.40 39.90 beijing
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+127.0.0.1:6379<span class="token operator">></span> geoadd china:city 112.19 31.23 shanghai
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1</code></pre>
 <p>获取指定的经纬度</p>
-<pre class=" language-shell"><code class="language-shell">127.0.0.1:6379> geopos china:city beijing
-1) 1) "116.39999896287918"
-   2) "39.900000091670925"</code></pre>
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> geopos china:city beijing
+1<span class="token punctuation">)</span> 1<span class="token punctuation">)</span> <span class="token string">"116.39999896287918"</span>
+   2<span class="token punctuation">)</span> <span class="token string">"39.900000091670925"</span></code></pre>
 <p>返回两个给定位置之间的距离</p>
-<pre class=" language-shell"><code class="language-shell">geodist china:city beijing shanghai km # 两地的直线距离</code></pre>
+<pre class=" language-bash"><code class="language-bash">geodist china:city beijing shanghai km <span class="token comment" spellcheck="true"># 两地的直线距离</span></code></pre>
 <p>以给定的经纬度为中心， 找出某一半径内的元素</p>
-<pre class=" language-shell"><code class="language-shell">127.0.0.1:6379> georadius china:city 110 30 1000 km
-1) "jinzhou"
-2) "shanghai"
-3) "tianmen"
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> georadius china:city 110 30 1000 km
+1<span class="token punctuation">)</span> <span class="token string">"jinzhou"</span>
+2<span class="token punctuation">)</span> <span class="token string">"shanghai"</span>
+3<span class="token punctuation">)</span> <span class="token string">"tianmen"</span>
  georadius china:city 110 30 500 km withdist
-1) 1) "jinzhou"
-   2) "214.1425"
-2) 1) "shanghai"
-   2) "250.3140"
-3) 1) "tianmen"
-   2) "311.8670"
-127.0.0.1:6379> georadius china:city 110 30 1000 km withcoord
-1) 1) "jinzhou"
-   2) 1) "112.18999832868576"
-      2) "30.349999617100856"
-2) 1) "shanghai"
-   2) 1) "112.18999832868576"
-      2) "31.229999039757836"
-3) 1) "tianmen"
-   2) 1) "113.15999776124954"
-      2) "30.649999074635581"
-127.0.0.1:6379> georadius china:city 110 30 1000 km count 2
-1) "jinzhou"
-2) "shanghai"</code></pre>
+1<span class="token punctuation">)</span> 1<span class="token punctuation">)</span> <span class="token string">"jinzhou"</span>
+   2<span class="token punctuation">)</span> <span class="token string">"214.1425"</span>
+2<span class="token punctuation">)</span> 1<span class="token punctuation">)</span> <span class="token string">"shanghai"</span>
+   2<span class="token punctuation">)</span> <span class="token string">"250.3140"</span>
+3<span class="token punctuation">)</span> 1<span class="token punctuation">)</span> <span class="token string">"tianmen"</span>
+   2<span class="token punctuation">)</span> <span class="token string">"311.8670"</span>
+127.0.0.1:6379<span class="token operator">></span> georadius china:city 110 30 1000 km withcoord
+1<span class="token punctuation">)</span> 1<span class="token punctuation">)</span> <span class="token string">"jinzhou"</span>
+   2<span class="token punctuation">)</span> 1<span class="token punctuation">)</span> <span class="token string">"112.18999832868576"</span>
+      2<span class="token punctuation">)</span> <span class="token string">"30.349999617100856"</span>
+2<span class="token punctuation">)</span> 1<span class="token punctuation">)</span> <span class="token string">"shanghai"</span>
+   2<span class="token punctuation">)</span> 1<span class="token punctuation">)</span> <span class="token string">"112.18999832868576"</span>
+      2<span class="token punctuation">)</span> <span class="token string">"31.229999039757836"</span>
+3<span class="token punctuation">)</span> 1<span class="token punctuation">)</span> <span class="token string">"tianmen"</span>
+   2<span class="token punctuation">)</span> 1<span class="token punctuation">)</span> <span class="token string">"113.15999776124954"</span>
+      2<span class="token punctuation">)</span> <span class="token string">"30.649999074635581"</span>
+127.0.0.1:6379<span class="token operator">></span> georadius china:city 110 30 1000 km count 2
+1<span class="token punctuation">)</span> <span class="token string">"jinzhou"</span>
+2<span class="token punctuation">)</span> <span class="token string">"shanghai"</span></code></pre>
 <p>底层是zset，可以使用zset的一些操作</p>
-<pre class=" language-shell"><code class="language-shell">127.0.0.1:6379> zrange china:city 0 -1
-1) "jinzhou"
-2) "shanghai"
-3) "tianmen"
-4) "beijing"
-127.0.0.1:6379> zrem china:city tianmen
-(integer) 1
-127.0.0.1:6379> zrange china:city 0 -1
-1) "jinzhou"
-2) "shanghai"
-3) "beijing"</code></pre>
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> zrange china:city 0 -1
+1<span class="token punctuation">)</span> <span class="token string">"jinzhou"</span>
+2<span class="token punctuation">)</span> <span class="token string">"shanghai"</span>
+3<span class="token punctuation">)</span> <span class="token string">"tianmen"</span>
+4<span class="token punctuation">)</span> <span class="token string">"beijing"</span>
+127.0.0.1:6379<span class="token operator">></span> zrem china:city tianmen
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+127.0.0.1:6379<span class="token operator">></span> zrange china:city 0 -1
+1<span class="token punctuation">)</span> <span class="token string">"jinzhou"</span>
+2<span class="token punctuation">)</span> <span class="token string">"shanghai"</span>
+3<span class="token punctuation">)</span> <span class="token string">"beijing"</span></code></pre>
 <h2 id="hyperloglog"><a href="#hyperloglog" class="headerlink" title="hyperloglog"></a>hyperloglog</h2><p> 主要用于基数统计</p>
-<pre class=" language-shell"><code class="language-shell">pfadd mykey q w e r t y
-(integer) 1
-127.0.0.1:6379> pfcount mykey
-(integer) 6</code></pre>
+<pre class=" language-bash"><code class="language-bash">pfadd mykey q w e r t y
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+127.0.0.1:6379<span class="token operator">></span> pfcount mykey
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 6</code></pre>
 <h2 id="Bitmap"><a href="#Bitmap" class="headerlink" title="Bitmap"></a>Bitmap</h2><p>位存储，一般用于用户是否登录，统计用户是否活跃，统计打卡</p>
 <p>使用bitmap记录一周的打卡：周一：1 周二：0 ……</p>
-<pre class=" language-shell"><code class="language-shell">127.0.0.1:6379> setbit sign 0 1
-(integer) 0
-127.0.0.1:6379> setbit sign 1 0
-(integer) 0
-127.0.0.1:6379> setbit sign 2 0
-(integer) 0
-127.0.0.1:6379> setbit sign 3 1
-(integer) 0
-127.0.0.1:6379> setbit sign 4 1
-(integer) 0
-127.0.0.1:6379> setbit sign 5 1
-(integer) 0
-127.0.0.1:6379> setbit sign 6 0
-(integer) 0</code></pre>
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> setbit sign 0 1
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0
+127.0.0.1:6379<span class="token operator">></span> setbit sign 1 0
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0
+127.0.0.1:6379<span class="token operator">></span> setbit sign 2 0
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0
+127.0.0.1:6379<span class="token operator">></span> setbit sign 3 1
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0
+127.0.0.1:6379<span class="token operator">></span> setbit sign 4 1
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0
+127.0.0.1:6379<span class="token operator">></span> setbit sign 5 1
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0
+127.0.0.1:6379<span class="token operator">></span> setbit sign 6 0
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0</code></pre>
 <p>查看是否打卡</p>
-<pre class=" language-shell"><code class="language-shell">127.0.0.1:6379> getbit sign 0 # 查看星期一是否打卡
-(integer) 1</code></pre>
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> getbit sign 0 <span class="token comment" spellcheck="true"># 查看星期一是否打卡</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1</code></pre>
 <p>统计打卡天数</p>
-<pre class=" language-shell"><code class="language-shell">127.0.0.1:6379> bitcount sign  # 统计一周的打卡次数
-(integer) 4</code></pre>
+<pre class=" language-bash"><code class="language-bash">127.0.0.1:6379<span class="token operator">></span> bitcount sign  <span class="token comment" spellcheck="true"># 统计一周的打卡次数</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 4</code></pre>
 
             </div>
             <hr/>
@@ -532,19 +532,15 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="事务">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Redis事务">
                         
-                        <span class="card-title">事务</span>
+                        <span class="card-title">Redis事务</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Redis事务的本质：一组命令的集合。一个事务中的所有命令都会被序列化，在事务的执行过程中，会顺序执行。
-一次性，顺序性，排他性
-Redis没有隔离级别的概念。
-Redis单条命令是保证原子性的，但是事务不保证原子性。
-所有命令在事务中，并
+                            Redis中的事务
                         
                     </div>
                     <div class="publish-info">
@@ -585,21 +581,15 @@ Redis单条命令是保证原子性的，但是事务不保证原子性。
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="五大数据类型">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Redis五大数据类型">
                         
-                        <span class="card-title">五大数据类型</span>
+                        <span class="card-title">Redis五大数据类型</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            String（字符串）追加字符串，如果当前key不存在就相当于新建
-append name 666
-获取字符串长度
-strlen name
-增加减少
-127.0.0.1:6379> set views 1   
-OK            
+                            Redis中字符串变量的介绍
                         
                     </div>
                     <div class="publish-info">
@@ -688,7 +678,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -700,7 +690,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -775,7 +765,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">129.1k</span>&nbsp;字
+                class="white-color">135.7k</span>&nbsp;字
             
             
             

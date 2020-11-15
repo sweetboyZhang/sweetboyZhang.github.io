@@ -201,7 +201,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/24.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -355,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-11-15
                 </div>
                 
 
@@ -384,33 +384,33 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Git是目前最先进的分布式版本控制系统。没有中央服务器，每个人的电脑就是一个完整的版本库，工作的时候不需要联网。相互推送就能看到对方的修改了。<a id="more"></a><br>SVN是集中式版本控制系统，版本库是集中放在中央服务器上的，所以工作时首先要从中央服务器得到最新的版本，然后工作，工作完成后推送给服务器。</p>
-<h2 id="查看不同级别的配置"><a href="#查看不同级别的配置" class="headerlink" title="查看不同级别的配置"></a>查看不同级别的配置</h2><pre class=" language-shell"><code class="language-shell"># 查看系统config
-git config --system --list
-# 查看当前用户
-git config --global --list</code></pre>
-<h2 id="设置用户名与邮箱"><a href="#设置用户名与邮箱" class="headerlink" title="设置用户名与邮箱"></a>设置用户名与邮箱</h2><pre class=" language-shell"><code class="language-shell">git config --global user.name "sweetboyZhang"  # 名称
-git config --global user.email "2824199842@qq.com"   # 邮箱</code></pre>
+                <p>Git是目前最先进的分布式版本控制系统。没有中央服务器，每个人的电脑就是一个完整的版本库，工作的时候不需要联网。相互推送就能看到对方的修改了。<br>SVN是集中式版本控制系统，版本库是集中放在中央服务器上的，所以工作时首先要从中央服务器得到最新的版本，然后工作，工作完成后推送给服务器。</p>
+<h2 id="查看不同级别的配置"><a href="#查看不同级别的配置" class="headerlink" title="查看不同级别的配置"></a>查看不同级别的配置</h2><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 查看系统config</span>
+<span class="token function">git</span> config --system --list
+<span class="token comment" spellcheck="true"># 查看当前用户</span>
+<span class="token function">git</span> config --global --list</code></pre>
+<h2 id="设置用户名与邮箱"><a href="#设置用户名与邮箱" class="headerlink" title="设置用户名与邮箱"></a>设置用户名与邮箱</h2><pre class=" language-bash"><code class="language-bash"><span class="token function">git</span> config --global user.name <span class="token string">"sweetboyZhang"</span>  <span class="token comment" spellcheck="true"># 名称</span>
+<span class="token function">git</span> config --global user.email <span class="token string">"2824199842@qq.com"</span>   <span class="token comment" spellcheck="true"># 邮箱</span></code></pre>
 <h2 id="三个区域"><a href="#三个区域" class="headerlink" title="三个区域"></a>三个区域</h2><p>Git本地有三个工作区域：工作目录（Working Directory）、暂存区(Stage/Index)、资源库(Repository），如果在加上远程的git仓库(Remote Directory)就可以分为四个工作区域。<br><img src="/2020/08/03/git/1.png" style="zoom:80%;"></p>
 <h2 id="git项目搭建"><a href="#git项目搭建" class="headerlink" title="git项目搭建"></a>git项目搭建</h2><p><strong>创建工作目录</strong></p>
 <p>工作目录就是git管理的文件夹，可以是项目目录，也可以是空目录。<br><img src="/2020/08/03/git/2.png" alt></p>
 <p><strong>搭建本地仓库</strong></p>
-<pre class=" language-shell"><code class="language-shell"># 在当前目录创建一个全新的仓库
-git init</code></pre>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 在当前目录创建一个全新的仓库</span>
+<span class="token function">git</span> init</code></pre>
 <p><strong>克隆远程仓库</strong></p>
-<pre class=" language-shell"><code class="language-shell"># 克隆一个项目和它整个代码历史
-git clone [url]</code></pre>
-<h2 id="git文件操作"><a href="#git文件操作" class="headerlink" title="git文件操作"></a>git文件操作</h2><pre class=" language-shell"><code class="language-shell"># 查看文件状态
-git status [filename]
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 克隆一个项目和它整个代码历史</span>
+<span class="token function">git</span> clone <span class="token punctuation">[</span>url<span class="token punctuation">]</span></code></pre>
+<h2 id="git文件操作"><a href="#git文件操作" class="headerlink" title="git文件操作"></a>git文件操作</h2><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 查看文件状态</span>
+<span class="token function">git</span> status <span class="token punctuation">[</span>filename<span class="token punctuation">]</span>
 
-# 查看所有文件状态
-git status
+<span class="token comment" spellcheck="true"># 查看所有文件状态</span>
+<span class="token function">git</span> status
 
-# 添加所有文件到暂存区
-git add .
+<span class="token comment" spellcheck="true"># 添加所有文件到暂存区</span>
+<span class="token function">git</span> add <span class="token keyword">.</span>
 
-# 提交文件到本地仓库 -m 提交信息
-git commit -m "[msg]"</code></pre>
+<span class="token comment" spellcheck="true"># 提交文件到本地仓库 -m 提交信息</span>
+<span class="token function">git</span> commit -m <span class="token string">"[msg]"</span></code></pre>
 <h2 id="项目中忽略上传文件"><a href="#项目中忽略上传文件" class="headerlink" title="项目中忽略上传文件"></a>项目中忽略上传文件</h2><p>.gitignore</p>
 <pre class=" language-gitignore"><code class="language-gitignore">*.class
 *.log
@@ -441,7 +441,7 @@ bin/
 
 *.log
 tmp/</code></pre>
-<h2 id="绑定远程仓库"><a href="#绑定远程仓库" class="headerlink" title="绑定远程仓库"></a>绑定远程仓库</h2><pre class=" language-shell"><code class="language-shell"># 生成公钥
+<h2 id="绑定远程仓库"><a href="#绑定远程仓库" class="headerlink" title="绑定远程仓库"></a>绑定远程仓库</h2><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 生成公钥</span>
 ssh-keygen</code></pre>
 <p>在浏览器上创建空仓库后，就可以clone到本地仓库了</p>
 <p><img src="/2020/08/03/git/4.png" alt></p>
@@ -449,29 +449,29 @@ ssh-keygen</code></pre>
 <p>2、将远程的git文件目录复制到项目中</p>
 <p><img src="/2020/08/03/git/3.png" alt></p>
 <p>3、使用命令或者是图形界面添加文件，提交文件，上传文件</p>
-<pre class=" language-shell"><code class="language-shell">git add .
-git commit -m "[提交信息]"
-git push</code></pre>
-<h2 id="git分支"><a href="#git分支" class="headerlink" title="git分支"></a>git分支</h2><pre class=" language-shell"><code class="language-shell"># 列出本地所有分支
-git branch
+<pre class=" language-bash"><code class="language-bash"><span class="token function">git</span> add <span class="token keyword">.</span>
+<span class="token function">git</span> commit -m <span class="token string">"[提交信息]"</span>
+<span class="token function">git</span> push</code></pre>
+<h2 id="git分支"><a href="#git分支" class="headerlink" title="git分支"></a>git分支</h2><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 列出本地所有分支</span>
+<span class="token function">git</span> branch
 
-# 列出所有远程分支
-git branch -r
+<span class="token comment" spellcheck="true"># 列出所有远程分支</span>
+<span class="token function">git</span> branch -r
 
-# 新建一个分支，但依然停留在当前分支
-git branch [branch-name]
+<span class="token comment" spellcheck="true"># 新建一个分支，但依然停留在当前分支</span>
+<span class="token function">git</span> branch <span class="token punctuation">[</span>branch-name<span class="token punctuation">]</span>
 
-# 新建一个分支，并切换到该分支
-git checkout -b [branch]
+<span class="token comment" spellcheck="true"># 新建一个分支，并切换到该分支</span>
+<span class="token function">git</span> checkout -b <span class="token punctuation">[</span>branch<span class="token punctuation">]</span>
 
-# 合并指定分支到当前分支
-$ git merge [branch]
+<span class="token comment" spellcheck="true"># 合并指定分支到当前分支</span>
+$ <span class="token function">git</span> merge <span class="token punctuation">[</span>branch<span class="token punctuation">]</span>
 
-# 删除分支
-$ git branch -d [branch-name]
+<span class="token comment" spellcheck="true"># 删除分支</span>
+$ <span class="token function">git</span> branch -d <span class="token punctuation">[</span>branch-name<span class="token punctuation">]</span>
 
-# 删除远程分支
-$ git push origin --delete [branch-name]</code></pre>
+<span class="token comment" spellcheck="true"># 删除远程分支</span>
+$ <span class="token function">git</span> push origin --delete <span class="token punctuation">[</span>branch-name<span class="token punctuation">]</span></code></pre>
 
             </div>
             <hr/>
@@ -536,7 +536,7 @@ $ git push origin --delete [branch-name]</code></pre>
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="Redis入门">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Redis入门">
                         
                         <span class="card-title">Redis入门</span>
                     </div>
@@ -544,13 +544,7 @@ $ git push origin --delete [branch-name]</code></pre>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            随着数据量的爆发式增加，数据变化率的急剧增加，MySQL等关系型数据库不够用了，就需要使用NoSQL了。
-什么是NosqlNoSQL=Not Only SQL
-关系型数据库：表格，行，列
-非关系型数据库：
-解耦！
-
-方便拓展，数据之间没有关
+                            Npsql数据库的介绍以及redis在windows中的安装启动
                         
                     </div>
                     <div class="publish-info">
@@ -591,7 +585,7 @@ $ git push origin --delete [branch-name]</code></pre>
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="异步任务，邮件发送">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="异步任务，邮件发送">
                         
                         <span class="card-title">异步任务，邮件发送</span>
                     </div>
@@ -599,12 +593,7 @@ $ git push origin --delete [branch-name]</code></pre>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            异步任务1、在启动类添加@EnableAsync ，表示 开启异步注解功能
-2、在方法上添加@Async，表示异步方法
-@Service
-public class AsyncService {
-    // 使用注解表示异步任务
-    @
+                            SpringBoot中的异步任务
                         
                     </div>
                     <div class="publish-info">
@@ -625,10 +614,6 @@ public class AsyncService {
                 </div>
                 
                 <div class="card-action article-tags">
-                    
-                    <a href="/tags/JavaEE/">
-                        <span class="chip bg-color">JavaEE</span>
-                    </a>
                     
                     <a href="/tags/SpringBoot/">
                         <span class="chip bg-color">SpringBoot</span>
@@ -697,7 +682,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -709,7 +694,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -784,7 +769,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">129.1k</span>&nbsp;字
+                class="white-color">135.7k</span>&nbsp;字
             
             
             

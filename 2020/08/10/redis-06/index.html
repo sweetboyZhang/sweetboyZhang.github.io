@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="持久化, sweetboyZhang&#39;s Blog">
+    <meta name="keywords" content="Redis持久化, sweetboyZhang&#39;s Blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>持久化 | sweetboyZhang&#39;s Blog</title>
+    <title>Redis持久化 | sweetboyZhang&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -201,12 +201,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">持久化</h1>
+                    <h1 class="description center-align post-title">Redis持久化</h1>
                 </div>
             </div>
         </div>
@@ -355,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-11-15
                 </div>
                 
 
@@ -384,7 +384,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Redis是内存数据库，如果不能将内存中的数据库状态保存到磁盘，那么一旦服务器进程退出，服务器中的数据库状态也会消失。所以Redis提供了持久化功能。<a id="more"></a></p>
+                <p>Redis是内存数据库，如果不能将内存中的数据库状态保存到磁盘，那么一旦服务器进程退出，服务器中的数据库状态也会消失。所以Redis提供了持久化功能。</p>
 <h2 id="RDB"><a href="#RDB" class="headerlink" title="RDB"></a>RDB</h2><p>在指定时间间隔内将内存中的数据集快照写入磁盘dump.rdb文件，恢复时将快照直接读到内存。</p>
 <p>Redis会单独创建一个子进程来进行持久化，会将数据写入到一个临时文件中，等持久化过程结束了，再将这个临时文件替换上次持久化好的文件。 整个过程中，主进程是不进行IO操作的，保证了极高的性能。</p>
 <p>如果需要进行大规模数据的恢复，且对数据的完整性不是特别敏感，那么RDB将比AOF的效率更高。默认为RDB方式。</p>
@@ -455,7 +455,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Java集合总结">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="Java集合总结">
                         
                         <span class="card-title">Java集合总结</span>
                     </div>
@@ -463,12 +463,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            集合的作用简单来说，集合就是存储对象的容器，方便我们操作多个Java对象。
-集合分类集合接口以及常用实现类
-使用场景：
-
-如果是集合类型，可选择List或Set。LIst是插入有序，可重复的；Set 是不可重复的。
-如果是key-value
+                            对java集合框架的知识梳理
                         
                     </div>
                     <div class="publish-info">
@@ -509,7 +504,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Jedis,Springboot集成Redis">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Jedis,Springboot集成Redis">
                         
                         <span class="card-title">Jedis,Springboot集成Redis</span>
                     </div>
@@ -517,11 +512,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Jedis是Redis官方推荐的Java连接开发工具。是使用Java来操作Redis的中间件。
-环境搭建1、创建一个maven项目
-2、导入依赖
-&lt;dependencies>
-        &lt;!-- https://mvnre
+                            在springboot中操纵redis
                         
                     </div>
                     <div class="publish-info">
@@ -610,7 +601,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -622,7 +613,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -697,7 +688,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">129.1k</span>&nbsp;字
+                class="white-color">135.7k</span>&nbsp;字
             
             
             

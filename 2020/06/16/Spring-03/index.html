@@ -201,7 +201,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -323,10 +323,6 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/JavaEE/">
-                                <span class="chip bg-color">JavaEE</span>
-                            </a>
-                        
                             <a href="/tags/Spring/">
                                 <span class="chip bg-color">Spring</span>
                             </a>
@@ -359,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-11-15
                 </div>
                 
 
@@ -388,7 +384,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>整合的想法：使用spring的ioc核心技术， 把mybatis中使用的对象交给spring统一创建和管理。spring是容器，存放项目中使用的各种对象，例如Service对象，Dao对象，工具类对象等等<a id="more"></a></p>
+                <p>整合的想法：使用spring的ioc核心技术， 把mybatis中使用的对象交给spring统一创建和管理。spring是容器，存放项目中使用的各种对象，例如Service对象，Dao对象，工具类对象等等</p>
 <p>项目结构：<br><img src="/2020/06/16/Spring-03/3.jpg" alt></p>
 <h2 id="1、在pom-xml文件中添加依赖及插件"><a href="#1、在pom-xml文件中添加依赖及插件" class="headerlink" title="1、在pom.xml文件中添加依赖及插件"></a>1、在pom.xml文件中添加依赖及插件</h2><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
@@ -622,10 +618,6 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/JavaEE/">
-                                    <span class="chip bg-color">JavaEE</span>
-                                </a>
-                            
                                 <a href="/tags/Spring/">
                                     <span class="chip bg-color">Spring</span>
                                 </a>
@@ -677,7 +669,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="Spring事务">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Spring事务">
                         
                         <span class="card-title">Spring事务</span>
                     </div>
@@ -685,8 +677,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            spring提供一种处理事务的统一模型，能使用统一的步骤，完成多种不同数据库访问技术的事务处理。
-spring管理事务的三个方面1、事务管理器事务管理器是一个接口和它的众多实现类，由事务管理器对象完成事务的提交和回滚。实现类：spring将
+                            Spring中事务的实现
                         
                     </div>
                     <div class="publish-info">
@@ -707,10 +698,6 @@ spring管理事务的三个方面1、事务管理器事务管理器是一个接�
                 </div>
                 
                 <div class="card-action article-tags">
-                    
-                    <a href="/tags/JavaEE/">
-                        <span class="chip bg-color">JavaEE</span>
-                    </a>
                     
                     <a href="/tags/Spring/">
                         <span class="chip bg-color">Spring</span>
@@ -739,8 +726,7 @@ spring管理事务的三个方面1、事务管理器事务管理器是一个接�
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            代理模式
-静态代理角色分析：抽象角色：一般使用接口或抽象类来实现。一是通过继承被代理类的方式实现其子类，重写父类方法；二是与被代理类实现共同的一个接口。真实角色：被代理的角色。代理角色：代理真实角色，执行附属操作。客户：使用代理角色来进行一
+                            Spring中的AOP的实现
                         
                     </div>
                     <div class="publish-info">
@@ -761,10 +747,6 @@ spring管理事务的三个方面1、事务管理器事务管理器是一个接�
                 </div>
                 
                 <div class="card-action article-tags">
-                    
-                    <a href="/tags/JavaEE/">
-                        <span class="chip bg-color">JavaEE</span>
-                    </a>
                     
                     <a href="/tags/Spring/">
                         <span class="chip bg-color">Spring</span>
@@ -833,7 +815,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -845,7 +827,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -920,7 +902,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">129.1k</span>&nbsp;字
+                class="white-color">135.7k</span>&nbsp;字
             
             
             

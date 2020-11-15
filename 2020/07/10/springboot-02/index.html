@@ -201,7 +201,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -323,10 +323,6 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/JavaEE/">
-                                <span class="chip bg-color">JavaEE</span>
-                            </a>
-                        
                             <a href="/tags/SpringBoot/">
                                 <span class="chip bg-color">SpringBoot</span>
                             </a>
@@ -359,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-11-15
                 </div>
                 
 
@@ -391,7 +387,7 @@
                 <h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>SpringBoot使用一个全局配置文件，用于修改默认配置，文件名固定。</p>
 <ul>
 <li>application.properties：语法结构：key=value</li>
-<li>application.yml，springboot推荐使用：语法结构：key: &nbsp;value <a id="more"></a></li>
+<li>application.yml，springboot推荐使用：语法结构：key: &nbsp;value </li>
 </ul>
 <h2 id="yaml概述"><a href="#yaml概述" class="headerlink" title="yaml概述"></a>yaml概述</h2><p>1、空格不能省略，key:空格value</p>
 <p>2、以缩进来控制层级关系，只要是左边对齐的一列数据都是同一个层级的。</p>
@@ -466,10 +462,6 @@ Person{name=&#39;zyz&#39;, age=22, happy=true, birth=Fri Jul 10 00:00:00 CST 202
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/JavaEE/">
-                                    <span class="chip bg-color">JavaEE</span>
-                                </a>
-                            
                                 <a href="/tags/SpringBoot/">
                                     <span class="chip bg-color">SpringBoot</span>
                                 </a>
@@ -521,7 +513,7 @@ Person{name=&#39;zyz&#39;, age=22, happy=true, birth=Fri Jul 10 00:00:00 CST 202
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Springboot Web开发">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Springboot Web开发">
                         
                         <span class="card-title">Springboot Web开发</span>
                     </div>
@@ -529,10 +521,7 @@ Person{name=&#39;zyz&#39;, age=22, happy=true, birth=Fri Jul 10 00:00:00 CST 202
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            静态资源的导入resources目录下存放静态资源。
-模板引擎Thymeleaf就是将后端的数据渲染到前端的页面上去显示，例如 jsp 就是一个模板引擎。
-thymeleaf 的使用
-首先导入它的依赖，在springboot中要添加其他组件
+                            Springboot中的web环境的搭建
                         
                     </div>
                     <div class="publish-info">
@@ -554,10 +543,6 @@ thymeleaf 的使用
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/JavaEE/">
-                        <span class="chip bg-color">JavaEE</span>
-                    </a>
-                    
                     <a href="/tags/SpringBoot/">
                         <span class="chip bg-color">SpringBoot</span>
                     </a>
@@ -577,7 +562,7 @@ thymeleaf 的使用
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="Springboot简介、自动装配原理">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="Springboot简介、自动装配原理">
                         
                         <span class="card-title">Springboot简介、自动装配原理</span>
                     </div>
@@ -585,8 +570,7 @@ thymeleaf 的使用
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            springboot是一个javaweb的开发框架，和SpringMVC类似，对比其他javaweb框架的好处：简化开发，约定大于配置，能迅速的开发web应用，几行代码开发一个http接口。
-springboot-helloworld1、使
+                            Springboot的简要介绍和使用
                         
                     </div>
                     <div class="publish-info">
@@ -607,10 +591,6 @@ springboot-helloworld1、使
                 </div>
                 
                 <div class="card-action article-tags">
-                    
-                    <a href="/tags/JavaEE/">
-                        <span class="chip bg-color">JavaEE</span>
-                    </a>
                     
                     <a href="/tags/SpringBoot/">
                         <span class="chip bg-color">SpringBoot</span>
@@ -679,7 +659,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -691,7 +671,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -766,7 +746,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">129.1k</span>&nbsp;字
+                class="white-color">135.7k</span>&nbsp;字
             
             
             

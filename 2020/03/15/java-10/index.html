@@ -355,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-11-15
                 </div>
                 
 
@@ -384,7 +384,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h2><p>反射机制允许程序在执行期借助于Reflection API取得任何类的内部信息，并能直接操作任意对象的内部属性及方法。<a id="more"></a><br><strong>类的加载过程：</strong><br>程序经过javac.exe命令后，会生成一个或多个字节码文件(.class)，接着使用java.exe命令对某个字节码文件进行解释运行。相当于将某个字节码文件加载到内存中，即类的加载。加载到内存中的类，我们就成为运行时类，此运行时类就作为Class的一个实例。<br>加载到内存中的运行时类，会缓存一段时间。在此时间内，我们可以通过不同的方式来获取此运行时类。</p>
+                <h2 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h2><p>反射机制允许程序在执行期借助于Reflection API取得任何类的内部信息，并能直接操作任意对象的内部属性及方法。<br><strong>类的加载过程：</strong><br>程序经过javac.exe命令后，会生成一个或多个字节码文件(.class)，接着使用java.exe命令对某个字节码文件进行解释运行。相当于将某个字节码文件加载到内存中，即类的加载。加载到内存中的类，我们就成为运行时类，此运行时类就作为Class的一个实例。<br>加载到内存中的运行时类，会缓存一段时间。在此时间内，我们可以通过不同的方式来获取此运行时类。</p>
 <h2 id="获取Class实例"><a href="#获取Class实例" class="headerlink" title="获取Class实例"></a>获取Class实例</h2><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span> <span class="token comment" spellcheck="true">// 获取Class实例</span>
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> ClassNotFoundException <span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">// 方式一:调用运行类属性：.class</span>
@@ -502,7 +502,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="DML,DDL">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="DML,DDL">
                         
                         <span class="card-title">DML,DDL</span>
                     </div>
@@ -510,8 +510,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            数据库操作语言DML一、插入语句语法：方式一：insert into 表名(列名,…) value(值1,…);方式二：insert into 表名 set 列名=值,列名=值,…
-INSERT INTO beauty(id,name,se
+                            MySQL中的数据插入、修改和删除，库表的管理
                         
                     </div>
                     <div class="publish-info">
@@ -552,7 +551,7 @@ INSERT INTO beauty(id,name,se
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="网络编程">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="网络编程">
                         
                         <span class="card-title">网络编程</span>
                     </div>
@@ -560,11 +559,7 @@ INSERT INTO beauty(id,name,se
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            TCP网络编程使用TCP连接进行通信的客户端和服务端
-    @Test  // 客户端
-    public void client() {
-        // 1.创建Socket对象，指明服务器端的IP和端口号
-        So
+                            jave基础之网络编程
                         
                     </div>
                     <div class="publish-info">
@@ -653,7 +648,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -665,7 +660,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -740,7 +735,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">129.1k</span>&nbsp;字
+                class="white-color">135.7k</span>&nbsp;字
             
             
             

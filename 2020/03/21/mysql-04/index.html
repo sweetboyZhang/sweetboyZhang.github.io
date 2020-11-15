@@ -201,7 +201,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -355,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-11-15
                 </div>
                 
 
@@ -384,7 +384,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="一、数值型"><a href="#一、数值型" class="headerlink" title="一、数值型"></a>一、数值型</h2><p><strong>整型：</strong><br>Tinyint：1个字节，有符号：-128到127 ，无符号(unsigned)：0到255<br>Smallint：2个字节，有符号：-32768到32767，无符号数：0到65535<a id="more"></a><br>Mediumint：3个字节<br>int/Integer：4个字节<br>Bigint：8个字节<br><strong>小数：</strong>M：整数位+小数位，D：小数位<br>定点数：（精度较高）<br>dec(M,D)<br>decimal(M,D)<br>浮点数：<br>float(M,D)：4个字节<br>double(M,D)：8个字节</p>
+                <h2 id="一、数值型"><a href="#一、数值型" class="headerlink" title="一、数值型"></a>一、数值型</h2><p><strong>整型：</strong><br>Tinyint：1个字节，有符号：-128到127 ，无符号(unsigned)：0到255<br>Smallint：2个字节，有符号：-32768到32767，无符号数：0到65535<br>Mediumint：3个字节<br>int/Integer：4个字节<br>Bigint：8个字节<br><strong>小数：</strong>M：整数位+小数位，D：小数位<br>定点数：（精度较高）<br>dec(M,D)<br>decimal(M,D)<br>浮点数：<br>float(M,D)：4个字节<br>double(M,D)：8个字节</p>
 <h2 id="二、字符型"><a href="#二、字符型" class="headerlink" title="二、字符型"></a>二、字符型</h2><p><strong>较短的文本：</strong>最多的字符数M<br>char(M)：固定长度，M为0到255  可以省略  默认为1，比较耗费空间，效率较高<br>varchar(M)：可变长度，M为0到65535  不可以省略，节省空间，效率低</p>
 <h2 id="三、日期型"><a href="#三、日期型" class="headerlink" title="三、日期型"></a>三、日期型</h2><p>date：4字节<br>datetime：8字节<br>timestamp：4字节<br>time：3字节<br>year：1字节</p>
 <h2 id="常见约束"><a href="#常见约束" class="headerlink" title="常见约束"></a>常见约束</h2><p>NOT NULL：非空，保证该字段的值不能为空。比如姓名，学号等<br>DEFAULT：默认，保证该字段有默认值。比如性别<br>PRIMARITY：主键，保证该字段具有唯一性，且不为空。比如学号，员工编号<br>UNIQUE：唯一，保证该字段具有唯一性。比如座位号<br>CHECK：检查约束（mysql不支持）。比如性别<br>FOREIGN KEY：外键，用于限制两个表的关系，保证该字段的值必须来自主表的关联的值。在从表添加外键约束，用于引用主表中某一列的值。比如学生表的专业编号，员工表的部门编号，员工表的工种编号    </p>
@@ -508,7 +508,7 @@ majorid <span class="token keyword">INT</span>
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="事务,视图，索引">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="事务,视图，索引">
                         
                         <span class="card-title">事务,视图，索引</span>
                     </div>
@@ -516,7 +516,7 @@ majorid <span class="token keyword">INT</span>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            事务：一个或一组sql语句组成一个执行单元，这个执行单元要么全部执行，要么全部不执行。事务的属性：原子性：事务是一个不可分割的工作单位，事务中的操作要么都发生，要么都不发生；一致性：事务必须使数据库从一个一致状态变换到另外一个一致状态；隔离
+                            MySQL中的事务
                         
                     </div>
                     <div class="publish-info">
@@ -557,7 +557,7 @@ majorid <span class="token keyword">INT</span>
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="DML,DDL">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="DML,DDL">
                         
                         <span class="card-title">DML,DDL</span>
                     </div>
@@ -565,8 +565,7 @@ majorid <span class="token keyword">INT</span>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            数据库操作语言DML一、插入语句语法：方式一：insert into 表名(列名,…) value(值1,…);方式二：insert into 表名 set 列名=值,列名=值,…
-INSERT INTO beauty(id,name,se
+                            MySQL中的数据插入、修改和删除，库表的管理
                         
                     </div>
                     <div class="publish-info">
@@ -655,7 +654,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -667,7 +666,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -742,7 +741,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">129.1k</span>&nbsp;字
+                class="white-color">135.7k</span>&nbsp;字
             
             
             

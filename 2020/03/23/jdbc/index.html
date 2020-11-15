@@ -201,7 +201,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -323,10 +323,6 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/JavaSE/">
-                                <span class="chip bg-color">JavaSE</span>
-                            </a>
-                        
                             <a href="/tags/JDBC/">
                                 <span class="chip bg-color">JDBC</span>
                             </a>
@@ -339,8 +335,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/JAVASE/" class="post-category">
-                                JAVASE
+                            <a href="/categories/JavaSE/" class="post-category">
+                                JavaSE
                             </a>
                         
                     </div>
@@ -359,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-11-15
                 </div>
                 
 
@@ -388,7 +384,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="一、JDBC概述"><a href="#一、JDBC概述" class="headerlink" title="一、JDBC概述"></a>一、JDBC概述</h2><p>JDBC(Java Database Connectivity)是一个<strong>独立于特定数据库管理系统、通用的SQL数据库存取和操作的公共接口</strong>(一组API)。<a id="more"></a><br>                  <img src="/2020/03/23/jdbc/1.png" alt></p>
+                <h2 id="一、JDBC概述"><a href="#一、JDBC概述" class="headerlink" title="一、JDBC概述"></a>一、JDBC概述</h2><p>JDBC(Java Database Connectivity)是一个<strong>独立于特定数据库管理系统、通用的SQL数据库存取和操作的公共接口</strong>(一组API)。<br>                  <img src="/2020/03/23/jdbc/1.png" alt></p>
 <p><strong>JDBC接口(API)包括两个层次：</strong><br><em>面向应用的API</em>：Java API，抽象接口，供程序开发人员使用(连接数据库，执行SQL语句，获得结果)。<br><em>面向数据库的API：</em>Java Driver API，供开发商数据库驱动程序用。</p>
 <blockquote>
 <p>JDBC是sun公司提供的一套用于数据库操作的接口，java程序员只需要面向这套接口编程即可。</p>
@@ -1056,10 +1052,6 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/JavaSE/">
-                                    <span class="chip bg-color">JavaSE</span>
-                                </a>
-                            
                                 <a href="/tags/JDBC/">
                                     <span class="chip bg-color">JDBC</span>
                                 </a>
@@ -1111,7 +1103,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="Java8新特性">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="Java8新特性">
                         
                         <span class="card-title">Java8新特性</span>
                     </div>
@@ -1119,11 +1111,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Lambda表达式Lambda是一个匿名函数，可以理解为一段可传递的代码，将代码将数据一样进行传递。
-/**
- * @author zyz
- * @description lambda表达式的写法
- * 格式：lambda参数列表(接口中的
+                            jdk1.8新特性的使用
                         
                     </div>
                     <div class="publish-info">
@@ -1164,7 +1152,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="MySQL变量,存储过程,流程结构">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="MySQL变量,存储过程,流程结构">
                         
                         <span class="card-title">MySQL变量,存储过程,流程结构</span>
                     </div>
@@ -1172,7 +1160,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            变量系统变量：由系统提供，属于服务层面_全局变量：_服务器每次启动将为所有全局变量赋初值。针对所有会话(连接)有效，但不能跨重启。_会话变量：_仅仅针对于当前的会话(连接)有效。查看所有的系统变量：show global | [ sessi
+                            MySQL中变量的使用
                         
                     </div>
                     <div class="publish-info">
@@ -1261,7 +1249,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -1273,7 +1261,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -1348,7 +1336,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">129.1k</span>&nbsp;字
+                class="white-color">135.7k</span>&nbsp;字
             
             
             

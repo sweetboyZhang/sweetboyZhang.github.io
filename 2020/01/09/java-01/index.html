@@ -201,7 +201,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -355,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-11-15
                 </div>
                 
 
@@ -385,8 +385,6 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="变量的使用"><a href="#变量的使用" class="headerlink" title="变量的使用"></a>变量的使用</h2><p>1.变量必须先声明后使用。<br>2.变量都定义在其作用域内，在作用域内有效，出了作用域就失效了。<br>3.同一个作用域内不能声明两个同名变量。</p>
-<a id="more"></a>
-
 <h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p><img src="/2020/01/09/java-01/1.jpg" alt></p>
 <p><strong>基本数据类型(primitive type)</strong><br>        整型  byte(1字节) -128~127 , short (2字节), int(4字节) , long(8字节) l或L结尾<br>        浮点型  float(4字节) 定义时要以f或F结尾 , double(8字节)<br>        字符型  char(2字节)<br>        布尔型  boolean 只能取两个值之一 ：true , false<br><em>7种基本数据类型之间的计算（不包括布尔类型）:</em><br>        1.自动类型提升：<br>               容量小的数据类型变量与容量大的数据类型做运算时，运算结果自动装换为容量大的。<br>               byte , char , short –&gt; int –&gt; long –&gt; float –&gt; double<br><strong>所有的byte , short , char 类型的值将被提升为int型；</strong><br><strong>被final 修饰的变量不会自动提升其类型</strong></p>
 <p>​        2.强制类型转换：<br>​        使用强转符 () ，可能造成精度损失<br><strong>引用数据类型(reference type)</strong><br>​        类 class<br>​        String类型：  声明时使用一对””，可以与8种基本数据类型做运算，+ 只能表示连接<br>​        接口 interfere<br>​        数组 [ ]</p>
@@ -690,7 +688,7 @@ String dest <span class="token operator">=</span> <span class="token string">"Ju
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="面向对象">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="面向对象">
                         
                         <span class="card-title">面向对象</span>
                     </div>
@@ -698,7 +696,7 @@ String dest <span class="token operator">=</span> <span class="token string">"Ju
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Java面向对象学习的三条主线：1.Java类的成员：属性、方法、构造器；代码块，内部类2.面向对象的三大特征：封装性、继承性、多态性、（抽象性）3.关键字：this , super , static , final , abstract 
+                            jave基础之面向对象
                         
                     </div>
                     <div class="publish-info">
@@ -739,7 +737,7 @@ String dest <span class="token operator">=</span> <span class="token string">"Ju
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="数据类型，运算符，数组">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="数据类型，运算符，数组">
                         
                         <span class="card-title">数据类型，运算符，数组</span>
                     </div>
@@ -747,11 +745,7 @@ String dest <span class="token operator">=</span> <span class="token string">"Ju
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            变量的使用1.变量必须先声明后使用。2.变量都定义在其作用域内，在作用域内有效，出了作用域就失效了。3.同一个作用域内不能声明两个同名变量。
-
-
-数据类型
-基本数据类型(primitive type)        整型  byte(1字节
+                            jave基础之数据类型，运算符，数组
                         
                     </div>
                     <div class="publish-info">
@@ -841,7 +835,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -853,7 +847,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -928,7 +922,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">129.1k</span>&nbsp;字
+                class="white-color">135.7k</span>&nbsp;字
             
             
             

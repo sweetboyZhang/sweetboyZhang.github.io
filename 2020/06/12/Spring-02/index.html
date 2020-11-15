@@ -323,10 +323,6 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/JavaEE/">
-                                <span class="chip bg-color">JavaEE</span>
-                            </a>
-                        
                             <a href="/tags/Spring/">
                                 <span class="chip bg-color">Spring</span>
                             </a>
@@ -359,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-11-15
                 </div>
                 
 
@@ -388,7 +384,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><p><img src="/2020/06/12/Spring-02/1.jpg" alt><a id="more"></a></p>
+                <h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><p><img src="/2020/06/12/Spring-02/1.jpg" alt></p>
 <h3 id="静态代理"><a href="#静态代理" class="headerlink" title="静态代理"></a>静态代理</h3><p>角色分析：<br>抽象角色：一般使用接口或抽象类来实现。一是通过继承被代理类的方式实现其子类，重写父类方法；二是与被代理类实现共同的一个接口。<br>真实角色：被代理的角色。<br>代理角色：代理真实角色，执行附属操作。<br>客户：使用代理角色来进行一些操作。<br>代码步骤 ：</p>
 <p>1、接口</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">Rent</span> <span class="token punctuation">{</span>
@@ -588,10 +584,6 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/JavaEE/">
-                                    <span class="chip bg-color">JavaEE</span>
-                                </a>
-                            
                                 <a href="/tags/Spring/">
                                     <span class="chip bg-color">Spring</span>
                                 </a>
@@ -643,7 +635,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Spring集成MyBatis">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Spring集成MyBatis">
                         
                         <span class="card-title">Spring集成MyBatis</span>
                     </div>
@@ -651,9 +643,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            整合的想法：使用spring的ioc核心技术， 把mybatis中使用的对象交给spring统一创建和管理。spring是容器，存放项目中使用的各种对象，例如Service对象，Dao对象，工具类对象等等
-项目结构：
-1、在pom.xml文
+                            Spring整合MyBatis
                         
                     </div>
                     <div class="publish-info">
@@ -674,10 +664,6 @@
                 </div>
                 
                 <div class="card-action article-tags">
-                    
-                    <a href="/tags/JavaEE/">
-                        <span class="chip bg-color">JavaEE</span>
-                    </a>
                     
                     <a href="/tags/Spring/">
                         <span class="chip bg-color">Spring</span>
@@ -706,7 +692,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Maven简介Maven是一款自动化构建工具，专注服务于java平台的项目构建和依赖管理。1、maven可以管理jar包及其各个版本，并且可以自动下载和引入项目中2、maven可以把jar包依赖的包自动下载并引入项目中3、maven可以编译
+                            Maven是一款自动化构建工具，专注服务于java平台的项目构建和依赖管理。
                         
                     </div>
                     <div class="publish-info">
@@ -795,7 +781,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -807,7 +793,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -882,7 +868,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">129.1k</span>&nbsp;字
+                class="white-color">135.7k</span>&nbsp;字
             
             
             

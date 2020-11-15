@@ -201,7 +201,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -327,10 +327,6 @@
                                 <span class="chip bg-color">MyBatis</span>
                             </a>
                         
-                            <a href="/tags/JavaEE/">
-                                <span class="chip bg-color">JavaEE</span>
-                            </a>
-                        
                             <a href="/tags/Spring/">
                                 <span class="chip bg-color">Spring</span>
                             </a>
@@ -367,7 +363,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-11-15
                 </div>
                 
 
@@ -397,7 +393,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>SSM：SpringMVC + Spring +MyBatis</p>
-<p>SpringMVC：视图层，用于接收页面请求，显示处理结果<br>Spring：业务层，管理service，dao，工具类对象<br>Mybatis：持久层，访问数据库<a id="more"></a></p>
+<p>SpringMVC：视图层，用于接收页面请求，显示处理结果<br>Spring：业务层，管理service，dao，工具类对象<br>Mybatis：持久层，访问数据库</p>
 <p>用户发起请求—&gt;SpringMVC接收—&gt;Spring中调用的Service对象处理事务—&gt;MyBatis处理数据</p>
 <h2 id="1、整合的思路"><a href="#1、整合的思路" class="headerlink" title="1、整合的思路"></a>1、整合的思路</h2><p>在进行整合时，有两个容器对象<br>1、SpringMVC容器，管理Controller控制器对象<br>2、Spring容器，管理Service，Dao，工具类对象<br>我们要把使用的对象交给合适的容器去创建，管理。<br>把Controller还有web开发相关对象交给SpringMVC容器，将这些web使用的对象写在springmvc配置文件中。<br>把Service，Dao对象定义在Spring的配置文件中，让Spring管理这些对象。</p>
 <p> <strong>两个容器之间的关系：</strong><br>SpringMVC容器是Spring的子容器，类似于Java中的子父类关系——子类可以访问父类的数据。<br>即在子容器SpringMVC中的Controller可以访问父容器Spring中的Service对象，就可以实现Controller使用Service对象。</p>
@@ -846,10 +842,6 @@ jdbc.maxActive=20</code></pre><h3 id="6、编写各个包的代码"><a href="#6�
                                     <span class="chip bg-color">MyBatis</span>
                                 </a>
                             
-                                <a href="/tags/JavaEE/">
-                                    <span class="chip bg-color">JavaEE</span>
-                                </a>
-                            
                                 <a href="/tags/Spring/">
                                     <span class="chip bg-color">Spring</span>
                                 </a>
@@ -905,7 +897,7 @@ jdbc.maxActive=20</code></pre><h3 id="6、编写各个包的代码"><a href="#6�
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="SpringMVC核心技术">
+                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="SpringMVC核心技术">
                         
                         <span class="card-title">SpringMVC核心技术</span>
                     </div>
@@ -913,7 +905,7 @@ jdbc.maxActive=20</code></pre><h3 id="6、编写各个包的代码"><a href="#6�
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            请求转发与重定向SpringMVC 框架把原来Servlet 中的请求转发和重定向操作进行了封装。现在可以使用简单的方式实现转发和重定向。forward:表示转发，实现request.getRequestDispatcher(“xx.jsp
+                            ssm项目中的请求转发与重定向，拦截器，文件上传与下载的实现
                         
                     </div>
                     <div class="publish-info">
@@ -954,16 +946,15 @@ jdbc.maxActive=20</code></pre><h3 id="6、编写各个包的代码"><a href="#6�
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="SpringMVC注解式开发">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="SpringMVC中的控制器">
                         
-                        <span class="card-title">SpringMVC注解式开发</span>
+                        <span class="card-title">SpringMVC中的控制器</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            1、对请求提交方式的定义@RequestMapping 请求映射属性:value,表示所匹配请求的URImethod,表示请求的方式：get请求: RequestMethod.GETpost请求: RequestMethod.POST
-@R
+                            对controller方法参数的介绍
                         
                     </div>
                     <div class="publish-info">
@@ -984,10 +975,6 @@ jdbc.maxActive=20</code></pre><h3 id="6、编写各个包的代码"><a href="#6�
                 </div>
                 
                 <div class="card-action article-tags">
-                    
-                    <a href="/tags/JavaEE/">
-                        <span class="chip bg-color">JavaEE</span>
-                    </a>
                     
                     <a href="/tags/SpringMVC/">
                         <span class="chip bg-color">SpringMVC</span>
@@ -1056,7 +1043,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h1,h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -1068,7 +1055,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1,h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -1143,7 +1130,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">129.1k</span>&nbsp;字
+                class="white-color">135.7k</span>&nbsp;字
             
             
             
