@@ -4,31 +4,6 @@
   
     
     <entry>
-      <title>Shrio整合springboot</title>
-      <link href="2020/11/08/shrio-02/"/>
-      <url>2020/11/08/shrio-02/</url>
-      
-        <content type="html"><![CDATA[<ul><li>shrio中提供的过滤器</li></ul><table><thead><tr><th>配置缩写</th><th>对应的过滤器</th><th>功能</th></tr></thead><tbody><tr><td>anon</td><td>AnonymousFilter</td><td>指定url可以匿名访问</td></tr><tr><td>authc</td><td>FormAuthenticationFilter</td><td>指定url需要form表单登录，默认会从请求中获取<code>username</code>、<code>password</code>,<code>rememberMe</code>等参数并尝试登录，如果登录不了就会跳转到loginUrl配置的路径。</td></tr><tr><td>authcBasic</td><td>BasicHttpAuthenticationFilter</td><td>指定url需要basic登录</td></tr><tr><td>logout</td><td>LogoutFilter</td><td>登出过滤器，配置指定url就可以实现退出功能，非常方便</td></tr><tr><td>noSessionCreation</td><td>NoSessionCreationFilter</td><td>禁止创建会话</td></tr><tr><td>perms</td><td>PermissionsAuthorizationFilter</td><td>需要指定权限才能访问</td></tr><tr><td>port</td><td>PortFilter</td><td>需要指定端口才能访问</td></tr><tr><td>rest</td><td>HttpMethodPermissionFilter</td><td>将http请求方法转化成相应的动词来构造一个权限字符串，这个感觉意义不大，有兴趣自己看源码的注释</td></tr><tr><td>roles</td><td>RolesAuthorizationFilter</td><td>需要指定角色才能访问</td></tr><tr><td>ssl</td><td>SslFilter</td><td>需要https请求才能访问</td></tr><tr><td>user</td><td>UserFilter</td><td>需要已登录或“记住我”的用户才能访问</td></tr></tbody></table>]]></content>
-      
-      
-      <categories>
-          
-          <category> JavaEE </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Shiro </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Shiro中的权限管理</title>
       <link href="2020/11/07/shiro/"/>
       <url>2020/11/07/shiro/</url>
