@@ -355,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-15
+                    2020-12-22
                 </div>
                 
 
@@ -450,7 +450,7 @@
 <pre class=" language-java"><code class="language-java"><span class="token keyword">synchronized</span><span class="token punctuation">(</span><span class="token comment" spellcheck="true">/*同步监视器*/</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">// 需要同步的代码</span>
 <span class="token punctuation">}</span></code></pre>
-<p>需要同步的代码：操作共享数据(多个线程共同操作的变量)的代码。<br>同步监视器：俗称：锁。任何一个类的对象都可以充当锁。<br>要求：多个要求必须要共用同一把锁。</p>
+<p>需要同步的代码：操作共享数据(多个线程共同操作的变量)的代码。<br>同步监视器：俗称：锁。任何一个类的对象都可以充当锁。<br>要求：多个线程必须要共用同一把锁。</p>
 <pre class=" language-java"><code class="language-java"><span class="token operator">*</span><span class="token operator">*</span>
  <span class="token operator">*</span> <span class="token annotation punctuation">@author</span> zyz
  <span class="token operator">*</span> <span class="token annotation punctuation">@description</span> 测试三个窗口同时卖票，采用同步代码块解决线程安全问题
@@ -491,7 +491,7 @@
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
-<p><strong>方式二：同步方法</strong><br>        1.不需要显式声明同步监视器；<br>        2.非静态的同步方法：同步监视器是this;（采用实现Runnable接口实现多线程）<br>            静态的同步方法：同步监视器是当前类。（采用继承Thread类方法实现多线程）</p>
+<p><strong>方式二：同步方法</strong><br>        1.不需要显式声明同步监视器；<br>        2.非静态的同步方法：同步监视器是this;===&gt;对象锁<br>            静态的同步方法：同步监视器是当前类。===&gt;类锁</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> multithread<span class="token punctuation">;</span>
 
 <span class="token comment" spellcheck="true">/**
@@ -703,6 +703,56 @@
 
             
 
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">sweetboyZhang</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://sweetboyZhang.gitee.io/2020/02/17/java-04/">https://sweetboyZhang.gitee.io/2020/02/17/java-04/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">sweetboyZhang</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
 
 
             <div class="tag_share" style="display: block;">
@@ -855,6 +905,43 @@
 </div>
 
 
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('500')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: sweetboyZhang&#39;s Blog<br />'
+            + '文章作者: sweetboyZhang<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '限于本人水平，文章和代码肯定有表述不当之处，还请仔细斟酌！';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
 
 <!-- 代码块功能依赖 -->
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
@@ -994,7 +1081,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">138.9k</span>&nbsp;字
+                class="white-color">142.3k</span>&nbsp;字
             
             
             

@@ -355,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-15
+                    2020-12-13
                 </div>
                 
 
@@ -410,8 +410,8 @@
 <p>RPC的核心模块是：通讯，序列化。<br>常见的RPC框架：dubbo、gRPC、Thrift、HSF</p>
 <h2 id="Dubbo"><a href="#Dubbo" class="headerlink" title="Dubbo"></a>Dubbo</h2><p>Apache Dubbo 是一个基于Java的高性能，轻量级的RPC框架。Dubbo提供了三个关键功能，包括基于接口的远程呼叫，容错和负载平衡以及自动服务注册和发现。</p>
 <p>Dubbo架构：<br><img src="/2020/10/15/dubbo/7.png" alt></p>
-<p><strong>服务提供者（Provider）</strong>：暴露服务的服务提供方，服务提供者在启动时，向注册中心注册自己提供的服务。</p>
-<p><strong>服务消费者（Consumer）</strong>: 调用远程服务的服务消费方，服务消费者在启动时，向注册中心订阅自己所需的服务，服务消费者从提供者地址列表中，基于软负载均衡算法，选一台提供者进行调用，如果调用失败，再选另一台调用。</p>
+<p><strong>服务提供者（Provider）</strong>：暴露服务的服务提供方，服务提供者在启动时，向注册中心<strong>注册</strong>自己提供的服务。</p>
+<p><strong>服务消费者（Consumer）</strong>: 调用远程服务的服务消费方，服务消费者在启动时，向注册中心<strong>订阅</strong>自己所需的服务，服务消费者从提供者地址列表中，基于软负载均衡算法，选一台提供者进行调用，如果调用失败，再选另一台调用。</p>
 <p><strong>注册中心（Registry）</strong>：注册中心返回服务提供者地址列表给消费者，如果有变更，注册中心将基于长连接推送变更数据给消费者.</p>
 <p><strong>监控中心（Monitor）</strong>：服务消费者和提供者，在内存中累计调用次数和调用时间，定时每分钟发送一次统计数据到监控中心。</p>
 <h2 id="调用过程"><a href="#调用过程" class="headerlink" title="调用过程"></a>调用过程</h2><img src="/2020/10/15/dubbo/8.png" style="zoom:80%;">
@@ -421,6 +421,56 @@
             <hr/>
 
             
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">sweetboyZhang</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://sweetboyZhang.gitee.io/2020/10/15/dubbo/">https://sweetboyZhang.gitee.io/2020/10/15/dubbo/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">sweetboyZhang</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
 
 
 
@@ -573,6 +623,43 @@
 </div>
 
 
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('500')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: sweetboyZhang&#39;s Blog<br />'
+            + '文章作者: sweetboyZhang<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '限于本人水平，文章和代码肯定有表述不当之处，还请仔细斟酌！';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
 
 <!-- 代码块功能依赖 -->
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
@@ -712,7 +799,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">138.9k</span>&nbsp;字
+                class="white-color">142.3k</span>&nbsp;字
             
             
             

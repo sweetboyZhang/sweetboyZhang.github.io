@@ -359,21 +359,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-15
+                    2020-12-22
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5.5k
+                    6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    27 分
+                    30 分
                 </div>
                 
 
@@ -1614,11 +1614,195 @@ axios<span class="token punctuation">.</span><span class="token keyword">get</sp
 <li>上传用户照片的问题，在指定的上传目录发现了文件的存在，可是却在浏览器中显示不出来，通过查看数据库中员工表的信息，发现其他属性都存在，只有照片为空，通过在controller的添加方法打上断点，调试发现图片并没有保存到员工对象中，通过添加相应的set方法，最后解决了问题。</li>
 <li>在项目中我使用了date来显示当前的日期，而对前后端的交互中要频繁使用到data变量，在一次测试过程中就一不小心写错了，检查了很长时间才发现，真的差之一毫，谬之千里啊！</li>
 </ul>
+<h1 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h1><h2 id="添加日志输出功能"><a href="#添加日志输出功能" class="headerlink" title="添加日志输出功能"></a>添加日志输出功能</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> Logger LOGGER <span class="token operator">=</span> LoggerFactory<span class="token punctuation">.</span><span class="token function">getLogger</span><span class="token punctuation">(</span>UserController<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>在方法中打印日志：</p>
+<pre class=" language-java"><code class="language-java">LOGGER<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"用户登录，参数：{}"</span><span class="token punctuation">,</span> JSON<span class="token punctuation">.</span><span class="token function">toJSON</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>使用自定义注解并实现日志切面的方式打印日志：</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Target</span><span class="token punctuation">(</span>ElementType<span class="token punctuation">.</span>METHOD<span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Retention</span><span class="token punctuation">(</span>RetentionPolicy<span class="token punctuation">.</span>RUNTIME<span class="token punctuation">)</span><span class="token comment" spellcheck="true">// 运行时获取注解值</span>
+<span class="token keyword">public</span> @<span class="token keyword">interface</span> <span class="token class-name">Log</span> <span class="token punctuation">{</span>
+
+    String <span class="token function">value</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token string">""</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>LogAspect.java</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
+<span class="token annotation punctuation">@Aspect</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LogAspect</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> Logger LOGGER <span class="token operator">=</span> LoggerFactory<span class="token punctuation">.</span><span class="token function">getLogger</span><span class="token punctuation">(</span>LogAspect<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Pointcut</span><span class="token punctuation">(</span><span class="token string">"execution(public * com.zyz.controller..*.*(..))"</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">logPointcut</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Before</span><span class="token punctuation">(</span><span class="token string">"logPointcut()"</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">logAround</span><span class="token punctuation">(</span>JoinPoint joinPoint<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        MethodSignature methodSignature <span class="token operator">=</span> <span class="token punctuation">(</span>MethodSignature<span class="token punctuation">)</span> joinPoint<span class="token punctuation">.</span><span class="token function">getSignature</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Method method <span class="token operator">=</span> methodSignature<span class="token punctuation">.</span><span class="token function">getMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Log log <span class="token operator">=</span> method<span class="token punctuation">.</span><span class="token function">getAnnotation</span><span class="token punctuation">(</span>Log<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>null <span class="token operator">!=</span> log<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            LOGGER<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span>log<span class="token punctuation">.</span><span class="token function">value</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="自定义缓存注解并实现缓存切面"><a href="#自定义缓存注解并实现缓存切面" class="headerlink" title="自定义缓存注解并实现缓存切面"></a>自定义缓存注解并实现缓存切面</h2><p>支持单独设置缓存的过期时间<br>1、自定义RedisTemplate，指定序列化方式，防止出现乱码</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedisConfig</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token keyword">public</span> RedisTemplate<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span> <span class="token function">redisTemplate</span><span class="token punctuation">(</span>RedisConnectionFactory factory<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        RedisTemplate<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span> template <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RedisTemplate</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        template<span class="token punctuation">.</span><span class="token function">setConnectionFactory</span><span class="token punctuation">(</span>factory<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// Json序列化</span>
+        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Jackson2JsonRedisSerializer</span><span class="token punctuation">(</span>Object<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ObjectMapper objectMapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ObjectMapper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        objectMapper<span class="token punctuation">.</span><span class="token function">setVisibility</span><span class="token punctuation">(</span>PropertyAccessor<span class="token punctuation">.</span>ALL<span class="token punctuation">,</span> JsonAutoDetect<span class="token punctuation">.</span>Visibility<span class="token punctuation">.</span>ANY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        objectMapper<span class="token punctuation">.</span><span class="token function">enableDefaultTyping</span><span class="token punctuation">(</span>ObjectMapper<span class="token punctuation">.</span>DefaultTyping<span class="token punctuation">.</span>NON_FINAL<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        jackson2JsonRedisSerializer<span class="token punctuation">.</span><span class="token function">setObjectMapper</span><span class="token punctuation">(</span>objectMapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// String序列化</span>
+        StringRedisSerializer stringRedisSerializer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringRedisSerializer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// key采用String序列化方式</span>
+        template<span class="token punctuation">.</span><span class="token function">setKeySerializer</span><span class="token punctuation">(</span>stringRedisSerializer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        template<span class="token punctuation">.</span><span class="token function">setHashKeySerializer</span><span class="token punctuation">(</span>stringRedisSerializer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        template<span class="token punctuation">.</span><span class="token function">setValueSerializer</span><span class="token punctuation">(</span>jackson2JsonRedisSerializer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        template<span class="token punctuation">.</span><span class="token function">setHashValueSerializer</span><span class="token punctuation">(</span>jackson2JsonRedisSerializer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        template<span class="token punctuation">.</span><span class="token function">afterPropertiesSet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> template<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>2、自定义缓存注解</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Target</span><span class="token punctuation">(</span><span class="token punctuation">{</span>ElementType<span class="token punctuation">.</span>METHOD<span class="token punctuation">,</span> ElementType<span class="token punctuation">.</span>TYPE<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Retention</span><span class="token punctuation">(</span>RetentionPolicy<span class="token punctuation">.</span>RUNTIME<span class="token punctuation">)</span><span class="token comment" spellcheck="true">// 运行时获取注解值</span>
+<span class="token keyword">public</span> @<span class="token keyword">interface</span> <span class="token class-name">Cache</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// key</span>
+    String <span class="token function">key</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// 有效时间 默认30分钟 单位 s</span>
+    <span class="token keyword">long</span> <span class="token function">expire</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token number">30</span><span class="token operator">*</span><span class="token number">60</span> <span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span></code></pre>
+<p>3、实现缓存切面CacheAspect.java</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Aspect</span>
+<span class="token annotation punctuation">@Component</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CacheAspect</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> RedisTemplate redisTemplate<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Pointcut</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"@annotation(com.zyz.aop.cache.Cache)"</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">cachePointcut</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Around</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"cachePointcut() &amp;&amp; @annotation(cache)"</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> Object <span class="token function">cacheAround</span><span class="token punctuation">(</span>ProceedingJoinPoint point<span class="token punctuation">,</span> Cache cache<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 根据参数生成key</span>
+        <span class="token keyword">final</span> String key <span class="token operator">=</span> <span class="token function">parseKey</span><span class="token punctuation">(</span>cache<span class="token punctuation">.</span><span class="token function">key</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Object value <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 从redis中获取缓存</span>
+            value <span class="token operator">=</span> redisTemplate<span class="token punctuation">.</span><span class="token function">opsForValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>null <span class="token operator">!=</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            MethodSignature methodSignature <span class="token operator">=</span> <span class="token punctuation">(</span>MethodSignature<span class="token punctuation">)</span> point<span class="token punctuation">.</span><span class="token function">getSignature</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Method method <span class="token operator">=</span> methodSignature<span class="token punctuation">.</span><span class="token function">getMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> value<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">//等待返回结果</span>
+            Object proceed <span class="token operator">=</span> point<span class="token punctuation">.</span><span class="token function">proceed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>proceed <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                    <span class="token comment" spellcheck="true">//设置缓存</span>
+                    redisTemplate<span class="token punctuation">.</span><span class="token function">opsForValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> proceed<span class="token punctuation">,</span> cache<span class="token punctuation">.</span><span class="token function">expire</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> TimeUnit<span class="token punctuation">.</span>SECONDS<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">return</span> proceed<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Throwable</span> throwable<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            throwable<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * redis的键值生成策略
+     *
+     * @param key  key前缀
+     */</span>
+    <span class="token keyword">private</span> String <span class="token function">parseKey</span><span class="token punctuation">(</span>String key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 使用uuid拼接保证key唯一</span>
+        StringBuilder sb <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringBuilder</span><span class="token punctuation">(</span>key <span class="token operator">+</span> <span class="token string">":"</span><span class="token operator">+</span> UuidUtils<span class="token punctuation">.</span><span class="token function">getUuid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> sb<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UuidUtils</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">synchronized</span> String <span class="token function">getUuid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> UUID<span class="token punctuation">.</span><span class="token function">randomUUID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token string">"-"</span><span class="token punctuation">,</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>4、使用自定义注解：</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Cache</span><span class="token punctuation">(</span>key<span class="token operator">=</span><span class="token string">"user:login"</span><span class="token punctuation">,</span>expire <span class="token operator">=</span> <span class="token number">15</span><span class="token operator">*</span><span class="token number">60</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> User <span class="token function">login</span><span class="token punctuation">(</span>User user<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre>
+<p>生成的key-value：</p>
+<p><img src="/2020/08/11/project-01/17.png" alt></p>
 
             </div>
             <hr/>
 
             
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">sweetboyZhang</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://sweetboyZhang.gitee.io/2020/08/11/project-01/">https://sweetboyZhang.gitee.io/2020/08/11/project-01/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">sweetboyZhang</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
 
 
 
@@ -1776,6 +1960,43 @@ axios<span class="token punctuation">.</span><span class="token keyword">get</sp
 </div>
 
 
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('500')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: sweetboyZhang&#39;s Blog<br />'
+            + '文章作者: sweetboyZhang<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '限于本人水平，文章和代码肯定有表述不当之处，还请仔细斟酌！';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
 
 <!-- 代码块功能依赖 -->
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
@@ -1915,7 +2136,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">138.9k</span>&nbsp;字
+                class="white-color">142.3k</span>&nbsp;字
             
             
             

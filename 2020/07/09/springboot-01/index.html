@@ -355,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-15
+                    2020-12-22
                 </div>
                 
 
@@ -404,7 +404,7 @@
 <pre class=" language-properties"><code class="language-properties"><span class="token comment" spellcheck="true"># 更改项目端口号</span>
 <span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8081</span></code></pre>
 <p>修改banner，在resource中添加banner.txt添加ASCII艺术字，重新启动项目即可！</p>
-<p>康康我的○( ＾皿＾)っHiahiahia…<br><img src="/2020/07/09/springboot-01/4.png" alt></p>
+<p>康康我的○( ＾皿＾)っHiahiahia…<br><img src="/2020/07/09/springboot-01/4.png" style="zoom:80%;"></p>
 <h2 id="自动装配原理"><a href="#自动装配原理" class="headerlink" title="自动装配原理"></a>自动装配原理</h2><h3 id="pom-xml"><a href="#pom-xml" class="headerlink" title="pom.xml"></a>pom.xml</h3><p><strong>父项目依赖，管理项目的资源过滤及插件</strong></p>
 <pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>parent</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
@@ -429,26 +429,73 @@
 <p>Springboot的所有自动配置都是在启动的时候扫描并加载：<br><img src="/2020/07/09/springboot-01/5.png" alt></p>
 <p>spring.factories：所有的配置文件都在里面，但是不一定生效，要判断条件成立，只要导入了对应的启动器，自动装配才会成功。</p>
 <ol>
-<li><p>SpringBoot在启动的时候从类路径下的META-INF/spring.factories中获取EnableAutoConfiguration指定的值</p>
-</li>
-<li><p>将这些值作为自动配置类导入容器 ， 自动配置类就生效 ， 帮我们进行自动配置工作；</p>
-</li>
-<li><p>整个JavaEE的整体解决方案和自动配置都在springboot-autoconfigure的jar包中；</p>
-</li>
-<li><p>它会给容器中导入非常多的自动配置类 （xxxAutoConfiguration）, 就是给容器中导入这个场景需要的所有组件 ， 并配置好这些组件 ；</p>
-</li>
-<li><p>有了自动配置类 ， 免去了我们手动编写配置注入功能组件等的工作；</p>
-<p><code>SpringApplication.run(HelloworldApplication.class, args);</code></p>
-</li>
+<li>SpringBoot在启动的时候从类路径下的META-INF/spring.factories中获取EnableAutoConfiguration指定的值</li>
+<li>将这些值作为自动配置类导入容器 ， 自动配置类就生效 ， 帮我们进行自动配置工作；</li>
+<li>整个JavaEE的整体解决方案和自动配置都在springboot-autoconfigure的jar包中；</li>
+<li>它会给容器中导入非常多的自动配置类 （xxxAutoConfiguration）, 就是给容器中导入这个场景需要的所有组件 ， 并配置好这些组件 ；</li>
+<li>有了自动配置类 ， 免去了我们手动编写配置注入功能组件等的工作；</li>
 </ol>
+<blockquote>
+<p>SpringApplication.run(HelloworldApplication.class, args);</p>
 <p>一共做了两件事，创建SpringApplication对象，在进行初始化的时候找到spring.factories文件中的监听器并保存；调用run()方法，刚刚保存的监听器根据当前时机触发不同的事件，比如容器的初始化，容器创建完成等。同时也会刷新容器，进行组件的扫描、创建、加载等工作。</p>
-<p><strong>xxxxAutoConfigurartion：自动配置类；</strong>给容器中添加组件</p>
-<p><strong>xxxxProperties:封装配置文件中相关属性；</strong></p>
+</blockquote>
+<p><strong>xxxxAutoConfigurartion：</strong>自动配置类；给容器中添加组件</p>
+<p><strong>xxxxProperties:</strong>封装配置文件中相关属性</p>
 
             </div>
             <hr/>
 
             
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">sweetboyZhang</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://sweetboyZhang.gitee.io/2020/07/09/springboot-01/">https://sweetboyZhang.gitee.io/2020/07/09/springboot-01/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">sweetboyZhang</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
 
 
 
@@ -602,6 +649,43 @@
 </div>
 
 
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('500')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: sweetboyZhang&#39;s Blog<br />'
+            + '文章作者: sweetboyZhang<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '限于本人水平，文章和代码肯定有表述不当之处，还请仔细斟酌！';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
 
 <!-- 代码块功能依赖 -->
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
@@ -741,7 +825,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">138.9k</span>&nbsp;字
+                class="white-color">142.3k</span>&nbsp;字
             
             
             
