@@ -355,21 +355,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-12-22
+                    2020-12-23
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5.2k
+                    6.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    22 分
+                    29 分
                 </div>
                 
 
@@ -791,6 +791,364 @@ String timestampDF <span class="token operator">=</span> df<span class="token pu
 System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>timestampDF<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 2020-12-11 11:19:51</span>
 Date parseDate <span class="token operator">=</span> DateUtils<span class="token punctuation">.</span><span class="token function">parseDate</span><span class="token punctuation">(</span>timestampDF<span class="token punctuation">,</span> <span class="token string">"yyyy-MM-dd HH:mm:ss"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>parseDate<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// Fri Dec 11 11:20:23 CST 2020</span></code></pre>
+<h2 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PageList</span><span class="token operator">&lt;</span>T <span class="token keyword">extends</span> <span class="token class-name">Serializable</span><span class="token operator">></span> <span class="token keyword">implements</span> <span class="token class-name">Serializable</span> <span class="token punctuation">{</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * serialVersionUID.
+     */</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">long</span> serialVersionUID <span class="token operator">=</span> <span class="token operator">-</span>6177180431483012580L<span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 返回的数据集合
+     */</span>
+    <span class="token keyword">private</span> List<span class="token operator">&lt;</span>T<span class="token operator">></span> dataList<span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 返回的分页对象信息
+     */</span>
+    <span class="token keyword">private</span> Pager pager<span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 获取 返回的数据集合
+     */</span>
+    <span class="token keyword">public</span> List<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token function">getDataList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> dataList<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 设置 返回的数据集合
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setDataList</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span>T<span class="token operator">></span> dataList<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>dataList <span class="token operator">=</span> dataList<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 获取 返回的分页对象信息
+     */</span>
+    <span class="token keyword">public</span> Pager <span class="token function">getPager</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> pager<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 设置 返回的分页对象信息
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setPager</span><span class="token punctuation">(</span>Pager pager<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>pager <span class="token operator">=</span> pager<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Pager</span> <span class="token keyword">extends</span> <span class="token class-name">PagerCondition</span> <span class="token punctuation">{</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * serialVersionUID.
+     */</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">long</span> serialVersionUID <span class="token operator">=</span> 1L<span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 总记录数
+     */</span>
+    <span class="token keyword">private</span> Integer recordCount<span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 总页数
+     */</span>
+    <span class="token keyword">private</span> Integer totalPage<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token function">Pager</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">Pager</span><span class="token punctuation">(</span>Integer currentPage<span class="token punctuation">,</span> Integer pageSize<span class="token punctuation">,</span> Integer recordCount<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>currentPage<span class="token punctuation">,</span> pageSize<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>recordCount <span class="token operator">=</span> recordCount<span class="token punctuation">;</span>
+        Integer totalPageSize <span class="token operator">=</span> recordCount <span class="token operator">/</span> pageSize<span class="token punctuation">;</span>
+        Integer remailder <span class="token operator">=</span> recordCount <span class="token operator">%</span> pageSize<span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 如果总记录数与每页显示条数的余数大于0，总页数加1</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>remailder <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            totalPageSize <span class="token operator">=</span> totalPageSize <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        totalPage <span class="token operator">=</span> totalPageSize<span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 分页查询时使用
+     */</span>
+    <span class="token keyword">public</span> <span class="token function">Pager</span><span class="token punctuation">(</span>PagerCondition pageCondition<span class="token punctuation">,</span> Integer recordCount<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">setCurrentPage</span><span class="token punctuation">(</span>pageCondition<span class="token punctuation">.</span><span class="token function">getCurrentPage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">setPageSize</span><span class="token punctuation">(</span>pageCondition<span class="token punctuation">.</span><span class="token function">getPageSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">setRecordCount</span><span class="token punctuation">(</span>recordCount<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">setTotalPage</span><span class="token punctuation">(</span><span class="token punctuation">(</span>recordCount <span class="token operator">+</span> <span class="token function">getPageSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token function">getPageSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> Integer <span class="token function">getRecordCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> recordCount<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setRecordCount</span><span class="token punctuation">(</span>Integer recordCount<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>recordCount <span class="token operator">=</span> recordCount<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> Integer <span class="token function">getTotalPage</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> totalPage<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setTotalPage</span><span class="token punctuation">(</span>Integer totalPage<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>totalPage <span class="token operator">=</span> totalPage<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PagerCondition</span> <span class="token keyword">implements</span> <span class="token class-name">Serializable</span> <span class="token punctuation">{</span>
+
+   <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">long</span> serialVersionUID <span class="token operator">=</span> 1L<span class="token punctuation">;</span>
+
+   <span class="token comment" spellcheck="true">/**
+    * @Fields 当前页
+    */</span>
+   <span class="token keyword">private</span> Integer currentPage <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+   <span class="token comment" spellcheck="true">/**
+    * @Fields 每页的数量
+    */</span>
+   <span class="token keyword">private</span> Integer pageSize <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+
+   <span class="token keyword">public</span> <span class="token function">PagerCondition</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+
+   <span class="token keyword">public</span> <span class="token function">PagerCondition</span><span class="token punctuation">(</span>Integer currentPage<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>currentPage <span class="token operator">!=</span> null<span class="token punctuation">)</span>
+         <span class="token keyword">this</span><span class="token punctuation">.</span>currentPage <span class="token operator">=</span> currentPage<span class="token punctuation">;</span>
+
+      <span class="token keyword">this</span><span class="token punctuation">.</span>pageSize <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+
+   <span class="token keyword">public</span> <span class="token function">PagerCondition</span><span class="token punctuation">(</span>Integer currentPage<span class="token punctuation">,</span> Integer pageSize<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>currentPage <span class="token operator">!=</span> null<span class="token punctuation">)</span>
+         <span class="token keyword">this</span><span class="token punctuation">.</span>currentPage <span class="token operator">=</span> currentPage<span class="token punctuation">;</span>
+
+      <span class="token keyword">this</span><span class="token punctuation">.</span>pageSize <span class="token operator">=</span> pageSize<span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+
+   <span class="token keyword">public</span> Integer <span class="token function">getCurrentPage</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> currentPage<span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+
+   <span class="token keyword">public</span> Integer <span class="token function">getLimitnum</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getPageSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+
+   <span class="token keyword">public</span> Integer <span class="token function">getOffset</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getCurrentPage</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getPageSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+
+   <span class="token keyword">public</span> Integer <span class="token function">getPageSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>pageSize <span class="token operator">==</span> null <span class="token operator">||</span> pageSize <span class="token operator">&lt;=</span> <span class="token number">0</span><span class="token punctuation">)</span>
+         <span class="token keyword">return</span> <span class="token number">20</span><span class="token punctuation">;</span>
+      <span class="token keyword">else</span>
+         <span class="token keyword">return</span> pageSize<span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+
+   <span class="token keyword">public</span> Integer <span class="token function">getPreviousPage</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>currentPage <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+         <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>currentPage <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+         <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+   <span class="token punctuation">}</span>
+
+   <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setCurrentPage</span><span class="token punctuation">(</span>Integer currentPage<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>currentPage <span class="token operator">=</span> currentPage<span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+
+   <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setPageSize</span><span class="token punctuation">(</span>Integer pageSize<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>pageSize <span class="token operator">=</span> pageSize<span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+
+   <span class="token keyword">public</span> Integer <span class="token function">startRow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">int</span> startRow <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>currentPage <span class="token operator">!=</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+         startRow <span class="token operator">=</span> <span class="token punctuation">(</span>currentPage <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">*</span> pageSize<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">return</span> startRow<span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 这里的Page是PageHelper内部定义的Page</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PageResult</span><span class="token operator">&lt;</span>E <span class="token keyword">extends</span> <span class="token class-name">Serializable</span><span class="token operator">></span> <span class="token keyword">extends</span> <span class="token class-name">Page</span><span class="token operator">&lt;</span>E<span class="token operator">></span> <span class="token punctuation">{</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 转换为PageList.
+     *
+     * @return 转换结果
+     */</span>
+    <span class="token keyword">public</span> PageList<span class="token operator">&lt;</span>E<span class="token operator">></span> <span class="token function">toPageList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">final</span> PageList<span class="token operator">&lt;</span>E<span class="token operator">></span> pageList <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PageList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        pageList<span class="token punctuation">.</span><span class="token function">setPager</span><span class="token punctuation">(</span><span class="token function">getPager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        pageList<span class="token punctuation">.</span><span class="token function">setDataList</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> pageList<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 转换分页列表.
+     *
+     * @param convertFn 转换函数.
+     * @param &lt;T>       目标类型
+     * @return 转换结果
+     */</span>
+    <span class="token keyword">public</span> <span class="token operator">&lt;</span>T <span class="token keyword">extends</span> <span class="token class-name">Serializable</span><span class="token operator">></span> PageList<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token function">toPageList</span><span class="token punctuation">(</span>Function<span class="token operator">&lt;</span>List<span class="token operator">&lt;</span>E<span class="token operator">></span><span class="token punctuation">,</span> List<span class="token operator">&lt;</span>T<span class="token operator">>></span> convertFn<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">final</span> PageList<span class="token operator">&lt;</span>T<span class="token operator">></span> pageList <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PageList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        pageList<span class="token punctuation">.</span><span class="token function">setPager</span><span class="token punctuation">(</span><span class="token function">getPager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            pageList<span class="token punctuation">.</span><span class="token function">setDataList</span><span class="token punctuation">(</span>Collections<span class="token punctuation">.</span><span class="token function">emptyList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> pageList<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        pageList<span class="token punctuation">.</span><span class="token function">setDataList</span><span class="token punctuation">(</span>convertFn<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> pageList<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 并行转换分页列表.&lt;br>
+     * parallelStream实现并行转换
+     *
+     * @param convertFn 转换函数.
+     * @param &lt;T>       目标类型
+     * @return 转换结果
+     */</span>
+    <span class="token keyword">public</span> <span class="token operator">&lt;</span>T <span class="token keyword">extends</span> <span class="token class-name">Serializable</span><span class="token operator">></span> PageList<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token function">toPageListParallel</span><span class="token punctuation">(</span>Function<span class="token operator">&lt;</span>E<span class="token punctuation">,</span> T<span class="token operator">></span> convertFn<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">final</span> PageList<span class="token operator">&lt;</span>T<span class="token operator">></span> pageList <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PageList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        pageList<span class="token punctuation">.</span><span class="token function">setPager</span><span class="token punctuation">(</span><span class="token function">getPager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            pageList<span class="token punctuation">.</span><span class="token function">setDataList</span><span class="token punctuation">(</span>Collections<span class="token punctuation">.</span><span class="token function">emptyList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> pageList<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">// 并行流转换结果</span>
+        <span class="token keyword">final</span> Map<span class="token operator">&lt;</span>E<span class="token punctuation">,</span> T<span class="token operator">></span> resultMap <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ConcurrentHashMap</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">parallelStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>item <span class="token operator">-</span><span class="token operator">></span> resultMap<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>item<span class="token punctuation">,</span> convertFn<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 收集结果, 确保排序</span>
+        <span class="token keyword">final</span> List<span class="token operator">&lt;</span>T<span class="token operator">></span> results <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>item <span class="token operator">-</span><span class="token operator">></span> results<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>resultMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 拼装返回结果</span>
+        pageList<span class="token punctuation">.</span><span class="token function">setDataList</span><span class="token punctuation">(</span>results<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> pageList<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 并行转换分页列表.&lt;br>
+     * 自定义任务执行器, 3秒超时
+     *
+     * @param convertFn    转换函数.
+     * @param taskExecutor 并行任务执行器.
+     * @param &lt;T>          目标类型
+     * @return 转换结果
+     */</span>
+    <span class="token keyword">public</span> <span class="token operator">&lt;</span>T <span class="token keyword">extends</span> <span class="token class-name">Serializable</span><span class="token operator">></span> PageList<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token function">toPageListParallel</span><span class="token punctuation">(</span>Function<span class="token operator">&lt;</span>E<span class="token punctuation">,</span> T<span class="token operator">></span> convertFn<span class="token punctuation">,</span> AsyncTaskExecutor taskExecutor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">toPageListParallel</span><span class="token punctuation">(</span>convertFn<span class="token punctuation">,</span> taskExecutor<span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 并行转换分页列表.&lt;br>
+     * 自定义任务执行器
+     *
+     * @param convertFn      转换函数.
+     * @param taskExecutor   并行任务执行器.
+     * @param timeoutSeconds 超时秒数.
+     * @param &lt;T>            目标类型
+     * @return 转换结果
+     */</span>
+    <span class="token keyword">public</span> <span class="token operator">&lt;</span>T <span class="token keyword">extends</span> <span class="token class-name">Serializable</span><span class="token operator">></span> PageList<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token function">toPageListParallel</span><span class="token punctuation">(</span>Function<span class="token operator">&lt;</span>E<span class="token punctuation">,</span> T<span class="token operator">></span> convertFn<span class="token punctuation">,</span> AsyncTaskExecutor taskExecutor<span class="token punctuation">,</span> <span class="token keyword">int</span> timeoutSeconds<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">final</span> PageList<span class="token operator">&lt;</span>T<span class="token operator">></span> pageList <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PageList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        pageList<span class="token punctuation">.</span><span class="token function">setPager</span><span class="token punctuation">(</span><span class="token function">getPager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            pageList<span class="token punctuation">.</span><span class="token function">setDataList</span><span class="token punctuation">(</span>Collections<span class="token punctuation">.</span><span class="token function">emptyList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> pageList<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">// 并行流转换结果</span>
+        List<span class="token operator">&lt;</span>Future<span class="token operator">&lt;</span>T<span class="token operator">>></span> futureResults <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>E e <span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            Future<span class="token operator">&lt;</span>T<span class="token operator">></span> futureResult <span class="token operator">=</span> taskExecutor<span class="token punctuation">.</span><span class="token function">submit</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> convertFn<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            futureResults<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>futureResult<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">// 收集结果, 确保排序</span>
+        <span class="token keyword">final</span> List<span class="token operator">&lt;</span>T<span class="token operator">></span> results <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span>Future<span class="token operator">&lt;</span>T<span class="token operator">></span> futureResult <span class="token operator">:</span> futureResults<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                T result <span class="token operator">=</span> futureResult<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>timeoutSeconds<span class="token punctuation">,</span> TimeUnit<span class="token punctuation">.</span>SECONDS<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                results<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">BusinessException</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">// 拼装返回结果</span>
+        pageList<span class="token punctuation">.</span><span class="token function">setDataList</span><span class="token punctuation">(</span>results<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> pageList<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> Pager <span class="token function">getPager</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">final</span> Pager pager <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Pager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        pager<span class="token punctuation">.</span><span class="token function">setPageSize</span><span class="token punctuation">(</span><span class="token function">getPageSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        pager<span class="token punctuation">.</span><span class="token function">setCurrentPage</span><span class="token punctuation">(</span><span class="token function">getPageNum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        pager<span class="token punctuation">.</span><span class="token function">setRecordCount</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">toIntExact</span><span class="token punctuation">(</span><span class="token function">getTotal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        pager<span class="token punctuation">.</span><span class="token function">setTotalPage</span><span class="token punctuation">(</span><span class="token function">getPages</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> pager<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span></code></pre>
+<p>并结合PageHelper实现分页，PageHelper分页的实现原理就是，通过PageHelper内部的拦截器在我们执行SQL语句之前动态的将SQL语句拼接了分页的语句。</p>
+<pre class=" language-java"><code class="language-java">PageHelper<span class="token punctuation">.</span><span class="token function">startPage</span><span class="token punctuation">(</span>queryDTO<span class="token punctuation">.</span><span class="token function">getCurrentPage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> queryDTO<span class="token punctuation">.</span><span class="token function">getPageSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p><strong>或者自定义一个拦截器，不用每次查询前都要进行startPage():</strong></p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Componnent</span> <span class="token comment" spellcheck="true">// 还可以在mybatis配置文件中配置&lt;pulgin interceptor="">&lt;/pulgin>,或者编写@Configuration配置类两种方式配置自定义的mybatis拦截器</span>
+<span class="token annotation punctuation">@Intercepts</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Signature</span><span class="token punctuation">(</span>type <span class="token operator">=</span> Executor<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> method <span class="token operator">=</span> <span class="token string">"query"</span><span class="token punctuation">,</span> args <span class="token operator">=</span> <span class="token punctuation">{</span>MappedStatement<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> Object<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> RowBounds<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> ResultHandler<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PageResultEnhancer</span> <span class="token keyword">implements</span> <span class="token class-name">Interceptor</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> Object <span class="token function">intercept</span><span class="token punctuation">(</span>Invocation invocation<span class="token punctuation">)</span> <span class="token keyword">throws</span> Throwable <span class="token punctuation">{</span>
+        <span class="token keyword">final</span> Object result <span class="token operator">=</span> invocation<span class="token punctuation">.</span><span class="token function">proceed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>result <span class="token keyword">instanceof</span> <span class="token class-name">Page</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">final</span> Page page <span class="token operator">=</span> <span class="token punctuation">(</span>Page<span class="token punctuation">)</span> result<span class="token punctuation">;</span>
+            <span class="token keyword">final</span> PageResult pageResult <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PageResult</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            pageResult<span class="token punctuation">.</span><span class="token function">addAll</span><span class="token punctuation">(</span>page<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            pageResult<span class="token punctuation">.</span><span class="token function">setPageNum</span><span class="token punctuation">(</span>page<span class="token punctuation">.</span><span class="token function">getPageNum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            pageResult<span class="token punctuation">.</span><span class="token function">setPageSize</span><span class="token punctuation">(</span>page<span class="token punctuation">.</span><span class="token function">getPageSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            pageResult<span class="token punctuation">.</span><span class="token function">setStartRow</span><span class="token punctuation">(</span>page<span class="token punctuation">.</span><span class="token function">getStartRow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            pageResult<span class="token punctuation">.</span><span class="token function">setEndRow</span><span class="token punctuation">(</span>page<span class="token punctuation">.</span><span class="token function">getEndRow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            pageResult<span class="token punctuation">.</span><span class="token function">setTotal</span><span class="token punctuation">(</span>page<span class="token punctuation">.</span><span class="token function">getTotal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            pageResult<span class="token punctuation">.</span><span class="token function">setPages</span><span class="token punctuation">(</span>page<span class="token punctuation">.</span><span class="token function">getPages</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            pageResult<span class="token punctuation">.</span><span class="token function">setCount</span><span class="token punctuation">(</span>page<span class="token punctuation">.</span><span class="token function">isCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            pageResult<span class="token punctuation">.</span><span class="token function">setCountSignal</span><span class="token punctuation">(</span>page<span class="token punctuation">.</span><span class="token function">getCountSignal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            pageResult<span class="token punctuation">.</span><span class="token function">setOrderBy</span><span class="token punctuation">(</span>page<span class="token punctuation">.</span><span class="token function">getOrderBy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            pageResult<span class="token punctuation">.</span><span class="token function">setOrderByOnly</span><span class="token punctuation">(</span>page<span class="token punctuation">.</span><span class="token function">isOrderByOnly</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            pageResult<span class="token punctuation">.</span><span class="token function">setReasonable</span><span class="token punctuation">(</span>page<span class="token punctuation">.</span><span class="token function">getReasonable</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            pageResult<span class="token punctuation">.</span><span class="token function">setPageSizeZero</span><span class="token punctuation">(</span>page<span class="token punctuation">.</span><span class="token function">getPageSizeZero</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> pageResult<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 只拦截Executor
+     */</span>
+    <span class="token keyword">public</span> Object <span class="token function">plugin</span><span class="token punctuation">(</span>Object target<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>target <span class="token keyword">instanceof</span> <span class="token class-name">Executor</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// wrap():根据当前的Interceptor上面的注解定义哪些接口需要拦截，然后判断当前目标对象是否有实现对应需要拦截的接口，如果没有则返回目标对象本身，如果有则返回一个代理对象。</span>
+            <span class="token keyword">return</span> Plugin<span class="token punctuation">.</span><span class="token function">wrap</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> target<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token comment" spellcheck="true">// Configuration初始化当前的Interceptor时执行</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setProperties</span><span class="token punctuation">(</span>Properties properties<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span></code></pre>
+<blockquote>
+<p>@Intercepts标记了这是一个Interceptor，然后在@Intercepts中定义了一个@Signature，即一个拦截点。@Signature定义了该Interceptor将拦截Executor接口中参数类型为MappedStatement、Object、RowBounds和ResultHandler的query方法；<br><img src="/2020/11/28/note/1.png" alt></p>
+</blockquote>
 </li>
 </ul>
 <h2 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h2><ul>
@@ -1175,46 +1533,48 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/12/21/redis-07/">
+                <a href="/2020/11/28/note/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="使用缓存的问题">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="实习笔记">
                         
-                        <span class="card-title">使用缓存的问题</span>
+                        <span class="card-title">实习笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            缓存穿透，缓存击穿，缓存雪崩的解决方案
+                            记录自己在实习中学习的知识，以及在实习中的反思
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-21
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-28
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="post-category">
-                                    中间件
+                            <a href="/categories/%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-category">
+                                    实习笔记
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Redis/">
-                        <span class="chip bg-color">Redis</span>
+                    <a href="/tags/%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">实习笔记</span>
                     </a>
                     
                 </div>
@@ -1453,7 +1813,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">142.3k</span>&nbsp;字
+                class="white-color">143.1k</span>&nbsp;字
             
             
             
