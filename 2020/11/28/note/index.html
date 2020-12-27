@@ -355,21 +355,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-12-23
+                    2020-12-26
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    6.5k
+                    6.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    29 分
+                    28 分
                 </div>
                 
 
@@ -428,7 +428,7 @@
 <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> <span class="token punctuation">`</span><span class="token keyword">table</span><span class="token punctuation">`</span> <span class="token keyword">WHERE</span> col <span class="token operator">IS</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">;</span>
 <span class="token comment" spellcheck="true"># 查询col列不为''的所有记录</span>
 <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> <span class="token punctuation">`</span><span class="token keyword">table</span><span class="token punctuation">`</span> <span class="token keyword">WHERE</span> col1 <span class="token operator">&lt;></span> <span class="token string">''</span><span class="token punctuation">;</span> </code></pre>
-</li>
+<h3 id="crud"><a href="#crud" class="headerlink" title="crud"></a>crud</h3></li>
 <li><p>模糊搜索： </p>
 <pre class=" language-sql"><code class="language-sql"><span class="token keyword">select</span> id<span class="token punctuation">,</span>name <span class="token keyword">from</span> product <span class="token keyword">where</span> name <span class="token operator">like</span> concat<span class="token punctuation">(</span><span class="token string">'%'</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">#{name,jdbcType=varchar},'%')</span></code></pre>
 </li>
@@ -540,9 +540,7 @@
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">></span></span></code></pre>
 </li>
 </ul>
-<h2 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h2><ul>
-<li><p>Spring缓存注解</p>
-<ul>
+<h2 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h2><h3 id="Spring缓存注解"><a href="#Spring缓存注解" class="headerlink" title="Spring缓存注解"></a>Spring缓存注解</h3><ul>
 <li><p>Spring Cache是作用在方法上的，当我们在调用一个缓存方法时会把该方法参数和返回结果作为一个键值对存放在缓存中，等到下次调用同样的参数来调用该方法时将不再执行该方法，而是直接从缓存中获取结果进行返回。</p>
 </li>
 <li><p><code>@Cacheable(key=&quot;&quot; , value=&quot;&quot;)</code> 用于<strong>查询</strong>的方法</p>
@@ -555,71 +553,38 @@
 <li><p><strong>以后不会使用此方式了，因为不能指定数据有效时间，以及读取改变的数据不够灵活。一般使用RedisTemple或者自定义注解的方式。</strong></p>
 </li>
 </ul>
-</li>
-<li><p>@Transactional(rollbackFor = { Exception.class })。一般在bl层的方法中执行多条sql时使用</p>
-<ul>
+<h3 id="Transactional"><a href="#Transactional" class="headerlink" title="@Transactional"></a>@Transactional</h3><ul>
+<li>一般在bl层的方法中执行多条sql时使用<ul>
+<li><code>@Transactional(rollbackFor = { Exception.class })</code></li>
 <li>默认发生<code>Error</code>或<code>RuntimeException</code>时才会回滚，发生非运行时异常时不会回滚，需要使用<code>rollbackFor</code>属性指定回滚的非运行时异常。</li>
 </ul>
 </li>
-<li><p>在实际开发中，添加和更新功能可以写在一起，添加时前端不传id，更新时前端传id。</p>
-</li>
-<li><p>对前端传过来的json通过@RequestBody转换为JavaBean后进行非空判断</p>
-<ul>
-<li>经过@RequestyBody封装的javaBean一定不为null，只需进行非空判断，或者对其属性进行非空判断</li>
-<li>一些必须传的数据可使用断言判断，截断流程</li>
-<li>if判断，在保证不阻断业务流程下使用</li>
-<li>集合元素进行forEach遍历之前，必须进行非空判断<code>CollectionUtils.isEmpty(collection)</code></li>
 </ul>
-</li>
-<li><p>修改密码的逻辑</p>
-<ul>
-<li><p>在根据原密码修改密码，验证原密码，验证密码时需要对原密码进行加密再与数据库中的密码进行比较：</p>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 传入参数：旧密码oldPassword、新密码newPassword、用户id userId </span>
-String digestOldPassword <span class="token operator">=</span> DigestUtils<span class="token punctuation">.</span><span class="token function">md5DigestAsHex</span><span class="token punctuation">(</span>oldPassword<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>digestOldPassword<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>user<span class="token punctuation">.</span><span class="token function">getPassword</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">new</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">(</span><span class="token string">"输入的原密码错误！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">// 密码强度校验......</span>
-<span class="token comment" spellcheck="true">// 对新密码进行加密</span>
-String digestNewPassword <span class="token operator">=</span> DigestUtils<span class="token punctuation">.</span><span class="token function">md5DigestAsHex</span><span class="token punctuation">(</span>newPassword<span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">// 更新密码到数据库</span></code></pre>
-</li>
+<h3 id="Controller中的Model参数"><a href="#Controller中的Model参数" class="headerlink" title="Controller中的Model参数"></a>Controller中的Model参数</h3><ul>
+<li>只有在前端请求有页面返回的时候用到，保存了想要展示在页面上的数据。</li>
+<li>例如数据的导出时，使用到了Model参数。</li>
 </ul>
-</li>
-<li><p>Controller中的Model参数，只有在前端请求有页面返回的时候用到，保存了想要展示在页面上的数据。</p>
-<ul>
-<li>导出数据时使用到了Model参数。</li>
-</ul>
-</li>
-<li><p>自定义注解</p>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 定义注解使用的时机 METHOD->适用于方法  TYPE->适用于 class,interface,enum</span>
+<h3 id="自定义注解中的元注解"><a href="#自定义注解中的元注解" class="headerlink" title="自定义注解中的元注解"></a>自定义注解中的元注解</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 定义注解使用的时机 METHOD->适用于方法  TYPE->适用于 class,interface,enum</span>
 <span class="token annotation punctuation">@Target</span><span class="token punctuation">(</span><span class="token punctuation">{</span>ElementType<span class="token punctuation">.</span>METHOD<span class="token punctuation">,</span> ElementType<span class="token punctuation">.</span>TYPE<span class="token punctuation">}</span><span class="token punctuation">)</span>
 <span class="token comment" spellcheck="true">// 在运行时去动态获取注解信息</span>
 <span class="token annotation punctuation">@Retention</span><span class="token punctuation">(</span>RetentionPolicy<span class="token punctuation">.</span>RUNTIME<span class="token punctuation">)</span></code></pre>
-</li>
-<li><p>对类添加@ControllerAdvice注解，在处理异常的方法前添加</p>
+<h3 id="全局异常处理"><a href="#全局异常处理" class="headerlink" title="全局异常处理"></a>全局异常处理</h3><ul>
+<li>对类添加@ControllerAdvice注解，在处理异常的方法前添加<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@ResponseStatus</span><span class="token punctuation">(</span>HttpStatus<span class="token punctuation">.</span>OK<span class="token punctuation">)</span>
+<span class="token annotation punctuation">@ExceptionHandler</span><span class="token punctuation">(</span><span class="token punctuation">{</span>Exception<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@ResponseBody</span></code></pre>
 </li>
 </ul>
-<pre class=" language-java"><code class="language-java">  <span class="token annotation punctuation">@ResponseStatus</span><span class="token punctuation">(</span>HttpStatus<span class="token punctuation">.</span>OK<span class="token punctuation">)</span>
-  <span class="token annotation punctuation">@ExceptionHandler</span><span class="token punctuation">(</span><span class="token punctuation">{</span>Exception<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
-  <span class="token annotation punctuation">@ResponseBody</span></code></pre>
-<p>  进行全局异常处理和拦截</p>
-<ul>
-<li><p>CommandLineRunner接口</p>
-<p>在应用初始化后，去执行一段代码块逻辑，这段初始化代码在整个应用生命周期内只会执行一次。</p>
+<h3 id="CommandLineRunner接口"><a href="#CommandLineRunner接口" class="headerlink" title="CommandLineRunner接口"></a>CommandLineRunner接口</h3><p>在应用初始化后，去执行一段代码块逻辑，这段初始化代码在整个应用生命周期内只会执行一次。</p>
 <p>用于预先加载数据，实现CommandLineRunner接口，需要加载的数据的逻辑写在run()方法中。</p>
 <p>可使用@Order(1)，@Order(2)……注解指定加载顺序。</p>
+<h3 id="对象的有状态与无状态"><a href="#对象的有状态与无状态" class="headerlink" title="对象的有状态与无状态"></a>对象的有状态与无状态</h3><ul>
+<li><p>是否存储数据</p>
 </li>
-<li><p>有状态对象与无状态对象：是否存储数据</p>
-<ul>
-<li>无状态的Bean适合用单例模式，这样可以共享实例，提高性能。有状态的Bean，多线程环境下不安全，那么适合用Prototype原型模式。Prototype: 每次对bean的请求都会创建一个新的bean实例。</li>
+<li><p>无状态的Bean适合用单例模式，这样可以共享实例，提高性能。有状态的Bean，多线程环境下不安全，那么适合用Prototype原型模式。Prototype: 每次对bean的请求都会创建一个新的bean实例。</p>
+</li>
 </ul>
-</li>
-<li><p>关于RestController中的返回数据</p>
-<ul>
+<h3 id="Controller中的返回数据"><a href="#Controller中的返回数据" class="headerlink" title="Controller中的返回数据"></a>Controller中的返回数据</h3><ul>
 <li><code>ResponseAdvisor</code>对返回数据进行了拦截，然后统一处理，所有的controller只需要返回业务相关数据即可。</li>
-</ul>
-</li>
 </ul>
 <pre class=" language-java"><code class="language-java">    <span class="token annotation punctuation">@ControllerAdvice</span> <span class="token comment" spellcheck="true">// 对controller的全局配置</span>
     <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ResponseAdvisor</span> <span class="token keyword">implements</span> <span class="token class-name">ResponseBodyAdvice</span><span class="token operator">&lt;</span>Object<span class="token operator">></span> <span class="token punctuation">{</span>
@@ -655,7 +620,7 @@ String digestNewPassword <span class="token operator">=</span> DigestUtils<span 
 
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>T<span class="token operator">></span> Result<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token function">makeOKRsp</span><span class="token punctuation">(</span>T data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Result</span><span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-       <span class="token punctuation">.</span><span class="token function">setCode</span><span class="token punctuation">(</span>ResultCode<span class="token punctuation">.</span>SUCCESS<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setResult</span><span class="token punctuation">(</span>WebConstants<span class="token punctuation">.</span>RESULT_SUCCESS<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setData</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">.</span><span class="token function">setCode</span><span class="token punctuation">(</span>ResultCode<span class="token punctuation">.</span>SUCCESS<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setResult</span><span class="token punctuation">(</span>WebConstants<span class="token punctuation">.</span>RESULT_SUCCESS<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setData</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>T<span class="token operator">></span> Result<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token function">makeOKRsp</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -791,7 +756,9 @@ String timestampDF <span class="token operator">=</span> df<span class="token pu
 System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>timestampDF<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 2020-12-11 11:19:51</span>
 Date parseDate <span class="token operator">=</span> DateUtils<span class="token punctuation">.</span><span class="token function">parseDate</span><span class="token punctuation">(</span>timestampDF<span class="token punctuation">,</span> <span class="token string">"yyyy-MM-dd HH:mm:ss"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>parseDate<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// Fri Dec 11 11:20:23 CST 2020</span></code></pre>
-<h2 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PageList</span><span class="token operator">&lt;</span>T <span class="token keyword">extends</span> <span class="token class-name">Serializable</span><span class="token operator">></span> <span class="token keyword">implements</span> <span class="token class-name">Serializable</span> <span class="token punctuation">{</span>
+</li>
+</ul>
+<h3 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PageList</span><span class="token operator">&lt;</span>T <span class="token keyword">extends</span> <span class="token class-name">Serializable</span><span class="token operator">></span> <span class="token keyword">implements</span> <span class="token class-name">Serializable</span> <span class="token punctuation">{</span>
 
     <span class="token comment" spellcheck="true">/**
      * serialVersionUID.
@@ -979,110 +946,13 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PageResult</span><span class="token operator">&lt;</span>E <span class="token keyword">extends</span> <span class="token class-name">Serializable</span><span class="token operator">></span> <span class="token keyword">extends</span> <span class="token class-name">Page</span><span class="token operator">&lt;</span>E<span class="token operator">></span> <span class="token punctuation">{</span>
 
     <span class="token comment" spellcheck="true">/**
-     * 转换为PageList.
-     *
+     * 转换为PageList
      * @return 转换结果
      */</span>
     <span class="token keyword">public</span> PageList<span class="token operator">&lt;</span>E<span class="token operator">></span> <span class="token function">toPageList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">final</span> PageList<span class="token operator">&lt;</span>E<span class="token operator">></span> pageList <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PageList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         pageList<span class="token punctuation">.</span><span class="token function">setPager</span><span class="token punctuation">(</span><span class="token function">getPager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         pageList<span class="token punctuation">.</span><span class="token function">setDataList</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> pageList<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">/**
-     * 转换分页列表.
-     *
-     * @param convertFn 转换函数.
-     * @param &lt;T>       目标类型
-     * @return 转换结果
-     */</span>
-    <span class="token keyword">public</span> <span class="token operator">&lt;</span>T <span class="token keyword">extends</span> <span class="token class-name">Serializable</span><span class="token operator">></span> PageList<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token function">toPageList</span><span class="token punctuation">(</span>Function<span class="token operator">&lt;</span>List<span class="token operator">&lt;</span>E<span class="token operator">></span><span class="token punctuation">,</span> List<span class="token operator">&lt;</span>T<span class="token operator">>></span> convertFn<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">final</span> PageList<span class="token operator">&lt;</span>T<span class="token operator">></span> pageList <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PageList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        pageList<span class="token punctuation">.</span><span class="token function">setPager</span><span class="token punctuation">(</span><span class="token function">getPager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            pageList<span class="token punctuation">.</span><span class="token function">setDataList</span><span class="token punctuation">(</span>Collections<span class="token punctuation">.</span><span class="token function">emptyList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">return</span> pageList<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        pageList<span class="token punctuation">.</span><span class="token function">setDataList</span><span class="token punctuation">(</span>convertFn<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> pageList<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">/**
-     * 并行转换分页列表.&lt;br>
-     * parallelStream实现并行转换
-     *
-     * @param convertFn 转换函数.
-     * @param &lt;T>       目标类型
-     * @return 转换结果
-     */</span>
-    <span class="token keyword">public</span> <span class="token operator">&lt;</span>T <span class="token keyword">extends</span> <span class="token class-name">Serializable</span><span class="token operator">></span> PageList<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token function">toPageListParallel</span><span class="token punctuation">(</span>Function<span class="token operator">&lt;</span>E<span class="token punctuation">,</span> T<span class="token operator">></span> convertFn<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">final</span> PageList<span class="token operator">&lt;</span>T<span class="token operator">></span> pageList <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PageList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        pageList<span class="token punctuation">.</span><span class="token function">setPager</span><span class="token punctuation">(</span><span class="token function">getPager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            pageList<span class="token punctuation">.</span><span class="token function">setDataList</span><span class="token punctuation">(</span>Collections<span class="token punctuation">.</span><span class="token function">emptyList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">return</span> pageList<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token comment" spellcheck="true">// 并行流转换结果</span>
-        <span class="token keyword">final</span> Map<span class="token operator">&lt;</span>E<span class="token punctuation">,</span> T<span class="token operator">></span> resultMap <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ConcurrentHashMap</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">parallelStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>item <span class="token operator">-</span><span class="token operator">></span> resultMap<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>item<span class="token punctuation">,</span> convertFn<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">// 收集结果, 确保排序</span>
-        <span class="token keyword">final</span> List<span class="token operator">&lt;</span>T<span class="token operator">></span> results <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>item <span class="token operator">-</span><span class="token operator">></span> results<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>resultMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">// 拼装返回结果</span>
-        pageList<span class="token punctuation">.</span><span class="token function">setDataList</span><span class="token punctuation">(</span>results<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> pageList<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">/**
-     * 并行转换分页列表.&lt;br>
-     * 自定义任务执行器, 3秒超时
-     *
-     * @param convertFn    转换函数.
-     * @param taskExecutor 并行任务执行器.
-     * @param &lt;T>          目标类型
-     * @return 转换结果
-     */</span>
-    <span class="token keyword">public</span> <span class="token operator">&lt;</span>T <span class="token keyword">extends</span> <span class="token class-name">Serializable</span><span class="token operator">></span> PageList<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token function">toPageListParallel</span><span class="token punctuation">(</span>Function<span class="token operator">&lt;</span>E<span class="token punctuation">,</span> T<span class="token operator">></span> convertFn<span class="token punctuation">,</span> AsyncTaskExecutor taskExecutor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">toPageListParallel</span><span class="token punctuation">(</span>convertFn<span class="token punctuation">,</span> taskExecutor<span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">/**
-     * 并行转换分页列表.&lt;br>
-     * 自定义任务执行器
-     *
-     * @param convertFn      转换函数.
-     * @param taskExecutor   并行任务执行器.
-     * @param timeoutSeconds 超时秒数.
-     * @param &lt;T>            目标类型
-     * @return 转换结果
-     */</span>
-    <span class="token keyword">public</span> <span class="token operator">&lt;</span>T <span class="token keyword">extends</span> <span class="token class-name">Serializable</span><span class="token operator">></span> PageList<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token function">toPageListParallel</span><span class="token punctuation">(</span>Function<span class="token operator">&lt;</span>E<span class="token punctuation">,</span> T<span class="token operator">></span> convertFn<span class="token punctuation">,</span> AsyncTaskExecutor taskExecutor<span class="token punctuation">,</span> <span class="token keyword">int</span> timeoutSeconds<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">final</span> PageList<span class="token operator">&lt;</span>T<span class="token operator">></span> pageList <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PageList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        pageList<span class="token punctuation">.</span><span class="token function">setPager</span><span class="token punctuation">(</span><span class="token function">getPager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            pageList<span class="token punctuation">.</span><span class="token function">setDataList</span><span class="token punctuation">(</span>Collections<span class="token punctuation">.</span><span class="token function">emptyList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">return</span> pageList<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token comment" spellcheck="true">// 并行流转换结果</span>
-        List<span class="token operator">&lt;</span>Future<span class="token operator">&lt;</span>T<span class="token operator">>></span> futureResults <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span>E e <span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            Future<span class="token operator">&lt;</span>T<span class="token operator">></span> futureResult <span class="token operator">=</span> taskExecutor<span class="token punctuation">.</span><span class="token function">submit</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> convertFn<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            futureResults<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>futureResult<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token comment" spellcheck="true">// 收集结果, 确保排序</span>
-        <span class="token keyword">final</span> List<span class="token operator">&lt;</span>T<span class="token operator">></span> results <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">try</span> <span class="token punctuation">{</span>
-            <span class="token keyword">for</span> <span class="token punctuation">(</span>Future<span class="token operator">&lt;</span>T<span class="token operator">></span> futureResult <span class="token operator">:</span> futureResults<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                T result <span class="token operator">=</span> futureResult<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>timeoutSeconds<span class="token punctuation">,</span> TimeUnit<span class="token punctuation">.</span>SECONDS<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                results<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">BusinessException</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token punctuation">}</span>
-        <span class="token comment" spellcheck="true">// 拼装返回结果</span>
-        pageList<span class="token punctuation">.</span><span class="token function">setDataList</span><span class="token punctuation">(</span>results<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> pageList<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
@@ -1097,8 +967,9 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 
 <span class="token punctuation">}</span></code></pre>
 <p>并结合PageHelper实现分页，PageHelper分页的实现原理就是，通过PageHelper内部的拦截器在我们执行SQL语句之前动态的将SQL语句拼接了分页的语句。</p>
+<p>配置好PageHelper后，在每次查询前设置Page参数即可完成分页：</p>
 <pre class=" language-java"><code class="language-java">PageHelper<span class="token punctuation">.</span><span class="token function">startPage</span><span class="token punctuation">(</span>queryDTO<span class="token punctuation">.</span><span class="token function">getCurrentPage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> queryDTO<span class="token punctuation">.</span><span class="token function">getPageSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p><strong>或者自定义一个拦截器，不用每次查询前都要进行startPage():</strong></p>
+<p><strong>或者自定义一个拦截器实现mybatis的Interceptor接口，不用每次查询前都要进行startPage():</strong></p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Componnent</span> <span class="token comment" spellcheck="true">// 还可以在mybatis配置文件中配置&lt;pulgin interceptor="">&lt;/pulgin>,或者编写@Configuration配置类两种方式配置自定义的mybatis拦截器</span>
 <span class="token annotation punctuation">@Intercepts</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Signature</span><span class="token punctuation">(</span>type <span class="token operator">=</span> Executor<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> method <span class="token operator">=</span> <span class="token string">"query"</span><span class="token punctuation">,</span> args <span class="token operator">=</span> <span class="token punctuation">{</span>MappedStatement<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> Object<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> RowBounds<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> ResultHandler<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PageResultEnhancer</span> <span class="token keyword">implements</span> <span class="token class-name">Interceptor</span> <span class="token punctuation">{</span>
@@ -1149,8 +1020,6 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <blockquote>
 <p>@Intercepts标记了这是一个Interceptor，然后在@Intercepts中定义了一个@Signature，即一个拦截点。@Signature定义了该Interceptor将拦截Executor接口中参数类型为MappedStatement、Object、RowBounds和ResultHandler的query方法；<br><img src="/2020/11/28/note/1.png" alt></p>
 </blockquote>
-</li>
-</ul>
 <h2 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h2><ul>
 <li>不要想当然，凭主观判断别人写的方法，调用别人的方法的时候点进去看一看是否满足自己的需求。</li>
 <li>仔细检查！！！ 做事情要有理有据，不要马虎！！！</li>
@@ -1159,14 +1028,27 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <li>对象调用方法前，记得考虑一下是否为空！</li>
 <li>if-else语句中有重复的语句，提取出来放置if-else之外！</li>
 <li>熟悉一块业务功能不能只看代码，应该还要去熟悉流程，数据库。</li>
+<li>永远不要相信前端传过来的参数是可靠，处于安全考虑，后端必须进行必要的参数校验。</li>
 </ul>
 <h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><ul>
-<li>push代码时确保push到的远程分支是自己新建的一个分支，千万不要push到主分支中！！！有的项目可能没有设置权限，提交的代码就直接合并到主分支中参与构建了，最终导致构建失败！</li>
-<li>push大量改动时，将改动拆分push，push前检查改动，以最小改动为基准，能添加尽量不要删除，一般情况不要合并其他环境的版本到当前环境的版本，dubbo cache不要勾选！</li>
-<li>确保本地编译成功再提交，pom文件的依赖不能随便加，但是要导的包一定记得导，导不进来的二方接口是别人的代码还没合，包还没构建的原因。</li>
-<li>提交前merge同一环境下的目标分支到自己本地的分支，不要与fetch更新自己远程的分支到本地分支弄混淆。</li>
-<li>Git Log查看git操作的日志。</li>
-<li>Undo Commit 撤销commit。</li>
+<li><p>push代码时确保push到的远程分支是自己新建的一个分支，千万不要push到主分支中！！！有的项目可能没有设置权限，提交的代码就直接合并到主分支中参与构建了，最终导致构建失败！</p>
+</li>
+<li><p>push大量改动时，将改动拆分push，push前检查改动，以最小改动为基准，能添加尽量不要删除，一般情况不要合并其他环境的版本到当前环境的版本，dubbo cache不要勾选！</p>
+</li>
+<li><p>确保本地编译成功再提交，pom文件的依赖不能随便加，但是要导的包一定记得导，导不进来的二方接口是别人的代码还没合，包还没构建的原因。</p>
+</li>
+<li><p>提交前merge同一环境下的目标分支到自己本地的分支，不要与fetch更新自己远程的分支到本地分支弄混淆。</p>
+</li>
+<li><p>Git Log查看git操作的日志。</p>
+</li>
+<li><p>Undo Commit 撤销commit。</p>
+</li>
+<li><p>git pull强制覆盖：</p>
+<p><code>git fetch origin master</code>  先把远程仓库最新状态拉到本地（以master为例）；</p>
+<p><code>git reset --hard origin/master</code>  将本地仓库重置到远程仓库最新状态（本地将被覆盖）。</p>
+<p>或者如果你在其他分支上：<code>git reset --hard origin/&lt;branch_name&gt;</code></p>
+<p><code>git pull</code></p>
+</li>
 </ul>
 <h2 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h2><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@SpringBootTest</span>
 <span class="token keyword">class</span> <span class="token class-name">TestApplicationTests</span> <span class="token punctuation">{</span>
@@ -1302,7 +1184,33 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
       System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>StringUtils<span class="token punctuation">.</span><span class="token function">isNumeric</span><span class="token punctuation">(</span><span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// false</span>
    <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
-<h2 id="业务"><a href="#业务" class="headerlink" title="业务"></a>业务</h2><h3 id="入库管理"><a href="#入库管理" class="headerlink" title="入库管理"></a>入库管理</h3><p>入库申请—-&gt;确认入库—-&gt;生成入库单—-&gt;入库</p>
+<h2 id="业务"><a href="#业务" class="headerlink" title="业务"></a>业务</h2><ul>
+<li><p>在实际开发中，添加和更新功能可以写在一起，添加时前端不传id，更新时前端传id。</p>
+</li>
+<li><p>对前端传过来的json通过@RequestBody转换为JavaBean后进行非空判断</p>
+<ul>
+<li>经过@RequestyBody封装的javaBean一定不为null，只需进行非空判断，或者对其属性进行非空判断</li>
+<li>一些必须传的数据可使用断言判断，截断流程</li>
+<li>if判断，在保证不阻断业务流程下使用</li>
+<li>集合元素进行forEach遍历之前，必须进行非空判断<code>CollectionUtils.isEmpty(collection)</code></li>
+</ul>
+</li>
+<li><p>修改密码的逻辑</p>
+<ul>
+<li>在根据原密码修改密码，验证原密码，验证密码时需要对原密码进行加密再与数据库中的密码进行比较：</li>
+</ul>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 传入参数：旧密码oldPassword、新密码newPassword、用户id userId </span>
+String digestOldPassword <span class="token operator">=</span> DigestUtils<span class="token punctuation">.</span><span class="token function">md5DigestAsHex</span><span class="token punctuation">(</span>oldPassword<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>digestOldPassword<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>user<span class="token punctuation">.</span><span class="token function">getPassword</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">new</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">(</span><span class="token string">"输入的原密码错误！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// 密码强度校验......</span>
+<span class="token comment" spellcheck="true">// 对新密码进行加密</span>
+String digestNewPassword <span class="token operator">=</span> DigestUtils<span class="token punctuation">.</span><span class="token function">md5DigestAsHex</span><span class="token punctuation">(</span>newPassword<span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 更新密码到数据库</span></code></pre>
+</li>
+</ul>
+<h3 id="入库管理"><a href="#入库管理" class="headerlink" title="入库管理"></a>入库管理</h3><p>入库申请—-&gt;确认入库—-&gt;生成入库单—-&gt;入库</p>
 <p><strong>入库申请单管理</strong>：</p>
 <p>1、新建入库申请单：</p>
 <p>添加入库类型（采购、调拨、退货）、货主（选择或添加货主）、供应商（选择或添加供应商）、申请入库日期、备注、添加入库产品  —&gt;提交入库申请</p>
@@ -1330,104 +1238,124 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 </blockquote>
 <h3 id="货主与贸易伙伴"><a href="#货主与贸易伙伴" class="headerlink" title="货主与贸易伙伴"></a>货主与贸易伙伴</h3><p>货主：仓库中商品的归属者，商品的归属信息需要与对应的货主绑定。本系统中货主分为合作商和入驻商。<br>合作商:大商或者合作企业在平台上销售产品;（万达）<br>入驻商:经销商入驻销售平台，在平台上开店并且销售自己的产品。依次点击系统设置/基础信息管理/货主管理，可以新建货主信息。（在万达里面租地方买东西的商家）</p>
 <p>贸易伙伴：业务运行时涉及到的合作伙伴，系统中分为供应商、经销商、快递公司三种。<br>供应商：为仓库中的货主供应商品的商家；<br>经销商：指负责销售仓库中的货主商品的商家；<br>快递公司：提供运输商品到指定地址或客户的公司。依次点击系统设置/基础信息管理/贸易伙伴管理，可以新建贸易伙伴信息。</p>
-<h3 id="产品信息"><a href="#产品信息" class="headerlink" title="产品信息"></a>产品信息</h3><p>产品信息是商品的组成单位，产品sku是<strong>销售的基本单位</strong>（规格+货主）。</p>
-<h2 id="单据冲销"><a href="#单据冲销" class="headerlink" title="单据冲销"></a>单据冲销</h2><ul>
-<li>1、<strong>销售出库单冲销</strong></li>
-</ul>
 </li>
 </ul>
-<p>  对wms手工创建的销售出库单做冲销，产生对应的<strong>销售退货入库单</strong>，类型是冲销。</p>
+<h3 id="产品信息"><a href="#产品信息" class="headerlink" title="产品信息"></a>产品信息</h3><p>产品信息是商品的组成单位，产品sku是<strong>销售的基本单位</strong>（规格+货主）。</p>
+<h3 id="单据冲销"><a href="#单据冲销" class="headerlink" title="单据冲销"></a>单据冲销</h3><ul>
+<li>1、<strong>销售出库单冲销</strong></li>
+</ul>
+<p>对wms手工创建的销售出库单做冲销，产生对应的<strong>销售退货入库单</strong>，类型是冲销。</p>
 <ul>
 <li>2、<strong>销售退货入库单冲销</strong></li>
 </ul>
-<p>  对销售退货入库单做冲销，产生对应的<strong>销售退货出库单</strong>，类型是冲销</p>
+<p>对销售退货入库单做冲销，产生对应的<strong>销售退货出库单</strong>，类型是冲销</p>
 <ul>
 <li>3、<strong>采购入库单冲销</strong></li>
 </ul>
-<p>  对采购入库单做冲销，产生对应的<strong>采购退货出库单</strong>，类型是冲销</p>
+<p>对采购入库单做冲销，产生对应的<strong>采购退货出库单</strong>，类型是冲销</p>
 <ul>
 <li>4、<strong>采购退货出库单冲销</strong></li>
 </ul>
-<p>  对采购退货出库单做冲销，产生对应的<strong>采购退货入库单</strong>，类型是冲销</p>
+<p>对采购退货出库单做冲销，产生对应的<strong>采购退货入库单</strong>，类型是冲销</p>
 <ul>
 <li>5、<strong>其他入库单冲销</strong></li>
 </ul>
-<p>  对其他入库单做冲销，产生对应的<strong>其他出库单</strong>，类型是冲销</p>
+<p>对其他入库单做冲销，产生对应的<strong>其他出库单</strong>，类型是冲销</p>
 <ul>
 <li>6、<strong>其他出库单冲销</strong></li>
 </ul>
-<p>  对其他出库单做冲销，产生对应的<strong>其他入库单</strong>，类型是冲销</p>
-<p>  wms接口：</p>
+<p>对其他出库单做冲销，产生对应的<strong>其他入库单</strong>，类型是冲销</p>
+<p>wms接口：</p>
 <ul>
-<li><p>冲销单据审核</p>
-<ul>
+<li>冲销单据审核<ul>
 <li>冲销单列表：根据输入条件进行分页查询</li>
 <li>批量审核</li>
 <li>审核</li>
 <li>详情</li>
 </ul>
-<p>枚举类：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">enum</span> ChargeOffStateEnum <span class="token punctuation">{</span>
-  <span class="token comment" spellcheck="true">/**
-   * 审核中
-   */</span>
-  <span class="token function">WAIT_AUTID</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">byte</span><span class="token punctuation">)</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"审核中"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-  <span class="token comment" spellcheck="true">/**
-   * 已审核
-   */</span>
-  <span class="token function">CANCEL</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">byte</span><span class="token punctuation">)</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">"已取消"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-  <span class="token comment" spellcheck="true">/**
-   * 已取消
-   */</span>
-  <span class="token function">COMPLETE</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">byte</span><span class="token punctuation">)</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token string">"已完成"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-  <span class="token function">ChargeOffStateEnum</span><span class="token punctuation">(</span>Byte value<span class="token punctuation">,</span> String name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
-      <span class="token keyword">this</span><span class="token punctuation">.</span>value <span class="token operator">=</span> value<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-
-  <span class="token keyword">private</span> Byte value<span class="token punctuation">;</span>
-  <span class="token keyword">private</span> String name<span class="token punctuation">;</span>
-
-  <span class="token keyword">public</span> Byte <span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token keyword">return</span> value<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-
-  <span class="token keyword">public</span> String <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token keyword">return</span> name<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-
-</code></pre>
 </li>
 </ul>
-<pre><code>  public static ChargeOffStateEnum getChargeOffStateEnum(Byte value) {
-      if (value == null) {
-          return null;
-      }
-      ChargeOffStateEnum[] stateEnums = ChargeOffStateEnum.values();
-      for (ChargeOffStateEnum stateEnum : stateEnums) {
-          if (value.equals(stateEnum.getValue())) {
-              return stateEnum;
-          }
-      }
-      return null;
-  }</code></pre><p>  }</p>
-<pre><code>
-  网关层service更改冲销单状态，微服务层bl校验是否修改成功，然后再进行后续操作
+<p>枚举类：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">enum</span> ChargeOffStateEnum <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">/**
+     * 审核中
+     */</span>
+    <span class="token function">WAIT_AUTID</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">byte</span><span class="token punctuation">)</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"审核中"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token comment" spellcheck="true">/**
+     * 已审核
+     */</span>
+    <span class="token function">CANCEL</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">byte</span><span class="token punctuation">)</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">"已取消"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token comment" spellcheck="true">/**
+     * 已取消
+     */</span>
+    <span class="token function">COMPLETE</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">byte</span><span class="token punctuation">)</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token string">"已完成"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-  ## 调拨单
+    <span class="token function">ChargeOffStateEnum</span><span class="token punctuation">(</span>Byte value<span class="token punctuation">,</span> String name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>value <span class="token operator">=</span> value<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-  从其他仓库调货入库。走城际配送流程。
+    <span class="token keyword">private</span> Byte value<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> String name<span class="token punctuation">;</span>
 
-## bug处理
+    <span class="token keyword">public</span> Byte <span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> value<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-![](note/image-20201127180423777.png)
+    <span class="token keyword">public</span> String <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-![](note/image-20201127181032477.png)
+    <span class="token keyword">public</span> <span class="token keyword">static</span> ChargeOffStateEnum <span class="token function">getChargeOffStateEnum</span><span class="token punctuation">(</span>Byte value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>value <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        ChargeOffStateEnum<span class="token punctuation">[</span><span class="token punctuation">]</span> stateEnums <span class="token operator">=</span> ChargeOffStateEnum<span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>ChargeOffStateEnum stateEnum <span class="token operator">:</span> stateEnums<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>value<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>stateEnum<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> stateEnum<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>网关层service更改冲销单状态，微服务层bl校验是否修改成功，然后再进行后续操作</p>
+<h3 id="异常单据监控"><a href="#异常单据监控" class="headerlink" title="异常单据监控"></a>异常单据监控</h3><p>调拨单、内配单会出现一方已经处理，但另一方迟迟不完成，或无法完成的情况，在系统中会积累很多问题单据，<strong>产生不受监控的在途库存</strong>，需要提供一个功能来处理这种异常单据。</p>
+<blockquote>
+<p>调拨单 OrderType</p>
+</blockquote>
+<p>异常条件：</p>
+<p>调拨出库单已出库未完成超过参数设置的天数，或者调拨出库单已完成但对应的调拨入库单未完成，并且超过参数设置的天数</p>
+<p>异常认定：调出仓、调入仓、司机；原因</p>
+<p>处理方式：</p>
+<p>1、退回出库方：取消调拨单，库存返回出库仓</p>
+<p>2、入库方入库：完成调拨出库单和调拨入库单</p>
+<p>3、其他出库：出库方取消调拨出库，转为其他出库</p>
+<p>4、破损出库：取消调拨出库，转为破损出库</p>
+<blockquote>
+<p>内配单（AllotType==8||9）</p>
+</blockquote>
+<p>异常条件：</p>
+<p>内配单已出库未完成，并且超过参数设置的天数（可与调拨单共用一个参数）</p>
+<p>异常认定：调出仓、调入仓、司机；原因</p>
+<p>处理方式：</p>
+<p>1、退回发出方：取消内配单，库存返回出库仓</p>
+<p>2、收入方入库：完成内配单，库存加到入库仓</p>
+<p>3、其他出库：取消内配单，转为其他出库</p>
+<p>4、破损出库：取消内配单，转为破损出库</p>
+<blockquote>
+<p> 销售订单（销售订单：orderType==0 仅针对久批订单：BusinessType==1||2）</p>
+</blockquote>
+<p>异常条件：</p>
+<p>销售订单已出库未完成，并且超过参数设置的天数（包含仓库配送、第三方快递）</p>
+<p>异常认定：仓库、司机、客户</p>
+<p>处理方式：</p>
+<p>1、其他出库：取消销售订单，转为其他出库</p>
+<p>2、破损出库：取消销售订单，转为破损出库</p>
+<h2 id="bug处理"><a href="#bug处理" class="headerlink" title="bug处理"></a>bug处理</h2><p><img src="/2020/11/28/note/image-20201127180423777.png" alt></p>
+<p><img src="/2020/11/28/note/image-20201127181032477.png" alt></p>
+<p><img src="/2020/11/28/note/image-20201127181317227.png" alt></p>
 
-![](note/image-20201127181317227.png)
-
-</code></pre>
             </div>
             <hr/>
 
@@ -1533,48 +1461,46 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/11/28/note/">
+                <a href="/2020/12/23/elasticSearch/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="实习笔记">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="ElasticSearch基础知识">
                         
-                        <span class="card-title">实习笔记</span>
+                        <span class="card-title">ElasticSearch基础知识</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            记录自己在实习中学习的知识，以及在实习中的反思
+                            ElasticSearch的介绍和常用的crud操作
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-28
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-23
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-category">
-                                    实习笔记
+                            <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="post-category">
+                                    中间件
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-                        <span class="chip bg-color">实习笔记</span>
+                    <a href="/tags/ElasticSearch/">
+                        <span class="chip bg-color">ElasticSearch</span>
                     </a>
                     
                 </div>
@@ -1813,7 +1739,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">143.1k</span>&nbsp;字
+                class="white-color">144.7k</span>&nbsp;字
             
             
             
