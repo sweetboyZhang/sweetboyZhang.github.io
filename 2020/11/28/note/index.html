@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="实习笔记, sweetboyZhang&#39;s Blog">
+    <meta name="keywords" content="实习笔记1, sweetboyZhang&#39;s Blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>实习笔记 | sweetboyZhang&#39;s Blog</title>
+    <title>实习笔记1 | sweetboyZhang&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -201,12 +201,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">实习笔记</h1>
+                    <h1 class="description center-align post-title">实习笔记1</h1>
                 </div>
             </div>
         </div>
@@ -355,21 +355,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-12-26
+                    2021-02-11
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    6.7k
+                    5.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    28 分
+                    24 分
                 </div>
                 
 
@@ -1026,9 +1026,17 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <li>不要过分地参照原来的代码，它有可能也不规范！</li>
 <li>字段的意义？内部业务逻辑？多问写该代码的同事！</li>
 <li>对象调用方法前，记得考虑一下是否为空！</li>
-<li>if-else语句中有重复的语句，提取出来放置if-else之外！</li>
+<li><code>if-else</code>语句中有重复的语句，提取出来放置<code>if-else</code>之外！</li>
+<li><code>if</code>里面有<code>if</code>，考虑合并判断条件？</li>
 <li>熟悉一块业务功能不能只看代码，应该还要去熟悉流程，数据库。</li>
 <li>永远不要相信前端传过来的参数是可靠，处于安全考虑，后端必须进行必要的参数校验。</li>
+<li>对象只有在需要时才创建，不要提前创建，避免浪费内存。</li>
+<li>最好使用空对象代替<code>null</code>返回给前端。</li>
+<li>删除、修改单个属性为一个常量时，前端传递一个<em>id</em>就可以了，不用传递整个实体对象。</li>
+<li>对象调用方法时，注意判空！</li>
+<li>方法（动词+名词）和变量（boolean类型 ：is+形容词）做到见名知意。</li>
+<li><em>mapper</em>文件里面的<em>sql</em>尽量不要写死，使用接口传递常量值。</li>
+<li>一个方法中不同的功能模块用空行隔开。</li>
 </ul>
 <h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><ul>
 <li><p>push代码时确保push到的远程分支是自己新建的一个分支，千万不要push到主分支中！！！有的项目可能没有设置权限，提交的代码就直接合并到主分支中参与构建了，最终导致构建失败！</p>
@@ -1209,73 +1217,9 @@ String digestOldPassword <span class="token operator">=</span> DigestUtils<span 
 String digestNewPassword <span class="token operator">=</span> DigestUtils<span class="token punctuation">.</span><span class="token function">md5DigestAsHex</span><span class="token punctuation">(</span>newPassword<span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment" spellcheck="true">// 更新密码到数据库</span></code></pre>
 </li>
-</ul>
-<h3 id="入库管理"><a href="#入库管理" class="headerlink" title="入库管理"></a>入库管理</h3><p>入库申请—-&gt;确认入库—-&gt;生成入库单—-&gt;入库</p>
-<p><strong>入库申请单管理</strong>：</p>
-<p>1、新建入库申请单：</p>
-<p>添加入库类型（采购、调拨、退货）、货主（选择或添加货主）、供应商（选择或添加供应商）、申请入库日期、备注、添加入库产品  —&gt;提交入库申请</p>
-<p>2、新建入库申请之后，生成入库申请单，查询入库申请单，状态显示待入库</p>
-<p>3、确认入库，根据入库数量，入库申请单显示已入库或部分入库，同时生成入库单(每次确认入库都会生成入库单，分多次部分入库就会生成多次入库单)</p>
-<p><strong>入库单管理：</strong></p>
-<p>确认入库后，生成入库单，入库单显示已入库</p>
-<h3 id="出库管理"><a href="#出库管理" class="headerlink" title="出库管理"></a>出库管理</h3><p>添加出库单—-&gt;选择拣货方式—-&gt;出库</p>
-<p><strong>出库单管理：</strong></p>
-<p>1、新增出库单—&gt;创建订单，生成出库单，并生成待出库订单，待调度订单</p>
-<p><strong>波次管理：</strong></p>
-<p><strong>待出库订单：</strong>初始状态为待调度</p>
-<p>2、选择拣货方式：</p>
-<ul>
-<li><p>扫单出库</p>
-</li>
-<li><p>按订单拣货—&gt;订单状态变为待拣货状态，并生成拣货任务、波次</p>
-<p><strong>完成拣货：</strong>输入拣货任务编号，出库位、拣货员 —–&gt;完成拣货，出库单、待出库订单状态修改为已拣货</p>
-<p><strong>波次列表：</strong>确认出库，波次列表、出库单、待出库订单状态修改为已出库</p>
-</li>
-<li><p>按波次拣货：订单状态变为待拣货状态，生成拣货任务和波次</p>
-<p><strong>完成拣货</strong>——-&gt;在<strong>波次列表</strong>中确认出库</p>
-<blockquote>
-<p>波次：主要是将不同的订单按照某种标准合并为一个波次，指导一次拣货，更通俗的讲，波次拣货就是对订单进行分类拣货</p>
-</blockquote>
-<h3 id="货主与贸易伙伴"><a href="#货主与贸易伙伴" class="headerlink" title="货主与贸易伙伴"></a>货主与贸易伙伴</h3><p>货主：仓库中商品的归属者，商品的归属信息需要与对应的货主绑定。本系统中货主分为合作商和入驻商。<br>合作商:大商或者合作企业在平台上销售产品;（万达）<br>入驻商:经销商入驻销售平台，在平台上开店并且销售自己的产品。依次点击系统设置/基础信息管理/货主管理，可以新建货主信息。（在万达里面租地方买东西的商家）</p>
-<p>贸易伙伴：业务运行时涉及到的合作伙伴，系统中分为供应商、经销商、快递公司三种。<br>供应商：为仓库中的货主供应商品的商家；<br>经销商：指负责销售仓库中的货主商品的商家；<br>快递公司：提供运输商品到指定地址或客户的公司。依次点击系统设置/基础信息管理/贸易伙伴管理，可以新建贸易伙伴信息。</p>
+<li><p>枚举类的使用</p>
 </li>
 </ul>
-<h3 id="产品信息"><a href="#产品信息" class="headerlink" title="产品信息"></a>产品信息</h3><p>产品信息是商品的组成单位，产品sku是<strong>销售的基本单位</strong>（规格+货主）。</p>
-<h3 id="单据冲销"><a href="#单据冲销" class="headerlink" title="单据冲销"></a>单据冲销</h3><ul>
-<li>1、<strong>销售出库单冲销</strong></li>
-</ul>
-<p>对wms手工创建的销售出库单做冲销，产生对应的<strong>销售退货入库单</strong>，类型是冲销。</p>
-<ul>
-<li>2、<strong>销售退货入库单冲销</strong></li>
-</ul>
-<p>对销售退货入库单做冲销，产生对应的<strong>销售退货出库单</strong>，类型是冲销</p>
-<ul>
-<li>3、<strong>采购入库单冲销</strong></li>
-</ul>
-<p>对采购入库单做冲销，产生对应的<strong>采购退货出库单</strong>，类型是冲销</p>
-<ul>
-<li>4、<strong>采购退货出库单冲销</strong></li>
-</ul>
-<p>对采购退货出库单做冲销，产生对应的<strong>采购退货入库单</strong>，类型是冲销</p>
-<ul>
-<li>5、<strong>其他入库单冲销</strong></li>
-</ul>
-<p>对其他入库单做冲销，产生对应的<strong>其他出库单</strong>，类型是冲销</p>
-<ul>
-<li>6、<strong>其他出库单冲销</strong></li>
-</ul>
-<p>对其他出库单做冲销，产生对应的<strong>其他入库单</strong>，类型是冲销</p>
-<p>wms接口：</p>
-<ul>
-<li>冲销单据审核<ul>
-<li>冲销单列表：根据输入条件进行分页查询</li>
-<li>批量审核</li>
-<li>审核</li>
-<li>详情</li>
-</ul>
-</li>
-</ul>
-<p>枚举类：</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">enum</span> ChargeOffStateEnum <span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">/**
      * 审核中
@@ -1319,40 +1263,7 @@ String digestNewPassword <span class="token operator">=</span> DigestUtils<span 
         <span class="token keyword">return</span> null<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
-<p>网关层service更改冲销单状态，微服务层bl校验是否修改成功，然后再进行后续操作</p>
-<h3 id="异常单据监控"><a href="#异常单据监控" class="headerlink" title="异常单据监控"></a>异常单据监控</h3><p>调拨单、内配单会出现一方已经处理，但另一方迟迟不完成，或无法完成的情况，在系统中会积累很多问题单据，<strong>产生不受监控的在途库存</strong>，需要提供一个功能来处理这种异常单据。</p>
-<blockquote>
-<p>调拨单 OrderType</p>
-</blockquote>
-<p>异常条件：</p>
-<p>调拨出库单已出库未完成超过参数设置的天数，或者调拨出库单已完成但对应的调拨入库单未完成，并且超过参数设置的天数</p>
-<p>异常认定：调出仓、调入仓、司机；原因</p>
-<p>处理方式：</p>
-<p>1、退回出库方：取消调拨单，库存返回出库仓</p>
-<p>2、入库方入库：完成调拨出库单和调拨入库单</p>
-<p>3、其他出库：出库方取消调拨出库，转为其他出库</p>
-<p>4、破损出库：取消调拨出库，转为破损出库</p>
-<blockquote>
-<p>内配单（AllotType==8||9）</p>
-</blockquote>
-<p>异常条件：</p>
-<p>内配单已出库未完成，并且超过参数设置的天数（可与调拨单共用一个参数）</p>
-<p>异常认定：调出仓、调入仓、司机；原因</p>
-<p>处理方式：</p>
-<p>1、退回发出方：取消内配单，库存返回出库仓</p>
-<p>2、收入方入库：完成内配单，库存加到入库仓</p>
-<p>3、其他出库：取消内配单，转为其他出库</p>
-<p>4、破损出库：取消内配单，转为破损出库</p>
-<blockquote>
-<p> 销售订单（销售订单：orderType==0 仅针对久批订单：BusinessType==1||2）</p>
-</blockquote>
-<p>异常条件：</p>
-<p>销售订单已出库未完成，并且超过参数设置的天数（包含仓库配送、第三方快递）</p>
-<p>异常认定：仓库、司机、客户</p>
-<p>处理方式：</p>
-<p>1、其他出库：取消销售订单，转为其他出库</p>
-<p>2、破损出库：取消销售订单，转为破损出库</p>
-<h2 id="bug处理"><a href="#bug处理" class="headerlink" title="bug处理"></a>bug处理</h2><p><img src="/2020/11/28/note/image-20201127180423777.png" alt></p>
+<h2 id="bug处理"><a href="#bug处理" class="headerlink" title="bug处理"></a>bug处理</h2><p>定位bug：<br><img src="/2020/11/28/note/image-20201127180423777.png" alt></p>
 <p><img src="/2020/11/28/note/image-20201127181032477.png" alt></p>
 <p><img src="/2020/11/28/note/image-20201127181317227.png" alt></p>
 
@@ -1739,7 +1650,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">145.8k</span>&nbsp;字
+                class="white-color">145.9k</span>&nbsp;字
             
             
             
@@ -1876,6 +1787,6 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"left","width":200,"height":400},"mobile":{"show":true},"react":{"opacity":0.6}});</script></body>
 
 </html>

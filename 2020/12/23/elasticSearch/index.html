@@ -355,14 +355,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-12-27
+                    2021-02-11
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    903
+                    902
                 </div>
                 
 
@@ -390,7 +390,7 @@ http.cors.allow-origin: "*"</code></pre>
 <p>下载或在Google Chrome中添加ElasticSearch Head 插件，用于连接ElasticSearch搜索引擎，并提供可视化的操作页面对ElasticSearch搜索引擎进行各种设置和数据检索功能的管理。<br>启动ElasticSearch后，进行连接测试：<br><img src="/2020/12/23/elasticSearch/1.png" alt></p>
 <h2 id="ElasticSearch核心概念"><a href="#ElasticSearch核心概念" class="headerlink" title="ElasticSearch核心概念"></a>ElasticSearch核心概念</h2><p>elasticsearch是面向文档的。<br><strong>indices索引</strong>类似于关系型数据库中的<strong>数据库</strong>，默认将索引划分为多个分片，每个分片可以在集群中的不同的服务器之间进行迁移；一个分片就是一个Lucene索引，一个包含<strong>倒排索引</strong>的文件目录，有利于全文搜索。<br><strong>document文档</strong>类似于关系型数据库中的<strong>行</strong>，索引和搜索的基本单位就是文档，就是一条条json数据；<br><strong>fields</strong>类似于关系型数据库中的<strong>字段</strong>；<br>type类似于数据库中的表 （慢慢被废弃）。</p>
 <h2 id="ELK的简介"><a href="#ELK的简介" class="headerlink" title="ELK的简介"></a>ELK的简介</h2><p>ELK是ElasticSearch、Logstash、Kiban三大开源框架的简称，一般用于日志的分析和收集等场景。<br>ElasticSearch是基于Lucene的分布式搜索引擎。<br>Logstash是ELK的中央数据流引擎，用于从不同目标（文件、MQ）中收集不同格式数据，经过过滤后输出到目的地（文件、MQ、reids、elasticsearch等）。<br>Kibana可将ElasticSearch中的数据进行友好的展示，并提供实时的分析功能。</p>
-<h2 id="Kibana的安装启动"><a href="#Kibana的安装启动" class="headerlink" title="Kibana的安装启动"></a>Kibana的安装启动</h2><p>启动ElasticSearch后，再启动Kibanna后访问``<a href="http://localhost:5601`">http://localhost:5601`</a></p>
+<h2 id="Kibana的安装启动"><a href="#Kibana的安装启动" class="headerlink" title="Kibana的安装启动"></a>Kibana的安装启动</h2><p>启动ElasticSearch后，再启动Kibanna后访问<code>http://localhost:5601</code></p>
 <h2 id="安装IK分词器"><a href="#安装IK分词器" class="headerlink" title="安装IK分词器"></a>安装IK分词器</h2><p>下载完成后解压到elasticsearch的plugins目录下即可。</p>
 <p>在kibana的控制台进行测试：</p>
 <blockquote>
@@ -667,15 +667,15 @@ http.cors.allow-origin: "*"</code></pre>
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="实习笔记">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="实习笔记1">
                         
-                        <span class="card-title">实习笔记</span>
+                        <span class="card-title">实习笔记1</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            记录自己在实习中学习的知识，以及在实习中的反思
+                            记录自己在实习中学习的知识和反思
                         
                     </div>
                     <div class="publish-info">
@@ -888,7 +888,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">145.8k</span>&nbsp;字
+                class="white-color">145.9k</span>&nbsp;字
             
             
             
@@ -1025,6 +1025,6 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"left","width":200,"height":400},"mobile":{"show":true},"react":{"opacity":0.6}});</script></body>
 
 </html>
