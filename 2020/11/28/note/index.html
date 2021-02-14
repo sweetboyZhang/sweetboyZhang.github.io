@@ -355,21 +355,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-02-11
+                    2021-02-13
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5.3k
+                    5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    24 分
+                    22 分
                 </div>
                 
 
@@ -964,62 +964,10 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
         pager<span class="token punctuation">.</span><span class="token function">setTotalPage</span><span class="token punctuation">(</span><span class="token function">getPages</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> pager<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-
 <span class="token punctuation">}</span></code></pre>
 <p>并结合PageHelper实现分页，PageHelper分页的实现原理就是，通过PageHelper内部的拦截器在我们执行SQL语句之前动态的将SQL语句拼接了分页的语句。</p>
 <p>配置好PageHelper后，在每次查询前设置Page参数即可完成分页：</p>
 <pre class=" language-java"><code class="language-java">PageHelper<span class="token punctuation">.</span><span class="token function">startPage</span><span class="token punctuation">(</span>queryDTO<span class="token punctuation">.</span><span class="token function">getCurrentPage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> queryDTO<span class="token punctuation">.</span><span class="token function">getPageSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p><strong>或者自定义一个拦截器实现mybatis的Interceptor接口，不用每次查询前都要进行startPage():</strong></p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Componnent</span> <span class="token comment" spellcheck="true">// 还可以在mybatis配置文件中配置&lt;pulgin interceptor="">&lt;/pulgin>,或者编写@Configuration配置类两种方式配置自定义的mybatis拦截器</span>
-<span class="token annotation punctuation">@Intercepts</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Signature</span><span class="token punctuation">(</span>type <span class="token operator">=</span> Executor<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> method <span class="token operator">=</span> <span class="token string">"query"</span><span class="token punctuation">,</span> args <span class="token operator">=</span> <span class="token punctuation">{</span>MappedStatement<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> Object<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> RowBounds<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> ResultHandler<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PageResultEnhancer</span> <span class="token keyword">implements</span> <span class="token class-name">Interceptor</span> <span class="token punctuation">{</span>
-
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> Object <span class="token function">intercept</span><span class="token punctuation">(</span>Invocation invocation<span class="token punctuation">)</span> <span class="token keyword">throws</span> Throwable <span class="token punctuation">{</span>
-        <span class="token keyword">final</span> Object result <span class="token operator">=</span> invocation<span class="token punctuation">.</span><span class="token function">proceed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>result <span class="token keyword">instanceof</span> <span class="token class-name">Page</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">final</span> Page page <span class="token operator">=</span> <span class="token punctuation">(</span>Page<span class="token punctuation">)</span> result<span class="token punctuation">;</span>
-            <span class="token keyword">final</span> PageResult pageResult <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PageResult</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            pageResult<span class="token punctuation">.</span><span class="token function">addAll</span><span class="token punctuation">(</span>page<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            pageResult<span class="token punctuation">.</span><span class="token function">setPageNum</span><span class="token punctuation">(</span>page<span class="token punctuation">.</span><span class="token function">getPageNum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            pageResult<span class="token punctuation">.</span><span class="token function">setPageSize</span><span class="token punctuation">(</span>page<span class="token punctuation">.</span><span class="token function">getPageSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            pageResult<span class="token punctuation">.</span><span class="token function">setStartRow</span><span class="token punctuation">(</span>page<span class="token punctuation">.</span><span class="token function">getStartRow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            pageResult<span class="token punctuation">.</span><span class="token function">setEndRow</span><span class="token punctuation">(</span>page<span class="token punctuation">.</span><span class="token function">getEndRow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            pageResult<span class="token punctuation">.</span><span class="token function">setTotal</span><span class="token punctuation">(</span>page<span class="token punctuation">.</span><span class="token function">getTotal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            pageResult<span class="token punctuation">.</span><span class="token function">setPages</span><span class="token punctuation">(</span>page<span class="token punctuation">.</span><span class="token function">getPages</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            pageResult<span class="token punctuation">.</span><span class="token function">setCount</span><span class="token punctuation">(</span>page<span class="token punctuation">.</span><span class="token function">isCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            pageResult<span class="token punctuation">.</span><span class="token function">setCountSignal</span><span class="token punctuation">(</span>page<span class="token punctuation">.</span><span class="token function">getCountSignal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            pageResult<span class="token punctuation">.</span><span class="token function">setOrderBy</span><span class="token punctuation">(</span>page<span class="token punctuation">.</span><span class="token function">getOrderBy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            pageResult<span class="token punctuation">.</span><span class="token function">setOrderByOnly</span><span class="token punctuation">(</span>page<span class="token punctuation">.</span><span class="token function">isOrderByOnly</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            pageResult<span class="token punctuation">.</span><span class="token function">setReasonable</span><span class="token punctuation">(</span>page<span class="token punctuation">.</span><span class="token function">getReasonable</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            pageResult<span class="token punctuation">.</span><span class="token function">setPageSizeZero</span><span class="token punctuation">(</span>page<span class="token punctuation">.</span><span class="token function">getPageSizeZero</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">return</span> pageResult<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">return</span> result<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">/**
-     * 只拦截Executor
-     */</span>
-    <span class="token keyword">public</span> Object <span class="token function">plugin</span><span class="token punctuation">(</span>Object target<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>target <span class="token keyword">instanceof</span> <span class="token class-name">Executor</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token comment" spellcheck="true">// wrap():根据当前的Interceptor上面的注解定义哪些接口需要拦截，然后判断当前目标对象是否有实现对应需要拦截的接口，如果没有则返回目标对象本身，如果有则返回一个代理对象。</span>
-            <span class="token keyword">return</span> Plugin<span class="token punctuation">.</span><span class="token function">wrap</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> target<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token comment" spellcheck="true">// Configuration初始化当前的Interceptor时执行</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setProperties</span><span class="token punctuation">(</span>Properties properties<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-
-    <span class="token punctuation">}</span>
-
-<span class="token punctuation">}</span></code></pre>
-<blockquote>
-<p>@Intercepts标记了这是一个Interceptor，然后在@Intercepts中定义了一个@Signature，即一个拦截点。@Signature定义了该Interceptor将拦截Executor接口中参数类型为MappedStatement、Object、RowBounds和ResultHandler的query方法；<br><img src="/2020/11/28/note/1.png" alt></p>
-</blockquote>
 <h2 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h2><ul>
 <li>不要想当然，凭主观判断别人写的方法，调用别人的方法的时候点进去看一看是否满足自己的需求。</li>
 <li>仔细检查！！！ 做事情要有理有据，不要马虎！！！</li>
@@ -1650,7 +1598,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">145.9k</span>&nbsp;字
+                class="white-color">145.6k</span>&nbsp;字
             
             
             
