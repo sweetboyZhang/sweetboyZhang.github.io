@@ -355,21 +355,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-02-11
+                    2021-02-18
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.2k
+                    2.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    9 分
+                    10 分
                 </div>
                 
 
@@ -468,16 +468,16 @@
         <span class="token comment" spellcheck="true">// 返回modelAndView</span>
         <span class="token keyword">return</span> modelAndView<span class="token punctuation">;</span>
     <span class="token punctuation">}</span></code></pre>
-<pre class=" language-jsp"><code class="language-jsp"><%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>show.jsp</title>
-<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
-<body>
-    <p>name：${student.name}</p>
-    <p>age：${student.age}</p>
-</body>
-</html></code></pre>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%@</span> <span class="token attr-name">page</span> <span class="token attr-name">contentType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/html;charset<span class="token punctuation">=</span>UTF-8<span class="token punctuation">"</span></span> <span class="token attr-name">language</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>java<span class="token punctuation">"</span></span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>show.jsp<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>name：${student.name}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>age：${student.age}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></code></pre>
 <h2 id="3、处理器方法的返回值"><a href="#3、处理器方法的返回值" class="headerlink" title="3、处理器方法的返回值"></a>3、处理器方法的返回值</h2><h3 id="1、返回ModelAndView"><a href="#1、返回ModelAndView" class="headerlink" title="1、返回ModelAndView"></a>1、返回ModelAndView</h3><p>处理器方法处理完后，需要跳转到其他资源，并且要在跳转的资源之间传递数据。</p>
 <h3 id="2、返回String"><a href="#2、返回String" class="headerlink" title="2、返回String"></a>2、返回String</h3><p>视图跳转，不传递数据。</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Controller</span>
@@ -503,36 +503,36 @@
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
 <p> step2：引入jquery<br><img src="/2020/06/30/SpringMVC-02/3.png" alt></p>
 <p>step3：发起ajax请求</p>
-<pre class=" language-jsp"><code class="language-jsp"><%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>index.jsp</title>
-    <script type="text/javascript" src="js/jquery-3.4.1.js"></script>
-    <script type="text/javascript">
-        $(function(){
-            $("#btn").click(function(){
-                // alert("button click")
-                $.ajax({
-                    url:"returnVoid-ajax.do",
-                    data:{
-                        name:"zyz",
-                        age:21
-                    },
-                    type:"post",
-                    dataType:"json",
-                    // resp是服务器端返回的json格式的字符串
-                    // jquery会把json字符串转化为json对象，赋值给形参
-                    success:function(resp){
-                        alert("name:"+resp.name+" age:"+resp.age);
-                    }
-                })
-            })
-        })
-    </script>
-</head>
-<body>
-    <button id="btn">发起ajax请求</button>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"left","width":200,"height":400},"mobile":{"show":true},"react":{"opacity":0.6}});</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"left","width":200,"height":400},"mobile":{"show":true},"react":{"opacity":0.6}});</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"left","width":200,"height":400},"mobile":{"show":true},"react":{"opacity":0.6}});</script></body></code></pre>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%@</span> <span class="token attr-name">page</span> <span class="token attr-name">contentType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/html;charset<span class="token punctuation">=</span>UTF-8<span class="token punctuation">"</span></span> <span class="token attr-name">language</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>java<span class="token punctuation">"</span></span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>index.jsp<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>js/jquery-3.4.1.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript">
+        <span class="token function">$</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#btn"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">click</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token comment" spellcheck="true">// alert("button click")</span>
+                $<span class="token punctuation">.</span><span class="token function">ajax</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+                    url<span class="token punctuation">:</span><span class="token string">"returnVoid-ajax.do"</span><span class="token punctuation">,</span>
+                    data<span class="token punctuation">:</span><span class="token punctuation">{</span>
+                        name<span class="token punctuation">:</span><span class="token string">"zyz"</span><span class="token punctuation">,</span>
+                        age<span class="token punctuation">:</span><span class="token number">21</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    type<span class="token punctuation">:</span><span class="token string">"post"</span><span class="token punctuation">,</span>
+                    dataType<span class="token punctuation">:</span><span class="token string">"json"</span><span class="token punctuation">,</span>
+                    <span class="token comment" spellcheck="true">// resp是服务器端返回的json格式的字符串</span>
+                    <span class="token comment" spellcheck="true">// jquery会把json字符串转化为json对象，赋值给形参</span>
+                    success<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>resp<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                        <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"name:"</span><span class="token operator">+</span>resp<span class="token punctuation">.</span>name<span class="token operator">+</span><span class="token string">" age:"</span><span class="token operator">+</span>resp<span class="token punctuation">.</span>age<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>btn<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>发起ajax请求<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span></code></pre>
 <p>step4：响应ajax请求</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"/returnVoid-ajax.do"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doReturnVoidAjax</span><span class="token punctuation">(</span>HttpServletResponse resp<span class="token punctuation">,</span> String name<span class="token punctuation">,</span> Integer age<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
@@ -1053,7 +1053,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">145.6k</span>&nbsp;字
+                class="white-color">146.3k</span>&nbsp;字
             
             
             
