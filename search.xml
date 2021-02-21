@@ -22185,4 +22185,60 @@ $.getJSON(
         <tag>JavaWeb</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Nginx学习笔记</title>
+    <url>/2021/02/21/nginx/</url>
+    <content><![CDATA[<h2 id="Nginx简介"><a href="#Nginx简介" class="headerlink" title="Nginx简介"></a>Nginx简介</h2><p>Nginx是一个高性能的Http和反向代理服务器，特点是占有内存少，并发性能强。</p>
+<h3 id="正向代理与反向代理"><a href="#正向代理与反向代理" class="headerlink" title="正向代理与反向代理"></a>正向代理与反向代理</h3><p><strong>正向代理：</strong>例如用户通过浏览器访问Google，直接访问是访问不到的，我们所使用的科学上网工具访问Google，就是一种正向代理：用户通过科学上网工具访问代理服务器，然后代理服务器去访问Google，将获取到的数据再返回给用户。</p>
+<p><strong>反向代理：</strong>用户通过访问反向代理服务器，由反向代理服务器将请求分发给不同的服务器。用户对真正提供服务的服务器是无感知的，暴露给用户的是反向代理服务器，隐藏了真正提供服务的服务器。</p>
+<h3 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h3><p>随着访问网站访问并发量的增大，可以将原来的单体架构进行拆分，增加多台服务器，在用户访问服务器之前先访问反向代理服务器，由反向代理服务器将多个请求分发到多台服务器上，大大减少了单个服务器的负载压力，也就达到了负载均衡的目的。</p>
+<h3 id="动静分离"><a href="#动静分离" class="headerlink" title="动静分离"></a>动静分离</h3><p>为了加快网站的解析速度，可以把动态页面和静态页面由不同的服务器来解析，加快解析的速度，降低原来单个服务器的压力。</p>
+<h2 id="Windows下安装与启动"><a href="#Windows下安装与启动" class="headerlink" title="Windows下安装与启动"></a>Windows下安装与启动</h2><p>下载完成后直接解压，命令行进入<code>nginx.exe</code>所在的文件路径，使用命令行执行相关命令</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 启动服务</span>
+start nginx
+
+<span class="token comment" spellcheck="true"># 关闭服务</span>
+nginx -s stop
+
+<span class="token comment" spellcheck="true"># 重新加载服务</span>
+nginx -s reload</code></pre>
+<p>启动后直接访问<code>localhost:80</code></p>
+<h2 id="Nginx配置文件"><a href="#Nginx配置文件" class="headerlink" title="Nginx配置文件"></a>Nginx配置文件</h2><blockquote>
+<p>全局块：从配置文件开始到<code>events</code>之间的内容，主要影响<code>nginx</code>服务器整体运行的配置指令</p>
+</blockquote>
+<pre class=" language-markdown"><code class="language-markdown"><span class="token title important"><span class="token punctuation">#</span> 表示可以支持的最大并发量</span>
+worker_processes 1;</code></pre>
+<blockquote>
+<p>events块：主要影响<code>nginx</code>服务器与用户的网络连接</p>
+</blockquote>
+<pre class=" language-markdown"><code class="language-markdown"><span class="token title important"><span class="token punctuation">#</span> 表示支持的最大连接数</span>
+worker_connections 1024;</code></pre>
+<blockquote>
+<p><code>http</code>块：配置最频繁的部分，nginx的主要功能就是在这里配置，包括<code>http</code>全局块和<code>server</code>块</p>
+</blockquote>
+<p><strong>在Nginx上部署前端项目，并通过反向代理的方式，实现跨域</strong></p>
+<pre class=" language-markdown"><code class="language-markdown">server {
+<span class="token code keyword">    # 监听的IP和端口</span>
+<span class="token code keyword">    listen       8080; </span>
+<span class="token code keyword">    server_name  localhost;</span>
+
+<span class="token code keyword">    location / {</span>
+<span class="token code keyword">        # 前端项目，这里直接放在了nginx根目录下面，可以设置为代理服务器</span>
+<span class="token code keyword">        root   wms_front; </span>
+<span class="token code keyword">        index  index.html index.htm;</span>
+<span class="token code keyword">    }</span>
+
+<span class="token code keyword">    location ~ /wms/ {</span>
+<span class="token code keyword">        proxy_pass  http://localhost:8081; # 配置自己后台访问的ip端口或域名</span>
+<span class="token code keyword">    }</span>
+}</code></pre>
+<p>在访问<code>http://localhost:8080</code>时，实际访问的是<code>Nginx</code>根目录下的<code>wms_front/index.html</code>；<br><code>http://localhost:8080/wms/</code>下的所有请求都会转发到<code>http://localhost:8081/wms/</code></p>
+]]></content>
+      <categories>
+        <category>JavaEE</category>
+      </categories>
+      <tags>
+        <tag>Ngnix</tag>
+      </tags>
+  </entry>
 </search>
