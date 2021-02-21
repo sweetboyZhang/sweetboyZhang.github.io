@@ -5343,7 +5343,7 @@ finally{
         my1<span class="token punctuation">.</span><span class="token function">manager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
-<pre><code></code></pre>]]></content>
+]]></content>
       <categories>
         <category>JavaSE</category>
       </categories>
@@ -5737,8 +5737,8 @@ http.cors.allow-origin: "*"</code></pre>
     <title>多线程</title>
     <url>/2020/02/17/java-04/</url>
     <content><![CDATA[<h2 id="程序、进程、线程的概念"><a href="#程序、进程、线程的概念" class="headerlink" title="程序、进程、线程的概念"></a>程序、进程、线程的概念</h2><img src="/2020/02/17/java-04/program,process,thread.png" style="zoom:70%;">
-        __并行：__多个CPU同时执行多个任务。
-        __并发：__一个CPU(采用时间片)”同时“执行多个任务。
+并行：多个CPU同时执行多个任务。
+并发：一个CPU(采用时间片)”同时“执行多个任务。
 
 <h2 id="线程的创建和使用"><a href="#线程的创建和使用" class="headerlink" title="线程的创建和使用"></a>线程的创建和使用</h2><p><strong>创建方式一：继承Thread类</strong></p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 1.创建一个继承于Thread类的子类</span>
@@ -12295,6 +12295,59 @@ PhantomReference pr <span class="token operator">=</span> <span class="token key
 <span class="token keyword">public</span> User <span class="token function">getUser</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
+<h2 id="类型转换抽象类"><a href="#类型转换抽象类" class="headerlink" title="类型转换抽象类"></a>类型转换抽象类</h2><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+ * Description: 转换类基类
+ * @param &lt;M> 待转对象类型
+ * @param &lt;N> 预转对象类型
+ * @date 2016-11-10
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">AbstractConvertor</span><span class="token operator">&lt;</span>M<span class="token punctuation">,</span> N<span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">/**
+     * Description: 单个对象转换
+     * @param m 待转对象
+     * @return 转换后的对象
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">abstract</span> N <span class="token function">convert</span><span class="token punctuation">(</span>M m<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * Description: 单个对象反向转换
+     * @param n 待转对象
+     * @return 转换后的对象
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">abstract</span> M <span class="token function">reverseConvert</span><span class="token punctuation">(</span>N n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * Description: 集合转换
+     * @param mList 待转对象集合
+     * @return 转换后的对象集合
+     */</span>
+    <span class="token keyword">public</span> List<span class="token operator">&lt;</span>N<span class="token operator">></span> <span class="token function">convert</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span>M<span class="token operator">></span> mList<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        List<span class="token operator">&lt;</span>N<span class="token operator">></span> nList <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>mList <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            nList <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>N<span class="token operator">></span><span class="token punctuation">(</span>mList<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span>M m <span class="token operator">:</span> mList<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                nList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token function">convert</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> nList<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * Description: 集合转换
+     * @param mList 待转对象集合
+     * @return 转换后的对象集合
+     */</span>
+    <span class="token keyword">public</span> List<span class="token operator">&lt;</span>M<span class="token operator">></span> <span class="token function">reverseConvert</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span>N<span class="token operator">></span> nList<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        List<span class="token operator">&lt;</span>M<span class="token operator">></span> mList <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>nList <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            mList <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>M<span class="token operator">></span><span class="token punctuation">(</span>nList<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span>N n <span class="token operator">:</span> nList<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                mList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token function">reverseConvert</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> mList<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 ]]></content>
       <categories>
         <category>实习笔记</category>
@@ -17011,126 +17064,6 @@ spring:
       </categories>
       <tags>
         <tag>Redis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Shiro中的权限管理</title>
-    <url>/2020/11/07/shiro/</url>
-    <content><![CDATA[<h2 id="权限管理"><a href="#权限管理" class="headerlink" title="权限管理"></a>权限管理</h2><p>权限的管理包含<strong>身份认证</strong>和<strong>授权</strong>两部分，对于需要访问控制资源的用户需要先通过身份认证，认证通过的用户并且具有该资源的访问权限方可访问。</p>
-<h2 id="Shiro"><a href="#Shiro" class="headerlink" title="Shiro"></a>Shiro</h2><p>Shiro是apache旗下一个开源框架，它将软件系统的安全认证相关的功能抽取出来，实现用户身份认证，权限授权、加密、会话管理等功能，组成了一个通用的安全认证框架。</p>
-<h2 id="Shiro核心架构"><a href="#Shiro核心架构" class="headerlink" title="Shiro核心架构"></a>Shiro核心架构</h2><p><img src="/2020/11/07/shiro/1.png" alt></p>
-<blockquote>
-<p>Subject</p>
-</blockquote>
-<p><code>Subject即主体</code>，外部应用与subject进行交互，subject记录了当前操作用户，将用户的概念理解为当前操作的主体，可能是一个通过浏览器请求的用户，也可能是一个运行的程序。Subject在shiro中是一个接口，接口中定义了很多认证授权相关的方法，外部程序通过subject进行认证授权，而subject是通过SecurityManager安全管理器进行认证授权。</p>
-<blockquote>
-<p>SecurityManager</p>
-</blockquote>
-<p><code>SecurityManager即安全管理器</code>，对全部的subject进行安全管理，它是shiro的核心，负责对所有的subject进行安全管理。通过SecurityManager可以完成subject的认证、授权等，实质上SecurityManager是通过Authenticator进行认证，通过Authorizer进行授权，通过SessionManager进行会话管理等。</p>
-<p><code>SecurityManager是一个接口，继承了Authenticator, Authorizer, SessionManager这三个接口。</code></p>
-<blockquote>
-<p>Authenticator</p>
-</blockquote>
-<p><code>Authenticator即认证器</code>，对用户身份进行认证，Authenticator是一个接口，shiro提供ModularRealmAuthenticator实现类，通过ModularRealmAuthenticator基本上可以满足大多数需求，也可以自定义认证器。</p>
-<blockquote>
-<p>Authorizer</p>
-</blockquote>
-<p><code>Authorizer即授权器</code>，用户通过认证器认证通过，在访问功能时需要通过授权器判断用户是否有此功能的操作权限。</p>
-<blockquote>
-<p>Realm</p>
-</blockquote>
-<p><code>Realm即领域</code>，相当于datasource数据源，securityManager进行安全认证需要通过Realm获取用户权限数据，比如：如果用户身份数据在数据库那么realm就需要从数据库获取用户身份信息。</p>
-<ul>
-<li>注意：不要把realm理解成只是从数据源取数据，在realm中还有认证授权校验的相关的代码。</li>
-</ul>
-<blockquote>
-<p>SessionManager</p>
-</blockquote>
-<p><code>sessionManager即会话管理</code>，shiro框架定义了一套会话管理，它不依赖web容器的session，所以shiro可以使用在非web应用上，也可以将分布式应用的会话集中在一点管理，此特性可使它实现单点登录。</p>
-<blockquote>
-<p>SessionDAO</p>
-</blockquote>
-<p><code>SessionDAO即会话dao</code>，是对session会话操作的一套接口，比如要将session存储到数据库，可以通过jdbc将会话存储到数据库。</p>
-<blockquote>
-<p>CacheManager</p>
-</blockquote>
-<p><code>CacheManager即缓存管理</code>，将用户权限数据存储在缓存，这样可以提高性能。</p>
-<blockquote>
-<p>Cryptography</p>
-</blockquote>
-<p><code>Cryptography即密码管理</code>，shiro提供了一套加密/解密的组件，方便开发。比如提供常用的散列、加/解密等功能。</p>
-<h2 id="Shiro中的认证"><a href="#Shiro中的认证" class="headerlink" title="Shiro中的认证"></a>Shiro中的认证</h2><p>认证就是判断一个用户是否为合法用户的处理过程。最常用的简单身份认证方式是系统通过核对用户输入的<strong>用户名</strong>和<strong>口令</strong>，看其是否与系统中存储的该用户的用户名和口令一致，来判断用户身份是否正确。</p>
-<h3 id="shiro中认证的关键对象"><a href="#shiro中认证的关键对象" class="headerlink" title="shiro中认证的关键对象"></a>shiro中认证的关键对象</h3><ul>
-<li><strong>Subject：主体</strong></li>
-</ul>
-<p>访问系统的用户，主体可以是用户，程序等。</p>
-<ul>
-<li><strong>Princopal：身份信息</strong></li>
-</ul>
-<p>是主体（subject）进行身份认证的标识，标识必须具有<code>唯一性</code>，如用户名、手机号、邮箱地址等，一个主体可以有多个身份，但是必须有一个主身份（Primary Principal）。</p>
-<ul>
-<li><strong>credential：凭证信息</strong></li>
-</ul>
-<p>是只有主体自己知道的安全信息，如密码，证书等。</p>
-<h3 id="认证流程"><a href="#认证流程" class="headerlink" title="认证流程"></a>认证流程</h3><img src="/2020/11/07/shiro/2.png" style="zoom:80%;">
-
-<blockquote>
-<p>用户名校验   </p>
-<p>调用的是 <code>SimpleAccountRealm</code> 类中的 <code>doGetAuthenticationInfo</code> 方法</p>
-</blockquote>
-<blockquote>
-<p>密码校验</p>
-<p>调用<code>AuthenticatingRealm</code> 类中的  <code>assertCredentialsMatch</code> 方法</p>
-</blockquote>
-<img src="/2020/11/07/shiro/3.png" style="zoom: 40%;">
-
-<h2 id="Shiro中的授权"><a href="#Shiro中的授权" class="headerlink" title="Shiro中的授权"></a>Shiro中的授权</h2><p>授权，即访问控制，控制谁能访问哪些资源。主体进行身份认证后需要分配权限方可访问系统的资源，对于某些资源没有权限是无法访问的。</p>
-<h3 id="Shiro中的授权的关键对象"><a href="#Shiro中的授权的关键对象" class="headerlink" title="Shiro中的授权的关键对象"></a>Shiro中的授权的关键对象</h3><ul>
-<li><strong>Subject：主体</strong></li>
-</ul>
-<p>需要访问系统中的资源的用户、程序。</p>
-<ul>
-<li><strong>Resource：资源</strong></li>
-</ul>
-<p>如系统菜单、页面、按钮、类方法、系统商品信息等。资源包括<code>资源类型</code>和<code>资源实例</code>，比如<code>商品信息为资源类型</code>，如编号为001的商品信息属于资源实例。</p>
-<ul>
-<li><strong>Permission：权限许可</strong></li>
-</ul>
-<p>规定了主体对资源的操作许可，如用户查询权限、用户添加权限、修改权限、某个类方法的调用权限等。</p>
-<h3 id="授权流程"><a href="#授权流程" class="headerlink" title="授权流程"></a>授权流程</h3><p><img src="/2020/11/07/shiro/4.png" alt></p>
-<h3 id="授权方式"><a href="#授权方式" class="headerlink" title="授权方式"></a>授权方式</h3><ul>
-<li><p>基于角色的访问控制</p>
-<ul>
-<li><p>RABC基于角色的访问控制（Role-Based Access Control）是以角色为中心进行访问控制。</p>
-<p>  角色就是一组权限的集合，给用户分授权就是给用户分配角色。</p>
-<pre class=" language-java"><code class="language-java">  <span class="token keyword">if</span><span class="token punctuation">(</span>subject<span class="token punctuation">.</span><span class="token function">hasRole</span><span class="token punctuation">(</span><span class="token string">"admin"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-      <span class="token comment" spellcheck="true">// 角色为admin能访问的资源</span>
-  <span class="token punctuation">}</span></code></pre>
-</li>
-</ul>
-</li>
-<li><p>基于资源的访问控制</p>
-<ul>
-<li><p>RABC基于资源的访问控制（Resource-Base Access Control）是以资源为中心进行访问控制</p>
-<pre class=" language-java"><code class="language-java">  <span class="token keyword">if</span><span class="token punctuation">(</span>subject<span class="token punctuation">.</span><span class="token function">isPermission</span><span class="token punctuation">(</span><span class="token string">"user:update:001"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-      <span class="token comment" spellcheck="true">// 用户具有修改资源实例001的权限</span>
-  <span class="token punctuation">}</span>
-  <span class="token keyword">if</span><span class="token punctuation">(</span>subject<span class="token punctuation">.</span><span class="token function">isPermission</span><span class="token punctuation">(</span><span class="token string">"user:update:*"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-      <span class="token comment" spellcheck="true">// 用户具有对所有资源进行修改的权力</span>
-  <span class="token punctuation">}</span></code></pre>
-</li>
-<li><p>权限字符串：<strong>资源标识符 : 操作 : 资源实例标识符</strong></p>
-<p>  对资源的哪个资源实例具有什么（增删改查）操作，权限字符串也可以使用 * 通配符</p>
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>JavaEE</category>
-      </categories>
-      <tags>
-        <tag>Shiro</tag>
       </tags>
   </entry>
   <entry>

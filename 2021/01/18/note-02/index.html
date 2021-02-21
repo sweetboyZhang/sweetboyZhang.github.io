@@ -355,21 +355,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-02-11
+                    2021-02-21
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    1.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    4 分
                 </div>
                 
 
@@ -432,6 +432,59 @@ PhantomReference pr <span class="token operator">=</span> <span class="token key
 **/</span>
 <span class="token keyword">public</span> User <span class="token function">getUser</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="类型转换抽象类"><a href="#类型转换抽象类" class="headerlink" title="类型转换抽象类"></a>类型转换抽象类</h2><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+ * Description: 转换类基类
+ * @param &lt;M> 待转对象类型
+ * @param &lt;N> 预转对象类型
+ * @date 2016-11-10
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">AbstractConvertor</span><span class="token operator">&lt;</span>M<span class="token punctuation">,</span> N<span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">/**
+     * Description: 单个对象转换
+     * @param m 待转对象
+     * @return 转换后的对象
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">abstract</span> N <span class="token function">convert</span><span class="token punctuation">(</span>M m<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * Description: 单个对象反向转换
+     * @param n 待转对象
+     * @return 转换后的对象
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">abstract</span> M <span class="token function">reverseConvert</span><span class="token punctuation">(</span>N n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * Description: 集合转换
+     * @param mList 待转对象集合
+     * @return 转换后的对象集合
+     */</span>
+    <span class="token keyword">public</span> List<span class="token operator">&lt;</span>N<span class="token operator">></span> <span class="token function">convert</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span>M<span class="token operator">></span> mList<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        List<span class="token operator">&lt;</span>N<span class="token operator">></span> nList <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>mList <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            nList <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>N<span class="token operator">></span><span class="token punctuation">(</span>mList<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span>M m <span class="token operator">:</span> mList<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                nList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token function">convert</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> nList<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * Description: 集合转换
+     * @param mList 待转对象集合
+     * @return 转换后的对象集合
+     */</span>
+    <span class="token keyword">public</span> List<span class="token operator">&lt;</span>M<span class="token operator">></span> <span class="token function">reverseConvert</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span>N<span class="token operator">></span> nList<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        List<span class="token operator">&lt;</span>M<span class="token operator">></span> mList <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>nList <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            mList <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>M<span class="token operator">></span><span class="token punctuation">(</span>nList<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span>N n <span class="token operator">:</span> nList<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                mList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token function">reverseConvert</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> mList<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
 
             </div>
@@ -819,7 +872,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">146.3k</span>&nbsp;字
+                class="white-color">145.1k</span>&nbsp;字
             
             
             
