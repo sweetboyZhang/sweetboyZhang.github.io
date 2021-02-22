@@ -355,21 +355,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-02-21
+                    2021-02-22
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    693
+                    984
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    3 分
                 </div>
                 
 
@@ -387,7 +387,7 @@
                 <h2 id="Nginx简介"><a href="#Nginx简介" class="headerlink" title="Nginx简介"></a>Nginx简介</h2><p>Nginx是一个高性能的Http和反向代理服务器，特点是占有内存少，并发性能强。</p>
 <h3 id="正向代理与反向代理"><a href="#正向代理与反向代理" class="headerlink" title="正向代理与反向代理"></a>正向代理与反向代理</h3><p><strong>正向代理：</strong>例如用户通过浏览器访问Google，直接访问是访问不到的，我们所使用的科学上网工具访问Google，就是一种正向代理：用户通过科学上网工具访问代理服务器，然后代理服务器去访问Google，将获取到的数据再返回给用户。</p>
 <p><strong>反向代理：</strong>用户通过访问反向代理服务器，由反向代理服务器将请求分发给不同的服务器。用户对真正提供服务的服务器是无感知的，暴露给用户的是反向代理服务器，隐藏了真正提供服务的服务器。</p>
-<h3 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h3><p>随着访问网站访问并发量的增大，可以将原来的单体架构进行拆分，增加多台服务器，在用户访问服务器之前先访问反向代理服务器，由反向代理服务器将多个请求分发到多台服务器上，大大减少了单个服务器的负载压力，也就达到了负载均衡的目的。</p>
+<h3 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h3><p>随着访问网站访问并发量的增大，可以将原来的单体架构进行拆分，增加多台服务器，在用户访问服务器之前先访问反向代理服务器，由反向代理服务器将多个请求分发到多台服务器上，将负载分发到不同的服务单元，既保证了服务发可用性，也加快了请求的响应时间。</p>
 <h3 id="动静分离"><a href="#动静分离" class="headerlink" title="动静分离"></a>动静分离</h3><p>为了加快网站的解析速度，可以把动态页面和静态页面由不同的服务器来解析，加快解析的速度，降低原来单个服务器的压力。</p>
 <h2 id="Windows下安装与启动"><a href="#Windows下安装与启动" class="headerlink" title="Windows下安装与启动"></a>Windows下安装与启动</h2><p>下载完成后直接解压，命令行进入<code>nginx.exe</code>所在的文件路径，使用命令行执行相关命令</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 启动服务</span>
@@ -429,6 +429,27 @@ worker_connections 1024;</code></pre>
 <span class="token code keyword">    }</span>
 }</code></pre>
 <p>在访问<code>http://localhost:8080</code>时，实际访问的是<code>Nginx</code>根目录下的<code>wms_front/index.html</code>；<br><code>http://localhost:8080/wms/</code>下的所有请求都会转发到<code>http://localhost:8081/wms/</code></p>
+<p><strong>负载均衡配置：</strong></p>
+<p>在<code>http</code>块添加：</p>
+<pre class=" language-markdown"><code class="language-markdown">upstream myserver{
+ip_hash;
+server 192.168.1.1 weight=1;
+server 192.168.1.2 weight=1;
+fair;
+}
+location / {
+<span class="token code keyword">    proxy_pass  http://myserver;</span>
+<span class="token code keyword">    proxy_connection_timeout 10;</span>
+}</code></pre>
+<blockquote>
+<p>nginx分配策略：</p>
+<p>1、轮询<br>每个请求按照时间顺序逐一分配到不同的服务器，如果后端服务器宕机，则自动剔除。</p>
+<p>2、权重<br><code>weight</code>表示权重，默认为1，权重越高被分配的客户端越多 。</p>
+<p>3、ip_hash<br>每个请求按访问<code>ip</code>的<code>hash</code>结果分配，这样每个<code>ip</code>固定访问一个服务器，可解决<code>session</code>问题。</p>
+<p>4、fair<br>按后端服务器的响应时间分配，响应时间短的，优先分配。</p>
+</blockquote>
+<h2 id="Nginx原理"><a href="#Nginx原理" class="headerlink" title="Nginx原理"></a>Nginx原理</h2><p>在<code>nginx</code>启动后，会有一个<code>master</code>进程和多个<code>worker</code>进程，<code>master</code>进程主要用来管理<code>worker</code>进程，包括：接受信号，将信号分发给<code>worker</code>进程，监听<code>worker</code>进程工作状态，当<code>worker</code>进程退出时(非正常)，启动新的<code>worker</code>进程。基本的网络事件会交给<code>worker</code>进程处理。多个<code>worker</code>进程之间是对等的，他们同等竞争来自客户端的请求，各进程互相之间是独立的。<br><img src="/2021/02/21/nginx/myBlog\source\_posts\nginx\1.jpg" style="zoom:80%;"></p>
+<p><img src="/2021/02/21/nginx/D:%5CmyBlog%5Csource_posts%5Cnginx%5C2.jpg" alt></p>
 
             </div>
             <hr/>
@@ -816,7 +837,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">145.8k</span>&nbsp;字
+                class="white-color">146.1k</span>&nbsp;字
             
             
             
