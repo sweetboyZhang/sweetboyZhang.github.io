@@ -355,21 +355,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-02-11
+                    2021-03-08
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1k
+                    1.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    4 分
                 </div>
                 
 
@@ -410,7 +410,7 @@ DriverManager<span class="token punctuation">.</span><span class="token function
 <blockquote>
 <p>双亲委派机制</p>
 </blockquote>
-<p>如果一个类的加载器收到了加载类的请求，并不会马上加载，而是将请求向上委托给父加载器，直到到达引导类加载器；如果父加载器能完成加载类的委托，则成功返回，否则，子加载器才会尝试自己加载。<br><img src="/2020/09/06/jvm/3.png" alt></p>
+<p>如果一个类的加载器收到了加载类的请求，并不会马上加载，而是将请求向上委托给父加载器，直到到达引导类加载器；如果父加载器能完成加载类的委托，则成功返回，否则，子加载器才会尝试自己加载。<br><img src="/2020/09/06/jvm/3.png" alt><br>好处：<br>1、安全，避免用户自定义的类动态加载，替换了java的核心类如<code>String</code>;<br>2、避免类的重复加载，JVM区分不同的类，不仅仅是根据类名，相同的类被不同的类加载器加载也是不同的两个类。</p>
 <h2 id="本地方法栈-Native-Method-Stack"><a href="#本地方法栈-Native-Method-Stack" class="headerlink" title="本地方法栈(Native Method Stack)"></a>本地方法栈(Native Method Stack)</h2><p>线程私有，native方法用来调用C/C++程序，在内存中专门开辟了一块区域处理标记为native的代码。</p>
 <h2 id="程序寄存器-Program-Counter-Register"><a href="#程序寄存器-Program-Counter-Register" class="headerlink" title="程序寄存器(Program Counter Register)"></a>程序寄存器(Program Counter Register)</h2><p>线程私有，存储指向下一条指令的地址。</p>
 <h2 id="方法区-Method-Stack"><a href="#方法区-Method-Stack" class="headerlink" title="方法区(Method Stack)"></a>方法区(Method Stack)</h2><p>各个线程共享，它存储了每个类的结构信息：字段和方法数据、构造方法和普通方法的字节码内容、常量池。<br>方法区是规范，不同虚拟机的实现不同。（类似于接口的不同实现）</p>
@@ -430,6 +430,19 @@ DriverManager<span class="token punctuation">.</span><span class="token function
 <p>永久代</p>
 </blockquote>
 <p>是一个常驻内存区域，用于存放jdk自身携带的Class,Interface元数据，即运行环境必需的类信息，存放的数据不会被垃圾回收器回收，关闭JVM才会释放。</p>
+<h2 id="GC判断对象可以被回收的两种方式"><a href="#GC判断对象可以被回收的两种方式" class="headerlink" title="GC判断对象可以被回收的两种方式"></a>GC判断对象可以被回收的两种方式</h2><ul>
+<li><p>引用计数法：每个对象有一个引用计数属性，新增一个引用计数加一，减少一个引用计数减一，当计数为零时可以被回收。可能存在循环引用的问题，比如A对象引用B对象，而B对象中又引用了A对象，当他们都不再使用后，因为相互引用，引用计数=1，永远无法回收。</p>
+</li>
+<li><p>可达性分析：从GC Roots向下搜索，搜索的路径称为引用链。当一个对象到GC Roots没用任何引用链相连时，说明该对象可回收。</p>
+<p>GC Roots的对象有：</p>
+<ul>
+<li>虚拟机栈中的引用的对象</li>
+<li>方法区中的静态属性引用的对象</li>
+<li>方法区中常量引用的对象</li>
+<li>本地方法栈中引用的对象</li>
+</ul>
+</li>
+</ul>
 
             </div>
             <hr/>
@@ -818,7 +831,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">146.7k</span>&nbsp;字
+                class="white-color">147k</span>&nbsp;字
             
             
             

@@ -355,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-02-22
+                    2021-03-08
                 </div>
                 
 
@@ -448,8 +448,8 @@ location / {
 <p>3、ip_hash<br>每个请求按访问<code>ip</code>的<code>hash</code>结果分配，这样每个<code>ip</code>固定访问一个服务器，可解决<code>session</code>问题。</p>
 <p>4、fair<br>按后端服务器的响应时间分配，响应时间短的，优先分配。</p>
 </blockquote>
-<h2 id="Nginx原理"><a href="#Nginx原理" class="headerlink" title="Nginx原理"></a>Nginx原理</h2><p>在<code>nginx</code>启动后，会有一个<code>master</code>进程和多个<code>worker</code>进程，<code>master</code>进程主要用来管理<code>worker</code>进程，包括：接受信号，将信号分发给<code>worker</code>进程，监听<code>worker</code>进程工作状态，当<code>worker</code>进程退出时(非正常)，启动新的<code>worker</code>进程。基本的网络事件会交给<code>worker</code>进程处理。多个<code>worker</code>进程之间是对等的，他们同等竞争来自客户端的请求，各进程互相之间是独立的。<br><img src="/2021/02/21/nginx/myBlog\source\_posts\nginx\1.jpg" style="zoom:80%;"></p>
-<p><img src="/2021/02/21/nginx/D:%5CmyBlog%5Csource_posts%5Cnginx%5C2.jpg" alt></p>
+<h2 id="Nginx原理"><a href="#Nginx原理" class="headerlink" title="Nginx原理"></a>Nginx原理</h2><p>在<code>nginx</code>启动后，会有一个<code>master</code>进程和多个<code>worker</code>进程，<code>master</code>进程主要用来管理<code>worker</code>进程，包括：接受信号，将信号分发给<code>worker</code>进程，监听<code>worker</code>进程工作状态，当<code>worker</code>进程退出时(非正常)，启动新的<code>worker</code>进程。基本的网络事件会交给<code>worker</code>进程处理。多个<code>worker</code>进程之间是对等的，他们同等竞争来自客户端的请求，各进程互相之间是独立的。<br><img src="/2021/02/21/nginx/1.jpg" style="zoom:72%;"></p>
+<p><img src="/2021/02/21/nginx/2.jpg" alt></p>
 
             </div>
             <hr/>
@@ -837,7 +837,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">146.7k</span>&nbsp;字
+                class="white-color">147k</span>&nbsp;字
             
             
             
