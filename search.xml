@@ -6392,7 +6392,7 @@ p1<span class="token punctuation">.</span><span class="token function">getInfo</
 <p>4.如何确定一个属性是否要声明为static<br>        &lt;1&gt;.属性可以被多个对象所共享，不会随着对象的不同而不同。<br>        &lt;2&gt;.类中的常量常常声明为static</p>
 <p>5.如何确定一个方法是否要声明为static<br>        &lt;1&gt;.操作静态属性的方法通常设置为static;<br>        &lt;2&gt;.工具类中的方法，习惯上声明为static,例如Math,Arrays,Collections</p>
 <h2 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h2><p>作用：初始化类或对象<br>        <strong>静态代码块</strong>：static{}<br>        &lt;1&gt; 内部可以有输出语句<br>        &lt;2&gt; 随着类的加载而执行，而且只执行一次<br>        &lt;3&gt; 作用：初始化类的信息<br>        &lt;4&gt; 如果一个类中定义了多个静态代码块，则按照声明的先后顺序执行<br>        &lt;5&gt; 静态代码块的执行优先于非静态代码块的执行<br>        &lt;6&gt; 静态代码块内只能调用静态的属性和方法，不可以调用非静态的属性和方法<br>        <strong>非静态代码块</strong>：{}<br>        &lt;1&gt;  内部可以有输出语句<br>        &lt;2&gt; 随着类的创建而执行<br>        &lt;3&gt; 每创建一个对象，就执行一次非静态代码块<br>        &lt;4&gt; 作用：可以在创建对象时，对对象的属性进行初始化<br>        &lt;5&gt;非静态代码块内既能调用静态的属性和方法，又能调用非静态的属性和方法</p>
-<h2 id="final"><a href="#final" class="headerlink" title="final"></a>final</h2><p>1.修饰类：表明该类不能被继承。例如：String类，System类，StringBuffer类<br>2.修饰方法：表明该方法不能被重写。例如：Object类中的getClass()方法<br>3.修饰变量：此时的“变量”就称为一个常量<br>    &lt;1&gt; final修饰成员变量：显式初始化，声明时直接赋值；代码块中初始化；构造器中初始化。<br>    &lt;2&gt; 修饰局部变量：修饰形参时，表明此形参是一个常量。调用此方法时，给常量形参赋一个实参，以后只            能在方法体内使用此形参，但不能重新赋值。<br>修饰基本数据类型时，在赋值之后就无法改变；<br>修饰引用数据类型时，在赋值后指向的地址无法改变，但是对象的内容可以改变。</p>
+<h2 id="final"><a href="#final" class="headerlink" title="final"></a>final</h2><p>1.修饰类：表明该类不能被继承。例如：String类，System类，StringBuffer类<br>2.修饰方法：表明该方法不能被重写，但是可以被重载。例如：Object类中的getClass()方法<br>3.修饰变量：此时的”变量”就称为一个常量<br>    &lt;1&gt; final修饰成员变量：显式初始化，声明时直接赋值；代码块中初始化；构造器中初始化。<br>    &lt;2&gt; 修饰局部变量：修饰形参时，可以不用初始化，但是在调用时必须要初始化。给常量形参赋一个实参，以后只能在方法体内使用此形参，但不能重新赋值。<br>修饰基本数据类型时，在赋值之后就无法改变；<br>修饰引用数据类型时，在赋值后指向的地址无法改变，但是对象的内容可以改变。<br>例如：可以对数组中的元素重新赋值，但是不能使数组指向新的地址。</p>
 <p>static final 修饰属性：全局常量</p>
 <h2 id="abstract"><a href="#abstract" class="headerlink" title="abstract"></a>abstract</h2><p>1.abstract修饰类：抽象类<br>        &lt;1&gt; 此类不能实例化<br>        &lt;2&gt; 抽象类中一定有构造器，便于子类实例化调用<br>        &lt;3&gt; 通过提供抽象类的子类，通过实例化子类完成相应的操作<br>2.abstract修饰方法：抽象方法(<strong>默认权限为default</strong>)<br>        &lt;1&gt; 抽象方法只有方法的声明，没有方法体<br>        &lt;2&gt; 包含抽象方法的类一定是抽象类；抽象类中可以没有抽象方法<br>        &lt;3&gt; 若子类重写了父类的所有抽象方法，此子类可以实例化；否则，此子类必须声明为抽象类</p>
 <h2 id="interface"><a href="#interface" class="headerlink" title="interface"></a>interface</h2><p>1.在java中，接口与类是并列的两个结构。(<strong>默认权限为public</strong>)<br>2.接口中的成员：</p>
@@ -6407,13 +6407,15 @@ p1<span class="token punctuation">.</span><span class="token function">getInfo</
 <p>接口和抽象类的区别是什么？</p>
 </blockquote>
 <ol>
-<li>接口的方法默认是public，所有方法在接口中不能有实现(Java 8 开始接口方法可以有默认实<br> 现），而抽象类可以有非抽象的方法。</li>
-<li>接口中除了static、ﬁnal 变量，不能有其他变量，而抽象类中则不一定。</li>
-<li>一个类可以实现多个接口，但只能实现一个抽象类。接口自己本身可以通过extends 关键字扩展<br> 多个接口。</li>
-<li>接口方法默认修饰符是public，抽象方法可以有public、protected 和default 这些修饰符（抽象<br> 方法就是为了被重写所以不能使用private 关键字修饰！）。</li>
-<li>从设计层面来说，抽象是对类的抽象，是一种模板设计，而接口是对行为的抽象，是一种行为的规<br> 范。</li>
+<li>接口的方法默认是<code>public abstract</code>，所有方法在接口中不能有实现(Java 8 开始接口方法可以有默认实现）；而抽象类可以有非抽象的方法（即普通成员函数），抽象方法可以被public、protected 和default 这些修饰符修饰（抽象方法就是为了被重写所以不能使用private 关键字修饰！）。</li>
+<li>接口中除了<code>public static ﬁnal</code> 变量，不能有其他变量；而抽象类中则不一定。</li>
+<li>一个类可以实现多个接口；但只能实现一个抽象类。接口自己本身可以通过extends 关键字扩展<br> 多个接口。</li>
+<li>从设计层面来说，抽象是对类本质的抽象，是一种模板设计，为了代码复用，而接口是对行为的抽象，是一种行为的规范，只约束了行为的有无，不对接口的实现做限制。</li>
 </ol>
-<h2 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h2><p>Java中允许一个类A声明在另一个类B中，则类A就是内部类，类B就是外部类。<br>        1.非static的成员内部类中的成员不能声明为static的，只有在外部类或static的成员<br>        内部类中才可声明static成员。<br>        2.外部类访问成员内部类的成员，需要“内部类.成员”或“内部类对象.成员”的方式<br>        3.<strong>成员内部类可以直接使用外部类的所有成员，包括私有的数据</strong><br>        4.当想要在外部类的静态成员部分使用内部类时，可以考虑内部类声明为静态的        </p>
+<blockquote>
+<p>当你关注于一个事物的本质时，使用抽象类；当你关注于一个操作时，使用接口。</p>
+</blockquote>
+<h2 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h2><p>Java中允许一个类A声明在另一个类B中，则类A就是内部类，类B就是外部类。<br>        1.非static的成员内部类中的成员不能声明为static的，只有在外部类或static的成员<br>        内部类中才可声明static成员；<br>        2.外部类访问成员内部类的成员，需要“内部类.成员”或“内部类对象.成员”的方式；<br>        3.<strong>成员内部类可以直接使用外部类的所有成员，包括私有的数据</strong>；<br>        4.当想要在外部类的静态成员部分使用内部类时，可以考虑内部类声明为静态的；<br>        5.局部内部类和匿名内部类只能访问局部<code>final</code>变量；因为当外部类方法执行完成后，局部变量就会销毁，而内部类可能没有被销毁（只有没被引用时才被销毁）。    </p>
 <p><strong>java中的类加载顺序：</strong><br>父类静态变量-&gt;父类静态代码块-&gt;子类静态变量-&gt;子类静态代码块-&gt;父类成员变量-&gt;父类非静态代码块-&gt;父类构造器-&gt;子类成员变量-&gt;子类非静态代码块-&gt;子类构造器</p>
 ]]></content>
       <categories>
@@ -6525,7 +6527,7 @@ $ <span class="token function">git</span> push origin --delete <span class="toke
   <entry>
     <title>集合</title>
     <url>/2020/03/02/java-06/</url>
-    <content><![CDATA[<h1 id="集合与数组"><a href="#集合与数组" class="headerlink" title="集合与数组"></a>集合与数组</h1><p><strong>数组：</strong><br>1.一旦初始化，长度就不可修改了；<br>2.一旦定义后，就只能操作指定类型的数据了；<br>3.数组提供的方法非常有限，且效率不高；<br>4.获取数组中实际元素的个数，没有现成的属性和方法可调用；<br>5.存储特点：有序，可重复。<br><strong>集合：</strong>Java集合分为Collection和Map两种体系<br><img src="/2020/03/02/java-06/1.jpg" alt><br><strong>Collection接口：</strong>单列数据，存储一个一个的对象<br>&lt;1&gt; List接口：元素有序，可重复<br>实现类：<br>ArrayList，作为List接口的主要实现类；线程不安全，效率高；底层使用Object[] elementData存储<br>LinkedList，对于频繁插入，删除效率较高；底层使用双向链表储存<br>Vector，作为List接口的古老实现类；线程安全，效率低；底层使用Object[] elementData存储<br>&lt;2&gt; Set接口：元素无序，不可重复<br>实现类：<br>HashSet，作为Set接口的主要实现类；线程不安全；可以存储null<br>LinkedHashSet，HashSet的子类；遍历时可以按照添加的顺序遍历；对于频繁遍历效率较高<br>TreeSet，要求数据是同一个类型，可按照对象的指定属性进行排序<br><strong>Map接口：</strong>双列数据，存储具有映射关系”key - value对“<br>实现类：<br>HashMap，作为Map的主要实现类；线程不安全，效率高；能存储null的键值对<br>        -&gt; LinkedHashMap，保证在遍历元素时，可以按照添加顺序进行遍历；对于频繁遍历效率较高<br>        -&gt;原因：在原有的HashMap底层结构基础上，添加了一对指针，指向前、后的元素。<br>TreeMap，按照添加的key-value进行排序；底层采用红黑树<br>Hashtable，作为Map的古老实现类；线程安全，效率低；不能存存储null的键值对<br>       -&gt; Properties，常用来处理配置文件。key和value都是String类型</p>
+    <content><![CDATA[<h1 id="集合与数组"><a href="#集合与数组" class="headerlink" title="集合与数组"></a>集合与数组</h1><p><strong>数组：</strong><br>1.一旦初始化，长度就不可修改了；<br>2.一旦定义后，就只能操作指定类型的数据了；<br>3.数组提供的方法非常有限，且效率不高；<br>4.获取数组中实际元素的个数，没有现成的属性和方法可调用；<br>5.存储特点：有序，可重复。<br><strong>集合：</strong>Java集合分为Collection和Map两种体系<br><img src="/2020/03/02/java-06/1.jpg" alt><br><strong>Collection接口：</strong>单列数据，存储一个一个的对象<br>&lt;1&gt; List接口：元素有序，可重复，可以存null，遍历元素使用迭代器以及下标遍历get()<br>实现类：<br>ArrayList，作为List接口的主要实现类；线程不安全，效率高；底层使用Object[] elementData存储<br>LinkedList，对于频繁插入，删除效率较高；底层使用双向链表储存<br>Vector，作为List接口的古老实现类；线程安全，效率低；底层使用Object[] elementData存储<br>&lt;2&gt; Set接口：元素无序，不可重复，只能存一个null，便利元素时只能使用迭代器遍历<br>实现类：<br>HashSet，作为Set接口的主要实现类；线程不安全；可以存储null<br>LinkedHashSet，HashSet的子类；遍历时可以按照添加的顺序遍历；对于频繁遍历效率较高<br>TreeSet，要求数据是同一个类型，可按照对象的指定属性进行排序<br><strong>Map接口：</strong>双列数据，存储具有映射关系”key - value对“<br>实现类：<br>HashMap，作为Map的主要实现类；线程不安全，效率高；能存储null的键值对<br>        -&gt; LinkedHashMap，保证在遍历元素时，可以按照添加顺序进行遍历；对于频繁遍历效率较高<br>        -&gt;原因：在原有的HashMap底层结构基础上，添加了一对指针，指向前、后的元素。<br>TreeMap，按照添加的key-value进行排序；底层采用红黑树<br>Hashtable，作为Map的古老实现类；线程安全，效率低；不能存存储null的键值对<br>       -&gt; Properties，常用来处理配置文件。key和value都是String类型</p>
 <h2 id="Collection接口中的方法"><a href="#Collection接口中的方法" class="headerlink" title="Collection接口中的方法"></a>Collection接口中的方法</h2><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         Collection coll1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -11169,7 +11171,7 @@ majorid <span class="token keyword">INT</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
-<p>对于直接字节缓存区来说，JVM会尽最大努力直接在此缓冲区执行本机的IO操作，避免每次调用基础操作系统的一个本机IO操作之前或之后，将缓冲区的内容复制到中间的缓冲区中。<br><img src="/2020/09/09/nio/3.png" style="zoom:80%;"></p>
+<p>对于直接字节缓存区来说，JVM会尽最大努力直接在此缓冲区执行本机的IO操作，避免每次调用基础操作系统的。一个本机IO操作之前或之后，将缓冲区的内容复制到中间的缓冲区中。<br><img src="/2020/09/09/nio/3.png" style="zoom:80%;"></p>
 <h2 id="通道之间的数据传输"><a href="#通道之间的数据传输" class="headerlink" title="通道之间的数据传输"></a>通道之间的数据传输</h2><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span> <span class="token comment" spellcheck="true">// 通道之间的数据传输</span>
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test3</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     FileChannel fisChannel <span class="token operator">=</span> null<span class="token punctuation">;</span>
@@ -11728,8 +11730,45 @@ majorid <span class="token keyword">INT</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>msg <span class="token operator">=</span> message<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
-    <span class="token keyword">public</span> Result <span class="token function">setCode</span><span class="token punctuation">(</span>ResultCode resultCode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     <span class="token keyword">public</span> Result <span class="token function">setCode</span><span class="token punctuation">(</span>ResultCode resultCode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>code <span class="token operator">=</span> resultCode<span class="token punctuation">.</span><span class="token function">code</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> code<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> T <span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> data<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> Result <span class="token function">setData</span><span class="token punctuation">(</span>T data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>data <span class="token operator">=</span> data<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> Result <span class="token function">setCode</span><span class="token punctuation">(</span><span class="token keyword">int</span> code<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>code <span class="token operator">=</span> code<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> String <span class="token function">getMsg</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> msg<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> Result <span class="token function">setMsg</span><span class="token punctuation">(</span>String msg<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>msg <span class="token operator">=</span> msg<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> String <span class="token function">getResult</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> Result <span class="token function">setResult</span><span class="token punctuation">(</span>String result<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>result <span class="token operator">=</span> result<span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
@@ -12306,7 +12345,7 @@ PhantomReference pr <span class="token operator">=</span> <span class="token key
  * Description: 转换类基类
  * @param &lt;M> 待转对象类型
  * @param &lt;N> 预转对象类型
- * @date 2016-11-10
+ * @date 2021-2-20
  */</span>
 <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">AbstractConvertor</span><span class="token operator">&lt;</span>M<span class="token punctuation">,</span> N<span class="token operator">></span> <span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">/**
@@ -12353,6 +12392,105 @@ PhantomReference pr <span class="token operator">=</span> <span class="token key
             <span class="token punctuation">}</span>
         <span class="token punctuation">}</span>
         <span class="token keyword">return</span> mList<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="时间日期转换工具类"><a href="#时间日期转换工具类" class="headerlink" title="时间日期转换工具类"></a>时间日期转换工具类</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DateUtil</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> <span class="token function">DateUtile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">/**
+     * 年月日时分秒格式的日期转化为字符串
+     * @param date
+     * @return
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> String <span class="token function">formatDateTime</span><span class="token punctuation">(</span>Date date<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>null <span class="token operator">==</span> date<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        SimpleDateFormat sdf <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SimpleDateFormat</span><span class="token punctuation">(</span><span class="token string">"yyyy-MM-dd HH:mm:ss"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> sdf<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 年月日时分秒格式的字符串转化为日期
+     * @param str
+     * @return
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> Date <span class="token function">parseDateTime</span><span class="token punctuation">(</span>String str<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>null <span class="token operator">==</span> str<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        SimpleDateFormat sdf <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SimpleDateFormat</span><span class="token punctuation">(</span><span class="token string">"yyyy-MM-dd HH:mm:ss"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Date date <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            date <span class="token operator">=</span> sdf<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ParseException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> date<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 年月日格式的日期转化为字符串
+     * @param date
+     * @return
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> String <span class="token function">formatDate</span><span class="token punctuation">(</span>Date date<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>null <span class="token operator">==</span> date<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        SimpleDateFormat sdf <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SimpleDateFormat</span><span class="token punctuation">(</span><span class="token string">"yyyy-MM-dd"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> sdf<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 年月日格式的字符串转化为日期
+     * @param str
+     * @return
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> Date <span class="token function">parseDate</span><span class="token punctuation">(</span>String str<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>null <span class="token operator">==</span> str<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        SimpleDateFormat sdf <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SimpleDateFormat</span><span class="token punctuation">(</span><span class="token string">"yyyy-MM-dd"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Date date <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            date <span class="token operator">=</span> sdf<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ParseException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> date<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 时分秒格式的日期转化为字符串
+     * @param date
+     * @return
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> String <span class="token function">formatTime</span><span class="token punctuation">(</span>Date date<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>null <span class="token operator">==</span> date<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        SimpleDateFormat sdf <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SimpleDateFormat</span><span class="token punctuation">(</span><span class="token string">"HH:mm:ss"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> sdf<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 时分秒格式的字符串转化为日期
+     * @param str
+     * @return
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> Date <span class="token function">parseTime</span><span class="token punctuation">(</span>String str<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>null <span class="token operator">==</span> str<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        SimpleDateFormat sdf <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SimpleDateFormat</span><span class="token punctuation">(</span><span class="token string">"HH:mm:ss"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Date date <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            date <span class="token operator">=</span> sdf<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ParseException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> date<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
 ]]></content>

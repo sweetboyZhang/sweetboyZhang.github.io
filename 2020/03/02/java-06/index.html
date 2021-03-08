@@ -355,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-02-11
+                    2021-03-07
                 </div>
                 
 
@@ -384,7 +384,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="集合与数组"><a href="#集合与数组" class="headerlink" title="集合与数组"></a>集合与数组</h1><p><strong>数组：</strong><br>1.一旦初始化，长度就不可修改了；<br>2.一旦定义后，就只能操作指定类型的数据了；<br>3.数组提供的方法非常有限，且效率不高；<br>4.获取数组中实际元素的个数，没有现成的属性和方法可调用；<br>5.存储特点：有序，可重复。<br><strong>集合：</strong>Java集合分为Collection和Map两种体系<br><img src="/2020/03/02/java-06/1.jpg" alt><br><strong>Collection接口：</strong>单列数据，存储一个一个的对象<br>&lt;1&gt; List接口：元素有序，可重复<br>实现类：<br>ArrayList，作为List接口的主要实现类；线程不安全，效率高；底层使用Object[] elementData存储<br>LinkedList，对于频繁插入，删除效率较高；底层使用双向链表储存<br>Vector，作为List接口的古老实现类；线程安全，效率低；底层使用Object[] elementData存储<br>&lt;2&gt; Set接口：元素无序，不可重复<br>实现类：<br>HashSet，作为Set接口的主要实现类；线程不安全；可以存储null<br>LinkedHashSet，HashSet的子类；遍历时可以按照添加的顺序遍历；对于频繁遍历效率较高<br>TreeSet，要求数据是同一个类型，可按照对象的指定属性进行排序<br><strong>Map接口：</strong>双列数据，存储具有映射关系”key - value对“<br>实现类：<br>HashMap，作为Map的主要实现类；线程不安全，效率高；能存储null的键值对<br>        -&gt; LinkedHashMap，保证在遍历元素时，可以按照添加顺序进行遍历；对于频繁遍历效率较高<br>        -&gt;原因：在原有的HashMap底层结构基础上，添加了一对指针，指向前、后的元素。<br>TreeMap，按照添加的key-value进行排序；底层采用红黑树<br>Hashtable，作为Map的古老实现类；线程安全，效率低；不能存存储null的键值对<br>       -&gt; Properties，常用来处理配置文件。key和value都是String类型</p>
+                <h1 id="集合与数组"><a href="#集合与数组" class="headerlink" title="集合与数组"></a>集合与数组</h1><p><strong>数组：</strong><br>1.一旦初始化，长度就不可修改了；<br>2.一旦定义后，就只能操作指定类型的数据了；<br>3.数组提供的方法非常有限，且效率不高；<br>4.获取数组中实际元素的个数，没有现成的属性和方法可调用；<br>5.存储特点：有序，可重复。<br><strong>集合：</strong>Java集合分为Collection和Map两种体系<br><img src="/2020/03/02/java-06/1.jpg" alt><br><strong>Collection接口：</strong>单列数据，存储一个一个的对象<br>&lt;1&gt; List接口：元素有序，可重复，可以存null，遍历元素使用迭代器以及下标遍历get()<br>实现类：<br>ArrayList，作为List接口的主要实现类；线程不安全，效率高；底层使用Object[] elementData存储<br>LinkedList，对于频繁插入，删除效率较高；底层使用双向链表储存<br>Vector，作为List接口的古老实现类；线程安全，效率低；底层使用Object[] elementData存储<br>&lt;2&gt; Set接口：元素无序，不可重复，只能存一个null，便利元素时只能使用迭代器遍历<br>实现类：<br>HashSet，作为Set接口的主要实现类；线程不安全；可以存储null<br>LinkedHashSet，HashSet的子类；遍历时可以按照添加的顺序遍历；对于频繁遍历效率较高<br>TreeSet，要求数据是同一个类型，可按照对象的指定属性进行排序<br><strong>Map接口：</strong>双列数据，存储具有映射关系”key - value对“<br>实现类：<br>HashMap，作为Map的主要实现类；线程不安全，效率高；能存储null的键值对<br>        -&gt; LinkedHashMap，保证在遍历元素时，可以按照添加顺序进行遍历；对于频繁遍历效率较高<br>        -&gt;原因：在原有的HashMap底层结构基础上，添加了一对指针，指向前、后的元素。<br>TreeMap，按照添加的key-value进行排序；底层采用红黑树<br>Hashtable，作为Map的古老实现类；线程安全，效率低；不能存存储null的键值对<br>       -&gt; Properties，常用来处理配置文件。key和value都是String类型</p>
 <h2 id="Collection接口中的方法"><a href="#Collection接口中的方法" class="headerlink" title="Collection接口中的方法"></a>Collection接口中的方法</h2><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         Collection coll1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1143,7 +1143,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">146.1k</span>&nbsp;字
+                class="white-color">146.7k</span>&nbsp;字
             
             
             
