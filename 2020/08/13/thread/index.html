@@ -355,21 +355,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-02-11
+                    2021-03-10
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.9k
+                    2.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    8 分
                 </div>
                 
 
@@ -408,7 +408,12 @@
 <li>并发性是指<strong>同一时间间隔</strong>内发生两个或多个事件</li>
 <li>并发是在<strong>同一实体</strong>上的多个事件</li>
 </ul>
-<p>并行是针对进程的，并行是正对线程的。</p>
+<p>并行是针对进程的，并行是针对线程的。<br>并发的三大特性：</p>
+<ul>
+<li>原子性：一个操作在cpu上执行时不可能中途暂停然后再调度。</li>
+<li>可见性：多个线程对变量的修改是可见的。</li>
+<li>有序性：虚拟机在进行代码编译时，对于那些改变顺序之后不会对最终结果造成影响的代码，虚拟机不一定会按照我们写的代码的顺序来执行，有可能将他们重排序。实际上，对于有些代码进行重排序之后，虽然对变量的值没有造成影响，但有可能会出现线程安全问题。<br><code>synchronized</code>保证原子性可见性，有序性；<br><code>volatile</code>保证可见性，有序性；<br><code>final</code>保证可见性</li>
+</ul>
 <h2 id="Java实现多线程"><a href="#Java实现多线程" class="headerlink" title="Java实现多线程"></a>Java实现多线程</h2><p>创建多线程的四种方式：</p>
 <ul>
 <li>继承Thread类，重写run()方法</li>
@@ -475,6 +480,26 @@
 <p> 第二， call()可以抛出异常。而 Runnable 要通过 setDefaultUncaughtExceptionHandler() 的方式才能在主线程中捕捉到子线程异常。</p>
 </blockquote>
 <p><strong>使用线程池</strong></p>
+<p>1、降低创建和销毁线程的资源消耗，提高线程的利用率；<br>2、提高响应速度；<br>3、提高线程的可管理性。</p>
+<p>线程池创建参数：</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 阿里java开发手册推荐使用ThreadPoolExecutor构造器创建线程池</span>
+ThreadPoolExecutor executor <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ThreadPoolExecutor</span><span class="token punctuation">(</span>
+CORE_POOL_SIZE<span class="token punctuation">,</span>
+MAX_POOL_SIZE<span class="token punctuation">,</span>
+KEEP_ALIVE_TIME<span class="token punctuation">,</span>
+TimeUnit<span class="token punctuation">.</span>SECONDS<span class="token punctuation">,</span>
+<span class="token keyword">new</span> <span class="token class-name">ArrayBlockingQueue</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>QUEUE_CAPACITY<span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token keyword">new</span> <span class="token class-name">ThreadPoolExecutor<span class="token punctuation">.</span>CallerRunsPolicy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<ul>
+<li><code>corePoolSize</code> 核心线程数，也就是正常工作时创建的线程数，创建后不会销毁，是一种常驻线程</li>
+<li><code>maxinumPoolSize</code> 最大线程数，表示允许创建的最大线程数，当核心线程数不够使用时创建，线程的总数不会超过最大线程数。</li>
+<li><code>keepAliveTime</code> 表示超出核心线程数之外的线程的空闲存活时间 </li>
+<li><code>unit</code> 时间单位</li>
+<li><code>workQueue</code> 任务队列，核心线程使用完后，将任务放入任务队列，当任务队列满后再创建新的线程</li>
+<li><code>handler</code> 任务拒绝策略。当关闭线程池后，任务队列里面没有执行完的任务在向线程池提交时会拒绝；当线程达到最大线程数时继续提交任务也会拒绝。<img src="/2020/08/13/thread/2.png" style="zoom:60%;">
+
+</li>
+</ul>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ThreadTest4</span> <span class="token punctuation">{</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token comment" spellcheck="true">// 创建线程池 提供指定线程数量</span>
@@ -534,12 +559,11 @@
 <blockquote>
 <p>yield()方法</p>
 </blockquote>
-<p>暂停当前正在执行的线程，把执行机会让给优先级相同或更高的线程，不确保真正的让出。</p>
+<p>暂停当前正在执行的线程，让线程进入就绪状态，把执行机会让给优先级相同或更高的线程，不确保真正的让出。</p>
 <blockquote>
 <p>join()方法</p>
 </blockquote>
-<p>使调用的线程先执行，执行完后再执行其他线程；</p>
-<p>低优先级的线程也可以获得执行。</p>
+<p>使调用的线程先执行，执行完后再执行其他线程；低优先级的线程也可以获得执行。</p>
 <blockquote>
 <p>wait()方法</p>
 </blockquote>
@@ -1007,7 +1031,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">145.5k</span>&nbsp;字
+                class="white-color">144.4k</span>&nbsp;字
             
             
             

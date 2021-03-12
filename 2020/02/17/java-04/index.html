@@ -355,14 +355,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-02-21
+                    2021-03-10
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.6k
+                    2.8k
                 </div>
                 
 
@@ -626,6 +626,7 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
 <p><em>sleep()与wait()的异同点：</em><br>1.相同点：一旦执行后。线程都会进入阻塞状态<br>2.不同点：<br>&lt;1&gt;声明的位置不同：sleep()声明在Thread类中，wait()声明在Object类中；<br>&lt;2&gt;调用要求不同，wait()只能在同步代码块或同步方法中使用；<br>&lt;3&gt;sleep()不会释放锁。</p>
+<p>1.锁池（就绪队列）<br>所有需要竞争同步锁的线程都会放在锁池当中，比如当前对象的锁已经被其中一个线程得到，则其他线程需要在这个锁池进行等待，当前面的线程释放同步锁后锁池中的线程去竞争同步锁，当某个线程得到后会进入就绪队列进行等待cpu资源分配。<br>2.等待池（等待队列）<br>当我们调用<code>wait()</code>方法后，线程会放到等待池当中，等待池的线程是不会去竞争同步锁。只有调用了<code>notify()</code>或<code>notifyAll()</code>后等待池的线程才会开始去竞争锁，<code>notify()</code>是随机从等待池选出一个线程放到锁池，而<code>notifyAll()</code>是将等待池的所有线程放到锁池当中。</p>
 <h2 id="JDK5-0新增的线程创建方式"><a href="#JDK5-0新增的线程创建方式" class="headerlink" title="JDK5.0新增的线程创建方式"></a>JDK5.0新增的线程创建方式</h2><p><strong>方式三：实现Callable接口</strong></p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * @author zyz
@@ -1081,7 +1082,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">145.5k</span>&nbsp;字
+                class="white-color">144.4k</span>&nbsp;字
             
             
             
