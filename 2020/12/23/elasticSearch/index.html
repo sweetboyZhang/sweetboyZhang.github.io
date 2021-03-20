@@ -387,7 +387,7 @@
                 <h2 id="ElasticSearch的安装与启动"><a href="#ElasticSearch的安装与启动" class="headerlink" title="ElasticSearch的安装与启动"></a>ElasticSearch的安装与启动</h2><p>配置ElasticSearch支持跨域：config/elasticsearch.yml</p>
 <pre class=" language-yml"><code class="language-yml">http.cors.enabled: true
 http.cors.allow-origin: "*"</code></pre>
-<p>下载或在Google Chrome中添加ElasticSearch Head 插件，用于连接ElasticSearch搜索引擎，并提供可视化的操作页面对ElasticSearch搜索引擎进行各种设置和数据检索功能的管理。<br>启动ElasticSearch后，进行连接测试：<br><img src="/2020/12/23/elasticSearch/1.png" alt></p>
+<p>下载或在Google Chrome中添加ElasticSearch Head 插件，用于连接ElasticSearch搜索引擎，并提供可视化的操作页面对ElasticSearch搜索引擎进行各种设置和数据检索功能的管理。<br>启动ElasticSearch后，进行连接测试：<br><img src="/2020/12/23/elasticsearch/1.png" alt></p>
 <h2 id="ElasticSearch核心概念"><a href="#ElasticSearch核心概念" class="headerlink" title="ElasticSearch核心概念"></a>ElasticSearch核心概念</h2><p>elasticsearch是面向文档的。<br><strong>indices索引</strong>类似于关系型数据库中的<strong>数据库</strong>，默认将索引划分为多个分片，每个分片可以在集群中的不同的服务器之间进行迁移；一个分片就是一个Lucene索引，一个包含<strong>倒排索引</strong>的文件目录，有利于全文搜索。<br><strong>document文档</strong>类似于关系型数据库中的<strong>行</strong>，索引和搜索的基本单位就是文档，就是一条条json数据；<br><strong>fields</strong>类似于关系型数据库中的<strong>字段</strong>；<br>type类似于数据库中的表 （慢慢被废弃）。</p>
 <h2 id="ELK的简介"><a href="#ELK的简介" class="headerlink" title="ELK的简介"></a>ELK的简介</h2><p>ELK是ElasticSearch、Logstash、Kiban三大开源框架的简称，一般用于日志的分析和收集等场景。<br>ElasticSearch是基于Lucene的分布式搜索引擎。<br>Logstash是ELK的中央数据流引擎，用于从不同目标（文件、MQ）中收集不同格式数据，经过过滤后输出到目的地（文件、MQ、reids、elasticsearch等）。<br>Kibana可将ElasticSearch中的数据进行友好的展示，并提供实时的分析功能。</p>
 <h2 id="Kibana的安装启动"><a href="#Kibana的安装启动" class="headerlink" title="Kibana的安装启动"></a>Kibana的安装启动</h2><p>启动ElasticSearch后，再启动Kibanna后访问<code>http://localhost:5601</code></p>
@@ -473,24 +473,24 @@ http.cors.allow-origin: "*"</code></pre>
     <span class="token punctuation">}</span>
   <span class="token punctuation">]</span>
 <span class="token punctuation">}</span></code></pre>
-<p>在ik分词器的config目录下可以自定义字典，并进行配置<br><img src="/2020/12/23/elasticSearch/2.png" style="zoom:80%;"></p>
+<p>在ik分词器的config目录下可以自定义字典，并进行配置<br><img src="/2020/12/23/elasticsearch/2.png" style="zoom:80%;"></p>
 <h2 id="Restful"><a href="#Restful" class="headerlink" title="Restful"></a>Restful</h2><p>一种软件架构风格、设计风格，而不是标准，只是提供了一组设计原则和约束条件。它主要用于客户端和服务器交互类的软件。基于这个风格设计的软件可以更简洁，更有层次，更易于实现缓存等机制。</p>
 <p>一句话描述：<strong>URL定位资源，用HTTP动词（GET,POST,DELETE,DETC）描述操作。</strong></p>
-<h2 id="ElasticSearch基本操作"><a href="#ElasticSearch基本操作" class="headerlink" title="ElasticSearch基本操作"></a>ElasticSearch基本操作</h2><p>1、创建索引并添加文档<br><code>PUT /索引名/类型名/文档id {请求体}</code><br><img src="/2020/12/23/elasticSearch/3.png" alt></p>
-<p>发送请求完成后，就创建了一条索引：<br><img src="/2020/12/23/elasticSearch/4.png" alt></p>
-<p>2、设置映射规则（字段类型）<br><img src="/2020/12/23/elasticSearch/5.png" alt></p>
+<h2 id="ElasticSearch基本操作"><a href="#ElasticSearch基本操作" class="headerlink" title="ElasticSearch基本操作"></a>ElasticSearch基本操作</h2><p>1、创建索引并添加文档<br><code>PUT /索引名/类型名/文档id {请求体}</code><br><img src="/2020/12/23/elasticsearch/3.png" alt></p>
+<p>发送请求完成后，就创建了一条索引：<br><img src="/2020/12/23/elasticsearch/4.png" alt></p>
+<p>2、设置映射规则（字段类型）<br><img src="/2020/12/23/elasticsearch/5.png" alt></p>
 <p>3、获取索引信息：<code>GET /test2</code></p>
-<p>4、查看所有索引的信息：<code>GET _cat/indices?v</code><br><img src="/2020/12/23/elasticSearch/6.png" alt></p>
-<p>5、修改索引中的文档<br><code>POST /test3/_doc/1/_update {&quot;doc&quot;:{&quot;name&quot;:&quot;zhangyuzhen&quot;}}</code><br><img src="/2020/12/23/elasticSearch/7.png" alt></p>
+<p>4、查看所有索引的信息：<code>GET _cat/indices?v</code><br><img src="/2020/12/23/elasticsearch/6.png" alt></p>
+<p>5、修改索引中的文档<br><code>POST /test3/_doc/1/_update {&quot;doc&quot;:{&quot;name&quot;:&quot;zhangyuzhen&quot;}}</code><br><img src="/2020/12/23/elasticsearch/7.png" alt></p>
 <p>6、删除索引：<code>DELETE /test3</code></p>
-<p>7、获取文档<br>创建索引并添加几条文档：<br><img src="/2020/12/23/elasticSearch/8.png" alt></p>
-<p>获取第一条文档数据： <code>GET /test/user/1</code><br><img src="/2020/12/23/elasticSearch/9.png" alt></p>
+<p>7、获取文档<br>创建索引并添加几条文档：<br><img src="/2020/12/23/elasticsearch/8.png" alt></p>
+<p>获取第一条文档数据： <code>GET /test/user/1</code><br><img src="/2020/12/23/elasticsearch/9.png" alt></p>
 <p>指定条件获取数据：<code>GET /test/user_search?q=name:lisi</code></p>
 <p><strong>复杂搜索：</strong></p>
-<p>条件匹配与结果过滤：<img src="/2020/12/23/elasticSearch/10.png" alt></p>
-<p>排序与分页：<br><img src="/2020/12/23/elasticSearch/11.png" alt></p>
-<p>bool多条件查询：<br><img src="/2020/12/23/elasticSearch/12.png" alt></p>
-<p>过滤器：<br><img src="/2020/12/23/elasticSearch/13.png" alt></p>
+<p>条件匹配与结果过滤：<img src="/2020/12/23/elasticsearch/10.png" alt></p>
+<p>排序与分页：<br><img src="/2020/12/23/elasticsearch/11.png" alt></p>
+<p>bool多条件查询：<br><img src="/2020/12/23/elasticsearch/12.png" alt></p>
+<p>过滤器：<br><img src="/2020/12/23/elasticsearch/13.png" alt></p>
 <blockquote>
 <ul>
 <li>gt 大于</li>
@@ -503,7 +503,7 @@ http.cors.allow-origin: "*"</code></pre>
 <blockquote>
 <p>keyword类型不会被分词器解析</p>
 </blockquote>
-<p>查询关键字高亮：<br><img src="/2020/12/23/elasticSearch/14.png" alt></p>
+<p>查询关键字高亮：<br><img src="/2020/12/23/elasticsearch/14.png" alt></p>
 
             </div>
             <hr/>
@@ -529,7 +529,7 @@ http.cors.allow-origin: "*"</code></pre>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://sweetboyZhang.gitee.io/2020/12/23/elasticSearch/">https://sweetboyZhang.gitee.io/2020/12/23/elasticSearch/</a>
+                    <a href="https://sweetboyZhang.gitee.io/2020/12/23/elasticsearch/">https://sweetboyZhang.gitee.io/2020/12/23/elasticsearch/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -614,7 +614,7 @@ http.cors.allow-origin: "*"</code></pre>
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/12/27/elasticSearch-02/">
+                <a href="/2020/12/27/elasticsearch-02/">
                     <div class="card-image">
                         
                         

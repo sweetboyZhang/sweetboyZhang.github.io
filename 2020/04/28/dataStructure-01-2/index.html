@@ -384,7 +384,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><p>队列是一个有序列表，可以用数组和链表来实现。<br>遵循<strong>先进先出</strong>原则。<br><img src="/2020/04/28/dataStructure-01-2/3.png" alt></p>
+                <h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><p>队列是一个有序列表，可以用数组和链表来实现。<br>遵循<strong>先进先出</strong>原则。<br><img src="/2020/04/28/datastructure-01-2/3.png" alt></p>
 <h3 id="1、数组模拟队列"><a href="#1、数组模拟队列" class="headerlink" title="1、数组模拟队列"></a>1、数组模拟队列</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ArrayQueueDemo</span> <span class="token punctuation">{</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         ArrayQueue queue <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayQueue</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -500,7 +500,7 @@
         <span class="token keyword">return</span> arr<span class="token punctuation">[</span>front<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>    
 <span class="token punctuation">}</span></code></pre>
-<h3 id="2、环形队列"><a href="#2、环形队列" class="headerlink" title="2、环形队列"></a>2、环形队列</h3><p>1.目前数组使用一次之后就不能再使用了，没有达到复用的效果。<br>2.将数组使用算法，改进成为一个环形队列&nbsp;&nbsp;&nbsp;取模%<br><img src="/2020/04/28/dataStructure-01-2/4.png" alt></p>
+<h3 id="2、环形队列"><a href="#2、环形队列" class="headerlink" title="2、环形队列"></a>2、环形队列</h3><p>1.目前数组使用一次之后就不能再使用了，没有达到复用的效果。<br>2.将数组使用算法，改进成为一个环形队列&nbsp;&nbsp;&nbsp;取模%<br><img src="/2020/04/28/datastructure-01-2/4.png" alt></p>
 <blockquote>
 <p>循环队列中，由于入队时尾指针向前追赶头指针；出队时头指针向前追赶尾指针，造成队空和队满时头尾指针均相等。因此，无法通过条件front==rear来判别队列是”空”还是”满”。<br>解决这个问题的方法至少有三种：<br>① 另设一布尔变量以区别队列的空和满；<br>② 少用一个元素的空间。约定入队前，测试尾指针在循环意义下加1后是否等于头指针，若相等则认为队满</p>
 </blockquote>
@@ -601,7 +601,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://sweetboyZhang.gitee.io/2020/04/28/dataStructure-01-2/">https://sweetboyZhang.gitee.io/2020/04/28/dataStructure-01-2/</a>
+                    <a href="https://sweetboyZhang.gitee.io/2020/04/28/datastructure-01-2/">https://sweetboyZhang.gitee.io/2020/04/28/datastructure-01-2/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -686,7 +686,7 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/04/30/dataStructure-02/">
+                <a href="/2020/04/30/datastructure-02/">
                     <div class="card-image">
                         
                         
@@ -735,7 +735,7 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/04/25/dataStructure-01/">
+                <a href="/2020/04/25/datastructure-01/">
                     <div class="card-image">
                         
                         

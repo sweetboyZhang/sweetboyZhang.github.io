@@ -385,11 +385,11 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="Spring简介"><a href="#Spring简介" class="headerlink" title="Spring简介"></a>Spring简介</h2><p>Spring用于减轻项目模块之间的管理，类与类之间的管理，帮助开发人员创建对象，管理对象之间的关系。<br>Spring核心技术是IOC，AOP。能实现模块之间的，类之间的解耦合。<br>优点：<br>1、轻量<br>2、针对接口编程，IOC解耦合<br>3、AOP面向切面编程<br>4、方便集成其他各种框架</p>
-<h2 id="Spring体系结构"><a href="#Spring体系结构" class="headerlink" title="Spring体系结构"></a>Spring体系结构</h2><p><img src="/2020/06/01/Spring-01/1.jpg" alt></p>
+<h2 id="Spring体系结构"><a href="#Spring体系结构" class="headerlink" title="Spring体系结构"></a>Spring体系结构</h2><p><img src="/2020/06/01/spring-01/1.jpg" alt></p>
 <p>Spring 框架是一个分层架构，由 7 个定义良好的模块组成。</p>
 <p> Spring DAO，  Spring Web，SpringMVC，Spring AOP，Spring上下文，Spring ORM，核心容器。所以，Spring是一系列轻量级Java EE框架的集合。</p>
 <h2 id="IOC控制反转"><a href="#IOC控制反转" class="headerlink" title="IOC控制反转"></a>IOC控制反转</h2><p>Inversion of control：控制反转，是一个概念，一种思想。<br>是指把对象的创建、赋值、管理工作都交给代码以外的容器实现，控制反转就是对对象控制权的转移，由程序代码本身反转到了程序外部容器。<br><strong>控制：</strong>创建对象，对象属性的赋值，对象之间关系的管理。<br><strong>反转：</strong>把原来开发人员管理，创建对象的权力交给代码之外的容器。由容器代替开发人员管理对象。<br>正转：由开发人员在代码中，使用new 构造方法 创建对象，开发人员主动管理对象。<br>容器：一个服务器软件，一个框架(Spring)。<br>IOC的好处：减少对代码的改动，也能实现不同的功能。实现解耦合。<br>IOC的体现：Servlet ,Tomcat作为容器创建Servlet对象。<br>IOC的技术实现：<br>DI(Dependency Injection) 依赖注入，只需要在程序中提供对象的名称，至于对象是如何在容器中创建，赋值，查找都是由容器内部实现的。<br>Spring使用DI实现了IOC的功能，Spring底层创建对象使用的是反射机制。<br>Spring是一个容器。</p>
-<h2 id="使用Spring"><a href="#使用Spring" class="headerlink" title="使用Spring"></a>使用Spring</h2><h3 id="1、使用Maven创建一个普通的java项目"><a href="#1、使用Maven创建一个普通的java项目" class="headerlink" title="1、使用Maven创建一个普通的java项目"></a>1、使用Maven创建一个普通的java项目</h3><p><img src="/2020/06/01/Spring-01/2.jpg" alt></p>
+<h2 id="使用Spring"><a href="#使用Spring" class="headerlink" title="使用Spring"></a>使用Spring</h2><h3 id="1、使用Maven创建一个普通的java项目"><a href="#1、使用Maven创建一个普通的java项目" class="headerlink" title="1、使用Maven创建一个普通的java项目"></a>1、使用Maven创建一个普通的java项目</h3><p><img src="/2020/06/01/spring-01/2.jpg" alt></p>
 <h3 id="2、引入Spring依赖"><a href="#2、引入Spring依赖" class="headerlink" title="2、引入Spring依赖"></a>2、引入Spring依赖</h3><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-context<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
@@ -467,11 +467,11 @@
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>id<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1002<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>schoolName<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>清华大学<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>bean</span><span class="token punctuation">></span></span></code></pre>
-<p><img src="/2020/06/01/Spring-01/3.jpg" alt></p>
+<p><img src="/2020/06/01/spring-01/3.jpg" alt></p>
 <p>引用类型自动注入：</p>
 <ul>
 <li><p>byName：java类中引用类型属性名 与spring配置文件中的bean标签中的id值相同</p>
-<p>  <img src="/2020/06/01/Spring-01/4.jpg" alt></p>
+<p>  <img src="/2020/06/01/spring-01/4.jpg" alt></p>
 <pre class=" language-xml"><code class="language-xml">  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>myPersonConstructor2<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.zyz.bean.Person<span class="token punctuation">"</span></span> <span class="token attr-name">autowire</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>byName<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
           <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>constructor-arg</span> <span class="token attr-name">index</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>10003<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
           <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>constructor-arg</span> <span class="token attr-name">index</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>wd<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
@@ -492,17 +492,17 @@
    <span class="token operator">&lt;</span><span class="token operator">/</span>bean<span class="token operator">></span></code></pre>
 </li>
 </ul>
-<h3 id="基于注解"><a href="#基于注解" class="headerlink" title="基于注解"></a>基于注解</h3><p><img src="/2020/06/01/Spring-01/5.jpg" alt></p>
+<h3 id="基于注解"><a href="#基于注解" class="headerlink" title="基于注解"></a>基于注解</h3><p><img src="/2020/06/01/spring-01/5.jpg" alt></p>
 <p>​    value可省略</p>
 <p>在配置文件中声明组件扫描器</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!--   声明组件扫描器  组件就是java对象--></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">context:</span>component-scan</span> <span class="token attr-name">base-package</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.zyz.component<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span></code></pre>
-<p>另外，Spring 还提供了3 个创建对象的注解：<br>@Repository 用于对DAO 实现类进行注解<br>@Service 用于对Service 实现类进行注解<br>@Controller 用于对Controller 实现类进行注解<br>这三个注解与@Component 都可以创建对象，但这三个注解还有其他的含义，@Service创建业务层对象，业务层对象可以加入事务功能，@Controller 注解创建的对象可以作为处理器接收用户的请求。<br>@Repository，@Service，@Controller 是对@Component 注解的细化，标注不同层的对象。即持久层对象，业务层对象，控制层对象。<br>普通类型赋值：<br><img src="/2020/06/01/Spring-01/6.jpg" alt></p>
-<p>byType自动注入（默认）<br><img src="/2020/06/01/Spring-01/7.jpg" alt></p>
-<p><img src="/2020/06/01/Spring-01/8.jpg" alt></p>
-<p>byName自动注入（当一个接口有多个实现类时，需要使用次方式注入）<br><img src="/2020/06/01/Spring-01/9.jpg" alt></p>
-<p><img src="/2020/06/01/Spring-01/8.jpg" alt></p>
-<p><strong>JDK注解@Resource自动注入</strong><br>byName（默认），按Name不能注入成功则按Type<br><img src="/2020/06/01/Spring-01/10.jpg" alt></p>
+<p>另外，Spring 还提供了3 个创建对象的注解：<br>@Repository 用于对DAO 实现类进行注解<br>@Service 用于对Service 实现类进行注解<br>@Controller 用于对Controller 实现类进行注解<br>这三个注解与@Component 都可以创建对象，但这三个注解还有其他的含义，@Service创建业务层对象，业务层对象可以加入事务功能，@Controller 注解创建的对象可以作为处理器接收用户的请求。<br>@Repository，@Service，@Controller 是对@Component 注解的细化，标注不同层的对象。即持久层对象，业务层对象，控制层对象。<br>普通类型赋值：<br><img src="/2020/06/01/spring-01/6.jpg" alt></p>
+<p>byType自动注入（默认）<br><img src="/2020/06/01/spring-01/7.jpg" alt></p>
+<p><img src="/2020/06/01/spring-01/8.jpg" alt></p>
+<p>byName自动注入（当一个接口有多个实现类时，需要使用次方式注入）<br><img src="/2020/06/01/spring-01/9.jpg" alt></p>
+<p><img src="/2020/06/01/spring-01/8.jpg" alt></p>
+<p><strong>JDK注解@Resource自动注入</strong><br>byName（默认），按Name不能注入成功则按Type<br><img src="/2020/06/01/spring-01/10.jpg" alt></p>
 <h2 id="bean-作用域"><a href="#bean-作用域" class="headerlink" title="bean 作用域"></a>bean 作用域</h2><p>Spring容器中的Bean是否线程安全，容器本身并没有提供Bean的线程安全策略，因此可以说<strong>Spring容器中的Bean本身不具备线程安全的特性</strong>，但是具体还是要结合具体scope的Bean去研究。</p>
 <p>1、singleton:单例，默认作用域。</p>
 <p>2、prototype:原型，每次创建一个新对象。</p>
@@ -538,7 +538,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://sweetboyZhang.gitee.io/2020/06/01/Spring-01/">https://sweetboyZhang.gitee.io/2020/06/01/Spring-01/</a>
+                    <a href="https://sweetboyZhang.gitee.io/2020/06/01/spring-01/">https://sweetboyZhang.gitee.io/2020/06/01/spring-01/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -623,7 +623,7 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/06/01/Maven/">
+                <a href="/2020/06/01/maven/">
                     <div class="card-image">
                         
                         
@@ -672,7 +672,7 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/05/31/MyBatis-05/">
+                <a href="/2020/05/31/mybatis-05/">
                     <div class="card-image">
                         
                         

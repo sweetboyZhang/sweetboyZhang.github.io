@@ -386,8 +386,8 @@
             <div id="articleContent">
                 <h2 id="Maven简介"><a href="#Maven简介" class="headerlink" title="Maven简介"></a>Maven简介</h2><p>Maven是一款自动化构建工具，专注服务于java平台的项目构建和依赖管理。<br>1、maven可以管理jar包及其各个版本，并且可以自动下载和引入项目中<br>2、maven可以把jar包依赖的包自动下载并引入项目中<br>3、maven可以编译代码，测试代码<br>4、打包文件，形成jar文件，或是war文件<br>5、部署项目<br>项目的构建：构建是面向过程的，包括项目的编译，测试，运行，打包，部署等等<br>Maven支持的构建包括：<br>1、清理，把之前项目编译的东西删除，为新的编译代码做准备<br>2、编译，把程序的源代码编译成可执行文件。（批量进行）<br>3、测试，maven可以执行测试程序代码，验证所需的功能是否正确。（批量进行）<br>4、报告，生成测试结果文件<br>5、打包，把项目中的所有class文件，配置文件等所有资源文件放到一个压缩文件中。<br>6、安装，把打包好的文件jar，war安装到本机仓库<br>7、部署，把程序安装好可以执行</p>
 <h2 id="Maven核心概念"><a href="#Maven核心概念" class="headerlink" title="Maven核心概念"></a>Maven核心概念</h2><p>1、POM：一个文件pom.xml，项目对象模型，把一个项目当作一个模型来使用。控制maven构建项目的过程，管理jar依赖。<br>2、约定的目录结构：maven项目的目录和文件的位置都是规定的。<br>3、坐标：是一个唯一的字符串，用来表示资源。<br>4、依赖管理：管理项目中的jar包<br>5、仓库管理：资源存放的位置<br>6、生命周期：maven构建项目的过程<br>7、插件和目标：执行maven构建的时候用的 工具<br>8、继承<br>9、聚合</p>
-<h2 id="Maven安装"><a href="#Maven安装" class="headerlink" title="Maven安装"></a>Maven安装</h2><p>1、下载解压<br>2、配置环境变量<br>MAVEN_HOME=d:/apache-maven-3.3.9<br>path=%MAVEN_HOME%/bin;<br>3、验证是否安装成功<br>mvn -v<br><img src="/2020/06/01/Maven/1.jpg" alt></p>
-<h2 id="Maven工程约定的目录结构"><a href="#Maven工程约定的目录结构" class="headerlink" title="Maven工程约定的目录结构"></a>Maven工程约定的目录结构</h2><p><img src="/2020/06/01/Maven/2.jpg" alt></p>
+<h2 id="Maven安装"><a href="#Maven安装" class="headerlink" title="Maven安装"></a>Maven安装</h2><p>1、下载解压<br>2、配置环境变量<br>MAVEN_HOME=d:/apache-maven-3.3.9<br>path=%MAVEN_HOME%/bin;<br>3、验证是否安装成功<br>mvn -v<br><img src="/2020/06/01/maven/1.jpg" alt></p>
+<h2 id="Maven工程约定的目录结构"><a href="#Maven工程约定的目录结构" class="headerlink" title="Maven工程约定的目录结构"></a>Maven工程约定的目录结构</h2><p><img src="/2020/06/01/maven/2.jpg" alt></p>
 <h2 id="仓库"><a href="#仓库" class="headerlink" title="仓库"></a>仓库</h2><p>存放maven使用的jar包和我们项目使用的jar包<br>仓库的分类：<br>本地仓库：个人计算机上的一个文件夹，存放jar包<br>远程仓库：在互联网上使用网络才能使用的仓库。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1、中央仓库：最权威的，所有开发人员都共享使用的一个集中仓库<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2、中央仓库的镜像：就是中央仓库的备份，分布在各大州，重要城市。减轻中央仓库的压力<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3、私人服务器：在公司内部，局域网中使用，不对外使用<br>仓库的使用：<br>maven仓库的使用不需要认为参与<br>maven首先查本地仓库—&gt;私服—&gt;镜像—&gt;中央仓库</p>
 <h2 id="POM文件"><a href="#POM文件" class="headerlink" title="POM文件"></a>POM文件</h2><p>项目对象模型，Maven 把一个项目的结构和内容抽象成一个模型，在xml 文件中进行声明，以方便进行构建和描述，pom.xml 是Maven 的灵魂。<br>1、坐标，唯一值，在互联网中唯一标识一个项目</p>
 <pre class=" language-xml"><code class="language-xml"> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.maven<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span><span class="token comment" spellcheck="true">&lt;!-- 公司域名的倒写--></span>
@@ -402,13 +402,13 @@
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span></code></pre>
 <p>4、设置属性properties<br>5、build：与构建相关的配置信息</p>
-<h2 id="IDEA集成Maven"><a href="#IDEA集成Maven" class="headerlink" title="IDEA集成Maven"></a>IDEA集成Maven</h2><p><img src="/2020/06/01/Maven/3.jpg" alt></p>
-<p><img src="/2020/06/01/Maven/4.jpg" alt></p>
-<p>选择Settings for New Projects再次设置<br><img src="/2020/06/01/Maven/5.jpg" alt></p>
-<h2 id="创建Maven版的普通的java项目"><a href="#创建Maven版的普通的java项目" class="headerlink" title="创建Maven版的普通的java项目"></a>创建Maven版的普通的java项目</h2><p>使用模板创建：<br><img src="/2020/06/01/Maven/6.jpg" alt></p>
-<p>项目结构：<br><img src="/2020/06/01/Maven/7.jpg" alt></p>
-<h2 id="创建Maven版的web项目"><a href="#创建Maven版的web项目" class="headerlink" title="创建Maven版的web项目"></a>创建Maven版的web项目</h2><p><img src="/2020/06/01/Maven/8.jpg" alt></p>
-<p>项目结构：<br><img src="/2020/06/01/Maven/9.jpg" alt></p>
+<h2 id="IDEA集成Maven"><a href="#IDEA集成Maven" class="headerlink" title="IDEA集成Maven"></a>IDEA集成Maven</h2><p><img src="/2020/06/01/maven/3.jpg" alt></p>
+<p><img src="/2020/06/01/maven/4.jpg" alt></p>
+<p>选择Settings for New Projects再次设置<br><img src="/2020/06/01/maven/5.jpg" alt></p>
+<h2 id="创建Maven版的普通的java项目"><a href="#创建Maven版的普通的java项目" class="headerlink" title="创建Maven版的普通的java项目"></a>创建Maven版的普通的java项目</h2><p>使用模板创建：<br><img src="/2020/06/01/maven/6.jpg" alt></p>
+<p>项目结构：<br><img src="/2020/06/01/maven/7.jpg" alt></p>
+<h2 id="创建Maven版的web项目"><a href="#创建Maven版的web项目" class="headerlink" title="创建Maven版的web项目"></a>创建Maven版的web项目</h2><p><img src="/2020/06/01/maven/8.jpg" alt></p>
+<p>项目结构：<br><img src="/2020/06/01/maven/9.jpg" alt></p>
 <p>添加依赖：</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>javax.servlet<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
@@ -422,8 +422,8 @@
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>2.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scope</span><span class="token punctuation">></span></span>provided<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scope</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
-<p>创建一个Servlet程序<br><img src="/2020/06/01/Maven/10.jpg" alt></p>
-<p>再运行环境中添加Tomcat服务器：<br><img src="/2020/06/01/Maven/11.jpg" alt></p>
+<p>创建一个Servlet程序<br><img src="/2020/06/01/maven/10.jpg" alt></p>
+<p>再运行环境中添加Tomcat服务器：<br><img src="/2020/06/01/maven/11.jpg" alt></p>
 
             </div>
             <hr/>
@@ -449,7 +449,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://sweetboyZhang.gitee.io/2020/06/01/Maven/">https://sweetboyZhang.gitee.io/2020/06/01/Maven/</a>
+                    <a href="https://sweetboyZhang.gitee.io/2020/06/01/maven/">https://sweetboyZhang.gitee.io/2020/06/01/maven/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -534,7 +534,7 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/06/12/Spring-02/">
+                <a href="/2020/06/12/spring-02/">
                     <div class="card-image">
                         
                         
@@ -583,7 +583,7 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/06/01/Spring-01/">
+                <a href="/2020/06/01/spring-01/">
                     <div class="card-image">
                         
                         

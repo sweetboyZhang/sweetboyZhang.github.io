@@ -384,10 +384,10 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>spring提供一种处理事务的统一模型，能使用统一的步骤，完成多种不同数据库访问技术的事务处理。<br><img src="/2020/06/19/Spring-04/1.png" alt></p>
+                <p>spring提供一种处理事务的统一模型，能使用统一的步骤，完成多种不同数据库访问技术的事务处理。<br><img src="/2020/06/19/spring-04/1.png" alt></p>
 <h2 id="spring管理事务的三个方面"><a href="#spring管理事务的三个方面" class="headerlink" title="spring管理事务的三个方面"></a>spring管理事务的三个方面</h2><p>1、事务管理器<br>事务管理器是一个接口和它的众多实现类，由事务管理器对象完成事务的提交和回滚。<br>实现类：spring将每一种数据库访问技术对应的事务处理类都创建好了<br>mybatis访问数据库——-DateSourceTransactionManager<br>hibernate访问数据库———HibernateTransactionManager<br>使用方法：告诉spring你使用的那种数据库的访问方式</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>  <span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>  ...DateSourceTransaction<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span></code></pre>
-<p>2、事务的类型<br>（1）事务的隔离级别<br><img src="/2020/06/19/Spring-04/2.jpg" alt><br>(2)事务的超时时间<br>表示一个方法的最长执行时间，如果方法执行超过了该时间，事务就回滚<br>(3)事务的传播行为<br>PROPAGATION_REQUIRED：指定的方法必须在事务内执行。若当前存在事务，就加入到当前事务中；若当前没有事务，则创建一个新事务。这种传播行为是最常见的选择，也是Spring 默认的事务传播行为。<br>PROPAGATION_REQUIRES_NEW：总是新建一个事务，若当前存在事务，就将当前事务挂起，直到新事务执行完毕。<br>PROPAGATION_SUPPORTS：指定的方法支持当前事务，但若当前没有事务，也可以以非事务方式执行。</p>
+<p>2、事务的类型<br>（1）事务的隔离级别<br><img src="/2020/06/19/spring-04/2.jpg" alt><br>(2)事务的超时时间<br>表示一个方法的最长执行时间，如果方法执行超过了该时间，事务就回滚<br>(3)事务的传播行为<br>PROPAGATION_REQUIRED：指定的方法必须在事务内执行。若当前存在事务，就加入到当前事务中；若当前没有事务，则创建一个新事务。这种传播行为是最常见的选择，也是Spring 默认的事务传播行为。<br>PROPAGATION_REQUIRES_NEW：总是新建一个事务，若当前存在事务，就将当前事务挂起，直到新事务执行完毕。<br>PROPAGATION_SUPPORTS：指定的方法支持当前事务，但若当前没有事务，也可以以非事务方式执行。</p>
 <p>3、spring提交事务，回滚事务的时机<br>(1)业务方法执行成功，没有异常抛出，spring会在方法指向后提交事务<br>(2)业务方法抛出运行时异常，spring执行回滚<br>运行时异常定义：RuntimeException和它的子类都是运行时异常，NullPointException，NumberFormatException<br>(3)业务方法抛出非运行时异常，受查异常时，提交事务。<br>受查异常：写代码时必须处理的异常，IOException，SQLException</p>
 <h2 id="事务应用——购买商品项目"><a href="#事务应用——购买商品项目" class="headerlink" title="事务应用——购买商品项目"></a>事务应用——购买商品项目</h2><p>实现购买商品，模拟用户下订单，向订单中添加销售记录，从商品表中减少库存。</p>
 <h3 id="注解方式"><a href="#注解方式" class="headerlink" title="注解方式"></a>注解方式</h3><p>1、在spring配置文件添加事务管理器和事务注解驱动</p>
@@ -504,7 +504,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://sweetboyZhang.gitee.io/2020/06/19/Spring-04/">https://sweetboyZhang.gitee.io/2020/06/19/Spring-04/</a>
+                    <a href="https://sweetboyZhang.gitee.io/2020/06/19/spring-04/">https://sweetboyZhang.gitee.io/2020/06/19/spring-04/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -589,7 +589,7 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/06/20/Spring-05/">
+                <a href="/2020/06/20/spring-05/">
                     <div class="card-image">
                         
                         
@@ -638,7 +638,7 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/06/16/Spring-03/">
+                <a href="/2020/06/16/spring-03/">
                     <div class="card-image">
                         
                         

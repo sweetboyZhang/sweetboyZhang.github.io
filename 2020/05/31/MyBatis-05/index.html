@@ -405,7 +405,7 @@
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
-<p><img src="/2020/05/31/MyBatis-05/1.jpg" alt></p>
+<p><img src="/2020/05/31/mybatis-05/1.jpg" alt></p>
 <p>可以看见在两次查询中，sql语句只向数据库发送了一次，并且第二次查询得到的对象与第一次完全相同，说明第二次查询访问的是内存中的缓存。</p>
 <p><strong>一级缓存失效的情况：</strong><br>1、不同的SqlSession对应不同的一级缓存；<br>2、同一个SqlSession但是查询条件不同；<br>3、同一个SqlSession两次查询期间执行了任何一次增删改操作；<br>4、同一个SqlSession两次查询期间手动清空了缓存。sqlSession.clearCache()</p>
 <h2 id="二级缓存"><a href="#二级缓存" class="headerlink" title="二级缓存"></a>二级缓存</h2><p>工作机制：<br>1、一个会话，查询一条数据，这个数据就会被保存在当前会话的一级缓存中；<br>2、<strong>如果会话关闭</strong>，一级缓存中的数据就会保存到二级缓存中。新的会话就会参照二级缓存。<br>3、不同的namespace查出的数据会放在自己对应的缓存中(map)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sqlSession——–EmployeeMapper——-Employee<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;——–DepartmentMapper——-Department<br>使用：<br>1、开启全局二级缓存</p>
@@ -446,9 +446,9 @@
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
-<p><img src="/2020/05/31/MyBatis-05/2.jpg" alt></p>
+<p><img src="/2020/05/31/mybatis-05/2.jpg" alt></p>
 <h2 id="关闭缓存"><a href="#关闭缓存" class="headerlink" title="关闭缓存"></a>关闭缓存</h2><p>1、cacheEnabled=false：关闭二级缓存，一级缓存还可以使用<br>2、每一个select标签都有useCache = “true”（默认）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;useCache = “false”：关闭二级缓存，一级缓存还可以使用<br>3、每一个增删改标签默认flushCache=”true”，查询标签默认flushCache=”false”<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;增删改操作执行完后就会清空缓存<br>4、sqlSession.clearCache()：只是清空当前sqlSession的一级缓存</p>
-<h2 id="缓存原理图"><a href="#缓存原理图" class="headerlink" title="缓存原理图"></a>缓存原理图</h2><p><img src="/2020/05/31/MyBatis-05/3.jpg" alt></p>
+<h2 id="缓存原理图"><a href="#缓存原理图" class="headerlink" title="缓存原理图"></a>缓存原理图</h2><p><img src="/2020/05/31/mybatis-05/3.jpg" alt></p>
 
             </div>
             <hr/>
@@ -474,7 +474,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://sweetboyZhang.gitee.io/2020/05/31/MyBatis-05/">https://sweetboyZhang.gitee.io/2020/05/31/MyBatis-05/</a>
+                    <a href="https://sweetboyZhang.gitee.io/2020/05/31/mybatis-05/">https://sweetboyZhang.gitee.io/2020/05/31/mybatis-05/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -559,7 +559,7 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/06/01/Spring-01/">
+                <a href="/2020/06/01/spring-01/">
                     <div class="card-image">
                         
                         
@@ -608,7 +608,7 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/05/30/MyBatis-04/">
+                <a href="/2020/05/30/mybatis-04/">
                     <div class="card-image">
                         
                         

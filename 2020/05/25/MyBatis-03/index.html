@@ -568,10 +568,10 @@
 <p>使用时才进行加载：</p>
 <pre class=" language-java"><code class="language-java">Employee empByIdStep <span class="token operator">=</span> mapper<span class="token punctuation">.</span><span class="token function">getEmpByIdStep</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>empByIdStep<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p><img src="/2020/05/25/MyBatis-03/1.jpg" alt></p>
+<p><img src="/2020/05/25/mybatis-03/1.jpg" alt></p>
 <pre class=" language-java"><code class="language-java">Employee empByIdStep <span class="token operator">=</span> mapper<span class="token punctuation">.</span><span class="token function">getEmpByIdStep</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>empByIdStep<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p><img src="/2020/05/25/MyBatis-03/2.jpg" alt></p>
+<p><img src="/2020/05/25/mybatis-03/2.jpg" alt></p>
 <p><strong>Collection集合类型&amp;嵌套结果集：</strong><br>通过部门编号查找所有在该部门的员工，返回一个List员工集合</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> Integer id<span class="token punctuation">;</span>
 <span class="token keyword">private</span> String departmentName<span class="token punctuation">;</span>
@@ -599,7 +599,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <pre class=" language-java"><code class="language-java">Department deptByIdPlus <span class="token operator">=</span> mapper<span class="token punctuation">.</span><span class="token function">getDeptByIdPlus</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>deptByIdPlus<span class="token punctuation">)</span><span class="token punctuation">;</span>
 System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>deptByIdPlus<span class="token punctuation">.</span><span class="token function">getEmps</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p><img src="/2020/05/25/MyBatis-03/3.jpg" alt></p>
+<p><img src="/2020/05/25/mybatis-03/3.jpg" alt></p>
 <p>结果集包含<code>List&lt;String&gt; orderIds</code>时</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!-- 一对多，变成list&lt;String> --></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>collection</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>orderIds<span class="token punctuation">"</span></span> <span class="token attr-name">ofType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>String<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -632,7 +632,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://sweetboyZhang.gitee.io/2020/05/25/MyBatis-03/">https://sweetboyZhang.gitee.io/2020/05/25/MyBatis-03/</a>
+                    <a href="https://sweetboyZhang.gitee.io/2020/05/25/mybatis-03/">https://sweetboyZhang.gitee.io/2020/05/25/mybatis-03/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -717,7 +717,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/05/30/MyBatis-04/">
+                <a href="/2020/05/30/mybatis-04/">
                     <div class="card-image">
                         
                         
@@ -766,7 +766,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/05/25/MyBatis-02/">
+                <a href="/2020/05/25/mybatis-02/">
                     <div class="card-image">
                         
                         
