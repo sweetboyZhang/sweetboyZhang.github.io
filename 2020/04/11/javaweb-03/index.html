@@ -387,7 +387,7 @@
                 <h2 id="jsp定义"><a href="#jsp定义" class="headerlink" title="jsp定义"></a>jsp定义</h2><p>jsp全称为 java server page，用来代替servlet程序回传html页面的数据。</p>
 <p><strong>jsp页面的本质就是一个Servlet程序</strong>，在第一次访问jsp页面时，Tomcat服务器就会把jsp页面翻译成一个java源程序，并对它进行编译成.class字节码文件。</p>
 <h2 id="jsp语法"><a href="#jsp语法" class="headerlink" title="jsp语法"></a>jsp语法</h2><h3 id="jsp头部的page指令"><a href="#jsp头部的page指令" class="headerlink" title="jsp头部的page指令"></a>jsp头部的page指令</h3><p>jsp 的page 指令可以修改jsp 页面中一些重要的属性，或者行为。</p>
-<pre class=" language-jsp"><code class="language-jsp"><%@ page contentType="text/html;charset=UTF-8" language="java" %></code></pre>
+<pre class=" language-jsp"><code class="language-jsp"><%@ page contenttype="text/html;charset=UTF-8" language="java" %></%@></code></pre>
 <p>i. language 属性表示jsp 翻译后是什么语言文件。暂时只支持java。<br>ii. contentType 属性表示jsp 返回的数据类型是什么。也是源码中response.setContentType()参数值<br>iii. pageEncoding 属性表示当前jsp 页面文件本身的字符集。<br>iv. import 属性跟java 源代码中一样。用于导包，导类。<br>v. autoFlush 属性设置当out 输出流缓冲区满了之后，是否自动刷新冲级区。默认值是true。<br>vi. buffer 属性设置out 缓冲区的大小。默认是8kb<br>vii. errorPage 属性设置当jsp 页面运行时出错，自动跳转去的错误页面路径。</p>
 <h3 id="jsp中的常用脚本"><a href="#jsp中的常用脚本" class="headerlink" title="jsp中的常用脚本"></a>jsp中的常用脚本</h3><p>1、声明脚本<br>作用：可以给jsp 翻译出来的java 类定义属性和方法甚至是静态代码块，内部类等。<br>格式：<code>&lt;%!  java代码%&gt;</code></p>
 <p>2、表达式脚本<br>作用：在jsp页面上输出数据<br>格式：<code>&lt;%= 表达式 %&gt;</code></p>
