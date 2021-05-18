@@ -355,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-03-08
+                    2021-04-22
                 </div>
                 
 
@@ -402,13 +402,13 @@ nginx -s reload</code></pre>
 <h2 id="Nginx配置文件"><a href="#Nginx配置文件" class="headerlink" title="Nginx配置文件"></a>Nginx配置文件</h2><blockquote>
 <p>全局块：从配置文件开始到<code>events</code>之间的内容，主要影响<code>nginx</code>服务器整体运行的配置指令</p>
 </blockquote>
-<pre class=" language-markdown"><code class="language-markdown"><span class="token title important"><span class="token punctuation">#</span> 表示可以支持的最大并发量</span>
-worker_processes 1;</code></pre>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 表示可以支持的最大并发量</span>
+worker_processes 1<span class="token punctuation">;</span></code></pre>
 <blockquote>
 <p>events块：主要影响<code>nginx</code>服务器与用户的网络连接</p>
 </blockquote>
-<pre class=" language-markdown"><code class="language-markdown"><span class="token title important"><span class="token punctuation">#</span> 表示支持的最大连接数</span>
-worker_connections 1024;</code></pre>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 表示支持的最大连接数</span>
+worker_connections 1024<span class="token punctuation">;</span></code></pre>
 <blockquote>
 <p><code>http</code>块：配置最频繁的部分，nginx的主要功能就是在这里配置，包括<code>http</code>全局块和<code>server</code>块</p>
 </blockquote>
