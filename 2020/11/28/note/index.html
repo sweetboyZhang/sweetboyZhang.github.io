@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="实习笔记," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="数据库 【强制】主键索引名为pk_字段名； ​    唯一索引名为uk_字段名； ​    普通索引名则为idx_字段名。 ​    说明：pk_ 即primary key；uk_ 即unique key；idx_ 即index的简称。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="实习笔记1">
+<meta property="og:url" content="https://sweetboyzhang.gitee.io/2020/11/28/note/index.html">
+<meta property="og:site_name" content="Zhangyuzhen&#39;s Blog">
+<meta property="og:description" content="数据库 【强制】主键索引名为pk_字段名； ​    唯一索引名为uk_字段名； ​    普通索引名则为idx_字段名。 ​    说明：pk_ 即primary key；uk_ 即unique key；idx_ 即index的简称。">
+<meta property="og:image" content="https://sweetboyzhang.gitee.io/2020/11/28/note/image-20201127180423777.png">
+<meta property="og:image" content="https://sweetboyzhang.gitee.io/2020/11/28/note/image-20201127181032477.png">
+<meta property="og:image" content="https://sweetboyzhang.gitee.io/2020/11/28/note/image-20201127181317227.png">
+<meta property="article:published_time" content="2020-11-28T02:35:01.000Z">
+<meta property="article:modified_time" content="2021-07-08T05:09:42.482Z">
+<meta property="article:author" content="Zhangyuzhen">
+<meta property="article:tag" content="实习笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sweetboyzhang.gitee.io/2020/11/28/note/image-20201127180423777.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://sweetboyZhang.gitee.io/2020/11/28/note/"/>
+
+
+
+
+
+  <title>实习笔记1 | Zhangyuzhen's Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Zhangyuzhen's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sweetboyZhang.gitee.io/2020/11/28/note/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhangyuzhen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/user.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhangyuzhen's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">实习笔记1</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-28T10:35:01+08:00">
+                2020-11-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">实习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  28
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><ul>
+<li><p>【强制】主键索引名为pk_字段名；</p>
+<p>​    唯一索引名为uk_字段名；</p>
+<p>​    普通索引名则为idx_字段名。</p>
+<p>​    说明：pk_ 即primary key；uk_ 即unique key；idx_ 即index的简称。<a id="more"></a></p>
+</li>
+<li><p>【强制】表必备三字段：id, gmt_create, gmt_modified。</p>
+<p>说明：其中id必为主键，类型为unsigned bigint、单表时自增、步长为1。gmt_create, gmt_modified的类型均为datetime类型，前者现在时表示主动创建，后者过去分词表示被动更新。gmt表示格林威治时间即国际时间。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># DEFAULT CURRENT_TIMESTAMP  表示当插入数据的时候，该字段默认值为当前时间</span></span><br><span class="line"><span class="comment"># ON UPDATE CURRENT_TIMESTAM  表示每次更新这条数据的时候，该字段都会更新成当前时间</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`test`</span> (</span><br><span class="line"><span class="string">`id`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'主键id'</span>,</span><br><span class="line"><span class="string">`create_time`</span> <span class="built_in">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">COMMENT</span> <span class="string">'创建时间'</span>,</span><br><span class="line"><span class="string">`update_time`</span> <span class="built_in">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">COMMENT</span> <span class="string">'更新时间'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>【强制】POJO类的布尔属性不能加is，而数据库字段必须加is_，要求在resultMap中进行字段与属性之间的映射。说明：参见定义POJO类以及数据库字段定义规定，在<code>&lt;resultMap&gt;</code>中增加映射，是必须的。在MyBatis Generator生成的代码中，需要进行对应的修改。</p>
+</li>
+<li><p>自增ID与UUID</p>
+<ul>
+<li><p>自增ID数据存储空间小，性能好，但是安全性低，很难处理分布式存储的数据表，处理大量数据可能会超过自增长的取值范围</p>
+</li>
+<li><p>uuid_short() 生成18位正随机数 ===&gt;bigint(20)</p>
+</li>
+</ul>
+</li>
+</ul>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"addLocationArea"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">parameterType</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">    INSERT INTO location( ... )</span><br><span class="line">    VALUES</span><br><span class="line">    (SHORT_UUID(), ...)</span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>随机正Long值uuid ===&gt;bigint(20)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">static</span> Long <span class="title">getUUID</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 生成19位正随机数</span></span><br><span class="line">    <span class="keyword">return</span> UUID.randomUUID().getLeastSignificantBits() * -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>MySQL字段尽量避免NULL，应该指定列为NOT NULL，除非你想存储NULL。在MySQL中，含有空值的列很难进行查询优化，而且对表索引时不会存储NULL值的，所以如果索引的字段可以为NULL，索引的效率会下降很多。因为它们使得索引、索引的统计信息以及比较运算更加复杂。你应该用0、一个特殊的值或者一个空串代替空值。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查询出来的的记录中col列可以为''(空字符串)</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="string">`table`</span> <span class="keyword">WHERE</span> <span class="keyword">col</span> <span class="keyword">IS</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>;</span><br><span class="line"><span class="comment"># 查询col列不为''的所有记录</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="string">`table`</span> <span class="keyword">WHERE</span> col1 &lt;&gt; <span class="string">''</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="crud"><a href="#crud" class="headerlink" title="crud"></a>crud</h3></li>
+<li><p>模糊搜索： </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">id</span>,<span class="keyword">name</span> <span class="keyword">from</span> product <span class="keyword">where</span> <span class="keyword">name</span> <span class="keyword">like</span> <span class="keyword">concat</span>(<span class="string">'%'</span>,<span class="comment">#&#123;name,jdbcType=varchar&#125;,'%')</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<ul>
+<li><p>根据不确定的字段条件进行查询：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">"ResultMap"</span> <span class="attr">type</span>=<span class="string">"com.zyz.UserPO"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">"id"</span> <span class="attr">property</span>=<span class="string">"id"</span> <span class="attr">jdbcType</span>=<span class="string">"BIGINT"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"name"</span> <span class="attr">property</span>=<span class="string">"name"</span> <span class="attr">jdbcType</span>=<span class="string">"VARCHAR"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"password"</span> <span class="attr">property</span>=<span class="string">"password"</span> <span class="attr">jdbcType</span>=<span class="string">"VARCHAR"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">collection</span> <span class="attr">property</span>=<span class="string">"userItemPOList"</span> <span class="attr">ofType</span>=<span class="string">"com.zyz.UserItemPO"</span>&gt;</span></span><br><span class="line">    	<span class="comment">&lt;!--property对应UserPO中的明细对象集合  ofType对应集合对象的实体类--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">"item_id"</span> <span class="attr">property</span>=<span class="string">"id"</span> <span class="attr">jdbcType</span>=<span class="string">"BIGINT"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"school_name"</span> <span class="attr">property</span>=<span class="string">"name"</span> <span class="attr">jdbcType</span>=<span class="string">"VARCHAR"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"school_address"</span> <span class="attr">property</span>=<span class="string">"address"</span> <span class="attr">jdbcType</span>=<span class="string">"VARCHAR"</span> /&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--column属性为联表查询中主表以外的表的字段别名--&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">collection</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">"Base_Column_List"</span> &gt;</span></span><br><span class="line">	id,name,password</span><br><span class="line"><span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"list"</span> <span class="attr">resultMap</span>=<span class="string">"ResultMap"</span>&gt;</span></span><br><span class="line">        select</span><br><span class="line">        <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">"Base_Column_List"</span> /&gt;</span></span><br><span class="line">        from t_user</span><br><span class="line">        where 1=1</span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"PO.id != null"</span> &gt;</span></span><br><span class="line">            and id = #&#123;PO.id,jdbcType=BIGINT&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"PO.name != null"</span>&gt;</span></span><br><span class="line">            and name = #&#123;PO.name,jdbcType=VARCHAR&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--批量条件查询  根据商品明细列表中的所有id查询对应的明细详情--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"list"</span> <span class="attr">resultMap</span>=<span class="string">"ResultMap"</span>&gt;</span></span><br><span class="line">        SELECT</span><br><span class="line">        <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">"chargeofforderitemdetailColumns"</span> /&gt;</span></span><br><span class="line">        FROM chargeofforderitemdetail</span><br><span class="line">        <span class="tag">&lt;<span class="name">where</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"chargeOfforderItemIdList != null and chargeOfforderItemIdList.size() &gt; 0"</span>&gt;</span></span><br><span class="line">                ChargeOfforderItem_Id in</span><br><span class="line">                <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">"chargeOfforderItemIdList"</span> <span class="attr">item</span>=<span class="string">"item"</span> <span class="attr">separator</span>=<span class="string">","</span> <span class="attr">open</span>=<span class="string">"("</span> <span class="attr">close</span>=<span class="string">")"</span>&gt;</span></span><br><span class="line">                    #&#123;item,jdbcType=VARCHAR&#125;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>插入不确定的属性字段</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"insert"</span>&gt;</span></span><br><span class="line">    insert into table</span><br><span class="line">    <span class="tag">&lt;<span class="name">trim</span> <span class="attr">prefix</span>=<span class="string">"("</span> <span class="attr">suffix</span>=<span class="string">")"</span> <span class="attr">suffixOverrides</span>=<span class="string">","</span>&gt;</span></span><br><span class="line">            id,</span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"PO.name != null"</span>&gt;</span></span><br><span class="line">            name,</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        create_Time,</span><br><span class="line">        lastUpdate_Time</span><br><span class="line">    <span class="tag">&lt;/<span class="name">trim</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">trim</span> <span class="attr">prefix</span>=<span class="string">"values ("</span> <span class="attr">suffix</span>=<span class="string">")"</span> <span class="attr">suffixOverrides</span>=<span class="string">","</span>&gt;</span></span><br><span class="line">         UUID_SHORT(),</span><br><span class="line">         <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"PO.name != null"</span>&gt;</span></span><br><span class="line">             #&#123;PO.name,jdbcType=VARCHAR&#125;,</span><br><span class="line">         <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">         now(),</span><br><span class="line">         now()</span><br><span class="line">   <span class="tag">&lt;/<span class="name">trim</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>批量插入</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"insertbatch"</span> <span class="attr">parameterType</span>=<span class="string">"java.util.List"</span> &gt;</span></span><br><span class="line">    insert into user(Id,name)values</span><br><span class="line">    <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">"list"</span> <span class="attr">item</span>=<span class="string">"item"</span> <span class="attr">separator</span>=<span class="string">","</span> <span class="attr">index</span>=<span class="string">"index"</span>&gt;</span></span><br><span class="line">        (</span><br><span class="line">        UUID_SHORT(),</span><br><span class="line">        #&#123;item.name,jdbcType=VARCHAR&#125;</span><br><span class="line">        )</span><br><span class="line">    <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>根据不确定的字段条件进行更新</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">"update"</span>&gt;</span></span><br><span class="line">    update table</span><br><span class="line">    <span class="tag">&lt;<span class="name">set</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"PO.state != null"</span>&gt;</span></span><br><span class="line">            name = #&#123;PO.name,jdbcType=VARCHAR&#125;,</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"PO.password != null"</span>&gt;</span></span><br><span class="line">            password = #&#123;PO.password,jdbcType=VARCHAR&#125;,</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line">    where id = #&#123;PO.id,jdbc=BIGINT&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>时间段的处理</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"beginTime != null"</span>&gt;</span></span><br><span class="line">      and &lt;![CDATA[ BusinessTime &gt;=  #&#123;beginTime,jdbcType=TIMESTAMP&#125; ]]&gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"endTime != null"</span>&gt;</span></span><br><span class="line">      and &lt;![CDATA[ BusinessTime &lt;=  #&#123;endTime,jdbcType=TIMESTAMP&#125; ]]&gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h2><h3 id="Spring缓存注解"><a href="#Spring缓存注解" class="headerlink" title="Spring缓存注解"></a>Spring缓存注解</h3><ul>
+<li><p>Spring Cache是作用在方法上的，当我们在调用一个缓存方法时会把该方法参数和返回结果作为一个键值对存放在缓存中，等到下次调用同样的参数来调用该方法时将不再执行该方法，而是直接从缓存中获取结果进行返回。</p>
+</li>
+<li><p><code>@Cacheable(key=&quot;&quot; , value=&quot;&quot;)</code> 用于<strong>查询</strong>的方法</p>
+</li>
+<li><p><code>@CacheEvict(key=&quot;&quot; , value=&quot;&quot;)</code> 调用此注解下的方法时会清除缓存，用于<strong>增删改</strong>方法</p>
+<p> key属性是用来指定Spring缓存方法的<strong>返回结果时对应的key</strong>，value属性用来指定<strong>缓存名称</strong>。</p>
+</li>
+<li><p>使用场景：业务层bl中的关于用户的基础增删改查功能。</p>
+</li>
+<li><p><strong>以后不会使用此方式了，因为不能指定数据有效时间，以及读取改变的数据不够灵活。一般使用RedisTemple或者自定义注解的方式。</strong></p>
+</li>
+</ul>
+<h3 id="Transactional"><a href="#Transactional" class="headerlink" title="@Transactional"></a>@Transactional</h3><ul>
+<li>一般在bl层的方法中执行多条sql时使用<ul>
+<li><code>@Transactional(rollbackFor = { Exception.class })</code></li>
+<li>默认发生<code>Error</code>或<code>RuntimeException</code>时才会回滚，发生非运行时异常时不会回滚，需要使用<code>rollbackFor</code>属性指定回滚的非运行时异常。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Controller中的Model参数"><a href="#Controller中的Model参数" class="headerlink" title="Controller中的Model参数"></a>Controller中的Model参数</h3><ul>
+<li>只有在前端请求有页面返回的时候用到，保存了想要展示在页面上的数据。</li>
+<li>例如数据的导出时，使用到了Model参数。</li>
+</ul>
+<h3 id="自定义注解中的元注解"><a href="#自定义注解中的元注解" class="headerlink" title="自定义注解中的元注解"></a>自定义注解中的元注解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义注解使用的时机 METHOD-&gt;适用于方法  TYPE-&gt;适用于 class,interface,enum</span></span><br><span class="line"><span class="meta">@Target</span>(&#123;ElementType.METHOD, ElementType.TYPE&#125;)</span><br><span class="line"><span class="comment">// 在运行时去动态获取注解信息</span></span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br></pre></td></tr></table></figure>
+
+<h3 id="全局异常处理"><a href="#全局异常处理" class="headerlink" title="全局异常处理"></a>全局异常处理</h3><ul>
+<li>对类添加@ControllerAdvice注解，在处理异常的方法前添加<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ResponseStatus</span>(HttpStatus.OK)</span><br><span class="line"><span class="meta">@ExceptionHandler</span>(&#123;Exception<span class="class">.<span class="keyword">class</span>&#125;)</span></span><br><span class="line"><span class="class">@<span class="title">ResponseBody</span></span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="CommandLineRunner接口"><a href="#CommandLineRunner接口" class="headerlink" title="CommandLineRunner接口"></a>CommandLineRunner接口</h3><p>在应用初始化后，去执行一段代码块逻辑，这段初始化代码在整个应用生命周期内只会执行一次。</p>
+<p>用于预先加载数据，实现CommandLineRunner接口，需要加载的数据的逻辑写在run()方法中。</p>
+<p>可使用@Order(1)，@Order(2)……注解指定加载顺序。</p>
+<h3 id="对象的有状态与无状态"><a href="#对象的有状态与无状态" class="headerlink" title="对象的有状态与无状态"></a>对象的有状态与无状态</h3><ul>
+<li><p>是否存储数据</p>
+</li>
+<li><p>无状态的Bean适合用单例模式，这样可以共享实例，提高性能。有状态的Bean，多线程环境下不安全，那么适合用Prototype原型模式。Prototype: 每次对bean的请求都会创建一个新的bean实例。</p>
+</li>
+</ul>
+<h3 id="Controller中的返回数据"><a href="#Controller中的返回数据" class="headerlink" title="Controller中的返回数据"></a>Controller中的返回数据</h3><ul>
+<li><code>ResponseAdvisor</code>对返回数据进行了拦截，然后统一处理，所有的controller只需要返回业务相关数据即可。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ControllerAdvice</span> <span class="comment">// 对controller的全局配置</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ResponseAdvisor</span> <span class="keyword">implements</span> <span class="title">ResponseBodyAdvice</span>&lt;<span class="title">Object</span>&gt; </span>&#123;</span><br><span class="line">   </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">supports</span><span class="params">(MethodParameter returnType, Class&lt;? extends HttpMessageConverter&lt;?&gt;&gt; converterType)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> Object <span class="title">beforeBodyWrite</span><span class="params">(Object body, MethodParameter returnType, MediaType selectedContentType,</span></span></span><br><span class="line"><span class="function"><span class="params">         Class&lt;? extends HttpMessageConverter&lt;?&gt;&gt; selectedConverterType, ServerHttpRequest request,</span></span></span><br><span class="line"><span class="function"><span class="params">         ServerHttpResponse response)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (body <span class="keyword">instanceof</span> Result) &#123;</span><br><span class="line">         <span class="keyword">return</span> body;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 处理数据，将业务数据封装成自定义的结果集对象Result </span></span><br><span class="line">      <span class="keyword">return</span> RetResponse.makeOKRsp(body);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>  <code>RetResponse</code>对controller返回的业务数据封装成自定义的 Result对象返回给前端</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 响应结果封装 对controller返回的参数封装成自定义的 Result对象返回给前端</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RetResponse</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">Result&lt;T&gt; <span class="title">makeOKRsp</span><span class="params">(T data, String msg)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> Result&lt;T&gt;().setCode(ResultCode.SUCCESS) <span class="comment">// 200</span></span><br><span class="line">				.setResult(WebConstants.RESULT_SUCCESS)<span class="comment">// success</span></span><br><span class="line">				.setData(data).setMsg(msg);<span class="comment">// 结果信息</span></span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">Result&lt;T&gt; <span class="title">makeOKRsp</span><span class="params">(T data)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> Result&lt;T&gt;()</span><br><span class="line">  .setCode(ResultCode.SUCCESS).setResult(WebConstants.RESULT_SUCCESS).setData(data);</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">Result&lt;T&gt; <span class="title">makeOKRsp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> Result&lt;T&gt;()</span><br><span class="line">            .setCode(ResultCode.SUCCESS).setResult(WebConstants.RESULT_SUCCESS);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">Result&lt;T&gt; <span class="title">makeErrRsp</span><span class="params">(T data, String msg)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> Result&lt;T&gt;()          			                                                 .setCode(ResultCode.INTERNAL_SERVER_ERROR)</span><br><span class="line">            .setResult(WebConstants.RESULT_FAILED).setData(data).setMsg(msg);</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">Result&lt;T&gt; <span class="title">makeFailRsp</span><span class="params">(T data, String msg)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> Result&lt;T&gt;()                                              			             .setCode(ResultCode.FAIL)</span><br><span class="line">            .setResult(WebConstants.RESULT_FAILED).setData(data).setMsg(msg);</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">Result&lt;T&gt; <span class="title">makeRsp</span><span class="params">(String code)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> Result&lt;T&gt;().setCode(Integer.valueOf(code));</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">Result&lt;T&gt; <span class="title">makeRsp</span><span class="params">(String code, String msg)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> Result&lt;T&gt;().setCode(Integer.valueOf(code)).setMsg(msg);</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">Result&lt;T&gt; <span class="title">makeExceptionRsp</span><span class="params">(String code, String msg)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> Result&lt;T&gt;()</span><br><span class="line">            .setCode(Integer.valueOf(code))</span><br><span class="line">            .setMsg(msg).setResult(WebConstants.RESULT_FAILED);</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">Result&lt;T&gt; <span class="title">makeRsp</span><span class="params">(Integer code, String msg, T data, String result)</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> Result&lt;T&gt;()</span><br><span class="line">            .setCode(code).setMsg(msg).setData(data).setResult(result);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>  <code>Result</code>自定义结果集封装对象</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Result</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">// 响应码</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> code;</span><br><span class="line">    <span class="comment">// 状态信息</span></span><br><span class="line">    <span class="keyword">private</span> String msg;</span><br><span class="line">    <span class="comment">// 返回数据</span></span><br><span class="line">    <span class="keyword">private</span> T data;</span><br><span class="line">    <span class="comment">// 返回常量</span></span><br><span class="line">    <span class="keyword">private</span> String result;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Result</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">      * 异常构造方法</span></span><br><span class="line"><span class="comment">      * <span class="doctag">@param</span> exception</span></span><br><span class="line"><span class="comment">      */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Result</span><span class="params">(Exception exception)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.result = WebConstants.RESULT_FAILED;</span><br><span class="line">        <span class="keyword">this</span>.msg = exception.getMessage();</span><br><span class="line">        <span class="keyword">this</span>.data = (T) exception.getMessage();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Result</span><span class="params">(String message, Exception exception)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(exception);</span><br><span class="line">        <span class="keyword">this</span>.msg = message;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Result</span><span class="params">(String message, Exception exception, Boolean success)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(exception);</span><br><span class="line">        <span class="keyword">this</span>.code = ResultCode.FAIL.code();</span><br><span class="line">        <span class="keyword">this</span>.msg = message;</span><br><span class="line">        <span class="keyword">this</span>.result = WebConstants.RESULT_SUCCESS;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Result</span><span class="params">(String message, Exception exception, Integer code)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(exception);</span><br><span class="line">        <span class="keyword">this</span>.msg = message;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">     <span class="function"><span class="keyword">public</span> Result <span class="title">setCode</span><span class="params">(ResultCode resultCode)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.code = resultCode.code();</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">getData</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result <span class="title">setData</span><span class="params">(T data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.data = data;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result <span class="title">setCode</span><span class="params">(<span class="keyword">int</span> code)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.code = code;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getMsg</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> msg;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result <span class="title">setMsg</span><span class="params">(String msg)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.msg = msg;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getResult</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result <span class="title">setResult</span><span class="params">(String result)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.result = result;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>响应码枚举类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> ResultCode &#123;</span><br><span class="line">    SUCCESS(<span class="number">200</span>),<span class="comment">//成功</span></span><br><span class="line">    FAIL(<span class="number">400</span>),<span class="comment">//失败</span></span><br><span class="line">    UNAUTHORIZED(<span class="number">401</span>),<span class="comment">//未认证（签名错误）</span></span><br><span class="line">    NOT_FOUND(<span class="number">404</span>),<span class="comment">//接口不存在</span></span><br><span class="line">    INTERNAL_SERVER_ERROR(<span class="number">500</span>);<span class="comment">//服务器内部错误</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> code;</span><br><span class="line"></span><br><span class="line">    ResultCode(<span class="keyword">int</span> code) &#123;</span><br><span class="line">        <span class="keyword">this</span>.code = code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">code</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>返回常量</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebConstants</span> </span>&#123;</span><br><span class="line">   <span class="comment">// 返还成功</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String RESULT_SUCCESS = <span class="string">"success"</span>;</span><br><span class="line">   <span class="comment">// 返还异常-业务异常</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String RESULT_FAILED = <span class="string">"fail"</span>;</span><br><span class="line">   <span class="comment">// 返还失败-系统异常</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String RESULT_ERROR = <span class="string">"error"</span>;</span><br><span class="line">   <span class="comment">// token</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String HEADER_TOKEN = <span class="string">"Atoken"</span>;</span><br><span class="line">   <span class="comment">// Token验证失败,用户验证异常</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Integer AUTH_VALIDATE_FAILED = -<span class="number">1</span>;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String SERVICE_ERROR_TIPS = <span class="string">"服务内部异常，请稍后再试"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>时间格式化</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@JsonFormat</span>(pattern = <span class="string">"yyyy-MM-dd HH:mm:ss"</span>, timezone = <span class="string">"GMT+8"</span>)</span><br><span class="line"><span class="keyword">private</span> Date createTime;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在数据库中不能为空的字段在ServiceImpl中使用 AssertUtils.notNull( 字段  , “参数不能为空”)  进行断言，参数为空抛出异常信息。</p>
+</li>
+<li><p>调用过程：</p>
+<p>controller (dto)-&gt;service接口(dto)-&gt;serviceImpl实现类(dto)：使用@Service注解-&gt;bl(dto)实现类：使用@Service注解-&gt;mapper(po)接口（对应mapper.xml文件）-&gt;mysql</p>
+</li>
+<li><p>当前时间：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Timestamp timestamp = <span class="keyword">new</span> Timestamp(System.currentTimeMillis());</span><br><span class="line">System.out.println(timestamp);<span class="comment">// 2020-12-10 11:03:11.976</span></span><br><span class="line">SimpleDateFormat df = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</span><br><span class="line">String timestampDF = df.format(timestamp);</span><br><span class="line">System.out.println(timestampDF);<span class="comment">// 2020-12-11 11:19:51</span></span><br><span class="line">Date parseDate = DateUtils.parseDate(timestampDF, <span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</span><br><span class="line">System.out.println(parseDate);<span class="comment">// Fri Dec 11 11:20:23 CST 2020</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h3><p>分页结果集：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PageList</span>&lt;<span class="title">T</span> <span class="keyword">extends</span> <span class="title">Serializable</span>&gt; <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = -<span class="number">6177180431483012580L</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 返回的数据集合</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;T&gt; dataList;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 返回的分页对象信息</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Pager pager;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;T&gt; <span class="title">getDataList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> dataList;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setDataList</span><span class="params">(List&lt;T&gt; dataList)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.dataList = dataList;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Pager <span class="title">getPager</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> pager;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPager</span><span class="params">(Pager pager)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.pager = pager;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Pager</span> <span class="keyword">extends</span> <span class="title">PagerCondition</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 总记录数</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Integer recordCount;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 总页数</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Integer totalPage;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Pager</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Pager</span><span class="params">(Integer currentPage, Integer pageSize, Integer recordCount)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(currentPage, pageSize);</span><br><span class="line">        <span class="keyword">this</span>.recordCount = recordCount;</span><br><span class="line">        Integer totalPageSize = recordCount / pageSize;</span><br><span class="line">        Integer remailder = recordCount % pageSize;</span><br><span class="line">        <span class="comment">// 如果总记录数与每页显示条数的余数大于0，总页数加1</span></span><br><span class="line">        <span class="keyword">if</span> (remailder &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            totalPageSize = totalPageSize + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        totalPage = totalPageSize;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Pager</span><span class="params">(PagerCondition pageCondition, Integer recordCount)</span> </span>&#123;</span><br><span class="line">        setCurrentPage(pageCondition.getCurrentPage());</span><br><span class="line">        setPageSize(pageCondition.getPageSize());</span><br><span class="line">        setRecordCount(recordCount);</span><br><span class="line">        setTotalPage((recordCount + getPageSize() - <span class="number">1</span>) / getPageSize());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getRecordCount</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> recordCount;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setRecordCount</span><span class="params">(Integer recordCount)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.recordCount = recordCount;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getTotalPage</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> totalPage;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTotalPage</span><span class="params">(Integer totalPage)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.totalPage = totalPage;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>分页结果集中的分页参数：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PagerCondition</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@Fields</span> 当前页</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">private</span> Integer currentPage = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@Fields</span> 每页的数量</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">private</span> Integer pageSize = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">PagerCondition</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">super</span>();</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">PagerCondition</span><span class="params">(Integer currentPage)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">super</span>();</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (currentPage != <span class="keyword">null</span>)</span><br><span class="line">         <span class="keyword">this</span>.currentPage = currentPage;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">this</span>.pageSize = <span class="number">20</span>;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">PagerCondition</span><span class="params">(Integer currentPage, Integer pageSize)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">super</span>();</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (currentPage != <span class="keyword">null</span>)</span><br><span class="line">         <span class="keyword">this</span>.currentPage = currentPage;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">this</span>.pageSize = pageSize;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> Integer <span class="title">getCurrentPage</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> currentPage;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> Integer <span class="title">getLimitnum</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.getPageSize();</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> Integer <span class="title">getOffset</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> (<span class="keyword">this</span>.getCurrentPage() - <span class="number">1</span>) * <span class="keyword">this</span>.getPageSize();</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> Integer <span class="title">getPageSize</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (pageSize == <span class="keyword">null</span> || pageSize &lt;= <span class="number">0</span>)</span><br><span class="line">         <span class="keyword">return</span> <span class="number">20</span>;</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">         <span class="keyword">return</span> pageSize;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> Integer <span class="title">getPreviousPage</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.currentPage &gt; <span class="number">0</span>) &#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">this</span>.currentPage - <span class="number">1</span>;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCurrentPage</span><span class="params">(Integer currentPage)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.currentPage = currentPage;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPageSize</span><span class="params">(Integer pageSize)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.pageSize = pageSize;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> Integer <span class="title">startRow</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">int</span> startRow = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">if</span> (currentPage != <span class="number">1</span>) &#123;</span><br><span class="line">         startRow = (currentPage - <span class="number">1</span>) * pageSize;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> startRow;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>数据库查询返回分页结果集：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这里的Page是PageHelper内部定义的Page</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PageResult</span>&lt;<span class="title">E</span> <span class="keyword">extends</span> <span class="title">Serializable</span>&gt; <span class="keyword">extends</span> <span class="title">Page</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 转换为PageList</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 转换结果</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> PageList&lt;E&gt; <span class="title">toPageList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> PageList&lt;E&gt; pageList = <span class="keyword">new</span> PageList&lt;&gt;();</span><br><span class="line">        pageList.setPager(getPager());</span><br><span class="line">        pageList.setDataList(<span class="keyword">new</span> ArrayList&lt;&gt;(<span class="keyword">this</span>));</span><br><span class="line">        <span class="keyword">return</span> pageList;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Pager <span class="title">getPager</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> Pager pager = <span class="keyword">new</span> Pager();</span><br><span class="line">        pager.setPageSize(getPageSize());</span><br><span class="line">        pager.setCurrentPage(getPageNum());</span><br><span class="line">        pager.setRecordCount(Math.toIntExact(getTotal()));</span><br><span class="line">        pager.setTotalPage(getPages());</span><br><span class="line">        <span class="keyword">return</span> pager;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>并结合PageHelper实现分页，PageHelper分页的实现原理就是，通过PageHelper内部的拦截器在我们执行SQL语句之前动态的将SQL语句拼接分页的语句。</p>
+<p>配置好PageHelper后，在每次查询前设置Page参数即可完成分页：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PageHelper.startPage(queryDTO.getCurrentPage(), queryDTO.getPageSize());</span><br></pre></td></tr></table></figure>
+
+<p>通过实现Mybatis拦截器实现分页参数的传递：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Intercepts</span>(<span class="meta">@Signature</span>(type = Executor<span class="class">.<span class="keyword">class</span>, <span class="title">method</span> </span>= <span class="string">"query"</span>, args = &#123;MappedStatement<span class="class">.<span class="keyword">class</span>, <span class="title">Object</span>.<span class="title">class</span>, <span class="title">RowBounds</span>.<span class="title">class</span>, <span class="title">ResultHandler</span>.<span class="title">class</span>&#125;))</span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">class</span> <span class="title">PageResultEnhancer</span> <span class="keyword">implements</span> <span class="title">Interceptor</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">intercept</span><span class="params">(Invocation invocation)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> Object result = invocation.proceed();</span><br><span class="line">        <span class="keyword">if</span> (result <span class="keyword">instanceof</span> Page) &#123;</span><br><span class="line">            <span class="keyword">final</span> Page page = (Page) result;</span><br><span class="line">            <span class="keyword">final</span> PageResult pageResult = <span class="keyword">new</span> PageResult();</span><br><span class="line">            pageResult.addAll(page);</span><br><span class="line">            pageResult.setPageNum(page.getPageNum());</span><br><span class="line">            pageResult.setPageSize(page.getPageSize());</span><br><span class="line">            pageResult.setStartRow(page.getStartRow());</span><br><span class="line">            pageResult.setEndRow(page.getEndRow());</span><br><span class="line">            pageResult.setTotal(page.getTotal());</span><br><span class="line">            pageResult.setPages(page.getPages());</span><br><span class="line">            pageResult.setCount(page.isCount());</span><br><span class="line">            pageResult.setOrderBy(page.getOrderBy());</span><br><span class="line">            pageResult.setOrderByOnly(page.isOrderByOnly());</span><br><span class="line">            pageResult.setReasonable(page.getReasonable());</span><br><span class="line">            pageResult.setPageSizeZero(page.getPageSizeZero());</span><br><span class="line">            <span class="keyword">return</span> pageResult;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 只拦截Executor</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">plugin</span><span class="params">(Object target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (target <span class="keyword">instanceof</span> Executor) &#123;</span><br><span class="line">            <span class="keyword">return</span> Plugin.wrap(target, <span class="keyword">this</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> target;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setProperties</span><span class="params">(Properties properties)</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实现分页切面完成PageHelper分页参数的设置：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PageAspect</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Pointcut</span>(<span class="string">"execution(* com.shengsigu.service..*.*(..))"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pagePointcut</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Before</span>(<span class="string">"pagePointcut()"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pageBefore</span><span class="params">(JoinPoint joinPoint)</span> </span>&#123;</span><br><span class="line">        Method method = ((MethodSignature)joinPoint.getSignature()).getMethod();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获取到当前方法的方法签名, 判断返回类型是否是 PageList, 如果是则执行分页逻辑</span></span><br><span class="line">        <span class="keyword">boolean</span> isPageList = method.getReturnType().equals(PageList<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        <span class="keyword">if</span> (isPageList) &#123;</span><br><span class="line">            <span class="comment">// 获取参数 currentPage, pageSize，并设置分页</span></span><br><span class="line">            Object[] args = joinPoint.getArgs();</span><br><span class="line">            PageCondition pageCondition = (PageCondition) args[<span class="number">0</span>];</span><br><span class="line">            PageHelper.startPage(pageCondition.getPageNum(),pageCondition.getPageSize(),<span class="keyword">true</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h2><ul>
+<li>不要想当然，凭主观判断别人写的方法，调用别人的方法的时候点进去看一看是否满足自己的需求。</li>
+<li>仔细检查！！！ 做事情要有理有据，不要马虎！！！</li>
+<li>不要过分地参照原来的代码，它有可能也不规范！</li>
+<li>字段的意义？内部业务逻辑？多问写该代码的同事！</li>
+<li>对象调用方法前，记得考虑一下是否为空！</li>
+<li><code>if-else</code>语句中有重复的语句，提取出来放置<code>if-else</code>之外！</li>
+<li><code>if</code>里面有<code>if</code>，考虑合并判断条件？</li>
+<li>熟悉一块业务功能不能只看代码，应该还要去熟悉流程，数据库。</li>
+<li>永远不要相信前端传过来的参数是可靠，处于安全考虑，后端必须进行必要的参数校验。</li>
+<li>对象只有在需要时才创建，不要提前创建，避免浪费内存。</li>
+<li>最好使用空对象代替<code>null</code>返回给前端。</li>
+<li>删除、修改单个属性为一个常量时，前端传递一个<em>id</em>就可以了，不用传递整个实体对象。</li>
+<li>对象调用方法时，注意判空！</li>
+<li>方法（动词+名词）和变量（boolean类型 ：is+形容词）做到见名知意。</li>
+<li><em>mapper</em>文件里面的<em>sql</em>尽量不要写死，使用接口传递常量值。</li>
+<li>一个方法中不同的功能模块用空行隔开。</li>
+</ul>
+<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><ul>
+<li><p>push代码时确保push到的远程分支是自己新建的一个分支，千万不要push到主分支中！！！有的项目可能没有设置权限，提交的代码就直接合并到主分支中参与构建了，最终导致构建失败！</p>
+</li>
+<li><p>push大量改动时，将改动拆分push，push前检查改动，以最小改动为基准，能添加尽量不要删除，一般情况不要合并其他环境的版本到当前环境的版本，dubbo cache不要勾选！</p>
+</li>
+<li><p>确保本地编译成功再提交，pom文件的依赖不能随便加，但是要导的包一定记得导，导不进来的二方接口是别人的代码还没合，包还没构建的原因。</p>
+</li>
+<li><p>提交前merge同一环境下的目标分支到自己本地的分支，不要与fetch更新自己远程的分支到本地分支弄混淆。</p>
+</li>
+<li><p>Git Log查看git操作的日志。</p>
+</li>
+<li><p>Undo Commit 撤销commit。</p>
+</li>
+<li><p>git pull强制覆盖：</p>
+<figure class="highlight plain"><figcaption><span>fetch origin master```  先把远程仓库最新状态拉到本地（以master为例）；</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#96;&#96;&#96;git reset --hard origin&#x2F;master&#96;&#96;&#96;  将本地仓库重置到远程仓库最新状态（本地将被覆盖）。</span><br><span class="line"></span><br><span class="line">或者如果你在其他分支上：&#96;&#96;&#96;git reset --hard origin&#x2F;&lt;branch_name&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><figcaption><span>pull```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 测试代码</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;java</span><br><span class="line">@SpringBootTest</span><br><span class="line">class TestApplicationTests &#123;</span><br><span class="line">   @Test</span><br><span class="line">   void testListToMap() &#123;</span><br><span class="line">      List&lt;User&gt; users &#x3D; new ArrayList&lt;&gt;();</span><br><span class="line">      users.add(new User(&quot;111&quot;, &quot;zhangsan1&quot;));</span><br><span class="line">      users.add(new User(&quot;222&quot;, &quot;zhangsan2&quot;));</span><br><span class="line">      users.add(new User(&quot;111&quot;, &quot;zhangsan3&quot;));</span><br><span class="line">      &#x2F;&#x2F; 除去key重复的键值对，保留第一次出现的 返回指定类型的 map</span><br><span class="line">      Map&lt;String, User&gt; usersMap &#x3D; users.stream()</span><br><span class="line">            .collect(Collectors.toMap(User::getId, Function.identity(), (a, b) -&gt; a, ConcurrentHashMap::new));</span><br><span class="line">      System.out.println(usersMap.getClass());</span><br><span class="line">      System.out.println(usersMap);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   @Test</span><br><span class="line">   void testOptional() &#123;</span><br><span class="line">      List&lt;User&gt; users &#x3D; new ArrayList&lt;&gt;();</span><br><span class="line">      users.add(new User(&quot;111&quot;, &quot;zhangsan1&quot;));</span><br><span class="line">      users.add(new User(&quot;222&quot;, &quot;zhangsan2&quot;));</span><br><span class="line">      users.add(new User(&quot;333&quot;, &quot;zhangsan3&quot;));</span><br><span class="line">      users.add(null);</span><br><span class="line">      &#x2F;&#x2F; findAny()操作，返回的元素是不确定的，对于同一个列表多次调用findAny()有可能会返回不同的值。</span><br><span class="line">      &#x2F;&#x2F; 使用findAny()是为了更高效的性能。如果是数据较少，串行地情况下，一般会返回第一个结果，如果是并行的情况，那就不能确保是第一个</span><br><span class="line">      &#x2F;&#x2F; 用来判断集合中是否有满足条件的元素,存在返回true，并且允许集合元素为null的情况</span><br><span class="line">      Optional&lt;User&gt; usersIsNull &#x3D; users.stream().filter(e -&gt; e !&#x3D; null &amp;&amp; e.getName().equals(&quot;zhangsan&quot;)).findAny();</span><br><span class="line">      System.out.println(usersIsNull.isPresent());&#x2F;&#x2F; false</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   @Test</span><br><span class="line">   public void testStringUtils() &#123;</span><br><span class="line">      System.out.println(StringUtils.isNumeric(&quot;123&quot;));&#x2F;&#x2F; true</span><br><span class="line">      System.out.println(&quot;--------isEmpty-------&quot;);</span><br><span class="line">      &#x2F;&#x2F; isEmpty判断空字符串时返回 false</span><br><span class="line">      System.out.println(&quot;null-&gt;&quot; + StringUtils.isEmpty(null));&#x2F;&#x2F; true</span><br><span class="line">      System.out.println(&quot;\&quot;\&quot;-&gt;&quot; + StringUtils.isEmpty(&quot;&quot;));&#x2F;&#x2F; true</span><br><span class="line">      System.out.println(&quot;\&quot; \&quot;-&gt;&quot; + StringUtils.isEmpty(&quot; &quot;));&#x2F;&#x2F; false</span><br><span class="line">      System.out.println(&quot;--------isBlank-------&quot;);</span><br><span class="line">      System.out.println(&quot;null-&gt;&quot; + StringUtils.isBlank(null));&#x2F;&#x2F; true</span><br><span class="line">      System.out.println(&quot;\&quot;\&quot;-&gt;&quot; + StringUtils.isBlank(&quot;&quot;));&#x2F;&#x2F; true</span><br><span class="line">      System.out.println(&quot;\&quot; \&quot;-&gt;&quot; + StringUtils.isBlank(&quot; &quot;));&#x2F;&#x2F; true</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   @Test</span><br><span class="line">   public void testAssert() &#123;</span><br><span class="line">      &#x2F;&#x2F;Assert.notNull(null,&quot;判断null&quot;);&#x2F;&#x2F; 抛出异常</span><br><span class="line">      &#x2F;&#x2F;Assert.notNull(&quot;&quot;,&quot;判断\&quot;\&quot;&quot;);&#x2F;&#x2F; 不会抛出异常</span><br><span class="line">      &#x2F;&#x2F;Assert.notNull(&quot; &quot;,&quot;判断null\&quot; \&quot;&quot;);&#x2F;&#x2F; 不会抛出异常</span><br><span class="line">      &#x2F;&#x2F;Assert.notNull(new ArrayList&lt;&gt;());&#x2F;&#x2F; 不会抛出异常</span><br><span class="line">      User user &#x3D; new User();</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   @Test</span><br><span class="line">   public void test()&#123;</span><br><span class="line">      Integer num &#x3D; Integer.valueOf(&quot;&quot;);&#x2F;&#x2F; 抛出 java.lang.NumberFormatException</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   @Test</span><br><span class="line">   public void testUUID()&#123;</span><br><span class="line">   &#x2F;&#x2F; 生成19位随机数 直接使用 在多线程环境下可能重复 写成工具类方法并用synchronized关键字修饰</span><br><span class="line">      Long shortUuid &#x3D; UUID.randomUUID().getLeastSignificantBits() * -1;</span><br><span class="line">      System.out.println(shortUuid);</span><br><span class="line">   &#x2F;&#x2F; 生成uuid去掉-，可与redis的key拼接 生成唯一的键   </span><br><span class="line">      String uuid &#x3D; UUID.randomUUID().toString().replace(&quot;-&quot;,&quot;&quot;);</span><br><span class="line">      System.out.println(uuid);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   @Test</span><br><span class="line">   public void testMap()&#123;</span><br><span class="line">      List&lt;User&gt; users &#x3D; new ArrayList&lt;&gt;();</span><br><span class="line">      ArrayList&lt;String&gt; study &#x3D; new ArrayList&lt;&gt;();</span><br><span class="line">      ArrayList&lt;String&gt; sports &#x3D; new ArrayList&lt;&gt;();</span><br><span class="line">      study.add(&quot;chinese&quot;);</span><br><span class="line">      study.add(&quot;math&quot;);</span><br><span class="line">      study.add(&quot;english&quot;);</span><br><span class="line">      sports.add(&quot;dance&quot;);</span><br><span class="line">      sports.add(&quot;basketball&quot;);</span><br><span class="line">      users.add(new User(&quot;111&quot;, &quot;zhangsan1&quot;,new Hobby(study,sports)));</span><br><span class="line">      users.add(new User(&quot;222&quot;, &quot;zhangsan2&quot;,new Hobby(study,sports)));</span><br><span class="line">      users.add(new User(&quot;333&quot;, &quot;zhangsan3&quot;,new Hobby(study,sports)));</span><br><span class="line"></span><br><span class="line">      List&lt;String&gt; ids &#x3D; users.stream().map(User::getId).collect(Collectors.toList());</span><br><span class="line">      System.out.println(ids);&#x2F;&#x2F; [111, 222, 333]</span><br><span class="line">      &#x2F;&#x2F; flatmap 将对象中的属性转换为流，方便进行二次处理</span><br><span class="line">      List&lt;String&gt; usersports &#x3D; users.stream().flatMap(user -&gt; user.getHobby().getSports().stream()).collect(Collectors.toList());</span><br><span class="line">      System.out.println(usersports);&#x2F;&#x2F; [dance, basketball, dance, basketball, dance, basketball]</span><br><span class="line">      &#x2F;&#x2F; groupingBy分组 封装成为 Map&lt;指定属性,List&lt;User&gt;&gt; 指定属性相同的 User在一个List里面</span><br><span class="line">      Map&lt;String, List&lt;User&gt;&gt; mapById &#x3D; users.stream().collect(Collectors.groupingBy(User::getId));</span><br><span class="line">      System.out.println(mapById);</span><br><span class="line">      &#x2F;&#x2F; toMap 封装成 Map&lt;指定属性,User&gt; 指定属性重复时抛 java.lang.IllegalStateException</span><br><span class="line">      Map&lt;String, User&gt; mapById2 &#x3D; users.stream().collect(Collectors.toMap(User::getId, Function.identity()));</span><br><span class="line">      System.out.println(mapById2);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   @Test</span><br><span class="line">   public void testSingletonList()&#123;</span><br><span class="line">      &#x2F;**</span><br><span class="line">       * Arrays.asList(strArray)返回的是一个可变的集合，</span><br><span class="line">       * 但是返回值是其内部类，不具有add方法，可以通过set方法进行增加值，默认长度是10</span><br><span class="line">       *</span><br><span class="line">       *</span><br><span class="line">       * Collections.singletonList()返回的是不可变的集合，但是这个长度的集合只有1，可以减少内存空间。</span><br><span class="line">       * 但是返回的值依然是Collections的内部实现类，同样没有add的方法，调用add，set方法会报错</span><br><span class="line">       *&#x2F;</span><br><span class="line"></span><br><span class="line">      User user &#x3D; new User(&quot;111&quot;, &quot;zhangsan1&quot;);</span><br><span class="line">      List&lt;User&gt; oneToList1 &#x3D; Collections.singletonList(user);</span><br><span class="line">      &#x2F;&#x2F; oneToList1.add(new User(&quot;222&quot;,&quot;zyz&quot;));&#x2F;&#x2F; java.lang.UnsupportedOperationException</span><br><span class="line">      System.out.println(oneToList1);</span><br><span class="line">      List&lt;User&gt; oneToList2 &#x3D; Stream.of(user).collect(Collectors.toList());</span><br><span class="line">      oneToList2.add(new User(&quot;222&quot;,&quot;zyz&quot;));</span><br><span class="line">      System.out.println(oneToList2);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   @Test</span><br><span class="line">   public void testDate() throws ParseException &#123;</span><br><span class="line">      Timestamp timestamp &#x3D; new Timestamp(System.currentTimeMillis());</span><br><span class="line">      System.out.println(timestamp);&#x2F;&#x2F; 2020-12-10 11:03:11.976</span><br><span class="line">      SimpleDateFormat df &#x3D; new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);</span><br><span class="line">      String timestampDF &#x3D; df.format(timestamp);</span><br><span class="line">      System.out.println(timestampDF);&#x2F;&#x2F; 2020-12-11 11:19:51</span><br><span class="line">      Date parseDate &#x3D; DateUtils.parseDate(timestampDF, &quot;yyyy-MM-dd HH:mm:ss&quot;);</span><br><span class="line">      System.out.println(parseDate);&#x2F;&#x2F; Fri Dec 11 11:20:23 CST 2020</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   @Test</span><br><span class="line">   public void testNumeric()&#123;</span><br><span class="line">      System.out.println(StringUtils.isNumeric(&quot;123&quot;));&#x2F;&#x2F; true</span><br><span class="line">      System.out.println(StringUtils.isNumeric(&quot;12.3&quot;));&#x2F;&#x2F; false</span><br><span class="line">      System.out.println(StringUtils.isNumeric(&quot;&quot;));&#x2F;&#x2F; false</span><br><span class="line">      System.out.println(StringUtils.isNumeric(&quot; &quot;));&#x2F;&#x2F; false</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="业务"><a href="#业务" class="headerlink" title="业务"></a>业务</h2><ul>
+<li><p>在实际开发中，添加和更新功能可以写在一起，添加时前端不传id，更新时前端传id。</p>
+</li>
+<li><p>对前端传过来的json通过@RequestBody转换为JavaBean后进行非空判断</p>
+<ul>
+<li>经过@RequestyBody封装的javaBean一定不为null，只需进行非空判断，或者对其属性进行非空判断</li>
+<li>一些必须传的数据可使用断言判断，截断流程</li>
+<li>if判断，在保证不阻断业务流程下使用</li>
+<li>集合元素进行forEach遍历之前，必须进行非空判断<code>CollectionUtils.isEmpty(collection)</code></li>
+</ul>
+</li>
+<li><p>修改密码的逻辑</p>
+<ul>
+<li>在根据原密码修改密码，验证原密码，验证密码时需要对原密码进行加密再与数据库中的密码进行比较：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 传入参数：旧密码oldPassword、新密码newPassword、用户id userId </span></span><br><span class="line">String digestOldPassword = DigestUtils.md5DigestAsHex(oldPassword.getBytes());</span><br><span class="line"><span class="keyword">if</span> (!digestOldPassword.equals(user.getPassword().trim().toLowerCase())) &#123;</span><br><span class="line">	<span class="keyword">new</span> RuntimeException(<span class="string">"输入的原密码错误！"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 密码强度校验......</span></span><br><span class="line"><span class="comment">// 对新密码进行加密</span></span><br><span class="line">String digestNewPassword = DigestUtils.md5DigestAsHex(newPassword.trim().getBytes());</span><br><span class="line"><span class="comment">// 更新密码到数据库</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>枚举类的使用</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> ChargeOffStateEnum &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 审核中</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    WAIT_AUTID((<span class="keyword">byte</span>) <span class="number">1</span>, <span class="string">"审核中"</span>),</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 已审核</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    CANCEL((<span class="keyword">byte</span>) <span class="number">2</span>, <span class="string">"已取消"</span>),</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 已取消</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    COMPLETE((<span class="keyword">byte</span>) <span class="number">3</span>, <span class="string">"已完成"</span>);</span><br><span class="line"></span><br><span class="line">    ChargeOffStateEnum(Byte value, String name) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.value = value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Byte value;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Byte <span class="title">getValue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ChargeOffStateEnum <span class="title">getChargeOffStateEnum</span><span class="params">(Byte value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (value == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ChargeOffStateEnum[] stateEnums = ChargeOffStateEnum.values();</span><br><span class="line">        <span class="keyword">for</span> (ChargeOffStateEnum stateEnum : stateEnums) &#123;</span><br><span class="line">            <span class="keyword">if</span> (value.equals(stateEnum.getValue())) &#123;</span><br><span class="line">                <span class="keyword">return</span> stateEnum;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="bug处理"><a href="#bug处理" class="headerlink" title="bug处理"></a>bug处理</h2><p>定位bug：<br><img src="/2020/11/28/note/image-20201127180423777.png" alt></p>
+<p><img src="/2020/11/28/note/image-20201127181032477.png" alt></p>
+<p><img src="/2020/11/28/note/image-20201127181317227.png" alt></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Zhangyuzhen
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://sweetboyzhang.gitee.io/2020/11/28/note/" title="实习笔记1">https://sweetboyzhang.gitee.io/2020/11/28/note/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 实习笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/10/31/elementui/" rel="next" title="ElementUI整合SpringBoot">
+                <i class="fa fa-chevron-left"></i> ElementUI整合SpringBoot
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/12/23/elasticsearch/" rel="prev" title="ElasticSearch基础知识">
+                ElasticSearch基础知识 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/user.jpg"
+                alt="Zhangyuzhen" />
+            
+              <p class="site-author-name" itemprop="name">Zhangyuzhen</p>
+              <p class="site-description motion-element" itemprop="description">向死而生~</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+				<a href="/archives">
+                <!-- <a href="/archives%7C%7C%20archive"> -->
+              
+                  <span class="site-state-item-count">86</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="http://wpa.qq.com/msgrd?v=3&uin=626529441&site=qq&menu=yes" target="_blank" title="QQ">
+                      
+                        <i class="fa fa-fw fa-qq"></i>QQ</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:2824199842@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库"><span class="nav-number">1.</span> <span class="nav-text">数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#crud"><span class="nav-number">1.1.</span> <span class="nav-text">crud</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#框架"><span class="nav-number">2.</span> <span class="nav-text">框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring缓存注解"><span class="nav-number">2.1.</span> <span class="nav-text">Spring缓存注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Transactional"><span class="nav-number">2.2.</span> <span class="nav-text">@Transactional</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Controller中的Model参数"><span class="nav-number">2.3.</span> <span class="nav-text">Controller中的Model参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义注解中的元注解"><span class="nav-number">2.4.</span> <span class="nav-text">自定义注解中的元注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全局异常处理"><span class="nav-number">2.5.</span> <span class="nav-text">全局异常处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CommandLineRunner接口"><span class="nav-number">2.6.</span> <span class="nav-text">CommandLineRunner接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象的有状态与无状态"><span class="nav-number">2.7.</span> <span class="nav-text">对象的有状态与无状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Controller中的返回数据"><span class="nav-number">2.8.</span> <span class="nav-text">Controller中的返回数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分页"><span class="nav-number">2.9.</span> <span class="nav-text">分页</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反思"><span class="nav-number">3.</span> <span class="nav-text">反思</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git"><span class="nav-number">4.</span> <span class="nav-text">Git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#业务"><span class="nav-number">5.</span> <span class="nav-text">业务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bug处理"><span class="nav-number">6.</span> <span class="nav-text">bug处理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhangyuzhen</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      访问人数：
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      访问次数：
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"left","width":200,"height":400},"mobile":{"show":true},"react":{"opacity":0.6}});</script></body>
+</html>
