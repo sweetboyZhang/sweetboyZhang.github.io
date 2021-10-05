@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="ADO.NET," />
+  <meta name="keywords" content="C#," />
 
 
 
@@ -86,19 +86,20 @@
 
 
 
-<meta name="description" content="ADO.NET是一组用于和数据源进行交互的面向对象类库1、建立连接；2、打开连接；3、发送sql命令；4、执行命令；5、关闭连接">
+<meta name="description" content="IEnumerableIEnumerable：可枚举类型，一个方法GetEnumerato()，实现该接口的类就可以对它进行遍历。IEnumerator：枚举器，一个属性Current，两个方法MoveNext()，Reset()。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C#连接数据库">
-<meta property="og:url" content="https://sweetboyzhang.gitee.io/2021/08/22/csharp-05/index.html">
+<meta property="og:title" content="Linq">
+<meta property="og:url" content="https://sweetboyzhang.gitee.io/2021/10/05/csharp-05/index.html">
 <meta property="og:site_name" content="Zhangyuzhen&#39;s Blog">
-<meta property="og:description" content="ADO.NET是一组用于和数据源进行交互的面向对象类库1、建立连接；2、打开连接；3、发送sql命令；4、执行命令；5、关闭连接">
-<meta property="og:image" content="https://sweetboyzhang.gitee.io/2021/08/22/csharp-05/1.png">
-<meta property="article:published_time" content="2021-08-22T02:43:40.000Z">
-<meta property="article:modified_time" content="2021-10-01T02:55:23.840Z">
+<meta property="og:description" content="IEnumerableIEnumerable：可枚举类型，一个方法GetEnumerato()，实现该接口的类就可以对它进行遍历。IEnumerator：枚举器，一个属性Current，两个方法MoveNext()，Reset()。">
+<meta property="og:image" content="https://sweetboyzhang.gitee.io/2021/10/05/csharp-05/1.png">
+<meta property="og:image" content="https://sweetboyzhang.gitee.io/2021/10/05/csharp-05/2.png">
+<meta property="article:published_time" content="2021-10-05T04:31:15.000Z">
+<meta property="article:modified_time" content="2021-10-05T13:28:48.421Z">
 <meta property="article:author" content="Zhangyuzhen">
-<meta property="article:tag" content="ADO.NET">
+<meta property="article:tag" content="C#">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://sweetboyzhang.gitee.io/2021/08/22/csharp-05/1.png">
+<meta name="twitter:image" content="https://sweetboyzhang.gitee.io/2021/10/05/csharp-05/1.png">
 
 
 
@@ -128,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="https://sweetboyZhang.gitee.io/2021/08/22/csharp-05/"/>
+  <link rel="canonical" href="https://sweetboyZhang.gitee.io/2021/10/05/csharp-05/"/>
 
 
 
 
 
-  <title>C#连接数据库 | Zhangyuzhen's Blog</title>
+  <title>Linq | Zhangyuzhen's Blog</title>
   
 
 
@@ -305,7 +306,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sweetboyZhang.gitee.io/2021/08/22/csharp-05/">
+    <link itemprop="mainEntityOfPage" href="https://sweetboyZhang.gitee.io/2021/10/05/csharp-05/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhangyuzhen">
@@ -322,7 +323,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">C#连接数据库</h1>
+          <h1 class="post-title" itemprop="name headline">Linq</h1>
         
 
         <div class="post-meta">
@@ -334,8 +335,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-08-22T10:43:40+08:00">
-                2021-08-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-10-05T12:31:15+08:00">
+                2021-10-05
               </time>
             
 
@@ -393,7 +394,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  296
+                  560
                 </span>
               
 
@@ -409,7 +410,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -430,19 +431,57 @@
       
 
       
-        <h1 id="ADO-NET"><a href="#ADO-NET" class="headerlink" title="ADO.NET"></a>ADO.NET</h1><p>是一组用于和数据源进行交互的面向对象类库<br>1、建立连接；2、打开连接；3、发送sql命令；4、执行命令；5、关闭连接<a id="more"></a><br><img src="/2021/08/22/csharp-05/1.png" style="zoom:40%;"></p>
-<h1 id="连接MySql数据库"><a href="#连接MySql数据库" class="headerlink" title="连接MySql数据库"></a>连接MySql数据库</h1><p>常用的sql执行函数：</p>
-<ul>
-<li><p><code>ExecuteReader()</code>：用于查询数据库。查询结果是返回<code>MySqlDataReader</code>对象，<code>MySqlDataReader</code>包含sql语句执行的结果，并提供<code>Read()</code>方法从结果中阅读一行。</p>
-</li>
-<li><p><code>ExecuteNonQuery()</code>：用于插入、更新和删除数据。</p>
-</li>
-<li><p><code>ExecuteScalar()</code>：用于查询数据时，返回查询结果集中第一行第一列的值，即只返回一个值。</p>
-</li>
+        <h1 id="IEnumerable"><a href="#IEnumerable" class="headerlink" title="IEnumerable"></a>IEnumerable</h1><p>IEnumerable：可枚举类型，一个方法GetEnumerato()，实现该接口的类就可以对它进行遍历。<br>IEnumerator：枚举器，一个属性Current，两个方法MoveNext()，Reset()。<a id="more"></a></p>
+<h1 id="扩展方法"><a href="#扩展方法" class="headerlink" title="扩展方法"></a>扩展方法</h1><p>在不改变源码的基础上为类添加新的方法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> LinqTest</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Caculate</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">Add</span><span class="params">(<span class="keyword">int</span> num1,<span class="keyword">int</span> num2)</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> num1 + num2;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 拓展Caculate类</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">CaculateExt</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">AddExt</span><span class="params">(<span class="keyword">this</span> Caculate caculate,<span class="keyword">int</span> num1, <span class="keyword">int</span> num2,<span class="keyword">int</span> num3)</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> num1 + num2 + num3;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Program</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span><span class="params">(<span class="built_in">string</span>[] args)</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            Caculate caculate = <span class="keyword">new</span> Caculate();</span><br><span class="line">            <span class="keyword">int</span> num1 = caculate.Add(<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">int</span> num2 = caculate.AddExt(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">            <span class="built_in">Console</span>.WriteLine(num1);<span class="comment">// 2</span></span><br><span class="line">            <span class="built_in">Console</span>.WriteLine(num2);<span class="comment">// 3</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Linq"><a href="#Linq" class="headerlink" title="Linq"></a>Linq</h1><ul>
+<li>linq to object 查询内存中的数据</li>
+<li>linq to sql 查询数据库中的数据</li>
+<li>linq to xml 查询xml文件</li>
 </ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Program</span></span></span><br><span class="line"><span class="class">   &#123;</span>   </span><br><span class="line">       <span class="comment">// 连接字符串  用于连接数据库</span></span><br><span class="line">       <span class="keyword">private</span> <span class="keyword">static</span> readonly <span class="built_in">string</span> connectionString = <span class="string">"server=localhost;port=3306;user=root;password=2824199842;database=test"</span>;</span><br><span class="line">       <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span><span class="params">(<span class="built_in">string</span>[] args)</span></span></span><br><span class="line"><span class="function">       </span>&#123;</span><br><span class="line">           <span class="comment">// 创建连接</span></span><br><span class="line">           MySqlConnection connection = <span class="keyword">new</span> MySqlConnection(connectionString);</span><br><span class="line">           <span class="keyword">try</span></span><br><span class="line">           &#123;</span><br><span class="line">               <span class="comment">// 打开连接</span></span><br><span class="line">               connection.Open();</span><br><span class="line">               <span class="comment">// Console.WriteLine("建立连接成功");</span></span><br><span class="line">               <span class="comment">// 执行sql</span></span><br><span class="line">               <span class="built_in">string</span> sql = <span class="string">"select * from student"</span>;</span><br><span class="line">               MySqlCommand cmd = <span class="keyword">new</span> MySqlCommand(sql, connection);</span><br><span class="line">               MySqlDataReader reader = cmd.ExecuteReader();</span><br><span class="line">               <span class="keyword">while</span> (reader.Read())<span class="comment">// 初始索引为-1 执行读取下一条数据</span></span><br><span class="line">               &#123;</span><br><span class="line">                   <span class="comment">// 键值对方式获取值</span></span><br><span class="line">                   <span class="built_in">Console</span>.WriteLine(<span class="string">"id:&#123;0&#125; name:&#123;1&#125; age:&#123;2&#125;"</span>,reader.GetInt64(<span class="string">"id"</span>),reader.GetString(<span class="string">"name"</span>),reader.GetInt32(<span class="string">"age"</span>));</span><br><span class="line">               &#125; </span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">catch</span> (Exception e)</span><br><span class="line">           &#123;</span><br><span class="line">               <span class="built_in">Console</span>.WriteLine(e.Message);</span><br><span class="line">           &#125;</span><br><span class="line">           finally</span><br><span class="line">           &#123;</span><br><span class="line">               <span class="comment">// 关闭连接</span></span><br><span class="line">               connection.Close();</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原始数据</span></span><br><span class="line">List&lt;Student&gt; studentList = <span class="keyword">new</span> List&lt;Student&gt;()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">new</span> Student()&#123;Id=<span class="number">001</span>,Name=<span class="string">"张三"</span>,Age=<span class="number">21</span>,ClassId=<span class="number">1</span>&#125;,</span><br><span class="line">    <span class="keyword">new</span> Student()&#123;Id=<span class="number">002</span>,Name=<span class="string">"李四"</span>,Age=<span class="number">18</span>,ClassId=<span class="number">1</span>&#125;,</span><br><span class="line">    <span class="keyword">new</span> Student()&#123;Id=<span class="number">003</span>,Name=<span class="string">"王五"</span>,Age=<span class="number">24</span>,ClassId=<span class="number">2</span>&#125;,</span><br><span class="line">    <span class="keyword">new</span> Student()&#123;Id=<span class="number">004</span>,Name=<span class="string">"赵六"</span>,Age=<span class="number">16</span>,ClassId=<span class="number">3</span>&#125;,</span><br><span class="line">    <span class="keyword">new</span> Student()&#123;Id=<span class="number">005</span>,Name=<span class="string">"陈小"</span>,Age=<span class="number">22</span>,ClassId=<span class="number">3</span>&#125;,</span><br><span class="line">    <span class="keyword">new</span> Student()&#123;Id=<span class="number">006</span>,Name=<span class="string">"刘麻子"</span>,Age=<span class="number">28</span>,ClassId=<span class="number">1</span>&#125;</span><br><span class="line">&#125;;</span><br><span class="line">List&lt;StuClass&gt; stuClasses = <span class="keyword">new</span> List&lt;StuClass&gt;()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">new</span> StuClass()&#123;Id=<span class="number">1</span>,ClassName=<span class="string">"计科1班"</span>&#125;,</span><br><span class="line">    <span class="keyword">new</span> StuClass()&#123;Id=<span class="number">2</span>,ClassName=<span class="string">"计科2班"</span>&#125;,</span><br><span class="line">    <span class="keyword">new</span> StuClass()&#123;Id=<span class="number">3</span>,ClassName=<span class="string">"计科3班"</span>&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
+<blockquote>
+<p>Where 指定条件查询数据</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Student&gt; students1 = studentList.Where(stu =&gt; stu.Age &gt; <span class="number">18</span>).ToList();</span><br></pre></td></tr></table></figure>
 
+<blockquote>
+<p> ForEach 遍历数据</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">students1.ForEach(stu =&gt; <span class="built_in">Console</span>.WriteLine(stu));</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Select 投影 将原始类（一般为po）的属性投影到新的类（一般为dto）的属性中</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var studentsWithIdAndName = studentList.Select(stu =&gt; <span class="keyword">new</span> &#123;Id=stu.Id,Name=stu.Name&#125;).ToList();</span><br></pre></td></tr></table></figure>
+
+<img src="/2021/10/05/csharp-05/1.png" style="zoom: 60%;">
+
+<blockquote>
+<p>Join 内连接</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">var studentsWithClass = studentList.Join(stuClasses,stu=&gt;stu.ClassId,clazz =&gt;clazz.Id,</span><br><span class="line">                                         (stu,clazz)=&gt;<span class="keyword">new</span> StudentWithClass()</span><br><span class="line">                                         &#123; </span><br><span class="line">                                             Id=stu.Id,</span><br><span class="line">                                             Name=stu.Name,</span><br><span class="line">                                             Age=stu.Age,</span><br><span class="line">                                             ClassId=stu.ClassId,</span><br><span class="line">                                             ClassName=clazz.ClassName</span><br><span class="line">                                         &#125;).ToList();</span><br><span class="line"></span><br><span class="line"> <span class="comment">// 表达式写法 用于处理大于2个list的连接查询</span></span><br><span class="line">var studentsWithClass2 = (from s in studentList join c in stuClasses on s.ClassId equals c.Id </span><br><span class="line">                          select <span class="keyword">new</span> StudentWithClass()</span><br><span class="line">                          &#123;</span><br><span class="line">                              Id = s.Id,</span><br><span class="line">                              Name = s.Name,</span><br><span class="line">                              Age = s.Age,</span><br><span class="line">                              ClassId = s.ClassId,</span><br><span class="line">                              ClassName = c.ClassName</span><br><span class="line">                          &#125;).ToList();</span><br></pre></td></tr></table></figure>
+
+<img src="/2021/10/05/csharp-05/2.png" style="zoom:70%;">
+
+<blockquote>
+<p>Take 获取指定数量的数据</p>
+</blockquote>
+<blockquote>
+<p>Skip 跳过指定数量的数据</p>
+</blockquote>
+<blockquote>
+<p>OrderBy 根据指定元素升序排列</p>
+</blockquote>
+<blockquote>
+<p>OrderByDescending 根据指定元素降序排列</p>
+</blockquote>
+<blockquote>
+<p>Where + Contains 模糊查询</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var students2 = studentList.Where(stu =&gt; stu.Name.Contains(<span class="string">"张"</span>)).OrderByDescending(stu =&gt; stu.Age).ToList();</span><br></pre></td></tr></table></figure>
 
 
       
@@ -464,7 +503,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://sweetboyzhang.gitee.io/2021/08/22/csharp-05/" title="C#连接数据库">https://sweetboyzhang.gitee.io/2021/08/22/csharp-05/</a>
+    <a href="https://sweetboyzhang.gitee.io/2021/10/05/csharp-05/" title="Linq">https://sweetboyzhang.gitee.io/2021/10/05/csharp-05/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -479,7 +518,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ADO-NET/" rel="tag"># ADO.NET</a>
+            <a href="/tags/C/" rel="tag"># C#</a>
           
         </div>
       
@@ -492,8 +531,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/08/04/csharp-02/" rel="next" title="C#面向对象">
-                <i class="fa fa-chevron-left"></i> C#面向对象
+              <a href="/2021/10/04/csharp-04/" rel="next" title="委托">
+                <i class="fa fa-chevron-left"></i> 委托
               </a>
             
           </div>
@@ -502,8 +541,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2021/10/03/csharp-03/" rel="prev" title="C#反射">
-                C#反射 <i class="fa fa-chevron-right"></i>
+              <a href="/2021/10/05/csharp-06/" rel="prev" title="C#连接数据库">
+                C#连接数据库 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -586,7 +625,7 @@
 				<a href="/archives">
                 <!-- <a href="/archives%7C%7C%20archive"> -->
               
-                  <span class="site-state-item-count">91</span>
+                  <span class="site-state-item-count">92</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>
@@ -657,7 +696,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ADO-NET"><span class="nav-number">1.</span> <span class="nav-text">ADO.NET</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#连接MySql数据库"><span class="nav-number">2.</span> <span class="nav-text">连接MySql数据库</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#IEnumerable"><span class="nav-number">1.</span> <span class="nav-text">IEnumerable</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#扩展方法"><span class="nav-number">2.</span> <span class="nav-text">扩展方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linq"><span class="nav-number">3.</span> <span class="nav-text">Linq</span></a></li></ol></div>
             
 
           </div>
