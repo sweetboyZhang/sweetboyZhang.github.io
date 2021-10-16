@@ -86,17 +86,20 @@
 
 
 
-<meta name="description" content="线程异步方法 用async关键字修饰的方法。 异步方法的返回值一般是Task&lt;T&gt;，T是真正的返回值类型。惯例：异步方法名称一般以Async结尾。 即使异步方法没有返回值值，也最好声明为非泛型的Task。 调用泛型方法时，一般在方法前加上await关键字，这样拿到的返回值直接就是泛型指定的T类型。 一个方法使用await关键字后，这个方法必须声明使用async修饰。  异步不会提升单个">
+<meta name="description" content="Thread线程是一个可执行路径，可以独立于其他线程执行。 线程被抢占：当前线程与另外一个线程执行交织的那一刻。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="异步编程">
 <meta property="og:url" content="https://sweetboyzhang.gitee.io/2021/10/10/csharp-08/index.html">
 <meta property="og:site_name" content="Zhangyuzhen&#39;s Blog">
-<meta property="og:description" content="线程异步方法 用async关键字修饰的方法。 异步方法的返回值一般是Task&lt;T&gt;，T是真正的返回值类型。惯例：异步方法名称一般以Async结尾。 即使异步方法没有返回值值，也最好声明为非泛型的Task。 调用泛型方法时，一般在方法前加上await关键字，这样拿到的返回值直接就是泛型指定的T类型。 一个方法使用await关键字后，这个方法必须声明使用async修饰。  异步不会提升单个">
+<meta property="og:description" content="Thread线程是一个可执行路径，可以独立于其他线程执行。 线程被抢占：当前线程与另外一个线程执行交织的那一刻。">
+<meta property="og:image" content="https://sweetboyzhang.gitee.io/2021/10/10/csharp-08/1.png">
+<meta property="og:image" content="https://sweetboyzhang.gitee.io/2021/10/10/csharp-08/2.png">
 <meta property="article:published_time" content="2021-10-10T02:55:33.000Z">
-<meta property="article:modified_time" content="2021-10-10T13:07:55.172Z">
+<meta property="article:modified_time" content="2021-10-16T08:08:09.552Z">
 <meta property="article:author" content="Zhangyuzhen">
 <meta property="article:tag" content="C#">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sweetboyzhang.gitee.io/2021/10/10/csharp-08/1.png">
 
 
 
@@ -391,7 +394,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  172
+                  1.9k
                 </span>
               
 
@@ -407,7 +410,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  6
                 </span>
               
             </div>
@@ -428,14 +431,125 @@
       
 
       
-        <h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><h1 id="异步方法"><a href="#异步方法" class="headerlink" title="异步方法"></a>异步方法</h1><ul>
-<li>用<code>async</code>关键字修饰的方法。</li>
+        <h1 id="Thread"><a href="#Thread" class="headerlink" title="Thread"></a>Thread</h1><p>线程是一个可执行路径，可以独立于其他线程执行。</p>
+<p>线程被抢占：当前线程与另外一个线程执行交织的那一刻。<a id="more"></a></p>
+<h2 id="线程的属性"><a href="#线程的属性" class="headerlink" title="线程的属性"></a>线程的属性</h2><ul>
+<li>IsAlive：线程一旦开始执行，IsAlive就是True，线程结束就变成了False。线程结束的条件，线程构造函数传入的委托方法执行结束。</li>
+<li>线程一旦结束就无法再开启。</li>
+<li>Name：只能设置一次，以后再更改就会抛出异常。</li>
+<li>CurrentThread：返回当前执行的线程。</li>
+</ul>
+<h2 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h2><ul>
+<li>Join()：等待当前线程执行完成后再开始后续的执行。可设置一个超时时间，执行超时返回False。</li>
+<li>Thread.Sleep()：暂停当前线程，并等待指定的毫秒数。Thread.Sleep(0)会导致当前线程立即放弃当前的时间片，自动将cpu执行权移交给其他线程。</li>
+<li>Thread.Yield()：把当前线程的执行权交给同一处理器上的其他线程</li>
+<li>Sleep()，Join()会让线程处于阻塞状态。</li>
+</ul>
+<h2 id="线程执行状态"><a href="#线程执行状态" class="headerlink" title="线程执行状态"></a>线程执行状态</h2><img src="/2021/10/10/csharp-08/1.png" style="zoom: 33%;">
+
+<p>阻塞（block）：被阻塞的线程会立即将cpu的时间片生成给其他线程，从此不再消耗cpu时间，直到满足其阻塞条件为止才开始继续执行。</p>
+<ul>
+<li><p>阻塞判断：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> blocked = (thread1.ThreadState &amp; ThreadState.WaitSleepJoin) != <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解除阻塞：</p>
+<ul>
+<li>阻塞条件被满足</li>
+<li>操作超时</li>
+<li>Thread.Interrput()</li>
+<li>Thread.Abort()</li>
+</ul>
+</li>
+<li><p>阻塞或接触阻塞，操作系统会执行上下文切换，会产生少量开销，通常为1或2微秒。</p>
+</li>
+<li><p>I/O-bound与Cpu-bound</p>
+<ul>
+<li><p>I/O-bound：花费大部分时间等待某事发生的操作，例如输入输出，Thead.Sleep()。</p>
+</li>
+<li><p>Cpu-bound：花费大部分时间执行cpu密集型工作的操作。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h2><p>本地（Local）与共享（Shared）</p>
+<ul>
+<li><p>Local：CLR为每个线程分配自己的内存栈（Stack），以便使<strong>本地变量</strong>保持独立。</p>
+</li>
+<li><p>Shared：</p>
+<ul>
+<li><p>多个线程引用<strong>同一个对象的实例</strong>，那么他们就共享了数据。</p>
+</li>
+<li><p>被<strong>Lambda表达式或匿名委托</strong>所捕获的<strong>本地变量</strong>，会被编译器转化为字段（field）,所以也会被共享。</p>
+</li>
+<li><p><strong>静态字段</strong>（field）也会在线程间共享数据。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>在读取和写入共享数据的时候，通过使用互斥锁（exclusive lock），来解决线程安全问题。</p>
+<p>C#中使用lock语句来加锁，当两个线程同时竞争一个锁（锁可以基于任何引用对象）时，其中一个线程就会等待或阻塞，直到锁变成可用状态。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestThreadSafe</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">bool</span> flag;</span><br><span class="line">    <span class="keyword">static</span> readonly object _lock = <span class="keyword">new</span> object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Go</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        lock (_lock)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!flag)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">Console</span>.WriteLine(flag);</span><br><span class="line">                <span class="comment">// Thread.Sleep(1000);</span></span><br><span class="line">                flag = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span><span class="params">(<span class="built_in">string</span>[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Thread(Go).Start();</span><br><span class="line">        Go();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="前台线程与后台线程"><a href="#前台线程与后台线程" class="headerlink" title="前台线程与后台线程"></a>前台线程与后台线程</h2><ul>
+<li>默认情况下，手动创建的线程就是前台线程。只要前台线程在运行，应用程序就还在运行；前台线程终止后，其余的后台线程也会全部终止，程序就会退出。</li>
+<li>以在任何时候将前台线程修改为后台线程，方式是设置Thread.IsBackground = true。</li>
+</ul>
+<h2 id="信号"><a href="#信号" class="headerlink" title="信号"></a>信号</h2><p>让线程一直处于等待状态，直到接受到其他线程发来的信号（signaling）,才会继续执行。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Program</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span><span class="params">(<span class="built_in">string</span>[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        var signal = <span class="keyword">new</span> ManualResetEvent(<span class="literal">false</span>);</span><br><span class="line">        <span class="keyword">new</span> Thread(()=&gt; &#123;</span><br><span class="line">            <span class="built_in">Console</span>.WriteLine(<span class="string">"等待信号~"</span>);</span><br><span class="line">            signal.WaitOne();</span><br><span class="line">            signal.Dispose();</span><br><span class="line">            <span class="built_in">Console</span>.WriteLine(<span class="string">"获取到了信号！"</span>);</span><br><span class="line">        &#125;).Start();</span><br><span class="line">        Thread.Sleep(<span class="number">3000</span>);</span><br><span class="line">        signal.Set();<span class="comment">// 打开信号</span></span><br><span class="line">        <span class="comment">// signal.Reset();// 关闭信号</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h2><ul>
+<li>不可以设置线程池的Name</li>
+<li>池线程都是后台线程</li>
+<li>阻塞池线程可使性能降级</li>
+<li>Thread.CurrentThread.IsThreadPoolThread 判断是否执行在池线程上</li>
+</ul>
+<h1 id="Task"><a href="#Task" class="headerlink" title="Task"></a>Task</h1><h2 id="Thread的问题"><a href="#Thread的问题" class="headerlink" title="Thread的问题"></a>Thread的问题</h2><p>线程是用来创建并发的一种低级别工具，它有一些限制。尤其是：</p>
+<ul>
+<li>虽然开始线程的时候可以方便的传入数据，但是当Join的时候，很难从线程中获得返回值。<ul>
+<li>可能需要设置一些共享字段</li>
+<li>如果操作抛出异常，捕获和传播该异常都很麻烦</li>
+</ul>
+</li>
+<li>无法告诉线程在结束时开始做另外的工作，必须进行Join操作（在进程中阻塞当前线程）。</li>
+<li>很难使用较小的并发来组件大型的并发。</li>
+<li>导致了对手动同步的更大依赖以及随之而来的问题。</li>
+</ul>
+<h2 id="Task类"><a href="#Task类" class="headerlink" title="Task类"></a>Task类</h2><p>Task类可以很好的解决Thread的问题。它代表了一个并发操作（可能由Thread支持，或不由Thread支持）。</p>
+<ul>
+<li>Task.Run()开启一个任务</li>
+<li>Task默认使用线程池，也就是后台线程。主线程结束，创建的所有Task都会结束</li>
+<li>Task.Run()返回一个Task对象，可以用来监视其过程</li>
+<li>Task.Wait()会阻塞当前线程，直到Task执行完成</li>
+</ul>
+<p>默认情况下，CLR在线程池中运行Task，这非常适合短时间运行的Cpu-Bound类工作。<br>针对长时间运行的任务或者是阻塞操作，可以不采用线程池的方式来创建任务：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Program</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span><span class="params">(<span class="built_in">string</span>[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// 执行短时间的任务 采用默认的线程池创建方式</span></span><br><span class="line">        <span class="built_in">Task</span> task = <span class="built_in">Task</span>.Run(() =&gt;  <span class="built_in">Console</span>.WriteLine(<span class="string">"执行Task~"</span>));</span><br><span class="line">        task.Wait();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 执行长时间的任务 不采用线程池</span></span><br><span class="line">        <span class="built_in">Task</span> taskLong = <span class="built_in">Task</span>.Factory.StartNew(() =&gt; &#123;</span><br><span class="line">            <span class="built_in">Console</span>.WriteLine(<span class="string">"执行长时间任务~"</span>);</span><br><span class="line">            Thread.Sleep(<span class="number">3000</span>);</span><br><span class="line">        &#125;, TaskCreationOptions.LongRunning);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果同时运行多个long-running tasks，尤其是由处于阻塞状态的，那么性能就会受到很大的影响，这时可采用：</p>
+<ul>
+<li>如果任务是IO-Bound，等待一个在 <code>async</code> 方法中返回 <code>Task</code> 或 <code>Task&lt;T&gt;</code> 的操作。</li>
+<li>如果任务是Cpu-Bound，等待一个使用 Task.Run方法在后台线程启动的操作。</li>
+</ul>
+<h1 id="同步与异步"><a href="#同步与异步" class="headerlink" title="同步与异步"></a>同步与异步</h1><ul>
+<li>同步操作会在返回调用者之前完成它的工作</li>
+<li>异步操作会在返回调用者之后去做它的（大部分）工作<ul>
+<li>异步方法会启用并发，因为它的工作会与调用者并行执行</li>
+<li>异步方法通常很快就会返回到调用者，所以叫非阻塞方法</li>
+</ul>
+</li>
+<li>异步不会提升单个应用程序的运行速度，但是能提升服务器的并发访问量。</li>
+</ul>
+<h2 id="async"><a href="#async" class="headerlink" title="async"></a>async</h2><ul>
+<li>用<code>async</code>关键字修饰的方法称为异步方法。</li>
 <li>异步方法的返回值一般是<code>Task&lt;T&gt;</code>，T是真正的返回值类型。惯例：异步方法名称一般以Async结尾。</li>
-<li>即使异步方法没有返回值值，也最好声明为非泛型的<code>Task</code>。</li>
+<li>即使异步方法没有返回值，也最好声明为非泛型的<code>Task</code>。</li>
 <li>调用泛型方法时，一般在方法前加上<code>await</code>关键字，这样拿到的返回值直接就是泛型指定的T类型。</li>
 <li>一个方法使用<code>await</code>关键字后，这个方法必须声明使用<code>async</code>修饰。</li>
 </ul>
-<p>异步不会提升单个应用程序的运行速度，但是能提升服务器的并发访问量。</p>
+<h2 id="await"><a href="#await" class="headerlink" title="await"></a>await</h2><p>await关键字简化了附加continuation的过程<br><img src="/2021/10/10/csharp-08/2.png" style="zoom: 33%;"></p>
+<p>await关键字后面expression会马上返回，直接执行expression后续的语句，expression执行完成后自动回调。</p>
+<p>await调用的等待期间，.NET会把当前的线程返还给线程池，等异步方法调用执行完毕后，再从线程池中取出一个线程执行后续的代码。</p>
+<h2 id="Task-与async-Task"><a href="#Task-与async-Task" class="headerlink" title="Task 与async Task"></a>Task 与async Task</h2><p>Task：在方法前面加<code>Task</code>或是<code>Task&lt;T&gt;</code>，就是表明方法是可等待的。也是C#中的一种Task异步编程模式，结合<code>await</code>可方便的进行异步并发编程。</p>
+<p>async Task：表明方法就是异步方法。</p>
 
       
     </div>
@@ -645,7 +759,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#线程"><span class="nav-number">1.</span> <span class="nav-text">线程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#异步方法"><span class="nav-number">2.</span> <span class="nav-text">异步方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Thread"><span class="nav-number">1.</span> <span class="nav-text">Thread</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#线程的属性"><span class="nav-number">1.1.</span> <span class="nav-text">线程的属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用方法"><span class="nav-number">1.2.</span> <span class="nav-text">常用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程执行状态"><span class="nav-number">1.3.</span> <span class="nav-text">线程执行状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程安全"><span class="nav-number">1.4.</span> <span class="nav-text">线程安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前台线程与后台线程"><span class="nav-number">1.5.</span> <span class="nav-text">前台线程与后台线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#信号"><span class="nav-number">1.6.</span> <span class="nav-text">信号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程池"><span class="nav-number">1.7.</span> <span class="nav-text">线程池</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Task"><span class="nav-number">2.</span> <span class="nav-text">Task</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Thread的问题"><span class="nav-number">2.1.</span> <span class="nav-text">Thread的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Task类"><span class="nav-number">2.2.</span> <span class="nav-text">Task类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#同步与异步"><span class="nav-number">3.</span> <span class="nav-text">同步与异步</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#async"><span class="nav-number">3.1.</span> <span class="nav-text">async</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#await"><span class="nav-number">3.2.</span> <span class="nav-text">await</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Task-与async-Task"><span class="nav-number">3.3.</span> <span class="nav-text">Task 与async Task</span></a></li></ol></li></ol></div>
             
 
           </div>

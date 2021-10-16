@@ -386,7 +386,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  172
+                  1.9k
                 </span>
               
 
@@ -402,7 +402,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  6
                 </span>
               
             </div>
@@ -424,17 +424,15 @@
 
       
         
-          
-            <h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><h1 id="异步方法"><a href="#异步方法" class="headerlink" title="异步方法"></a>异步方法</h1><ul>
-<li>用<code>async</code>关键字修饰的方法。</li>
-<li>异步方法的返回值一般是<code>Task&lt;T&gt;</code>，T是真正的返回值类型。惯例：异步方法名称一般以Async结尾。</li>
-<li>即使异步方法没有返回值值，也最好声明为非泛型的<code>Task</code>。</li>
-<li>调用泛型方法时，一般在方法前加上<code>await</code>关键字，这样拿到的返回值直接就是泛型指定的T类型。</li>
-<li>一个方法使用<code>await</code>关键字后，这个方法必须声明使用<code>async</code>修饰。</li>
-</ul>
-<p>异步不会提升单个应用程序的运行速度，但是能提升服务器的并发访问量。</p>
-
-          
+          <h1 id="Thread"><a href="#Thread" class="headerlink" title="Thread"></a>Thread</h1><p>线程是一个可执行路径，可以独立于其他线程执行。</p>
+<p>线程被抢占：当前线程与另外一个线程执行交织的那一刻。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/10/10/csharp-08/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -920,7 +918,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  560
+                  611
                 </span>
               
 
@@ -936,7 +934,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  3
                 </span>
               
             </div>
