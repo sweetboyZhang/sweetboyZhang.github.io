@@ -92,11 +92,13 @@
 <meta property="og:url" content="https://sweetboyzhang.gitee.io/2021/08/01/csharp-01/index.html">
 <meta property="og:site_name" content="Zhangyuzhen&#39;s Blog">
 <meta property="og:description" content="C#语言特点 C#是微软发布发一种面向对象的、运行于.NET Framework和.NET Core(开源，跨平台)之上的高级语言。 C#是一种安全的、稳定的、简单的、优雅的，由C和C++衍生出来的面向对象语言，它在继承C和C++强大功能的同时去掉了一些它们复杂的特性。">
+<meta property="og:image" content="https://sweetboyzhang.gitee.io/2021/08/01/csharp-01/1.png">
 <meta property="article:published_time" content="2021-08-01T09:07:21.000Z">
-<meta property="article:modified_time" content="2021-10-04T01:47:34.316Z">
+<meta property="article:modified_time" content="2021-10-17T03:30:40.342Z">
 <meta property="article:author" content="Zhangyuzhen">
 <meta property="article:tag" content="C#">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sweetboyzhang.gitee.io/2021/08/01/csharp-01/1.png">
 
 
 
@@ -391,7 +393,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.8k
+                  2k
                 </span>
               
 
@@ -451,7 +453,7 @@
 <blockquote>
 <p>NuGet 是免费、开源的包管理开发工具，专注于在 .NET 应用开发过程中，简单地合并第三方的组件库。</p>
 </blockquote>
-<h1 id="C-数据类型"><a href="#C-数据类型" class="headerlink" title="C#数据类型"></a>C#数据类型</h1><p>C#数据类型分为：值类型、引用类型、指针类型。</p>
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><p>C#数据类型分为：值类型、引用类型、指针类型。</p>
 <p><strong>值类型（Value types）</strong></p>
 <table>
 <thead>
@@ -531,7 +533,7 @@
 </ul>
 <p><strong>指针类型（Pointer types）</strong></p>
 <p>指针类型变量存储另一种类型的内存地址。C# 中的指针与 C 或 C++ 中的指针有相同的功能。</p>
-<h1 id="C-类型转换"><a href="#C-类型转换" class="headerlink" title="C#类型转换"></a>C#类型转换</h1><ul>
+<h1 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h1><ul>
 <li><p><strong>隐式类型转换</strong> - 这些转换是 C# 默认的以安全方式进行的转换, 不会导致数据丢失。例如，从小的整数类型转换为大的整数类型，从派生类转换为基类。小范围转大范围时使用。</p>
 </li>
 <li><p><strong>显式类型转换</strong> - 强制类型转换。显式转换需要强制转换运算符，而且强制转换会造成数据丢失。</p>
@@ -540,20 +542,42 @@
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数值类型转换</span></span><br><span class="line"><span class="keyword">int</span> intNum;</span><br><span class="line"><span class="keyword">long</span> longNum = <span class="number">1</span>;</span><br><span class="line">intNum = (<span class="keyword">int</span>) longNum;<span class="comment">// 大范围转小范围 需要强制类型转换</span></span><br><span class="line">longNum = intNum;<span class="comment">// 小范围转大范围 自动类型转换</span></span><br><span class="line"><span class="built_in">Console</span>.WriteLine(intNum);<span class="comment">// 1</span></span><br><span class="line"><span class="built_in">Console</span>.WriteLine(longNum);<span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 字符串转换数值</span></span><br><span class="line"><span class="comment">// 方式一 int.Parse()</span></span><br><span class="line"><span class="keyword">int</span> num1 = <span class="keyword">int</span>.Parse(<span class="string">"111"</span>);</span><br><span class="line"><span class="built_in">Console</span>.WriteLine(num1);<span class="comment">// 111</span></span><br><span class="line"><span class="comment">// int num2 = int.Parse("a");// 抛System.FormatException</span></span><br><span class="line"><span class="comment">// 方式二 int.TryParse()</span></span><br><span class="line"><span class="keyword">bool</span> isSuccess = <span class="keyword">int</span>.TryParse(<span class="string">"a"</span>, out <span class="keyword">int</span> num3);</span><br><span class="line"><span class="built_in">Console</span>.WriteLine(isSuccess);<span class="comment">// False</span></span><br><span class="line"><span class="built_in">Console</span>.WriteLine(num3);<span class="comment">// 0</span></span><br><span class="line"><span class="comment">// 方式三 Convert.ToInt32()</span></span><br><span class="line"><span class="comment">//int num4 = Convert.ToInt32("a"); // 抛System.FormatException</span></span><br><span class="line"><span class="comment">//Console.WriteLine(num4);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 引用类型之间的转换</span></span><br><span class="line">Student student = <span class="keyword">new</span> Student();</span><br><span class="line">object obj = student as object;</span><br><span class="line"><span class="built_in">Console</span>.WriteLine(obj);</span><br><span class="line">object obj1 = <span class="keyword">new</span> object();</span><br><span class="line">Student student1 = obj1 as Student;</span><br><span class="line"><span class="built_in">Console</span>.WriteLine(student1==null);<span class="comment">// True 转换失败返回null</span></span><br><span class="line">object obj2 = null as object;</span><br><span class="line"><span class="built_in">Console</span>.WriteLine(obj2 == null);<span class="comment">// True</span></span><br></pre></td></tr></table></figure>
 
-
-
-<h1 id="C-常量"><a href="#C-常量" class="headerlink" title="C#常量"></a>C#常量</h1><p><strong>整数常量</strong></p>
+<h1 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h1><p><strong>整数常量</strong></p>
 <p>整数常量可以是十进制、八进制或十六进制的常量。前缀指定基数：0x 或 0X 表示十六进制，0 表示八进制，没有前缀则表示十进制。</p>
 <p>整数常量也可以有后缀，可以是 U 和 L 的组合，其中，U 和 L 分别表示 unsigned 和 long。后缀可以是大写或者小写，多个后缀以任意顺序进行组合。</p>
 <p>定义常量：使用<code>const</code>关键字</p>
-<h1 id="C-可空类型"><a href="#C-可空类型" class="headerlink" title="C#可空类型"></a>C#可空类型</h1><p><strong>?</strong> 单问号用于对 <strong>int、double、bool</strong> 等无法直接赋值为 null 的数据类型进行 null 的赋值，意思是这个数据类型是 Nullable 类型的。</p>
+<blockquote>
+<p>const与readonly</p>
+<ul>
+<li>const定义时就必须赋值且后续不能更改；</li>
+<li>readonly定义时可以不赋值，后续只能进行一次赋值。</li>
+</ul>
+</blockquote>
+<h1 id="可空类型"><a href="#可空类型" class="headerlink" title="可空类型"></a>可空类型</h1><p><strong>?</strong> 单问号用于对 <strong>int、double、bool</strong> 等无法直接赋值为 null 的数据类型进行 null 的赋值，意思是这个数据类型是 Nullable 类型的。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i; <span class="comment">//默认值0</span></span><br><span class="line"><span class="keyword">int</span>? ii; <span class="comment">//默认值null</span></span><br></pre></td></tr></table></figure>
 
 <p>Null合并运算符(<strong>??</strong>)，如果第一个操作数的值为 null，则运算符返回第二个操作数的值，否则返回第一个操作数的值。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>? num1 = null;</span><br><span class="line"><span class="keyword">int</span>? num2 = <span class="number">666</span>;</span><br><span class="line"><span class="keyword">int</span> num3;</span><br><span class="line">num3 = num1 ?? num2; <span class="comment">// num1为空，所以返回num2。即num3的值为666</span></span><br></pre></td></tr></table></figure>
 
-
-
+<h1 id="泛型约束"><a href="#泛型约束" class="headerlink" title="泛型约束"></a>泛型约束</h1><p>默认情况下，泛型的类型参数可以是任何类型，通过泛型约束，可以只允许使用特定类型的泛型参数。<br><img src="/2021/08/01/csharp-01/1.png" alt></p>
+<h1 id="协变、逆变、不变"><a href="#协变、逆变、不变" class="headerlink" title="协变、逆变、不变"></a>协变、逆变、不变</h1><ul>
+<li><p>协变：当值作为返回值/out输出</p>
+<ul>
+<li><code>public interface IEnumerable&lt;out T&gt;</code></li>
+</ul>
+</li>
+<li><p>逆变：当值作为输入/in</p>
+<ul>
+<li><code>public delegate void Action&lt;in T&gt;</code></li>
+</ul>
+</li>
+<li><p>不变：当值既作为输入又作为输出</p>
+<ul>
+<li><code>public interface List&lt;T&gt;</code></li>
+</ul>
+</li>
+</ul>
+<p>协变和逆变可以发生类型之间的转换。例如，<code>string</code>转<code>object</code>，而不变则不行。</p>
 
       
     </div>
@@ -696,7 +720,7 @@
 				<a href="/archives">
                 <!-- <a href="/archives%7C%7C%20archive"> -->
               
-                  <span class="site-state-item-count">94</span>
+                  <span class="site-state-item-count">95</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>
@@ -707,7 +731,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -718,7 +742,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -767,7 +791,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C-语言特点"><span class="nav-number">1.</span> <span class="nav-text">C#语言特点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C-与-NET的关系"><span class="nav-number">2.</span> <span class="nav-text">C#与.NET的关系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NET-Framework"><span class="nav-number">3.</span> <span class="nav-text">.NET Framework</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Net-Core"><span class="nav-number">4.</span> <span class="nav-text">.Net Core</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C-数据类型"><span class="nav-number">5.</span> <span class="nav-text">C#数据类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C-类型转换"><span class="nav-number">6.</span> <span class="nav-text">C#类型转换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C-常量"><span class="nav-number">7.</span> <span class="nav-text">C#常量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C-可空类型"><span class="nav-number">8.</span> <span class="nav-text">C#可空类型</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C-语言特点"><span class="nav-number">1.</span> <span class="nav-text">C#语言特点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C-与-NET的关系"><span class="nav-number">2.</span> <span class="nav-text">C#与.NET的关系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NET-Framework"><span class="nav-number">3.</span> <span class="nav-text">.NET Framework</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Net-Core"><span class="nav-number">4.</span> <span class="nav-text">.Net Core</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据类型"><span class="nav-number">5.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类型转换"><span class="nav-number">6.</span> <span class="nav-text">类型转换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常量"><span class="nav-number">7.</span> <span class="nav-text">常量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#可空类型"><span class="nav-number">8.</span> <span class="nav-text">可空类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#泛型约束"><span class="nav-number">9.</span> <span class="nav-text">泛型约束</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#协变、逆变、不变"><span class="nav-number">10.</span> <span class="nav-text">协变、逆变、不变</span></a></li></ol></div>
             
 
           </div>
