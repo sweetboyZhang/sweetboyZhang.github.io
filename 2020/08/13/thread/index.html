@@ -95,7 +95,7 @@
 <meta property="og:image" content="https://sweetboyzhang.gitee.io/2020/08/13/thread/2.png">
 <meta property="og:image" content="https://sweetboyzhang.gitee.io/2020/08/13/thread/1.png">
 <meta property="article:published_time" content="2020-08-13T06:44:28.000Z">
-<meta property="article:modified_time" content="2021-03-10T07:39:48.993Z">
+<meta property="article:modified_time" content="2021-10-22T11:47:33.328Z">
 <meta property="article:author" content="Zhangyuzhen">
 <meta property="article:tag" content="JavaSE">
 <meta name="twitter:card" content="summary">
@@ -394,7 +394,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.4k
+                  2.5k
                 </span>
               
 
@@ -562,12 +562,13 @@
 <p>stop()方法可以让一个线程A终止一个线程B，被终止的线程会立即释放锁，这可能会让对象处于不一致的状态。</p>
 <p>一般使用interrupt()来请求终止线程。</p>
 <ul>
-<li>interrupt不会真正停止一个线程，仅仅是发出一个中断信号，告诉他应该要结束了</li>
+<li>interrupt不会真正停止一个线程，仅仅是发出一个<strong>中断信号</strong>，告诉他应该要结束了</li>
 <li>让线程自己处理，到底是中断还是继续执行</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Thread t1 = <span class="keyword">new</span> Thread( <span class="keyword">new</span> Runnable()&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">// 若未发生中断，就正常执行任务</span></span><br><span class="line">        <span class="keyword">while</span>(!Thread.currentThread.isInterrupted())&#123;</span><br><span class="line">            <span class="comment">// 正常任务代码……</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 中断的处理代码……</span></span><br><span class="line">        doSomething();</span><br><span class="line">    &#125;</span><br><span class="line">&#125; ).start();</span><br></pre></td></tr></table></figure>
 
 <p>如果阻塞线程调用了interrupt()方法，那么会<strong>抛出异常，设置标志位为false，同时该线程会退出阻塞</strong>。</p>
+<p>Thread.interrupted() ：第一次使用返回true，并清除中断标志位，第二次返回false</p>
 <h2 id="Synchronized锁与Lock锁"><a href="#Synchronized锁与Lock锁" class="headerlink" title="Synchronized锁与Lock锁"></a>Synchronized锁与Lock锁</h2><p><strong>Synchronized锁使用：</strong></p>
 <blockquote>
 <p>方式一：同步代码块</p>
