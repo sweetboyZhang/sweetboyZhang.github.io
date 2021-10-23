@@ -100,7 +100,7 @@
 <meta property="og:image" content="https://sweetboyzhang.gitee.io/2020/09/06/jvm/6.png">
 <meta property="og:image" content="https://sweetboyzhang.gitee.io/2020/09/06/jvm/7.png">
 <meta property="article:published_time" content="2020-09-06T06:56:04.000Z">
-<meta property="article:modified_time" content="2021-07-08T05:07:18.569Z">
+<meta property="article:modified_time" content="2021-10-23T06:48:09.841Z">
 <meta property="article:author" content="Zhangyuzhen">
 <meta property="article:tag" content="JVM">
 <meta name="twitter:card" content="summary">
@@ -459,7 +459,7 @@
 <p>如果一个类的加载器收到了加载类的请求，并不会马上加载，而是将请求向上委托给父加载器，直到到达引导类加载器；如果父加载器能完成加载类的委托，则成功返回，否则，子加载器才会尝试自己加载。<br><img src="/2020/09/06/jvm/3.png" alt><br>好处：<br>1、安全，避免用户自定义的类动态加载，替换了java的核心类如<code>String</code>;<br>2、避免类的重复加载，JVM区分不同的类，不仅仅是根据类名，相同的类被不同的类加载器加载也是不同的两个类。</p>
 <h2 id="本地方法栈-Native-Method-Stack"><a href="#本地方法栈-Native-Method-Stack" class="headerlink" title="本地方法栈(Native Method Stack)"></a>本地方法栈(Native Method Stack)</h2><p>线程私有，native方法用来调用C/C++程序，在内存中专门开辟了一块区域处理标记为native的代码。</p>
 <h2 id="程序寄存器-Program-Counter-Register"><a href="#程序寄存器-Program-Counter-Register" class="headerlink" title="程序寄存器(Program Counter Register)"></a>程序寄存器(Program Counter Register)</h2><p>线程私有，存储指向下一条指令的地址。</p>
-<h2 id="方法区-Method-Stack"><a href="#方法区-Method-Stack" class="headerlink" title="方法区(Method Stack)"></a>方法区(Method Stack)</h2><p>各个线程共享，它存储了每个类的结构信息：字段和方法数据、构造方法和普通方法的字节码内容、常量池。<br>方法区是规范，不同虚拟机的实现不同。（类似于接口的不同实现）</p>
+<h2 id="方法区-Method-Stack"><a href="#方法区-Method-Stack" class="headerlink" title="方法区(Method Stack)"></a>方法区(Method Stack)</h2><p>各个线程共享，它存储了每个类的结构信息：字段和方法数据、构造方法和普通方法的字节码内容、常量池（jdk1.8在堆中的元空间中）。<br>方法区是规范，不同虚拟机的实现不同。（类似于接口的不同实现）</p>
 <h2 id="虚拟机栈-JVM-Stack"><a href="#虚拟机栈-JVM-Stack" class="headerlink" title="虚拟机栈(JVM Stack)"></a>虚拟机栈(JVM Stack)</h2><p>主管程序的运行，在线程创建时创建，它的生命周期跟随线程的生命周期，线程结束时释放，对于栈来说不存在垃圾回收问题，是线程私有的。<br><font color="red">8种基本数据类型，对象的引用变量，实例方法都是在栈内存中分配的。</font><br>栈帧中主要存储3类数据：<br>本地变量：输入、输出参数，方法中的变量<br>栈操作：记录进栈、出栈<br>栈帧数据：运行时数据、方法等<br><img src="/2020/09/06/jvm/4.png" alt></p>
 <p>栈+堆+方法区的关系：<br><img src="/2020/09/06/jvm/5.png" alt=" "></p>
 <h2 id="堆-Heap"><a href="#堆-Heap" class="headerlink" title="堆(Heap)"></a>堆(Heap)</h2><p>主管数据的存储，一个JVM实例只存在一个堆内存，堆内存的大小是可以调节的。<br>类加载器读取了类文件后，需要把类，方法，常、变量放入堆内存中，保存所有引用类型的真实信息。<br>逻辑上分为三个部分：新生区、养老区、元空间<br>物理上分为两个部分：新生区、养老区<br><img src="/2020/09/06/jvm/6.png" style="zoom:70%;"></p>
@@ -470,7 +470,7 @@
 <blockquote>
 <p>GC过程（复制 -&gt; 清空 -&gt; 互换），<br><img src="/2020/09/06/jvm/7.png" style="zoom: 67%;"></p>
 </blockquote>
-<p>当Eden区再次触发GC时，会扫描Eden区和From区，对两个区域进行垃圾回收，经过这次回收还存活的对象直接复制到To区，同时把这些数据的年龄加1，清空Eden区和From区，清空后的From区成为下次GC的To区，完成交换，如此交换15次，若数据还有存活则存入老年区。</p>
+<p>当Eden区再次触发GC时，会扫描Eden区和From区，对两个区域进行垃圾回收，经过这次回收还存活的对象直接复制到To区，同时把这些数据的年龄加1，清空Eden区和From区，清空后的From区成为下次GC的To区，完成交换，如此交换15次，若数据还有存活则存入养老区。</p>
 <p>养老区满了，开启Full GC，FGC多次，养老区也无法腾出空间了，抛出OOM</p>
 <blockquote>
 <p>永久代</p>
@@ -631,7 +631,7 @@
 				<a href="/archives">
                 <!-- <a href="/archives%7C%7C%20archive"> -->
               
-                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-count">98</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>
@@ -653,7 +653,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
