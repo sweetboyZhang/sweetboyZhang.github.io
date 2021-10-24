@@ -851,7 +851,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/08/27/mongodb/" itemprop="url">monggoDB基础</a></h1>
+                <a class="post-title-link" href="/2021/08/27/mongodb/" itemprop="url">MongoDB基础</a></h1>
         
 
         <div class="post-meta">
@@ -917,7 +917,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0
+                  459
                 </span>
               
 
@@ -955,9 +955,14 @@
 
       
         
-          
-            
-          
+          <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>MongoDB是由C++编写，基于分布式文件存储的开源数据库管理系统。<br>由多节点实现负载均衡，保证服务器性能。<br>旨在为web应用提供可拓展的高性能数据存储方案。<br>将数据存储为一个文档，数据结构由键值对构成。类似json对象。字段可以包含其他文档，数据和文档数据。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/08/27/mongodb/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1089,7 +1094,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  280
+                  290
                 </span>
               
 
@@ -1147,12 +1152,13 @@
 </li>
 <li><strong>注意：第二次查询需要使用别名rn进行查询</strong></li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 分页查询 pageNum:1 pageSize:5</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> </span><br><span class="line">(<span class="keyword">SELECT</span> <span class="keyword">rownum</span> rn,Student.* <span class="keyword">FROM</span> Student <span class="keyword">WHERE</span> <span class="keyword">rownum</span>&lt;=<span class="number">1</span>*<span class="number">5</span>)</span><br><span class="line"><span class="keyword">WHERE</span> rn&gt;= (<span class="number">1</span><span class="number">-1</span>)*<span class="number">5</span>+<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 分页查询 pageNum:1  pageSize:5</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> </span><br><span class="line">(<span class="keyword">SELECT</span> <span class="keyword">rownum</span> rn,Student.* <span class="keyword">FROM</span> Student <span class="keyword">WHERE</span> <span class="keyword">rownum</span>&lt;=<span class="number">1</span>*<span class="number">5</span>)</span><br><span class="line"><span class="keyword">WHERE</span> rn&gt;= (<span class="number">1</span><span class="number">-1</span>)*<span class="number">5</span>+<span class="number">1</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="单引号与双引号"><a href="#单引号与双引号" class="headerlink" title="单引号与双引号"></a>单引号与双引号</h1><ul>
 <li>单引号：1.引用字符串常量；2.转义符</li>
 <li>双引号：修饰关键字，对象名，字段名和别名</li>
 </ul>
+<h1 id="null值处理"><a href="#null值处理" class="headerlink" title="null值处理"></a>null值处理</h1><p>nvl(value1,value2)：value1为null时取value2</p>
 
           
         
