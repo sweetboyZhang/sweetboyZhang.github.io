@@ -93,7 +93,7 @@
 <meta property="og:site_name" content="Zhangyuzhen&#39;s Blog">
 <meta property="og:description" content="Redis中字符串变量的介绍">
 <meta property="article:published_time" content="2020-08-05T10:16:58.000Z">
-<meta property="article:modified_time" content="2021-07-08T05:11:15.993Z">
+<meta property="article:modified_time" content="2021-10-25T08:30:45.855Z">
 <meta property="article:author" content="Zhangyuzhen">
 <meta property="article:tag" content="Redis">
 <meta name="twitter:card" content="summary">
@@ -391,7 +391,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.7k
+                  2k
                 </span>
               
 
@@ -407,7 +407,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  9
+                  10
                 </span>
               
             </div>
@@ -432,7 +432,13 @@
       
 
       
-        <h2 id="String（字符串）"><a href="#String（字符串）" class="headerlink" title="String（字符串）"></a>String（字符串）</h2><p>追加字符串，如果当前key不存在就相当于新建</p>
+        <p>Redis内部存储的数据为键值对，键的数据类型都是字符串类型，这里说的数据类型是指值的类型。<a id="more"></a></p>
+<h2 id="String（字符串）"><a href="#String（字符串）" class="headerlink" title="String（字符串）"></a>String（字符串）</h2><p>使用场景：</p>
+<ul>
+<li>存储json类型对象</li>
+<li>作为计数器，例如点赞数，粉丝数</li>
+</ul>
+<p>追加字符串，如果当前key不存在就相当于新建</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">append name 666</span><br></pre></td></tr></table></figure>
 
 <p>获取字符串长度</p>
@@ -462,7 +468,13 @@
 <p>先get后set</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; getset name zyz  <span class="comment"># key值不存在，先返回nil,再设置</span></span><br><span class="line">(nil)                         </span><br><span class="line">127.0.0.1:6379&gt; get name     </span><br><span class="line"><span class="string">"zyz"</span>                     </span><br><span class="line">127.0.0.1:6379&gt; getset name zyz666  <span class="comment"># key存在，返回key值，再设置</span></span><br><span class="line"><span class="string">"zyz"</span>                             </span><br><span class="line">127.0.0.1:6379&gt; get name     </span><br><span class="line"><span class="string">"zyz666"</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="List（列表）"><a href="#List（列表）" class="headerlink" title="List（列表）"></a>List（列表）</h2><p>插入</p>
+<h2 id="List（列表）"><a href="#List（列表）" class="headerlink" title="List（列表）"></a>List（列表）</h2><p>是一个双向链表结构，可以用来存储一组数据；从这个列表的前端和后端取数据效率非常高。</p>
+<p>使用场景：</p>
+<ul>
+<li>模拟队列，堆栈</li>
+<li>朋友圈点赞，查询点赞数，点赞人的信息等</li>
+</ul>
+<p>插入</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; lpush list 1   <span class="comment"># 相当于压栈，操作第一个元素</span></span><br><span class="line">(<span class="built_in">integer</span>) 1                    </span><br><span class="line">127.0.0.1:6379&gt; lpush list 2    </span><br><span class="line">(<span class="built_in">integer</span>) 2               </span><br><span class="line">127.0.0.1:6379&gt; lpush list 3       </span><br><span class="line">(<span class="built_in">integer</span>) 3              </span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 2         </span><br><span class="line">1) <span class="string">"3"</span>                </span><br><span class="line">2) <span class="string">"2"</span>               </span><br><span class="line">3) <span class="string">"1"</span>             </span><br><span class="line">127.0.0.1:6379&gt; rpush list 4   <span class="comment"># 相当于从队列的尾部插入 ，操作最后一个元素  </span></span><br><span class="line">(<span class="built_in">integer</span>) 4                </span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1   </span><br><span class="line"> 1) <span class="string">"3"</span>      </span><br><span class="line"> 2) <span class="string">"2"</span>     </span><br><span class="line"> 3) <span class="string">"1"</span>       </span><br><span class="line"> 4) <span class="string">"4"</span></span><br></pre></td></tr></table></figure>
 
 <p>删除</p>
@@ -492,6 +504,12 @@
 <p>List实际上是一个双向链表，前后都可以插入值；key不存在创建新的节点，key存在，新增内容；两边插入或改动效率最高。</p>
 <p>消息队列（Lpush，Rpop），栈（Lpush，Lpop）</p>
 <h2 id="Set（集合）"><a href="#Set（集合）" class="headerlink" title="Set（集合）"></a>Set（集合）</h2><p><strong>值不可重复</strong>，值则相同添加失败。</p>
+<p>使用场景：</p>
+<ul>
+<li>去重</li>
+<li>抽奖</li>
+<li>set运算，交集并集补集差集运算，例如好友推荐</li>
+</ul>
 <p>添加值、查看所有值、判断值是否存在</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; sadd myset aaa   </span><br><span class="line">(<span class="built_in">integer</span>) 1                     </span><br><span class="line">127.0.0.1:6379&gt; sadd myset bbb     </span><br><span class="line">(<span class="built_in">integer</span>) 1                     </span><br><span class="line">127.0.0.1:6379&gt; smembers myset    </span><br><span class="line">1) <span class="string">"bbb"</span>              </span><br><span class="line">2) <span class="string">"aaa"</span>              </span><br><span class="line">127.0.0.1:6379&gt; sismember myset aaa  </span><br><span class="line">(<span class="built_in">integer</span>) 1                  </span><br><span class="line">127.0.0.1:6379&gt; sismember myset ccc                              </span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br></pre></td></tr></table></figure>
 
@@ -510,23 +528,12 @@
 <p>差集，交集，并集==&gt;应用场景：B站，微博的共同关注等等</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; sadd myset a</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; sadd myset b</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; sadd myset c</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; sadd myset2 c</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; sadd myset2 d</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; sadd myset2 e</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; sdiff myset myset2</span><br><span class="line">1) <span class="string">"a"</span></span><br><span class="line">2) <span class="string">"b"</span></span><br><span class="line">127.0.0.1:6379&gt; sinter myset myset2</span><br><span class="line">1) <span class="string">"c"</span></span><br><span class="line">127.0.0.1:6379&gt; sunion myset myset2</span><br><span class="line">1) <span class="string">"d"</span></span><br><span class="line">2) <span class="string">"c"</span></span><br><span class="line">3) <span class="string">"b"</span></span><br><span class="line">4) <span class="string">"a"</span></span><br><span class="line">5) <span class="string">"e"</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="Hash（哈希）"><a href="#Hash（哈希）" class="headerlink" title="Hash（哈希）"></a>Hash（哈希）</h2><p>Map集合，key-map，值是一个Map集合</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; hset myhash field1 aaa <span class="comment"># 添加一个值</span></span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; hget myhash field1 <span class="comment"># 获取一个指定字段的值</span></span><br><span class="line"><span class="string">"aaa"</span></span><br><span class="line">127.0.0.1:6379&gt; hmset myhash field2 bbb field3 ccc <span class="comment"># 添加多个键值对</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; hmget myhash field1 field2 <span class="comment"># 获取多个字段值</span></span><br><span class="line">1) <span class="string">"aaa"</span></span><br><span class="line">2) <span class="string">"bbb"</span></span><br><span class="line">127.0.0.1:6379&gt; hgetall myhash <span class="comment"># 获取全部数据</span></span><br><span class="line">1) <span class="string">"field1"</span></span><br><span class="line">2) <span class="string">"aaa"</span></span><br><span class="line">3) <span class="string">"field2"</span></span><br><span class="line">4) <span class="string">"bbb"</span></span><br><span class="line">5) <span class="string">"field3"</span></span><br><span class="line">6) <span class="string">"ccc"</span></span><br></pre></td></tr></table></figure>
-
-<p>获取长度</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hlen myhash</span><br></pre></td></tr></table></figure>
-
-<p>判断字段是否存在</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; hexists myhash field1</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; hexists myhash aaaa</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br></pre></td></tr></table></figure>
-
-<p>获取所有字段/值</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; hkeys myhash</span><br><span class="line">1) <span class="string">"field1"</span></span><br><span class="line">2) <span class="string">"field2"</span></span><br><span class="line">3) <span class="string">"field3"</span></span><br><span class="line">127.0.0.1:6379&gt; hvals myhash</span><br><span class="line">1) <span class="string">"aaa"</span></span><br><span class="line">2) <span class="string">"bbb"</span></span><br><span class="line">3) <span class="string">"ccc"</span></span><br></pre></td></tr></table></figure>
-
-<p>自增，自减</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hincrby myhash field1 1</span><br><span class="line">hincrby myhash field1 -1</span><br></pre></td></tr></table></figure>
-
-<p>hash用于存放经常变动的相信，例如用户信息</p>
-<h2 id="Zset（有序集合）"><a href="#Zset（有序集合）" class="headerlink" title="Zset（有序集合）"></a>Zset（有序集合）</h2><p>添加</p>
+<h2 id="Zset（有序集合）"><a href="#Zset（有序集合）" class="headerlink" title="Zset（有序集合）"></a>Zset（有序集合）</h2><p>可排序的set，每一个添加值都有一个对应的分数，可通过这个分数进行排序</p>
+<p>使用场景：</p>
+<ul>
+<li>海量数据的排行，例如天梯排名</li>
+</ul>
+<p>添加</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; zadd myzset 1 value1</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; zadd myzset 2 value2 3 value3</span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line">127.0.0.1:6379&gt; zrange myzset 0 -1</span><br><span class="line">1) <span class="string">"value1"</span></span><br><span class="line">2) <span class="string">"value2"</span></span><br><span class="line">3) <span class="string">"value3"</span></span><br></pre></td></tr></table></figure>
 
 <p>排序</p>
@@ -540,6 +547,25 @@
 
 <p>获取指定区间的成员数量</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zcount myzset 1 3</span><br></pre></td></tr></table></figure>
+
+<h2 id="Hash（哈希）"><a href="#Hash（哈希）" class="headerlink" title="Hash（哈希）"></a>Hash（哈希）</h2><p>可以理解为Map集合，key-map，值是一个Map集合</p>
+<p>使用场景：</p>
+<ul>
+<li>与String+json相比，存储对象的属性需要频繁修改时，使用Hash，可以针对某个属性单独修改，没有序列化，也不需要修改整个对象。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; hset myhash field1 aaa <span class="comment"># 添加一个值</span></span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; hget myhash field1 <span class="comment"># 获取一个指定字段的值</span></span><br><span class="line"><span class="string">"aaa"</span></span><br><span class="line">127.0.0.1:6379&gt; hmset myhash field2 bbb field3 ccc <span class="comment"># 添加多个键值对</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; hmget myhash field1 field2 <span class="comment"># 获取多个字段值</span></span><br><span class="line">1) <span class="string">"aaa"</span></span><br><span class="line">2) <span class="string">"bbb"</span></span><br><span class="line">127.0.0.1:6379&gt; hgetall myhash <span class="comment"># 获取全部数据</span></span><br><span class="line">1) <span class="string">"field1"</span></span><br><span class="line">2) <span class="string">"aaa"</span></span><br><span class="line">3) <span class="string">"field2"</span></span><br><span class="line">4) <span class="string">"bbb"</span></span><br><span class="line">5) <span class="string">"field3"</span></span><br><span class="line">6) <span class="string">"ccc"</span></span><br></pre></td></tr></table></figure>
+
+<p>获取长度</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hlen myhash</span><br></pre></td></tr></table></figure>
+
+<p>判断字段是否存在</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; hexists myhash field1</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; hexists myhash aaaa</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br></pre></td></tr></table></figure>
+
+<p>获取所有字段/值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; hkeys myhash</span><br><span class="line">1) <span class="string">"field1"</span></span><br><span class="line">2) <span class="string">"field2"</span></span><br><span class="line">3) <span class="string">"field3"</span></span><br><span class="line">127.0.0.1:6379&gt; hvals myhash</span><br><span class="line">1) <span class="string">"aaa"</span></span><br><span class="line">2) <span class="string">"bbb"</span></span><br><span class="line">3) <span class="string">"ccc"</span></span><br></pre></td></tr></table></figure>
+
+<p>自增，自减</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hincrby myhash field1 1</span><br><span class="line">hincrby myhash field1 -1</span><br></pre></td></tr></table></figure>
 
 
       
@@ -683,7 +709,7 @@
 				<a href="/archives">
                 <!-- <a href="/archives%7C%7C%20archive"> -->
               
-                  <span class="site-state-item-count">98</span>
+                  <span class="site-state-item-count">100</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>
@@ -705,7 +731,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -754,7 +780,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#String（字符串）"><span class="nav-number">1.</span> <span class="nav-text">String（字符串）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#List（列表）"><span class="nav-number">2.</span> <span class="nav-text">List（列表）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Set（集合）"><span class="nav-number">3.</span> <span class="nav-text">Set（集合）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hash（哈希）"><span class="nav-number">4.</span> <span class="nav-text">Hash（哈希）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zset（有序集合）"><span class="nav-number">5.</span> <span class="nav-text">Zset（有序集合）</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#String（字符串）"><span class="nav-number">1.</span> <span class="nav-text">String（字符串）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#List（列表）"><span class="nav-number">2.</span> <span class="nav-text">List（列表）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Set（集合）"><span class="nav-number">3.</span> <span class="nav-text">Set（集合）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zset（有序集合）"><span class="nav-number">4.</span> <span class="nav-text">Zset（有序集合）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hash（哈希）"><span class="nav-number">5.</span> <span class="nav-text">Hash（哈希）</span></a></li></ol></div>
             
 
           </div>
