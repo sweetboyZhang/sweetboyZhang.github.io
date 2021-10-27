@@ -86,15 +86,15 @@
 
 
 
-<meta name="description" content="主机数据更新后根据配置和策略， 自动同步到备机的master&#x2F;slaver机制，Master以写为主，Slave以读为主。 好处：  读写分离，性能扩展  容灾快速恢复">
+<meta name="description" content="主机数据更新后根据配置和策略， 自动同步到备机的master&#x2F;slaver机制，Master以写为主，Slave以读为主。 好处：  读写分离，性能扩展 容灾快速恢复">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Redis主从复制">
+<meta property="og:title" content="Redis主从复制，集群">
 <meta property="og:url" content="https://sweetboyzhang.gitee.io/2021/10/24/redis-07/index.html">
 <meta property="og:site_name" content="Zhangyuzhen&#39;s Blog">
-<meta property="og:description" content="主机数据更新后根据配置和策略， 自动同步到备机的master&#x2F;slaver机制，Master以写为主，Slave以读为主。 好处：  读写分离，性能扩展  容灾快速恢复">
+<meta property="og:description" content="主机数据更新后根据配置和策略， 自动同步到备机的master&#x2F;slaver机制，Master以写为主，Slave以读为主。 好处：  读写分离，性能扩展 容灾快速恢复">
 <meta property="og:image" content="https://sweetboyzhang.gitee.io/2021/10/24/redis-07/1.png">
 <meta property="article:published_time" content="2021-10-24T09:01:19.000Z">
-<meta property="article:modified_time" content="2021-10-26T14:43:58.493Z">
+<meta property="article:modified_time" content="2021-10-27T13:43:17.748Z">
 <meta property="article:author" content="Zhangyuzhen">
 <meta property="article:tag" content="Redis">
 <meta name="twitter:card" content="summary">
@@ -134,7 +134,7 @@
 
 
 
-  <title>Redis主从复制 | Zhangyuzhen's Blog</title>
+  <title>Redis主从复制，集群 | Zhangyuzhen's Blog</title>
   
 
 
@@ -322,7 +322,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Redis主从复制</h1>
+          <h1 class="post-title" itemprop="name headline">Redis主从复制，集群</h1>
         
 
         <div class="post-meta">
@@ -393,7 +393,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  375
+                  1.9k
                 </span>
               
 
@@ -409,7 +409,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  7
                 </span>
               
             </div>
@@ -433,10 +433,18 @@
         <p>主机数据更新后根据配置和策略， 自动同步到备机的master/slaver机制，<strong>Master以写为主，Slave以读为主</strong>。</p>
 <p>好处：</p>
 <ul>
-<li><p>读写分离，性能扩展</p>
+<li>读写分离，性能扩展</li>
+<li>容灾快速恢复<a id="more"></a></li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>复制延迟<ul>
+<li>由于所有的写操作都是先在Master上操作，然后同步更新到Slave上，所以从Master同步到Slave机器有一定的延迟，当系统很繁忙的时候，延迟问题会更加严重，Slave机器数量的增加也会使这个问题更加严重。</li>
+</ul>
 </li>
-<li><p>容灾快速恢复<a id="more"></a><br><img src="/2021/10/24/redis-07/1.png" alt></p>
-</li>
+</ul>
+<p>指定主机命令：<code>slaveof 主机ip 主机端口</code><br><img src="/2021/10/24/redis-07/1.png" alt></p>
+<ul>
 <li><p>一主二仆</p>
 <ul>
 <li>从服务器挂掉后重启时，变为主服务器</li>
@@ -459,7 +467,108 @@
 <h1 id="复制原理"><a href="#复制原理" class="headerlink" title="复制原理"></a>复制原理</h1><p>1、从服务器连接上主服务器之后，就会发送进行数据同步的消息。</p>
 <p>2、主服务器收到从服务器发送过来的消息后，把主服务器中的数据进行持久化为RDB文件，把RDB文件发送给从服务器。</p>
 <p>3、每次主服务器写操作时，主动和从服务器同步。</p>
-<h1 id="哨兵模式"><a href="#哨兵模式" class="headerlink" title="哨兵模式"></a>哨兵模式</h1><p><strong>反客为主的自动版</strong>，能够后台监控主机是否故障，如果故障了根据投票数自动将从库转换为主服务器。</p>
+<h1 id="哨兵模式"><a href="#哨兵模式" class="headerlink" title="哨兵模式"></a>哨兵模式</h1><p><strong>反客为主的自动版</strong>，能够后台监控主机，如果主机挂掉了根据投票数自动将从服务器转换为主服务器。<br>sentinel.conf</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 其中mymaster为监控对象起的服务器名称， 1 表示至少有多少个哨兵同意重新选取主机。</span></span><br><span class="line">sentinel monitor mymaster 127.0.0.1 6379 1</span><br></pre></td></tr></table></figure>
+
+<p>运行哨兵</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-sentinel sentinel.conf</span><br></pre></td></tr></table></figure>
+
+<p>选取主机原则：</p>
+<ul>
+<li>优先级最高的 ，replica-priority 值越小优先级越高</li>
+<li>偏移量最大 ，即优先选择同步数据最全的从机</li>
+<li>runid最小的</li>
+</ul>
+<h1 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h1><p>Redis 集群实现了对Redis的水平<strong>扩容</strong>，即启动N个redis节点，将整个数据库分布存储在这N个节点中，每个节点存储总数据的1/N。</p>
+<p>Redis 集群通过分区（partition）来提供一定程度的<strong>可用性</strong>（availability）： 即使集群中有一部分节点失效或者无法进行通讯， 集群也可以继续处理命令请求。</p>
+<p>无中心化配置，任何一台主机或从机都能成为集群的入口，它们之间都能相互通信。</p>
+<p>集群配置：</p>
+<p><code>cluster-enabled yes</code> 打开集群模式</p>
+<p><code>cluster-config-file nodes-6379.conf</code> 设定节点配置文件名</p>
+<p><code>cluster-node-timeout 15000</code>  设定节点失联时间，超过该时间（毫秒），集群自动进行主从切换</p>
+<p>reids6179.conf</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">include /home/bigdata/redis.conf <span class="comment"># 公共配置</span></span><br><span class="line">port 6379</span><br><span class="line">pidfile <span class="string">"/var/run/redis_6379.pid"</span></span><br><span class="line">dbfilename <span class="string">"dump6379.rdb"</span></span><br><span class="line">dir <span class="string">"/home/bigdata/redis_cluster"</span></span><br><span class="line">logfile <span class="string">"/home/bigdata/redis_cluster/redis_err_6379.log"</span></span><br><span class="line">cluster-enabled yes</span><br><span class="line">cluster-config-file nodes-6379.conf</span><br><span class="line">cluster-node-timeout 15000</span><br></pre></td></tr></table></figure>
+
+<p>合并：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/redis-6.2.1/src</span><br><span class="line"></span><br><span class="line"> redis-cli --cluster  create --cluster-replicas 1 192.168.11.101:6379 192.168.11.101:6380  192.168.11.101:6381 192.168.11.101:6389 192.168.11.101:6390  192.168.11.101:6391</span><br></pre></td></tr></table></figure>
+
+<p><strong>使用实际ip !</strong></p>
+<ul>
+<li><p>通过插槽slot来实现数据分布存储</p>
+</li>
+<li><p>主节点下线，从节点自动升为主节点</p>
+</li>
+<li><p>某一段插槽的主从都挂掉，而cluster-require-full-coverage 为yes ，那么 ，整个集群都挂掉</p>
+<h1 id="应用问题解决"><a href="#应用问题解决" class="headerlink" title="应用问题解决"></a>应用问题解决</h1></li>
+</ul>
+<h2 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h2><p>reids命中率降低，一直查询数据库。</p>
+<p>解决方案：</p>
+<ul>
+<li><p>空值缓存，并设置过期时间</p>
+</li>
+<li><p>设置白名单 </p>
+<ul>
+<li>使用bitmaps类型定义一个可以访问的名单，名单id作为bitmaps的偏移量，每次访问和bitmap里面的id进行比较，如果访问id不在bitmaps里面，进行拦截，不允许访问。</li>
+</ul>
+</li>
+<li><p>采用布隆过滤器</p>
+<ul>
+<li><p>布隆过滤器可以用于检索一个元素是否在一个集合中。它的优点是空间效率和查询时间都远远超过一般的算法，缺点是有一定的误识别率和删除困难。</p>
+<p>将所有可能存在的数据哈希到一个足够大的bitmaps中，一个一定不存在的数据会被这个bitmaps拦截掉，从而避免了对底层存储系统的查询压力。</p>
+</li>
+</ul>
+</li>
+<li><p>进行实时监控</p>
+<ul>
+<li>当发现Redis的命中率开始急速降低，需要排查访问对象和访问的数据，和运维人员配合，可以设置黑名单限制服务</li>
+</ul>
+</li>
+</ul>
+<h2 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h2><p>redis中的某个key过期，同时有大量请求访问这个key，最终请求到数据库，造成数据库崩溃。</p>
+<p>解决方案：</p>
+<ul>
+<li><p>预先设置热点数据</p>
+<p>在redis达到访问高峰前，把这些热点数据存入redis中，加大这些热点数据key的时长</p>
+</li>
+<li><p>实时调整</p>
+<p>现场监控那些数据是热点数据，实时调整key的时长</p>
+</li>
+<li><p>设置锁</p>
+<p>在缓存中查不到数据时，上锁，然后再去查询数据库，查询完成后释放锁</p>
+</li>
+</ul>
+<h2 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h2><p>短时间内查询大量key集中过期，大量请求直接指向数据库。</p>
+<p>解决方案：</p>
+<ul>
+<li><p>构建多级缓存 nginx缓存 + redis缓存 +其他缓存（ehcache等）</p>
+</li>
+<li><p>使用锁或队列</p>
+<p>用加锁或者队列的方式保证来保证不会有大量的线程对数据库一次性进行读写，从而避免失效时大量的并发请求落到底层存储系统上。不适用高并发情况</p>
+</li>
+<li><p>设置过期标志更新缓存：</p>
+<p>记录缓存数据是否过期（设置提前量），如果过期会触发通知另外的线程在后台去更新实际key的缓存</p>
+</li>
+<li><p>将缓存失效时间分散开：</p>
+<p>比如我们可以在原有的失效时间基础上增加一个随机值，比如1-5分钟随机，这样每一个缓存的过期时间的重复率就会降低，就很难引发集体失效的事件</p>
+</li>
+</ul>
+<h1 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h1><p>随着业务发展的需要，原单体单机部署的系统被演化成分布式集群系统后，由于分布式系统多线程、多进程并且分布在不同机器上，这将使原单机部署情况下的并发控制锁策略失效，单纯的Java API并不能提供分布式锁的能力。为了解决这个问题就需要一种跨JVM的互斥机制来控制共享资源的访问，这就是分布式锁要解决的问题！</p>
+<p>分布式锁主流的实现方案：</p>
+<ol>
+<li><p>基于数据库实现分布式锁</p>
+</li>
+<li><p>基于缓存（Redis等）</p>
+</li>
+<li><p>基于Zookeeper</p>
+</li>
+</ol>
+<p>每一种分布式锁解决方案都有各自的优缺点：</p>
+<ol>
+<li>性能：redis最高</li>
+<li>可靠性：zookeeper最高</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/testLock"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testLock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 设置锁 通过uuid标识应用 防止误删</span></span><br><span class="line">    String uuid = UUID.randomUUID().toString();</span><br><span class="line">    Boolean lock = redisTemplate.opsForValue().setIfAbsent(<span class="string">"lock"</span>,uuid ,<span class="number">3</span>, TimeUnit.SECONDS);</span><br><span class="line">    <span class="comment">//2获取锁成功、查询num的值</span></span><br><span class="line">    <span class="keyword">if</span>(lock!=<span class="keyword">null</span>&amp;&amp; lock)&#123;</span><br><span class="line">        Object value =  redisTemplate.opsForValue().get(<span class="string">"num"</span>);</span><br><span class="line">        <span class="comment">//判断num为空return</span></span><br><span class="line">        <span class="keyword">if</span>(ObjectUtils.isEmpty(value))&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//有值就转成成int</span></span><br><span class="line">        <span class="keyword">int</span> num = Integer.parseInt(value+<span class="string">""</span>);</span><br><span class="line">        <span class="comment">//把redis的num加1</span></span><br><span class="line">        redisTemplate.opsForValue().set(<span class="string">"num"</span>, ++num);</span><br><span class="line">        <span class="comment">//释放锁，del</span></span><br><span class="line">        <span class="keyword">if</span>(uuid.equals((String) redisTemplate.opsForValue().get(<span class="string">"lock"</span>)))&#123;</span><br><span class="line">            redisTemplate.delete(<span class="string">"lock"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment">//获取锁失败、每隔0.1秒再获取</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">100</span>);</span><br><span class="line">            testLock();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -480,7 +589,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://sweetboyzhang.gitee.io/2021/10/24/redis-07/" title="Redis主从复制">https://sweetboyzhang.gitee.io/2021/10/24/redis-07/</a>
+    <a href="https://sweetboyzhang.gitee.io/2021/10/24/redis-07/" title="Redis主从复制，集群">https://sweetboyzhang.gitee.io/2021/10/24/redis-07/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -602,7 +711,7 @@
 				<a href="/archives">
                 <!-- <a href="/archives%7C%7C%20archive"> -->
               
-                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-count">101</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>
@@ -673,7 +782,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#复制原理"><span class="nav-number">1.</span> <span class="nav-text">复制原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#哨兵模式"><span class="nav-number">2.</span> <span class="nav-text">哨兵模式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#复制原理"><span class="nav-number">1.</span> <span class="nav-text">复制原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#哨兵模式"><span class="nav-number">2.</span> <span class="nav-text">哨兵模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#集群"><span class="nav-number">3.</span> <span class="nav-text">集群</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#应用问题解决"><span class="nav-number">4.</span> <span class="nav-text">应用问题解决</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存穿透"><span class="nav-number">4.1.</span> <span class="nav-text">缓存穿透</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存击穿"><span class="nav-number">4.2.</span> <span class="nav-text">缓存击穿</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存雪崩"><span class="nav-number">4.3.</span> <span class="nav-text">缓存雪崩</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分布式锁"><span class="nav-number">5.</span> <span class="nav-text">分布式锁</span></a></li></ol></div>
             
 
           </div>
