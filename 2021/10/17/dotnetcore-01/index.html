@@ -86,14 +86,14 @@
 
 
 
-<meta name="description" content="IOCIOC基本介绍IOC的实现方式：  服务定位器(ServiceLocator)，例如： ServiceLocator.GetService&lt;XXXService&gt; DI (Dependency Injection)  IOC中的一些概念：  服务：我们需要容器帮我们创建的对象 注册服务：将对象注册到容器中 服务容器：负责管理注册的对象 查询服务：创建和关联对象 对象生命周期：">
+<meta name="description" content="IOCIOC基本介绍IOC的实现方式：  服务定位器(ServiceLocator)，例如： ServiceLocator.GetService&lt;XXXService&gt; DI (Dependency Injection)  IOC中的一些概念：">
 <meta property="og:type" content="article">
 <meta property="og:title" content=".Net Core基础知识">
 <meta property="og:url" content="https://sweetboyzhang.gitee.io/2021/10/17/dotnetcore-01/index.html">
 <meta property="og:site_name" content="Zhangyuzhen&#39;s Blog">
-<meta property="og:description" content="IOCIOC基本介绍IOC的实现方式：  服务定位器(ServiceLocator)，例如： ServiceLocator.GetService&lt;XXXService&gt; DI (Dependency Injection)  IOC中的一些概念：  服务：我们需要容器帮我们创建的对象 注册服务：将对象注册到容器中 服务容器：负责管理注册的对象 查询服务：创建和关联对象 对象生命周期：">
+<meta property="og:description" content="IOCIOC基本介绍IOC的实现方式：  服务定位器(ServiceLocator)，例如： ServiceLocator.GetService&lt;XXXService&gt; DI (Dependency Injection)  IOC中的一些概念：">
 <meta property="article:published_time" content="2021-10-17T01:37:49.000Z">
-<meta property="article:modified_time" content="2021-10-21T14:04:45.477Z">
+<meta property="article:modified_time" content="2021-10-28T14:20:35.094Z">
 <meta property="article:author" content="Zhangyuzhen">
 <meta property="article:tag" content=".Net Core">
 <meta name="twitter:card" content="summary">
@@ -433,13 +433,13 @@
 <li>服务定位器(ServiceLocator)，例如： <code>ServiceLocator.GetService&lt;XXXService&gt;</code></li>
 <li>DI (Dependency Injection)</li>
 </ul>
-<p>IOC中的一些概念：</p>
+<p>IOC中的一些概念：<a id="more"></a></p>
 <ul>
 <li>服务：我们需要容器帮我们创建的对象</li>
 <li>注册服务：将对象注册到容器中</li>
 <li>服务容器：负责管理注册的对象</li>
 <li>查询服务：创建和关联对象</li>
-<li>对象生命周期：<a id="more"></a><ul>
+<li>对象生命周期：<ul>
 <li>Transient：瞬态，用完就销毁，每次获取都是重新创建一个新的对象</li>
 <li>Scoped：范围，用完不销毁，指定范围内获取的都是同一个对象</li>
 <li>Singleton：单例，全局获取的都是同一个对象。建议在创建无状态对象时使用</li>
