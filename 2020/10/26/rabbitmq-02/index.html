@@ -98,7 +98,7 @@
 <meta property="og:image" content="https://sweetboyzhang.gitee.io/2020/10/26/rabbitmq-02/9.png">
 <meta property="og:image" content="https://sweetboyzhang.gitee.io/2020/10/26/rabbitmq-02/10.png">
 <meta property="article:published_time" content="2020-10-26T02:05:08.000Z">
-<meta property="article:modified_time" content="2021-10-27T10:15:43.317Z">
+<meta property="article:modified_time" content="2021-10-28T04:54:04.134Z">
 <meta property="article:author" content="Zhangyuzhen">
 <meta property="article:tag" content="RabbitMQ">
 <meta name="twitter:card" content="summary">
@@ -397,7 +397,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  903
+                  1.1k
                 </span>
               
 
@@ -413,7 +413,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  5
                 </span>
               
             </div>
@@ -494,7 +494,13 @@
 <h2 id="实际使用"><a href="#实际使用" class="headerlink" title="实际使用"></a>实际使用</h2><p>转换为json字符串发送</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">testHello</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    HashMap&lt;String,User&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    User user = <span class="keyword">new</span> User(<span class="number">111L</span>, <span class="string">"张小红"</span>, <span class="number">21</span>);</span><br><span class="line">    map.put(<span class="string">"userInfo"</span>,user);</span><br><span class="line">    rabbitTemplate.convertAndSend(<span class="string">"hello"</span>, JSON.toJSONString(map));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="消息监视"><a href="#消息监视" class="headerlink" title="消息监视"></a>消息监视</h2>
+<h2 id="消息监视"><a href="#消息监视" class="headerlink" title="消息监视"></a>消息监视</h2><p>在配置文件中添加</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 开启消息到达交换机的确认机制</span></span><br><span class="line"><span class="meta">spring.rabbitmq.publisher-confirm-type</span>=<span class="string">correlated</span></span><br><span class="line"><span class="comment"># 开启消息未达到队列的回调</span></span><br><span class="line"><span class="meta">spring.rabbitmq.publisher-returns</span>=<span class="string">true</span></span><br></pre></td></tr></table></figure>
+
+<p>添加配置类RabbitMsgWatch</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RabbitMsgWatch</span> <span class="keyword">implements</span> <span class="title">RabbitTemplate</span>.<span class="title">ConfirmCallback</span>, <span class="title">RabbitTemplate</span>.<span class="title">ReturnsCallback</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Logger logger = LoggerFactory.getLogger(RabbitMsgWatch<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RabbitTemplate rabbitTemplate;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 设置监听</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@PostConstruct</span> <span class="comment">// 后置增强 bean对象创建后开始生效</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setConfig</span><span class="params">()</span></span>&#123;</span><br><span class="line">        rabbitTemplate.setConfirmCallback(<span class="keyword">this</span>);</span><br><span class="line">        rabbitTemplate.setReturnsCallback(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 消息未达到交换机的回调</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> correlationData</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> ack</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> cause</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">confirm</span><span class="params">(CorrelationData correlationData, <span class="keyword">boolean</span> ack, String cause)</span> </span>&#123;</span><br><span class="line">        logger.info(JSON.toJSONString(correlationData));</span><br><span class="line">        logger.info(JSON.toJSONString(ack));</span><br><span class="line">        logger.info(JSON.toJSONString(cause));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 消息未到达队列的回调</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> returned</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">returnedMessage</span><span class="params">(ReturnedMessage returned)</span> </span>&#123;</span><br><span class="line">        logger.info(JSON.toJSONString(returned));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
       
     </div>
     

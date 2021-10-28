@@ -96,7 +96,7 @@
 <meta property="og:image" content="https://sweetboyzhang.gitee.io/2020/08/11/collection/2.png">
 <meta property="og:image" content="https://sweetboyzhang.gitee.io/2020/08/11/collection/3.png">
 <meta property="article:published_time" content="2020-08-10T23:35:49.000Z">
-<meta property="article:modified_time" content="2021-10-22T03:54:04.938Z">
+<meta property="article:modified_time" content="2021-10-28T07:43:23.874Z">
 <meta property="article:author" content="Zhangyuzhen">
 <meta property="article:tag" content="JavaSE">
 <meta name="twitter:card" content="summary">
@@ -395,7 +395,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.9k
+                  2k
                 </span>
               
 
@@ -519,7 +519,7 @@
 <li>底层有散列表（数组+链表）实现</li>
 </ul>
 <p><strong>put(K key,V value)方法</strong>：map.put(key1,value1)</p>
-<p>首先调用key1所在类的hashCode()计算key的哈希值，此哈希值与数组长度-1做&amp;位运算，得到在Entry数组中的存放位置；<br>如果此位置为空，则添加成功，<br>否则将key1的哈希值与此位置上元素的哈希值比较，<br>如果哈希值不同，则添加成功,<br>否则调用key1所在类的equals()，如果返回false，则添加成功，否则添加失败</p>
+<p>首先调用key1所在类的hashCode()计算key的哈希值，此哈希值与数组长度-1做&amp;位运算，得到在Entry数组中的存放位置；<br>如果此位置为空，则添加成功，<br>否则将key1的哈希值与此位置上元素的哈希值比较，<br>如果哈希值不同，则添加成功,<br>否则调用key1所在类的equals()，如果返回false，则添加成功，否则添加到链表尾部。</p>
 <p>当元素个数达到容量的0.75时，就会扩容，容量扩大为原来的2倍，原有的数据全部被复制过来。</p>
 <p>jdk1.7是以链表的形式添加元素，jdk1.8之后，链表长度大于8的时候，链表会转换为红黑树。</p>
 <p><strong>get(Object key)</strong>：计算key的哈希值，通过getNode(int hash,Object key)获取对应的value</p>

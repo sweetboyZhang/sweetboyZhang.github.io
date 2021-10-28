@@ -93,7 +93,7 @@
 <meta property="og:site_name" content="Zhangyuzhen&#39;s Blog">
 <meta property="og:description" content="Docker概述用于构建和发布应用的容器技术。  Docker将程序和运行环境直接打包在一起，可保证一致运行环境，更轻松的迁移。 对进程进行隔离封装，容器与容器之间互不影响，更高效的利用系统资源。 通过镜像复制N多个环境一致的容器，方便部署。">
 <meta property="article:published_time" content="2021-10-25T16:14:00.000Z">
-<meta property="article:modified_time" content="2021-10-26T16:49:55.860Z">
+<meta property="article:modified_time" content="2021-10-28T08:15:42.575Z">
 <meta property="article:author" content="Zhangyuzhen">
 <meta property="article:tag" content="Dockor">
 <meta name="twitter:card" content="summary">
@@ -472,15 +472,11 @@
 <blockquote>
 <p>常见软件的启动</p>
 </blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#启动tomcat -d后台运行 -p端口映射 --name 容器命名</span></span><br><span class="line">docker run -d -p 8081:8080 --name 容器名 镜像:版本号</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动mysql -v 持久化数据到宿主机</span></span><br><span class="line">docker run -p 3307:3306 --name 容器名 -e MYSQL_ROOT_PASSWORD=设置密码 -v mysqlData:/var/lib/mysql </span><br><span class="line"><span class="comment"># 查看数据卷映射信息</span></span><br><span class="line">docker volume inspect mysqlData</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动redis -v 持久化数据到宿主机 开启AOF</span></span><br><span class="line"><span class="comment"># 配置文件数据卷映射 docker run -p 6379:6379 --name myRedis -v d:/docker/redis/conf:/usr/local/etc/redis redis:6.2 redis-server /usr/local/etc/redis/redis.conf</span></span><br><span class="line">docker run -p 6379:6379 --name 容器名 -v redisData:/data -d 镜像:版本号 redis-server --appendonly yes</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#启动tomcat -d后台运行 -p端口映射 --name 容器命名</span></span><br><span class="line">docker run -d -p 8081:8080 --name 容器名 镜像:版本号</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动mysql -v 持久化数据到宿主机</span></span><br><span class="line">docker run -d -p 3307:3306 --name 容器名 -e MYSQL_ROOT_PASSWORD=设置密码 -v mysqlData:/var/lib/mysql 镜像:版本号</span><br><span class="line"><span class="comment"># 查看数据卷映射信息</span></span><br><span class="line">docker volume inspect mysqlData</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动redis -v 持久化数据到宿主机 开启AOF</span></span><br><span class="line"><span class="comment"># 配置文件数据卷映射 docker run -p 6379:6379 --name myRedis -v d:/docker/redis/conf:/usr/local/etc/redis redis:6.2 redis-server /usr/local/etc/redis/redis.conf</span></span><br><span class="line">docker run -p 6379:6379 --name 容器名 -v redisData:/data -d 镜像:版本号 redis-server --appendonly yes</span><br></pre></td></tr></table></figure>
 
 <h1 id="Docker中的网络"><a href="#Docker中的网络" class="headerlink" title="Docker中的网络"></a>Docker中的网络</h1><p>Docker允许通过外部访问容器或容器互联的方式来提供网络服务。</p>
 <p>一般在使用docker网桥实现容器与容器之间通信时，都是站在一个应用的角度进行容器通信。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看docker网桥配置</span></span><br><span class="line">docker network ls</span><br><span class="line"><span class="comment"># 创建自定义网桥</span></span><br><span class="line">docker create 网桥名称</span><br><span class="line"><span class="comment"># 指定网桥启动</span></span><br><span class="line">docker run --network 网桥名称 --name 容器名称 镜像名:版本</span><br><span class="line"><span class="comment"># 删除网桥</span></span><br><span class="line">docker network rm 网桥名</span><br></pre></td></tr></table></figure>
-
-
-
-
 
 <h1 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h1><p>用于构建自定义镜像</p>
 <p>编写Dockfile文件：</p>
@@ -555,8 +551,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2021/10/27/rabbitmq-03/" rel="prev" title="Rabbitmq_03">
-                Rabbitmq_03 <i class="fa fa-chevron-right"></i>
+              <a href="/2021/10/27/rabbitmq-03/" rel="prev" title="秒杀案例">
+                秒杀案例 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

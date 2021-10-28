@@ -97,14 +97,13 @@
 <meta property="og:image" content="https://sweetboyzhang.gitee.io/2020/06/01/spring-01/3.jpg">
 <meta property="og:image" content="https://sweetboyzhang.gitee.io/2020/06/01/spring-01/4.jpg">
 <meta property="og:image" content="https://sweetboyzhang.gitee.io/2020/06/01/spring-01/5.jpg">
-<meta property="og:image" content="https://sweetboyzhang.gitee.io/2020/06/01/spring-01/6.jpg">
 <meta property="og:image" content="https://sweetboyzhang.gitee.io/2020/06/01/spring-01/7.jpg">
 <meta property="og:image" content="https://sweetboyzhang.gitee.io/2020/06/01/spring-01/8.jpg">
 <meta property="og:image" content="https://sweetboyzhang.gitee.io/2020/06/01/spring-01/9.jpg">
 <meta property="og:image" content="https://sweetboyzhang.gitee.io/2020/06/01/spring-01/8.jpg">
 <meta property="og:image" content="https://sweetboyzhang.gitee.io/2020/06/01/spring-01/10.jpg">
 <meta property="article:published_time" content="2020-06-01T00:02:59.000Z">
-<meta property="article:modified_time" content="2021-10-24T07:52:08.595Z">
+<meta property="article:modified_time" content="2021-10-28T03:06:15.497Z">
 <meta property="article:author" content="Zhangyuzhen">
 <meta property="article:tag" content="Spring">
 <meta name="twitter:card" content="summary">
@@ -403,7 +402,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2k
+                  2.2k
                 </span>
               
 
@@ -419,7 +418,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  8
+                  9
                 </span>
               
             </div>
@@ -480,12 +479,20 @@
 <p>在配置文件中声明组件扫描器</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--   声明组件扫描器  组件就是java对象--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.zyz.component"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>另外，Spring 还提供了3 个创建对象的注解：<br>@Repository 用于对DAO 实现类进行注解<br>@Service 用于对Service 实现类进行注解<br>@Controller 用于对Controller 实现类进行注解<br>这三个注解与@Component 都可以创建对象，但这三个注解还有其他的含义，@Service创建业务层对象，业务层对象可以加入事务功能，@Controller 注解创建的对象可以作为处理器接收用户的请求。<br>@Repository，@Service，@Controller 是对@Component 注解的细化，标注不同层的对象。即持久层对象，业务层对象，控制层对象。<br>普通类型赋值：<br><img src="/2020/06/01/spring-01/6.jpg" alt></p>
-<p>byType自动注入（默认）<br><img src="/2020/06/01/spring-01/7.jpg" alt></p>
+<p>另外，Spring 还提供了3 个创建对象的注解：<br>@Repository 用于对DAO 实现类进行注解<br>@Service 用于对Service 实现类进行注解<br>@Controller 用于对Controller 实现类进行注解<br>这三个注解与@Component 都可以创建对象，但这三个注解还有其他的含义，@Service创建业务层对象，业务层对象可以加入事务功能，@Controller 注解创建的对象可以作为处理器接收用户的请求。<br>@Repository，@Service，@Controller 是对@Component 注解的细化，标注不同层的对象。即持久层对象，业务层对象，控制层对象。</p>
+<p><code>@Autowired</code>注入</p>
+<ul>
+<li>byType自动注入（默认）<br><img src="/2020/06/01/spring-01/7.jpg" alt></li>
+</ul>
 <p><img src="/2020/06/01/spring-01/8.jpg" alt></p>
-<p>byName自动注入（当一个接口有多个实现类时，需要使用次方式注入）<br><img src="/2020/06/01/spring-01/9.jpg" alt></p>
+<ul>
+<li>byName自动注入（当一个接口有多个实现类时，需要使用次方式注入）<br><img src="/2020/06/01/spring-01/9.jpg" alt></li>
+</ul>
 <p><img src="/2020/06/01/spring-01/8.jpg" alt></p>
-<p><strong>JDK注解@Resource自动注入</strong><br>byName（默认），按Name不能注入成功则按Type<br><img src="/2020/06/01/spring-01/10.jpg" alt></p>
+<p><strong>JDK注解<code>@Resource</code>自动注入</strong></p>
+<ul>
+<li>byName（默认）。如果使用name属性，则使用byName的自动注入策略，而使用type属性时则使用byType自动注入策略。如果既不制定name也不制定type属性，这时将通过反射机制使用byName自动注入策略，如果找不到相同名称的，就会去找相同类型的，再找不到才报错。<br><img src="/2020/06/01/spring-01/10.jpg" alt></li>
+</ul>
 <h2 id="bean-作用域"><a href="#bean-作用域" class="headerlink" title="bean 作用域"></a>bean 作用域</h2><p>Spring容器中的Bean是否线程安全，容器本身并没有提供Bean的线程安全策略，因此可以说<strong>Spring容器中的Bean本身不具备线程安全的特性</strong>，但是具体还是要结合具体scope的Bean去研究。</p>
 <p>1、singleton:单例，默认作用域。</p>
 <p>2、prototype:原型，每次创建一个新对象。</p>
@@ -495,7 +502,27 @@
 <p>对于单例Bean,所有线程都共享一个单例实例Bean,因此是存在资源的竞争。</p>
 <p>如果单例Bean,是一个无状态Bean，也就是线程中的操作不会对Bean的成员执行查询以外的操作，那么这个单例Bean是线程安全的。比如Spring mvc 的 Controller、Service、Dao等，这些Bean大多是无状态的，只关注于方法本身。</p>
 <p>对于有状态的bean，Spring官方提供的bean，一般提供了通过ThreadLocal去解决线程安全的方法，比如RequestContextHolder、TransactionSynchronizationManager、LocaleContextHolder等。<br><strong>注： Spring容器本身并没有提供线程安全的策略，因此是否线程安全完全取决于Bean本身的特性。</strong></p>
-<h3 id="使用ThreadLocal的好处"><a href="#使用ThreadLocal的好处" class="headerlink" title="使用ThreadLocal的好处"></a>使用ThreadLocal的好处</h3><p>使得多线程场景下，多个线程对这个单例Bean的成员变量并不存在资源的竞争，因为ThreadLocal为每个线程保存线程私有的数据。</p>
+<blockquote>
+<p>使用ThreadLocal</p>
+</blockquote>
+<p>使得多线程场景下，多个线程对这个单例Bean的成员变量并不存在资源的竞争，因为ThreadLocal为每个线程保存线程私有的数据。</p>
+<h2 id="bean的生命周期"><a href="#bean的生命周期" class="headerlink" title="bean的生命周期"></a>bean的生命周期</h2><p><strong>实例化 -&gt; 属性赋值 -&gt; 初始化 -&gt; 销毁</strong></p>
+<ol>
+<li><p>通过构造器或工厂方法<strong>创建bean实例</strong></p>
+</li>
+<li><p>为bean的<strong>属性设置值</strong>和对其他bean的引用</p>
+</li>
+<li><p>将bean实例传递给bean后置处理器的<strong>postProcessBeforeInitialization()</strong>方法</p>
+</li>
+<li><p>调用bean的<strong>初始化</strong>方法</p>
+</li>
+<li><p>将bean实例传递给bean后置处理器的<strong>postProcessAfterInitialization()</strong>方法</p>
+</li>
+<li><p>使用bean</p>
+</li>
+<li><p>当容器关闭时调用bean的<strong>销毁</strong>方法</p>
+</li>
+</ol>
 
       
     </div>
@@ -709,7 +736,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring简介"><span class="nav-number">1.</span> <span class="nav-text">Spring简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring体系结构"><span class="nav-number">2.</span> <span class="nav-text">Spring体系结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IOC控制反转"><span class="nav-number">3.</span> <span class="nav-text">IOC控制反转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Spring"><span class="nav-number">4.</span> <span class="nav-text">使用Spring</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、使用Maven创建一个普通的java项目"><span class="nav-number">4.1.</span> <span class="nav-text">1、使用Maven创建一个普通的java项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、引入Spring依赖"><span class="nav-number">4.2.</span> <span class="nav-text">2、引入Spring依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、创建Spring配置文件"><span class="nav-number">4.3.</span> <span class="nav-text">3、创建Spring配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、使用spring创建对象，调用对象方法"><span class="nav-number">4.4.</span> <span class="nav-text">4、使用spring创建对象，调用对象方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#di依赖注入"><span class="nav-number">5.</span> <span class="nav-text">di依赖注入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基于xml文件"><span class="nav-number">5.1.</span> <span class="nav-text">基于xml文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于注解"><span class="nav-number">5.2.</span> <span class="nav-text">基于注解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bean-作用域"><span class="nav-number">6.</span> <span class="nav-text">bean 作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用ThreadLocal的好处"><span class="nav-number">6.1.</span> <span class="nav-text">使用ThreadLocal的好处</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring简介"><span class="nav-number">1.</span> <span class="nav-text">Spring简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring体系结构"><span class="nav-number">2.</span> <span class="nav-text">Spring体系结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IOC控制反转"><span class="nav-number">3.</span> <span class="nav-text">IOC控制反转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Spring"><span class="nav-number">4.</span> <span class="nav-text">使用Spring</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、使用Maven创建一个普通的java项目"><span class="nav-number">4.1.</span> <span class="nav-text">1、使用Maven创建一个普通的java项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、引入Spring依赖"><span class="nav-number">4.2.</span> <span class="nav-text">2、引入Spring依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、创建Spring配置文件"><span class="nav-number">4.3.</span> <span class="nav-text">3、创建Spring配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、使用spring创建对象，调用对象方法"><span class="nav-number">4.4.</span> <span class="nav-text">4、使用spring创建对象，调用对象方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#di依赖注入"><span class="nav-number">5.</span> <span class="nav-text">di依赖注入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基于xml文件"><span class="nav-number">5.1.</span> <span class="nav-text">基于xml文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于注解"><span class="nav-number">5.2.</span> <span class="nav-text">基于注解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bean-作用域"><span class="nav-number">6.</span> <span class="nav-text">bean 作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bean的生命周期"><span class="nav-number">7.</span> <span class="nav-text">bean的生命周期</span></a></li></ol></div>
             
 
           </div>
