@@ -103,7 +103,7 @@
 <meta property="og:image" content="https://sweetboyzhang.gitee.io/2020/10/21/rabbitmq-01/9.png">
 <meta property="og:image" content="https://sweetboyzhang.gitee.io/2020/10/21/rabbitmq-01/10.png">
 <meta property="article:published_time" content="2020-10-21T01:48:34.000Z">
-<meta property="article:modified_time" content="2021-10-27T10:36:58.228Z">
+<meta property="article:modified_time" content="2021-10-29T02:15:03.796Z">
 <meta property="article:author" content="Zhangyuzhen">
 <meta property="article:tag" content="RabbitMQ">
 <meta name="twitter:card" content="summary">
@@ -439,7 +439,14 @@
       
 
       
-        <h2 id="MQ简介"><a href="#MQ简介" class="headerlink" title="MQ简介"></a>MQ简介</h2><p><strong>MQ</strong>（Message Queue），别名为<strong>消息中间件</strong>。通过典型的<strong>生产者</strong>和<strong>消费者</strong>模型，生产者向消息队列中不断生产消息，消费者从消息队列中不断获取消息。因为消息的产生和消费都是<strong>异步</strong>的，而且只关心消息的发送和接收，没有业务逻辑的侵入，实现了系统之间的<strong>解耦</strong>。通过利用高效可靠的消息传递机制进行平台无关的数据交流，并基于数据通信来进行分布式系统的集成。<a id="more"></a></p>
+        <h2 id="MQ简介"><a href="#MQ简介" class="headerlink" title="MQ简介"></a>MQ简介</h2><p><strong>MQ</strong>（Message Queue），别名为<strong>消息中间件</strong>。通过典型的<strong>生产者</strong>和<strong>消费者</strong>模型，生产者向消息队列中不断生产消息，消费者从消息队列中不断获取消息。因为消息的产生和消费都是<strong>异步</strong>的，而且只关心消息的发送和接收，没有业务逻辑的侵入，实现了系统之间的<strong>解耦</strong>。通过利用高效可靠的消息传递机制进行平台无关的数据交流，并基于数据通信来进行分布式系统的集成。<a id="more"></a><br>应用场景：</p>
+<ul>
+<li>异步处理</li>
+<li>应用解耦</li>
+<li>流量削峰</li>
+<li>日志处理</li>
+<li>消息通讯</li>
+</ul>
 <h2 id="主流的消息中间件"><a href="#主流的消息中间件" class="headerlink" title="主流的消息中间件"></a>主流的消息中间件</h2><blockquote>
 <p>ActiveMQ</p>
 </blockquote>
@@ -447,7 +454,7 @@
 <blockquote>
 <p>Kafka</p>
 </blockquote>
-<p>Kafka是LinkedIn开源的分布式发布-订阅消息系统，目前归属于Apache顶级项目。Kafka主要特点是基于Pull的模式来处理消息消费，追求高吞吐量，一开始的目的就是用于日志收集和传输。0.8版本开始支持复制，不支持事务，对消息的重复、丢失、错误没有严格要求，适合产生大量数据的互联网服务的数据收集业务。</p>
+<p>Kafka是LinkedIn开源的分布式发布-订阅消息系统，目前归属于Apache顶级项目。Kafka主要特点是基于Pull的模式来处理消息消费，追求高吞吐量，一开始的目的就是用于<strong>日志收集和传输</strong>。0.8版本开始支持复制，不支持事务，对消息的重复、丢失、错误没有严格要求，适合产生大量数据的互联网服务的数据收集业务。</p>
 <blockquote>
 <p>RocketMQ</p>
 </blockquote>
@@ -489,7 +496,8 @@
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RabbitMQUtils</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> ConnectionFactory connectionFactory;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 让ConnectionFactory只加载一次</span></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        connectionFactory = <span class="keyword">new</span> ConnectionFactory();</span><br><span class="line">        connectionFactory.setHost(<span class="string">"172.16.1.57"</span>);</span><br><span class="line">        connectionFactory.setPort(<span class="number">6000</span>);</span><br><span class="line">        connectionFactory.setVirtualHost(<span class="string">"/rabbitmq_study"</span>);</span><br><span class="line">        connectionFactory.setUsername(<span class="string">"zyz"</span>);</span><br><span class="line">        connectionFactory.setPassword(<span class="string">"2824199842"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取 RabbitMQ的连接</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Connection <span class="title">getConnection</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Connection connection = connectionFactory.newConnection();</span><br><span class="line">            <span class="keyword">return</span> connection;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 关闭 Connection和 Channel</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> conn</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> channel</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">close</span><span class="params">(Connection conn, Channel channel)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (channel != <span class="keyword">null</span>) channel.close();</span><br><span class="line">            <span class="keyword">if</span> (conn != <span class="keyword">null</span>) conn.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="第二种模型（work-queue）"><a href="#第二种模型（work-queue）" class="headerlink" title="第二种模型（work queue）"></a>第二种模型（work queue）</h4><p><code>Work queues</code>，也被称为（<code>Task queues</code>），任务模型。当消息处理比较耗时的时候，可能生产消息的速度会远远大于消息的消费速度。长此以往，消息就会堆积越来越多，无法及时处理。此时就可以使用work 模型：<strong>让多个消费者绑定到一个队列，共同消费队列中的消息</strong>。队列中的消息一旦消费，就会消失，因此任务是不会被重复执行的。<br><img src="/2020/10/21/rabbitmq-01/7.png" alt></p>
+<h4 id="第二种模型（work-queue）"><a href="#第二种模型（work-queue）" class="headerlink" title="第二种模型（work queue）"></a>第二种模型（work queue）</h4><p><code>Work queues</code>，也被称为（<code>Task queues</code>），任务模型。当消息处理比较耗时的时候，可能生产消息的速度会远远大于消息的消费速度。长此以往，消息就会堆积越来越多，无法及时处理。此时就可以使用work 模型：<strong>让多个消费者绑定到一个队列，共同消费队列中的消息</strong>。队列中的消息一旦消费，就会消失，因此任务是不会被重复执行的。</p>
+<p><img src="/2020/10/21/rabbitmq-01/7.png" alt></p>
 <ul>
 <li>P：生产者：任务的发布者</li>
 <li>C1：消费者-1，领取任务并且完成任务，假设完成速度较慢</li>
