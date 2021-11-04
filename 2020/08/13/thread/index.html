@@ -95,7 +95,7 @@
 <meta property="og:image" content="https://sweetboyzhang.gitee.io/2020/08/13/thread/2.png">
 <meta property="og:image" content="https://sweetboyzhang.gitee.io/2020/08/13/thread/1.png">
 <meta property="article:published_time" content="2020-08-13T06:44:28.000Z">
-<meta property="article:modified_time" content="2021-10-25T08:09:48.497Z">
+<meta property="article:modified_time" content="2021-11-04T11:11:13.330Z">
 <meta property="article:author" content="Zhangyuzhen">
 <meta property="article:tag" content="JavaSE">
 <meta name="twitter:card" content="summary">
@@ -608,6 +608,9 @@
 <li>自旋CAS，长时间不成功会带来cpu开销加大。</li>
 </ul>
 <p>在Jdk 1.6之后，对Synchronized进行了优化，主要包括为了减少获得锁和释放锁带来的性能消耗而引入的偏向锁 和 轻量级锁 以及其它各种优化。synchronized的底层实现主要依靠 Lock-Free 的队列，基本思路是自旋后阻塞，提高了吞吐量。在线程冲突较少的情况下，可以获得和CAS类似的性能；而线程冲突严重的情况下，性能远高于CAS。</p>
+<h2 id="避免死锁"><a href="#避免死锁" class="headerlink" title="避免死锁"></a>避免死锁</h2><p>1、注意加锁顺序，保证每一个线程按同样的顺序进行加锁</p>
+<p>2、设置超时时间</p>
+<p>3、死锁检查，预防死锁的发生</p>
 
       
     </div>
@@ -821,7 +824,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#进程与线程"><span class="nav-number">1.</span> <span class="nav-text">进程与线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并发与并行"><span class="nav-number">2.</span> <span class="nav-text">并发与并行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java实现多线程"><span class="nav-number">3.</span> <span class="nav-text">Java实现多线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java实现多线程要注意的细节"><span class="nav-number">4.</span> <span class="nav-text">Java实现多线程要注意的细节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thread中的常用方法"><span class="nav-number">5.</span> <span class="nav-text">Thread中的常用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#synchronized锁与Lock锁"><span class="nav-number">6.</span> <span class="nav-text">synchronized锁与Lock锁</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#进程与线程"><span class="nav-number">1.</span> <span class="nav-text">进程与线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并发与并行"><span class="nav-number">2.</span> <span class="nav-text">并发与并行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java实现多线程"><span class="nav-number">3.</span> <span class="nav-text">Java实现多线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java实现多线程要注意的细节"><span class="nav-number">4.</span> <span class="nav-text">Java实现多线程要注意的细节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thread中的常用方法"><span class="nav-number">5.</span> <span class="nav-text">Thread中的常用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#synchronized锁与Lock锁"><span class="nav-number">6.</span> <span class="nav-text">synchronized锁与Lock锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#避免死锁"><span class="nav-number">7.</span> <span class="nav-text">避免死锁</span></a></li></ol></div>
             
 
           </div>
