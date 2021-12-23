@@ -103,7 +103,7 @@
 <meta property="og:image" content="https://sweetboyzhang.gitee.io/2020/10/21/rabbitmq-01/9.png">
 <meta property="og:image" content="https://sweetboyzhang.gitee.io/2020/10/21/rabbitmq-01/10.png">
 <meta property="article:published_time" content="2020-10-21T01:48:34.000Z">
-<meta property="article:modified_time" content="2021-10-29T02:15:03.796Z">
+<meta property="article:modified_time" content="2021-11-23T02:05:47.747Z">
 <meta property="article:author" content="Zhangyuzhen">
 <meta property="article:tag" content="RabbitMQ">
 <meta name="twitter:card" content="summary">
@@ -402,7 +402,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.9k
+                  3k
                 </span>
               
 
@@ -448,24 +448,24 @@
 <li>消息通讯</li>
 </ul>
 <h2 id="主流的消息中间件"><a href="#主流的消息中间件" class="headerlink" title="主流的消息中间件"></a>主流的消息中间件</h2><blockquote>
-<p>ActiveMQ</p>
+<p>ActiveMQ：java语言实现，万级数据吞吐量，处理速度ms级，主从架构，成熟度高</p>
 </blockquote>
-<p>ActiveMQ 是Apache出品，最流行的，能力强劲的开源消息总线。它是一个完全支持JMS规范的的消息中间件。丰富的API,多种集群架构模式让ActiveMQ在业界成为老牌的消息中间件,在中小型企业颇受欢迎!</p>
+<p>ActiveMQ，是Apache出品，最流行的，能力强劲的开源消息组件。它是一个完全支持JMS规范的的消息中间件。丰富的API,多种集群架构模式让ActiveMQ在业界成为老牌的消息中间件,在中小型企业颇受欢迎。</p>
 <blockquote>
-<p>Kafka</p>
+<p>Kafka：scala语言实现，十万级数据吞吐量，梳理速度ms级，分布式架构，功能较少，应用于大数据较多</p>
 </blockquote>
 <p>Kafka是LinkedIn开源的分布式发布-订阅消息系统，目前归属于Apache顶级项目。Kafka主要特点是基于Pull的模式来处理消息消费，追求高吞吐量，一开始的目的就是用于<strong>日志收集和传输</strong>。0.8版本开始支持复制，不支持事务，对消息的重复、丢失、错误没有严格要求，适合产生大量数据的互联网服务的数据收集业务。</p>
 <blockquote>
-<p>RocketMQ</p>
+<p>RocketMQ：java语言实现，十万级数据吞吐量，处理速度ms级，分布式架构，功能强大，拓展性强</p>
 </blockquote>
 <p>RocketMQ是阿里开源的消息中间件，它是纯Java开发，具有高吞吐量、高可用性、适合大规模分布式系统应用的特点。RocketMQ思路起源于Kafka，但并不是Kafka的一个Copy，它对消息的可靠传输及事务性做了优化，目前在阿里集团被广泛应用于交易、充值、流计算、消息推送、日志流式处理、binglog分发等场景。</p>
 <blockquote>
-<p>RabbitMQ</p>
+<p>RabbitMQ：erlang语言实现，万级数据吞吐量，处理速度us级，主从架构</p>
 </blockquote>
 <p>RabbitMQ是使用Erlang语言开发的开源消息队列系统，基于AMQP协议来实现。AMQP的主要特征是面向消息、队列、路由（包括点对点和发布/订阅）、可靠性、安全。AMQP协议更多用在企业系统内对数据一致性、稳定性和可靠性要求很高的场景，对性能和吞吐量的要求还在其次。</p>
-<blockquote>
-<p>AMQP（advanced message queuing protocol）在2003年时被提出，最早用于解决金融领不同平台之间的消息传递交互问题。顾名思义，AMQP是一种协议，更准确的说是一种binary wire-level protocol（链接协议）。这是其和JMS的本质差别，AMQP不从API层进行限定，而是直接定义网络交换的数据格式。这使得实现了AMQP的provider天然性就是跨平台的。</p>
-</blockquote>
+<ul>
+<li>AMQP（advanced message queuing protocol）在2003年时被提出，最早用于解决金融领域不同平台之间的消息传递交互问题。顾名思义，AMQP是一种协议，更准确的说是一种binary wire-level protocol（链接协议）。这是其和JMS的本质差别，AMQP不从API层进行限定，而是直接定义网络交换的数据格式。这使得实现了AMQP的provider天然性就是跨平台的。</li>
+</ul>
 <h2 id="RabbitMQ的使用"><a href="#RabbitMQ的使用" class="headerlink" title="RabbitMQ的使用"></a>RabbitMQ的使用</h2><p>使用Docker快速安装并启动</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 服务端端口5672  客户端端口 15672 </span></span><br><span class="line">docker run --name rabbitmq -p 15672:15672 -p 5672:5672 -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=123456 -d rabbitmq:3-management</span><br></pre></td></tr></table></figure>
 
