@@ -88,12 +88,12 @@
 
 <meta name="description" content="设计模式分为三种类型：创建型模式、结构型模式、行为型模式，共23种。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="单例设计模式">
+<meta property="og:title" content="单例模式">
 <meta property="og:url" content="https://sweetboyzhang.gitee.io/2020/10/09/designmodel-02/index.html">
 <meta property="og:site_name" content="Zhangyuzhen&#39;s Blog">
 <meta property="og:description" content="设计模式分为三种类型：创建型模式、结构型模式、行为型模式，共23种。">
 <meta property="article:published_time" content="2020-10-09T01:22:28.000Z">
-<meta property="article:modified_time" content="2021-11-05T13:09:08.914Z">
+<meta property="article:modified_time" content="2022-01-11T03:34:14.906Z">
 <meta property="article:author" content="Zhangyuzhen">
 <meta property="article:tag" content="设计模式">
 <meta name="twitter:card" content="summary">
@@ -132,7 +132,7 @@
 
 
 
-  <title>单例设计模式 | Zhangyuzhen's Blog</title>
+  <title>单例模式 | Zhangyuzhen's Blog</title>
   
 
 
@@ -320,7 +320,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">单例设计模式</h1>
+          <h1 class="post-title" itemprop="name headline">单例模式</h1>
         
 
         <div class="post-meta">
@@ -429,7 +429,7 @@
 
       
         <p>设计模式分为三种类型：创建型模式、结构型模式、行为型模式，共23种。<a id="more"></a></p>
-<h2 id="单例设计模式"><a href="#单例设计模式" class="headerlink" title="单例设计模式"></a>单例设计模式</h2><p>单例设计模式属于创建型模式，就是采取一定的方法保证整个软件系统中，对某个类只能存在一个对象实例，并且该类只提供一个获取该对象实例的方法(静态方法)。</p>
+<h2 id="单例设计模式"><a href="#单例设计模式" class="headerlink" title="单例设计模式"></a>单例设计模式</h2><p>单例设计模式属于<strong>创建型模式</strong>，就是采取一定的方法保证整个软件系统中，对某个类只能存在一个对象实例，并且该类只提供一个获取该对象实例的方法(静态方法)。</p>
 <h3 id="单例模式的几种写法"><a href="#单例模式的几种写法" class="headerlink" title="单例模式的几种写法"></a>单例模式的几种写法</h3><h4 id="饿汉式（静态常量）"><a href="#饿汉式（静态常量）" class="headerlink" title="饿汉式（静态常量）"></a>饿汉式（静态常量）</h4><p>步骤：<br>1、构造器私有化；<br>2、类内部创建一个静态的对象实例并私有化；<br>3、对外暴露一个静态的公共方法getInstance()</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonTest1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Singleton instance1 = Singleton.getInstance();</span><br><span class="line">        Singleton instance2 = Singleton.getInstance();</span><br><span class="line">        System.out.println(instance1==instance2);<span class="comment">// true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span></span>&#123;</span><br><span class="line">    <span class="comment">// 私有化构造器</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建静态实例对象</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton singleton = <span class="keyword">new</span> Singleton();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 对外暴露获取实例的静态方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> singleton;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -474,7 +474,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://sweetboyzhang.gitee.io/2020/10/09/designmodel-02/" title="单例设计模式">https://sweetboyzhang.gitee.io/2020/10/09/designmodel-02/</a>
+    <a href="https://sweetboyzhang.gitee.io/2020/10/09/designmodel-02/" title="单例模式">https://sweetboyzhang.gitee.io/2020/10/09/designmodel-02/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -596,7 +596,7 @@
 				<a href="/archives">
                 <!-- <a href="/archives%7C%7C%20archive"> -->
               
-                  <span class="site-state-item-count">103</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>
@@ -607,7 +607,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -618,7 +618,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -687,7 +687,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
