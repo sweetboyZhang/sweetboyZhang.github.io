@@ -86,16 +86,25 @@
 
 
 
-<meta name="description" content="热爱微风，并与暴风同行。">
+<meta name="description" content="第三方平台对接同步沃尔玛店铺中的订单信息到公司的系统中。 1.1 获取授权  授权方式：  方式一：成为第三方服务商 https:&#x2F;&#x2F;developer.walmart.com&#x2F;doc&#x2F;us&#x2F;mp&#x2F;us-mp-authorize&#x2F; (可行性较低)   方式二：线下直接获取卖家clientId，clientSecret（卖家后台可以看到）（目前采用）   1.2 同步订单   1.3 部署流程（手动">
 <meta property="og:type" content="article">
 <meta property="og:title" content="工作笔记">
 <meta property="og:url" content="https://sweetboyzhang.gitee.io/2022/01/17/worknote-01/index.html">
 <meta property="og:site_name" content="Zhangyuzhen&#39;s Blog">
-<meta property="og:description" content="热爱微风，并与暴风同行。">
+<meta property="og:description" content="第三方平台对接同步沃尔玛店铺中的订单信息到公司的系统中。 1.1 获取授权  授权方式：  方式一：成为第三方服务商 https:&#x2F;&#x2F;developer.walmart.com&#x2F;doc&#x2F;us&#x2F;mp&#x2F;us-mp-authorize&#x2F; (可行性较低)   方式二：线下直接获取卖家clientId，clientSecret（卖家后台可以看到）（目前采用）   1.2 同步订单   1.3 部署流程（手动">
+<meta property="og:image" content="https://sweetboyzhang.gitee.io/2022/01/17/worknote-01/1.jpg">
+<meta property="og:image" content="https://sweetboyzhang.gitee.io/2022/01/17/worknote-01/2.jpg">
+<meta property="og:image" content="https://sweetboyzhang.gitee.io/2022/01/17/worknote-01/3.jpg">
+<meta property="og:image" content="https://sweetboyzhang.gitee.io/2022/01/17/worknote-01/4.jpg">
+<meta property="og:image" content="https://sweetboyzhang.gitee.io/2022/01/17/worknote-01/5.jpg">
+<meta property="og:image" content="https://sweetboyzhang.gitee.io/2022/01/17/worknote-01/6.jpg">
+<meta property="og:image" content="https://anker-in.feishu.cn/space/api/box/stream/download/asynccode/?code=ODU0NWYxNjQwMDRhMDVhZTk2NWE2YjRiOTRmMTQ2YTJfY1FwZTkxOWYyMTVFV0tUOUVxcEVNN1BiZTVhazhHQ0pfVG9rZW46Ym94Y25QMmcxVWJKdlRqaWZLTDRSVEFQQWFkXzE2NDMxMDAyMTM6MTY0MzEwMzgxM19WNA">
+<meta property="og:image" content="https://sweetboyzhang.gitee.io/2022/01/17/worknote-01/7.jpg">
 <meta property="article:published_time" content="2022-01-17T14:44:48.000Z">
-<meta property="article:modified_time" content="2022-01-17T14:48:38.243Z">
+<meta property="article:modified_time" content="2022-01-25T08:52:00.737Z">
 <meta property="article:author" content="Zhangyuzhen">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sweetboyzhang.gitee.io/2022/01/17/worknote-01/1.jpg">
 
 
 
@@ -390,7 +399,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0
+                  998
                 </span>
               
 
@@ -406,7 +415,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  3
                 </span>
               
             </div>
@@ -427,7 +436,71 @@
       
 
       
-        
+        <h2 id="第三方平台对接"><a href="#第三方平台对接" class="headerlink" title="第三方平台对接"></a>第三方平台对接</h2><p>同步沃尔玛店铺中的订单信息到公司的系统中。</p>
+<p>1.1 获取授权 </p>
+<p>授权方式：</p>
+<ul>
+<li><p>方式一：成为第三方服务商 <a href="https://developer.walmart.com/doc/us/mp/us-mp-authorize/" target="_blank" rel="noopener">https://developer.walmart.com/doc/us/mp/us-mp-authorize/</a> (可行性较低)</p>
+<img src="/2022/01/17/worknote-01/1.jpg" style="zoom:50%;">
+</li>
+<li><p>方式二：线下直接获取卖家clientId，clientSecret（卖家后台可以看到）（目前采用）</p>
+</li>
+</ul>
+<p>1.2 同步订单</p>
+<img src="/2022/01/17/worknote-01/2.jpg" style="zoom:50%;">
+
+<p>1.3 部署流程（手动）：</p>
+<p>1、将项目打成jar包以及Dockefile文件后上传至目标服务器；</p>
+<p>2、构建docker镜像</p>
+<p>3、构建docker容器</p>
+<p>4、运行容器</p>
+<p>（2，3，4步写成shell脚本，在服务器上运行脚本即可完成部署）</p>
+<h2 id="线上问题复盘"><a href="#线上问题复盘" class="headerlink" title="线上问题复盘"></a>线上问题复盘</h2><h3 id="问题1："><a href="#问题1：" class="headerlink" title="问题1："></a>问题1：</h3><p>原有的issues表中没有添加ai_platform字段，导致程序报错，影响后续流程。</p>
+<h3 id="分析1："><a href="#分析1：" class="headerlink" title="分析1："></a>分析1：</h3><p>缺少数据迁移文件。</p>
+<p>我扒了我所有的提交记录，发现自己并没有提交修改表的migrate文件！</p>
+<p><img src="/2022/01/17/worknote-01/3.jpg" alt></p>
+<p>修改表的正规操作:</p>
+<ul>
+<li>1、先通过命令创建migrate文件；</li>
+</ul>
+<p>例：<code>generate migration AddAiPlatformToIssues ai_platform:string</code></p>
+<ul>
+<li>2、编辑migrate文件</li>
+<li>3、执行<code>db:migrate</code> 命令后才会真正修改数据库 </li>
+</ul>
+<p>注意点：</p>
+<ul>
+<li>提交代码时，一定要提交migrate文件！！！</li>
+<li>不要通过图形工具直接去修改数据库中的表！！！</li>
+</ul>
+<p>线上与我相关的相关的问题大致就以上这点，因为主要的流程并不在我这里。</p>
+<h2 id="开发问题复盘"><a href="#开发问题复盘" class="headerlink" title="开发问题复盘"></a>开发问题复盘</h2><h3 id="问题1：-1"><a href="#问题1：-1" class="headerlink" title="问题1："></a>问题1：</h3><p>网络访问问题：本地测试的好好的，一部署就出问题？</p>
+<h3 id="分析1：-1"><a href="#分析1：-1" class="headerlink" title="分析1："></a>分析1：</h3><p>部署在AWS上的服务器之间都是通过内网访问的，通过外网访问不到！！</p>
+<p>而在本地的办公网络访问不到内网，只能用外网ip做测试。</p>
+<p>例如：在服务器上发起http请求</p>
+<p><img src="/2022/01/17/worknote-01/4.jpg" alt></p>
+<p>这种网络访问的问题之前确实没遇到过，之前的工作只有crud，写写对外的接口，在提供对内调用的接口时确实要注意内外网的问题，属于低级错误了！</p>
+<h3 id="问题2："><a href="#问题2：" class="headerlink" title="问题2："></a>问题2：</h3><p>线上服务调不通：</p>
+<p><img src="/2022/01/17/worknote-01/5.jpg" alt></p>
+<h3 id="分析2："><a href="#分析2：" class="headerlink" title="分析2："></a>分析2：</h3><p>先上一张部署图，</p>
+<p>不支持在 Docs 外粘贴 block</p>
+<p>吸取内网外网调用的问题后，确认是通过内网ip在进行调用。在测试服务器上分别调用两台机器的服务，发现都能够调通，将问题缩小为问题出现在了负载均衡服务器的配置上，请教运维后，发现是端口映射出了问题，负载均衡服务器只对外暴露了80端口，在docker中容器的8888端口与宿主机的80做映射<code>docker run -p 80:8888 --name shulex-tag-app:shulex-tag-app:latest -d</code>。</p>
+<p>ok，问题解决。</p>
+<h3 id="问题3："><a href="#问题3：" class="headerlink" title="问题3："></a>问题3：</h3><p>一个不是问题的问题？</p>
+<h3 id="分析3："><a href="#分析3：" class="headerlink" title="分析3："></a>分析3：</h3><p>在进行ai_issues表插入的时候遇到回滚，当时就认为是自己程序的问题，完全没结合具体的业务去分析问题，</p>
+<p><img src="/2022/01/17/worknote-01/6.jpg" alt></p>
+<p>Optional 参数：来自官方文档的解释</p>
+<p><img src="https://anker-in.feishu.cn/space/api/box/stream/download/asynccode/?code=ODU0NWYxNjQwMDRhMDVhZTk2NWE2YjRiOTRmMTQ2YTJfY1FwZTkxOWYyMTVFV0tUOUVxcEVNN1BiZTVhazhHQ0pfVG9rZW46Ym94Y25QMmcxVWJKdlRqaWZLTDRSVEFQQWFkXzE2NDMxMDAyMTM6MTY0MzEwMzgxM19WNA" alt="img"></p>
+<p>ai_issues表中的tag_id也就是对应这里的tag，是不能为空的！所以在插入时必须去验证tag对象是否存在，为空就插入不了。就应该回滚！</p>
+<p>注意：</p>
+<p>分析问题时请不要脱离业务！！</p>
+<h2 id="个人感受"><a href="#个人感受" class="headerlink" title="个人感受"></a>个人感受</h2><p>最初在整个项目中，我的任务相比之下还是比较简单的，前期和明明在设计技术方案，以及完成沃尔玛那边订单同步功能的上线，一些问题的解决：<a href="https://anker-in.feishu.cn/docs/doccnAflEM42F6ebbIPBVBwg8Eh" target="_blank" rel="noopener">walmart订单问题解释</a> </p>
+<p>然后才开始进行这边的开发，在这边的开发任务总的来说也在辉哥规定的时间完成了开发和自测。</p>
+<p><img src="/2022/01/17/worknote-01/7.jpg" alt></p>
+<p>之后辉哥将后续的问题都交给我来跟进了<a href="https://anker-in.feishu.cn/docs/doccnQTka9WKdMhVgnejyfmaqkC" target="_blank" rel="noopener">1.17上线准备</a> 、ai打标Java项目的接手、还有python工具的编写，说实话这些问题同时处理起来压力还是比较大😂😂😂，还好都算基本完成了。</p>
+<p>最后，只能说，加油，兄弟们！</p>
+<p>END</p>
+
       
     </div>
     
@@ -529,8 +602,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -611,6 +693,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第三方平台对接"><span class="nav-number">1.</span> <span class="nav-text">第三方平台对接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线上问题复盘"><span class="nav-number">2.</span> <span class="nav-text">线上问题复盘</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题1："><span class="nav-number">2.1.</span> <span class="nav-text">问题1：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析1："><span class="nav-number">2.2.</span> <span class="nav-text">分析1：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发问题复盘"><span class="nav-number">3.</span> <span class="nav-text">开发问题复盘</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题1：-1"><span class="nav-number">3.1.</span> <span class="nav-text">问题1：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析1：-1"><span class="nav-number">3.2.</span> <span class="nav-text">分析1：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题2："><span class="nav-number">3.3.</span> <span class="nav-text">问题2：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析2："><span class="nav-number">3.4.</span> <span class="nav-text">分析2：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题3："><span class="nav-number">3.5.</span> <span class="nav-text">问题3：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析3："><span class="nav-number">3.6.</span> <span class="nav-text">分析3：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#个人感受"><span class="nav-number">4.</span> <span class="nav-text">个人感受</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
