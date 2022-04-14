@@ -95,10 +95,9 @@
 <meta property="og:image" content="https://sweetboyzhang.github.io/2020/07/09/springboot-01/1.png">
 <meta property="og:image" content="https://sweetboyzhang.github.io/2020/07/09/springboot-01/2.png">
 <meta property="og:image" content="https://sweetboyzhang.github.io/2020/07/09/springboot-01/3.png">
-<meta property="og:image" content="https://sweetboyzhang.github.io/2020/07/09/springboot-01/4.png">
 <meta property="og:image" content="https://sweetboyzhang.github.io/2020/07/09/springboot-01/5.png">
 <meta property="article:published_time" content="2020-07-09T00:57:08.000Z">
-<meta property="article:modified_time" content="2021-07-08T05:13:12.153Z">
+<meta property="article:modified_time" content="2022-04-14T15:06:46.720Z">
 <meta property="article:author" content="Zhangyuzhen">
 <meta property="article:tag" content="SpringBoot">
 <meta name="twitter:card" content="summary">
@@ -392,7 +391,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  806
+                  775
                 </span>
               
 
@@ -441,8 +440,6 @@
 <p><strong>在application.properties中可以修改项目的端口号</strong></p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 更改项目端口号</span></span><br><span class="line"><span class="meta">server.port</span>=<span class="string">8081</span></span><br></pre></td></tr></table></figure>
 
-<p>修改banner，在resource中添加banner.txt添加ASCII艺术字，重新启动项目即可！</p>
-<p>康康我的○( ＾皿＾)っHiahiahia…<br><img src="/2020/07/09/springboot-01/4.png" style="zoom:80%;"></p>
 <h2 id="自动装配原理"><a href="#自动装配原理" class="headerlink" title="自动装配原理"></a>自动装配原理</h2><h3 id="pom-xml"><a href="#pom-xml" class="headerlink" title="pom.xml"></a>pom.xml</h3><p><strong>父项目依赖，管理项目的资源过滤及插件</strong></p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.1.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -453,20 +450,16 @@
 
 <p>SpringBoot的主配置类 ， SpringBoot就应该运行这个类的main方法来启动SpringBoot应用；</p>
 <p>Springboot的所有自动配置都是在启动的时候扫描并加载：<br><img src="/2020/07/09/springboot-01/5.png" alt></p>
-<p>spring.factories：所有的配置文件都在里面，但是不一定生效，要判断条件成立，只要导入了对应的启动器，自动装配才会成功。</p>
-<ol>
-<li>SpringBoot在启动的时候从类路径下的META-INF/spring.factories中获取EnableAutoConfiguration指定的值</li>
-<li>将这些值作为自动配置类导入容器 ， 自动配置类就生效 ， 帮我们进行自动配置工作；</li>
-<li>整个JavaEE的整体解决方案和自动配置都在springboot-autoconfigure的jar包中；</li>
-<li>它会给容器中导入非常多的自动配置类 （xxxAutoConfiguration）, 就是给容器中导入这个场景需要的所有组件 ， 并配置好这些组件 ；</li>
-<li>有了自动配置类 ， 免去了我们手动编写配置注入功能组件等的工作；</li>
-</ol>
+<p>spring.factories：所有的配置文件都在里面，但是不一定生效，要判断条件成立，只要导入了对应的<strong>启动器</strong>，自动装配才会成功。</p>
+<p>自动配置核心注解：</p>
+<p>1、@SpringBootApplication；</p>
+<p>2、@EnableAutoConfifiguration； </p>
+<p>3、@AutoConfifigurationPackage：这个组合注解主要是@Import(AutoConfigurationPackages.Registrar.class)，它通过将Registrar类导入到容器中，而Registrar类作用是扫描主配置类同级目录以及子包，并将相应的组件导入到Spring容器中；</p>
+<p>4、@Import(AutoConfigurationImportSelector.class)：它通过将AutoConfigurationImportSelector类导入到容器中，AutoConfigurationImportSelector类作用是通过selectImports方法执行的过程中，会使用内部工具类SpringFactoriesLoader，<strong>查找classpath上所有jar包中的META-INF/spring.factories进行加载</strong>，实现将配置类信息交给SpringFactory加载器进行一系列的容器创建过程。（spring.factory记录了需要加载的自动配置类的全限定名）</p>
 <blockquote>
 <p>SpringApplication.run(HelloworldApplication.class, args);</p>
 <p>一共做了两件事，创建SpringApplication对象，在进行初始化的时候找到spring.factories文件中配置的事件监听器并保存；调用run()方法，刚刚保存的监听器根据当前时机触发不同的事件，比如容器的初始化，容器创建完成等。同时也会刷新容器，进行组件的扫描、创建、加载等工作。</p>
 </blockquote>
-<p><strong>xxxxAutoConfigurartion：</strong>自动配置类；给容器中添加组件</p>
-<p><strong>xxxxProperties:</strong>封装配置文件中相关属性</p>
 
       
     </div>

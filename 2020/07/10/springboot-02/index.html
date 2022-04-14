@@ -94,9 +94,10 @@
 <meta property="og:description" content="配置文件SpringBoot使用一个全局配置文件，用于修改默认配置，文件名固定。  application.properties：语法结构：key&#x3D;value application.yml，springboot推荐使用：语法结构：key: &amp;nbsp;value   两个文件同时存在时，先加载application.properties yaml概述1、空格不能省略，key:空格value 2、">
 <meta property="og:image" content="https://sweetboyzhang.github.io/2020/07/10/springboot-02/6.png">
 <meta property="og:image" content="https://sweetboyzhang.github.io/2020/07/10/springboot-02/7.png">
+<meta property="og:image" content="https://sweetboyzhang.github.io/2020/07/10/springboot-02/1.jpg">
 <meta property="og:image" content="https://sweetboyzhang.github.io/2020/07/10/springboot-02/8.png">
 <meta property="article:published_time" content="2020-07-10T08:30:17.000Z">
-<meta property="article:modified_time" content="2021-10-25T16:29:57.950Z">
+<meta property="article:modified_time" content="2022-04-14T11:06:00.488Z">
 <meta property="article:author" content="Zhangyuzhen">
 <meta property="article:tag" content="SpringBoot">
 <meta name="twitter:card" content="summary">
@@ -390,7 +391,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  569
+                  621
                 </span>
               
 
@@ -438,7 +439,7 @@
 <p>3、属性和值的大小写都是十分敏感的。</p>
 <h2 id="yaml注入配置文件"><a href="#yaml注入配置文件" class="headerlink" title="yaml注入配置文件"></a>yaml注入配置文件</h2><p><img src="/2020/07/10/springboot-02/6.png" alt></p>
 <p>测试：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Springboot02ConfigApplicationTests</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> Cat cat;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> Person person;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">contextLoads</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(cat);</span><br><span class="line">        System.out.println(person);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Springboot02ConfigApplicationTests</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> Cat cat;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> Person person;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">contextLoads</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(cat);</span><br><span class="line">        System.out.println(person);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>结果：</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Cat&#123;<span class="attribute">name</span>=<span class="string">'小白'</span>, <span class="attribute">age</span>=3&#125;</span><br><span class="line">Person&#123;<span class="attribute">name</span>=<span class="string">'zyz'</span>, <span class="attribute">age</span>=22, <span class="attribute">happy</span>=<span class="literal">true</span>, <span class="attribute">birth</span>=Fri Jul 10 00:00:00 CST 2020, maps=&#123;<span class="attribute">k1</span>=v1, <span class="attribute">k2</span>=v2&#125;, lists=[1, 2, 3], <span class="attribute">cat</span>=Cat&#123;<span class="attribute">name</span>=<span class="string">'小花'</span>, <span class="attribute">age</span>=2&#125;&#125;</span><br></pre></td></tr></table></figure>
@@ -446,7 +447,8 @@
 <p>指定随机uuid:</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">zyz$&#123;random.uuid&#125;</span> <span class="comment"># 随机uuid</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="properties注入"><a href="#properties注入" class="headerlink" title="properties注入"></a>properties注入</h2><p><img src="/2020/07/10/springboot-02/7.png" alt></p>
+<h2 id="properties注入"><a href="#properties注入" class="headerlink" title="properties注入"></a>properties注入</h2><p>@PropertySource 手动加载配置文件<br>@Value 基于反射来实现注入，不依赖于setter方法<br><img src="/2020/07/10/springboot-02/7.png" style="zoom:70%;"></p>
+<h2 id="配置文件的加载顺序"><a href="#配置文件的加载顺序" class="headerlink" title="配置文件的加载顺序"></a>配置文件的加载顺序</h2><p>yml  &gt; yaml &gt; properties  后面加载的会覆盖掉前面的<br><img src="/2020/07/10/springboot-02/1.jpg" style="zoom:60%;"></p>
 <h2 id="JSR303校验"><a href="#JSR303校验" class="headerlink" title="JSR303校验"></a>JSR303校验</h2><p>Springboot中可以用@validated来校验数据，如果数据异常则会统一抛出异常，方便异常中心统一处理。</p>
 <p>引入依赖</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-validation<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -674,7 +676,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置文件"><span class="nav-number">1.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#yaml概述"><span class="nav-number">2.</span> <span class="nav-text">yaml概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#yaml注入配置文件"><span class="nav-number">3.</span> <span class="nav-text">yaml注入配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#properties注入"><span class="nav-number">4.</span> <span class="nav-text">properties注入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSR303校验"><span class="nav-number">5.</span> <span class="nav-text">JSR303校验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多环境切换"><span class="nav-number">6.</span> <span class="nav-text">多环境切换</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置文件"><span class="nav-number">1.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#yaml概述"><span class="nav-number">2.</span> <span class="nav-text">yaml概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#yaml注入配置文件"><span class="nav-number">3.</span> <span class="nav-text">yaml注入配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#properties注入"><span class="nav-number">4.</span> <span class="nav-text">properties注入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置文件的加载顺序"><span class="nav-number">5.</span> <span class="nav-text">配置文件的加载顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSR303校验"><span class="nav-number">6.</span> <span class="nav-text">JSR303校验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多环境切换"><span class="nav-number">7.</span> <span class="nav-text">多环境切换</span></a></li></ol></div>
             
 
           </div>
