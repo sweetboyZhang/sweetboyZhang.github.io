@@ -96,7 +96,7 @@
 <meta property="og:image" content="https://sweetboyzhang.github.io/2020/11/28/note/3.png">
 <meta property="og:image" content="https://sweetboyzhang.github.io/2020/11/28/note/4.png">
 <meta property="article:published_time" content="2020-11-28T02:35:01.000Z">
-<meta property="article:modified_time" content="2022-01-17T14:39:59.874Z">
+<meta property="article:modified_time" content="2022-04-15T02:27:16.089Z">
 <meta property="article:author" content="Zhangyuzhen">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://sweetboyzhang.github.io/2020/11/28/note/2.png">
@@ -389,7 +389,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  5.8k
+                  5.9k
                 </span>
               
 
@@ -479,16 +479,20 @@
 </li>
 </ul>
 <h2 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h2><h3 id="Spring缓存注解"><a href="#Spring缓存注解" class="headerlink" title="Spring缓存注解"></a>Spring缓存注解</h3><ul>
+<li><p>启动类添加<code>@EnableCaching</code>开启缓存</p>
+</li>
 <li><p>Spring Cache是作用在方法上的，当我们在调用一个缓存方法时会把该方法参数和返回结果作为一个键值对存放在缓存中，等到下次调用同样的参数来调用该方法时将不再执行该方法，而是直接从缓存中获取结果进行返回。</p>
 </li>
-<li><p><code>@Cacheable(key=&quot;&quot; , value=&quot;&quot;)</code> 用于<strong>查询</strong>的方法</p>
+<li><p><code>@Cacheable(key=&quot;&quot; , value=&quot;&quot;)</code> 方法调用前查询缓存，不存在就会查询数据库，查询完成后放入缓存</p>
 </li>
-<li><p><code>@CacheEvict(key=&quot;&quot; , value=&quot;&quot;)</code> 调用此注解下的方法时会清除缓存，用于<strong>增删改</strong>方法</p>
+<li><p><code>@CacheEvict(key=&quot;&quot; , value=&quot;&quot;)</code> 调用此注解下的方法时会清除缓存</p>
+</li>
+<li><p><code>@CachePut(key=&quot;&quot; , value=&quot;&quot;)</code>方法调用完成后放入缓存</p>
 <p> key属性是用来指定Spring缓存方法的<strong>返回结果时对应的key</strong>，value属性用来指定<strong>缓存名称</strong>。</p>
 </li>
 <li><p>使用场景：业务层bl中的关于用户的基础增删改查功能。</p>
 </li>
-<li><p><strong>以后不会使用此方式了，因为不能指定数据有效时间，以及读取改变的数据不够灵活。一般使用RedisTemple或者自定义注解的方式。</strong></p>
+<li><p><strong>缺点：因为不能指定数据有效时间，以及读取改变的数据不够灵活。一般使用RedisTemple或者自定义注解的方式。</strong></p>
 </li>
 </ul>
 <h3 id="Transactional"><a href="#Transactional" class="headerlink" title="@Transactional"></a>@Transactional</h3><ul>

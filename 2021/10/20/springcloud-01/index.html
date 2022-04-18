@@ -88,18 +88,18 @@
 
 <meta name="description" content="微服务概述微服务化就是将传统的一站式应用，根据业务进行拆分成一个一个服务，彻底地去耦合，每个微服务提供单个业务服务，一个服务做一件事。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SpringCloud入门">
+<meta property="og:title" content="SpringCloud">
 <meta property="og:url" content="https://sweetboyzhang.github.io/2021/10/20/springcloud-01/index.html">
 <meta property="og:site_name" content="Zhangyuzhen&#39;s Blog">
 <meta property="og:description" content="微服务概述微服务化就是将传统的一站式应用，根据业务进行拆分成一个一个服务，彻底地去耦合，每个微服务提供单个业务服务，一个服务做一件事。">
-<meta property="og:image" content="https://sweetboyzhang.github.io/2021/10/20/springcloud-01/1.png">
-<meta property="og:image" content="https://sweetboyzhang.github.io/2021/10/20/springcloud-01/2.png">
+<meta property="og:image" content="https://sweetboyzhang.github.io/2021/10/20/springcloud-01/1.jpg">
+<meta property="og:image" content="https://sweetboyzhang.github.io/2021/10/20/springcloud-01/2.jpg">
 <meta property="article:published_time" content="2021-10-20T00:52:17.000Z">
-<meta property="article:modified_time" content="2022-01-17T14:59:27.927Z">
+<meta property="article:modified_time" content="2022-04-18T14:02:12.903Z">
 <meta property="article:author" content="Zhangyuzhen">
 <meta property="article:tag" content="SpringCloud">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://sweetboyzhang.github.io/2021/10/20/springcloud-01/1.png">
+<meta name="twitter:image" content="https://sweetboyzhang.github.io/2021/10/20/springcloud-01/1.jpg">
 
 
 
@@ -135,7 +135,7 @@
 
 
 
-  <title>SpringCloud入门 | Zhangyuzhen's Blog</title>
+  <title>SpringCloud | Zhangyuzhen's Blog</title>
   
 
 
@@ -323,7 +323,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">SpringCloud入门</h1>
+          <h1 class="post-title" itemprop="name headline">SpringCloud</h1>
         
 
         <div class="post-meta">
@@ -389,7 +389,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1k
+                  1.4k
                 </span>
               
 
@@ -405,7 +405,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  5
                 </span>
               
             </div>
@@ -433,15 +433,12 @@
 <p>缺点：需要分布式系统的复杂性；多服务运维难度；服务之间的通信成本；数据一致性；性能监控</p>
 <h2 id="微服务技术栈"><a href="#微服务技术栈" class="headerlink" title="微服务技术栈"></a>微服务技术栈</h2><p>多种技术的集合体</p>
 <p>服务开发：Springboot 、Spring 、 SpringMVC</p>
-<p>服务配置与管理：Archaius、Diamond</p>
-<p>服务注册与发现：Eureka、Consul、Zookeeper</p>
-<p>服务调用：Rest、RPC</p>
+<p>服务注册与发现：Eureka、Consul、Zookeeper、Nacos</p>
 <p>服务熔断器：Hystrix、Envoy</p>
 <p>负载均衡：Ribbon、Nginx</p>
-<p>服务接口调用：Feign</p>
-<p>消息队列：Kafka、RabbitMQ、ActiveMQ</p>
-<p>服务配置中心管理：SpringCloudConfig、Chef</p>
-<p>服务路由：Zuul</p>
+<p>服务接口调用：Feign，Dubbo</p>
+<p>消息队列：Kafka、RabbitMQ、RocketMQ</p>
+<p>服务配置中心管理：SpringCloudConfig、Nacos</p>
 <h1 id="SpringCloud"><a href="#SpringCloud" class="headerlink" title="SpringCloud"></a>SpringCloud</h1><p>基于SpringBoot提供了一套微服务解决方案，是各个微服务架构技术落地实现的集合体，包含服务注册与发现，配置中心，全链路监控，服务网关，负载均衡，熔断器等组件。</p>
 <blockquote>
 <p>SpringBoot与SpringCloud</p>
@@ -453,37 +450,85 @@
 </blockquote>
 <p>Dubbo的定位是一款RPC框架</p>
 <p>SpringCloud提供的是微服务架构下的一站式解决方案</p>
-<h1 id="Eureka"><a href="#Eureka" class="headerlink" title="Eureka"></a>Eureka</h1><p>CAP理论：服务的一致性，可用性，容错性。</p>
+<h2 id="Eureka"><a href="#Eureka" class="headerlink" title="Eureka"></a>Eureka</h2><p>CAP理论：数据一致性，服务可用性，分区容错性。</p>
 <p>Eureka与Zookeeper区别：</p>
 <ul>
-<li><p>Zookeeper注重服务的一致性，主机挂了，集群整体不对外提供服务，需要120s重选才能对外提供服务；</p>
+<li><p>Zookeeper注重服务的<strong>一致性</strong>，主机挂了，集群整体不对外提供服务，需要120s重选主节点才能对外提供服务；</p>
 </li>
-<li><p>Eureka注重服务的可用性，只要有一台主机活着，就能对外提供服务。</p>
+<li><p>Eureka注重服务的<strong>可用性</strong>，只要有一台主机活着，就能对外提供服务。</p>
 </li>
 </ul>
+<p>与其他注册中心组件的对比：</p>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>语言</th>
+<th>CAP</th>
+<th>接口协议</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Eureka</td>
+<td>Java</td>
+<td>AP</td>
+<td>Http</td>
+</tr>
+<tr>
+<td>Zookeeper</td>
+<td>Java</td>
+<td>CP</td>
+<td>客户端</td>
+</tr>
+<tr>
+<td>Consul</td>
+<td>Go</td>
+<td>CP</td>
+<td>Http/DNS</td>
+</tr>
+<tr>
+<td>Nacos</td>
+<td>Java</td>
+<td>AP/CP</td>
+<td>Http</td>
+</tr>
+</tbody></table>
 <p>服务注册：当项目（eureka客户端）启动时，就会向eureka-serever发送自己的元数据（运行的ip，端口port，健康状态的监控等），Eureka会保存这些元数据，通过RestFul api提供调用</p>
-<p>服务续约：项目启动成功后，除了向eureka-server注册自己成功，还会向eureka-server汇报自己，表示自己还活着。</p>
+<p>服务续约（心跳）：项目启动成功后，除了向eureka-server注册自己，还会每隔30s向eureka-server汇报自己，表示自己还活着。</p>
+<p>服务剔除：当项目没有在90s汇报自己的情况，eureka-server会认为此节点死掉了，会将其剔除。</p>
 <p>服务下线：当项目关闭时，会给eureka-server报告，说明自己要下机了。</p>
-<p>服务的剔除：当项目没有在指定时间汇报自己的情况，eureka-server会认为此节点死掉了，会将其剔除。</p>
-<p>服务发现：</p>
-<p>将ClienA，ClientB注册到Eureka中，在ClientA中调用ClientB中的接口：</p>
-<p>euraka-server：</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span></span><br><span class="line">    <span class="number">8761</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span></span><br><span class="line">      <span class="string">eureka-server</span></span><br><span class="line"></span><br><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">service-url:</span></span><br><span class="line">      <span class="attr">defaultZone:</span></span><br><span class="line">        <span class="string">http://localhost:8761/eureka</span></span><br><span class="line">      <span class="attr">instance:</span></span><br><span class="line">        <span class="attr">instance-id:</span> <span class="string">$&#123;eureka.instance.hostName&#125;$&#123;spring.application.name&#125;:$&#123;server.port&#125;</span></span><br></pre></td></tr></table></figure>
+<img src="/2021/10/20/springcloud-01/1.jpg" style="zoom:50%;">
 
-<p>clientA：</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span></span><br><span class="line">    <span class="number">9091</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span></span><br><span class="line">      <span class="string">clientA</span></span><br><span class="line"></span><br><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">service-url:</span></span><br><span class="line">      <span class="attr">defaultZone:</span></span><br><span class="line">        <span class="string">http://localhost:8761/eureka</span></span><br></pre></td></tr></table></figure>
+<p>Eureka Client会缓存Eureka Server的信息，即使Eureka Server全部宕掉，也可以通过缓存获取服务的信息。</p>
+<p>多个Eureka Server会通过复制来同步服务注册列表。</p>
+<h2 id="Ribbon"><a href="#Ribbon" class="headerlink" title="Ribbon"></a>Ribbon</h2><ul>
+<li>服务端负载均衡：Nginx/F5<ul>
+<li>在服务器端完成请求的分发。将客户端发起的请求根据负载算法分发到不同的服务器上。</li>
+</ul>
+</li>
+<li>客户端负载均衡：Ribbon<ul>
+<li>在客户端实现负载算法。消费者客户端从注册中心拿到服务列表，通过负载算法请求具体的某一台服务器实现调用。</li>
+</ul>
+</li>
+</ul>
+<img src="/2021/10/20/springcloud-01/2.jpg" style="zoom:50%;">
 
-<p>clientB：</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span></span><br><span class="line">    <span class="number">9092</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span></span><br><span class="line">      <span class="string">clientB</span></span><br><span class="line"></span><br><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">service-url:</span></span><br><span class="line">      <span class="attr">defaultZone:</span></span><br><span class="line">        <span class="string">http://localhost:8761/eureka</span></span><br></pre></td></tr></table></figure>
+<p>Eureka-client已经引入了Ribbon相关的包，通过<code>@LoadBalanced</code>注解即可完成负载。</p>
+<h2 id="Hystrix"><a href="#Hystrix" class="headerlink" title="Hystrix"></a>Hystrix</h2><p>服务雪崩 ：上游服务调用下游微服务，下游服务器请求响应时间变慢，导致大量请求堆积，造成线程大量阻塞，将服务器压垮，导致整个调用链路崩溃。</p>
+<p>hystrix熔断器可以在下游服务器超时时，阻断对下游服务的调用，防止调用链路雪崩。</p>
+<p>hystix也可以通过设置fallback函数对服务进行<strong>降级</strong>处理。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@HystrixCommand</span>(</span><br><span class="line">    threadPoolKey = <span class="string">"findResumeOpenStatus"</span>,</span><br><span class="line">    commandProperties = &#123;</span><br><span class="line">        <span class="meta">@HystrixProperty</span>(name = <span class="string">"execution.isolation.thread.timeoutInMilliseconds"</span>, value = <span class="string">"2000"</span>)&#125;,</span><br><span class="line">    fallbackMethod = <span class="string">"hystrixFallback"</span></span><br><span class="line">   )</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2021/10/20/springcloud-01/1.png" alt></p>
-<p>ClientA中的Controller：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClientAController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> DiscoveryClient discoveryClient;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/callClientB/&#123;serviceName&#125;/&#123;path&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">clientA</span><span class="params">(@PathVariable String serviceName, @PathVariable String path)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 根据服务名称找到ip和端口</span></span><br><span class="line">        List&lt;ServiceInstance&gt; instances = discoveryClient.getInstances(serviceName);</span><br><span class="line">        ServiceInstance serviceInstance = instances.get(<span class="number">0</span>);</span><br><span class="line">        String url = <span class="string">"http://"</span>+serviceInstance.getHost() + <span class="string">":"</span> + serviceInstance.getPort()+<span class="string">"/"</span>+path;</span><br><span class="line">        <span class="comment">// 发起http请求</span></span><br><span class="line">        RestTemplate template = <span class="keyword">new</span> RestTemplate();</span><br><span class="line">        <span class="keyword">return</span> template.getForObject(url,String<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>ClientB中的Controller：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClientBController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"hello"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">hello</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"hello from ClientB"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2021/10/20/springcloud-01/2.png" alt></p>
+<p>Hystrix舱壁模式（线程池隔离）<br>不设置线程池时，所有熔断器默认共用一个线程池中的10个线程。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@HystrixCommand</span>(</span><br><span class="line">    threadPoolKey = <span class="string">"findResumeOpenStatus"</span>,</span><br><span class="line">    commandProperties = &#123;</span><br><span class="line">        <span class="meta">@HystrixProperty</span>(name=<span class="string">"coreSize"</span>,value = <span class="string">"1"</span>),</span><br><span class="line">        <span class="meta">@HystrixProperty</span>(name = <span class="string">"maxQueueSize"</span>,value = <span class="string">"20"</span>),</span><br><span class="line">        <span class="meta">@HystrixProperty</span>(name = <span class="string">"execution.isolation.thread.timeoutInMilliseconds"</span>, value = <span class="string">"2000"</span>)&#125;,</span><br><span class="line">    fallbackMethod = <span class="string">"hystrixFallback"</span></span><br><span class="line">   )</span><br></pre></td></tr></table></figure>
+
+<p>自定义跳闸参数，活动窗口时间</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 8秒钟内，请求次数达到2个，并且失败率在50%以上，就跳闸</span></span><br><span class="line"><span class="comment"> * 跳闸后活动窗⼝设置为3s 每3s发一次请求，成功就重置熔断器</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@HystrixCommand</span>(</span><br><span class="line">        threadPoolKey = <span class="string">"testHystrix"</span>,</span><br><span class="line">        threadPoolProperties = &#123;</span><br><span class="line">                <span class="meta">@HystrixProperty</span>(name = <span class="string">"coreSize"</span>, value = <span class="string">"2"</span>),</span><br><span class="line">                <span class="meta">@HystrixProperty</span>(name = <span class="string">"maxQueueSize"</span>, value = <span class="string">"20"</span>)</span><br><span class="line">        &#125;,</span><br><span class="line">        commandProperties = &#123;</span><br><span class="line">                <span class="meta">@HystrixProperty</span>(name =</span><br><span class="line">                        <span class="string">"execution.isolation.thread.timeoutInMilliseconds"</span>, value = <span class="string">"2000"</span>),</span><br><span class="line">                <span class="meta">@HystrixProperty</span>(name =</span><br><span class="line">                        <span class="string">"metrics.rollingStats.timeInMilliseconds"</span>, value = <span class="string">"8000"</span>),</span><br><span class="line">                <span class="meta">@HystrixProperty</span>(name =</span><br><span class="line">                        <span class="string">"circuitBreaker.requestVolumeThreshold"</span>, value = <span class="string">"2"</span>),</span><br><span class="line">                <span class="meta">@HystrixProperty</span>(name =</span><br><span class="line">                        <span class="string">"circuitBreaker.errorThresholdPercentage"</span>, value = <span class="string">"50"</span>),</span><br><span class="line">                <span class="meta">@HystrixProperty</span>(name =</span><br><span class="line">                        <span class="string">"circuitBreaker.sleepWindowInMilliseconds"</span>, value = <span class="string">"3000"</span>),</span><br><span class="line">        &#125;,</span><br><span class="line">        fallbackMethod = <span class="string">"hystrixFallback"</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+
+
 
       
     </div>
@@ -504,7 +549,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://sweetboyzhang.github.io/2021/10/20/springcloud-01/" title="SpringCloud入门">https://sweetboyzhang.github.io/2021/10/20/springcloud-01/</a>
+    <a href="https://sweetboyzhang.github.io/2021/10/20/springcloud-01/" title="SpringCloud">https://sweetboyzhang.github.io/2021/10/20/springcloud-01/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -697,7 +742,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#微服务概述"><span class="nav-number">1.</span> <span class="nav-text">微服务概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#微服务优缺点"><span class="nav-number">1.1.</span> <span class="nav-text">微服务优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#微服务技术栈"><span class="nav-number">1.2.</span> <span class="nav-text">微服务技术栈</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SpringCloud"><span class="nav-number">2.</span> <span class="nav-text">SpringCloud</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Eureka"><span class="nav-number">3.</span> <span class="nav-text">Eureka</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#微服务概述"><span class="nav-number">1.</span> <span class="nav-text">微服务概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#微服务优缺点"><span class="nav-number">1.1.</span> <span class="nav-text">微服务优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#微服务技术栈"><span class="nav-number">1.2.</span> <span class="nav-text">微服务技术栈</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SpringCloud"><span class="nav-number">2.</span> <span class="nav-text">SpringCloud</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Eureka"><span class="nav-number">2.1.</span> <span class="nav-text">Eureka</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ribbon"><span class="nav-number">2.2.</span> <span class="nav-text">Ribbon</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hystrix"><span class="nav-number">2.3.</span> <span class="nav-text">Hystrix</span></a></li></ol></li></ol></div>
             
 
           </div>
