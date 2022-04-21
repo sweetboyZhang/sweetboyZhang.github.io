@@ -89,18 +89,19 @@
 <meta name="description" content="微服务概述微服务化就是将传统的一站式应用，根据业务进行拆分成一个一个服务，彻底地去耦合，每个微服务提供单个业务服务，一个服务做一件事。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringCloud">
-<meta property="og:url" content="https://sweetboyzhang.github.io/2021/10/20/springcloud-01/index.html">
+<meta property="og:url" content="https://sweetboyzhang.github.io/2022/02/15/springcloud-01/index.html">
 <meta property="og:site_name" content="Zhangyuzhen&#39;s Blog">
 <meta property="og:description" content="微服务概述微服务化就是将传统的一站式应用，根据业务进行拆分成一个一个服务，彻底地去耦合，每个微服务提供单个业务服务，一个服务做一件事。">
-<meta property="og:image" content="https://sweetboyzhang.github.io/2021/10/20/springcloud-01/1.jpg">
-<meta property="og:image" content="https://sweetboyzhang.github.io/2021/10/20/springcloud-01/2.jpg">
-<meta property="og:image" content="https://sweetboyzhang.github.io/2021/10/20/springcloud-01/3.jpg">
-<meta property="article:published_time" content="2021-10-20T00:52:17.000Z">
-<meta property="article:modified_time" content="2022-04-20T03:01:01.531Z">
+<meta property="og:image" content="https://sweetboyzhang.github.io/2022/02/15/springcloud-01/1.jpg">
+<meta property="og:image" content="https://sweetboyzhang.github.io/2022/02/15/springcloud-01/2.jpg">
+<meta property="og:image" content="https://sweetboyzhang.github.io/2022/02/15/springcloud-01/3.jpg">
+<meta property="og:image" content="https://sweetboyzhang.github.io/2022/02/15/springcloud-01/4.jpg">
+<meta property="article:published_time" content="2022-02-15T05:52:17.000Z">
+<meta property="article:modified_time" content="2022-04-21T03:29:09.596Z">
 <meta property="article:author" content="Zhangyuzhen">
 <meta property="article:tag" content="SpringCloud">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://sweetboyzhang.github.io/2021/10/20/springcloud-01/1.jpg">
+<meta name="twitter:image" content="https://sweetboyzhang.github.io/2022/02/15/springcloud-01/1.jpg">
 
 
 
@@ -130,7 +131,7 @@
 
 
 
-  <link rel="canonical" href="https://sweetboyZhang.github.io/2021/10/20/springcloud-01/"/>
+  <link rel="canonical" href="https://sweetboyZhang.github.io/2022/02/15/springcloud-01/"/>
 
 
 
@@ -307,7 +308,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sweetboyZhang.github.io/2021/10/20/springcloud-01/">
+    <link itemprop="mainEntityOfPage" href="https://sweetboyZhang.github.io/2022/02/15/springcloud-01/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhangyuzhen">
@@ -336,8 +337,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-10-20T08:52:17+08:00">
-                2021-10-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-15T13:52:17+08:00">
+                2022-02-15
               </time>
             
 
@@ -390,7 +391,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.4k
+                  1.6k
                 </span>
               
 
@@ -498,7 +499,7 @@
 <p>服务续约（心跳）：项目启动成功后，除了向eureka-server注册自己，还会每隔30s向eureka-server汇报自己，表示自己还活着。</p>
 <p>服务剔除：当项目没有在90s汇报自己的情况，eureka-server会认为此节点死掉了，会将其剔除。</p>
 <p>服务下线：当项目关闭时，会给eureka-server报告，说明自己要下机了。</p>
-<img src="/2021/10/20/springcloud-01/1.jpg" style="zoom:50%;">
+<img src="/2022/02/15/springcloud-01/1.jpg" style="zoom:50%;">
 
 <p>Eureka Client会缓存Eureka Server的信息，即使Eureka Server全部宕掉，也可以通过缓存获取服务的信息。</p>
 <p>多个Eureka Server会通过复制来同步服务注册列表。</p>
@@ -512,7 +513,7 @@
 </ul>
 </li>
 </ul>
-<img src="/2021/10/20/springcloud-01/2.jpg" style="zoom:50%;">
+<img src="/2022/02/15/springcloud-01/2.jpg" style="zoom:50%;">
 
 <p>Eureka-client已经引入了Ribbon相关的包，通过<code>@LoadBalanced</code>注解即可完成负载。</p>
 <h2 id="Hystrix"><a href="#Hystrix" class="headerlink" title="Hystrix"></a>Hystrix</h2><p>服务雪崩 ：上游服务调用下游微服务，下游服务器请求响应时间变慢，导致大量请求堆积，造成线程大量阻塞，将服务器压垮，导致整个调用链路崩溃。</p>
@@ -529,8 +530,18 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 8秒钟内，请求次数达到2个，并且失败率在50%以上，就跳闸</span></span><br><span class="line"><span class="comment"> * 跳闸后活动窗⼝设置为3s 每3s发一次请求，成功就重置熔断器</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@HystrixCommand</span>(</span><br><span class="line">        threadPoolKey = <span class="string">"testHystrix"</span>,</span><br><span class="line">        threadPoolProperties = &#123;</span><br><span class="line">                <span class="meta">@HystrixProperty</span>(name = <span class="string">"coreSize"</span>, value = <span class="string">"2"</span>),</span><br><span class="line">                <span class="meta">@HystrixProperty</span>(name = <span class="string">"maxQueueSize"</span>, value = <span class="string">"20"</span>)</span><br><span class="line">        &#125;,</span><br><span class="line">        commandProperties = &#123;</span><br><span class="line">                <span class="meta">@HystrixProperty</span>(name =</span><br><span class="line">                        <span class="string">"execution.isolation.thread.timeoutInMilliseconds"</span>, value = <span class="string">"2000"</span>),</span><br><span class="line">                <span class="meta">@HystrixProperty</span>(name =</span><br><span class="line">                        <span class="string">"metrics.rollingStats.timeInMilliseconds"</span>, value = <span class="string">"8000"</span>),</span><br><span class="line">                <span class="meta">@HystrixProperty</span>(name =</span><br><span class="line">                        <span class="string">"circuitBreaker.requestVolumeThreshold"</span>, value = <span class="string">"2"</span>),</span><br><span class="line">                <span class="meta">@HystrixProperty</span>(name =</span><br><span class="line">                        <span class="string">"circuitBreaker.errorThresholdPercentage"</span>, value = <span class="string">"50"</span>),</span><br><span class="line">                <span class="meta">@HystrixProperty</span>(name =</span><br><span class="line">                        <span class="string">"circuitBreaker.sleepWindowInMilliseconds"</span>, value = <span class="string">"3000"</span>),</span><br><span class="line">        &#125;,</span><br><span class="line">        fallbackMethod = <span class="string">"hystrixFallback"</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
 <h2 id="Feign"><a href="#Feign" class="headerlink" title="Feign"></a>Feign</h2><p>轻量级RESTful风格的HTTP客户端，以Java注解方式发起HTTP请求，实现rpc，类似于Dubbo的服务调用</p>
-<h2 id="GateWay"><a href="#GateWay" class="headerlink" title="GateWay"></a>GateWay</h2><p>Spring Cloud GateWay不仅提供统⼀的路由方式（反向代理）并且基于 Filter 链的方式提供了网关基本的功能，例如：鉴权、流量控制、熔断、路径重写、日志监控等。<br><img src="/2021/10/20/springcloud-01/3.jpg" alt="3" style="zoom:50%;"></p>
-<h2 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h2>
+<h2 id="GateWay"><a href="#GateWay" class="headerlink" title="GateWay"></a>GateWay</h2><p>Spring Cloud GateWay不仅提供统⼀的路由方式（反向代理）并且基于 Filter 链的方式提供了网关基本的功能，例如：鉴权、流量控制、熔断、路径重写、日志监控等。<br><img src="/2022/02/15/springcloud-01/3.jpg" alt="3" style="zoom:50%;"></p>
+<h2 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h2><p>Spring Cloud Config 分布式配置中心<br><img src="/2022/02/15/springcloud-01/4.jpg" style="zoom:50%;"></p>
+<p>配置文件的刷新方案：</p>
+<ul>
+<li><p>手动向Client客户端发起POST请求，<a href="http://localhost:8081/actuator/refresh，刷新配置信息" target="_blank" rel="noopener">http://localhost:8081/actuator/refresh，刷新配置信息</a></p>
+</li>
+<li><p>通过消息总线更新，Spring Cloud Bus（基于MQ的，支持RabbitMq/Kafka），MQ消息代理构建⼀个共用的Topic，通过这个Topic连接各个微服务实例，MQ广播的消息会被所有在注册中心的微服务实例监听和消费。</p>
+</li>
+</ul>
+<p>​       手动向config server发起POST请求，<a href="http://localhost:9003/bus-refresh，mq就会刷新所有Client配置信息" target="_blank" rel="noopener">http://localhost:9003/bus-refresh，mq就会刷新所有Client配置信息</a></p>
+<p><a href="https://github.com/sweetboyZhang/zyz-parent" target="_blank" rel="noopener">sweetboyZhang/zyz-parent: SpringCloud代码笔记 (github.com)</a></p>
+
       
     </div>
     
@@ -550,7 +561,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://sweetboyzhang.github.io/2021/10/20/springcloud-01/" title="SpringCloud">https://sweetboyzhang.github.io/2021/10/20/springcloud-01/</a>
+    <a href="https://sweetboyzhang.github.io/2022/02/15/springcloud-01/" title="SpringCloud">https://sweetboyzhang.github.io/2022/02/15/springcloud-01/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -578,8 +589,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/10/17/dotnetcore-01/" rel="next" title=".Net Core基础知识">
-                <i class="fa fa-chevron-left"></i> .Net Core基础知识
+              <a href="/2022/01/17/worknote-01/" rel="next" title="工作笔记">
+                <i class="fa fa-chevron-left"></i> 工作笔记
               </a>
             
           </div>
@@ -587,10 +598,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2021/10/24/redis-07/" rel="prev" title="Redis主从复制，集群">
-                Redis主从复制，集群 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
