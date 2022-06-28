@@ -99,7 +99,7 @@
 <meta property="og:image" content="https://sweetboyzhang.github.io/2022/02/15/springcloud-01/5.jpg">
 <meta property="og:image" content="https://sweetboyzhang.github.io/2022/02/15/springcloud-01/6.jpg">
 <meta property="article:published_time" content="2022-02-15T05:52:17.000Z">
-<meta property="article:modified_time" content="2022-04-28T08:41:39.672Z">
+<meta property="article:modified_time" content="2022-06-06T09:38:39.678Z">
 <meta property="article:author" content="Zhangyuzhen">
 <meta property="article:tag" content="SpringCloud">
 <meta name="twitter:card" content="summary">
@@ -522,8 +522,6 @@
 <p>hystrix熔断器可以在下游服务器超时时，阻断对下游服务的调用，防止调用链路雪崩。</p>
 <p>hystix也可以通过设置fallback函数对服务进行<strong>降级</strong>处理。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@HystrixCommand</span>(</span><br><span class="line">    threadPoolKey = <span class="string">"findResumeOpenStatus"</span>,</span><br><span class="line">    commandProperties = &#123;</span><br><span class="line">        <span class="meta">@HystrixProperty</span>(name = <span class="string">"execution.isolation.thread.timeoutInMilliseconds"</span>, value = <span class="string">"2000"</span>)&#125;,</span><br><span class="line">    fallbackMethod = <span class="string">"hystrixFallback"</span></span><br><span class="line">   )</span><br></pre></td></tr></table></figure>
-
-
 
 <p>Hystrix舱壁模式（线程池隔离）<br>不设置线程池时，所有熔断器默认共用一个线程池中的10个线程。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@HystrixCommand</span>(</span><br><span class="line">    threadPoolKey = <span class="string">"findResumeOpenStatus"</span>,</span><br><span class="line">    commandProperties = &#123;</span><br><span class="line">        <span class="meta">@HystrixProperty</span>(name=<span class="string">"coreSize"</span>,value = <span class="string">"1"</span>),</span><br><span class="line">        <span class="meta">@HystrixProperty</span>(name = <span class="string">"maxQueueSize"</span>,value = <span class="string">"20"</span>),</span><br><span class="line">        <span class="meta">@HystrixProperty</span>(name = <span class="string">"execution.isolation.thread.timeoutInMilliseconds"</span>, value = <span class="string">"2000"</span>)&#125;,</span><br><span class="line">    fallbackMethod = <span class="string">"hystrixFallback"</span></span><br><span class="line">   )</span><br></pre></td></tr></table></figure>
