@@ -402,23 +402,14 @@
 
       
         
-          
-            <p>datax日志如下：</p>
-<p><img src="/2022/09/16/worknote-02/1.jpg" alt></p>
-<p>乍一看没什么问题，也没报错，可是这条日志刷了半个多小时，初步排查配置文件是否写的有问题，结果并无问题。</p>
-<p>进一步排查读库，也并没有什么问题，排查写库，一个只有一条记录的表尽然要查半天！最新的数据还是一个月之前的数据，判断是数据写入时出了问题，数据无法写入。</p>
-<p>接着就去查看数据库的磁盘占用情况，果不其然出了问题，磁盘满了！<br><img src="/2022/09/16/worknote-02/2.png" style="zoom:80%;"></p>
-<p>mysqld.log占了一大半！询问同事后，对文件进行清空处理</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat dev/null &gt; /data/mysql/mysqld.log</span><br></pre></td></tr></table></figure>
-
-<p>再次启动datax，成功插入数据！</p>
-<p>再次查看mysqld.log发现文件仍在暴增，于是写了一个脚本定时去清空文件，每天清空一次</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab -e</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 0 * * * cat dev/null &gt; /data/mysql/mysqld.log</span><br></pre></td></tr></table></figure>
-
-
-          
+          <p>datax日志如下：</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2022/09/16/worknote-02/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

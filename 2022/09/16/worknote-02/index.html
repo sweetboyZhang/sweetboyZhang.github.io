@@ -86,16 +86,16 @@
 
 
 
-<meta name="description" content="datax日志如下：  乍一看没什么问题，也没报错，可是这条日志刷了半个多小时，初步排查配置文件是否写的有问题，结果并无问题。 进一步排查读库，也并没有什么问题，排查写库，一个只有一条记录的表尽然要查半天！最新的数据还是一个月之前的数据，判断是数据写入时出了问题，数据无法写入。 接着就去查看数据库的磁盘占用情况，果不其然出了问题，磁盘满了！ mysqld.log占了一大半！询问同事后，对文件进行清">
+<meta name="description" content="datax日志如下：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记一次Datax写入不了数据的问题">
 <meta property="og:url" content="https://sweetboyzhang.github.io/2022/09/16/worknote-02/index.html">
 <meta property="og:site_name" content="Zhangyuzhen&#39;s Blog">
-<meta property="og:description" content="datax日志如下：  乍一看没什么问题，也没报错，可是这条日志刷了半个多小时，初步排查配置文件是否写的有问题，结果并无问题。 进一步排查读库，也并没有什么问题，排查写库，一个只有一条记录的表尽然要查半天！最新的数据还是一个月之前的数据，判断是数据写入时出了问题，数据无法写入。 接着就去查看数据库的磁盘占用情况，果不其然出了问题，磁盘满了！ mysqld.log占了一大半！询问同事后，对文件进行清">
+<meta property="og:description" content="datax日志如下：">
 <meta property="og:image" content="https://sweetboyzhang.github.io/2022/09/16/worknote-02/1.jpg">
 <meta property="og:image" content="https://sweetboyzhang.github.io/2022/09/16/worknote-02/2.png">
 <meta property="article:published_time" content="2022-09-16T11:49:42.000Z">
-<meta property="article:modified_time" content="2022-09-16T12:11:41.523Z">
+<meta property="article:modified_time" content="2022-09-16T13:18:45.533Z">
 <meta property="article:author" content="Zhangyuzhen">
 <meta property="article:tag" content="工作笔记">
 <meta name="twitter:card" content="summary">
@@ -404,7 +404,7 @@
       
 
       
-        <p>datax日志如下：</p>
+        <p>datax日志如下：<a id="more"></a></p>
 <p><img src="/2022/09/16/worknote-02/1.jpg" alt></p>
 <p>乍一看没什么问题，也没报错，可是这条日志刷了半个多小时，初步排查配置文件是否写的有问题，结果并无问题。</p>
 <p>进一步排查读库，也并没有什么问题，排查写库，一个只有一条记录的表尽然要查半天！最新的数据还是一个月之前的数据，判断是数据写入时出了问题，数据无法写入。</p>
