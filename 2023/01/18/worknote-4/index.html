@@ -89,11 +89,11 @@
 <meta name="description" content="常用脚本linux后台跑jar包1nohup java -jar xxx.jar &gt; &#x2F;dev&#x2F;null 2&gt;&amp;1 &amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="工作笔记">
-<meta property="og:url" content="https://sweetboyzhang.github.io/2023/01/08/worknote-4/index.html">
+<meta property="og:url" content="https://sweetboyzhang.github.io/2023/01/18/worknote-4/index.html">
 <meta property="og:site_name" content="Zhangyuzhen&#39;s Blog">
 <meta property="og:description" content="常用脚本linux后台跑jar包1nohup java -jar xxx.jar &gt; &#x2F;dev&#x2F;null 2&gt;&amp;1 &amp;">
-<meta property="article:published_time" content="2023-01-08T06:56:54.000Z">
-<meta property="article:modified_time" content="2023-02-02T08:22:02.275Z">
+<meta property="article:published_time" content="2023-01-18T06:56:54.000Z">
+<meta property="article:modified_time" content="2023-08-03T07:26:09.011Z">
 <meta property="article:author" content="Zhangyuzhen">
 <meta property="article:tag" content="工作笔记">
 <meta name="twitter:card" content="summary">
@@ -126,7 +126,7 @@
 
 
 
-  <link rel="canonical" href="https://sweetboyZhang.github.io/2023/01/08/worknote-4/"/>
+  <link rel="canonical" href="https://sweetboyZhang.github.io/2023/01/18/worknote-4/"/>
 
 
 
@@ -303,7 +303,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sweetboyZhang.github.io/2023/01/08/worknote-4/">
+    <link itemprop="mainEntityOfPage" href="https://sweetboyZhang.github.io/2023/01/18/worknote-4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhangyuzhen">
@@ -332,8 +332,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-01-08T14:56:54+08:00">
-                2023-01-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-01-18T14:56:54+08:00">
+                2023-01-18
               </time>
             
 
@@ -428,7 +428,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 1 * * * fetch_data.sh</span><br></pre></td></tr></table></figure>
 
 <h3 id="windows后台跑jar"><a href="#windows后台跑jar" class="headerlink" title="windows后台跑jar"></a>windows后台跑jar</h3><p>start.bat</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line">title job start ...</span><br><span class="line">color 0A</span><br><span class="line">start javaw -jar xxx.jar &gt;&gt; D:\log.fi  &amp;</span><br><span class="line"><span class="built_in">echo</span> .</span><br><span class="line"><span class="built_in">echo</span> ----job start success----</span><br><span class="line">pause</span><br><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line">title job start ...</span><br><span class="line">color 0A</span><br><span class="line">start javaw -jar xxx.jar &gt;&gt; D:\log.file  &amp;</span><br><span class="line"><span class="built_in">echo</span> .</span><br><span class="line"><span class="built_in">echo</span> ----job start success----</span><br><span class="line">pause</span><br><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
 
 <p>stop.bat</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line">title job stop ...</span><br><span class="line">color 0A</span><br><span class="line">taskkill -f -t -im javaw.exe</span><br><span class="line"><span class="built_in">echo</span> .</span><br><span class="line"><span class="built_in">echo</span> ---job stop sucess---</span><br><span class="line">pause</span><br><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
@@ -519,7 +519,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://sweetboyzhang.github.io/2023/01/08/worknote-4/" title="工作笔记">https://sweetboyzhang.github.io/2023/01/08/worknote-4/</a>
+    <a href="https://sweetboyzhang.github.io/2023/01/18/worknote-4/" title="工作笔记">https://sweetboyzhang.github.io/2023/01/18/worknote-4/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
